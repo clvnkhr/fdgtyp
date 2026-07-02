@@ -9,6 +9,7 @@
 #let div = math.op("div")
 #let length = math.op("length")
 #let fdg-equation-prefix = state("fdg-equation-prefix", "0")
+#let fdg-figure-counter = counter("fdg-figure")
 #let fdg-link-color = rgb("#245f86")
 #let fdg-raw-fill = rgb("#fffdf8")
 #let fdg-raw-stroke = rgb("#eadfcf")
@@ -187,6 +188,18 @@
   body
 }
 
+#let fdg-figure(body, caption) = {
+  fdg-figure-counter.step()
+  let number = context {
+    fdg-equation-prefix.at(here()) + "." + str(fdg-figure-counter.get().first())
+  }
+  figure(
+    body,
+    numbering: none,
+    caption: [#strong[Figure #number:] #caption],
+  )
+}
+
 #let fdg-cover-vortex(x, y, rx, ry, hot-side: "bottom") = {
   import cetz.draw: *
 
@@ -356,6 +369,7 @@
     counter(page).update(1)
   }
   counter(math.equation).update(0)
+  fdg-figure-counter.update(0)
   if eq-prefix != none {
     fdg-equation-prefix.update(eq-prefix)
   }

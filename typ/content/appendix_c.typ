@@ -1,15 +1,17 @@
 // Generated from ../../fdg-book/scheme/org/appendix_c.org.
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
-#import "../lib.typ": fdg-chapter, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
+#import "../lib.typ": fdg-chapter, fdg-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
 
 #fdg-chapter("Appendix C: Tensors", numbered: true, eq-prefix: "C", ref-label: "chap-appendix-c")[
 There are a variety of objects that have meaning independent of any particular basis. Examples are form fields, vector fields, covariant derivative, and so on. We call objects that are independent of basis #emph[geometric objects]. Some of these are functions that take other geometric objects, such as vector fields and form fields, as arguments and produce further geometric objects. We refer to such functions as #emph[geometric functions]. We want the laws of physics to be independent of the coordinate systems. How we describe an experiment should not affect the result. If we use only geometric objects in our descriptions then this is automatic.
 
 A geometric function of vector fields and form fields that is linear in each argument with functions as multipliers is called a #emph[tensor]. For example, let $sans(T)$ be a geometric function of a vector field and form field that gives a real-number result at the manifold point $sans(m)$. Then
 
-$ sans(T) (sans(f) sans(u) + sans(g) sans(v)\,bold(omega))= sans(f) thin sans(T) (sans(u)\,bold(omega))+ sans(g) sans(T) (sans(u)\,bold(omega)) $ <C.1>
+$ sans(T) (sans(f) sans(u) + sans(g) sans(v)\,bold(omega))\
+ &= sans(f) thin sans(T) (sans(u)\,bold(omega))+ sans(g) sans(T) (sans(u)\,bold(omega)) $ <C.1>
 
-$ sans(T) (sans(u)\,sans(f) bold(omega) + sans(g) bold(theta))= sans(f) thin sans(T) (sans(u)\,bold(omega))+ sans(g) sans(T) (sans(u)\,bold(theta))\, $ <C.2>
+$ sans(T) (sans(u)\,sans(f) bold(omega) + sans(g) bold(theta))\
+ &= sans(f) thin sans(T) (sans(u)\,bold(omega))+ sans(g) sans(T) (sans(u)\,bold(theta))\, $ <C.2>
 
 where $sans(u)$ and $sans(v)$ are vector fields, $bold(omega)$ and $bold(theta)$ are form fields, and $sans(f)$ and $sans(g)$ are manifold functions. That a tensor is linear over functions and not just constants is important.
 

@@ -1,6 +1,6 @@
 // Generated from ../../fdg-book/scheme/org/prologue.org.
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
-#import "../lib.typ": fdg-chapter, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
+#import "../lib.typ": fdg-chapter, fdg-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
 
 #fdg-chapter("Prologue", numbered: false, eq-prefix: "0", ref-label: "")[
 == Programming and Understanding
@@ -55,7 +55,8 @@ $ frac(d, d t) ((partial_2 L) (Gamma [w] (t))) - (partial_1 L) (Gamma [w] (t)) =
 
 If we now define composition of functions $(f compose g) (x)= f (g (x))$, we can express the Lagrange equations entirely in terms of functions:
 
-$ D ((partial_2 L) compose (Gamma [w])) - (partial_1 L) compose (Gamma [w]) = 0 . $
+$ D ((partial_2 L) compose (Gamma [w])) \
+ - (partial_1 L) compose (Gamma [w]) = 0 . $
 
 The functions $partial_1 L$ and $partial_2 L$ are partial derivatives of the function $L$. Composition with $Gamma[w]$ evaluates these partials with coordinates and velocites appropriate for the path $w$, making functions of time. Applying $D$ takes the time derivative. The Lagrange equation states that the difference of the resulting functions of time must be zero. This statement of the Lagrange equation is complete, unambiguous, and functional. It is not encumbered with the particular choices made in expressing the Lagrangian. For example, it doesn't matter if the time is named $t$ or $tau$, and it has an explicit place for the path to be tested.
 

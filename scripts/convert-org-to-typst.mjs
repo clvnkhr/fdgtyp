@@ -123,7 +123,7 @@ function normalizeDollarMath(source) {
       .replace(/\\end\{(?:aligned|split)\}/g, "")
       .replace(/\\nonumber/g, "")
       .replace(/&/g, "")
-      .replace(/\\\\\s*/g, " ")
+      .replace(/\\\\\s*/g, " \\operatorname{FDGBREAK} ")
       .replace(/\s+/g, " ")
       .trim();
     return `$$${normalized}$$`;
@@ -313,6 +313,50 @@ function spaceMathApplications(math) {
     .replace(/(\)|\])(?=\()/g, "$1 ");
 }
 
+function commaSeparateMathCallLinebreaks(math, names = new Set(["mat", "vec"])) {
+  let output = "";
+
+  for (let index = 0; index < math.length;) {
+    const call = math.slice(index).match(/^([A-Za-z][A-Za-z0-9.]*)\(/);
+    if (!call || !names.has(call[1])) {
+      output += math[index];
+      index += 1;
+      continue;
+    }
+
+    const name = call[1];
+    const openIndex = index + name.length;
+    let depth = 0;
+    let closeIndex = -1;
+
+    for (let cursor = openIndex; cursor < math.length; cursor += 1) {
+      const char = math[cursor];
+      if (char === "(") depth += 1;
+      if (char === ")") {
+        depth -= 1;
+        if (depth === 0) {
+          closeIndex = cursor;
+          break;
+        }
+      }
+    }
+
+    if (closeIndex === -1) {
+      output += math[index];
+      index += 1;
+      continue;
+    }
+
+    const inner = math.slice(openIndex + 1, closeIndex);
+    const cleanedInner = commaSeparateMathCallLinebreaks(inner, names)
+      .replace(/\\\n\s*/g, ", ");
+    output += `${name}(${cleanedInner})`;
+    index = closeIndex + 1;
+  }
+
+  return output;
+}
+
 function cleanTypstMath(math) {
   let cleaned = math
     .replaceAll("zws^(-) 1", "^(-1)")
@@ -340,10 +384,15 @@ function cleanTypstMath(math) {
     .replace(/\s+\)/g, ")")
     .replace(/\[\s+/g, "[")
     .replace(/\s+\]/g, "]")
+    .replace(/_\((m i n|m a x)\)/g, (_match, word) => `_"${word.replaceAll(" ", "")}"`)
     .replace(/_\(([^)]*?)\s*=\s*([^)]*?)\)/g, "_($1=$2)")
     .replace(
       "cal(R) (bold(omega)\\,sans(u)\\,sans(v)\\,sans(w))bold(omega)",
       "cal(R) (bold(omega)\\,sans(u)\\,sans(v)\\,sans(w)) = bold(omega)",
+    )
+    .replace(
+      "cal(R) (bold(omega)\\,sans(u)\\,sans(v)\\,sans(w))\"FDGBREAK\" bold(omega)",
+      "cal(R) (bold(omega)\\,sans(u)\\,sans(v)\\,sans(w)) = \"FDGBREAK\" bold(omega)",
     )
     .replace(/\)\s*!=/g, ") !=")
     .replace(/\)\s*equiv/g, ") \"≡\"")
@@ -354,16 +403,25 @@ function cleanTypstMath(math) {
     " lr( (D f)(t) = frac(d, d x) f(x) |)_(x=t) ",
   );
 
-  return spaceMathApplications(cleaned)
+  const finalized = spaceMathApplications(cleaned)
+    .replace(/\s+,/g, ",")
     .replace(/\)(\^\d+)sans\(/g, ")$1 sans(")
     .replace(/(\)\^\d+)(?=sans\()/g, "$1 ")
     .replace(/(\)\^[A-Za-z0-9.]+)(?=sans\()/g, "$1 ")
     .replace(/(bb|binom|sans|scale)\s+\(/g, "$1(")
     .replace(/\)(\^\d+)sans\(/g, ")$1 sans(")
+    .replace(/"FDGBREAK"\s*=/g, "\\\n &=")
+    .replaceAll("\"FDGBREAK\"", "\\\n")
     .replace(
     "frac(d, d t) (frac(partial L (t\\,q\\,dot(q)), partial dot(q))|_(q=w (t) dot(q) = frac(d w (t), d t))) - frac(partial L (t\\,q\\,dot(q)), partial q)|_(q=w (t)dot(q) = frac(d w (t), d t)) = 0 .",
     "frac(d, d t) (lr(frac(partial L (t\\,q\\,dot(q)), partial dot(q))|)_(q=w (t) \\\n dot(q) = frac(d w (t), d t))) - lr(frac(partial L (t\\,q\\,dot(q)), partial q)|)_(q=w (t) \\\n dot(q) = frac(d w (t), d t)) = 0 .",
+  )
+    .replace(
+    "frac(d, d t) (frac(partial L (t\\,q\\,dot(q)), partial dot(q))|_(q=w (t)\"FDGBREAK\" dot(q) = frac(d w (t), d t))) - frac(partial L (t\\,q\\,dot(q)), partial q)|_(q=w (t)\"FDGBREAK\" dot(q) = frac(d w (t), d t)) = 0 .",
+    "frac(d, d t) (lr(frac(partial L (t\\,q\\,dot(q)), partial dot(q))|)_(q=w (t) \"FDGBREAK\" dot(q) = frac(d w (t), d t))) - lr(frac(partial L (t\\,q\\,dot(q)), partial q)|)_(q=w (t) \"FDGBREAK\" dot(q) = frac(d w (t), d t)) = 0 .",
   );
+
+  return commaSeparateMathCallLinebreaks(finalized).replace(/\s+,/g, ",");
 }
 
 function mathifyBareGreekInProse(body) {
@@ -412,8 +470,47 @@ function repairInlineCodeTranspilation(body) {
     .join("");
 }
 
+const bareSchemeIdentifiers = [
+  "make-fake-vector-field",
+  "covariant-derivative",
+  "R2-rect-basis",
+  "S2-Riemann",
+  "s:map/r",
+  "F-Lie",
+];
+
+function rawifyBareSchemeIdentifiers(body) {
+  const protectedSpan = /(```[\s\S]*?```|`[^`\n]*`|\$[\s\S]*?\$|#raw\(lang:"scheme", "[^"]*"\))/g;
+  return body
+    .split(protectedSpan)
+    .map(part => {
+      protectedSpan.lastIndex = 0;
+      if (!part || protectedSpan.test(part)) return part;
+      protectedSpan.lastIndex = 0;
+
+      let updated = part;
+      for (const identifier of bareSchemeIdentifiers) {
+        const pattern = new RegExp(
+          `(?<![A-Za-z0-9_#-])${escapeRegex(identifier)}(?![A-Za-z0-9_-])`,
+          "g",
+        );
+        updated = updated.replace(pattern, `#raw(lang:"scheme", "${identifier}")`);
+      }
+      return updated
+        .replace(
+          /(?<![A-Za-z0-9_#-])F-\\>directional-derivative(?![A-Za-z0-9_-])/g,
+          '#raw(lang:"scheme", "F->directional-derivative")',
+        )
+        .replace(
+          /\(#raw\(lang:"scheme", "F-Lie"\) phi\)/g,
+          '#raw(lang:"scheme", "(F-Lie phi)")',
+        );
+    })
+    .join("");
+}
+
 function cleanTypstOutput(body) {
-  return mathifyBareGreekInProse(repairInlineCodeTranspilation(body.replace(/\\\$([^$\n]+?)\\\$/g, (_match, math) => {
+  return mathifyBareGreekInProse(rawifyBareSchemeIdentifiers(repairInlineCodeTranspilation(body.replace(/\\\$([^$\n]+?)\\\$/g, (_match, math) => {
     return `$${cleanTypstMath(math)}$`;
   })
     .replace(/(?<!\\)\$([^$\n]+?)(?<!\\)\$/g, (_match, math) => {
@@ -449,6 +546,14 @@ function cleanTypstOutput(body) {
     .replaceAll('lang:"verbatim"', 'lang:"scheme"')
     .replaceAll("$upright(T e X)$", "#TeX")
     .replaceAll(
+      `$ frac(d, d t) (frac(partial L (t\\,q\\,dot(q)), partial dot(q))|_(q=w (t) \\
+ dot(q) = frac(d w (t), d t))) - frac(partial L (t\\,q\\,dot(q)), partial q)|_(q=w (t)\\
+ dot(q) = frac(d w (t), d t)) = 0 . $`,
+      `$ frac(d, d t) (lr(frac(partial L (t\\,q\\,dot(q)), partial dot(q))|)_(q=w (t) \\
+ dot(q) = frac(d w (t), d t))) - lr(frac(partial L (t\\,q\\,dot(q)), partial q)|)_(q=w (t) \\
+ dot(q) = frac(d w (t), d t)) = 0 . $`,
+    )
+    .replaceAll(
       "only value that is ever passed as m is (mu:N-\\>M n).",
       "only value that is ever passed as `m` is `(mu:N->M n)`.",
     )
@@ -463,6 +568,10 @@ function cleanTypstOutput(body) {
     .replaceAll(
       "cal(R) (bold(omega)\\,sans(u)\\,sans(v)\\,sans(w))bold(omega)",
       "cal(R) (bold(omega)\\,sans(u)\\,sans(v)\\,sans(w)) = bold(omega)",
+    )
+    .replaceAll(
+      "cal(R) (bold(omega)\\,sans(u)\\,sans(v)\\,sans(w))\\\n bold(omega)",
+      "cal(R) (bold(omega)\\,sans(u)\\,sans(v)\\,sans(w)) =\\\n bold(omega)",
     )
     .replace(/\)\s*!=/g, ") !=")
     .replace(/\)\s*equiv/g, ") \"≡\"")
@@ -487,11 +596,37 @@ function cleanTypstOutput(body) {
     .replaceAll("[(](", "[(] (")
     .replaceAll("$180^compose$", "180°")
     .replaceAll("$z = 0$\\.)", "$z = 0$.)")
-    .replace(/(#scale\([^)]*\)\[[^\]]+\])\(/g, "$1 (")));
+    .replace(/(#scale\([^)]*\)\[[^\]]+\])\(/g, "$1 ("))));
 }
 
-function figurePdf(file, width = "92%") {
-  return `#align(center)[#image("../assets/figures/${file}", width: ${width})]`;
+const figureCaptions = {
+  "fig-2-1.pdf": "Here there are two overlapping coordinate patches that are the domains of the two coordinate functions $chi$ and $chi'$. It is possible to represent manifold points in the overlap using either coordinate system. The coordinate transformation from $chi'$ coordinates to $chi$ coordinates is just the composition $chi circle chi'^(-1)$.",
+  "fig-2-2.pdf": "The coordinate function $chi$ maps points on the manifold in the coordinate patch to a tuple of coordinates. A function $f$ on the manifold $M$ can be represented in coordinates by a function $f_chi = f circle chi^(-1)$.",
+  "fig-2-3.pdf": "For each point on the sphere (except for its north pole) a line is drawn from the north pole through the point and extending to the equatorial plane. The corresponding point on the plane is where the line intersects the plane. The rectangular coordinates of this point on the plane are the Riemann coordinates of the point on the sphere. The points on the plane can also be specified with polar coordinates $(rho, theta)$ and the points on the sphere are specified both by Riemann coordinates and the traditional colatitude and longitude $(phi, lambda)$.",
+  "fig-4-1.pdf": "Let arrows $e_0$ and $e_1$ depict the vectors of a basis vector field at a particular point. Then the foliations shown by the parallel lines depict the dual basis one-form fields at that point. The dotted lines represent the field $tilde(e)^0$ and the dashed lines represent the field $tilde(e)^1$. The spacings of the lines are $1/3$ unit. That the vectors pierce three of the lines representing their duals and do not pierce any of the lines representing the other basis elements is one way to see the relationship $tilde(e)^i (e_j)(m) = delta^i_j$.",
+  "fig-4-2.pdf": "The commutator of two vector fields computes the residual of a small loop following their integral curves.",
+  "fig-5-1.pdf": "The area of the parallelogram in the $(x, y)$ coordinate plane is given by $A(u, v)(m)$.",
+  "fig-6-1.pdf": "The vector field $v$ on $M$ is indicated by arrows. The solid arrows are $v_mu$, the restricted vector field over the map $mu$. The vector field over the map is restricted to the image of $N$ in $M$.",
+  "fig-7-1.pdf": "If $v$ and $v'$ are \"arrow\" representations of vectors in the circular field and we parallel-transport $v$ in the $partial slash partial x$ direction, then the difference between $v'$ and the parallel transport of $v$ is in the $partial slash partial y$ direction.",
+};
+
+function figurePdf(file, width = "49.2%") {
+  const caption = figureCaptions[file];
+  if (!caption) throw new Error(`Missing caption for figure asset ${file}`);
+  return `#fdg-figure(image("../assets/figures/${file}", width: ${width}), [${caption}])\n\n`;
+}
+
+function normalizeTypstSubsupBraces(body) {
+  const protectedSpan = /(```[\s\S]*?```|`[^`\n]*`|#raw\(lang:"scheme", "[^"]*"\))/g;
+  return body
+    .split(protectedSpan)
+    .map(part => {
+      protectedSpan.lastIndex = 0;
+      if (!part || protectedSpan.test(part)) return part;
+      protectedSpan.lastIndex = 0;
+      return part.replace(/([_^])\{([^{}\n]+)\}/g, "$1($2)");
+    })
+    .join("");
 }
 
 function insertFigurePdfs(stem, body) {
@@ -622,6 +757,7 @@ function repairChapter11(body) {
 
   return result
     .replaceAll("$ xi^0 = p (xi')^0+ q (xi')^1xi^1 = r (xi')^0+ s (xi')^1. $", "$ xi^0 = p (xi')^0 + q (xi')^1 \\\\\nxi^1 = r (xi')^0 + s (xi')^1. $")
+    .replaceAll("$ xi^0 = p (xi')^0+ q (xi')^1\\\n xi^1 = r (xi')^0+ s (xi')^1. $", "$ xi^0 = p (xi')^0 + q (xi')^1 \\\\\nxi^1 = r (xi')^0 + s (xi')^1. $")
     .replaceAll("$ p^2 - r^2 = 1\\,p q - r s = 0\\,q^2 - s^2 = - 1 . $", "$ p^2 - r^2 = 1, \\\\\np q - r s = 0, \\\\\nq^2 - s^2 = -1. $")
     .replaceAll("$ xi^0 = gamma (beta) ((xi')^0 + beta (xi')^1) xi^1 = gamma (beta) (beta (xi')^0 + (xi')^1) . $", "$ xi^0 = gamma (beta) ((xi')^0 + beta (xi')^1) \\\\\nxi^1 = gamma (beta) (beta (xi')^0 + (xi')^1). $")
     .replaceAll("$ xi^0 = gamma (beta) ((xi')^0 + beta (xi')^1) xi^1 = gamma (beta) (beta (xi')^0 + (xi')^1) xi^2 =(xi')^2xi^3 =(xi')^3. $", "$ xi^0 = gamma (beta) ((xi')^0 + beta (xi')^1) \\\\\nxi^1 = gamma (beta) (beta (xi')^0 + (xi')^1) \\\\\nxi^2 = (xi')^2 \\\\\nxi^3 = (xi')^3. $")
@@ -1100,14 +1236,15 @@ function convert(file) {
   const bodyWithRefs = replaceCitationsAndEquationRefs(bodyWithPostMergeRepairs);
   const bodyWithPageRefs = replaceInternalPageRefs(stem, bodyWithRefs);
   const bodyWithFinalRepairs = stem === "chapter003" ? repairChapter3(bodyWithPageRefs) : bodyWithPageRefs;
+  const bodyWithTypstMathRepairs = normalizeTypstSubsupBraces(bodyWithFinalRepairs);
 
   const content = [
     `// Generated from ../../fdg-book/scheme/org/${file}.`,
     `// Re-run scripts/convert-org-to-typst.mjs to refresh.`,
-    `#import "../lib.typ": fdg-chapter, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX`,
+    `#import "../lib.typ": fdg-chapter, fdg-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX`,
     "",
     `#fdg-chapter(${JSON.stringify(typstEscape(displayTitle))}, numbered: ${numbered}, eq-prefix: ${JSON.stringify(equationLabelPrefix(stem) ?? "0")}, ref-label: ${JSON.stringify(chapterLabel(stem) ?? "")})[`,
-    bodyWithFinalRepairs.trimEnd(),
+    bodyWithTypstMathRepairs.trimEnd(),
     "]",
     "",
   ].join("\n");

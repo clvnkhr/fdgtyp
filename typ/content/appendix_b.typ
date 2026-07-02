@@ -1,6 +1,6 @@
 // Generated from ../../fdg-book/scheme/org/appendix_b.org.
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
-#import "../lib.typ": fdg-chapter, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
+#import "../lib.typ": fdg-chapter, fdg-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
 
 #fdg-chapter("Appendix B: Our Notation", numbered: true, eq-prefix: "B", ref-label: "chap-appendix-b")[
 #quote(block: true)[
@@ -51,7 +51,8 @@ Which is the same as
 
 Arithmetic is extended to the manipulation of functions: the usual mathematical operations may be applied to functions. Examples are addition and multiplication; we may add or multiply two functions if they take the same kinds of arguments and if their values can be added or multiplied:
 
-$ (f + g) (x)= f (x)+ g (x)\,(f g) (x)= f (x)g (x). $ <B.3>
+$ (f + g) (x)= f (x)+ g (x)\,\
+(f g) (x)= f (x)g (x). $ <B.3>
 
 A procedure #raw(lang:"scheme", "g") that multiplies the cube of its argument by the sine of its argument is
 
@@ -141,7 +142,13 @@ It is an up tuple of the time, the coordinates, and the momenta. The time $t$ ha
 
 In order to reference components of tuple structures there are selector functions, for example:
 
-$ I (s)= s I_0 (s)= y I_1 (s)=(x\,y)I_2 (s)=[p_x\,p_y]I_(1\,0) (s)= x dots.c I_(2\,1) (s)= p_y . $ <B.7>
+$ I (s)= s \
+ I_0 (s)= y \
+ I_1 (s)=(x\,y)\
+ I_2 (s)=[p_x\,p_y]\
+ I_(1\,0) (s)= x \
+ dots.c \
+ I_(2\,1) (s)= p_y . $ <B.7>
 
 The sequence of integer subscripts on the selector describes the access chain to the desired component.
 
@@ -195,19 +202,20 @@ $ A B =[A C_0\,A C_1\,A C_2]. $ <B.10>
 
 Tuple structures can be made to represent linear transformations. For example, the rotation commonly represented by the matrix
 
-$ mat(delim: "[", cos theta - sin theta sin theta cos theta) $ <B.11>
+$ mat(delim: "[", cos theta - sin theta, sin theta cos theta) $ <B.11>
 
 can be represented as a tuple structure:#footnote[To emphasize the relationship of simple tuple structures to matrix notation we often format #raw(lang:"scheme", "up") tuples as vertical arrangements of components and #raw(lang:"scheme", "down") tuples as horizontal arrangements of components. However, we could just as well have written this tuple as $[(cos theta \, sin theta) \, (- sin theta \, cos theta)]$.]
 
-$ [vec(cos theta sin theta) vec(- sin theta cos theta)] . $ <B.12>
+$ [vec(cos theta, sin theta) vec(- sin theta, cos theta)] . $ <B.12>
 
 Such a tuple is compatible for contraction with an up tuple that represents a vector. So, for example:
 
-$ [vec(cos theta sin theta) vec(- sin theta cos theta)] vec(x y) = vec(x cos theta - y sin theta x sin theta + y cos theta) . $ <B.13>
+$ [vec(cos theta, sin theta) vec(- sin theta, cos theta)] vec(x, y) = vec(x cos theta - y sin theta, x sin theta + y cos theta) . $ <B.13>
 
 The product of two tuples that represent linear transformations -- which are not compatible for contraction -- represents the composition of the linear transformations. For example, the product of the tuples representing two rotations is
 
-$ [vec(cos theta sin theta) vec(- sin theta cos theta)] [vec(cos phi sin phi) vec(- sin phi cos phi)] = [vec(cos(theta + phi)sin(theta + phi)) vec(- sin(theta + phi)cos(theta + phi))] . $ <B.14>
+$ [vec(cos theta, sin theta) vec(- sin theta, cos theta)] [vec(cos phi, sin phi) vec(- sin phi, cos phi)] \
+ &= [vec(cos(theta + phi), sin(theta + phi)) vec(- sin(theta + phi), cos(theta + phi))] . $ <B.14>
 
 Multiplication of tuples that represent linear transformations is associative but generally not commutative, just as the composition of the transformations is associative but not generally commutative.
 
@@ -266,7 +274,8 @@ A function of multiple arguments can be thought of as a function of an up tuple 
 
 Suppose we have a real-valued function $g$ of two real-valued arguments, and we want to approximate the increment in the value of $g$ from its value at $x\,y$. If the arguments are incremented by the tuple $(Delta x\,Delta y)$ we compute:
 
-$ D g (x\,y)dot.op (Delta x\,Delta y)= [partial_0 g (x \, y) + partial_1 g (x \, y)] dot.op (Delta x\,Delta y)= partial_0 g (x\,y)Delta x + partial_1 g (x\,y)Delta y . $ <B.20>
+$ D g (x\,y)dot.op (Delta x\,Delta y)= [partial_0 g (x \, y) + partial_1 g (x \, y)] dot.op (Delta x\,Delta y)\
+ &= partial_0 g (x\,y)Delta x + partial_1 g (x\,y)Delta y . $ <B.20>
 
 Using the two-argument literal function #raw(lang:"scheme", "g") defined in Section #fdg-ref-page(<sec-B.2>), we have:
 
@@ -291,7 +300,8 @@ $ D g (x\,y)=[3 x^2 y^5\,5 x^3 y^4] $ <B.24>
 
 and the first-order approximation of the increment for changing the arguments by $Delta x$ and $Delta y$ is
 
-$ g (x + Delta x\,y + Delta y)- g (x\,y)approx[3 x^2 y^5\,5 x^3 y^4]dot.op (Delta x\,Delta y)= 3 x^2 y^5 Delta x + 5 x^3 y^4 Delta y . $ <B.25>
+$ g (x + Delta x\,y + Delta y)- g (x\,y)approx[3 x^2 y^5\,5 x^3 y^4]dot.op (Delta x\,Delta y)\
+ &= 3 x^2 y^5 Delta x + 5 x^3 y^4 Delta y . $ <B.25>
 
 Partial derivatives of compositions also obey a chain rule:
 
@@ -327,7 +337,9 @@ We often show a function of multiple arguments that include tuples by indicating
 
 The derivative of $H$ is a function that produces an object that can be contracted with an increment in the argument structure to produce an increment in the function\'s value. The derivative is a down tuple of three partial derivatives. The first partial derivative is the partial derivative with respect to the numerical argument. The second partial derivative is a down tuple of partial derivatives with respect to each component of the up-tuple argument. The third partial derivative is an up tuple of partial derivatives with respect to each component of the down-tuple argument:
 
-$ D H (s)= [partial_0 H (s) \, partial_1 H (s) \, partial_2 H (s)] = [partial_0 H (s) \, [partial_(1\,0) H (s) \, partial_(1\,1) H (s)] \, [partial_(2\,0) H (s) \, partial_(2\,1) H (s)]]\, $ <B.29>
+$ D H (s)= [partial_0 H (s) \, partial_1 H (s) \, partial_2 H (s)] \
+ &= [partial_0 H (s) \, [partial_(1\,0) H (s) \, partial_(1\,1) H (s)] \, \
+ [partial_(2\,0) H (s) \, partial_(2\,1) H (s)]]\, $ <B.29>
 
 where $partial_(1\,0)$ indicates the partial derivative with respect to the first component (index 0) of the second argument (index 1) of the function, and so on. Indeed, $partial_z F = I_z compose D F$ for any function $F$ and access chain $z$. So, if we let $Delta s$ be an incremental phase-space state tuple,
 
@@ -335,7 +347,9 @@ $ Delta s = (Delta t \, (Delta x \, Delta y) \, [Delta p_x \, Delta p_y]) $ <B.3
 
 then
 
-$ D H (s)Delta s = partial_0 H (s)Delta t + partial_(1\,0) H (s)Delta x + partial_(1\,1) H (s)Delta y + partial_(2\,0) H (s)Delta p_x + partial_(2\,1) H (s)Delta p_y . $ <B.31>
+$ D H (s)Delta s = partial_0 H (s)Delta t \
+ + partial_(1\,0) H (s)Delta x + partial_(1\,1) H (s)Delta y \
+ + partial_(2\,0) H (s)Delta p_x + partial_(2\,1) H (s)Delta p_y . $ <B.31>
 
 Caution: Partial derivative operators with respect to different structured arguments generally do not commute.
 
@@ -396,7 +410,7 @@ $ g (x\,y)= ((x + y)^2 \, (y - x)^3 \, e^(x + y))\, $ <B.34>
 
 then the derivative of $g$ is
 
-$ D g (x\,y)= [vec(2(x + y)- 3(y - x)^2e^(x + y)) \, vec(2(x + y)3(y - x)^2e^(x + y))] $ <B.35>
+$ D g (x\,y)= [vec(2(x + y), - 3(y - x)^2, e^(x + y)) \, vec(2(x + y), 3(y - x)^2, e^(x + y))] $ <B.35>
 
 In Scheme:
 

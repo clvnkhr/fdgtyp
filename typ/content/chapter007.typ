@@ -1,6 +1,6 @@
 // Generated from ../../fdg-book/scheme/org/chapter007.org.
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
-#import "../lib.typ": fdg-chapter, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
+#import "../lib.typ": fdg-chapter, fdg-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
 
 #fdg-chapter("Directional Derivatives", numbered: true, eq-prefix: "7", ref-label: "chap-7")[
 The vector field was a generalization of the directional derivative to functions on a manifold. When we want to generalize the directional derivative idea to operate on other manifold objects, such as directional derivatives of vector fields or of form fields, there are several useful choices. In the same way that a vector field applies to a function to produce a function, we will build directional derivatives so that when applied to any object it will produce another object of the same kind. All directional derivatives require a vector field to give the direction and scale factor.
@@ -81,7 +81,7 @@ where
 
 $ g (delta)= sans(y) (sans(f)) (sans(m))-((phi.alt_delta^(sans(v)))_(*)sans(y)) (sans(f)) (sans(m)). $ <7.13>
 
-We can construct a procedure that computes the Lie derivative of a vector field by supplying an appropriate transport operator (F-Lie phi) for F in our schema F-\>directional-derivative. In this first stab at the Lie derivative, we introduce a coordinate system and we expand the integral curve to a given order. Because in the schema we evaluate the derivative of $g$ at 0, the dependence on the order and the coordinate system disappears. They will not be needed in the final version.
+We can construct a procedure that computes the Lie derivative of a vector field by supplying an appropriate transport operator #raw(lang:"scheme", "(F-Lie phi)") for F in our schema #raw(lang:"scheme", "F->directional-derivative"). In this first stab at the Lie derivative, we introduce a coordinate system and we expand the integral curve to a given order. Because in the schema we evaluate the derivative of $g$ at 0, the dependence on the order and the coordinate system disappears. They will not be needed in the final version.
 
 ```scheme
 (define (Lie-directional coordsys order)
@@ -99,7 +99,11 @@ order)))
 
 Expand the quantities in equation @7.13 to first order in $δ$:
 
-$ g (delta)= sans(y) (sans(f)) (sans(m))-(phi.alt_(delta *)^(sans(v)) sans(y)) (sans(f)) (sans(m))= sans(y) (sans(f)) (sans(m))- sans(y) (sans(f) compose phi.alt_delta^(sans(v))) (phi.alt_(- delta)^(sans(v)) (sans(m)))=(sans(y) (sans(f))- sans(y) (sans(f) + delta sans(v) (sans(f))+ dots.c)+ delta sans(v) (sans(y) (sans(f) + delta sans(v) (sans(f))+ dots.c))) (sans(m))+ dots.c =(- delta sans(y) (sans(v) (sans(f)))+ delta sans(v) (sans(y) (sans(f)))) (sans(m))+ dots.c = delta[sans(v)\,sans(y)] (sans(f)) (sans(m))+ cal(O) (delta^2). $ <7.14>
+$ g (delta)= sans(y) (sans(f)) (sans(m))-(phi.alt_(delta *)^(sans(v)) sans(y)) (sans(f)) (sans(m))\
+ &= sans(y) (sans(f)) (sans(m))- sans(y) (sans(f) compose phi.alt_delta^(sans(v))) (phi.alt_(- delta)^(sans(v)) (sans(m)))\
+ &=(sans(y) (sans(f))- sans(y) (sans(f) + delta sans(v) (sans(f))+ dots.c)+ delta sans(v) (sans(y) (sans(f) + delta sans(v) (sans(f))+ dots.c))) (sans(m))+ dots.c \
+ &=(- delta sans(y) (sans(v) (sans(f)))+ delta sans(v) (sans(y) (sans(f)))) (sans(m))+ dots.c \
+ &= delta[sans(v)\,sans(y)] (sans(f)) (sans(m))+ cal(O) (delta^2). $ <7.14>
 
 So the Lie derivative of a vector field $sans(y)$ with respect to a vector field $sans(v)$ is a vector field that is defined by its behavior when applied to an arbitrary manifold function $sans(f)$:
 
@@ -126,13 +130,17 @@ Although this is tested to second order, evaluating the derivative at zero ensur
 
 We can think of the Lie derivative as the rate of change of the manifold function $sans(y) (sans(f))$ as we move in the $sans(v)$ direction, adjusted to take into account that some of the variation is due to the variation of $sans(f)$:
 
-$ (cal(L)_(sans(v)) sans(y)) (sans(f))=[sans(v)\,sans(y)] (sans(f))= sans(v) (sans(y) (sans(f)))- sans(y) (sans(v) (sans(f)))= sans(v) (sans(y) (sans(f)))- sans(y) (cal(L)_(sans(v)) (sans(f))). $ <7.16>
+$ (cal(L)_(sans(v)) sans(y)) (sans(f))=[sans(v)\,sans(y)] (sans(f))\
+ &= sans(v) (sans(y) (sans(f)))- sans(y) (sans(v) (sans(f)))\
+ &= sans(v) (sans(y) (sans(f)))- sans(y) (cal(L)_(sans(v)) (sans(f))). $ <7.16>
 
 The first term in the commutator, $sans(v) (sans(y) (sans(f)))$, measures the rate of change of the combination $sans(y) (sans(f))$ along the integral curves of $sans(v)$. The change in $sans(y) (sans(f))$ is due to both the intrinsic change in $sans(y)$ along the curve and the change in $sans(f)$ along the curve; the second term in the commutator subtracts this latter quantity. The result is the intrinsic change in $sans(y)$ along the integral curves of $sans(v)$.
 
 Additionally, we can extend the product rule, for any manifold function $sans(g)$ and any vector field $sans(u)$:
 
-$ cal(L)_(sans(v)) (sans(g) sans(u)) (sans(f))=[sans(v)\,sans(g) sans(u)] (sans(f))= sans(v) (sans(g))sans(u) (sans(f))+ sans(g)[sans(v)\,sans(u)] (sans(f))=(cal(L)_(sans(v)) sans(g))sans(u) (sans(f))+ sans(g) (cal(L)_(sans(v)) sans(u)) (sans(f)). $ <7.17>
+$ cal(L)_(sans(v)) (sans(g) sans(u)) (sans(f))=[sans(v)\,sans(g) sans(u)] (sans(f))\
+ &= sans(v) (sans(g))sans(u) (sans(f))+ sans(g)[sans(v)\,sans(u)] (sans(f))\
+ &=(cal(L)_(sans(v)) sans(g))sans(u) (sans(f))+ sans(g) (cal(L)_(sans(v)) sans(u)) (sans(f)). $ <7.17>
 
 == An Alternate View <sec-7.4>
 We can write the vector field
@@ -161,7 +169,10 @@ $ (cal(L)_(sans(v)) sans(y)) (sans(f))= sum_k #scale(x: 120%, y: 120%)[(] sans(v
 
 So $Delta_j^i$ is related to the structure constants by
 
-$ Delta_j^i (sans(v))= tilde(sans(e))^i (cal(L)_(sans(v)) sans(e)_j)= sum_k #scale(x: 120%, y: 120%)[(] sans(v)^k tilde(sans(e))^i ([sans(e)_k\,sans(e)_j])- sans(e)_j (sans(v)^k)tilde(sans(e))^i (sans(e)_k)#scale(x: 120%, y: 120%)[)] = sum_k #scale(x: 120%, y: 120%)[(] sans(v)^k sans(d)_(k j)^i - sans(e)_j (sans(v)^k)delta_k^i #scale(x: 120%, y: 120%)[)] = sum_k sans(v)^k sans(d)_(k j)^i - sans(e)_j (sans(v)^i). $ <7.24>
+$ Delta_j^i (sans(v))= tilde(sans(e))^i (cal(L)_(sans(v)) sans(e)_j)\
+ &= sum_k #scale(x: 120%, y: 120%)[(] sans(v)^k tilde(sans(e))^i ([sans(e)_k\,sans(e)_j])- sans(e)_j (sans(v)^k)tilde(sans(e))^i (sans(e)_k)#scale(x: 120%, y: 120%)[)] \
+ &= sum_k #scale(x: 120%, y: 120%)[(] sans(v)^k sans(d)_(k j)^i - sans(e)_j (sans(v)^k)delta_k^i #scale(x: 120%, y: 120%)[)] \
+ &= sum_k sans(v)^k sans(d)_(k j)^i - sans(e)_j (sans(v)^i). $ <7.24>
 
 Note: Despite their appearance, the $Delta_j^i$ are not form fields because $Delta_j^i (sans(f) sans(v)) != sans(f) Delta_j^i (sans(v))$.
 
@@ -174,7 +185,8 @@ The first term computes the rate of change of the combination $omega (sans(y))$ 
 
 The Lie derivative of a $k$-form field $ω$ with respect to a vector field $sans(v)$ is a $k$-form field that is defined by its behavior when applied to $k$ arbitrary vector fields $sans(w)_0\,dots.c\,sans(w)_(k - 1)$. We generalize equation @7.25:
 
-$ cal(L)_(sans(v)) omega (sans(w)_0\,dots.c\,sans(w)_(k - 1))= sans(v) (omega (sans(w)_0\,dots.c\,sans(w)_(k - 1)))- sum_(i=0)^(k - 1) omega (sans(w)_0\,dots.c\,cal(L)_(sans(v)) sans(w)_i\,dots.c\,sans(w)_(k - 1)). $ <7.26>
+$ cal(L)_(sans(v)) omega (sans(w)_0\,dots.c\,sans(w)_(k - 1))\
+ &= sans(v) (omega (sans(w)_0\,dots.c\,sans(w)_(k - 1)))- sum_(i=0)^(k - 1) omega (sans(w)_0\,dots.c\,cal(L)_(sans(v)) sans(w)_i\,dots.c\,sans(w)_(k - 1)). $ <7.26>
 
 == Uniform Interpretation <sec-7.6>
 Consider abstracting equations @7.16, (@7.25), and @7.27. The Lie derivative of an object, $sans(a)$, that can apply to other objects, $sans(b)$, to produce manifold functions, $sans(a) (sans(b)): sans(M) arrow.r sans(R)^n$, is
@@ -257,7 +269,8 @@ The Lie derivative computes the rate of change of objects as they are advanced a
 
 The operator $e^(t cal(L)_(sans(v))) = 1 + t cal(L)_v + frac(t^2, 2 !) cal(L)_(sans(v))^2 + dots.c$ evolves objects along the curve by parameter $t$. For example, the exponential of a Lie derivative applied to a vector field is
 
-$ e^(t cal(L)_(sans(v))) sans(y) = sans(y) + t cal(L)_(sans(v)) sans(y) + t^2 / 2 cal(L)_(sans(v))^2 sans(y) + dots.c = sans(y) + t[sans(v)\,sans(y)]+ t^2 / 2[sans(v)\,[sans(v)\,sans(y)]]+ dots.c . $ <7.32>
+$ e^(t cal(L)_(sans(v))) sans(y) = sans(y) + t cal(L)_(sans(v)) sans(y) + t^2 / 2 cal(L)_(sans(v))^2 sans(y) + dots.c \
+ &= sans(y) + t[sans(v)\,sans(y)]+ t^2 / 2[sans(v)\,[sans(v)\,sans(y)]]+ dots.c . $ <7.32>
 
 Consider a simple case. We advanced the coordinate-basis vector field $partial\/partial sans(y)$ by an angle $a$ around the circle. Let $sans(J)_z = x partial\/partial sans(y) - y partial\/partial sans(x)$, the circular vector field. We recall
 
@@ -358,7 +371,8 @@ $ g (delta)= sum_i #scale(x: 300%, y: 300%)[(] sans(u)^i sans(e)_i (sans(f))- su
 
 By the product rule for derivatives,
 
-$ D g (delta)= sum_(i j) #scale(x: 120%, y: 120%)[(] A_j^i (delta) ((sans(v) (sans(u)^j))compose phi.alt_(- delta)^(sans(v)))sans(e)_i (sans(f))- D A_j^i (delta) (sans(u)^j compose phi.alt_(- delta)^(sans(v)))sans(e)_i (sans(f))#scale(x: 120%, y: 120%)[)] (sans(m)). $ <7.41>
+$ D g (delta)= \
+ sum_(i j) #scale(x: 120%, y: 120%)[(] A_j^i (delta) ((sans(v) (sans(u)^j))compose phi.alt_(- delta)^(sans(v)))sans(e)_i (sans(f))- D A_j^i (delta) (sans(u)^j compose phi.alt_(- delta)^(sans(v)))sans(e)_i (sans(f))#scale(x: 120%, y: 120%)[)] (sans(m)). $ <7.41>
 
 So, since $A_j^i (0) (sans(m))$ is the identity multiplier, and $phi.alt_0^(sans(v))$ is the identity function,
 
@@ -392,7 +406,7 @@ $ D A_j^i (0)= - pi.alt_j^i (sans(v))\, $ <7.47>
 
 where the minus sign is a matter of convention.
 
-As before, we can take a stab at computing the covariant derivative of a vector field by supplying an appropriate transport operator for F in F-\>directional-derivative. Again, this is expanded to a given order with a given coordinate system. These will be unnecessary in the final version.
+As before, we can take a stab at computing the covariant derivative of a vector field by supplying an appropriate transport operator for F in #raw(lang:"scheme", "F->directional-derivative"). Again, this is expanded to a given order with a given coordinate system. These will be unnecessary in the final version.
 
 ```scheme
 (define (covariant-derivative-vector omega coordsys order)
@@ -443,7 +457,9 @@ consistent with the fact that the Cartan forms $pi.alt_j^i$ share the same prope
 
 Additionally, we can extend the product rule, for any manifold function $sans(g)$ and any vector field $sans(u)$:
 
-$ nabla_(sans(v)) (sans(g) sans(u)) (sans(f))= sum_i (sans(v) (sans(g u)^i) + sum_j pi.alt_j^i (sans(v)) sans(g u)^j) sans(e)_i (sans(f))= sum_i sans(v) (sans(g))sans(u)^i sans(e)_i (sans(f))+ sans(g) nabla_(sans(v)) (sans(u)) (sans(f))=(nabla_(sans(v)) sans(g))sans(u) (sans(f))+ sans(g) nabla_(sans(v)) (sans(u)) (sans(f)). $ <7.51>
+$ nabla_(sans(v)) (sans(g) sans(u)) (sans(f))= sum_i (sans(v) (sans(g u)^i) + sum_j pi.alt_j^i (sans(v)) sans(g u)^j) sans(e)_i (sans(f))\
+ &= sum_i sans(v) (sans(g))sans(u)^i sans(e)_i (sans(f))+ sans(g) nabla_(sans(v)) (sans(u)) (sans(f))\
+ &=(nabla_(sans(v)) sans(g))sans(u) (sans(f))+ sans(g) nabla_(sans(v)) (sans(u)) (sans(f)). $ <7.51>
 
 == An Alternate View <sec-7.12>
 As we did with the Lie derivative (equations @7.18 - @7.21), we can write the vector field
@@ -481,7 +497,11 @@ $ Gamma_(j k)^i = pi.alt_j^i (sans(e)_k). $ <7.58>
 == Covariant Derivative of One-Form Fields <sec-7.13>
 The covariant derivative of a vector field induces a compatible covariant derivative for a one-form field. Because the application of a one-form field to a vector field yields a manifold function, we can evaluate the covariant derivative of such an application. Let $τ$ be a one-form field and $sans(w)$ be a vector field. Then
 
-$ nabla_(sans(v)) (tau (sans(w)))= sans(v) (sum_j tau_j sans(w)^j) = sum_j(sans(v) (tau_j)sans(w)^j + tau_j sans(v) (sans(w)^j))= sum_j (sans(v) (tau_j) sans(w)^j + tau_j (tilde(sans(e))^j (nabla_(sans(v)) sans(w)) - sum_k pi.alt_k^j (sans(v)) sans(w)^k)) = sum_j (sans(v) (tau_j) sans(w)^j - tau_j sum_k pi.alt_k^j (sans(v)) sans(w)^k) + tau (nabla_(sans(v)) sans(w))= sum_j (sans(v) (tau_j) tilde(sans(e))^j - tau_j sum_k pi.alt_k^j (sans(v)) tilde(sans(e))^k) (sans(w))+ tau (nabla_(sans(v)) sans(w)). $ <7.59>
+$ nabla_(sans(v)) (tau (sans(w)))= sans(v) (sum_j tau_j sans(w)^j) \
+ &= sum_j(sans(v) (tau_j)sans(w)^j + tau_j sans(v) (sans(w)^j))\
+ &= sum_j (sans(v) (tau_j) sans(w)^j + tau_j (tilde(sans(e))^j (nabla_(sans(v)) sans(w)) - sum_k pi.alt_k^j (sans(v)) sans(w)^k)) \
+ &= sum_j (sans(v) (tau_j) sans(w)^j - tau_j sum_k pi.alt_k^j (sans(v)) sans(w)^k) + tau (nabla_(sans(v)) sans(w))\
+ &= sum_j (sans(v) (tau_j) tilde(sans(e))^j - tau_j sum_k pi.alt_k^j (sans(v)) tilde(sans(e))^k) (sans(w))+ tau (nabla_(sans(v)) sans(w)). $ <7.59>
 
 So if we define the covariant derivative of a one-form field to be
 
@@ -522,7 +542,11 @@ $ sans(e) (sans(f))= sans(e)' (sans(f))sans(J) . $ <7.62>
 
 We want the covariant derivative to be independent of basis. This will determine how the connection transforms with a change of basis:
 
-$ nabla_(sans(v)) sans(u) (sans(f))= sum_i sans(e)_i (sans(f)) (sans(v) (sans(u)^i) + sum_j pi.alt_j^i (sans(v)) upright(u)^j) = sum_(i j k) sans(e)'_i (sans(f))sans(J)_j^i (sans(v) ((sans(J)^(-1))_k^j (sans(u)')^k) + sum_l pi.alt_k^j (sans(v)) (sans(J)^(-1))_l^k (sans(u)')^l) = sum_i sans(e)'_i (sans(f)) (sans(v) ((sans(u)')^i) + sum_(j k) sans(J)_j^i sans(v) ((sans(J)^(-1))_k^j) (sans(u)')^k + sum_(j k l) sans(J)_j^i pi.alt_k^j (sans(v)) (sans(J)^(-1))_l^k (sans(u)')^l) = sum_i sans(e)'_i (sans(f)) (sans(v) ((sans(u)')^i) + sum_j (pi.alt')_j^i (sans(v)) (sans(u)')^j) . $ <7.63>
+$ nabla_(sans(v)) sans(u) (sans(f))= sum_i sans(e)_i (sans(f)) (sans(v) (sans(u)^i) + sum_j pi.alt_j^i (sans(v)) upright(u)^j) \
+ &= sum_(i j k) sans(e)'_i (sans(f))sans(J)_j^i (sans(v) ((sans(J)^(-1))_k^j (sans(u)')^k) + sum_l pi.alt_k^j (sans(v)) (sans(J)^(-1))_l^k (sans(u)')^l) \
+ &= sum_i sans(e)'_i (sans(f)) (sans(v) ((sans(u)')^i) + sum_(j k) sans(J)_j^i sans(v) ((sans(J)^(-1))_k^j) (sans(u)')^k \
+ + sum_(j k l) sans(J)_j^i pi.alt_k^j (sans(v)) (sans(J)^(-1))_l^k (sans(u)')^l) \
+ &= sum_i sans(e)'_i (sans(f)) (sans(v) ((sans(u)')^i) + sum_j (pi.alt')_j^i (sans(v)) (sans(u)')^j) . $ <7.63>
 
 The last line of equation @7.62 gives the formula for the covariant derivative we would have written down naturally in the primed coordinates; comparing with the next-to-last line, we see that
 
@@ -558,7 +582,7 @@ The transformation rule for $pi.alt$ is implemented in the following program:
 (make-Cartan omega-prime-forms basis-prime))))))
 ```
 
-The s:map/r procedure constructs a tuple of the same shape as its second argument whose elements are the result of applying the first argument to the corresponding elements of the second argument.
+The #raw(lang:"scheme", "s:map/r") procedure constructs a tuple of the same shape as its second argument whose elements are the result of applying the first argument to the corresponding elements of the second argument.
 
 We can illustrate that the covariant derivative is independent of the coordinate system in a simple case, using rectangular and polar coordinates in the plane.#footnote[We will need a few definitions:
 
@@ -627,7 +651,9 @@ Note that this is the same thing as $partial\/partial sans(y)$ applied to the fu
 
 In rectangular coordinates, where the Christoffel coefficients are zero, the covariant derivative $nabla_(sans(u)) sans(v)$ is the vector whose coefficients are obtained by applying $sans(u)$ to the coefficients of $sans(v)$. Here, only one coefficient of $partial\/partial theta$ depends on $x$, the coefficient of $partial\/partial sans(y)$, and it depends linearly on $x$. So $nabla_(partial\/partial sans(x)) partial\/partial theta = partial\/partial sans(y)$. (See figure 7.1.)
 
-#align(center)[#image("../assets/figures/fig-7-1.pdf", width: 92%)]
+#fdg-figure(image("../assets/figures/fig-7-1.pdf", width: 49.2%), [If $v$ and $v'$ are "arrow" representations of vectors in the circular field and we parallel-transport $v$ in the $partial slash partial x$ direction, then the difference between $v'$ and the parallel transport of $v$ is in the $partial slash partial y$ direction.])
+
+
 
 Note that we get the same answer if we use polar coordinates to compute the covariant derivative:
 
@@ -757,7 +783,7 @@ S2-basis))
 (define sphere-Cartan (Christoffel->Cartan S2-Christoffel))
 ```
 
-Finally, we compute the residual of the equation @7.71 that governs parallel transport for this situation:#footnote[If we give covariant-derivative an extra argument, in addition to the Cartan form, the covariant derivative treats the extra argument as a map and transforms the Cartan form to work over the map.]
+Finally, we compute the residual of the equation @7.71 that governs parallel transport for this situation:#footnote[If we give #raw(lang:"scheme", "covariant-derivative") an extra argument, in addition to the Cartan form, the covariant derivative treats the extra argument as a map and transforms the Cartan form to work over the map.]
 
 ```scheme
 (define-coordinates t R1-rect)
@@ -892,7 +918,7 @@ d/dt)
 ((point R1-rect) 't0)))
 ```
 
-$ vec(- cos(alpha (t 0))sin(alpha (t 0)) (D beta (t 0))^2+ D^2 alpha (t 0)frac(2 D beta (t 0)cos(alpha (t 0))D alpha (t 0), sin(alpha (t))) + D^2 beta (t 0)) $ <7.81>
+$ vec(- cos(alpha (t 0))sin(alpha (t 0)) (D beta (t 0))^2+ D^2 alpha (t 0), frac(2 D beta (t 0)cos(alpha (t 0))D alpha (t 0), sin(alpha (t))) + D^2 beta (t 0)) $ <7.81>
 
 The geodesic equation is the same as the Lagrange equation for free motion constrained to the surface of the unit sphere. The Lagrangian for motion on the sphere is the composition of the free-particle Lagrangian and the state transformation induced by the coordinate constraint:#footnote[The method of formulating a system with constraints by composing a free system with the state-space coordinate transformation that represents the constraints can be found in @sussman2001sicm, section 1.6.3. The procedure F-\>C takes a coordinate transformation and produces a corresponding transformation of Lagrangian state.]
 
@@ -921,7 +947,7 @@ Then the Lagrange equations are:
 't))
 ```
 
-$ mat(delim: "[", -(D beta (t))^2sin (alpha (t))cos(alpha (t))+ D^2 alpha (t)2 D alpha (t)D beta (t)sin(alpha (t))cos(alpha (t))+ D^2 beta (t) (sin(alpha (t)))^2) $ <7.82>
+$ mat(delim: "[", -(D beta (t))^2sin (alpha (t))cos(alpha (t))+ D^2 alpha (t), 2 D alpha (t)D beta (t)sin(alpha (t))cos(alpha (t))+ D^2 beta (t) (sin(alpha (t)))^2) $ <7.82>
 
 The Lagrange equations are true of the same paths as the geodesic equations. The second Lagrange equation is the second geodesic equation multiplied by $(sin(alpha (t)))^2$, and the Lagrange equations are arranged in a down tuple, whereas the geodesic equations are arranged in an up tuple.#footnote[The geodesic equations and the Lagrange equations are related by a contraction with the metric.] The two systems are equivalent unless $alpha (t)= 0$, where the coordinate system is singular.
 

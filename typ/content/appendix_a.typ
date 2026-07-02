@@ -1,6 +1,6 @@
 // Generated from ../../fdg-book/scheme/org/appendix_a.org.
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
-#import "../lib.typ": fdg-chapter, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
+#import "../lib.typ": fdg-chapter, fdg-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
 
 #fdg-chapter("Appendix A: Scheme", numbered: true, eq-prefix: "A", ref-label: "chap-appendix-a")[
 #quote(block: true)[
@@ -112,7 +112,9 @@ Conditional expressions may be used to choose among several expressions to produ
 
 The conditional #raw(lang:"scheme", "cond") takes a number of clauses. Each clause has a predicate expression, which may be either true or false, and a consequent expression. The value of the #raw(lang:"scheme", "cond") expression is the value of the consequent expression of the first clause for which the corresponding predicate expression is true. The general form of a conditional expression is
 
-$ mono("(cond ") mono("(") italic("predicate-1") quad italic("consequent-1") mono(")") dots.c mono("(") italic("predicate-n") quad italic("consequent-n") mono("))") $
+$ mono("(cond ") mono("(") italic("predicate-1") quad italic("consequent-1") mono(")") \
+ dots.c \
+ mono("(") italic("predicate-n") quad italic("consequent-n") mono("))") $
 
 For convenience there is a special predicate expression #raw(lang:"scheme", "else") that can be used as the predicate in the last clause of a #raw(lang:"scheme", "cond"). The #raw(lang:"scheme", "if") construct provides another way to make a conditional when there is only a binary choice to be made. For example, because we have to do something special only when the argument is negative, we could have defined #raw(lang:"scheme", "abs") as:
 
@@ -160,7 +162,10 @@ The #raw(lang:"scheme", "let") expression is used to give names to objects in a 
 
 The general form of a #raw(lang:"scheme", "let") expression is
 
-$ mono("(let (") mono("(") italic("variable-1") quad italic("expression-1") mono(")") dots.c mono("(") italic("variable-n") quad italic("expression-n") mono("))") #h(2em) italic("body") mono(")") $
+$ mono("(let (") mono("(") italic("variable-1") quad italic("expression-1") mono(")") \
+ dots.c \
+ mono("(") italic("variable-n") quad italic("expression-n") mono("))") \
+ #h(2em) italic("body") mono(")") $
 
 The value of the #raw(lang:"scheme", "let") expression is the value of the #emph[body] expression in the context where the variables #emph[variable-i] have the values of the expressions #emph[expression-i]. The expressions #emph[expression-i] may not refer to any of the variables.
 

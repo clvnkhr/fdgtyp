@@ -1,6 +1,6 @@
 // Generated from ../../fdg-book/scheme/org/chapter008.org.
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
-#import "../lib.typ": fdg-chapter, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
+#import "../lib.typ": fdg-chapter, fdg-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
 
 #fdg-chapter("Curvature", numbered: true, eq-prefix: "8", ref-label: "chap-8")[
 If the intrinsic curvature of a manifold is not zero, a vector parallel-transported around a small loop will end up different from the vector that started. We saw the consequence of this before, on #fdg-page-ref(<intro-parallel-transport>) and #fdg-page-ref(<sec-7.16>). The Riemann tensor encapsulates this idea.
@@ -11,7 +11,8 @@ $ cal(R) (sans(w)\,sans(v))=[nabla_(sans(w))\,nabla_(sans(v))]- nabla_([sans(w)\
 
 The traditional Riemann tensor is
 
-$ cal(R) (bold(omega)\,sans(u)\,sans(v)\,sans(w)) = bold(omega) ((cal(R) (sans(w) \, sans(v))) (sans(u)))\, $ <8.2>
+$ cal(R) (bold(omega)\,sans(u)\,sans(v)\,sans(w)) =\
+ bold(omega) ((cal(R) (sans(w) \, sans(v))) (sans(u)))\, $ <8.2>
 
 where $bold(omega)$ is a one-form field that measures the incremental change in the vector field $sans(u)$ caused by parallel-transporting it around the loop defined by the vector fields $sans(w)$ and $sans(v)$. $sans(R)$ allows us to compute the #emph[intrinsic curvature] of a manifold at a point.
 
@@ -23,7 +24,7 @@ The Riemann curvature is computed by
      (nabla (commutator w v))))
 ```
 
-The #raw(lang:"scheme", "Riemann-curvature") procedure is parameterized by the relevant covariant-derivative operator #raw(lang:"scheme", "nabla"), which implements $nabla$. The #raw(lang:"scheme", "nabla") is itself dependent on the connection, which provides the details of the local geometry. The same #raw(lang:"scheme", "Riemann-curvature") procedure works for ordinary covariant derivatives and for covariant derivatives over a map. Given two vector fields, the result of #raw(lang:"scheme", "((Riemann-curvature nabla) w v)") is a procedure that takes a vector field and produces a vector field so we can implement the Riemann tensor as
+The #raw(lang:"scheme", "Riemann-curvature") procedure is parameterized by the relevant #raw(lang:"scheme", "covariant-derivative") operator #raw(lang:"scheme", "nabla"), which implements $nabla$. The #raw(lang:"scheme", "nabla") is itself dependent on the connection, which provides the details of the local geometry. The same #raw(lang:"scheme", "Riemann-curvature") procedure works for ordinary covariant derivatives and for covariant derivatives over a map. Given two vector fields, the result of #raw(lang:"scheme", "((Riemann-curvature nabla) w v)") is a procedure that takes a vector field and produces a vector field so we can implement the Riemann tensor as
 
 ```scheme
 (define ((Riemann nabla) omega u w v)
@@ -43,7 +44,14 @@ Here we have computed the $φ$ component of the result of carrying a $partial\/p
 
 Most of the sixteen coefficients of the Riemann tensor for the sphere are zero. The following are the nonzero coefficients:
 
-$ sans(R) (sans(d) theta \, frac(partial, partial phi.alt) \, frac(partial, partial theta) \, frac(partial, partial phi.alt)) (chi^(-1) (q^theta \, q^phi.alt)) = (sin (q^theta))^2\,sans(R) (sans(d) theta \, frac(partial, partial phi.alt) \, frac(partial, partial phi.alt) \, frac(partial, partial theta)) (chi^(-1) (q^theta \, q^phi.alt)) = - (sin (q^theta))^2\,sans(R) (sans(d) phi.alt \, frac(partial, partial theta) \, frac(partial, partial theta) \, frac(partial, partial phi.alt)) (chi^(-1) (q^theta \, q^phi.alt)) = - 1\,sans(R) (sans(d) phi.alt \, frac(partial, partial theta) \, frac(partial, partial phi.alt) \, frac(partial, partial theta)) (chi^(-1) (q^theta \, q^phi.alt)) = 1 . $ <8.3>
+$ sans(R) (sans(d) theta \, frac(partial, partial phi.alt) \, frac(partial, partial theta) \, frac(partial, partial phi.alt)) \
+ (chi^(-1) (q^theta \, q^phi.alt)) = (sin (q^theta))^2\,\
+ sans(R) (sans(d) theta \, frac(partial, partial phi.alt) \, frac(partial, partial phi.alt) \, frac(partial, partial theta)) \
+ (chi^(-1) (q^theta \, q^phi.alt)) = - (sin (q^theta))^2\,\
+ sans(R) (sans(d) phi.alt \, frac(partial, partial theta) \, frac(partial, partial theta) \, frac(partial, partial phi.alt)) \
+ (chi^(-1) (q^theta \, q^phi.alt)) = - 1\,\
+ sans(R) (sans(d) phi.alt \, frac(partial, partial theta) \, frac(partial, partial phi.alt) \, frac(partial, partial theta)) \
+ (chi^(-1) (q^theta \, q^phi.alt)) = 1 . $ <8.3>
 
 == Explicit Transport <sec-8.1>
 We will show that the result of the Riemann calculation of the change in a vector, as we traverse a loop, is what we get by explicitly calculating the transport. The coordinates of the vector to be transported are governed by the differential equations (see equation @7.72)
@@ -86,11 +94,15 @@ $ e_A (F compose G)= F compose (e^A G)\, $ <8.33>
 
 for any state function $G$ and any compatible $F$. As a consequence, we have the following identity:
 
-$ e^A e^B I = e^A ((e^B I) compose I) = (e^B I) compose (e^A I)\, $ <8.34>
+$ e^A e^B I = e^A ((e^B I) compose I) = \
+ (e^B I) compose (e^A I)\, $ <8.34>
 
 where $I$ is the identity function on states.]
 
-$ (e^(- epsilon.alt L_(g_v)) I) compose (e^(- epsilon.alt L_(g_w)) I) compose (e^(epsilon.alt L_(g_v)) I) compose (e^(epsilon.alt L_(g_w)) I) (s_0) quad = (e^(epsilon.alt L_(g_w)) e^(epsilon.alt L_(g_v)) e^(- epsilon.alt L_(g_w)) e^(- epsilon.alt L_(g_v)) I) (s_0) quad = (e^(epsilon.alt^2 [L_(g_w) \, L_(g_v)] + dots.c) I) (s_0) . $ <8.10>
+$ (e^(- epsilon.alt L_(g_v)) I) compose (e^(- epsilon.alt L_(g_w)) I) compose (e^(epsilon.alt L_(g_v)) I) \
+ compose (e^(epsilon.alt L_(g_w)) I) (s_0) \
+ quad = (e^(epsilon.alt L_(g_w)) e^(epsilon.alt L_(g_v)) e^(- epsilon.alt L_(g_w)) e^(- epsilon.alt L_(g_v)) I) (s_0) \
+ quad = (e^(epsilon.alt^2 [L_(g_w) \, L_(g_v)] + dots.c) I) (s_0) . $ <8.10>
 
 So the lowest-order change in the transported vector is
 
@@ -174,7 +186,9 @@ So now we can demonstrate that the lowest-order change resulting from explicit p
 === Geometrically <sec-8.1.2>
 The explicit transport above was done with differential equations operating on a state consisting of coordinates and components of the vector being transported. We can simplify this so that it is entirely built on manifold objects, eliminating the state. After a long algebraic story we find that
 
-$ ((cal(R) (sans(w)\,sans(v))) (sans(u))) (sans(f))quad = sans(e) (sans(f)){(sans(w) (pi.alt (sans(v)))- sans(v) (pi.alt (sans(w)))- pi.alt ([sans(w)\,sans(v)]))tilde(sans(e)) (sans(u))quad + pi.alt (sans(w))pi.alt (sans(v))tilde(sans(e)) (sans(u))- pi.alt (sans(v))pi.alt (sans(w))tilde(sans(e)) (sans(u))} $ <8.13>
+$ ((cal(R) (sans(w)\,sans(v))) (sans(u))) (sans(f))\
+ quad = sans(e) (sans(f)){(sans(w) (pi.alt (sans(v)))- sans(v) (pi.alt (sans(w)))- pi.alt ([sans(w)\,sans(v)]))tilde(sans(e)) (sans(u))\
+ quad + pi.alt (sans(w))pi.alt (sans(v))tilde(sans(e)) (sans(u))- pi.alt (sans(v))pi.alt (sans(w))tilde(sans(e)) (sans(u))} $ <8.13>
 
 or as a program:
 
@@ -255,15 +269,27 @@ The obvious identification does not work, but neither does the other one!
 
 Let\'s compute the two parts of the Riemann curvature operator and see how this works out. First, recall
 
-$ nabla_(sans(v)) sans(u) (sans(f))= sum_i sans(e)_i (sans(f)) (sans(v) (tilde(sans(e))^i (sans(u))) + sum_j pi.alt_j^i (sans(v)) tilde(sans(e))^j (sans(u))) = sans(e) (sans(f)) (sans(v) (tilde(sans(e)) (sans(u)))+ pi.alt (sans(v))tilde(sans(e)) (sans(u)))\, $ <8.16>
+$ nabla_(sans(v)) sans(u) (sans(f))= sum_i sans(e)_i (sans(f)) (sans(v) (tilde(sans(e))^i (sans(u))) \
+ + sum_j pi.alt_j^i (sans(v)) tilde(sans(e))^j (sans(u))) \
+ &= sans(e) (sans(f)) (sans(v) (tilde(sans(e)) (sans(u)))\
+ + pi.alt (sans(v))tilde(sans(e)) (sans(u)))\, $ <8.16>
 
 where the second form uses tuple arithmetic. Now let\'s consider the first part of the Riemann curvature operator:
 
-$ [nabla_(sans(w)) \, nabla_(sans(v))] sans(u) = nabla_(sans(w)) nabla_(sans(v)) sans(u) - nabla_(sans(v)) nabla_(sans(w)) sans(u) = sans(e) { sans(w) (sans(v) (tilde(sans(e)) (sans(u)))+ pi.alt (sans(v))tilde(sans(e)) (sans(u)))+ pi.alt (sans(w)) (sans(v) (tilde(sans(e)) (sans(u)))+ pi.alt (sans(v))tilde(sans(e)) (sans(u)))} - sans(e) { sans(v) (sans(w) (tilde(sans(e)) (sans(u)))+ pi.alt (sans(w))tilde(sans(e)) (sans(u)))+ pi.alt (sans(v)) (sans(w) (tilde(sans(e)) (sans(u)))+ pi.alt (sans(w))tilde(sans(e)) (sans(u)))} = sans(e) {[sans(w)\,sans(v)]tilde(sans(e)) (sans(u))+ sans(w) (pi.alt (sans(v)))tilde(sans(e)) (sans(u))- sans(v) (pi.alt (sans(w)))tilde(sans(e)) (sans(u))+ pi.alt (sans(w))pi.alt (sans(v))tilde(sans(e)) (sans(u))- pi.alt (sans(v))pi.alt (sans(w))tilde(sans(e)) (sans(u))} . $ <8.17>
+$ [nabla_(sans(w)) \, nabla_(sans(v))] sans(u) \
+ &= nabla_(sans(w)) nabla_(sans(v)) sans(u) - nabla_(sans(v)) nabla_(sans(w)) sans(u) \
+ &= sans(e) { sans(w) (sans(v) (tilde(sans(e)) (sans(u)))+ pi.alt (sans(v))tilde(sans(e)) (sans(u)))\
+ + pi.alt (sans(w)) (sans(v) (tilde(sans(e)) (sans(u)))+ pi.alt (sans(v))tilde(sans(e)) (sans(u)))} \
+ - sans(e) { sans(v) (sans(w) (tilde(sans(e)) (sans(u)))+ pi.alt (sans(w))tilde(sans(e)) (sans(u)))\
+ + pi.alt (sans(v)) (sans(w) (tilde(sans(e)) (sans(u)))+ pi.alt (sans(w))tilde(sans(e)) (sans(u)))} \
+ &= sans(e) {[sans(w)\,sans(v)]tilde(sans(e)) (sans(u))\
+ + sans(w) (pi.alt (sans(v)))tilde(sans(e)) (sans(u))- sans(v) (pi.alt (sans(w)))tilde(sans(e)) (sans(u))\
+ + pi.alt (sans(w))pi.alt (sans(v))tilde(sans(e)) (sans(u))- pi.alt (sans(v))pi.alt (sans(w))tilde(sans(e)) (sans(u))} . $ <8.17>
 
 The second term of the Riemann curvature operator is
 
-$ nabla_([sans(w)\,sans(v)]) sans(u) = sans(e) {[sans(w) \, sans(v)] tilde(sans(e)) (sans(u)) + pi.alt ([sans(w) \, sans(v)]) tilde(sans(e)) (u)} . $ <8.18>
+$ nabla_([sans(w)\,sans(v)]) sans(u) = sans(e) {[sans(w) \, sans(v)] tilde(sans(e)) (sans(u)) \
+ + pi.alt ([sans(w) \, sans(v)]) tilde(sans(e)) (u)} . $ <8.18>
 
 The difference of these is the Riemann curvature operator. Notice that the first term in each cancels, and the rest gives equation @8.13.
 
@@ -398,7 +424,10 @@ $ nabla_(sans(T)) (nabla_(sans(T)) sans(U))= nabla_(sans(T)) (nabla_(sans(U)) sa
 
 because both the torsion is zero and $[sans(T)\,sans(U)]= 0$. Continuing
 
-$ nabla_(sans(T)) (nabla_(sans(T)) sans(U))= nabla_(sans(T)) (nabla_(sans(U)) sans(T))= nabla_(sans(T)) (nabla_(sans(U)) sans(T))+ nabla_(sans(U)) (nabla_(sans(T)) sans(T))- nabla_(sans(U)) (nabla_(sans(T)) sans(T))= nabla_(sans(U)) (nabla_(sans(T)) sans(T))- cal(R) (sans(U)\,sans(T)) (sans(T))= - cal(R) (sans(U)\,sans(T)) (sans(T)). $ <8.28>
+$ nabla_(sans(T)) (nabla_(sans(T)) sans(U))= nabla_(sans(T)) (nabla_(sans(U)) sans(T))\
+ &= nabla_(sans(T)) (nabla_(sans(U)) sans(T))+ nabla_(sans(U)) (nabla_(sans(T)) sans(T))- nabla_(sans(U)) (nabla_(sans(T)) sans(T))\
+ &= nabla_(sans(U)) (nabla_(sans(T)) sans(T))- cal(R) (sans(U)\,sans(T)) (sans(T))\
+ &= - cal(R) (sans(U)\,sans(T)) (sans(T)). $ <8.28>
 
 In the last line the first term was dropped because $sans(T)$ satisfies the geodesic equation @8.24.
 
@@ -557,7 +586,9 @@ The Bianchi identities are defined in terms of a cyclic-summation operator, whic
 
 The first Bianchi identity is
 
-$ sans(R) (omega\,sans(x)\,sans(y)\,sans(z))+ sans(R) (omega\,sans(y)\,sans(z)\,sans(x))+ sans(R) (omega\,sans(z)\,sans(x)\,sans(y))= 0\, $ <8.31>
+$ sans(R) (omega\,sans(x)\,sans(y)\,sans(z))\
+ + sans(R) (omega\,sans(y)\,sans(z)\,sans(x))\
+ + sans(R) (omega\,sans(z)\,sans(x)\,sans(y))= 0\, $ <8.31>
 
 or, as a program:
 
@@ -572,7 +603,9 @@ or, as a program:
 
 The second Bianchi identity is
 
-$ nabla_(sans(x)) sans(R) (omega\,sans(v)\,sans(y)\,sans(z))+ nabla_(sans(y)) sans(R) (omega\,sans(v)\,sans(z)\,sans(x))+ nabla_(sans(z)) sans(R) (omega\,sans(v)\,sans(x)\,sans(y))= 0 $ <8.32>
+$ nabla_(sans(x)) sans(R) (omega\,sans(v)\,sans(y)\,sans(z))\
+ + nabla_(sans(y)) sans(R) (omega\,sans(v)\,sans(z)\,sans(x))\
+ + nabla_(sans(z)) sans(R) (omega\,sans(v)\,sans(x)\,sans(y))= 0 $ <8.32>
 
 or, as a program:
 

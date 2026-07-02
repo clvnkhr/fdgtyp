@@ -1,6 +1,6 @@
 // Generated from ../../fdg-book/scheme/org/chapter002.org.
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
-#import "../lib.typ": fdg-chapter, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
+#import "../lib.typ": fdg-chapter, fdg-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
 
 #fdg-chapter("Manifolds", numbered: true, eq-prefix: "2", ref-label: "chap-2")[
 A #emph[manifold] is a generalization of our idea of a smooth surface embedded in Euclidean space. For an #emph[n]-dimensional manifold, around every point there is a simply-connected open set, the #emph[coordinate patch], and a one-to-one continuous function, the #emph[coordinate function] or #emph[chart], mapping every point in that open set to a tuple of #emph[n] real numbers, the #emph[coordinates]. In general, several charts are needed to label all points on a manifold. It is required that if a region is in more than one coordinate patch then the coordinates are consistent in that the function mapping one set of coordinates to another is continuous (and perhaps differentiable to some degree). A consistent system of coordinate patches and coordinate functions that covers the entire manifold is called an #emph[atlas].
@@ -34,9 +34,9 @@ $ x^i = chi^i (m). $ <2.2> The number of independent components of $x$ is the di
 
 Assume we have two coordinate functions $chi$ and $chi'$. The coordinate transformation from $chi'$ coordinates to $chi$ coordinates is just the composition $chi compose chi^(' - 1)$ , where $chi^(' - 1)$ is the functional inverse of $chi'$ (see figure 2.1).
 
-#align(center)[#image("../assets/figures/fig-2-1.pdf", width: 92%)]
+#fdg-figure(image("../assets/figures/fig-2-1.pdf", width: 49.2%), [Here there are two overlapping coordinate patches that are the domains of the two coordinate functions $chi$ and $chi'$. It is possible to represent manifold points in the overlap using either coordinate system. The coordinate transformation from $chi'$ coordinates to $chi$ coordinates is just the composition $chi circle chi'^(-1)$.])
 
-We assume that the coordinate transformation is continuous and differentiable to any degree we require.
+ We assume that the coordinate transformation is continuous and differentiable to any degree we require.
 
 Given a coordinate system `coordsys` for a patch on a manifold the procedure that implements the function $chi$ that gives coordinates for a point is (`chart coordsys`). The procedure that implements the inverse map that gives a point for coordinates is (`point coordsys`).
 
@@ -91,19 +91,13 @@ Let $sans(f)$ be a real-valued function on a manifold $sans(M)$: this function m
 
 This function has a coordinate representation $f_chi$ with respect to the coordinate function $chi$ (see figure 2.2):
 
-#align(center)[#image("../assets/figures/fig-2-2.pdf", width: 92%)]
+#fdg-figure(image("../assets/figures/fig-2-2.pdf", width: 49.2%), [The coordinate function $chi$ maps points on the manifold in the coordinate patch to a tuple of coordinates. A function $f$ on the manifold $M$ can be represented in coordinates by a function $f_chi = f circle chi^(-1)$.])
 
-$ f_chi = sans(f) compose chi^(-1) . $ <2.3> Both the coordinate representation $f_chi$ and the tuple $x$ depend on the coordinate system, but the value $f_chi (x)$ is independent of coordinates: $ f_chi (x)=(sans(f) compose chi^(-1)) (chi (sans(m)))= sans(f) (sans(m)). $ <2.4> The subscript $chi$ may be dropped when it is unambiguous.
+ $ f_chi = sans(f) compose chi^(-1) . $ <2.3> Both the coordinate representation $f_chi$ and the tuple $x$ depend on the coordinate system, but the value $f_chi (x)$ is independent of coordinates: $ f_chi (x)=(sans(f) compose chi^(-1)) (chi (sans(m)))= sans(f) (sans(m)). $ <2.4> The subscript $chi$ may be dropped when it is unambiguous.
 
-For example, in a 2-dimensional real manifold the coordinates of a manifold point $m$ are a pair of real numbers, $ (x\,y)= chi (sans(m))\, $ <2.5> and the manifold function $sans(f)$ is represented in coordinates by a function $f$ that takes a pair of real numbers and produces a real number
-
-$ f : sans(R)^2 arrow.r sans(R) \
-f :(x\,y) arrow.r f (x\,y). $ <2.6>
-
-We define our manifold function
-
-$ sans(f) : sans(M) arrow.r sans(R) \
-sans(f) : sans(m) arrow.r (f compose chi) (sans(m)). $ <2.7>
+For example, in a 2-dimensional real manifold the coordinates of a manifold point $m$ are a pair of real numbers, $ (x\,y)= chi (sans(m))\, $ <2.5> and the manifold function $sans(f)$ is represented in coordinates by a function $f$ that takes a pair of real numbers and produces a real number $ f : sans(R)^2 arrow.r sans(R) \
+ f :(x\,y)arrow.r f (x\,y). $ <2.6> We define our manifold function $ sans(f) : sans(M) arrow.r sans(R) \
+ sans(f) : sans(m) arrow.r (f compose chi) (sans(m)). $ <2.7>
 
 == #emph[Manifold Functions Are Coordinate Independent] <sec-2.3>
 We can illustrate the coordinate independence with a program. We will show that an arbitrary manifold function $sans(f)$, when defined by its coordinate representation in rectangular coordinates, has the same behavior when applied to a manifold point independent of whether the point is specified in rectangular or polar coordinates.
@@ -221,7 +215,9 @@ Describe a helix space curve in both rectangular and cylindrical coordinates. Us
 == Exercise 2.2: Stereographic Projection <sec-2.6>
 A stereographic projection is a correspondence between points on the unit sphere and points on the plane cutting the sphere at its equator. (See figure 2.3.)
 
-#align(center)[#image("../assets/figures/fig-2-3.pdf", width: 92%)]
+#fdg-figure(image("../assets/figures/fig-2-3.pdf", width: 49.2%), [For each point on the sphere (except for its north pole) a line is drawn from the north pole through the point and extending to the equatorial plane. The corresponding point on the plane is where the line intersects the plane. The rectangular coordinates of this point on the plane are the Riemann coordinates of the point on the sphere. The points on the plane can also be specified with polar coordinates $(rho, theta)$ and the points on the sphere are specified both by Riemann coordinates and the traditional colatitude and longitude $(phi, lambda)$.])
+
+
 
 The coordinate system for points on the sphere in terms of rectangular coordinates of corresponding points on the plane is `S2-Riemann`#footnote[The plane with the addition of a point at infinity is conformally equivalent to the sphere by this correspondence. This correspondence is called the Riemann sphere, in honor of the great mathematician Bernard Riemann (1826--1866), who made major contributions to geometry.]. The procedure `(chart S2-Riemann)` gives the rectangular coordinates on the plane for every point on the sphere, except for the North Pole. The procedure `(point S2-Riemann)` gives the point on the sphere given rectangular coordinates on the plane. The usual spherical coordinate system on the sphere is `S2-spherical`.
 

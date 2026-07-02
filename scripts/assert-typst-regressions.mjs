@@ -1,10 +1,48 @@
 #!/usr/bin/env node
 
-import { readFileSync, readdirSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import path from "node:path";
 
 const root = process.cwd();
 const contentDir = path.join(root, "typ", "content");
+const figuresDir = path.join(root, "typ", "assets", "figures");
+const orgDir = path.join(root, "fdg-book", "scheme", "org");
+
+const convertedOrgFiles = [
+  "preface.org",
+  "prologue.org",
+  "chapter001.org",
+  "chapter002.org",
+  "chapter003.org",
+  "chapter004.org",
+  "chapter005.org",
+  "chapter006.org",
+  "chapter007.org",
+  "chapter008.org",
+  "chapter009.org",
+  "chapter010.org",
+  "chapter011.org",
+  "appendix_a.org",
+  "appendix_b.org",
+  "appendix_c.org",
+  "references.org",
+  "errata.org",
+];
+
+const expectedContentFiles = convertedOrgFiles
+  .map(file => file.replace(/\.org$/, ".typ"))
+  .sort();
+
+const expectedFigures = [
+  "fig-2-1.pdf",
+  "fig-2-2.pdf",
+  "fig-2-3.pdf",
+  "fig-4-1.pdf",
+  "fig-4-2.pdf",
+  "fig-5-1.pdf",
+  "fig-6-1.pdf",
+  "fig-7-1.pdf",
+];
 
 function normalize(text) {
   return text
@@ -28,15 +66,42 @@ function stripTypstProtected(text) {
   return text.replace(/```[\s\S]*?```|`[^`\n]*`|\$[^$\n]*\$/g, "");
 }
 
+function lineNumberAt(text, index) {
+  return text.slice(0, index).split("\n").length;
+}
+
+function describeMatch(file, text, match) {
+  return `${file}:${lineNumberAt(text, match.index)}: ${match[0].slice(0, 120)}`;
+}
+
+function matchAll(regex, text) {
+  return [...text.matchAll(regex)];
+}
+
+function stripCodeAndRawSpans(text) {
+  return text.replace(/```[\s\S]*?(?:```(?:\])?|$)|`[^`\n]*`|#raw\(lang:"scheme", "[^"]*"\)/g, "");
+}
+
+function stripCodeRawAndMath(text) {
+  return stripCodeAndRawSpans(text).replace(/\$[\s\S]*?\$/g, "");
+}
+
+function parseBibKeys() {
+  const bib = readTypFile("references.bib");
+  return new Set(matchAll(/@\w+\{([^,\s]+),/g, bib).map(match => match[1]));
+}
+
 const contentFiles = readdirSync(contentDir)
   .filter(file => file.endsWith(".typ"))
   .sort();
 
+const contentByFile = new Map(contentFiles.map(file => [file, readContentFile(file)]));
+
 const allContent = contentFiles
-  .map(file => `\n--- ${file} ---\n${readContentFile(file)}`)
+  .map(file => `\n--- ${file} ---\n${contentByFile.get(file)}`)
   .join("\n");
 const allContentNormalized = normalize(allContent);
-const allProseContent = stripTypstProtected(allContent);
+const allProseContent = stripCodeRawAndMath(allContent);
 
 const assertions = [
   {
@@ -154,7 +219,7 @@ const assertions = [
     contains: [
       "sum_k sans(X)_k (sans(f))sans(c)_j^k",
       "tilde(sans(e))^i (sans(v))= sum_l sans(d)_l^i tilde(sans(X))^l (sans(v))",
-      "sum_k sans(d)_k^i (sans(m))sans(c)_j^k (sans(m)).",
+      "sum_k sans(d)_k^i (sans(m))\\ sans(c)_j^k (sans(m)).",
       "equations @4.29 -- @4.31",
     ],
     excludes: [
@@ -168,7 +233,7 @@ const assertions = [
     contains: [
       "and $sans(v) = sans(v)^0 partial\\/partial sans(x) + sans(v)^1 partial\\/partial sans(y),$ which is given by",
       "$sans(A) = sans(d) sans(x) \"∧\" sans(d) sans(y).$",
-      "Here we extract $sans(d) sans(x)$ and $sans(d) sans(y)$ from R2-rect-basis",
+      "Here we extract $sans(d) sans(x)$ and $sans(d) sans(y)$ from #raw(lang:\"scheme\", \"R2-rect-basis\")",
     ],
     excludes: [
       "$v = v^{0}{∂}/{∂x} + v^{1}{∂}/{∂y},$",
@@ -218,7 +283,7 @@ const assertions = [
   {
     file: "chapter008.typ",
     contains: [
-      "$ cal(R) (bold(omega)\\,sans(u)\\,sans(v)\\,sans(w)) = bold(omega) ((cal(R) (sans(w) \\, sans(v))) (sans(u)))\\, $",
+      "$ cal(R) (bold(omega)\\,sans(u)\\,sans(v)\\,sans(w)) =\\\n bold(omega) ((cal(R) (sans(w) \\, sans(v))) (sans(u)))\\, $",
       "This computes the same operator as the traditional Riemann curvature operator:",
     ],
     excludes: [
@@ -400,6 +465,17 @@ const globalExcludes = [
   "binom (",
   "sans (",
   "scale (",
+  "FDGBREAK",
+  "\\operatorname{FDGBREAK}",
+  "_(m i n)",
+  "_(m a x)",
+  "make-fake-vector-field counterfeits",
+  "from R2-rect-basis",
+  "with S2-Riemann",
+  "The s:map/r procedure",
+  "operator (F-Lie phi)",
+  "F-\\>directional-derivative",
+  "give covariant-derivative an extra argument",
 ];
 
 const globalRegexExcludes = [
@@ -446,6 +522,10 @@ const globalRegexExcludes = [
   {
     name: "superscripted parenthesized expression applied without spacing",
     regex: /\)\^[A-Za-z0-9.]+\(/,
+  },
+  {
+    name: "LaTeX-style Typst subscript or superscript braces",
+    regex: /[\^_]\{[^{}\n]+\}/,
   },
   {
     name: "primed parenthesized expression applied without spacing",
@@ -522,11 +602,278 @@ for (const { name, regex } of globalProseRegexExcludes) {
   }
 }
 
+const expectedSet = new Set(expectedContentFiles);
+const actualSet = new Set(contentFiles);
+for (const file of expectedContentFiles) {
+  if (!actualSet.has(file)) fail("Missing generated content file:", file);
+}
+for (const file of contentFiles) {
+  if (!expectedSet.has(file)) fail("Unexpected generated content file:", file);
+}
+for (const file of convertedOrgFiles) {
+  if (!existsSync(path.join(orgDir, file))) {
+    fail("Configured Org input does not exist:", file);
+  }
+}
+
+for (const file of contentFiles) {
+  const text = contentByFile.get(file);
+  const stem = file.replace(/\.typ$/, "");
+  const expectedSource = `// Generated from ../../fdg-book/scheme/org/${stem}.org.`;
+  if (!text.startsWith(expectedSource)) {
+    fail(`Generated source header mismatch in ${file}:`, expectedSource);
+  }
+  if (!text.includes("// Re-run scripts/convert-org-to-typst.mjs to refresh.")) {
+    fail(`Missing regeneration header in ${file}`);
+  }
+  const importLine = '#import "../lib.typ": fdg-chapter, fdg-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX';
+  if (!text.includes(importLine)) {
+    fail(`Missing standard content import in ${file}`);
+  }
+  const chapterCalls = matchAll(/#fdg-chapter\(/g, text);
+  if (chapterCalls.length !== 1) {
+    fail(`Expected exactly one fdg-chapter call in ${file}:`, String(chapterCalls.length));
+  }
+  if (!text.trimEnd().endsWith("]")) {
+    fail(`Generated content file does not end with closing chapter bracket: ${file}`);
+  }
+}
+
+const codeBlockHazards = [
+  { name: "Org footnote marker in Scheme block", regex: /\[fn:/ },
+  { name: "Org directive in Scheme block", regex: /^#\+/m },
+  { name: "LaTeX environment in Scheme block", regex: /\\(?:begin|end)\{/ },
+  { name: "Typst raw call inside Scheme block", regex: /#raw\(/ },
+  { name: "Typst figure call inside Scheme block", regex: /#fdg-figure|#figure/ },
+  { name: "TODO marker in Scheme block", regex: /\b(?:TODO|MISSING|FIXME)\b/ },
+];
+
+for (const file of contentFiles) {
+  const text = contentByFile.get(file);
+  const lines = text.split("\n");
+  let inBlock = false;
+  let startLine = 0;
+  let block = [];
+
+  lines.forEach((line, index) => {
+    const lineNo = index + 1;
+    if (!inBlock) {
+      if (line.startsWith("```scheme")) {
+        if (line !== "```scheme") {
+          fail(`Scheme block opener has trailing content in ${file}:${lineNo}`, line);
+        }
+        inBlock = true;
+        startLine = lineNo;
+        block = [];
+      } else if (line.startsWith("```")) {
+        fail(`Non-Scheme raw block opener in ${file}:${lineNo}`, line);
+      }
+      return;
+    }
+
+    if (/^```(?:\].*)?$/.test(line)) {
+      const blockText = block.join("\n");
+      for (const { name, regex } of codeBlockHazards) {
+        if (regex.test(blockText)) {
+          fail(`Found ${name} in Scheme block starting ${file}:${startLine}`, regex.toString());
+        }
+      }
+      inBlock = false;
+      return;
+    }
+
+    block.push(line);
+  });
+
+  if (inBlock) {
+    fail(`Unclosed Scheme block in ${file}:${startLine}`);
+  }
+}
+
+for (const file of contentFiles) {
+  const text = contentByFile.get(file);
+  const unprotected = stripCodeAndRawSpans(text);
+  const dollars = matchAll(/(?<!\\)\$/g, unprotected);
+  if (dollars.length % 2 !== 0) {
+    fail(`Unbalanced Typst math dollars in ${file}:`, String(dollars.length));
+  }
+  for (const match of matchAll(/#raw\((?!lang:"scheme")/g, text)) {
+    fail("Raw span missing Scheme language:", describeMatch(file, text, match));
+  }
+}
+
+const expectedMathLineBreaks = [
+  { file: "chapter005.typ", label: "5.2", minBreaks: 2, minAlignedEquals: 2 },
+  { file: "chapter005.typ", label: "5.4", minBreaks: 5, minAlignedEquals: 5 },
+  { file: "chapter005.typ", label: "5.10", minBreaks: 2, minAlignedEquals: 2 },
+  { file: "chapter005.typ", label: "5.24", minBreaks: 2, minAlignedEquals: 1 },
+  { file: "chapter005.typ", label: "5.30", minBreaks: 3, minAlignedEquals: 3 },
+  { file: "chapter005.typ", label: "5.34", minBreaks: 4, minAlignedEquals: 4 },
+  { file: "chapter007.typ", label: "7.41", minBreaks: 1 },
+];
+
+for (const { file, label, minBreaks, minAlignedEquals = 0 } of expectedMathLineBreaks) {
+  const text = contentByFile.get(file);
+  const match = text.match(new RegExp(`\\$([\\s\\S]*?)\\$ <${label.replace(".", "\\.")}>`));
+  if (!match) {
+    fail(`Missing expected math display ${label} in ${file}`);
+    continue;
+  }
+  const breaks = matchAll(/\\\n/g, match[1]).length;
+  if (breaks < minBreaks) {
+    fail(`Math display ${label} lost source line breaks in ${file}:`, `${breaks} found, expected at least ${minBreaks}`);
+  }
+  const alignedEquals = matchAll(/\\\n\s*&=/g, match[1]).length;
+  if (alignedEquals < minAlignedEquals) {
+    fail(`Math display ${label} lost aligned equals in ${file}:`, `${alignedEquals} found, expected at least ${minAlignedEquals}`);
+  }
+}
+
+function findMathCallLinebreaks(math, names = new Set(["mat", "vec"])) {
+  const offenders = [];
+
+  for (let index = 0; index < math.length;) {
+    const call = math.slice(index).match(/^([A-Za-z][A-Za-z0-9.]*)\(/);
+    if (!call || !names.has(call[1])) {
+      index += 1;
+      continue;
+    }
+
+    const name = call[1];
+    const openIndex = index + name.length;
+    let depth = 0;
+    let closeIndex = -1;
+
+    for (let cursor = openIndex; cursor < math.length; cursor += 1) {
+      if (math[cursor] === "(") depth += 1;
+      if (math[cursor] === ")") {
+        depth -= 1;
+        if (depth === 0) {
+          closeIndex = cursor;
+          break;
+        }
+      }
+    }
+
+    if (closeIndex === -1) {
+      index += 1;
+      continue;
+    }
+
+    const callText = math.slice(index, closeIndex + 1);
+    if (/\\\n/.test(callText)) offenders.push(callText.slice(0, 120));
+    offenders.push(...findMathCallLinebreaks(math.slice(openIndex + 1, closeIndex), names));
+    index = closeIndex + 1;
+  }
+
+  return offenders;
+}
+
+for (const file of contentFiles) {
+  const text = contentByFile.get(file);
+  for (const match of matchAll(/\$([\s\S]*?)\$/g, text)) {
+    for (const offender of findMathCallLinebreaks(match[1])) {
+      fail(`Found ignored linebreak inside vec/mat in ${file}:`, offender);
+    }
+  }
+}
+
+const figureUses = [];
+for (const file of contentFiles) {
+  const text = contentByFile.get(file);
+  for (const match of matchAll(/#fdg-figure\(image\("\.\.\/assets\/figures\/([^"]+)", width: ([^)]+)\), \[([\s\S]*?)\]\)/g, text)) {
+    figureUses.push({ file, asset: match[1], width: match[2], caption: match[3] });
+  }
+  for (const match of matchAll(/#align\(center\)\[#image|#figure\(image\("\.\.\/assets\/figures\//g, text)) {
+    fail("Found legacy figure/image insertion:", describeMatch(file, text, match));
+  }
+}
+
+for (const asset of expectedFigures) {
+  const uses = figureUses.filter(use => use.asset === asset);
+  if (uses.length !== 1) {
+    fail(`Expected exactly one use of ${asset}:`, String(uses.length));
+  }
+  const assetPath = path.join(figuresDir, asset);
+  if (!existsSync(assetPath)) {
+    fail("Missing cropped figure asset:", asset);
+  } else if (statSync(assetPath).size < 10_000) {
+    fail("Cropped figure asset is suspiciously small:", `${asset} (${statSync(assetPath).size} bytes)`);
+  }
+}
+for (const use of figureUses) {
+  if (!expectedFigures.includes(use.asset)) {
+    fail("Unexpected figure asset used:", `${use.file}: ${use.asset}`);
+  }
+  if (use.width !== "49.2%") {
+    fail("Unexpected figure width:", `${use.file}: ${use.asset} width ${use.width}`);
+  }
+  if (!use.caption.trim()) {
+    fail("Empty figure caption:", `${use.file}: ${use.asset}`);
+  }
+  if (/^Figure\s+\d/.test(use.caption.trim())) {
+    fail("Figure caption includes its own number:", `${use.file}: ${use.asset}`);
+  }
+}
+
+const bibKeys = parseBibKeys();
+const definedLabels = new Set();
+const definedLabelLocations = new Map();
+for (const file of contentFiles) {
+  const text = contentByFile.get(file);
+  for (const match of matchAll(/(?<!\()<([A-Za-z0-9_.-]+)>/g, text)) {
+    const label = match[1];
+    const lineStart = text.lastIndexOf("\n", match.index) + 1;
+    const beforeMatchOnLine = text.slice(lineStart, match.index);
+    if (/#(?:fdg-page-ref|fdg-ref|fdg-ref-page)\([^)]*$/.test(beforeMatchOnLine)) continue;
+    const location = describeMatch(file, text, match);
+    if (definedLabelLocations.has(label)) {
+      fail("Duplicate Typst label:", `${label}\n  first: ${definedLabelLocations.get(label)}\n  again: ${location}`);
+    }
+    definedLabels.add(label);
+    definedLabelLocations.set(label, location);
+  }
+  for (const match of matchAll(/ref-label: "([^"]+)"/g, text)) {
+    const label = match[1];
+    if (label === "") continue;
+    const location = describeMatch(file, text, match);
+    if (definedLabelLocations.has(label)) {
+      fail("Duplicate Typst label:", `${label}\n  first: ${definedLabelLocations.get(label)}\n  again: ${location}`);
+    }
+    definedLabels.add(label);
+    definedLabelLocations.set(label, location);
+  }
+}
+
+for (const file of contentFiles) {
+  const text = stripCodeAndRawSpans(contentByFile.get(file));
+  for (const match of matchAll(/#(?:fdg-page-ref|fdg-ref|fdg-ref-page)\(<([A-Za-z0-9_.-]+)>/g, text)) {
+    if (!definedLabels.has(match[1])) {
+      fail("Reference helper targets missing label:", describeMatch(file, text, match));
+    }
+  }
+  for (const match of matchAll(/@([A-Za-z0-9](?:[A-Za-z0-9_.-]*[A-Za-z0-9])?)/g, text)) {
+    const key = match[1];
+    if (!definedLabels.has(key) && !bibKeys.has(key)) {
+      fail("Typst reference/citation has no matching label or bibliography key:", describeMatch(file, text, match));
+    }
+  }
+}
+
 if (failures > 0) {
   console.error(`\n${failures} Typst regression assertion(s) failed.`);
   process.exit(1);
 }
 
 console.log(
-  `Typst regression assertions passed (${assertions.length} files, ${globalExcludes.length + globalRegexExcludes.length} global checks).`,
+  `Typst regression assertions passed (` +
+    [
+      `targeted files: ${assertions.length}`,
+      `generated files: ${contentFiles.length}`,
+      `global checks: ${globalExcludes.length + globalRegexExcludes.length + globalProseRegexExcludes.length}`,
+      `figures: ${figureUses.length}`,
+      `labels: ${definedLabels.size}`,
+      `bibliography keys: ${bibKeys.size}`,
+    ].join(", ") +
+    ").",
 );

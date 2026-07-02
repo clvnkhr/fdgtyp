@@ -1,6 +1,6 @@
 // Generated from ../../fdg-book/scheme/org/chapter011.org.
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
-#import "../lib.typ": fdg-chapter, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
+#import "../lib.typ": fdg-chapter, fdg-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
 
 #fdg-chapter("Special Relativity", numbered: true, eq-prefix: "11", ref-label: "chap-11")[
 Although the usual treatments of special relativity begin with the Michelson-Morley experiment, this is not how Einstein began. In fact, Einstein was impressed with Maxwell\'s work and he was emulating Maxwell\'s breakthrough.
@@ -139,9 +139,9 @@ xi^1 = r (xi')^0 + s (xi')^1. $ <11.26>
 
 The requirement to preserve the interval gives the constraints
 
-$ p^2 - r^2 = 1, \\
-p q - r s = 0, \\
-q^2 - s^2 = -1. $ <11.27>
+$ p^2 - r^2 = 1\,\
+ p q - r s = 0\,\
+ q^2 - s^2 = - 1 . $ <11.27>
 
 There are four parameters to determine, and only three equations, so the solutions have a free parameter. It turns out that a good choice is $beta = q\/p$. Solve to find
 
@@ -149,8 +149,8 @@ $ p = 1 / sqrt(1 - beta^2) = gamma (beta)\, $ <11.28>
 
 and also $p = s$ and $q = r = beta p$. This defines $gamma$. Written out, the transformation is
 
-$ xi^0 = gamma (beta) ((xi')^0 + beta (xi')^1) \\
-xi^1 = gamma (beta) (beta (xi')^0 + (xi')^1). $ <11.29>
+$ xi^0 = gamma (beta) ((xi')^0 + beta (xi')^1) \
+ xi^1 = gamma (beta) (beta (xi')^0 + (xi')^1) . $ <11.29>
 
 Simple physical arguments#footnote[See, for instance, Mermin, \"Space and Time in Special Relativity.\"] show that this mathematical result relates the time and space coordinates for two systems in uniform relative motion. The parameter $beta$ is related to the relative velocity.
 
@@ -172,10 +172,10 @@ A consistent interpretation is that the origin of the primed system moves with v
 
 We can fill in the components of this simple boost:
 
-$ xi^0 = gamma (beta) ((xi')^0 + beta (xi')^1) \\
-xi^1 = gamma (beta) (beta (xi')^0 + (xi')^1) \\
-xi^2 = (xi')^2 \\
-xi^3 = (xi')^3. $ <11.33>
+$ xi^0 = gamma (beta) ((xi')^0 + beta (xi')^1) \
+ xi^1 = gamma (beta) (beta (xi')^0 + (xi')^1) \
+ xi^2 =(xi')^2\
+ xi^3 =(xi')^3. $ <11.33>
 
 == More General Lorentz Transformations <sec-11.4>
 One direction was special in our consideration of simple boosts. We can make use of this fact to find boosts in any direction.
@@ -188,7 +188,8 @@ $ bold(xi) = bold(xi)^perp + bold(xi)^parallel\, $ <11.34>
 
 where $bold(beta) dot.op bold(xi) = 0$. (This is the ordinary dot product in three dimensions.) Explicitly,
 
-$ bold(xi)^parallel = bold(beta) / beta (bold(beta) / beta dot.op bold(xi))\, $ <11.35>
+$ bold(xi)^parallel \
+ &= bold(beta) / beta (bold(beta) / beta dot.op bold(xi))\, $ <11.35>
 
 where $beta = norm(bold(beta))$, the magnitude of $bold(beta)$, and
 
@@ -196,14 +197,15 @@ $ bold(xi)^perp = bold(xi) - bold(xi)^parallel . $ <11.36>
 
 In the simple boost of equation @11.33 we can identify $xi^1$ with the magnitude $|bold(xi)^parallel|$ of the parallel component. The perpendicular component is unchanged:
 
-$ xi^0 = gamma (beta) ((xi')^0 + beta norm((bold(xi))^parallel)) \\
-norm(bold(xi)^parallel) = gamma (beta) (beta (xi')^0 + norm((bold(xi))^parallel)) \\
-bold(xi)^perp = (bold(xi)')^perp. $ <11.37>
+$ xi^0 = gamma (beta) ((xi')^0 + beta | (bold(xi))^parallel |)\,\
+|bold(xi)^parallel|= gamma (beta) (beta (xi')^0 + | (bold(xi))^parallel |)\,\
+ bold(xi)^perp = (bold(xi)')^perp . $ <11.37>
 
 Putting the components back together, this leads to
 
-$ xi^0 = gamma (beta) ((xi')^0 + bold(beta) dot.op bold(xi)) \\
-bold(xi) = gamma (beta) (bold(beta) (xi')^0 + bold(xi)' + frac(gamma (beta) - 1, beta^2) bold(beta) (bold(beta) dot.op bold(xi))). $ <11.38>
+$ xi^0 = gamma (beta) ((xi')^0 + bold(beta) dot.op bold(xi)) \
+ bold(xi) = gamma (beta) (bold(beta) (xi')^0 + bold(xi)' \
+ + frac(gamma (beta)- 1, beta^2) bold(beta) (bold(beta) dot.op bold(xi)))\, $ <11.38>
 
 which gives the components of the general boost $B$ along velocity $c bold(beta)$:
 
@@ -290,7 +292,9 @@ This is well behaved as $v\/c$ goes to zero.
 == Rotations <sec-11.6>
 A linear transformation that does not change the magnitude of the spatial and time components, individually, leaves the interval invariant. So a transformation that rotates the spatial coordinates and leaves the time component unchanged is also a Lorentz transformation. Let $R$ be a 3-dimensional rotation. Then the extension to a Lorentz transformation $cal(R)$ is defined by
 
-$ (xi^0\,bold(xi))= cal(R) (R) ((xi')^0 \, bold(xi)') = ((xi')^0 \, R (bold(xi)')) . $ <11.40>
+$ (xi^0\,bold(xi))\
+ &= cal(R) (R) ((xi')^0 \, bold(xi)') \
+ &= ((xi')^0 \, R (bold(xi)')) . $ <11.40>
 
 Examining the expression for the general boost, equation @11.38, we see that the boost transforms simply as the arguments are rotated. Indeed,
 

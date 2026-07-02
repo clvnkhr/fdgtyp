@@ -1,6 +1,6 @@
 // Generated from ../../fdg-book/scheme/org/chapter010.org.
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
-#import "../lib.typ": fdg-chapter, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
+#import "../lib.typ": fdg-chapter, fdg-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
 
 #fdg-chapter("Hodge Star and Electrodynamics", numbered: true, eq-prefix: "10", ref-label: "chap-10")[
 The vector space of $p$-form fields on an $n$-dimensional manifold has dimension $n !\/((n - p)! p !)$. This is the same dimension as the space of $(n - p)$-form fields. So these vector spaces are isomorphic. If we have a metric there is a natural isomorphism: for each $p$-form field $bold(omega)$ on an $n$-dimensional manifold there is an $(n - p)$-form field $sans(g)^(*) bold(omega)$, called its #emph[Hodge dual].#footnote[The traditional notion is to just use an asterisk; we use $g^convolve$ to emphasize that this duality depends on the choice of metric $g$.] The Hodge dual should not be confused with the duality of vector bases and one-form bases, which is defined without reference to a metric. The Hodge dual is useful for the elegant formalization of electrodynamics.
@@ -9,18 +9,24 @@ In Euclidean 3-space, if we think of a one-form as a foliation of the space, the
 
 The Hodge dual is a linear operator, so it can be defined by its action on the basis elements. Let ${partial \/ partial sans(x)^0 \, dots.c \, partial \/ partial x^(n - 1)}$ be an orthonormal basis of vector fields#footnote[We have a metric, so we can define \"orthonormal\" and\"use it to construct an orthonormal basis given any basis. The Gram-Schmidt procedure does the job.] and let ${sans(d) x^0 \, dots.c \, sans(d) x^(n - 1)}$ be the ordinary dual basis for the one-forms. Then the $(n - p)$-form $sans(g)^convolve bold(omega)$ that is the Hodge dual of the $p$-form $bold(omega)$ can be defined by its coefficients with respect to the basis, using indices, as
 
-$ (sans(g)^(*) bold(omega))_(j_p dots.c j_(n - 1)) #h(2em) = sum_(i_0 dots.c i_(p - 1) j_0 dots.c j_(p - 1)) frac(1, p !) omega_(i_0 dots.c i_(p - 1)) g^(i_0 j_0) dots.c g^(i_(p - 1) j_(p - 1)) epsilon.alt_(j_0 dots.c j_(n - 1)) $ <10.1>
+$ (sans(g)^(*) bold(omega))_(j_p dots.c j_(n - 1)) \
+ #h(2em) = sum_(i_0 dots.c i_(p - 1) j_0 dots.c j_(p - 1)) frac(1, p !) \
+ omega_(i_0 dots.c i_(p - 1)) g^(i_0 j_0) dots.c g^(i_(p - 1) j_(p - 1)) epsilon.alt_(j_0 dots.c j_(n - 1)) $ <10.1>
 
 where $g^(i j)$ are the coefficients of the inverse metric and $epsilon.alt_(j_0 dots.c j_(n - 1))$ is either $- 1$ or $+ 1$ if the permutation ${0 dots.c n - 1} mapsto {j_0 dots.c j_(n - 1)}$ is odd or even, respectively.
 
 == Relationship to Vector Calculus <sec-10.1>
 In 3-dimensional Euclidean space the traditional vector derivative operations are gradient, curl, and divergence. If $hat(upright(x))$, $hat(upright(y))$, $hat(upright(z))$ are the usual orthonormal rectangular vector basis, $f$ a function on the space, and $arrow(v)$ a vector field on the space, then
 
-$ grad (f)= frac(partial f, partial x) hat(upright(x)) + frac(partial f, partial y) hat(upright(y)) + frac(partial f, partial z) hat(upright(z)) curl (arrow(upright(v)))= (frac(partial v_z, partial y) - frac(partial v_y, partial z)) hat(upright(x)) + (frac(partial v_x, partial z) - frac(partial v_z, partial x)) hat(upright(y)) + (frac(partial v_y, partial x) - frac(partial v_x, partial y)) hat(upright(x)) div (arrow(upright(v)))= frac(partial v_x, partial x) + frac(partial v_y, partial y) + frac(partial v_z, partial z) . $
+$ grad (f)= frac(partial f, partial x) hat(upright(x)) + frac(partial f, partial y) hat(upright(y)) + frac(partial f, partial z) hat(upright(z)) \
+ curl (arrow(upright(v)))= (frac(partial v_z, partial y) - frac(partial v_y, partial z)) hat(upright(x)) + (frac(partial v_x, partial z) - frac(partial v_z, partial x)) hat(upright(y)) + (frac(partial v_y, partial x) - frac(partial v_x, partial y)) hat(upright(x)) \
+ div (arrow(upright(v)))= frac(partial v_x, partial x) + frac(partial v_y, partial y) + frac(partial v_z, partial z) . $
 
 Recall the meaning of the traditional vector operations. Traditionally we assume that there is a metric that allows us to determine distances between locations and angles between vectors. Such a metric establishes local scale factors relating coordinate increments to actual distances. The vector gradient, $grad (f)$, points in the direction of steepest increase in the function with respect to actual distances. By contrast, the gradient one-form, df, does not depend on a metric, so there is no concept of distance built in to it. Nevertheless, the concepts are related. The gradient one-form is given by
 
-$ sans(d f) = (frac(partial, partial sans(x)) sans(f)) sans(d x) + (frac(partial, partial sans(y)) sans(f)) sans(d y) + (frac(partial, partial sans(z)) sans(f)) sans(d z) . $ <10.2>
+$ sans(d f) = (frac(partial, partial sans(x)) sans(f)) sans(d x) \
+ + (frac(partial, partial sans(y)) sans(f)) sans(d y) \
+ + (frac(partial, partial sans(z)) sans(f)) sans(d z) . $ <10.2>
 
 The traditional gradient vector field is then just the raised gradient one-form (see equation @9.8). So
 
@@ -39,15 +45,26 @@ $ theta = theta_x sans(d x) + theta_y sans(d y) + theta_z sans(d z) . $ <10.4>
 
 We compute
 
-$ sans(d) theta = (frac(partial theta_z, partial sans(y)) - frac(partial theta_y, partial sans(z))) sans(d y) and sans(d z) + (frac(partial theta_x, partial sans(z)) - frac(partial theta_z, partial sans(x))) sans(d z) and sans(d x) + (frac(partial theta_y, partial sans(x)) - frac(partial theta_x, partial sans(y))) sans(d x) and sans(d y) . $ <10.5>
+$ sans(d) theta = (frac(partial theta_z, partial sans(y)) \
+ - frac(partial theta_y, partial sans(z))) sans(d y) and sans(d z) \
+ + (frac(partial theta_x, partial sans(z)) \
+ - frac(partial theta_z, partial sans(x))) sans(d z) and sans(d x) \
+ + (frac(partial theta_y, partial sans(x)) \
+ - frac(partial theta_x, partial sans(y))) sans(d x) and sans(d y) . $ <10.5>
 
 So the exterior-derivative expression corresponding to the vector-calculus curl is:
 
-$ g^(*) (sans(d) theta) = (frac(partial theta_z, partial sans(y)) - frac(partial theta_y, partial sans(z))) sans(d x) + (frac(partial theta_x, partial sans(z)) - frac(partial theta_z, partial sans(x))) sans(d x) + (frac(partial theta_y, partial sans(x)) - frac(partial theta_x, partial sans(y))) sans(d z) . $ <10.6>
+$ g^(*) (sans(d) theta) = (frac(partial theta_z, partial sans(y)) \
+ - frac(partial theta_y, partial sans(z))) sans(d x) \
+ + (frac(partial theta_x, partial sans(z)) \
+ - frac(partial theta_z, partial sans(x))) sans(d x) \
+ + (frac(partial theta_y, partial sans(x)) \
+ - frac(partial theta_x, partial sans(y))) sans(d z) . $ <10.6>
 
 Thus, the curl of a vector field $sans(v)$ is
 
-$ curl (sans(v))= g^sharp (g^(*) (sans(d) (g^flat (sans(v)))))\, $ <10.7>
+$ curl (sans(v))\
+ &= g^sharp (g^(*) (sans(d) (g^flat (sans(v)))))\, $ <10.7>
 
 which can be computed with
 
@@ -61,15 +78,23 @@ which can be computed with
 
 Also, we compute
 
-$ sans(d) (g^(*) theta)= (frac(partial theta_x, partial sans(x)) + frac(partial theta_y, partial sans(y)) + frac(partial theta_z, partial sans(z))) sans(d x) and sans(d y) and sans(d z) . $ <10.8>
+$ sans(d) (g^(*) theta)= (\
+ frac(partial theta_x, partial sans(x)) \
+ + frac(partial theta_y, partial sans(y)) \
+ + frac(partial theta_z, partial sans(z)) \
+) sans(d x) and sans(d y) and sans(d z) . $ <10.8>
 
 So the exterior-derivative expression corresponding to the vector-calculus $div$ is
 
-$ g^(*) sans(d) (g^(*) theta)= frac(partial theta_x, partial sans(x)) + frac(partial theta_y, partial sans(y)) + frac(partial theta_z, partial sans(z)) . $ <10.9>
+$ g^(*) sans(d) (g^(*) theta)= \
+ frac(partial theta_x, partial sans(x)) \
+ + frac(partial theta_y, partial sans(y)) \
+ + frac(partial theta_z, partial sans(z)) . $ <10.9>
 
 Thus, the divergence of a vector field $sans(v)$ is
 
-$ div (sans(v))= g^(*) (sans(d) (g^(*) (g^flat (sans(v))))) . $ <10.10>
+$ div (sans(v))\
+ &= g^(*) (sans(d) (g^(*) (g^flat (sans(v))))) . $ <10.10>
 
 It is easily computed:
 
@@ -237,7 +262,11 @@ The kinematics of special relativity can be formulated on a flat 4-dimensional s
 
 The Minkowski metric is#footnote[The metric in relativity is not positive definite, so nonzero vectors can have zero length.]
 
-$ sans(g) (sans(u)\,sans(v))= - c^2 sans(d t) (sans(u))thin sans(d t) (sans(v))+ sans(d x) (sans(u))thin sans(d x) (sans(v))+ sans(d y) (sans(u))thin sans(d y) (sans(v))+ sans(d z) (sans(u))thin sans(d z) (sans(v)). $ <10.11>
+$ sans(g) (sans(u)\,sans(v))= \
+ - c^2 sans(d t) (sans(u))thin sans(d t) (sans(v))\
+ + sans(d x) (sans(u))thin sans(d x) (sans(v))\
+ + sans(d y) (sans(u))thin sans(d y) (sans(v))\
+ + sans(d z) (sans(u))thin sans(d z) (sans(v)). $ <10.11>
 
 As a program:
 
@@ -393,7 +422,9 @@ To see how these work out, we evaluate each component of $sans(d F)$ and $sans(d
 ;;    (((partial 3) Bz) (up ct0 x0 y0 z0)))
 ```
 
-$ frac(partial B_x, partial x) + frac(partial B_y, partial y) + frac(partial B_z, partial z) = 0 $ <10.19>
+$ frac(partial B_x, partial x) \
+ + frac(partial B_y, partial y) \
+ + frac(partial B_z, partial z) = 0 $ <10.19>
 
 The three mixed space and time components of equation @10.13 are equation @10.16:
 
@@ -404,7 +435,9 @@ The three mixed space and time components of equation @10.13 are equation @10.16
 ;;    (* -1 (((partial 3) Ey) (up ct0 x0 y0 z0))))
 ```
 
-$ frac(partial E_z, partial y) - frac(partial E_y, partial z) = 1 / c frac(partial B_x, partial t)\, $ <10.20>
+$ frac(partial E_z, partial y) \
+ - frac(partial E_y, partial z) \
+ &= 1 / c frac(partial B_x, partial t)\, $ <10.20>
 
 ```scheme
 (((d F) d/dct d/dz d/dx) an-event)
@@ -413,7 +446,9 @@ $ frac(partial E_z, partial y) - frac(partial E_y, partial z) = 1 / c frac(parti
 ;;    (* -1 (((partial 1) Ez) (up ct0 x0 y0 z0))))
 ```
 
-$ frac(partial E_x, partial z) - frac(partial E_z, partial x) = 1 / c frac(partial B_y, partial t)\, $ <10.21>
+$ frac(partial E_x, partial z) \
+ - frac(partial E_z, partial x) \
+ &= 1 / c frac(partial B_y, partial t)\, $ <10.21>
 
 ```scheme
 (((d F) d/dct d/dx d/dy) an-event)
@@ -422,7 +457,9 @@ $ frac(partial E_x, partial z) - frac(partial E_z, partial x) = 1 / c frac(parti
 ;;    (* -1 (((partial 2) Ex) (up ct0 x0 y0 z0))))
 ```
 
-$ frac(partial E_y, partial x) - frac(partial E_x, partial y) = 1 / c frac(partial B_z, partial t) . $ <10.22>
+$ frac(partial E_y, partial x) \
+ - frac(partial E_x, partial y) \
+ &= 1 / c frac(partial B_z, partial t) . $ <10.22>
 
 The purely spatial component of equation @10.14 is equation @10.17:
 
@@ -436,7 +473,9 @@ The purely spatial component of equation @10.14 is equation @10.17:
 ;;    (((partial 3) Ez) (up ct0 x0 y0 z0)))
 ```
 
-$ frac(partial E_x, partial x) + frac(partial E_y, partial y) + frac(partial E_z, partial z) = 4 pi rho . $ <10.23>
+$ frac(partial E_x, partial x) \
+ + frac(partial E_y, partial y) \
+ + frac(partial E_z, partial z) = 4 pi rho . $ <10.23>
 
 And finally, the three mixed time and space components of equation @10.14 are equation @10.18:
 
@@ -450,7 +489,9 @@ And finally, the three mixed time and space components of equation @10.14 are eq
 ;;    (/ (* 4 :pi (Ix (up ct0 x0 y0 z0))) :c))
 ```
 
-$ frac(partial B_y, partial z) - frac(partial B_z, partial y) = - 1 / c frac(partial E_x, partial t) - frac(4 pi, c) I_x\, $ <10.24>
+$ frac(partial B_y, partial z) \
+ - frac(partial B_z, partial y) \
+ &= - 1 / c frac(partial E_x, partial t) - frac(4 pi, c) I_x\, $ <10.24>
 
 ```scheme
 (((- (d (SR-star F)) (* 4 :pi (SR-star 4-current)))
@@ -462,7 +503,9 @@ $ frac(partial B_y, partial z) - frac(partial B_z, partial y) = - 1 / c frac(par
 ;;    (/ (* 4 :pi (Iy (up ct0 x0 y0 z0))) :c))
 ```
 
-$ frac(partial B_z, partial x) - frac(partial B_x, partial z) = - 1 / c frac(partial E_y, partial t) - frac(4 pi, c) I_y\, $ <10.25>
+$ frac(partial B_z, partial x) \
+ - frac(partial B_x, partial z) \
+ &= - 1 / c frac(partial E_y, partial t) - frac(4 pi, c) I_y\, $ <10.25>
 
 ```scheme
 (((- (d (SR-star F)) (* 4 :pi (SR-star 4-current)))
@@ -474,7 +517,9 @@ $ frac(partial B_z, partial x) - frac(partial B_x, partial z) = - 1 / c frac(par
 ;;    (/ (* 4 :pi (Iz (up ct0 x0 y0 z0))) :c))
 ```
 
-$ frac(partial B_x, partial y) - frac(partial B_y, partial x) = - 1 / c frac(partial E_z, partial t) - frac(4 pi, c) I_z . $ <10.26>
+$ frac(partial B_x, partial y) \
+ - frac(partial B_y, partial x) \
+ &= - 1 / c frac(partial E_z, partial t) - frac(4 pi, c) I_z . $ <10.26>
 
 == Lorentz Force <sec-10.6>
 The classical force on a charged particle moving in a electromagnetic field is
