@@ -2,7 +2,7 @@
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
 #import "../lib.typ": fdg-chapter, curl, grad, Lap, div, length
 
-#fdg-chapter("Over a Map", numbered: true)[
+#fdg-chapter("Over a Map", numbered: true, eq-prefix: "6")[
 To deal with motion on manifolds we need to think about paths on manifolds and vectors along these paths. Tangent vectors along paths are not vector fields on the manifold because they are defined only on the path. And the path may even cross itself, which would give more than one vector at a point. Here we introduce the concept of a #emph[vector field over a map].#footnote[See Bishop and Goldberg, #emph[Tensor Analysis on Manifolds] \[3\].] A vector field over a map assigns a vector to each image point of the map. In general the map may be a function from one manifold to another. If the domain of the map is the manifold of the real line, the range of the map is a 1-dimensional path on the target manifold. One possible way to define a vector field over a map is to assign a tangent vector to each image point of a path, allowing us to work with tangent vectors to paths. A #emph[one-form field over the map] allows us to extract the components of a vector field over the map.
 
 == Vector Fields Over a Map
@@ -15,11 +15,11 @@ One way to make a vector field over a map is to restrict a vector field on $sans
 
 Let $sans(v)$ be a vector field on $sans(M)$, and $sans(f)$ a function on $sans(M)$. Then
 
-$ sans(v)_mu(sans(f))= sans(v) (sans(f))compose mu\, $
+$ sans(v)_mu(sans(f))= sans(v) (sans(f))compose mu\, $ <6.1>
 
 is a vector over the map μ. Note that $sans(v)_mu(sans(f))$ is a function on $sans(N)$, not $sans(M)$:
 
-$ sans(v)_mu(sans(f)) (sans(n))= sans(v) (sans(f)) (mu (sans(n))). $
+$ sans(v)_mu(sans(f)) (sans(n))= sans(v) (sans(f)) (mu (sans(n))). $ <6.2>
 
 We can implement this definition as:
 
@@ -33,7 +33,7 @@ We can implement this definition as:
 == Differential of a Map
 Another way to construct a vector field over a map μ is to transport a vector field from the source manifold $sans(N)$ to the target manifold $sans(M)$ with the #emph[differential] of the map
 
-$ d mu (sans(v)) (sans(f)) (sans(n))= sans(v) (sans(f) compose mu) (sans(n))\, $
+$ d mu (sans(v)) (sans(f)) (sans(n))= sans(v) (sans(f) compose mu) (sans(n))\, $ <6.3>
 
 which takes its argument in the source manifold $sans(N)$. The differential of a map μ applied to a vector field $sans(v)$ on $sans(N)$ is a vector field over the map. A procedure to compute the differential is:
 
@@ -44,7 +44,7 @@ which takes its argument in the source manifold $sans(N)$. The differential of a
 
 The nomenclature of this subject is confused. The \"differential of a map between manifolds,\" $d mu$, takes one more argument than the \"differential of a real-valued function on a manifold,\" $sans(d) sans(f)$, but when the target manifold of μ is the reals and $I$ is the identity function on the reals,
 
-$ d mu (sans(v)) (I) (sans(n))=(sans(v) (I compose mu)) (sans(n))=(sans(v) (mu)) (sans(n))= sans(d) mu (sans(v)) (sans(n)). $
+$ d mu (sans(v)) (I) (sans(n))=(sans(v) (I compose mu)) (sans(n))=(sans(v) (mu)) (sans(n))= sans(d) mu (sans(v)) (sans(n)). $ <6.4>
 
 We avoid this problem in our notation by distinguishing $d$ and $sans(d)$. In our programs we encode $d$ as differential and $sans(d)$ as d.
 
@@ -54,7 +54,7 @@ Let μ be the map from the time line to the manifold $sans(M)$, and $partial\/pa
 == One-Form Fields Over a Map
 Given a one-form ω on the manifold $sans(M)$, the one-form over the map $mu : sans(N) arrow.r sans(M)$ is constructed as follows:
 
-$ omega^mu (sans(v)_mu) (sans(n))= omega (sans(u)) (mu (sans(n)))upright(", where ") sans(u) (sans(f)) (sans(m))= sans(v)_mu(sans(f)) (sans(n)). $
+$ omega^mu (sans(v)_mu) (sans(n))= omega (sans(u)) (mu (sans(n)))upright(", where ") sans(u) (sans(f)) (sans(m))= sans(v)_mu(sans(f)) (sans(n)). $ <6.5>
 
 The object $sans(u)$ is not really a vector field on $sans(M)$ even though we have given it that shape so that the dual vector can apply to it; $sans(u) (sans(f))$ is evaluated only at images $sans(m) = mu (sans(n))$ of points $sans(n)$ in $sans(N)$. If we were defining $sans(u)$ as a vector field we would need the inverse of μ to find the point $sans(n) = mu^(-1) (sans(m))$, but this is not required to define the object $sans(u)$ in a context where there is already an $sans(m)$ associated with the $sans(n)$ of interest. To extend this idea to $k$-forms, we carry each vector argument over the map.
 
@@ -82,15 +82,15 @@ The internal procedure make-fake-vector-field counterfeits a vector field $sans(
 == Basis Fields Over a Map
 Let $sans(e)$ be a tuple of basis vector fields, and $tilde(sans(e))$ be the tuple of basis one-forms that is dual to $sans(e)$:
 
-$ tilde(sans(e))^i (sans(e)_j) (sans(m))= delta_j^i . $
+$ tilde(sans(e))^i (sans(e)_j) (sans(m))= delta_j^i . $ <6.6>
 
 The #emph[basis vectors] over the map, $sans(e)^mu$, are particular cases of vectors over a map:
 
-$ sans(e)^mu (sans(f))= sans(e) (sans(f))compose mu . $
+$ sans(e)^mu (sans(f))= sans(e) (sans(f))compose mu . $ <6.7>
 
 And the elements of the #emph[dual basis over the map], $tilde(sans(e))_mu$, are particular cases of one-forms over the map. The basis and dual basis over the map satisfy
 
-$ tilde(sans(e))_mu^i (sans(e)_j^mu) (sans(n))= delta_j^i . $
+$ tilde(sans(e))_mu^i (sans(e)_j^mu) (sans(n))= delta_j^i . $ <6.8>
 
 == Walking on a Sphere
 For example, let $mu$ map the time line to the unit sphere.#footnote[We execute #raw(lang:"verbatim", "(define-coordinates t R1-rect)") to make #raw(lang:"verbatim", "t") the coordinate function of the real line.] We use colatitude $theta$ and longitude $phi.alt$ as coordinates on the sphere:
@@ -149,7 +149,7 @@ We can check that the dual basis over the map does the correct thing:
 == Components of the Velocity
 Let χ be a tuple of coordinates on $sans(M)$, with associated basis vectors $sans(X)_i$, and dual basis elements $sans(d) sans(x)^i$. The vector basis and dual basis over the map μ are $sans(X)_i^mu$ and $sans(d) sans(x)_mu^i$. The components of the velocity (rates of change of coordinates along the path μ) are obtained by applying the dual basis over the map to the velocity
 
-$ v^i (t)= sans(d) sans(x)_mu^i (d mu (partial\/partial sans(t))) (sans(t))\, $
+$ v^i (t)= sans(d) sans(x)_mu^i (d mu (partial\/partial sans(t))) (sans(t))\, $ <6.9>
 
 where $t$ is the coordinate for the point $sans(t)$.
 
@@ -170,13 +170,13 @@ Maps from one manifold to another can also be used to relate the vector fields a
 == Pullback and Pushforward of a Function
 The #emph[pullback] of a function $sans(f)$ on $sans(M)$ over the map μ is defined as
 
-$ mu^(*) sans(f) = sans(f) compose mu . $
+$ mu^(*) sans(f) = sans(f) compose mu . $ <6.10>
 
 This allows us to take a function defined on $sans(M)$ and use it to define a new function on $sans(N)$.
 
 For example, the integral curve of $sans(v)$ evolved for time $t$ as a function of the initial manifold point $sans(m)$ generates a map $phi.alt_t^(sans(v))$ of the manifold onto itself. This is a simple currying#footnote[A function of two arguments may be seen as a function of one argument whose value is a function of the other argument. This can be done in two different ways, depending on which argument is supplied first. The general process of specifying a subset of the arguments to produce a new function of the others is called #emph[currying] the function, in honor of the logician Haskell Curry (1900-1982) who, with Moses Schönfinkel (1889-1942), developed combinatory logic.] of the integral curve of $sans(v)$ from $sans(m)$ as a a function of time: $phi.alt_t^(sans(v)) (sans(m))= gamma_(sans(m))^(sans(v)) (t)$. The evolution of the function $sans(f)$ along an integral curve, equation (3.33), can be written in terms of the pullback over $phi.alt_t^(sans(v))$:
 
-$ (sans(E)_(t\,sans(v)) sans(f)) (sans(m))= sans(f) (phi.alt_t^(sans(v)) (sans(m)))=((phi.alt_t^(sans(v)))^(*)sans(f)) (sans(m)). $
+$ (sans(E)_(t\,sans(v)) sans(f)) (sans(m))= sans(f) (phi.alt_t^(sans(v)) (sans(m)))=((phi.alt_t^(sans(v)))^(*)sans(f)) (sans(m)). $ <6.11>
 
 This is implemented as:
 
@@ -187,24 +187,24 @@ This is implemented as:
 
 A vector field over the map that was constructed by restriction (equation 6.1) can be seen as the pullback of the function constructed by application of the vector field to a function:
 
-$ sans(v)_mu(sans(f))= sans(v) (sans(f))compose mu = mu^(*) (sans(v) (sans(f))). $
+$ sans(v)_mu(sans(f))= sans(v) (sans(f))compose mu = mu^(*) (sans(v) (sans(f))). $ <6.12>
 
 A vector field over the map that was constructed by a differential (equation 6.3) can be seen as the vector field applied to the pullback of the function:
 
-$ d mu (sans(v)) (sans(f)) (sans(n))= sans(v) (sans(f) compose mu) (sans(n))= sans(v) (mu^(*) sans(f)) (sans(n)). $
+$ d mu (sans(v)) (sans(f)) (sans(n))= sans(v) (sans(f) compose mu) (sans(n))= sans(v) (mu^(*) sans(f)) (sans(n)). $ <6.13>
 
 If we have an inverse for the map μ we can also define a #emph[push-forward] of the function $sans(g)$, defined on the source manifold of the map:#footnote[Notation note: superscript asterisk indicates pullback, subscript asterisk indicates pushforward. Pullbacks and pushforwards are tightly binding operators, so, for example $mu^(*) f (sans(n))=(mu^(*) f) (sans(n))$.]
 
-$ mu_(*) sans(g) = sans(g) compose mu^(-1) . $
+$ mu_(*) sans(g) = sans(g) compose mu^(-1) . $ <6.14>
 
 == Pushforward of a Vector Field
 We can also define the #emph[pushforward] of a vector field over the map μ. The pushforward takes a vector field $sans(v)$ defined on $sans(N)$. The result takes directional derivatives of functions on $sans(M)$ at a place determined by a point in $sans(M)$:
 
-$ mu_(*) sans(v) (sans(f)) (sans(m))= sans(v) (mu^(*) sans(f)) (mu^(-1) (sans(m)))= sans(v) (sans(f) compose mu) (mu^(-1) (sans(m)))\, $
+$ mu_(*) sans(v) (sans(f)) (sans(m))= sans(v) (mu^(*) sans(f)) (mu^(-1) (sans(m)))= sans(v) (sans(f) compose mu) (mu^(-1) (sans(m)))\, $ <6.15>
 
 or
 
-$ mu_(*) sans(v) (sans(f))= mu_(*) (sans(v) (mu^(*) sans(f))). $
+$ mu_(*) sans(v) (sans(f))= mu_(*) (sans(v) (mu^(*) sans(f))). $ <6.16>
 
 Here we expressed the pushforward of the vector field in terms of pullbacks and pushforwards of functions. Note that the pushforward requires the inverse of the map.
 
@@ -213,7 +213,7 @@ If the map is from time to some configuration manifold and represents the time e
 == Pushforward Along Integral Curves
 We can push a vector field forward over the map generated by an integral curve of a vector field $sans(w)$, because the inverse is always available.#footnote[The map $phi.alt_t^(sans(w))$ is always invertible: $(phi.alt_t^(sans(w)))^(-1)= phi.alt_(- t)^(sans(w))$ because of the uniqueness of the solutions of the initial-value problem for ordinary differential equations.]
 
-$ ((phi.alt_t^(sans(w)))_(*)sans(v)) (sans(f)) (sans(m))= sans(v) ((phi.alt_t^(sans(w)))^(*)sans(f)) (phi.alt_(- t)^(sans(w)) (sans(m)))= sans(v) (sans(f) compose phi.alt_t^(sans(w))) (phi.alt_(- t)^(sans(w)) (sans(m))). $
+$ ((phi.alt_t^(sans(w)))_(*)sans(v)) (sans(f)) (sans(m))= sans(v) ((phi.alt_t^(sans(w)))^(*)sans(f)) (phi.alt_(- t)^(sans(w)) (sans(m)))= sans(v) (sans(f) compose phi.alt_t^(sans(w))) (phi.alt_(- t)^(sans(w)) (sans(m))). $ <6.17>
 
 This is implemented as:
 
@@ -227,11 +227,11 @@ This is implemented as:
 == Pullback of a Vector Field
 Given a vector field $sans(v)$ on a manifold $sans(M)$ we can pull the vector field back through the map $mu : sans(N) arrow.r sans(M)$ as follows:
 
-$ mu^(*) sans(v) (sans(f)) (sans(n))=(sans(v) (sans(f) compose mu^(-1))) (mu (sans(n))) $
+$ mu^(*) sans(v) (sans(f)) (sans(n))=(sans(v) (sans(f) compose mu^(-1))) (mu (sans(n))) $ <6.18>
 
 or
 
-$ mu^(*) sans(v) (sans(f))= mu^(*) (sans(v) (mu_(*) sans(f))). $
+$ mu^(*) sans(v) (sans(f))= mu^(*) (sans(v) (mu_(*) sans(f))). $ <6.19>
 
 This may be useful when the map is invertible, as in the flow generated by a vector field.
 
@@ -247,27 +247,27 @@ We can also pull back a one-form field ω defined on $sans(M)$, but an honest de
 
 The pullback of a one-form field is often described by the relation
 
-$ mu^(*) omega (sans(v))= omega (mu_(*) sans(v))\, $
+$ mu^(*) omega (sans(v))= omega (mu_(*) sans(v))\, $ <6.20>
 
 but this is wrong, because the two sides are not functions of points in the same manifold. The one-form field ω applies to a vector field on the manifold $sans(M)$, which takes a directional derivative of a function defined on $sans(M)$ and is evaluated at a point on $sans(M)$, but the left-hand side is evaluated at a point on the manifold $sans(N)$.
 
 A more precise description would be
 
-$ mu^(*) omega (sans(v)) (sans(n))= omega (mu_(*) sans(v)) (sans(mu) (sans(n))) $
+$ mu^(*) omega (sans(v)) (sans(n))= omega (mu_(*) sans(v)) (sans(mu) (sans(n))) $ <6.21>
 
 or
 
-$ mu^(*) omega (sans(v))= mu^(*) (omega (mu_(*) sans(v))). $
+$ mu^(*) omega (sans(v))= mu^(*) (omega (mu_(*) sans(v))). $ <6.22>
 
 Although this is accurate, it may not be effective, because computing the pushforward requires the inverse of the map μ. But the inverse is available when the map is the flow generated by a vector field.
 
 In fact it is possible to compute the pullback of a one-form field without having the inverse of the map. Instead we can use form-field-\>form-field-over-map to avoid needing the inverse:
 
-$ mu^(*) omega (sans(v)) (sans(n))= omega^mu (d mu (sans(v))) (n). $
+$ mu^(*) omega (sans(v)) (sans(n))= omega^mu (d mu (sans(v))) (n). $ <6.23>
 
 The pullback of a $k$-form generalizes equation 6.21:
 
-$ mu^(*) omega (sans(u)\,sans(v)\,dots.c) (sans(n))= omega (mu_(*)\,sans(u)\,mu_(*)\,sans(v)\,dots.c) (mu (sans(n))). $
+$ mu^(*) omega (sans(u)\,sans(v)\,dots.c) (sans(n))= omega (mu_(*)\,sans(u)\,mu_(*)\,sans(v)\,dots.c) (mu (sans(n))). $ <6.24>
 
 This is implemented as follows:#footnote[There is a generic pullback procedure that operates on any kind of manifold object. However, to pull a vector field back requires providing the inverse map.]
 
@@ -287,13 +287,13 @@ This is implemented as follows:#footnote[There is a generic pullback procedure t
 == Properties of Pullback
 The pullback through a map has many nice properties: it distributes through addition and through wedge product:
 
-$ mu^(*) (theta + phi.alt)= mu^(*) theta + mu^(*) phi.alt\, $
+$ mu^(*) (theta + phi.alt)= mu^(*) theta + mu^(*) phi.alt\, $ <6.25>
 
-$ mu^(*) (theta and phi.alt)= mu^(*) theta and mu^(*) phi.alt . $
+$ mu^(*) (theta and phi.alt)= mu^(*) theta and mu^(*) phi.alt . $ <6.26>
 
 The pullback also commutes with the exterior derivative:
 
-$ sans(d) (mu^(*) theta)= mu^(*) (sans(d) theta)\, $
+$ sans(d) (mu^(*) theta)= mu^(*) (sans(d) theta)\, $ <6.27>
 
 for $theta$ a function or $k$-form field.
 
@@ -332,7 +332,7 @@ More generally, we can consider what happens to a form field. For a one-form fie
 == Pushforward of a Form Field
 By symmetry, it is possible to define the pushforward of a one-form field as
 
-$ mu_(*) omega (sans(v))= mu_(*) (omega (mu^(*) v))\, $
+$ mu_(*) omega (sans(v))= mu_(*) (omega (mu^(*) v))\, $ <6.28>
 
 but this is rarely useful.
 

@@ -2,13 +2,13 @@
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
 #import "../lib.typ": fdg-chapter, curl, grad, Lap, div, length
 
-#fdg-chapter("Prologue", numbered: false)[
+#fdg-chapter("Prologue", numbered: false, eq-prefix: "0")[
 == Programming and Understanding
 One way to become aware of the precision required to unambiguously communicate a mathematical idea is to program it for a computer. Rather than using canned programs purely as an aid to visualization or numerical computation, we use computer programming in a functional style to encourage clear thinking. Programming forces us to be precise and unambiguous, without forcing us to be excessively rigorous. The computer does not tolerate vague descriptions or incomplete constructions. Thus the act of programming makes us keenly aware of our errors of reasoning or unsupported conclusions.#footnote[The idea of using computer programming to develop skills of clear thinking was originally advocated by Seymour Papert. An extensive discussion of this idea, applied to the education of young children, can be found in Papert]
 
 Although this book is about differential geometry, we can show how thinking about programming can help in understanding in a more elementary context. The traditional use of Leibniz's notation and Newton's notation is convenient in simple situations, but in more complicated situations it can be a serious handicap to clear reasoning.
 
-A mechanical system is described by a Lagrangian function of the system state (time, coordinates, and velocities). A motion of the system is described by a path that gives the coordinates for each moment of time. A path is allowed if and only if it satisfies the Lagrange equations. Traditionally, the Lagrange equations are written $ frac(d, d t) frac(partial L, partial dot (q)) - frac(partial L, partial q) = 0 . $ What could this expression possibly mean?
+A mechanical system is described by a Lagrangian function of the system state (time, coordinates, and velocities). A motion of the system is described by a path that gives the coordinates for each moment of time. A path is allowed if and only if it satisfies the Lagrange equations. Traditionally, the Lagrange equations are written $ frac(d, d t) frac(partial L, partial dot(q)) - frac(partial L, partial q) = 0 . $ What could this expression possibly mean?
 
 Let's try to write a program that implements Lagrange equations. What are Lagrange equations for? Our program must take a proposed path and give a result that allows us to decide if the path is allowed. This is already a problem; the equation shown above does not have a slot for a path to be tested.
 
@@ -16,7 +16,7 @@ So we have to figure out how to insert the path to be tested. The partial deriva
 
 So probably we meant something like the following (assume that $omega$ is a path through the coordinate configuration space, and so $w (t)$ specifies the configuration coordinates at time $t$):
 
-$ frac(d, d t) (frac(partial L (t\,q\,dot (q)), partial dot (q))|_(q=w (t) dot (q) = frac(d w (t), d t))) - frac(partial L (t\,q\,dot (q)), partial q)|_(q=w (t)dot (q) = frac(d w (t), d t)) = 0 . $
+$ frac(d, d t) (frac(partial L (t\,q\,dot(q)), partial dot(q))|_(q=w (t) dot(q) = frac(d w (t), d t))) - frac(partial L (t\,q\,dot(q)), partial q)|_(q=w (t)dot(q) = frac(d w (t), d t)) = 0 . $
 
 In this equation we see that the partial derivatives of the Lagrangian function are taken, then the path and its derivative are substituted for the position and velocity arguments of the Lagrangian, resulting in an expression in terms of the time.
 
@@ -25,7 +25,7 @@ This equation is complete. It has meaning independent of the context and there i
 By thinking computationally we have reformulated the Lagrange equations into a form that is explicit enough to specify a computation. We could convert it into a program for any symbolic manipulation program because it tells us #emph[how] to manipulate expressions to compute the residuals of Lagrange's equations for a purported solution path.#footnote[The #emph[residuals] of equations are the expressions whose value must be zero if the equations are satisfied. For example, if we know that for an unknown $x$, $x^3 - x = 0$ then the residual is $x^3 - x$. We can try $x = - 1$ and find a residual of 0, indicating that our purported solution satisfies the equation. A residual may provide information. For example, if we have the differential equation $d f (x)\/d x - a f (x)= 0$ and we plug in a test solution $f (x)= A e^(b x)$ we obtain the residual $(b - a)A e^(b x)$, which can be zero only if $b = a$.]
 
 == Functional Abstraction
-But this corrected use of Leibniz notation is ugly. We had to introduce extraneous symbols ($q$ and $dot (q)$) in order to indicate the argument position specifying the partial derivative. Nothing would change here if we replaced $q$ and $dot (q)$ by $a$ and $b$.#footnote[That the symbols $q$ and $dot (q)$ can be replaced by other arbitrarily chosen nonconflicting symbols without changing the meaning of the expression tells us that the partial derivative symbol is a logical quantifier, like forall and exists ($forall$ and $exists$).] We can simplify the notation by admitting that the partial derivatives of the Lagrangian are themselves new functions, and by specifying the particular partial derivative by the position of the argument that is varied
+But this corrected use of Leibniz notation is ugly. We had to introduce extraneous symbols ($q$ and $dot(q)$) in order to indicate the argument position specifying the partial derivative. Nothing would change here if we replaced $q$ and $dot(q)$ by $a$ and $b$.#footnote[That the symbols $q$ and $dot(q)$ can be replaced by other arbitrarily chosen nonconflicting symbols without changing the meaning of the expression tells us that the partial derivative symbol is a logical quantifier, like forall and exists ($forall$ and $exists$).] We can simplify the notation by admitting that the partial derivatives of the Lagrangian are themselves new functions, and by specifying the particular partial derivative by the position of the argument that is varied
 
 $ frac(d, d t) ((partial_2 L) (t \, w (t) \, frac(d, d t) w (t))) - (partial_1 L) (t \, w (t) \, frac(d, d t) w (t)) = 0\, $
 

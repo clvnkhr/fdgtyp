@@ -2,7 +2,7 @@
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
 #import "../lib.typ": fdg-chapter, curl, grad, Lap, div, length
 
-#fdg-chapter("Appendix A: Scheme", numbered: true)[
+#fdg-chapter("Appendix A: Scheme", numbered: true, eq-prefix: "A")[
 #quote(block: true)[
 Programming languages should be designed not by piling feature on top of feature, but by removing the weaknesses and restrictions that make additional features appear necessary. Scheme demonstrates that a very small number of rules for forming expressions, with no restrictions on how they are composed, suffice to form a practical and efficient programming language that is flexible enough to support most of the major programming paradigms in use today.
 

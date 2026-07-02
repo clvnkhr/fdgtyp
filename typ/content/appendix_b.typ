@@ -2,7 +2,7 @@
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
 #import "../lib.typ": fdg-chapter, curl, grad, Lap, div, length
 
-#fdg-chapter("Appendix B: Our Notation", numbered: true)[
+#fdg-chapter("Appendix B: Our Notation", numbered: true, eq-prefix: "B")[
 #quote(block: true)[
 An adequate notation should be understood by at least two people, one of whom may be the author.
 
@@ -20,7 +20,7 @@ The mathematical notation is in one-to-one correspondence with expressions of th
 == Functions
 The expression $f (x)$ denotes the value of the function $f$ at the given argument $x$\; when we wish to denote the function we write just $f$. Functions may take several arguments. For example, we may have the function that gives the Euclidean distance between two points in the plane given by their rectangular coordinates:
 
-$ d (x_1\,y_1\,x_2\,y_2)= sqrt((x_2 - x_1)^2+(y_2 - y_1)^2) . $
+$ d (x_1\,y_1\,x_2\,y_2)= sqrt((x_2 - x_1)^2+(y_2 - y_1)^2) . $ <B.1>
 
 In Scheme we can write this as:
 
@@ -31,7 +31,7 @@ In Scheme we can write this as:
 
 Functions may be composed if the range of one overlaps the domain of the other. The composition of functions is constructed by passing the output of one to the input of the other. We write the composition of two functions using the $compose$ operator:
 
-$ (f compose g): x mapsto (f compose g) (x)= f (g (x)). $
+$ (f compose g): x mapsto (f compose g) (x)= f (g (x)). $ <B.2>
 
 A procedure #raw(lang:"verbatim", "h") that computes the cube of the sine of its argument may be defined by composing the procedures #raw(lang:"verbatim", "cube") and #raw(lang:"verbatim", "sin"):
 
@@ -51,7 +51,7 @@ Which is the same as
 
 Arithmetic is extended to the manipulation of functions: the usual mathematical operations may be applied to functions. Examples are addition and multiplication; we may add or multiply two functions if they take the same kinds of arguments and if their values can be added or multiplied:
 
-$ (f + g) (x)= f (x)+ g (x)\,(f g) (x)= f (x)g (x). $
+$ (f + g) (x)= f (x)+ g (x)\,(f g) (x)= f (x)g (x). $ <B.3>
 
 A procedure #raw(lang:"verbatim", "g") that multiplies the cube of its argument by the sine of its argument is
 
@@ -110,11 +110,11 @@ There is a whole language for describing the type of a literal function in terms
 == Tuples
 There are two kinds of tuples: #emph[up] tuples and #emph[down] tuples. We write tuples as ordered lists of their components; a tuple is delimited by parentheses if it is an up tuple and by square brackets if it is a down tuple. For example, the up tuple $v$ of velocity components $v^0$, $v^1$, and $v^2$ is
 
-$ v =(v^0\,v^1\,v^2). $
+$ v =(v^0\,v^1\,v^2). $ <B.4>
 
 The down tuple $p$ of momentum components $p_0$, $p_1$, and $p_2$ is
 
-$ p =[p_0\,p_1\,p_2]. $
+$ p =[p_0\,p_1\,p_2]. $ <B.5>
 
 A component of an up tuple is usually identified by a superscript. A component of a down tuple is usually identified by a subscript. We use zero-based indexing when referring to tuple elements. This notation follows the usual convention in tensor arithmetic.
 
@@ -137,7 +137,7 @@ Note that #raw(lang:"verbatim", "v^0") and #raw(lang:"verbatim", "p_2") are just
 
 Tuple arithmetic is different from the usual tensor arithmetic in that the components of a tuple may also be tuples and different components need not have the same structure. For example, a tuple structure $s$ of phase-space states is
 
-$ s = (t \, (x \, y) \, [p_x \, p_y]) . $
+$ s = (t \, (x \, y) \, [p_x \, p_y]) . $ <B.6>
 
 It is an up tuple of the time, the coordinates, and the momenta. The time $t$ has no substructure. The coordinates are an up tuple of the coordinate components $x$ and $y$. The momentum is a down tuple of the momentum components $p_x$ and $p_y$. In Scheme this is written:
 
@@ -147,7 +147,7 @@ It is an up tuple of the time, the coordinates, and the momenta. The time $t$ ha
 
 In order to reference components of tuple structures there are selector functions, for example:
 
-$ I (s)= s I_0 (s)= y I_1 (s)=(x\,y)I_2 (s)=[p_x\,p_y]I_(1\,0) (s)= x dots.c I_(2\,1) (s)= p_y . $
+$ I (s)= s I_0 (s)= y I_1 (s)=(x\,y)I_2 (s)=[p_x\,p_y]I_(1\,0) (s)= x dots.c I_(2\,1) (s)= p_y . $ <B.7>
 
 The sequence of integer subscripts on the selector describes the access chain to the desired component.
 
@@ -180,7 +180,7 @@ For convenience we define the square of a tuple to be the sum of the squares of 
 
 The meaning of multiplication of tuples depends on the structure of the tuples. Two tuples are compatible for contraction if they are of opposite types, they are of the same length, and corresponding elements have the following property: either they are both tuples and are compatible for contraction, or at least one is not a tuple. If two tuples are compatible for contraction then generic multiplication is interpreted as contraction: the result is the sum of the products of corresponding components of the tuples. For example, $p$ and $v$ introduced in equations (B.4) and (B.5) above are compatible for contraction; the product is
 
-$ p v = p_0 v^0 + p_1 v^1 + p_2 v^2 . $
+$ p v = p_0 v^0 + p_1 v^1 + p_2 v^2 . $ <B.8>
 
 So the product of tuples that are compatible for contraction is an inner product. Using the tuples #raw(lang:"verbatim", "p") and #raw(lang:"verbatim", "v") defined above gives us
 
@@ -193,27 +193,27 @@ Contraction of tuples is commutative: $p v = v p$. Caution: Multiplication of tu
 
 The rule for multiplying two structures that are not compatible for contraction is simple. If $A$ and $B$ are not compatible for contraction, the product $A B$ is a tuple of type $B$ whose components are the products of $A$ and the components of $B$. The same rule is applied recursively in multiplying the components. So if $B =(B^0\,B^1\,B^2)$, the product of $A$ and $B$ is
 
-$ A B =(A B^0\,A B^1\,A B^2). $
+$ A B =(A B^0\,A B^1\,A B^2). $ <B.9>
 
 If $A$ and $C$ are not compatible for contraction and $C =[C_0\,C_1\,C_2]$, the product is
 
-$ A B =[A C_0\,A C_1\,A C_2]. $
+$ A B =[A C_0\,A C_1\,A C_2]. $ <B.10>
 
 Tuple structures can be made to represent linear transformations. For example, the rotation commonly represented by the matrix
 
-$ mat(delim: "[", cos theta - sin theta sin theta cos theta) $
+$ mat(delim: "[", cos theta - sin theta sin theta cos theta) $ <B.11>
 
 can be represented as a tuple structure:#footnote[To emphasize the relationship of simple tuple structures to matrix notation we often format #raw(lang:"verbatim", "up") tuples as vertical arrangements of components and #raw(lang:"verbatim", "down") tuples as horizontal arrangements of components. However, we could just as well have written this tuple as $[(cos theta \, sin theta) \, (- sin theta \, cos theta)]$.]
 
-$ [vec(cos theta sin theta) vec(- sin theta cos theta)] . $
+$ [vec(cos theta sin theta) vec(- sin theta cos theta)] . $ <B.12>
 
 Such a tuple is compatible for contraction with an up tuple that represents a vector. So, for example:
 
-$ [vec(cos theta sin theta) vec(- sin theta cos theta)] vec(x y) = vec(x cos theta - y sin theta x sin theta + y cos theta) . $
+$ [vec(cos theta sin theta) vec(- sin theta cos theta)] vec(x y) = vec(x cos theta - y sin theta x sin theta + y cos theta) . $ <B.13>
 
 The product of two tuples that represent linear transformations -- which are not compatible for contraction -- represents the composition of the linear transformations. For example, the product of the tuples representing two rotations is
 
-$ [vec(cos theta sin theta) vec(- sin theta cos theta)] [vec(cos phi sin phi) vec(- sin phi cos phi)] = [vec(cos(theta + phi)sin(theta + phi)) vec(- sin(theta + phi)cos(theta + phi))] . $
+$ [vec(cos theta sin theta) vec(- sin theta cos theta)] [vec(cos phi sin phi) vec(- sin phi cos phi)] = [vec(cos(theta + phi)sin(theta + phi)) vec(- sin(theta + phi)cos(theta + phi))] . $ <B.14>
 
 Multiplication of tuples that represent linear transformations is associative but generally not commutative, just as the composition of the transformations is associative but not generally commutative.
 
@@ -231,25 +231,25 @@ The Scheme procedure for producing the derivative of a function is named #raw(la
 
 The derivative of a function $f$ is the function $D f$ whose value for a particular argument is something that can be multiplied by an increment $Delta x$ in the argument to get a linear approximation to the increment in the value of $f$:
 
-$ f (x + Delta x)approx f (x)+ D f (x)Delta x . $
+$ f (x + Delta x)approx f (x)+ D f (x)Delta x . $ <B.15>
 
 For example, let $f$ be the function that cubes its argument ($f (x)= x^3$); then $D f$ is the function that yields three times the square of its argument ($D f (y)= 3 y^2$). So $f (5)= 125$ and $D f (5)= 75$. The value of $f$ with argument $x + Delta x$ is
 
-$ f (x + Delta x)=(x + Delta x)^3= x^3 + 3 x^2 Delta x + 3 x Delta x^2 + Delta x^3 $
+$ f (x + Delta x)=(x + Delta x)^3= x^3 + 3 x^2 Delta x + 3 x Delta x^2 + Delta x^3 $ <B.16>
 
 and
 
-$ D f (x)Delta x = 3 x^2 Delta x . $
+$ D f (x)Delta x = 3 x^2 Delta x . $ <B.17>
 
 So $D f (x)$ multiplied by $Delta x$ gives us the term in $f (x + Delta x)$ that is linear in $Delta x$, providing a good approximation to $f (x + Delta x)- f (x)$ when $Delta x$ is small.
 
 Derivatives of compositions obey the chain rule:
 
-$ D (f compose g)= ((D f) compose g) dot.op D g . $
+$ D (f compose g)= ((D f) compose g) dot.op D g . $ <B.18>
 
 So at $x$,
 
-$ (D (f compose g)) (x)= D f (g (x))dot.op D g (x). $
+$ (D (f compose g)) (x)= D f (g (x))dot.op D g (x). $ <B.19>
 
 #raw(lang:"verbatim", "D") is an example of an operator. An operator is like a function except that multiplication of operators is interpreted as composition, whereas multiplication of functions is multiplication of the values (see equation B.3). If $D$ were an ordinary function, then the rule for multiplication would imply that $D^2 f$ would just be the product of $D f$ with itself, which is not what is intended. A product of a number and an operator scales the operator. So, for example
 
@@ -272,7 +272,7 @@ A function of multiple arguments can be thought of as a function of an up tuple 
 
 Suppose we have a real-valued function $g$ of two real-valued arguments, and we want to approximate the increment in the value of $g$ from its value at $x\,y$. If the arguments are incremented by the tuple $(Delta x\,Delta y)$ we compute:
 
-$ D g (x\,y)dot.op (Delta x\,Delta y)= [partial_0 g (x \, y) + partial_1 g (x \, y)] dot.op (Delta x\,Delta y)= partial_0 g (x\,y)Delta x + partial_1 g (x\,y)Delta y . $
+$ D g (x\,y)dot.op (Delta x\,Delta y)= [partial_0 g (x \, y) + partial_1 g (x \, y)] dot.op (Delta x\,Delta y)= partial_0 g (x\,y)Delta x + partial_1 g (x\,y)Delta y . $ <B.20>
 
 Using the two-argument literal function #raw(lang:"verbatim", "g") defined on page 198, we have:
 
@@ -283,29 +283,29 @@ Using the two-argument literal function #raw(lang:"verbatim", "g") defined on pa
 
 In general, partial derivatives are just the components of the derivative of a function that takes multiple arguments (or structured arguments or both; see below). So a partial derivative of a function is a composition of a component selector and the derivative of that function.#footnote[Partial derivative operators such as #raw(lang:"verbatim", "(partial 2)") are operators, so #raw(lang:"verbatim", "(expt (partial 1) 2)") is a second partial derivative.] Indeed:
 
-$ partial_0 g = I_0 compose D g\, $
+$ partial_0 g = I_0 compose D g\, $ <B.21>
 
-$ partial_1 g = I_1 compose D g . $
+$ partial_1 g = I_1 compose D g . $ <B.22>
 
 Concretely, if
 
-$ g (x\,y)= x^3 y^5 $
+$ g (x\,y)= x^3 y^5 $ <B.23>
 
 then
 
-$ D g (x\,y)=[3 x^2 y^5\,5 x^3 y^4] $
+$ D g (x\,y)=[3 x^2 y^5\,5 x^3 y^4] $ <B.24>
 
 and the first-order approximation of the increment for changing the arguments by $Delta x$ and $Delta y$ is
 
-$ g (x + Delta x\,y + Delta y)- g (x\,y)approx[3 x^2 y^5\,5 x^3 y^4]dot.op (Delta x\,Delta y)= 3 x^2 y^5 Delta x + 5 x^3 y^4 Delta y . $
+$ g (x + Delta x\,y + Delta y)- g (x\,y)approx[3 x^2 y^5\,5 x^3 y^4]dot.op (Delta x\,Delta y)= 3 x^2 y^5 Delta x + 5 x^3 y^4 Delta y . $ <B.25>
 
 Partial derivatives of compositions also obey a chain rule:
 
-$ partial_i (f compose g)=((D f)compose g)dot.op partial_i g . $
+$ partial_i (f compose g)=((D f)compose g)dot.op partial_i g . $ <B.26>
 
 So if $x$ is a tuple of arguments, then
 
-$ (partial_i (f compose g)) (x)= D f (g (x))dot.op partial_i g (x). $
+$ (partial_i (f compose g)) (x)= D f (g (x))dot.op partial_i g (x). $ <B.27>
 
 Mathematical notation usually does not distinguish functions of multiple arguments and functions of the tuple of arguments. Let $h((x\,y))= g (x\,y)$. The function $h$, which takes a tuple of arguments $x$ and $y$, is not distinguished from the function $g$ that takes arguments $x$ and $y$. We use both ways of defining functions of multiple arguments. The derivatives of both kinds of functions are compatible for contraction with a tuple of increments to the arguments. Scheme comes in handy here:
 
@@ -331,7 +331,7 @@ Mathematical notation usually does not distinguish functions of multiple argumen
 
 A phase-space state function is a function of time, coordinates, and momenta. Let $H$ be such a function. The value of $H$ is $H (t \, (x \, y) \, [p_x \, p_y])$ for time $t$, coordinates $(x\,y)$, and momenta $[p_x\,p_y]$. Let $s$ be the phase-space state tuple as in (B.6):
 
-$ s = (t \, (x \, y) \, [p_x \, p_y]) . $
+$ s = (t \, (x \, y) \, [p_x \, p_y]) . $ <B.28>
 
 The value of $H$ for argument tuple $s$ is $H (s)$. We use both ways of writing the value of $H$.
 
@@ -339,15 +339,15 @@ We often show a function of multiple arguments that include tuples by indicating
 
 The derivative of $H$ is a function that produces an object that can be contracted with an increment in the argument structure to produce an increment in the function\'s value. The derivative is a down tuple of three partial derivatives. The first partial derivative is the partial derivative with respect to the numerical argument. The second partial derivative is a down tuple of partial derivatives with respect to each component of the up-tuple argument. The third partial derivative is an up tuple of partial derivatives with respect to each component of the down-tuple argument:
 
-$ D H (s)= [partial_0 H (s) \, partial_1 H (s) \, partial_2 H (s)] = [partial_0 H (s) \, [partial_(1\,0) H (s) \, partial_(1\,1) H (s)] \, [partial_(2\,0) H (s) \, partial_(2\,1) H (s)]]\, $
+$ D H (s)= [partial_0 H (s) \, partial_1 H (s) \, partial_2 H (s)] = [partial_0 H (s) \, [partial_(1\,0) H (s) \, partial_(1\,1) H (s)] \, [partial_(2\,0) H (s) \, partial_(2\,1) H (s)]]\, $ <B.29>
 
 where $partial_(1\,0)$ indicates the partial derivative with respect to the first component (index 0) of the second argument (index 1) of the function, and so on. Indeed, $partial_z F = I_z compose D F$ for any function $F$ and access chain $z$. So, if we let $Delta s$ be an incremental phase-space state tuple,
 
-$ Delta s = (Delta t \, (Delta x \, Delta y) \, [Delta p_x \, Delta p_y]) $
+$ Delta s = (Delta t \, (Delta x \, Delta y) \, [Delta p_x \, Delta p_y]) $ <B.30>
 
 then
 
-$ D H (s)Delta s = partial_0 H (s)Delta t + partial_(1\,0) H (s)Delta x + partial_(1\,1) H (s)Delta y + partial_(2\,0) H (s)Delta p_x + partial_(2\,1) H (s)Delta p_y . $
+$ D H (s)Delta s = partial_0 H (s)Delta t + partial_(1\,0) H (s)Delta x + partial_(1\,1) H (s)Delta y + partial_(2\,0) H (s)Delta p_x + partial_(2\,1) H (s)Delta p_y . $ <B.31>
 
 Caution: Partial derivative operators with respect to different structured arguments generally do not commute.
 
@@ -380,11 +380,11 @@ Some functions produce structured outputs. A function whose output is a tuple is
 
 For example, a function that takes one numerical argument and produces a structure of outputs may be used to describe a curve through space. The following function describes a helical path around the $hat(z)$-axis in 3-dimensional space:
 
-$ h(t)=(cos t\,sin t\,t)=(cos\,sin\,I) (t). $
+$ h(t)=(cos t\,sin t\,t)=(cos\,sin\,I) (t). $ <B.32>
 
 The derivative is just the up tuple of the derivatives of each component of the function:
 
-$ D h(t)=(- sin t\,cos t\,1). $
+$ D h(t)=(- sin t\,cos t\,1). $ <B.33>
 
 In Scheme we can write
 
@@ -408,11 +408,11 @@ Its derivative is just the up tuple of the derivatives of each component of the 
 
 In general, a function that produces structured outputs is just treated as a structure of functions, one for each of the components. The derivative of a function of structured inputs that produces structured outputs is an object that when contracted with an incremental input structure produces a linear approximation to the incremental output. Thus, if we define function $g$ by
 
-$ g (x\,y)= ((x + y)^2 \, (y - x)^3 \, e^(x + y))\, $
+$ g (x\,y)= ((x + y)^2 \, (y - x)^3 \, e^(x + y))\, $ <B.34>
 
 then the derivative of $g$ is
 
-$ D g (x\,y)= [vec(2(x + y)- 3(y - x)^2e^(x + y)) \, vec(2(x + y)3(y - x)^2e^(x + y))] $
+$ D g (x\,y)= [vec(2(x + y)- 3(y - x)^2e^(x + y)) \, vec(2(x + y)3(y - x)^2e^(x + y))] $ <B.35>
 
 In Scheme:
 

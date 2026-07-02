@@ -2,14 +2,14 @@
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
 #import "../lib.typ": fdg-chapter, curl, grad, Lap, div, length
 
-#fdg-chapter("Hodge Star and Electrodynamics", numbered: true)[
+#fdg-chapter("Hodge Star and Electrodynamics", numbered: true, eq-prefix: "10")[
 The vector space of $p$-form fields on an $n$-dimensional manifold has dimension $n !\/((n - p)! p !)$. This is the same dimension as the space of $(n - p)$-form fields. So these vector spaces are isomorphic. If we have a metric there is a natural isomorphism: for each $p$-form field $bold(omega)$ on an $n$-dimensional manifold there is an $(n - p)$-form field $sans(g)^(*) bold(omega)$, called its #emph[Hodge dual].#footnote[The traditional notion is to just use an asterisk; we use $g^convolve$ to emphasize that this duality depends on the choice of metric $g$.] The Hodge dual should not be confused with the duality of vector bases and one-form bases, which is defined without reference to a metric. The Hodge dual is useful for the elegant formalization of electrodynamics.
 
 In Euclidean 3-space, if we think of a one-form as a foliation of the space, then the dual is a two-form, which can be thought of as a pack of square tubes, whose axes are perpendicular to the leaves of the foliation. The original one-form divides these tubes up into volume elements. For example, the dual of the basis oneform dx is the two-form $sans(g)^(*) sans(d) x = sans(d) y and sans(d) z$. We may think of $sans(d) x$ as a set of planes perpendicular to the $hat(x)$-axis. Then $sans(g)^(*) sans(d) x$ is a set of tubes parallel to the $hat(x)$-axis. In higher-dimensional spaces the visualization is more complicated, but the basic idea is the same. The Hodge dual of a two-form in four dimensions is a twoform that is perpendicular to the given two-form. However, if the metric is indefinite (e.g., the Lorentz metric) there is an added complication with the signs.
 
 The Hodge dual is a linear operator, so it can be defined by its action on the basis elements. Let ${partial \/ partial sans(x)^0 \, dots.c \, partial \/ partial x^(n - 1)}$ be an orthonormal basis of vector fields#footnote[We have a metric, so we can define \"orthonormal\" and\"use it to construct an orthonormal basis given any basis. The Gram-Schmidt procedure does the job.] and let ${sans(d) x^0 \, dots.c \, sans(d) x^(n - 1)}$ be the ordinary dual basis for the one-forms. Then the $(n - p)$-form $sans(g)^convolve bold(omega)$ that is the Hodge dual of the $p$-form $bold(omega)$ can be defined by its coefficients with respect to the basis, using indices, as
 
-$ (sans(g)^(*) bold(omega))_(j_p dots.c j_(n - 1)) #h(2em) = sum_(i_0 dots.c i_(p - 1) j_0 dots.c j_(p - 1)) frac(1, p !) omega_(i_0 dots.c i_(p - 1)) g^(i_0 j_0) dots.c g^(i_(p - 1) j_(p - 1)) epsilon.alt_(j_0 dots.c j_(n - 1)) $
+$ (sans(g)^(*) bold(omega))_(j_p dots.c j_(n - 1)) #h(2em) = sum_(i_0 dots.c i_(p - 1) j_0 dots.c j_(p - 1)) frac(1, p !) omega_(i_0 dots.c i_(p - 1)) g^(i_0 j_0) dots.c g^(i_(p - 1) j_(p - 1)) epsilon.alt_(j_0 dots.c j_(n - 1)) $ <10.1>
 
 where $g^(i j)$ are the coefficients of the inverse metric and $epsilon.alt_(j_0 dots.c j_(n - 1))$ is either $- 1$ or $+ 1$ if the permutation ${0 dots.c n - 1} mapsto {j_0 dots.c j_(n - 1)}$ is odd or even, respectively.
 
@@ -20,11 +20,11 @@ $ grad (f)= frac(partial f, partial x) hat(upright(x)) + frac(partial f, partial
 
 Recall the meaning of the traditional vector operations. Traditionally we assume that there is a metric that allows us to determine distances between locations and angles between vectors. Such a metric establishes local scale factors relating coordinate increments to actual distances. The vector gradient, $grad (f)$, points in the direction of steepest increase in the function with respect to actual distances. By contrast, the gradient one-form, df, does not depend on a metric, so there is no concept of distance built in to it. Nevertheless, the concepts are related. The gradient one-form is given by
 
-$ sans(d f) = (frac(partial, partial sans(x)) sans(f)) sans(d x) + (frac(partial, partial sans(y)) sans(f)) sans(d y) + (frac(partial, partial sans(z)) sans(f)) sans(d z) . $
+$ sans(d f) = (frac(partial, partial sans(x)) sans(f)) sans(d x) + (frac(partial, partial sans(y)) sans(f)) sans(d y) + (frac(partial, partial sans(z)) sans(f)) sans(d z) . $ <10.2>
 
 The traditional gradient vector field is then just the raised gradient one-form (see equation 9.8). So
 
-$ grad (sans(f))= g^sharp (sans(d f)) (d f) $
+$ grad (sans(f))= g^sharp (sans(d f)) (d f) $ <10.3>
 
 is computed by
 
@@ -35,19 +35,19 @@ is computed by
 
 Let $theta$ be a one-form field:
 
-$ theta = theta_x sans(d x) + theta_y sans(d y) + theta_z sans(d z) . $
+$ theta = theta_x sans(d x) + theta_y sans(d y) + theta_z sans(d z) . $ <10.4>
 
 We compute
 
-$ sans(d) theta = (frac(partial theta_z, partial sans(y)) - frac(partial theta_y, partial sans(z))) sans(d y) and sans(d z) + (frac(partial theta_x, partial sans(z)) - frac(partial theta_z, partial sans(x))) sans(d z) and sans(d x) + (frac(partial theta_y, partial sans(x)) - frac(partial theta_x, partial sans(y))) sans(d x) and sans(d y) . $
+$ sans(d) theta = (frac(partial theta_z, partial sans(y)) - frac(partial theta_y, partial sans(z))) sans(d y) and sans(d z) + (frac(partial theta_x, partial sans(z)) - frac(partial theta_z, partial sans(x))) sans(d z) and sans(d x) + (frac(partial theta_y, partial sans(x)) - frac(partial theta_x, partial sans(y))) sans(d x) and sans(d y) . $ <10.5>
 
 So the exterior-derivative expression corresponding to the vector-calculus curl is:
 
-$ g^(*) (sans(d) theta) = (frac(partial theta_z, partial sans(y)) - frac(partial theta_y, partial sans(z))) sans(d x) + (frac(partial theta_x, partial sans(z)) - frac(partial theta_z, partial sans(x))) sans(d x) + (frac(partial theta_y, partial sans(x)) - frac(partial theta_x, partial sans(y))) sans(d z) . $
+$ g^(*) (sans(d) theta) = (frac(partial theta_z, partial sans(y)) - frac(partial theta_y, partial sans(z))) sans(d x) + (frac(partial theta_x, partial sans(z)) - frac(partial theta_z, partial sans(x))) sans(d x) + (frac(partial theta_y, partial sans(x)) - frac(partial theta_x, partial sans(y))) sans(d z) . $ <10.6>
 
 Thus, the curl of a vector field $sans(v)$ is
 
-$ curl (sans(v))= g^sharp (g^(*) (sans(d) (g^flat (sans(v)))))\, $
+$ curl (sans(v))= g^sharp (g^(*) (sans(d) (g^flat (sans(v)))))\, $ <10.7>
 
 which can be computed with
 
@@ -61,15 +61,15 @@ which can be computed with
 
 Also, we compute
 
-$ sans(d) (g^(*) theta)= (frac(partial theta_x, partial sans(x)) + frac(partial theta_y, partial sans(y)) + frac(partial theta_z, partial sans(z))) sans(d x) and sans(d y) and sans(d z) . $
+$ sans(d) (g^(*) theta)= (frac(partial theta_x, partial sans(x)) + frac(partial theta_y, partial sans(y)) + frac(partial theta_z, partial sans(z))) sans(d x) and sans(d y) and sans(d z) . $ <10.8>
 
 So the exterior-derivative expression corresponding to the vector-calculus $div$ is
 
-$ g^(*) sans(d) (g^(*) theta)= frac(partial theta_x, partial sans(x)) + frac(partial theta_y, partial sans(y)) + frac(partial theta_z, partial sans(z)) . $
+$ g^(*) sans(d) (g^(*) theta)= frac(partial theta_x, partial sans(x)) + frac(partial theta_y, partial sans(y)) + frac(partial theta_z, partial sans(z)) . $ <10.9>
 
 Thus, the divergence of a vector field $sans(v)$ is
 
-$ div (sans(v))= g^(*) (sans(d) (g^(*) (g^flat (sans(v))))) . $
+$ div (sans(v))= g^(*) (sans(d) (g^(*) (g^flat (sans(v))))) . $ <10.10>
 
 It is easily computed:
 
@@ -239,7 +239,7 @@ The kinematics of special relativity can be formulated on a flat 4-dimensional s
 
 The Minkowski metric is#footnote[The metric in relativity is not positive definite, so nonzero vectors can have zero length.]
 
-$ sans(g) (sans(u)\,sans(v))= - c^2 sans(d t) (sans(u))thin sans(d t) (sans(v))+ sans(d x) (sans(u))thin sans(d x) (sans(v))+ sans(d y) (sans(u))thin sans(d y) (sans(v))+ sans(d z) (sans(u))thin sans(d z) (sans(v)). $
+$ sans(g) (sans(u)\,sans(v))= - c^2 sans(d t) (sans(u))thin sans(d t) (sans(v))+ sans(d x) (sans(u))thin sans(d x) (sans(v))+ sans(d y) (sans(u))thin sans(d y) (sans(v))+ sans(d z) (sans(u))thin sans(d z) (sans(v)). $ <10.11>
 
 As a program:
 
@@ -253,7 +253,7 @@ As a program:
 
 The length of a vector is described in terms of the metric:
 
-$ sigma = sans(g) (sans(v)\,sans(v)). $
+$ sigma = sans(g) (sans(v)\,sans(v)). $ <10.12>
 
 If $sigma$ is positive the vector is #emph[spacelike] and its square root is the #emph[proper length] of the vector. If $sigma$ is negative the vector is #emph[timelike] and the square root of its negation is the #emph[proper time] of the vector. If $sigma$ is zero the vector is #emph[lightlike] or #emph[null].
 
@@ -372,21 +372,21 @@ To develop Maxwell\'s equations we need a general Faraday field and a general cu
 == Maxwell\'s Equations
 Maxwell\'s equations in the language of differential forms are
 
-$ sans(d F) = 0\, $
+$ sans(d F) = 0\, $ <10.13>
 
-$ sans(d) (g^(*) sans(F)) = 4 pi g^(*) sans(J) . $
+$ sans(d) (g^(*) sans(F)) = 4 pi g^(*) sans(J) . $ <10.14>
 
 The first equation gives us what would be written in vector notation as
 
-$ div arrow(B) = 0\, $
+$ div arrow(B) = 0\, $ <10.15>
 
-$ curl arrow(E) = - 1 / c frac(d arrow(B), d t) . $
+$ curl arrow(E) = - 1 / c frac(d arrow(B), d t) . $ <10.16>
 
 The second equation gives us what would be written in vector notation as
 
-$ div arrow(E) = 4 pi rho\, $
+$ div arrow(E) = 4 pi rho\, $ <10.17>
 
-$ curl arrow(B) = 1 / c frac(d arrow(E), d t) + frac(4 pi, c) arrow(I) . $
+$ curl arrow(B) = 1 / c frac(d arrow(E), d t) + frac(4 pi, c) arrow(I) . $ <10.18>
 
 To see how these work out, we evaluate each component of $sans(d F)$ and $sans(d) (g^(*) sans(F))- 4 pi g^(*) sans(J)$. Since these are both two-form fields, their exterior derivatives are three-form fields, so we have to provide three basis vectors to get each component. Each component equation will yield one of Maxwell\'s equations, written in coordinates, without vector notation. So, the purely spatial component $sans(d F) (partial\/partial x\,partial\/partial y\,partial\/partial z)$ of equation 10.13 is equation 10.15:
 
@@ -397,7 +397,7 @@ To see how these work out, we evaluate each component of $sans(d F)$ and $sans(d
 ;;    (((partial 3) Bz) (up ct0 x0 y0 z0)))
 ```
 
-$ frac(partial B_x, partial x) + frac(partial B_y, partial y) + frac(partial B_z, partial z) = 0 $
+$ frac(partial B_x, partial x) + frac(partial B_y, partial y) + frac(partial B_z, partial z) = 0 $ <10.19>
 
 The three mixed space and time components of equation 10.13 are equation 10.16:
 
@@ -408,7 +408,7 @@ The three mixed space and time components of equation 10.13 are equation 10.16:
 ;;    (* -1 (((partial 3) Ey) (up ct0 x0 y0 z0))))
 ```
 
-$ frac(partial E_z, partial y) - frac(partial E_y, partial z) = 1 / c frac(partial B_x, partial t)\, $
+$ frac(partial E_z, partial y) - frac(partial E_y, partial z) = 1 / c frac(partial B_x, partial t)\, $ <10.20>
 
 ```scheme
 (((d F) d/dct d/dz d/dx) an-event)
@@ -417,7 +417,7 @@ $ frac(partial E_z, partial y) - frac(partial E_y, partial z) = 1 / c frac(parti
 ;;    (* -1 (((partial 1) Ez) (up ct0 x0 y0 z0))))
 ```
 
-$ frac(partial E_x, partial z) - frac(partial E_z, partial x) = 1 / c frac(partial B_y, partial t)\, $
+$ frac(partial E_x, partial z) - frac(partial E_z, partial x) = 1 / c frac(partial B_y, partial t)\, $ <10.21>
 
 ```scheme
 (((d F) d/dct d/dx d/dy) an-event)
@@ -426,7 +426,7 @@ $ frac(partial E_x, partial z) - frac(partial E_z, partial x) = 1 / c frac(parti
 ;;    (* -1 (((partial 2) Ex) (up ct0 x0 y0 z0))))
 ```
 
-$ frac(partial E_y, partial x) - frac(partial E_x, partial y) = 1 / c frac(partial B_z, partial t) . $
+$ frac(partial E_y, partial x) - frac(partial E_x, partial y) = 1 / c frac(partial B_z, partial t) . $ <10.22>
 
 The purely spatial component of equation 10.14 is equation 10.17:
 
@@ -440,7 +440,7 @@ The purely spatial component of equation 10.14 is equation 10.17:
 ;;    (((partial 3) Ez) (up ct0 x0 y0 z0)))
 ```
 
-$ frac(partial E_x, partial x) + frac(partial E_y, partial y) + frac(partial E_z, partial z) = 4 pi rho . $
+$ frac(partial E_x, partial x) + frac(partial E_y, partial y) + frac(partial E_z, partial z) = 4 pi rho . $ <10.23>
 
 And finally, the three mixed time and space components of equation 10.14 are equation 10.18:
 
@@ -454,7 +454,7 @@ And finally, the three mixed time and space components of equation 10.14 are equ
 ;;    (/ (* 4 :pi (Ix (up ct0 x0 y0 z0))) :c))
 ```
 
-$ frac(partial B_y, partial z) - frac(partial B_z, partial y) = - 1 / c frac(partial E_x, partial t) - frac(4 pi, c) I_x\, $
+$ frac(partial B_y, partial z) - frac(partial B_z, partial y) = - 1 / c frac(partial E_x, partial t) - frac(4 pi, c) I_x\, $ <10.24>
 
 ```scheme
 (((- (d (SR-star F)) (* 4 :pi (SR-star 4-current)))
@@ -466,7 +466,7 @@ $ frac(partial B_y, partial z) - frac(partial B_z, partial y) = - 1 / c frac(par
 ;;    (/ (* 4 :pi (Iy (up ct0 x0 y0 z0))) :c))
 ```
 
-$ frac(partial B_z, partial x) - frac(partial B_x, partial z) = - 1 / c frac(partial E_y, partial t) - frac(4 pi, c) I_y\, $
+$ frac(partial B_z, partial x) - frac(partial B_x, partial z) = - 1 / c frac(partial E_y, partial t) - frac(4 pi, c) I_y\, $ <10.25>
 
 ```scheme
 (((- (d (SR-star F)) (* 4 :pi (SR-star 4-current)))
@@ -478,12 +478,12 @@ $ frac(partial B_z, partial x) - frac(partial B_x, partial z) = - 1 / c frac(par
 ;;    (/ (* 4 :pi (Iz (up ct0 x0 y0 z0))) :c))
 ```
 
-$ frac(partial B_x, partial y) - frac(partial B_y, partial x) = - 1 / c frac(partial E_z, partial t) - frac(4 pi, c) I_z . $
+$ frac(partial B_x, partial y) - frac(partial B_y, partial x) = - 1 / c frac(partial E_z, partial t) - frac(4 pi, c) I_z . $ <10.26>
 
 == Lorentz Force
 The classical force on a charged particle moving in a electromagnetic field is
 
-$ arrow(f) = q (arrow(E) + 1 / c arrow(v) times arrow(B)) . $
+$ arrow(f) = q (arrow(E) + 1 / c arrow(v) times arrow(B)) . $ <10.27>
 
 We can compute this in coordinates. We construct arbitrary $arrow(E)$ and $arrow(B)$ vector fields and an arbitrary velocity:
 
@@ -518,7 +518,7 @@ The 3-space force that results is a mess:
 
 The relativistic Lorentz 4-force is usually written in coordinates as
 
-$ f^nu = - sum_(alpha\,mu) q U^mu F_(mu alpha) eta^(alpha nu)\, $
+$ f^nu = - sum_(alpha\,mu) q U^mu F_(mu alpha) eta^(alpha nu)\, $ <10.28>
 
 where $U$ is the 4-velocity of the charged particle, $F$ is the Faraday tensor, and $eta^(alpha nu)$ are the components of the inverse of the Minkowski metric. Here is a program that computes a component of the force in terms of the Faraday tensor. The desired component is specified by a one-form.
 

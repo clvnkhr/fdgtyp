@@ -2,7 +2,7 @@
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
 #import "../lib.typ": fdg-chapter, curl, grad, Lap, div, length
 
-#fdg-chapter("Errata for FDG", numbered: false)[
+#fdg-chapter("Errata for FDG", numbered: false, eq-prefix: "0")[
 == Chapter 1
 Page 9: #raw(lang:"verbatim", "Cartan") is used in #raw(lang:"verbatim", "geodesic-equation-residuals") before it is defined just after. Be careful to flip evaluation order of these two listings.
 

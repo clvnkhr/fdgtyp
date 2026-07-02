@@ -3,6 +3,7 @@
 #let Lap = math.op("Lap")
 #let div = math.op("div")
 #let length = math.op("length")
+#let fdg-equation-prefix = state("fdg-equation-prefix", "0")
 
 #let fdg-book(body) = {
   set document(
@@ -27,13 +28,17 @@
   )
   set heading(numbering: "1.1")
   set math.equation(numbering: it => {
-    let chapter = counter(heading).at(here()).first()
-    numbering("(1.1)", chapter, it)
+    "(" + fdg-equation-prefix.at(here()) + "." + str(it) + ")"
   })
-  show heading: it => {
-    if it.level == 1 {
-      counter(math.equation).update(0)
+  show math.equation: it => {
+    if it.block and not it.has("label") and it.numbering != none [
+      #counter(math.equation).update(v => v - 1)
+      #math.equation(it.body, block: true, numbering: none)
+    ] else {
+      it
     }
+  }
+  show heading: it => {
     block(above: 1.1em, below: 0.45em, it)
   }
   show raw.where(block: true): it => {
@@ -72,8 +77,12 @@
   pagebreak()
 }
 
-#let fdg-chapter(title, body, numbered: true) = {
+#let fdg-chapter(title, body, numbered: true, eq-prefix: none) = {
   pagebreak(weak: true)
+  counter(math.equation).update(0)
+  if eq-prefix != none {
+    fdg-equation-prefix.update(eq-prefix)
+  }
   if numbered {
     heading(level: 1, title)
     body

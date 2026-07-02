@@ -2,16 +2,16 @@
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
 #import "../lib.typ": fdg-chapter, curl, grad, Lap, div, length
 
-#fdg-chapter("Curvature", numbered: true)[
+#fdg-chapter("Curvature", numbered: true, eq-prefix: "8")[
 If the intrinsic curvature of a manifold is not zero, a vector parallel-transported around a small loop will end up different from the vector that started. We saw the consequence of this before, on page 1 and on page 93. The Riemann tensor encapsulates this idea.
 
 The Riemann curvature operator is
 
-$ cal(R) (sans(w)\,sans(v))=[nabla_(sans(w))\,nabla_(sans(v))]- nabla_([sans(w)\,sans(v)]) . $
+$ cal(R) (sans(w)\,sans(v))=[nabla_(sans(w))\,nabla_(sans(v))]- nabla_([sans(w)\,sans(v)]) . $ <8.1>
 
 The traditional Riemann tensor is
 
-$ cal(R) (bold(omega)\,sans(u)\,sans(v)\,sans(w)) = bold(omega) ((cal(R) (sans(w) \, sans(v))) (sans(u)))\, $
+$ cal(R) (bold(omega)\,sans(u)\,sans(v)\,sans(w)) = bold(omega) ((cal(R) (sans(w) \, sans(v))) (sans(u)))\, $ <8.2>
 
 where $bold(omega)$ is a one-form field that measures the incremental change in the vector field $sans(u)$ caused by parallel-transporting it around the loop defined by the vector fields $sans(w)$ and $sans(v)$. $sans(R)$ allows us to compute the #emph[intrinsic curvature] of a manifold at a point.
 
@@ -43,38 +43,38 @@ Here we have computed the φ component of the result of carrying a $partial\/par
 
 Most of the sixteen coefficients of the Riemann tensor for the sphere are zero. The following are the nonzero coefficients:
 
-$ sans(R) (sans(d) theta \, frac(partial, partial phi.alt) \, frac(partial, partial theta) \, frac(partial, partial phi.alt)) (chi^(-1) (q^theta \, q^phi.alt)) = (sin (q^theta))^2\,sans(R) (sans(d) theta \, frac(partial, partial phi.alt) \, frac(partial, partial phi.alt) \, frac(partial, partial theta)) (chi^(-1) (q^theta \, q^phi.alt)) = - (sin (q^theta))^2\,sans(R) (sans(d) phi.alt \, frac(partial, partial theta) \, frac(partial, partial theta) \, frac(partial, partial phi.alt)) (chi^(-1) (q^theta \, q^phi.alt)) = - 1\,sans(R) (sans(d) phi.alt \, frac(partial, partial theta) \, frac(partial, partial phi.alt) \, frac(partial, partial theta)) (chi^(-1) (q^theta \, q^phi.alt)) = 1 . $
+$ sans(R) (sans(d) theta \, frac(partial, partial phi.alt) \, frac(partial, partial theta) \, frac(partial, partial phi.alt)) (chi^(-1) (q^theta \, q^phi.alt)) = (sin (q^theta))^2\,sans(R) (sans(d) theta \, frac(partial, partial phi.alt) \, frac(partial, partial phi.alt) \, frac(partial, partial theta)) (chi^(-1) (q^theta \, q^phi.alt)) = - (sin (q^theta))^2\,sans(R) (sans(d) phi.alt \, frac(partial, partial theta) \, frac(partial, partial theta) \, frac(partial, partial phi.alt)) (chi^(-1) (q^theta \, q^phi.alt)) = - 1\,sans(R) (sans(d) phi.alt \, frac(partial, partial theta) \, frac(partial, partial phi.alt) \, frac(partial, partial theta)) (chi^(-1) (q^theta \, q^phi.alt)) = 1 . $ <8.3>
 
 == Explicit Transport
 We will show that the result of the Riemann calculation of the change in a vector, as we traverse a loop, is what we get by explicitly calculating the transport. The coordinates of the vector to be transported are governed by the differential equations (see equation 7.72)
 
-$ D u^i (t)= - sum_j pi.alt_j^i (sans(v)) (chi^(-1) (sigma (t))) u^j (t) $
+$ D u^i (t)= - sum_j pi.alt_j^i (sans(v)) (chi^(-1) (sigma (t))) u^j (t) $ <8.4>
 
 and the coordinates as a function of time, $sigma = chi compose gamma compose chi_(sans(R))^(-1)$, of the path $gamma$, are governed by the differential equations#footnote[The map $gamma$ takes points on the real line to points on the target manifold. The chart $chi$ gives coordinates of points on the target manifold while $chi_(sans(R))$ gives a time coordinate on the real line.]
 
-$ D sigma (t)= sans(v) (chi) (chi^(-1) (sigma (t))) . $
+$ D sigma (t)= sans(v) (chi) (chi^(-1) (sigma (t))) . $ <8.5>
 
 We have to integrate these equations (8.4, 8.5) together to transport the vector over the map $sans(u)_gamma$ a finite distance along the vector field $sans(v)$.
 
 Let $s (t)=(sigma (t)\,u (t))$ be a state tuple, combining $sigma$ the coordinates of $gamma$, and $u$ the coordinates of $sans(u)_gamma$. Then
 
-$ D s (t)= (D sigma (t) \, D u (t)) = g (s (t))\, $
+$ D s (t)= (D sigma (t) \, D u (t)) = g (s (t))\, $ <8.6>
 
 where $g$ is the tuple of right-hand sides of equations (8.4, 8.5).
 
 The differential equations describing the evolution of a function $h$ of state $s$ along the state path are
 
-$ D (h compose s)=(D h compose s) (g compose s)= L_g h compose s\, $
+$ D (h compose s)=(D h compose s) (g compose s)= L_g h compose s\, $ <8.7>
 
 defining the operator $L_g$.
 
 Exponentiation gives a finite evolution:#footnote[The series may not converge for large increments in the independent variable. In this case it is appropriate to numerically integrate the differential equations directly.]
 
-$ h(s (t + epsilon.alt))= (e^(epsilon.alt L_g) h) (s (t)) . $
+$ h(s (t + epsilon.alt))= (e^(epsilon.alt L_g) h) (s (t)) . $ <8.8>
 
 The finite parallel transport of the vector with components $u$ is
 
-$ u (t + epsilon.alt)= (e^(epsilon.alt L_g) U) (s (t))\, $
+$ u (t + epsilon.alt)= (e^(epsilon.alt L_g) U) (s (t))\, $ <8.9>
 
 where the selector $U (sigma\,u)= u$, and the initial state is $s (t)=(sigma (t)\,u (t))$.
 
@@ -82,25 +82,25 @@ Consider parallel-transporting a vector $sans(u)$ around a parallelogram defined
 
 The state $s =(sigma\,u)$ after transporting $s_0$ around the loop is#footnote[The parallel-transport operators are evolution operators, and therefore descend into composition:
 
-$ e_A (F compose G)= F compose (e^A G)\, $
+$ e_A (F compose G)= F compose (e^A G)\, $ <8.33>
 
 for any state function $G$ and any compatible $F$. As a consequence, we have the following identity:
 
-$ e^A e^B I = e^A ((e^B I) compose I) = (e^B I) compose (e^A I)\, $
+$ e^A e^B I = e^A ((e^B I) compose I) = (e^B I) compose (e^A I)\, $ <8.34>
 
 where $I$ is the identity function on states.]
 
-$ (e^(- epsilon.alt L_(g_v)) I) compose (e^(- epsilon.alt L_(g_w)) I) compose (e^(epsilon.alt L_(g_v)) I) compose (e^(epsilon.alt L_(g_w)) I) (s_0) quad = (e^(epsilon.alt L_(g_w)) e^(epsilon.alt L_(g_v)) e^(- epsilon.alt L_(g_w)) e^(- epsilon.alt L_(g_v)) I) (s_0) quad = (e^(epsilon.alt^2 [L_(g_w) \, L_(g_v)] + dots.c) I) (s_0) . $
+$ (e^(- epsilon.alt L_(g_v)) I) compose (e^(- epsilon.alt L_(g_w)) I) compose (e^(epsilon.alt L_(g_v)) I) compose (e^(epsilon.alt L_(g_w)) I) (s_0) quad = (e^(epsilon.alt L_(g_w)) e^(epsilon.alt L_(g_v)) e^(- epsilon.alt L_(g_w)) e^(- epsilon.alt L_(g_v)) I) (s_0) quad = (e^(epsilon.alt^2 [L_(g_w) \, L_(g_v)] + dots.c) I) (s_0) . $ <8.10>
 
 So the lowest-order change in the transported vector is
 
-$ epsilon.alt^2 U (([L_(g_w) \, L_(g_v)] I) (s_0))\, $
+$ epsilon.alt^2 U (([L_(g_w) \, L_(g_v)] I) (s_0))\, $ <8.11>
 
 where $U (sigma\,u)= u$.
 
 However , if $sans(w)$ and $sans(v)$ do not commute, the indicated loop does not bring $sigma$ back to the starting point, to second order in $epsilon.alt$. We must account for the commutator. (See figure 4.2.) In the general case the lowest order change in the transported vector is
 
-$ epsilon.alt^2 U ((([L_(g_w) \, L_(g_v)] - L_(g_([w\,v]))) I) (s_0))\, $
+$ epsilon.alt^2 U ((([L_(g_w) \, L_(g_v)] - L_(g_([w\,v]))) I) (s_0))\, $ <8.12>
 
 This is what the Riemann tensor computation gives, scaled by $epsilon.alt^2$.
 
@@ -174,7 +174,7 @@ So now we can demonstrate that the lowest-order change resulting from explicit p
 === Geometrically
 The explicit transport above was done with differential equations operating on a state consisting of coordinates and components of the vector being transported. We can simplify this so that it is entirely built on manifold objects, eliminating the state. After a long algebraic story we find that
 
-$ ((cal(R) (sans(w)\,sans(v))) (sans(u))) (sans(f))quad = sans(e) (sans(f)){(sans(w) (pi.alt (sans(v)))- sans(v) (pi.alt (sans(w)))- pi.alt ([sans(w)\,sans(v)]))tilde(sans(e)) (sans(u))quad + pi.alt (sans(w))pi.alt (sans(v))tilde(sans(e)) (sans(u))- pi.alt (sans(v))pi.alt (sans(w))tilde(sans(e)) (sans(u))} $
+$ ((cal(R) (sans(w)\,sans(v))) (sans(u))) (sans(f))quad = sans(e) (sans(f)){(sans(w) (pi.alt (sans(v)))- sans(v) (pi.alt (sans(w)))- pi.alt ([sans(w)\,sans(v)]))tilde(sans(e)) (sans(u))quad + pi.alt (sans(w))pi.alt (sans(v))tilde(sans(e)) (sans(u))- pi.alt (sans(v))pi.alt (sans(w))tilde(sans(e)) (sans(u))} $ <8.13>
 
 or as a program:
 
@@ -219,11 +219,11 @@ This computes the same operator as the traditional Riemann curvature operator:
 === Terms of the Riemann Curvature
 Since the Riemann curvature is defined as in equation (8.1),
 
-$ cal(R) (sans(w)\,sans(v))=[nabla_(sans(w))\,nabla_(sans(v))]- nabla_([sans(w)\,sans(v)])\, $
+$ cal(R) (sans(w)\,sans(v))=[nabla_(sans(w))\,nabla_(sans(v))]- nabla_([sans(w)\,sans(v)])\, $ <8.14>
 
 it is natural#footnote[People often say \"Geodesic evolution is exponentiation of the covariant derivative.\" But this is wrong. The evolution is by exponentiation of $L_g$.] to identify these terms with the corresponding terms in
 
-$ (([L_(g_w) \, L_(g_v)] - L_(g_([w\,v]))) U) (s_0). $
+$ (([L_(g_w) \, L_(g_v)] - L_(g_([w\,v]))) U) (s_0). $ <8.15>
 
 Unfortunately, this does not work, as demonstrated below:
 
@@ -259,22 +259,22 @@ The obvious identification does not work, but neither does the other one!
 
 Let\'s compute the two parts of the Riemann curvature operator and see how this works out. First, recall
 
-$ nabla_(sans(v)) sans(u) (sans(f))= sum_i sans(e)_i(sans(f)) (sans(v) (tilde(sans(e))^i (sans(u))) + sum_j pi.alt_j^i (sans(v)) tilde(sans(e))^j (sans(u))) = sans(e) (sans(f)) (sans(v) (tilde(sans(e)) (sans(u)))+ pi.alt (sans(v))tilde(sans(e)) (sans(u)))\, $
+$ nabla_(sans(v)) sans(u) (sans(f))= sum_i sans(e)_i(sans(f)) (sans(v) (tilde(sans(e))^i (sans(u))) + sum_j pi.alt_j^i (sans(v)) tilde(sans(e))^j (sans(u))) = sans(e) (sans(f)) (sans(v) (tilde(sans(e)) (sans(u)))+ pi.alt (sans(v))tilde(sans(e)) (sans(u)))\, $ <8.16>
 
 where the second form uses tuple arithmetic. Now let\'s consider the first part of the Riemann curvature operator:
 
-$ [nabla_(sans(w)) \, nabla_(sans(v))] sans(u) = nabla_(sans(w)) nabla_(sans(v)) sans(u) - nabla_(sans(v)) nabla_(sans(w)) sans(u) = sans(e) { sans(w) (sans(v) (tilde(sans(e)) (sans(u)))+ pi.alt (sans(v))tilde(sans(e)) (sans(u)))+ pi.alt (sans(w)) (sans(v) (tilde(sans(e)) (sans(u)))+ pi.alt (sans(v))tilde(sans(e)) (sans(u)))} - sans(e) { sans(v) (sans(w) (tilde(sans(e)) (sans(u)))+ pi.alt (sans(w))tilde(sans(e)) (sans(u)))+ pi.alt (sans(v)) (sans(w) (tilde(sans(e)) (sans(u)))+ pi.alt (sans(w))tilde(sans(e)) (sans(u)))} = sans(e) {[sans(w)\,sans(v)]tilde(sans(e)) (sans(u))+ sans(w) (pi.alt (sans(v)))tilde(sans(e)) (sans(u))- sans(v) (pi.alt (sans(w)))tilde(sans(e)) (sans(u))+ pi.alt (sans(w))pi.alt (sans(v))tilde(sans(e)) (sans(u))- pi.alt (sans(v))pi.alt (sans(w))tilde(sans(e)) (sans(u))} . $
+$ [nabla_(sans(w)) \, nabla_(sans(v))] sans(u) = nabla_(sans(w)) nabla_(sans(v)) sans(u) - nabla_(sans(v)) nabla_(sans(w)) sans(u) = sans(e) { sans(w) (sans(v) (tilde(sans(e)) (sans(u)))+ pi.alt (sans(v))tilde(sans(e)) (sans(u)))+ pi.alt (sans(w)) (sans(v) (tilde(sans(e)) (sans(u)))+ pi.alt (sans(v))tilde(sans(e)) (sans(u)))} - sans(e) { sans(v) (sans(w) (tilde(sans(e)) (sans(u)))+ pi.alt (sans(w))tilde(sans(e)) (sans(u)))+ pi.alt (sans(v)) (sans(w) (tilde(sans(e)) (sans(u)))+ pi.alt (sans(w))tilde(sans(e)) (sans(u)))} = sans(e) {[sans(w)\,sans(v)]tilde(sans(e)) (sans(u))+ sans(w) (pi.alt (sans(v)))tilde(sans(e)) (sans(u))- sans(v) (pi.alt (sans(w)))tilde(sans(e)) (sans(u))+ pi.alt (sans(w))pi.alt (sans(v))tilde(sans(e)) (sans(u))- pi.alt (sans(v))pi.alt (sans(w))tilde(sans(e)) (sans(u))} . $ <8.17>
 
 The second term of the Riemann curvature operator is
 
-$ nabla_([sans(w)\,sans(v)]) sans(u) = sans(e) {[sans(w) \, sans(v)] tilde(sans(e)) (sans(u)) + pi.alt ([sans(w) \, sans(v)]) tilde(sans(e)) (u)} . $
+$ nabla_([sans(w)\,sans(v)]) sans(u) = sans(e) {[sans(w) \, sans(v)] tilde(sans(e)) (sans(u)) + pi.alt ([sans(w) \, sans(v)]) tilde(sans(e)) (u)} . $ <8.18>
 
 The difference of these is the Riemann curvature operator. Notice that the first term in each cancels, and the rest gives equation (8.13).
 
 === Ricci Curvature
 One measure of the curvature is the Ricci tensor, which is computed from the Riemann tensor by
 
-$ R (sans(u)\,sans(v))= sum_i sans(R) (tilde(sans(e))^i \, sans(u) \, sans(e)_i \, sans(v)) . $
+$ R (sans(u)\,sans(v))= sum_i sans(R) (tilde(sans(e))^i \, sans(u) \, sans(e)_i \, sans(v)) . $ <8.19>
 
 Expressed as a program:
 
@@ -325,7 +325,7 @@ Compute the components of the Ricci tensor.
 == Torsion
 There are many connections that describe the local properties of any particular manifold. A connection has a property called #emph[torsion], which is computed as follows:
 
-$ cal(T) (sans(u)\,sans(v))= nabla_(sans(u)) sans(v) - nabla_(sans(v)) sans(u) -[sans(u)\,sans(v)]. $
+$ cal(T) (sans(u)\,sans(v))= nabla_(sans(u)) sans(v) - nabla_(sans(v)) sans(u) -[sans(u)\,sans(v)]. $ <8.20>
 
 The torsion takes two vector fields and produces a vector field. The torsion depends on the covariant derivative, which is constructed from the connection.
 
@@ -365,13 +365,13 @@ There are multiple connections that give the same geodesic curves. Among these c
 
 Consider a basis $sans(e)$ and its dual $tilde(sans(e))$. The components of the torsion are
 
-$ tilde(sans(e)) (sans(T) (sans(e)_i \, sans(e)_j)) = Gamma_(i j)^k + Gamma_(j i)^k + Gamma_(i j)^k\, $
+$ tilde(sans(e)) (sans(T) (sans(e)_i \, sans(e)_j)) = Gamma_(i j)^k + Gamma_(j i)^k + Gamma_(i j)^k\, $ <8.21>
 
 where $sans(d)_(i j)^k$ are the structure constants of the basis. See equations (4.37, 4.38). For a commuting basis the structure constants are zero, and the components of the torsion are the antisymmetric part of $Gamma$ with respect to the lower indices.
 
 Recall the geodesic equation (7.79):
 
-$ D^2 sigma^i (t)= sum_(j k) Gamma_(j k)^i (gamma (t))D sigma^j (t)D sigma^k (t = 0 . $
+$ D^2 sigma^i (t)= sum_(j k) Gamma_(j k)^i (gamma (t))D sigma^j (t)D sigma^k (t = 0 . $ <8.22>
 
 Observe that the lower indices of $Gamma$ are contracted with two copies of the velocity. Because the use of $Gamma$ is symmetrical here, any asymmetry of $Gamma$ in its lower indices is irrelevant to the geodesics. Thus one can study the geodesics of any connection by first symmetrizing the connection, eliminating torsion. The resulting equations will be simpler.
 
@@ -380,39 +380,39 @@ Geodesics may converge and intersect (as in the lines of longitude on a sphere) 
 
 Let there be a one-parameter family of geodesics, with parameter $s$, and let $sans(T)$ be the vector field of tangent vectors to those geodesics:
 
-$ nabla_(sans(T)) sans(T) = 0 . $
+$ nabla_(sans(T)) sans(T) = 0 . $ <8.23>
 
 We can parameterize travel along the geodesics with parameter $t$: a geodesic curve $gamma_s (t)= phi.alt_t^(sans(T)) (sans(m)_s)$ where
 
-$ sans(f) compose phi.alt_t^(sans(T)) (sans(m)_s)= (e^(t T) sans(f)) (sans(m)_s). $
+$ sans(f) compose phi.alt_t^(sans(T)) (sans(m)_s)= (e^(t T) sans(f)) (sans(m)_s). $ <8.24>
 
 Let $U = partial\/partial s$ be the vector field corresponding to the displacement of neighboring geodesics. Locally, $(t\,s)$ is a coordinate system on the 2-dimensional submanifold formed by the family of geodesics. The vector fields $sans(T)$ and $sans(U)$ are a coordinate basis for this coordinate system, so $[sans(T) \, sans(U)] = 0$.
 
 The geodesic deviation vector field is defined as:
 
-$ nabla_(sans(T)) (nabla_(sans(T)) sans(U)). $
+$ nabla_(sans(T)) (nabla_(sans(T)) sans(U)). $ <8.25>
 
 If the connection has zero torsion, the geodesic deviation can be related to the Riemann curvature:
 
-$ nabla_(sans(T)) (nabla_(sans(T)) sans(U))= - cal(R) (sans(U)\,sans(T)) (sans(T))\, $
+$ nabla_(sans(T)) (nabla_(sans(T)) sans(U))= - cal(R) (sans(U)\,sans(T)) (sans(T))\, $ <8.26>
 
 as follows, using equation (8.21),
 
-$ nabla_(sans(T)) (nabla_(sans(T)) sans(U))= nabla_(sans(T)) (nabla_(sans(U)) sans(T))\, $
+$ nabla_(sans(T)) (nabla_(sans(T)) sans(U))= nabla_(sans(T)) (nabla_(sans(U)) sans(T))\, $ <8.27>
 
 because both the torsion is zero and $[sans(T)\,sans(U)]= 0$. Continuing
 
-$ nabla_(sans(T)) (nabla_(sans(T)) sans(U))= nabla_(sans(T)) (nabla_(sans(U)) sans(T))= nabla_(sans(T)) (nabla_(sans(U)) sans(T))+ nabla_(sans(U)) (nabla_(sans(T)) sans(T))- nabla_(sans(U)) (nabla_(sans(T)) sans(T))= nabla_(sans(U)) (nabla_(sans(T)) sans(T))- cal(R) (sans(U)\,sans(T)) (sans(T))= - cal(R) (sans(U)\,sans(T)) (sans(T)). $
+$ nabla_(sans(T)) (nabla_(sans(T)) sans(U))= nabla_(sans(T)) (nabla_(sans(U)) sans(T))= nabla_(sans(T)) (nabla_(sans(U)) sans(T))+ nabla_(sans(U)) (nabla_(sans(T)) sans(T))- nabla_(sans(U)) (nabla_(sans(T)) sans(T))= nabla_(sans(U)) (nabla_(sans(T)) sans(T))- cal(R) (sans(U)\,sans(T)) (sans(T))= - cal(R) (sans(U)\,sans(T)) (sans(T)). $ <8.28>
 
 In the last line the first term was dropped because $sans(T)$ satisfies the geodesic equation (8.24).
 
 The geodesic deviation is defined without using a metric, but it helps to have a metric (see Chapter 9) to interpret the geodesic deviation. Consider two neighboring geodesics, with parameters $s$ and $s + Delta s$. Given a metric we can assume that $t$ is proportional to path length along each geodesic, and we can define a distance $delta (s\,t\,Delta s)$ between the geodesics at the same value of the parameter $t$. So the velocity of separation of the two geodesics is
 
-$ (nabla_(sans(T)) sans(U))= partial_1 delta (s\,t\,Delta s)hat(s) $
+$ (nabla_(sans(T)) sans(U))= partial_1 delta (s\,t\,Delta s)hat(s) $ <8.29>
 
 where $hat(s)$ is a unit vector in the direction of increasing $s$. So $nabla_(sans(T)) U$ is the factor of increase of velocity with increase of separation. Similarly, the geodesic deviation can be interpreted as the factor of increase of acceleration with increase of separation:
 
-$ nabla sans(T) (nabla_(sans(T)) sans(U))= partial_1 partial_1 delta (s\,t\,Delta s)hat(s) . $
+$ nabla sans(T) (nabla_(sans(T)) sans(U))= partial_1 partial_1 delta (s\,t\,Delta s)hat(s) . $ <8.30>
 
 === Longitude Lines on a Sphere
 Consider longitude lines on the unit sphere.#footnote[The setup for this example is:
@@ -567,7 +567,7 @@ The Bianchi identities are defined in terms of a cyclic-summation operator, whic
 
 The first Bianchi identity is
 
-$ sans(R) (omega\,sans(x)\,sans(y)\,sans(z))+ sans(R) (omega\,sans(y)\,sans(z)\,sans(x))+ sans(R) (omega\,sans(z)\,sans(x)\,sans(y))= 0\, $
+$ sans(R) (omega\,sans(x)\,sans(y)\,sans(z))+ sans(R) (omega\,sans(y)\,sans(z)\,sans(x))+ sans(R) (omega\,sans(z)\,sans(x)\,sans(y))= 0\, $ <8.31>
 
 or, as a program:
 
@@ -582,7 +582,7 @@ or, as a program:
 
 The second Bianchi identity is
 
-$ nabla_(sans(x)) sans(R) (omega\,sans(v)\,sans(y)\,sans(z))+ nabla_(sans(y)) sans(R) (omega\,sans(v)\,sans(z)\,sans(x))+ nabla_(sans(z)) sans(R) (omega\,sans(v)\,sans(x)\,sans(y))= 0 $
+$ nabla_(sans(x)) sans(R) (omega\,sans(v)\,sans(y)\,sans(z))+ nabla_(sans(y)) sans(R) (omega\,sans(v)\,sans(z)\,sans(x))+ nabla_(sans(z)) sans(R) (omega\,sans(v)\,sans(x)\,sans(y))= 0 $ <8.32>
 
 or, as a program:
 

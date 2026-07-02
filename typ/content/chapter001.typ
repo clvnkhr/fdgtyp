@@ -2,7 +2,7 @@
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
 #import "../lib.typ": fdg-chapter, curl, grad, Lap, div, length
 
-#fdg-chapter("Introduction", numbered: true)[
+#fdg-chapter("Introduction", numbered: true, eq-prefix: "1")[
 #quote(block: true)[
 Philosophy is written in that great book which ever lies before our eyes---I mean the Universe---but we cannot understand it if we do not learn the language and grasp the symbols in which it is written. This book is written in the mathematical language, and the symbols are triangles, circles, and other geometrical figures without whose help it is impossible to comprehend a single word of it, without which one wanders in vain through a dark labyrinth.
 
@@ -84,23 +84,24 @@ So the value of the Lagrangian at an arbitrary dynamical state is:
 
 or, in infix notation:
 
-$ 1 / 2 R^2 m dot (phi.alt)^2 (sin (theta))^2 + 1 / 2 R^2 m dot (theta)^2 $
+$ 1 / 2 R^2 m dot(phi.alt)^2 (sin (theta))^2 + 1 / 2 R^2 m dot(theta)^2 $ <1.1>
 == The Metric
 Let\'s now take a step into the geometry. A surface has a metric which tells us how to measure sizes and angles at every point on the surface. (Metrics are introduced in Chapter 9.)
 
 The metric is a symmetric function of two vector fields that gives a number for every point on the manifold. (Vector fields are introduced in Chapter 3). Metrics may be used to compute the length of a vector field at each point, or alternatively to compute the inner product of two vector fields at each point. For example, the metric for the sphere of radius $R$ is
 
-$ sans(g) (sans(u)\,sans(v))= R^2 sans(d) theta (sans(u))sans(d) theta (sans(v))+ R^2 (sin theta)^2sans(d) phi.alt (sans(u))sans(d) phi.alt (sans(v))\, $
+$ sans(g) (sans(u)\,sans(v))= R^2 sans(d) theta (sans(u))sans(d) theta (sans(v))+ R^2 (sin theta)^2sans(d) phi.alt (sans(u))sans(d) phi.alt (sans(v))\, $ <1.2>
 
 where $sans(u)$ and $sans(v)$ are vector fields, and $sans(d) theta$ and $sans(d) phi.alt$ are one-form fields that extract the named components of the vector-field argument. (One-form fields are introduced in Chapter 3.) We can think of $sans(d) theta (sans(u))$ as a function of a point that gives the size of the vector field $sans(u)$ in the $theta$ direction at the point. Notice that $sans(g) (sans(u)\,sans(u))$ is a weighted sum of the squares of the components of $sans(u)$. In fact, if we identify
 
-$ sans(d) theta (sans(v))= dot (theta) sans(d) phi.alt (sans(v))= dot (phi.alt)\, $
+$ sans(d) theta (sans(v))= dot(theta) \\
+ sans(d) phi.alt (sans(v))= dot(phi.alt)\, $
 
 then the coefficients in the metric are the same as the coefficients in the value of the Lagrangian, equation (1.1), apart from a factor of $m\/2$.
 
 We can generalize this result and write a Lagrangian for free motion of a particle of mass $m$ on a manifold with metric $sans(g)$:
 
-$ L_2 (x\,v)= sum_(i j) 1 / 2 m g_(i j) (x)v^i v^j $
+$ L_2 (x\,v)= sum_(i j) 1 / 2 m g_(i j) (x)v^i v^j $ <1.3>
 
 This is written using indexed variables to indicate components of the geometric objects expressed with respect to an unspecified coordinate system. The metric coefficients $g_(i j)$ are, in general, a function of the position coordinates $x$, because the properties of the space may vary from place to place.
 
@@ -195,11 +196,11 @@ Now we can compute the residuals of the Euler-Lagrange equations, but we get a l
 ```
 
 == Geodesic Equations
-Now we get deeper into the geometry. The traditional way to write the geodesic equations is $ nabla_(sans(v)) sans(v) = 0 $ where $nabla$ is a covariant derivative operator. Roughly, $nabla_(sans(v)) sans(w)$ is a directional derivative. It gives a measure of the variation of the vector field $sans(w)$ as you walk along the manifold in the direction of $sans(v)$. (We will explain this in depth in Chapter 7.) $nabla_(sans(v)) sans(v) = 0$ is intended to convey that the velocity vector is parallel-transported by itself. When you walked East on the Equator you had to hold the stick so that it was parallel to the Equator. But the stick is constrained to the surface of the Earth, so moving it along the Equator required turning it in three dimensions. The $nabla$ thus must incorporate the 3-dimensional shape of the Earth to provide a notion of \"parallel\" appropriate for the denizens of the surface of the Earth. This information will appear as the \"Christoffel coefficients\" in the coordinate representation of the geodesic equations.
+Now we get deeper into the geometry. The traditional way to write the geodesic equations is $ nabla_(sans(v)) sans(v) = 0 $ <1.4> where $nabla$ is a covariant derivative operator. Roughly, $nabla_(sans(v)) sans(w)$ is a directional derivative. It gives a measure of the variation of the vector field $sans(w)$ as you walk along the manifold in the direction of $sans(v)$. (We will explain this in depth in Chapter 7.) $nabla_(sans(v)) sans(v) = 0$ is intended to convey that the velocity vector is parallel-transported by itself. When you walked East on the Equator you had to hold the stick so that it was parallel to the Equator. But the stick is constrained to the surface of the Earth, so moving it along the Equator required turning it in three dimensions. The $nabla$ thus must incorporate the 3-dimensional shape of the Earth to provide a notion of \"parallel\" appropriate for the denizens of the surface of the Earth. This information will appear as the \"Christoffel coefficients\" in the coordinate representation of the geodesic equations.
 
-The trouble with the traditional way to write the geodesic equations (1.4) is that the arguments to the covariant derivative are vector fields and the velocity along the path is not a vector field. A more precise way of stating this relation is: $ nabla_(partial\/partial sans(t))^gamma d gamma (partial \/ partial sans(t)) = 0 . $ (We know that this may be unfamiliar notation, but we will explain it in Chapter 7.)
+The trouble with the traditional way to write the geodesic equations (1.4) is that the arguments to the covariant derivative are vector fields and the velocity along the path is not a vector field. A more precise way of stating this relation is: $ nabla_(partial\/partial sans(t))^gamma d gamma (partial \/ partial sans(t)) = 0 . $ <1.5> (We know that this may be unfamiliar notation, but we will explain it in Chapter 7.)
 
-In coordinates, the geodesic equations are expressed $ D^2 q^i (t)+ sum_(j k) Gamma_(j k)^i (gamma (t))D q^j (t)D q^k (t)= 0\, $ where $q (t)$ is the coordinate path corresponding to the manifold path $gamma$, and $Gamma_(j k)^i (sans(m))$ are Christoffel coefficients. The $Gamma_(j k)^i (sans(m))$ describe the \"shape\" of the manifold close to the manifold point $sans(m)$. They can be derived from the metric $g$.
+In coordinates, the geodesic equations are expressed $ D^2 q^i (t)+ sum_(j k) Gamma_(j k)^i (gamma (t))D q^j (t)D q^k (t)= 0\, $ <1.6> where $q (t)$ is the coordinate path corresponding to the manifold path $gamma$, and $Gamma_(j k)^i (sans(m))$ are Christoffel coefficients. The $Gamma_(j k)^i (sans(m))$ describe the \"shape\" of the manifold close to the manifold point $sans(m)$. They can be derived from the metric $g$.
 
 We can get and save the geodesic equation residuals by:
 

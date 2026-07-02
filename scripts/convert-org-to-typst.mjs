@@ -65,6 +65,18 @@ function isNumberedChapter(title, stem) {
     || /^Appendix\s+[A-Z]:\s+/.test(title);
 }
 
+function equationLabelPrefix(stem) {
+  if (!stem) return null;
+
+  const chapter = stem.match(/^chapter0*(\d+)$/);
+  if (chapter) return String(Number(chapter[1]));
+
+  const appendix = stem.match(/^appendix_([a-z])$/);
+  if (appendix) return appendix[1].toUpperCase();
+
+  return null;
+}
+
 function normalizeDollarMath(source) {
   return source.replace(/\$\$([\s\S]*?)\$\$/g, (_match, math) => {
     const normalized = math
@@ -79,14 +91,30 @@ function normalizeDollarMath(source) {
   });
 }
 
-function normalizeLatexDisplayEnvironments(source) {
+function normalizeLatexDisplayEnvironments(source, stem) {
+  const labelPrefix = equationLabelPrefix(stem);
+  let equationIndex = 0;
+
   return source.replace(
     /\\begin\{(equation\*?|align\*?)\}([\s\S]*?)\\end\{\1\}/g,
-    (_match, _env, math) => {
-      const trimmed = math.trim();
-      return trimmed ? `$$${trimmed}$$` : "";
+    (_match, env, math) => {
+      const trimmed = math.replace(/\\label\{[^}]+\}/g, "").trim();
+      const numbered = !env.endsWith("*") && labelPrefix;
+      const label = numbered ? `<${labelPrefix}.${equationIndex += 1}>` : "";
+      if (!trimmed) return "";
+      return label ? `$$${trimmed}$$\n${label}` : `$$${trimmed}$$`;
     },
   );
+}
+
+function normalizeLatexDisplaysWithFootnotes(source, stem) {
+  const footnotes = source.match(/^\* Footnotes/m);
+  if (!footnotes) return normalizeLatexDisplayEnvironments(source, stem);
+
+  const main = source.slice(0, footnotes.index);
+  const notes = source.slice(footnotes.index);
+  return normalizeLatexDisplayEnvironments(main, stem)
+    + normalizeLatexDisplayEnvironments(notes, null);
 }
 
 function wrapBareSchemeBlocks(source) {
@@ -121,8 +149,8 @@ function wrapBareSchemeBlocks(source) {
   return output.join("\n");
 }
 
-function normalizeOrgSource(source) {
-  return wrapBareSchemeBlocks(normalizeDollarMath(normalizeLatexDisplayEnvironments(source)))
+function normalizeOrgSource(source, stem) {
+  return wrapBareSchemeBlocks(normalizeDollarMath(normalizeLatexDisplayEnvironments(source, stem)))
     // Clear typos and unsupported macros in the imported Org math. These are
     // applied to a temporary source copy so the subtree remains pristine.
     .replaceAll("\\psia", "\\psi_a")
@@ -185,8 +213,10 @@ const typstMathFunctions = new Set([
   "ceil",
   "cos",
   "cosh",
+  "ddot",
   "det",
   "dim",
+  "dot",
   "exp",
   "floor",
   "frac",
@@ -290,6 +320,7 @@ function cleanTypstOutput(body) {
     .replace(/\\#\|\n\n```scheme\n([\s\S]*?)\n\|#\n```\n?/g, "```scheme\n$1\n```\n")
     .replace(/(```scheme\n[\s\S]*?\n```)/g, block => block.replaceAll("’", "'"))
     .replace(/`([^`\n]+)`/g, (_match, code) => `\`${code.replaceAll("’", "'")}\``)
+    .replace(/\\<([A-Z0-9]+\.\d+)\\>/g, "<$1>")
     .replaceAll("Les Mis´erables", "Les Misérables")
     .replaceAll("\"curl\"", "curl")
     .replaceAll("\"grad\"", "grad")
@@ -311,6 +342,10 @@ function cleanTypstOutput(body) {
     .replaceAll("sum_k sans(X) (sans(f))sans(c)_j^k", "sum_k sans(X)_k(sans(f))sans(c)_j^k")
     .replaceAll("$v = v^{0}{∂}/{∂x} + v^{1}{∂}/{∂y},$", "$sans(v) = sans(v)^0 partial\\/partial sans(x) + sans(v)^1 partial\\/partial sans(y),$")
     .replaceAll("$A = dx ∧ dy.$", "$sans(A) = sans(d) sans(x) \"∧\" sans(d) sans(y).$")
+    .replaceAll(
+      "$ sans(d) theta (sans(v))= dot(theta) sans(d) phi.alt (sans(v))= dot(phi.alt)\\, $",
+      "$ sans(d) theta (sans(v))= dot(theta) \\\\\n sans(d) phi.alt (sans(v))= dot(phi.alt)\\, $",
+    )
     .replaceAll("[)](", "[)] (")
     .replaceAll("[(](", "[(] (")
     .replaceAll("$180^compose$", "180°")
@@ -380,67 +415,67 @@ function repairChapter11(body) {
   const insertions = [
     [
       "This is Carl Friedrich Gauss\\'s law for electrostatics:",
-      "$ div arrow(E) = 4 pi rho. $",
+      "$ div arrow(E) = 4 pi rho. $ <11.1>",
     ],
     [
       "This is Gauss\\'s law for magnetostatics:",
-      "$ div arrow(B) = 0. $",
+      "$ div arrow(B) = 0. $ <11.2>",
     ],
     [
       "Hans Christian Oersted and quantified by André-Marie Ampère:",
-      "$ curl arrow(B) = frac(4 pi, c) arrow(I). $",
+      "$ curl arrow(B) = frac(4 pi, c) arrow(I). $ <11.3>",
     ],
     [
       "electric fields are produced by moving magnetic fields:",
-      "$ curl arrow(E) = - frac(1, c) frac(partial arrow(B), partial t). $",
+      "$ curl arrow(E) = - frac(1, c) frac(partial arrow(B), partial t). $ <11.4>",
     ],
     [
       "Benjamin Franklin was the first to understand that electrical charges are conserved:",
-      "$ div arrow(I) + frac(partial rho, partial t) = 0. $",
+      "$ div arrow(I) + frac(partial rho, partial t) = 0. $ <11.5>",
     ],
     [
       "take the divergence of equation (11.3) we get",
-      "$ div curl arrow(B) = 0 = frac(4 pi, c) div arrow(I), $",
+      "$ div curl arrow(B) = 0 = frac(4 pi, c) div arrow(I), $ <11.6>",
     ],
     [
       "equation (11.3) to read",
-      "$ curl arrow(B) = frac(1, c) frac(partial arrow(E), partial t) + frac(4 pi, c) arrow(I). $",
+      "$ curl arrow(B) = frac(1, c) frac(partial arrow(E), partial t) + frac(4 pi, c) arrow(I). $ <11.7>",
     ],
     [
       "Maxwell proceeded by taking the curl of equation (11.4) to get",
-      "$ curl curl arrow(E) = - frac(1, c) frac(partial, partial t) curl arrow(B). $",
+      "$ curl curl arrow(E) = - frac(1, c) frac(partial, partial t) curl arrow(B). $ <11.8>",
     ],
     [
       "Expanding the left-hand side",
-      "$ grad div arrow(E) - Lap arrow(E) = - frac(1, c) frac(partial curl arrow(B), partial t), $",
+      "$ grad div arrow(E) - Lap arrow(E) = - frac(1, c) frac(partial curl arrow(B), partial t), $ <11.9>",
     ],
     [
       "the inhomogeneous wave equation:",
-      "$ Lap arrow(E) - frac(1, c^2) frac(partial^2 arrow(E), partial t^2) = 4 pi lr(grad rho + frac(1, c^2) arrow(I)). $",
+      "$ Lap arrow(E) - frac(1, c^2) frac(partial^2 arrow(E), partial t^2) = 4 pi lr(grad rho + frac(1, c^2) arrow(I)). $ <11.10>",
     ],
     [
       "in an electromagnetic field:",
-      "$ arrow(F) = q arrow(E) + frac(q, c) arrow(v) times arrow(B). $",
+      "$ arrow(F) = q arrow(E) + frac(q, c) arrow(v) times arrow(B). $ <11.11>",
     ],
     [
       "the homogeneous linear wave equation is",
-      "$ frac(partial^2 phi.alt (u), partial x^2) + frac(partial^2 phi.alt (u), partial y^2) + frac(partial^2 phi.alt (u), partial z^2) - frac(1, c^2) frac(partial^2 phi.alt (u), partial t^2) = 0. $",
+      "$ frac(partial^2 phi.alt (u), partial x^2) + frac(partial^2 phi.alt (u), partial y^2) + frac(partial^2 phi.alt (u), partial z^2) - frac(1, c^2) frac(partial^2 phi.alt (u), partial t^2) = 0. $ <11.12>",
     ],
     [
       "incremental tuple in position and time $xi =(Delta t\\,Delta x\\,Delta y\\,Delta z)$ we have#footnote[Here the length is independent of the spacetime point specified by $u$. In General Relativity we find that the metric, and thus the length function needs to vary with the point in spacetime.]",
-      "$ length_u (xi) = sqrt((Delta x)^2 + (Delta y)^2 + (Delta z)^2 - (c Delta t)^2), $",
+      "$ length_u (xi) = sqrt((Delta x)^2 + (Delta y)^2 + (Delta z)^2 - (c Delta t)^2), $ <11.13>",
     ],
     [
       "then the light cones are the hypersurfaces, for which",
-      "$ length_u (Delta t, Delta x, Delta y, Delta z) = 0. $",
+      "$ length_u (Delta t, Delta x, Delta y, Delta z) = 0. $ <11.14>",
     ],
     [
       "Then $psi$ will satisfy the wave equation",
-      "$ frac(partial^2 psi (u'), partial (x')^2) + frac(partial^2 psi (u'), partial (y')^2) + frac(partial^2 psi (u'), partial (z')^2) - frac(1, c^2) frac(partial^2 psi (u'), partial (t')^2) = 0, $",
+      "$ frac(partial^2 psi (u'), partial (x')^2) + frac(partial^2 psi (u'), partial (y')^2) + frac(partial^2 psi (u'), partial (z')^2) - frac(1, c^2) frac(partial^2 psi (u'), partial (t')^2) = 0, $ <11.20>",
     ],
     [
       "if and only if",
-      "$ length_(u') (xi') = length_(A (u')) (D A xi') = length_u (xi). $",
+      "$ length_(u') (xi') = length_(A (u')) (D A xi') = length_u (xi). $ <11.21>",
     ],
   ];
 
@@ -461,19 +496,37 @@ function repairChapter11(body) {
     .replaceAll("$ Lambda = B (bold(beta))cal(R) . $", "$ Lambda = B (bold(beta)) cal(R). $");
 }
 
+function repairChapter9(body) {
+  return body
+    .replaceAll(
+      "\n <9.24>\n",
+      "\n$ sans(g) (sans(v)_1, sans(v)_2) = - c^2 lr(1 + frac(2 V, c^2)) sans(d) sans(t) (sans(v)_1) sans(d) sans(t) (sans(v)_2) + sans(d) sans(x) (sans(v)_1) sans(d) sans(x) (sans(v)_2) + sans(d) sans(y) (sans(v)_1) sans(d) sans(y) (sans(v)_2) + sans(d) sans(z) (sans(v)_1) sans(d) sans(z) (sans(v)_2) $ <9.24>\n",
+    )
+    .replaceAll(
+      "are Newton\\'s equations to lowest order in $V\\/c^2$:",
+      "are Newton\\'s equations to lowest order in $V\\/c^2$:\n\n$ D^2 arrow(x) (t) = - grad V (arrow(x) (t)). $ <9.25>",
+    )
+    .replaceAll(
+      "The equations are traditionally written\n\nwhere $R_(mu nu)$",
+      "The equations are traditionally written\n\n$ R_(mu nu) - 1 / 2 R g_(mu nu) + Lambda g_(mu nu) = frac(8 pi G, c^4) T_(mu nu) $ <9.26>\n\nwhere $R_(mu nu)$",
+    );
+}
+
 function applyChapterRepairs(stem, body) {
+  if (stem === "chapter009") return repairChapter9(body);
   if (stem === "chapter011") return repairChapter11(body);
   return body;
 }
 
 function convert(file) {
   const input = path.join(orgDir, file);
+  const stem = file.replace(/\.org$/, "");
   const tempDir = mkdtempSync(path.join(os.tmpdir(), "fdg-org-"));
   const tempInput = path.join(tempDir, file);
   const source = normalizeOrgSource(readFileSync(input, "utf8")
     // The Org sources use a bare backslash at the end of some TeX display lines
     // as a line-break marker. Pandoc's TeX parser expects the LaTeX spelling.
-    .replace(/(?<!\\)\\\n/g, "\\\\\n"));
+    .replace(/(?<!\\)\\\n/g, "\\\\\n"), stem);
   writeFileSync(tempInput, source);
   const body = cleanTypstOutput(execFileSync(
     "pandoc",
@@ -483,7 +536,6 @@ function convert(file) {
 
   const title = readTitle(file);
   const displayTitle = chapterDisplayTitle(title);
-  const stem = file.replace(/\.org$/, "");
   const numbered = isNumberedChapter(title, stem);
   const bodyWithoutLabels = body
     .replace(/^<[A-Za-z0-9_.:-]+>\n/gm, "")
@@ -500,7 +552,7 @@ function convert(file) {
     `// Re-run scripts/convert-org-to-typst.mjs to refresh.`,
     `#import "../lib.typ": fdg-chapter, curl, grad, Lap, div, length`,
     "",
-    `#fdg-chapter(${JSON.stringify(typstEscape(displayTitle))}, numbered: ${numbered})[`,
+    `#fdg-chapter(${JSON.stringify(typstEscape(displayTitle))}, numbered: ${numbered}, eq-prefix: ${JSON.stringify(equationLabelPrefix(stem) ?? "0")})[`,
     bodyWithChapterRepairs.trimEnd(),
     "]",
     "",

@@ -2,18 +2,18 @@
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
 #import "../lib.typ": fdg-chapter, curl, grad, Lap, div, length
 
-#fdg-chapter("Metrics", numbered: true)[
+#fdg-chapter("Metrics", numbered: true, eq-prefix: "9")[
 We often want to impose further structure on a manifold to allow us to define lengths and angles. This is done by generalizing the idea of the Euclidean dot product, which allows us to compute lengths of vectors and angles between vectors in traditional vector algebra.
 
 For vectors $arrow(u) = u^x hat(x) + u^y hat(y) + u^z hat(z)$ and $arrow(v) = v^x hat(x) + v^y hat(y) + v^z hat(z)$ the dot product is $arrow(u) dot.op arrow(v) = u^x v^x + u^y v^y + u^z v^z$. The generalization is to provide coefficients for these terms and to include cross terms, consistent with the requirement that the function of two vectors is symmetric. This symmetric, bilinear, real-valued function of two vector fields is called a #emph[metric field].
 
 For example, the natural metric on a sphere of radius $R$ is
 
-$ sans(g) (sans(u)\,sans(v))= R^2 (sans(d) theta (sans(u)) sans(d) theta (sans(v)) + (sin theta)^2 sans(d) phi.alt (sans(u)) sans(d) phi.alt (sans(v)))\, $
+$ sans(g) (sans(u)\,sans(v))= R^2 (sans(d) theta (sans(u)) sans(d) theta (sans(v)) + (sin theta)^2 sans(d) phi.alt (sans(u)) sans(d) phi.alt (sans(v)))\, $ <9.1>
 
 and the Minkowski metric on the 4-dimensional space of special relativity is
 
-$ sans(g) (sans(u)\,sans(v))= sans(d) x (sans(u))sans(d) x (sans(v))+ sans(d) y (sans(u))sans(d) y (sans(v))+ sans(d) z (sans(u))sans(d) z (sans(v))- c^2 sans(d) t (sans(u))sans(d) t (sans(v)). $
+$ sans(g) (sans(u)\,sans(v))= sans(d) x (sans(u))sans(d) x (sans(v))+ sans(d) y (sans(u))sans(d) y (sans(v))+ sans(d) z (sans(u))sans(d) z (sans(v))- c^2 sans(d) t (sans(u))sans(d) t (sans(v)). $ <9.2>
 
 Although these examples are expressed in terms of a coordinate basis, the value of the metric on vector fields does not depend on the coordinate system that is used to specify the metric.
 
@@ -22,29 +22,29 @@ Given a metric field $sans(g)$ and a vector field $sans(v)$ the scalar field $sa
 #heading(level: 2, numbering: none)[Metric Music]
 The metric can be used to construct a one-form field $bold(omega)_(sans(u))$ from a vector field $sans(u)$, such that for any vector field $sans(v)$ we have
 
-$ omega_(sans(u)) (sans(v))= sans(g (v\,u)) . $
+$ omega_(sans(u)) (sans(v))= sans(g (v\,u)) . $ <9.3>
 
 The operation of constructing a one-form field from a vector field using a metric is called \"lowering\" the vector field. It is sometimes notated as
 
-$ bold(omega)_(sans(u)) = g^flat (sans(u)). $
+$ bold(omega)_(sans(u)) = g^flat (sans(u)). $ <9.4>
 
 There is also an inverse metric that takes two one-form fields. It is defined by the relation
 
-$ delta_k^i = sum_j g^(-1) (tilde(sans(e))^i \, tilde(sans(e))^j) sans(g) (sans(e)_j\,sans(e)_k) . $
+$ delta_k^i = sum_j g^(-1) (tilde(sans(e))^i \, tilde(sans(e))^j) sans(g) (sans(e)_j\,sans(e)_k) . $ <9.5>
 
 where $sans(e)$ and $tilde(sans(e))$ are any basis and its dual basis.
 
 The inverse metric can be used to construct a vector field $sans(v)_omega$ from a one-form field $bold(omega)$, such that for any one-form field $bold(tau)$ we have
 
-$ bold(tau) (sans(v)_omega)= sans(g)^(-1) (bold(omega)\,bold(tau)). $
+$ bold(tau) (sans(v)_omega)= sans(g)^(-1) (bold(omega)\,bold(tau)). $ <9.6>
 
 This definition is implicit, but the vector field can be explicitly computed from the one-form field with respect to a basis as follows:
 
-$ sans(v)_omega = sum_i g^(-1) (bold(omega) \, tilde(sans(e))^i) sans(e)_i . $
+$ sans(v)_omega = sum_i g^(-1) (bold(omega) \, tilde(sans(e))^i) sans(e)_i . $ <9.7>
 
 The operation of constructing a vector field from a one-form field using a metric is called \"raising\" the one-form field. It is sometimes notated
 
-$ sans(v)_omega = sans(g)^sharp (bold(omega)). $
+$ sans(v)_omega = sans(g)^sharp (bold(omega)). $ <9.8>
 
 The raising and lowering operations allow one to interchange the vector fields and the one-form fields. However they should not be confused with the dual operation that allows one to construct a dual one-form basis from a vector basis or construct a vector basis from a one-form basis. The dual operation that interchanges bases is defined without assigning a metric structure on the space.
 
@@ -81,27 +81,27 @@ where #raw(lang:"verbatim", "contract") is the trace over a basis of a two-argum
 == Metric Compatibility
 A connection is said to be compatible with a metric $sans(g)$ if the covariant derivative for that connection obeys the \"product rule\":
 
-$ Delta_(sans(X)) (g (sans(Y) \, sans(Z))) = g (Delta_(sans(X)) (sans(Y)) \, sans(Z)) + g (sans(Y) \, Delta_(sans(X)) (sans(Z))) . $
+$ Delta_(sans(X)) (g (sans(Y) \, sans(Z))) = g (Delta_(sans(X)) (sans(Y)) \, sans(Z)) + g (sans(Y) \, Delta_(sans(X)) (sans(Z))) . $ <9.9>
 
 For a metric there is a unique torsion-free connection that is compatible with it. The Christoffel coefficients of the first kind are computed from the metric by the following:
 
-$ macron(Gamma)_(i j k) = 1 / 2 (sans(e)_k (sans(g) (sans(e)_i \, sans(e)_j)) + sans(e)_j (sans(g) (sans(e)_i \, sans(e)_k)) - sans(e)_i (sans(g) (sans(e)_j \, sans(e)_k))) $
+$ macron(Gamma)_(i j k) = 1 / 2 (sans(e)_k (sans(g) (sans(e)_i \, sans(e)_j)) + sans(e)_j (sans(g) (sans(e)_i \, sans(e)_k)) - sans(e)_i (sans(g) (sans(e)_j \, sans(e)_k))) $ <9.10>
 
 for the coordinate basis $sans(e)$. We can then construct the Christoffel coefficients of the second kind (the ones used previously to define a connection) by \"raising the first index.\" To do this we define a function of three vectors, with a weird currying:
 
-$ sum_(i j k) macron(Gamma)_(i j k) tilde(sans(e))^i (sans(u))tilde(sans(e))^j (sans(v))tilde(sans(e))^k (sans(w)) . $
+$ sum_(i j k) macron(Gamma)_(i j k) tilde(sans(e))^i (sans(u))tilde(sans(e))^j (sans(v))tilde(sans(e))^k (sans(w)) . $ <9.11>
 
 This function takes two vector fields and produces a one-form field. We can use it with equation (9.7) to construct a new function that takes two vector fields and produces a vector field:
 
-$ hat(Gamma) (sans(v)\,sans(w))= sum_i sans(g)^(-1) (tilde(Gamma) (sans(v) \, sans(w)) \, tilde(sans(e))^i) sans(e)_i . $
+$ hat(Gamma) (sans(v)\,sans(w))= sum_i sans(g)^(-1) (tilde(Gamma) (sans(v) \, sans(w)) \, tilde(sans(e))^i) sans(e)_i . $ <9.12>
 
 We can now construct the Christoffel coefficients of the second kind:
 
-$ Gamma_(j k)^i = tilde(sans(e))^i (hat(Gamma) (sans(e)_j \, sans(e)_k)) = sum_m macron(Gamma)_(m j k) sans(g)^(-1) (tilde(sans(e))^m \, tilde(sans(e))^i) $
+$ Gamma_(j k)^i = tilde(sans(e))^i (hat(Gamma) (sans(e)_j \, sans(e)_k)) = sum_m macron(Gamma)_(m j k) sans(g)^(-1) (tilde(sans(e))^m \, tilde(sans(e))^i) $ <9.13>
 
 The Cartan forms are then just
 
-$ pi.alt_j^i = sum_k Gamma_(j k)^i tilde(upright(e))^k = sum_k tilde(upright(e))^i (hat(Gamma) (upright(e)_j \, upright(e)_k)) tilde(upright(e))^k . $
+$ pi.alt_j^i = sum_k Gamma_(j k)^i tilde(upright(e))^k = sum_k tilde(upright(e))^i (hat(Gamma) (upright(e)_j \, upright(e)_k)) tilde(upright(e))^k . $ <9.14>
 
 So, for example, we can compute the Christoffel coefficients for the sphere from the metric for the sphere. First, we need the metric:
 
@@ -150,11 +150,11 @@ Here we expand this understanding to show that the Christoffel symbols can be de
 
 Consider the Lagrange equations for a free particle, with Lagrangian
 
-$ L_2 (t\,x\,v)= 1 / 2 g (x) (v\,v). $
+$ L_2 (t\,x\,v)= 1 / 2 g (x) (v\,v). $ <9.15>
 
 If we solve the Lagrange equations for the accelerations, the accelerations can be expressed with the geodesic equations (7.79):
 
-$ D^2 q^i + sum_(j k) (Gamma_(j k)^i compose chi^(-1) compose q) D q^j D q^k = 0 . $
+$ D^2 q^i + sum_(j k) (Gamma_(j k)^i compose chi^(-1) compose q) D q^j D q^k = 0 . $ <9.16>
 
 We can verify this computationally. Given a metric, we can construct a Lagrangian where the kinetic energy is the metric applied to the velocity twice: The kinetic energy is proportional to the squared length of the velocity vector.
 
@@ -203,15 +203,15 @@ A geodesic is a path of stationary length with respect to variations in the path
 
 The integrand of the traditional action is the Lagrangian, which is in this case the Lagrangian $L_2$, the kinetic energy. The integrand of the arc length is
 
-$ L_1 (t\,x\,v)= sqrt(g (x) (v\,v)) = sqrt(2 L_2 (t\,x\,v)) $
+$ L_1 (t\,x\,v)= sqrt(g (x) (v\,v)) = sqrt(2 L_2 (t\,x\,v)) $ <9.17>
 
 and the path length is
 
-$ tau = integral_(t_1)^(t_2) L_1 (t \, q (t) \, D q (t)) d t . $
+$ tau = integral_(t_1)^(t_2) L_1 (t \, q (t) \, D q (t)) d t . $ <9.18>
 
 If we compute the Lagrange equations for $L_2$ we get the Lagrange equations for $L_1$ with a correction term. Since
 
-$ L_2 (t\,x\,v)= 1 / 2(L_1 (t\,x\,v))^2\, $
+$ L_2 (t\,x\,v)= 1 / 2(L_1 (t\,x\,v))^2\, $ <9.19>
 
 and the Lagrange operator for $L_2$ is#footnote[$upright(bold(E))$ is the Euler-Lagrange operator, which gives the residuals of the Lagrange equations for a Lagrangian. $upright(bold(Gamma))$ extends a configuration-space path $q$ to make a state-space path, with as many terms as needed: $upright(bold(Gamma))[q] (t)=(t\,q (t)\,D q (t)\,dots.c)$. The total time derivative $D_t$ is defined by $D_t F compose upright(bold(Gamma))[q]= D (F compose upright(bold(Gamma)) [q])$ for any state function $F$ and path $q$. The Lagrange equations are $upright(bold(E))[L]compose Gamma[q]= 0$. See \[19\] for more details.]
 
@@ -219,7 +219,7 @@ $ bold(E)[L_2]= D_t partial_2 L_2 - partial_1 L_2\, $
 
 we find
 
-$ bold(E)[L_2]= L_1 bold(E)[L_1]+ partial_2 L_1 D_t L_1 . $
+$ bold(E)[L_2]= L_1 bold(E)[L_1]+ partial_2 L_1 D_t L_1 . $ <9.20>
 
 $L_2$ is the kinetic energy. It is conserved along solution paths, since there is no explicit time dependence. Because of the relation between $L_1$ and $L_2$, $L_1$ is also a conserved quantity. Let $L_1$ take the constant value $a$ on the geodesic coordinate path $q$ we are considering. Then $tau = a (t_2 - t_1)$. Since $L_1$ is conserved, $(D_t L_1)compose bold(Gamma)[q]= 0$ on the geodesic path $q$, and both $bold(E)[L_1]compose bold(Gamma)[q]= 0$ and $bold(E)[L_2]compose bold(Gamma)[q]= 0$, as required by equation (9.20).
 
@@ -306,7 +306,7 @@ More generally, a differential equation system $F[q] (t)= 0$ is said to be #emph
 
 The Lagrangian $L_1$ is homogeneous of degree 1 in the velocities; so
 
-$ bold(E)[L_1]compose Gamma[q compose f]- (bold(E) [L_1] compose Gamma [q] compose f) D f = 0 . $
+$ bold(E)[L_1]compose Gamma[q compose f]- (bold(E) [L_1] compose Gamma [q] compose f) D f = 0 . $ <9.21>
 
 We can check this in a simple case. For two dimensions $q =(x\,y)$, the condition under which a reparameterization $f$ of the geodesic paths with coordinates $q$ satisfies the Lagrange equations for $L_1$ is:
 
@@ -331,7 +331,7 @@ This residual is identically satisfied, showing that the Lagrange equations for 
 
 The Lagrangian $L_2$ is homogeneous of degree 2 in the velocities; so
 
-$ bold(E)[L_2][q compose f]-(bold(E)[L_2][q]compose f) (D f)^2= (partial_2 L_2 compose Gamma [q] compose f) (D^2 f). $
+$ bold(E)[L_2][q compose f]-(bold(E)[L_2][q]compose f) (D f)^2= (partial_2 L_2 compose Gamma [q] compose f) (D^2 f). $ <9.22>
 
 Although the Euler-Lagrange equations for $L_1$ are invariant under an arbitrary reparameterization $(D f != 0)$, the Euler-Lagrange equations for $L_2$ are invariant only for a restricted set of $f$. The conditions under which a reparameterization $f$ of geodesic paths with coordinates $q$ satisfies the Lagrange equations for $L_2$ are:
 
@@ -387,7 +387,7 @@ The 2-dimensional surface of a 3-dimensional sphere can be embedded in three dim
 
 If we raise one index of the Ricci tensor (see equation 8.20) by contracting it with the inverse of the metric tensor we can further contract it to obtain a scalar manifold function:
 
-$ R = sum_(i j) sans(g) (tilde(sans(e))^i \, tilde(sans(e))^j) r (sans(e)^i \, sans(e)^j) . $
+$ R = sum_(i j) sans(g) (tilde(sans(e))^i \, tilde(sans(e))^j) r (sans(e)^i \, sans(e)^j) . $ <9.23>
 
 The #raw(lang:"verbatim", "trace2down") procedure converts a tensor that takes two vector fields into a tensor that takes a vector field and a one-form field, and then it contracts the result over a basis to make a trace. It is useful for getting the Ricci scalar from the Ricci tensor, given a metric and a basis.
 
@@ -415,25 +415,30 @@ By analogy to Newtonian mechanics, relativistic mechanics has two parts. There a
 
 The geodesic equations for a spacetime with the metric
 
+$ sans(g) (sans(v)_1, sans(v)_2) = - c^2 lr(1 + frac(2 V, c^2)) sans(d) sans(t) (sans(v)_1) sans(d) sans(t) (sans(v)_2) + sans(d) sans(x) (sans(v)_1) sans(d) sans(x) (sans(v)_2) + sans(d) sans(y) (sans(v)_1) sans(d) sans(y) (sans(v)_2) + sans(d) sans(z) (sans(v)_1) sans(d) sans(z) (sans(v)_2) $ <9.24>
 
 are Newton\'s equations to lowest order in $V\/c^2$:
+
+$ D^2 arrow(x) (t) = - grad V (arrow(x) (t)). $ <9.25>
 
 === Exercise 9.5: Newton\'s Equations
 Verify that Newton\'s equations (9.25) are indeed the lowest-order terms of the geodesic equations for the metric (9.24).
 
 Einstein\'s field equations tell how the local energy-momentum distribution determines the local shape of the spacetime, as described by the metric tensor $g$. The equations are traditionally written
 
+$ R_(mu nu) - 1 / 2 R g_(mu nu) + Lambda g_(mu nu) = frac(8 pi G, c^4) T_(mu nu) $ <9.26>
+
 where $R_(mu nu)$ are the components of the Ricci tensor (equation 8.20), $R$ is the Ricci scalar (equation 9.23),#footnote[The tensor with components $G_(mu nu) = R_(mu nu) - 1 / 2 R g_(mu nu)$ is called the Einstein tensor. In his search for an appropriate field equation for gravity, Einstein demanded #emph[general covariance] (independence of coordinate system) and local Lorentz invariance (at each point transformations must preserve the line element). These considerations led Einstein to look for a tensor equation (see Appendix C).] and $Lambda$ is the cosmological constant.
 
 $T_(mu nu)$ are the components of the stress-energy tensor describing the energy-momentum distribution. Equivalently, one can write
 
-$ R_(mu nu) = frac(8 pi G, c^4) (T_(mu nu) - 1 / 2 T g_(mu nu)) - Lambda g_(mu nu) $
+$ R_(mu nu) = frac(8 pi G, c^4) (T_(mu nu) - 1 / 2 T g_(mu nu)) - Lambda g_(mu nu) $ <9.27>
 
 where $T = T_(mu nu) g^(mu nu)$.#footnote[Start with equation (9.26). Raise one index of both sides, and then contract. Notice that the trace $g_mu^mu = 4$, the dimension of spacetime. This gets $R = - (frac(8 pi G, c^4)) T$ , from which we can deduce equation (9.27).]
 
 Einstein\'s field equations arise from a heuristic derivation by analogy to the Poisson equation for a Newtonian gravitational field:
 
-$ Lap (V)= 4 pi G rho $
+$ Lap (V)= 4 pi G rho $ <9.28>
 
 where $V$ is the gravitational potential field at a point, $rho$ is the mass density at that point, and $Lap$ is the Laplacian operator.
 
@@ -514,7 +519,7 @@ If we evaluate the right-hand side expression we obtain#footnote[The procedure #
 
 So, to make the Poisson analogy we get
 
-$ R_(mu nu) = frac(8 pi G, c^4) (T_(mu nu) - 1 / 2 T g_(mu nu)) - Lambda g_(mu nu) $
+$ R_(mu nu) = frac(8 pi G, c^4) (T_(mu nu) - 1 / 2 T g_(mu nu)) - Lambda g_(mu nu) $ <9.29>
 
 as required.
 
@@ -668,20 +673,20 @@ where #raw(lang:"verbatim", "rho is the energy density, and =p") is the pressure
 
 The Robertson-Walker equations are:
 
-$ (frac(D R (t), R (t)))^2 + frac(k c^2, (R (t))^2) - frac(Lambda c^2, 3) = frac(8 pi G, 3) rho (t)\,2 frac(D^2 R (t), R (t)) - 2 / 3 Lambda c^2 = - 8 pi G (frac(rho (t), 3) + frac(p (t), c^2)) . $
+$ (frac(D R (t), R (t)))^2 + frac(k c^2, (R (t))^2) - frac(Lambda c^2, 3) = frac(8 pi G, 3) rho (t)\,2 frac(D^2 R (t), R (t)) - 2 / 3 Lambda c^2 = - 8 pi G (frac(rho (t), 3) + frac(p (t), c^2)) . $ <9.30>
 
 Use the programs supplied to derive the Robertson-Walker equations.
 
 === Exercise 9.10: Cosmology
 For energy to be conserved, the stress-energy tensor must be constrained so that its covariant divergence is zero
 
-$ sum_mu Delta_(e_mu) T (tilde(sans(e))^mu \, omega) = 0 $
+$ sum_mu Delta_(e_mu) T (tilde(sans(e))^mu \, omega) = 0 $ <9.31>
 
 for every one-form $omega$.
 
 a. Show that for the perfect fluid stress-energy tensor and the FLRW metric this constraint is equivalent to the differential equation
 
-$ D (c^2 rho R^3) + p D (R^3) = 0 . $
+$ D (c^2 rho R^3) + p D (R^3) = 0 . $ <9.32>
 
 b. Assume that in a \"matter-dominated universe\" radiation pressure is negligible, so $p = 0$. Using the Robertson-Walker equations (9.30) and the energy conservation equation (9.32) show that the observation of an expanding universe is compatible with a negative curvature universe, a flat universe, or a positive curvature universe: $k in {- 1 \, 0 \, + 1}$.
 ]

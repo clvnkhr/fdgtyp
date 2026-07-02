@@ -2,7 +2,7 @@
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
 #import "../lib.typ": fdg-chapter, curl, grad, Lap, div, length
 
-#fdg-chapter("Manifolds", numbered: true)[
+#fdg-chapter("Manifolds", numbered: true, eq-prefix: "2")[
 A #emph[manifold] is a generalization of our idea of a smooth surface embedded in Euclidean space. For an #emph[n]-dimensional manifold, around every point there is a simply-connected open set, the #emph[coordinate patch], and a one-to-one continuous function, the #emph[coordinate function] or #emph[chart], mapping every point in that open set to a tuple of #emph[n] real numbers, the #emph[coordinates]. In general, several charts are needed to label all points on a manifold. It is required that if a region is in more than one coordinate patch then the coordinates are consistent in that the function mapping one set of coordinates to another is continuous (and perhaps differentiable to some degree). A consistent system of coordinate patches and coordinate functions that covers the entire manifold is called an #emph[atlas].
 
 An example of a 2-dimensional manifold is the surface of a sphere or of a coffee cup. The space of all configurations of a planar double pendulum is a more abstract example of a 2-dimensional manifold. A manifold that looks locally Euclidean may not look like Euclidean space globally: for example, it may not be simply connected. The surface of the coffee cup is not simply connected, because there is a hole in the handle for your fingers.
@@ -26,11 +26,11 @@ and give it the name `R2`. One useful patch of the plane is the one that contain
 == Coordinate Functions
 A coordinate function $chi$ maps points in a coordinate patch of a manifold to a coordinate tuple#footnote[In the text that follows we will use sans-serif names, such as $sans(f)$, $sans(v)$, $sans(m)$, to refer to objects defined on the manifold. Objects that are defined on coordinates (tuples of real numbers) will be named with symbols like $f$, $v$, $x$.]:
 
-$ x = chi (m)\, $
+$ x = chi (m)\, $ <2.1>
 
 where $x$ may have a convenient tuple structure. Usually, the coordinates are arranged as an \"up structure\"; the coordinates are selected with superscripts:
 
-$ x^i = chi^i (m). $ The number of independent components of $x$ is the dimension of the manifold.
+$ x^i = chi^i (m). $ <2.2> The number of independent components of $x$ is the dimension of the manifold.
 
 Assume we have two coordinate functions $chi$ and $chi'$. The coordinate transformation from $chi'$ coordinates to $chi$ coordinates is just the composition $chi compose chi^(' - 1)$ , where $chi^(' - 1)$ is the functional inverse of $chi'$ (see figure 2.1).
 
@@ -93,9 +93,9 @@ This function has a coordinate representation $f_chi$ with respect to the coordi
 
 #align(center)[#image("../assets/figures/fig-2-2.pdf", width: 92%)]
 
-$ f_chi = sans(f) compose chi^(-1) . $ Both the coordinate representation $f_chi$ and the tuple $x$ depend on the coordinate system, but the value $f_chi (x)$ is independent of coordinates: $ f_chi (x)=(sans(f) compose chi^(-1)) (chi (sans(m)))= sans(f) (sans(m)). $ The subscript $chi$ may be dropped when it is unambiguous.
+$ f_chi = sans(f) compose chi^(-1) . $ <2.3> Both the coordinate representation $f_chi$ and the tuple $x$ depend on the coordinate system, but the value $f_chi (x)$ is independent of coordinates: $ f_chi (x)=(sans(f) compose chi^(-1)) (chi (sans(m)))= sans(f) (sans(m)). $ <2.4> The subscript $chi$ may be dropped when it is unambiguous.
 
-For example, in a 2-dimensional real manifold the coordinates of a manifold point $m$ are a pair of real numbers, $ (x\,y)= chi (sans(m))\, $ and the manifold function $sans(f)$ is represented in coordinates by a function $f$ that takes a pair of real numbers and produces a real number $ f : sans(R)^2 arrow.r sans(R) f :(x\,y)arrow.r f (x\,y). $ We define our manifold function $ sans(f) : sans(M) arrow.r sans(R) sans(f) : sans(m) arrow.r (f compose chi) (sans(m)). $
+For example, in a 2-dimensional real manifold the coordinates of a manifold point $m$ are a pair of real numbers, $ (x\,y)= chi (sans(m))\, $ <2.5> and the manifold function $sans(f)$ is represented in coordinates by a function $f$ that takes a pair of real numbers and produces a real number $ f : sans(R)^2 arrow.r sans(R) f :(x\,y)arrow.r f (x\,y). $ <2.6> We define our manifold function $ sans(f) : sans(M) arrow.r sans(R) sans(f) : sans(m) arrow.r (f compose chi) (sans(m)). $ <2.7>
 
 == #emph[Manifold Functions Are Coordinate Independent]
 We can illustrate the coordinate independence with a program. We will show that an arbitrary manifold function $sans(f)$, when defined by its coordinate representation in rectangular coordinates, has the same behavior when applied to a manifold point independent of whether the point is specified in rectangular or polar coordinates.

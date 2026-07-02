@@ -60,6 +60,7 @@ const assertions = [
       "embedding space. (The $hat(z)$ axis goes through the North Pole, and the Equator is in the plane $z = 0$.)",
       "(define Cartan (Christoffel->Cartan (metric->Christoffel-2 the-metric (coordinate-system->basis R2-rect))))",
       "This analysis will work for any number of dimensions (but will take your computer longer in higher dimensions, because the complexity increases).",
+      "$ sans(d) theta (sans(v))= dot(theta) \\\\\n sans(d) phi.alt (sans(v))= dot(phi.alt)\\, $",
     ],
     excludes: [
       "EulerLagrange",
@@ -67,6 +68,8 @@ const assertions = [
       "#| Cartan |#",
       "```scheme (We know that this may be unfamiliar notation",
       "```scheme (but will take your computer longer in higher dimensions",
+      "dot (theta)",
+      "dot (phi.alt)",
     ],
   },
   {
@@ -189,6 +192,7 @@ const assertions = [
     contains: [
       "By analogy, Einstein noticed that Maxwell\\'s equations were inconsistent with Galilean relativity.",
       "$ curl arrow(B) = frac(4 pi, c) arrow(I). $",
+      "$ curl arrow(B) = frac(4 pi, c) arrow(I). $ <11.3>",
       "$ Lap arrow(E) - frac(1, c^2) frac(partial^2 arrow(E), partial t^2) = 4 pi lr(grad rho + frac(1, c^2) arrow(I)). $",
       "$ frac(partial^2 phi.alt (u), partial x^2) + frac(partial^2 phi.alt (u), partial y^2) + frac(partial^2 phi.alt (u), partial z^2) - frac(1, c^2) frac(partial^2 phi.alt (u), partial t^2) = 0. $",
       "$ length_u (xi) = sqrt((Delta x)^2 + (Delta y)^2 + (Delta z)^2 - (c Delta t)^2), $",
@@ -207,6 +211,7 @@ const assertions = [
       "make-4-tuple",
       "R^(= 1)",
       "v = βc along the ˆx-axis",
+      "\\<11.1\\>",
       "$ \"curl\"",
       "$ \"grad\"",
       "$ \"Lap\"",
@@ -226,6 +231,7 @@ const assertions = [
     file: "appendix_b.typ",
     contains: [
       "A component of an up tuple is usually identified by a superscript.",
+      "$ p v = p_0 v^0 + p_1 v^1 + p_2 v^2 . $ <B.8>",
       "Higher-order derivatives are described by exponentiating the derivative operator. Thus the $n$th derivative of a function $f$ is notated as $D^n f$.",
       "using $upright(T e X)$, and then these decorations turn into superscripts and subscripts.",
     ],
@@ -273,6 +279,8 @@ const globalExcludes = [
   "$ \"grad\"",
   "$ \"Lap\"",
   "$ \"length\"",
+  "<eq:op-transform>",
+  "dot (",
 ];
 
 const globalRegexExcludes = [
@@ -287,6 +295,14 @@ const globalRegexExcludes = [
   {
     name: "prose parenthetical trapped in Scheme block",
     regex: /```scheme\s+\((?:time|also|The|We know|See|but will|and perhaps|formerly)\b/,
+  },
+  {
+    name: "double-labelled equation",
+    regex: /<[^>\n]+>\s+<[A-Z0-9]+\.\d+>/,
+  },
+  {
+    name: "escaped equation label",
+    regex: /\\<[A-Z0-9]+\.\d+\\>/,
   },
 ];
 
