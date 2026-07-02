@@ -1,0 +1,21 @@
+// Generated input manifest for the Scheme Org source files.
+#let fdg-source-files = (
+  (file: "content/preface.typ", title: "Preface"),
+  (file: "content/prologue.typ", title: "Prologue"),
+  (file: "content/chapter001.typ", title: "Chapter 1: Introduction"),
+  (file: "content/chapter002.typ", title: "Manifolds"),
+  (file: "content/chapter003.typ", title: "Chapter 3: Vector Fields and One-Form Fields"),
+  (file: "content/chapter004.typ", title: "Chapter 4: Basis Fields"),
+  (file: "content/chapter005.typ", title: "Chapter 5: Integration"),
+  (file: "content/chapter006.typ", title: "Chapter 6: Over a Map"),
+  (file: "content/chapter007.typ", title: "Chapter 7: Directional Derivatives"),
+  (file: "content/chapter008.typ", title: "Chapter 8: Curvature"),
+  (file: "content/chapter009.typ", title: "Chapter 9: Metrics"),
+  (file: "content/chapter010.typ", title: "Chapter 10: Hodge Star and Electrodynamics"),
+  (file: "content/chapter011.typ", title: "Chapter 11: Special Relativity"),
+  (file: "content/appendix_a.typ", title: "Appendix A: Scheme"),
+  (file: "content/appendix_b.typ", title: "Appendix B: Our Notation"),
+  (file: "content/appendix_c.typ", title: "Appendix C: Tensors"),
+  (file: "content/references.typ", title: "References"),
+  (file: "content/errata.typ", title: "Errata for FDG"),
+)
