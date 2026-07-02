@@ -143,6 +143,7 @@
     }
   }
   show raw.where(block: true): it => {
+    let raw-lang = if it.lang == none { "raw" } else { it.lang }
     block(
       fill: fdg-raw-fill,
       stroke: fdg-raw-stroke,
@@ -150,8 +151,16 @@
       radius: 3pt,
       width: 100%,
       {
-        show: iridis.iridis-show.with(palette: fdg-iridis-palette)
-        text(font: "JetBrains Mono", size: 8.35pt, fill: fdg-raw-text, it)
+        place(
+          top + right,
+          dx: -1pt,
+          dy: 0.7pt,
+          text(font: "JetBrains Mono", size: 6.8pt, fill: rgb("#b8b1a5"))[#raw-lang],
+        )
+        pad(right: 30pt)[
+          #show: iridis.iridis-show.with(palette: fdg-iridis-palette)
+          #text(font: "JetBrains Mono", size: 8.35pt, fill: fdg-raw-text, it)
+        ]
       },
     )
   }
