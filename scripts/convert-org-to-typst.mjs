@@ -50,6 +50,15 @@ function typstEscape(text) {
     .replaceAll("#", "\\#");
 }
 
+function typstMarkupEscape(text) {
+  return text
+    .replaceAll("\\", "\\\\")
+    .replaceAll("[", "\\[")
+    .replaceAll("]", "\\]")
+    .replaceAll("$", "\\$")
+    .replaceAll("#", "\\#");
+}
+
 function escapeRegex(text) {
   return text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
@@ -521,21 +530,64 @@ function applyChapterRepairs(stem, body) {
   return body;
 }
 
+function renderReferenceInline(text) {
+  const tokens = /(\[\[([^\]]+)\]\]|\/([^/]+)\/)/g;
+  let output = "";
+  let offset = 0;
+
+  for (const match of text.matchAll(tokens)) {
+    output += typstMarkupEscape(text.slice(offset, match.index));
+    if (match[2]) {
+      const url = match[2];
+      output += `#link(${JSON.stringify(url)})[${typstMarkupEscape(url)}]`;
+    } else {
+      output += `#emph[${typstMarkupEscape(match[3])}]`;
+    }
+    offset = match.index + match[0].length;
+  }
+
+  return output + typstMarkupEscape(text.slice(offset));
+}
+
+function convertReferencesOrg(source) {
+  const body = source
+    .split("\n")
+    .filter(line => !line.startsWith("#+"))
+    .join("\n");
+  const entries = [];
+  const starts = [...body.matchAll(/^\[(\d+)\]\s+/gm)];
+
+  for (let index = 0; index < starts.length; index += 1) {
+    const match = starts[index];
+    const next = starts[index + 1];
+    const number = match[1];
+    const start = match.index + match[0].length;
+    const end = next?.index ?? body.length;
+    const text = body.slice(start, end).replace(/\s+/g, " ").trim();
+    entries.push(`\\[${number}\\] ${renderReferenceInline(text)}`);
+  }
+
+  return entries.join("\n\n");
+}
+
 function convert(file) {
   const input = path.join(orgDir, file);
   const stem = file.replace(/\.org$/, "");
   const tempDir = mkdtempSync(path.join(os.tmpdir(), "fdg-org-"));
   const tempInput = path.join(tempDir, file);
-  const source = normalizeOrgSource(readFileSync(input, "utf8")
+  const originalSource = readFileSync(input, "utf8");
+  const source = normalizeOrgSource(originalSource
     // The Org sources use a bare backslash at the end of some TeX display lines
     // as a line-break marker. Pandoc's TeX parser expects the LaTeX spelling.
     .replace(/(?<!\\)\\\n/g, "\\\\\n"), stem);
   writeFileSync(tempInput, source);
-  const body = cleanTypstOutput(execFileSync(
-    "pandoc",
-    ["--from=org", "--to=typst", "--wrap=none", tempInput],
-    { encoding: "utf8", maxBuffer: 128 * 1024 * 1024 },
-  ));
+  const body = stem === "references"
+    ? convertReferencesOrg(originalSource)
+    : cleanTypstOutput(execFileSync(
+      "pandoc",
+      ["--from=org", "--to=typst", "--wrap=none", tempInput],
+      { encoding: "utf8", maxBuffer: 128 * 1024 * 1024 },
+    ));
 
   const title = readTitle(file);
   const displayTitle = chapterDisplayTitle(title);

@@ -243,6 +243,18 @@ const assertions = [
       "\\TeX",
     ],
   },
+  {
+    file: "references.typ",
+    contains: [
+      "\\[1\\] Harold Abelson and Gerald Jay Sussman with Julie Sussman, #emph[Structure and Interpretation of Computer Programs], MIT Press, Cambridge, MA, 1996.",
+      "\\[11\\] Charles W. Misner, Kip S. Thorne, and John Archibald Wheeler, #emph[Gravitation], W. H. Freeman and Company, San Francisco, 1973.",
+      "\\[21\\] Free software is available at: #link(\"https://groups.csail.mit.edu/mac/users/gjs/6946/linux-install.htm\")[https://groups.csail.mit.edu/mac/users/gjs/6946/linux-install.htm]",
+    ],
+    excludes: [
+      "#fdg-chapter(\"References\", numbered: false, eq-prefix: \"0\")[ ]",
+      "/Structure and",
+    ],
+  },
 ];
 
 const globalExcludes = [
