@@ -265,9 +265,7 @@ We can show this dependence explicitly, for a simple system. Consider the simple
 ```scheme
 (define (L1 state)
   (sqrt (square (velocity state))))
-```
 
-```scheme
 (((Lagrange-equations L1)
   (up (literal-function 'x) (literal-function 'y)))
  't)
@@ -466,9 +464,7 @@ The time-time component of the Ricci tensor derived from the metric (@9.24) is t
    (Newton-connection 'M 'G ':c
                       (literal-function 'V (-> (UP Real Real Real) Real)))))
 
-```
 
-```scheme
 (((Ricci nabla (coordinate-system->basis spacetime-rect))
   d/dt d/dt)
  ((point spacetime-rect) (up 't 'x 'y 'z)))

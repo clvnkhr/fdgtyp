@@ -587,6 +587,13 @@ function repairChapter11(body) {
     .replaceAll("$ Lambda = B (bold(beta))cal(R) . $", "$ Lambda = B (bold(beta)) cal(R). $");
 }
 
+function repairChapter2(body) {
+  return body.replaceAll(
+    "and the manifold function $sans(f)$ is represented in coordinates by a function $f$ that takes a pair of real numbers and produces a real number $ f : sans(R)^2 arrow.r sans(R) f :(x\\,y)arrow.r f (x\\,y). $ <2.6> We define our manifold function $ sans(f) : sans(M) arrow.r sans(R) sans(f) : sans(m) arrow.r (f compose chi) (sans(m)). $ <2.7>",
+    "and the manifold function $sans(f)$ is represented in coordinates by a function $f$ that takes a pair of real numbers and produces a real number\n\n$ f : sans(R)^2 arrow.r sans(R) \\\nf :(x\\,y) arrow.r f (x\\,y). $ <2.6>\n\nWe define our manifold function\n\n$ sans(f) : sans(M) arrow.r sans(R) \\\nsans(f) : sans(m) arrow.r (f compose chi) (sans(m)). $ <2.7>",
+  );
+}
+
 function repairChapter9(body) {
   return body
     .replaceAll(
@@ -604,9 +611,23 @@ function repairChapter9(body) {
 }
 
 function applyChapterRepairs(stem, body) {
+  if (stem === "chapter002") return repairChapter2(body);
   if (stem === "chapter009") return repairChapter9(body);
   if (stem === "chapter011") return repairChapter11(body);
   return body;
+}
+
+function mergeConsecutiveRawBlocks(body) {
+  let previous;
+  let merged = body;
+  do {
+    previous = merged;
+    merged = merged.replace(
+      /^```([A-Za-z0-9_-]+)\n([\s\S]*?)\n```\n[ \t]*\n```\1\n([\s\S]*?)\n```$/gm,
+      "```$1\n$2\n\n$3\n```",
+    );
+  } while (merged !== previous);
+  return merged;
 }
 
 function addSectionLabels(stem, body) {
@@ -945,7 +966,8 @@ function convert(file) {
   const bodyWithSectionLabels = addSectionLabels(stem, bodyWithoutDuplicateTitle);
   const bodyWithFigures = insertFigurePdfs(stem, bodyWithSectionLabels);
   const bodyWithChapterRepairs = applyChapterRepairs(stem, bodyWithFigures);
-  const bodyWithRefs = replaceCitationsAndEquationRefs(bodyWithChapterRepairs);
+  const bodyWithMergedRawBlocks = mergeConsecutiveRawBlocks(bodyWithChapterRepairs);
+  const bodyWithRefs = replaceCitationsAndEquationRefs(bodyWithMergedRawBlocks);
 
   const content = [
     `// Generated from ../../fdg-book/scheme/org/${file}.`,

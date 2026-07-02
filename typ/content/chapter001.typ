@@ -172,9 +172,7 @@ So, to work with coordinates we write:
 ```scheme
 (define coordinate-path
   (compose (chart R2-rect) gamma (point R1-rect)))
-```
 
-```scheme
 (coordinate-path 't)
 
 #|
@@ -227,15 +225,11 @@ The two messy residual results that we did not show are related by the metric. I
   (metric->components
    the-metric
    (coordinate-system->basis R2-rect)))
-```
 
-```scheme
 (- Lagrange-residuals
    (* (* 'm (metric-components (gamma ((point R1-rect) 't))))
       geodesic-equation-residuals))
-```
 
-```scheme
 (down 0 0)
 ```
 

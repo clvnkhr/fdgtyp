@@ -471,9 +471,7 @@ The proper time interval is 7 years, as seen in any frame, because it measures t
  (- ((chart outgoing) traveller-at-turning-point-event)
     ((chart outgoing) start-event)))
 ;; (* 7 :c)
-```
 
-```scheme
 (proper-time-interval
  (- ((chart home) traveller-at-turning-point-event)
     ((chart home) start-event)))
@@ -495,9 +493,7 @@ and the homebody has aged
  (- ((chart home) halfway-at-home-event)
     ((chart home) start-event)))
 ;; (* 25 :c)
-```
 
-```scheme
 (proper-time-interval
  (- ((chart outgoing) halfway-at-home-event)
     ((chart outgoing) start-event)))
@@ -549,9 +545,7 @@ Indeed, the traveller comes home after 7 more years in the incoming frame:
    (make-SR-coordinates incoming
                         (up (* :c 7) 0 0 0)))
 ;; (up 0 0 0 0)
-```
 
-```scheme
 (- ((chart home) end-event)
    ((chart home)
     ((point incoming)

@@ -204,14 +204,10 @@ This computes the same operator as the traditional Riemann curvature operator:
     (let ((nabla (covariant-derivative Cartan)))
       (- (((((curvature-from-transport Cartan) w v) u) f) m)
          (((((Riemann-curvature nabla) w v) u) f) m)))))
-```
 
-```scheme
 (test R2-rect general-Cartan-2)
 ;; 0
-```
 
-```scheme
 (test R2-polar general-Cartan-2)
 ;; 0
 ```
@@ -469,9 +465,7 @@ Let\'s compute $nabla_(sans(T)) sans(U)$ and $nabla_(sans(T)) (nabla_(sans(T)) s
 ```scheme
 ((dphi ((nabla T) U)) m)
 ;; (/ (cos theta0) (sin theta0))
-```
 
-```scheme
 ((dphi ((nabla T) ((nabla T) U))) m)
 ;; -1
 ```
@@ -481,9 +475,7 @@ Let\'s interpret these results. On a sphere of radius $R$ the distance at colati
 ```scheme
 (define ((delta R) phi theta Delta-phi)
   (* R (sin theta) Delta-phi))
-```
 
-```scheme
 (((partial 1) (delta 'R)) 'phi0 'theta0 'Delta-phi)
 ;; (* Delta-phi R (cos theta0))
 ```
@@ -548,9 +540,7 @@ A system with a symmetric connection, $Gamma_(j k)^i = Gamma_(j k)^i$, is torsio
    (Christoffel->Cartan
     (symmetrize-Christoffel
      (literal-Christoffel-2 'C R4-rect)))))
-```
 
-```scheme
 (((torsion nabla) omega X Y)
  (typical-point R4-rect))
 ;; 0

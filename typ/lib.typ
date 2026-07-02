@@ -1,3 +1,5 @@
+#import "@preview/iridis:0.1.0"
+
 #let curl = math.op("curl")
 #let grad = math.op("grad")
 #let Lap = math.op("Lap")
@@ -5,6 +7,18 @@
 #let length = math.op("length")
 #let fdg-equation-prefix = state("fdg-equation-prefix", "0")
 #let fdg-link-color = rgb("#245f86")
+#let fdg-raw-fill = rgb("#fffdf8")
+#let fdg-raw-stroke = rgb("#eadfcf")
+#let fdg-raw-text = rgb("#27211d")
+#let fdg-iridis-palette = (
+  rgb("#7d00e5"),
+  rgb("#ff0000"),
+  rgb("#0094ff"),
+  rgb("#ff6a00"),
+  rgb("#4f8f55"),
+  rgb("#0041ff"),
+  rgb("#c8a900"),
+)
 
 #let fdg-book(body) = {
   set document(
@@ -73,22 +87,28 @@
   }
   show raw.where(block: true): it => {
     block(
-      fill: rgb("#fbf7ef"),
-      stroke: rgb("#d8c7ad"),
+      fill: fdg-raw-fill,
+      stroke: fdg-raw-stroke,
       inset: 8pt,
       radius: 3pt,
       width: 100%,
-      text(font: "JetBrains Mono", size: 8.35pt, fill: rgb("#27211d"), it),
+      {
+        show: iridis.iridis-show.with(palette: fdg-iridis-palette)
+        text(font: "JetBrains Mono", size: 8.35pt, fill: fdg-raw-text, it)
+      },
     )
   }
   show raw.where(block: false): it => {
     box(
-      fill: rgb("#f7efe1"),
-      stroke: rgb("#decab0"),
+      fill: fdg-raw-fill,
+      stroke: fdg-raw-stroke,
       inset: (x: 2.2pt, y: 0.35pt),
       outset: (y: 1.1pt),
       radius: 1.8pt,
-      text(font: "JetBrains Mono", fill: rgb("#27211d"), it),
+      {
+        show: iridis.iridis-show.with(palette: fdg-iridis-palette)
+        text(font: "JetBrains Mono", fill: fdg-raw-text, it)
+      },
     )
   }
   show quote: it => {

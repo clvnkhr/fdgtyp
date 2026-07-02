@@ -120,9 +120,7 @@ In addition to making the coordinate functions, the procedure `define-coordinate
 ```scheme
 (define-coordinates (up x y) R2-rect)
 (define-coordinates (up r theta) R2-polar)
-```
 
-```scheme
 ((d/dx (square r)) R2-rect-point)
 ;; (* 2 x0)
 ```
@@ -258,9 +256,7 @@ The coefficient tuple can be recovered from the one-form field:#footnote[The ana
          (literal-function 'a
                              1 R2->R))
    R2-rect))
-```
 
-```scheme
        ((omega (down d/dx d/dy)) R2-rect-point)
 ;;       (down (a_0 (up x0 y0)) (a_1 (up x0 y0)))
 ```
@@ -305,14 +301,10 @@ We can illlustrate the duality of the coordinate-basis vector fields and the coo
 
 ```scheme
 (define-coordinates (up x y) R2-rect)
-```
 
-```scheme
 ((dx d/dy) R2-rect-point)
 ;; 0
-```
 
-```scheme
 ((dx d/dx) R2-rect-point)
 ;; 0
 ```
@@ -322,9 +314,7 @@ We can use the coordinate-basis one-form fields to extract the coefficients of `
 ```scheme
 ((dx circular) R2-rect-point)
 ;; (* -1 y0)
-```
 
-```scheme
 ((dy circular) R2-rect-point)
 ;; x0
 ```
@@ -334,9 +324,7 @@ But we can also find the coefficients on the polar vector basis:
 ```scheme
 ((dr circular) R2-rect-point)
 ;; 0
-```
 
-```scheme
 ((dtheta circular) R2-rect-point)
 ;; 1
 ```
@@ -365,13 +353,9 @@ The coefficient tuple $a (x)$ is a down structure compatible for contraction wit
 
 ```scheme
 (define omega (literal-1form-field 'a R2-rect))
-```
 
-```scheme
 (define v (literal-vector-field 'b R2-rect))
-```
 
-```scheme
 ((omega v) R2-rect-point)
 ;; (+ (* (b^0 (up x y)) (a_0 (up x0 y0)))
 ;;    (* (b^1 (up x y)) (a_1 (up x0 y0))))

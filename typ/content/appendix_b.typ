@@ -60,9 +60,7 @@ A procedure #raw(lang:"scheme", "g") that multiplies the cube of its argument by
 
 (g 2)
 ;; 7.274379414605454
-```
 
-```scheme
 (* (cube 2) (sin 2))
 ;; 7.274379414605454
 ```
@@ -87,9 +85,7 @@ Just as it is useful to be able to manipulate symbolic numbers, it is useful to 
 ```scheme
 ((literal-function 'f) 'x)
 ;; (f x)
-```
 
-```scheme
 ((compose (literal-function 'f) (literal-function 'g)) 'x)
 ;; (f (g x))
 ```
@@ -124,9 +120,7 @@ We make tuples with the constructors #raw(lang:"scheme", "up") and #raw(lang:"sc
 (define v (up 'v^0 'v^1 'v^2))
 v
 ;; (up vˆ0 vˆ1 vˆ2)
-```
 
-```scheme
 (define p (down 'p_0 'p_1 'p_2))
 p
 ;; (down p_0 p_1 p_2)
@@ -312,19 +306,13 @@ Mathematical notation usually does not distinguish functions of multiple argumen
 ```scheme
 (define (h s)
   (g (ref s 0) (ref s 1)))
-```
 
-```scheme
 (h (up 'x 'y))
 ;; (g x y)
-```
 
-```scheme
 ((D g) 'x 'y)
 ;; (down (((partial 0) g) x y) (((partial 1) g) x y))
-```
 
-```scheme
 ((D h) (up 'x 'y))
 (down (((partial 0) g) x y) (((partial 1) g) x y))
 ```
@@ -358,14 +346,10 @@ In Scheme we must make explicit choices. We usually assume that phase-space stat
   (literal-function
    'H
    (-> (UP Real (UP Real Real) (DOWN Real Real)) Real)))
-```
 
-```scheme
 (H s)
 ;; (H (up t (up x y) (down p x p y)))
-```
 
-```scheme
 ((D H) s)
 ;; (down
 ;;  (((partial 0) H) (up t (up_x y) (down p_x p_y)))
@@ -419,9 +403,7 @@ In Scheme:
 ```scheme
 (define (g x y)
   (up (square (+ x y)) (cube (- y x)) (exp (+ x y))))
-```
 
-```scheme
 ((D g) 'x 'y)
 ;; (down (up (+ (* 2 x) (* 2 y))
 ;;           (+ (* -3 (expt x 2)) (* 6 x y) (* -3 (expt y 2)))

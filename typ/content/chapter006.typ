@@ -125,9 +125,7 @@ The basis over the map is constructed from the basis on the sphere:
 
 (define h
   (literal-manifold-function 'h-spherical S2-spherical))
-```
 
-```scheme
 (((basis->vector-basis S2-basis-over-mu) h)
  ((point R1-rect) 't0))
 ;; (down
@@ -308,9 +306,7 @@ First, let\'s compare the pullback of the exterior derivative of a function with
 ```scheme
 (define f (literal-manifold-function 'f-rect R3-rect))
 (define X (literal-vector-field 'X-rect R2-rect))
-```
 
-```scheme
 (((- ((pullback mu) (d f)) (d ((pull back mu) f))) X)
  ((point R2-rect) (up 'x0 'y0)))
 ;; 0
@@ -321,9 +317,7 @@ More generally, we can consider what happens to a form field. For a one-form fie
 ```scheme
 (define theta (literal-1form-field 'THETA R3-rect))
 (define Y (literal-vector-field 'Y-rect R2-rect))
-```
 
-```scheme
 (((- ((pullback mu) (d theta)) (d ((pullback mu) theta))) X Y)
  ((point R2-rect) (up 'x0 'y0)))
 ;; 0

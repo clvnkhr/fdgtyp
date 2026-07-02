@@ -111,9 +111,7 @@ Let\'s specialize to 3-dimensional Euclidean space. Following equation @5.18 we 
 
 (define u (+ (* 'u^0 d/dx) (* 'u^1 d/dy)))
 (define v (+ (* 'v^0 d/dx) (* 'v^1 d/dy)))
-```
 
-```scheme
 (((wedge dx dy) u v) R3-rect-point)
 ;; (+ (* u^0 v^1) (* -1 u^1 v^0))
 ```
@@ -125,9 +123,7 @@ If we use cylindrical coordinates and define cylindrical vector fields we get th
 
 (define a (+ (* 'a^0 d/dr) (* 'a^1 d/dtheta)))
 (define b (+ (* 'b^0 d/dr) (* 'b^1 d/dtheta)))
-```
 
-```scheme
 (((wedge dr dtheta) ab) ((point R3-cyl) (up 'r0 'theta0 'z0)))
 ;; (+ (* a^0 b^1 ) (* -1 a^1 b^0))
 ```
@@ -140,9 +136,7 @@ There is a similar story with volumes. The wedge product of the elements of the 
 (define u (+ (* 'u^0 d/dx) (* 'u^1 d/dy) (* 'u^2 d/dz)))
 (define v (+ (* 'v^0 d/dx) (* 'v^1 d/dy) (* 'v^2 d/dz)))
 (define w (+ (* 'w^0 d/dx) (* 'w^1 d/dy) (* 'w^2 d/dz)))
-```
 
-```scheme
 (((wedge dx dy dz) u v w) R3-rect-point)
 ;; (+ (* u^0 v^1 w^2)
 ;;    (* -1 u^0 v^2 w^1)
@@ -225,9 +219,7 @@ The test will require two arbitrary vector fields
 ```scheme
 (define X (literal-vector-field 'X-rect R3-rect))
 (define Y (literal-vector-field 'Y-rect R3-rect))
-```
 
-```scheme
 (((- (d theta)
      (+ (wedge (d a) dx)
         (wedge (d b) dy)
@@ -256,9 +248,7 @@ Here we need another vector field because our result will be a three-form field.
 
 ```scheme
 (define Z (literal-vector-field 'Z-rect R3-rect))
-```
 
-```scheme
 (((- (d omega)
      (+ (wedge (d a) dy dz)
         (wedge (d b) dz dx)
@@ -342,9 +332,7 @@ Here we extract $sans(d) sans(x)$ and $sans(d) sans(y)$ from R2-rect-basis to av
 ```scheme
 (define alpha (literal-function 'alpha R2->R))
 (define beta (literal function 'beta R2->R))
-```
 
-```scheme
 (let ((dx (ref (basis->1form-basis R2-rect-basis) 0))
       (dy (ref (basis-1>form-basis R2-rect-basis) 1)))
   (((- (d (+ (* (compose alpha (chart R2-rect)) dx)
@@ -410,9 +398,7 @@ Assuming Stokes\'s Theorem, the exterior derivative of the leakage of stuff per 
 (define X (literal-vector-field 'X-rect R3-rect))
 (define Y (literal-vector-field 'Y-rect R3-rect))
 (define Z (literal-vector-field 'Z-rect R3-rect))
-```
 
-```scheme
 (((- production-in-volume-element
      (d flux-through-boundary-element))
   X Y Z)

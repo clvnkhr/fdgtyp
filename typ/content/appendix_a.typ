@@ -19,9 +19,7 @@ A #emph[procedure call] is a kind of compound expression. A procedure call is a 
 ```scheme
 (+ 1 2.14)
 ;; 3.14
-```
 
-```scheme
 (+ 1 (* 2 1.07))
 ;; 3.14
 ```
@@ -86,9 +84,7 @@ In Scheme, procedures may be passed as arguments and returned as values. For exa
 
 ((compose square sin) 2)
 ;; .826821810431806
-```
 
-```scheme
 (square (sin 2))
 ;; .826821810431806
 ```
@@ -144,9 +140,7 @@ Given conditionals and definitions, we can write recursive procedures. For examp
 
 (factorial 6)
 ;; 720
-```
 
-```scheme
 (factorial 40)
 ;; 815915283247897734345611269596115894272000000000
 ```
@@ -195,14 +189,10 @@ The procedure #raw(lang:"scheme", "list") is the constructor for lists. The sele
 
 a-list
 ;; (6 946 8 356 12 620)
-```
 
-```scheme
 (list-ref a-list 3)
 ;; 356
-```
 
-```scheme
 (list-ref a-list 0)
 ;; 6
 ```
@@ -212,27 +202,19 @@ Lists are built from pairs. A pair is made using the constructor #raw(lang:"sche
 ```scheme
 (car a-list)
 ;; 6
-```
 
-```scheme
 (cdr a-list)
 ;; (946 8 356 12 620)
-```
 
-```scheme
 (car (cdr a-list))
 ;; 946
-```
 
-```scheme
 (define another-list
   (cons 32 (cdr a-list)))
 
 another-list
 ;; (32 946 8 356 12 620)
-```
 
-```scheme
 (car (cdr another-list))
 ;; 946
 ```
@@ -249,14 +231,10 @@ Vectors are simpler than lists. There is a constructor #raw(lang:"scheme", "vect
 
 a-vector
 ;; #(37 63 49 21 88 56)
-```
 
-```scheme
 (vector-ref a-vector 3)
 ;; 21
-```
 
-```scheme
 (vector-ref a-vector 0)
 ;; 37
 ```
@@ -278,9 +256,7 @@ We can test if two symbols are identical by using the predicate #raw(lang:"schem
        (eq? (car expression) '+)))
 (sum? '(+ 3 a))
 ;; #t
-```
 
-```scheme
 (sum? '(* 3 a))
 ;; #f
 ```

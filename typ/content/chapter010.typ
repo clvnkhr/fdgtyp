@@ -205,9 +205,7 @@ But the divergence and Laplacian are simpler
 ;;       (* r0 (sin theta0)))
 ;;    (/ (((partial 2) vˆ2) (up r0 theta0 phi0))
 ;;       (* r0 (sin theta0))))
-```
 
-```scheme
 (((Laplacian spherical-metric orthonormal-spherical-basis)
   (literal-manifold-function 'f spherical))
  R3-spherical-point)
@@ -287,9 +285,7 @@ So, the Laplacian of a scalar field is the wave equation!
 
 ```scheme
 (define p (literal-manifold-function 'phi SR))
-```
 
-```scheme
 (((Laplacian g-Minkowski SR-basis) p) an-event)
 ;; (+ (((partial 0) ((partial 0) phi)) (up ct0 x0 y0 z0))
 ;;    (* -1 (((partial 1) ((partial 1) phi)) (up ct0 x0 y0 z0)))
@@ -549,9 +545,7 @@ If we give a particle a more general timelike 4-velocity in the $hat(x)$ directi
 (define (Ux beta)
   (+ (* (/ 1 (sqrt (- 1 (square beta)))) d/dct)
      (* (/ beta (sqrt (- 1 (square beta)))) d/dx)))
-```
 
-```scheme
 ((Force 'q F (Ux 'v/c) dy) an-event)
 ;; (/ (+ (* -1 q v/c (Bz (up ct0 x0 y0 z0)))
 ;;       (* q (Ey (up ct0 x0 y0 z0))))

@@ -101,9 +101,7 @@ Suppose we have forgotten how the constants in the solution relate to the physic
 ```scheme
 (define (proposed-solution t)
   (* 'a (cos (+ (* 'omega t) 'phi))))
-```
 
-```scheme
 (->tex
  (((Lagrange-equations (L-harmonic 'm 'k))
    proposed-solution)

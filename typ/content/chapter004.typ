@@ -281,19 +281,13 @@ Define the vector fields #raw(lang:"scheme", "Jx"), #raw(lang:"scheme", "Jy"), a
 (define Jz (- (* x d/dy) (* y d/dx)))
 (define Jx (- (* y d/dz) (* z d/dy)))
 (define Jy (- (* z d/dx) (* x d/dz)))
-```
 
-```scheme
 (((+ (commutator Jx Jy) Jz) g) R3-rect-point)
 ;; 0
-```
 
-```scheme
 (((+ (commutator Jy Jz) Jx) g) R3-rect-point)
 ;; 0
-```
 
-```scheme
 (((+ (commutator Jz Jx) Jy) g) R3-rect-point)
 ;; 0
 ```
@@ -315,14 +309,10 @@ We can also compute the commutators for the basis vector fields $sans(e)_x$, $sa
 ```scheme
 (((+ (commutator e x e y) e z) f) SO3-point)
 ;; 0
-```
 
-```scheme
 (((+ (commutator e y e z) e x) f) SO3-point)
 ;; 0
-```
 
-```scheme
 (((+ (commutator e z e x) e y) f) SO3-point)
 ;; 0
 ```

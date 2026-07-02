@@ -87,14 +87,10 @@ We can construct a procedure that computes the Lie derivative of a vector field 
 (define (Lie-directional coordsys order)
 (let ((Phi (phi coordsys order)))
 (F->directional-derivative (F-Lie Phi))))
-```
 
-```scheme
 (define (((F-Lie phi) v) delta)
 (pushforward-vector ((phi v) delta) ((phi v) (- delta))))
-```
 
-```scheme
 (define ((((phi coordsys order) v) delta) m)
 ((point coordsys)
 (series:sum (((exp (* delta v)) (chart coordsys)) m)
@@ -308,28 +304,20 @@ We can verify Cartan\'s formula in a simple case with a program:
 (define X (literal-vector-field 'X-rect R3-rect))
 (define Y (literal-vector-field 'Y-rect R3-rect))
 (define Z (literal-vector-field 'Z-rect R3-rect))
-```
 
-```scheme
 (define a (literal-manifold-function 'alpha R3-rect))
 (define b (literal-manifold-function 'beta R3-rect))
 (define c (literal-manifold function 'gamma R3-rect))
-```
 
-```scheme
 (define omega
 (+ (* a (wedge dx dy))
 (* b (wedge dy dz))
 (* c (wedge dz dx))))
-```
 
-```scheme
 (define ((L1 X) omega)
 (+ ((interior-product X) (d omega))
 (d ((interior-product X) omega))))
-```
 
-```scheme
 ((- (((Lie-derivative X) omega) Y Z)
 (((L1 X) omega) Y Z))
 ((point R3-rect) (up 'x0 'y0 'z0)))
@@ -411,9 +399,7 @@ As before, we can take a stab at computing the covariant derivative of a vector 
 (let ((Phi (phi coordsys order)))
 (F->directional-derivative
 (F-parallel omega Phi coordsys))))
-```
 
-```scheme
 (define ((((((F-parallel omega phi coordsys) v) delta) u) f) m)
 (let ((basis (coordinate-system->basis coordsys)))
 (let ((etilde (basis->1form-basis basis))
@@ -621,14 +607,10 @@ The vector field $partial\/partial theta$ generates a rotation in the plane (the
 
 ```scheme
 (define circular (- (* x d/dy) (* y d/x)))
-```
 
-```scheme
 (define f (literal-manifold-function 'f-rect R2-rect))
 (define R2-rect-point ((point R2-rect) (up 'x0 'y0)))
-```
 
-```scheme
 (((((covariant-derivative R2-rect-Cartan) d/dx)
 circular)
 f)
@@ -662,9 +644,7 @@ Of course, this is a pretty special situation. Let\'s try something more general
 ```scheme
 (define V (literal-vector-field 'V-rect R2-rect))
 (define W (literal-vector-field 'W-rect R2-rect))
-```
 
-```scheme
 (((((- (covariant-derivative R2-rect-Cartan)
 (covariant-derivative R2-polar-Cartan))
 V)
@@ -753,9 +733,7 @@ We also need an arbitrary vector field u#sub[gamma] over the map gamma. To make 
 ```scheme
 (define basis-over-gamma
 (basis->basis-over-map gamma S2-basis))
-```
 
-```scheme
 (define u_gamma
 (* (up (compose (literal-function 'u^0)
 (chart R1-rect))
@@ -775,9 +753,7 @@ We specify a connection by giving the Christoffel coefficients.#footnote[We will
 (down (up zero (/1 (tan theta)))
 (up (-  (* (sin theta) (cos theta))) zero))))
 S2-basis))
-```
 
-```scheme
 (define sphere-Cartan (Christoffel->Cartan S2-Christoffel))
 ```
 
@@ -785,9 +761,7 @@ Finally, we compute the residual of the equation @7.71 that governs parallel tra
 
 ```scheme
 (define-coordinates t R1-rect)
-```
 
-```scheme
 (s:map/r
 (lambda (omega)
 ((omega
@@ -855,9 +829,7 @@ The path on the sphere will be the target of a map from the real line. We choose
 (let ((colatp (acos (ref vp 2)))
 (longp (atan (ref vp 1) (ref vp 0))))
 (up colatp long p))))))
-```
 
-```scheme
 (define (tilted-path tilt)
 (define (coords t)
 ((transform tilt) (up :pi/2 t)))
@@ -927,18 +899,14 @@ The geodesic equation is the same as the Lagrange equation for free motion const
 ```scheme
 (define (Lfree s)
 (* 1/2 (square (velocity s))))
-```
 
-```scheme
 (define (sphere->R3 s)
 (let ((q (coordinate s)))
 (let ((theta (ref q 0)) (phi (ref q 1)))
 (up (* (sin theta) (cos phi))
 (* (sin theta) (sin phi))
 (cos theta)))))
-```
 
-```scheme
 (define Lsphere
 (compose Lfree (F->C sphere->R3)))
 ```
@@ -1005,20 +973,14 @@ b. Show that there is no connection that for every vector field makes the Lie de
 
 ```scheme
 (define-coordinates (up x y z) R3-rect)
-```
 
-```scheme
 (define theta (+ (* a dx) (* b dy) (* c dz)))
-```
 
-```scheme
 (define omega
 (+ (* a (wedge dy dz))
 (* b (wedge dz dx))
 (* c (wedge dx dy))))
-```
 
-```scheme
 (define X (literal-vector-field 'X-rect R3-rect))
 (define Y (literal-vector-field 'Y-rect R3-rect))
 (define Z (literal-vector-field 'Z-rect R3-rect))
