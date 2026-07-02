@@ -298,7 +298,10 @@ function cleanTypstMath(math) {
     " lr( (D f)(t) = frac(d, d x) f(x) |)_(x=t) ",
   );
 
-  return spaceMathApplications(cleaned);
+  return spaceMathApplications(cleaned).replace(
+    "frac(d, d t) (frac(partial L (t\\,q\\,dot(q)), partial dot(q))|_(q=w (t) dot(q) = frac(d w (t), d t))) - frac(partial L (t\\,q\\,dot(q)), partial q)|_(q=w (t)dot(q) = frac(d w (t), d t)) = 0 .",
+    "frac(d, d t) (lr(frac(partial L (t\\,q\\,dot(q)), partial dot(q))|)_(q=w (t) \\\n dot(q) = frac(d w (t), d t))) - lr(frac(partial L (t\\,q\\,dot(q)), partial q)|)_(q=w (t) \\\n dot(q) = frac(d w (t), d t)) = 0 .",
+  );
 }
 
 function cleanTypstOutput(body) {
@@ -344,7 +347,7 @@ function cleanTypstOutput(body) {
     .replaceAll("$A = dx ∧ dy.$", "$sans(A) = sans(d) sans(x) \"∧\" sans(d) sans(y).$")
     .replaceAll(
       "$ sans(d) theta (sans(v))= dot(theta) sans(d) phi.alt (sans(v))= dot(phi.alt)\\, $",
-      "$ sans(d) theta (sans(v))= dot(theta) \\\\\n sans(d) phi.alt (sans(v))= dot(phi.alt)\\, $",
+      "$ sans(d) theta (sans(v))= dot(theta) \\\n sans(d) phi.alt (sans(v))= dot(phi.alt)\\, $",
     )
     .replaceAll("[)](", "[)] (")
     .replaceAll("[(](", "[(] (")

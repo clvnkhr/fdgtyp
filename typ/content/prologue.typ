@@ -16,7 +16,9 @@ So we have to figure out how to insert the path to be tested. The partial deriva
 
 So probably we meant something like the following (assume that $omega$ is a path through the coordinate configuration space, and so $w (t)$ specifies the configuration coordinates at time $t$):
 
-$ frac(d, d t) (frac(partial L (t\,q\,dot(q)), partial dot(q))|_(q=w (t) dot(q) = frac(d w (t), d t))) - frac(partial L (t\,q\,dot(q)), partial q)|_(q=w (t)dot(q) = frac(d w (t), d t)) = 0 . $
+$ frac(d, d t) (lr(frac(partial L (t\,q\,dot(q)), partial dot(q))|)_(q=w (t) \
+ dot(q) = frac(d w (t), d t))) - lr(frac(partial L (t\,q\,dot(q)), partial q)|)_(q=w (t) \
+ dot(q) = frac(d w (t), d t)) = 0 . $
 
 In this equation we see that the partial derivatives of the Lagrangian function are taken, then the path and its derivative are substituted for the position and velocity arguments of the Lagrangian, resulting in an expression in terms of the time.
 

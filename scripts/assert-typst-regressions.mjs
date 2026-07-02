@@ -45,12 +45,15 @@ const assertions = [
       "A mechanical system is described by a Lagrangian function of the system state (time, coordinates, and velocities).",
       "its derivative (also a function of time) into the coordinate and velocity arguments",
       "Note that we can flexibly manipulate representations of mathematical functions. (See Appendices A and B.)",
+      "$ frac(d, d t) (lr(frac(partial L (t\\,q\\,dot(q)), partial dot(q))|)_(q=w (t) \\\n dot(q) = frac(d w (t), d t))) - lr(frac(partial L (t\\,q\\,dot(q)), partial q)|)_(q=w (t) \\\n dot(q) = frac(d w (t), d t)) = 0 . $",
       "$ (D f) (t)= frac(d, d x) f (x)|_(x=t) . $",
     ],
     excludes: [
       "```scheme (time, coordinates, and velocities).",
       "```scheme (also a function of time)",
       "```scheme (See Appendices A and B.)",
+      "partial dot(q))|_(q=w",
+      "partial q)|_(q=w",
     ],
   },
   {
@@ -60,7 +63,7 @@ const assertions = [
       "embedding space. (The $hat(z)$ axis goes through the North Pole, and the Equator is in the plane $z = 0$.)",
       "(define Cartan (Christoffel->Cartan (metric->Christoffel-2 the-metric (coordinate-system->basis R2-rect))))",
       "This analysis will work for any number of dimensions (but will take your computer longer in higher dimensions, because the complexity increases).",
-      "$ sans(d) theta (sans(v))= dot(theta) \\\\\n sans(d) phi.alt (sans(v))= dot(phi.alt)\\, $",
+      "$ sans(d) theta (sans(v))= dot(theta) \\\n sans(d) phi.alt (sans(v))= dot(phi.alt)\\, $",
     ],
     excludes: [
       "EulerLagrange",
