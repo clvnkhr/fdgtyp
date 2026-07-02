@@ -2,11 +2,11 @@
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
 #import "../lib.typ": fdg-chapter, curl, grad, Lap, div, length
 
-#fdg-chapter("Introduction", numbered: true, eq-prefix: "1")[
+#fdg-chapter("Introduction", numbered: true, eq-prefix: "1", ref-label: "chap-1")[
 #quote(block: true)[
 Philosophy is written in that great book which ever lies before our eyes---I mean the Universe---but we cannot understand it if we do not learn the language and grasp the symbols in which it is written. This book is written in the mathematical language, and the symbols are triangles, circles, and other geometrical figures without whose help it is impossible to comprehend a single word of it, without which one wanders in vain through a dark labyrinth.
 
-Galileo Galilei \[8\]
+Galileo Galilei @galilei1623assayer
 ]
 
 Differential geometry is a mathematical language that can be used to express physical concepts. In this introduction we show a typical use of this language. Do not panic! At this point we do not expect you to understand the details of what we are showing. All will be explained as needed in the text. The purpose is to get the flavor of this material.
@@ -21,14 +21,14 @@ Denizens of the surface may play ball games. The balls are constrained to the su
 
 So there are deep connections between the dynamics of particles and the geometry of the space that the particles move in. If we understand this connection we can learn about dynamics by studying geometry and we can learn about geometry by studying dynamics. We enter dynamics with a Lagrangian and the associated Lagrange equations. Although this formulation exposes many important features of the system, such as how symmetries relate to conserved quantities, the geometry is not apparent. But when we express the Lagrangian and the Lagrange equations in differential geometry language, geometric properties become apparent. In the case of systems with no potential energy the Euler-Lagrange equations are equivalent to the geodesic equations on the configuration manifold. In fact, the coefficients of terms in the Lagrange equations are Christoffel coefficients, which define parallel transport on the manifold. Let\'s look into this a bit.
 
-== Lagrange Equations
-We write the Lagrange equations in functional notation#footnote[A short introduction to our functional notation, and why we have chosen it, is given in the prologue: Programming and Understanding. More details can be found in Appendix B] as follows:
+== Lagrange Equations <sec-1.1>
+We write the Lagrange equations in functional notation#footnote[A short introduction to our functional notation, and why we have chosen it, is given in the prologue: Programming and Understanding. More details can be found in Appendix @chap-appendix-b] as follows:
 
 $ D (partial_2 L compose Gamma [q]) - partial_1 L compose Gamma[q]= 0 . $
 
-In SICM \[19\], Section 1.6.3, we showed that a Lagrangian describing the free motion of a particle subject to a coordinate-dependent constraint can be obtained by composing a free-particle Lagrangian with a function that describes how dynamical states transform given the coordinate transformation that describes the constraints.
+In SICM @sussman2001sicm, Section 1.6.3, we showed that a Lagrangian describing the free motion of a particle subject to a coordinate-dependent constraint can be obtained by composing a free-particle Lagrangian with a function that describes how dynamical states transform given the coordinate transformation that describes the constraints.
 
-A Lagrangian for a free particle of mass m and velocity v is just its kinetic energy, $m v^2\/2$. The procedure #raw(lang:"verbatim", "Lfree") implements the free Lagrangian:#footnote[An informal description of the Scheme programming language can be found in Appendix A.]
+A Lagrangian for a free particle of mass m and velocity v is just its kinetic energy, $m v^2\/2$. The procedure #raw(lang:"verbatim", "Lfree") implements the free Lagrangian:#footnote[An informal description of the Scheme programming language can be found in Appendix @chap-appendix-a.]
 
 ```scheme
 (define ((Lfree mass) state)
@@ -85,7 +85,7 @@ So the value of the Lagrangian at an arbitrary dynamical state is:
 or, in infix notation:
 
 $ 1 / 2 R^2 m dot(phi.alt)^2 (sin (theta))^2 + 1 / 2 R^2 m dot(theta)^2 $ <1.1>
-== The Metric
+== The Metric <sec-1.2>
 Let\'s now take a step into the geometry. A surface has a metric which tells us how to measure sizes and angles at every point on the surface. (Metrics are introduced in Chapter 9.)
 
 The metric is a symmetric function of two vector fields that gives a number for every point on the manifold. (Vector fields are introduced in Chapter 3). Metrics may be used to compute the length of a vector field at each point, or alternatively to compute the inner product of two vector fields at each point. For example, the metric for the sphere of radius $R$ is
@@ -97,7 +97,7 @@ where $sans(u)$ and $sans(v)$ are vector fields, and $sans(d) theta$ and $sans(d
 $ sans(d) theta (sans(v))= dot(theta) \
  sans(d) phi.alt (sans(v))= dot(phi.alt)\, $
 
-then the coefficients in the metric are the same as the coefficients in the value of the Lagrangian, equation (1.1), apart from a factor of $m\/2$.
+then the coefficients in the metric are the same as the coefficients in the value of the Lagrangian, equation @1.1, apart from a factor of $m\/2$.
 
 We can generalize this result and write a Lagrangian for free motion of a particle of mass $m$ on a manifold with metric $sans(g)$:
 
@@ -124,13 +124,13 @@ This program gives the Lagrangian in a coordinate-independent, geometric way. It
 
 The manifold point $sans(m)$ represented by the coordinates $x$ is given by #raw(lang:"verbatim", "(define m ((point coordsys) x))"). The coordinates of $sans(m)$ in a different coordinate system are given by #raw(lang:"verbatim", "((chart coordsys2) m)"). The manifold point $sans(m)$ is a geometric object that is the same point independent of how it is specified. Similarly, the velocity vector $sans(e) v$ is a geometric object, even though it is specified using components $v$ with respect to the basis $sans(e)$. Both $v$ and $sans(e)$ have as many components as the dimension of the space so their product is interpreted as a contraction.
 
-Let\'s make a general metric on a 2-dimensional real manifold:#footnote[The procedure #raw(lang:"verbatim", "literal-metric") provides a metric. It is a general symmetric function of two vector fields, with literal functions of the coordinates of the manifold points for its coefficients in the given coordinate system. The quoted symbol #raw(lang:"verbatim", "'g") is used to make the names of the literal coefficient functions. Literal functions are discussed in Appendix B.]
+Let\'s make a general metric on a 2-dimensional real manifold:#footnote[The procedure #raw(lang:"verbatim", "literal-metric") provides a metric. It is a general symmetric function of two vector fields, with literal functions of the coordinates of the manifold points for its coefficients in the given coordinate system. The quoted symbol #raw(lang:"verbatim", "'g") is used to make the names of the literal coefficient functions. Literal functions are discussed in Appendix @chap-appendix-b.]
 
 ```scheme
 (define the-metric (literal-metric 'g R2-rect))
 ```
 
-The metric is expressed in rectangular coordinates, so the coordinate system is #raw(lang:"verbatim", "R2-rect").#footnote[#raw(lang:"verbatim", "R2-rect") is the usual rectangular coordinate system on the 2-dimensional real manifold. (See Section 2.1, page 13.) We supply common coordinate systems for n-dimensional real manifolds. For example, #raw(lang:"verbatim", "R2-polar") is a polar coordinate system on the same manifold.] The component functions will be labeled as subscripted \~g\~s.
+The metric is expressed in rectangular coordinates, so the coordinate system is #raw(lang:"verbatim", "R2-rect").#footnote[#raw(lang:"verbatim", "R2-rect") is the usual rectangular coordinate system on the 2-dimensional real manifold. (See Section @sec-2.1, page 13.) We supply common coordinate systems for n-dimensional real manifolds. For example, #raw(lang:"verbatim", "R2-polar") is a polar coordinate system on the same manifold.] The component functions will be labeled as subscripted \~g\~s.
 
 We can now make the Lagrangian for the system:
 
@@ -152,9 +152,9 @@ And we can apply our Lagrangian to an arbitrary state:
 |#
 ```
 
-Compare this result with equation (1.3).
+Compare this result with equation @1.3.
 
-== Euler-Lagrange Residuals
+== Euler-Lagrange Residuals <sec-1.3>
 The Euler-Lagrange equations are satisfied on realizable paths. Let $gamma$ be a path on the manifold of configurations. (A path is a map from the 1-dimensional real line to the configuration manifold. We introduce maps between manifolds in Chapter 6.) Consider an arbitrary path:#footnote[The procedure #raw(lang:"verbatim", "literal-manifold-map") makes a map from the manifold implied by its second argument to the manifold implied by the third argument. These arguments must be coordinate systems. The quoted symbol that is the first argument is used to name the literal coordinate functions that define the map.]
 
 ```scheme
@@ -195,10 +195,10 @@ Now we can compute the residuals of the Euler-Lagrange equations, but we get a l
   (((Lagrange-equations L) coordinate-path) 't))
 ```
 
-== Geodesic Equations
+== Geodesic Equations <sec-1.4>
 Now we get deeper into the geometry. The traditional way to write the geodesic equations is $ nabla_(sans(v)) sans(v) = 0 $ <1.4> where $nabla$ is a covariant derivative operator. Roughly, $nabla_(sans(v)) sans(w)$ is a directional derivative. It gives a measure of the variation of the vector field $sans(w)$ as you walk along the manifold in the direction of $sans(v)$. (We will explain this in depth in Chapter 7.) $nabla_(sans(v)) sans(v) = 0$ is intended to convey that the velocity vector is parallel-transported by itself. When you walked East on the Equator you had to hold the stick so that it was parallel to the Equator. But the stick is constrained to the surface of the Earth, so moving it along the Equator required turning it in three dimensions. The $nabla$ thus must incorporate the 3-dimensional shape of the Earth to provide a notion of \"parallel\" appropriate for the denizens of the surface of the Earth. This information will appear as the \"Christoffel coefficients\" in the coordinate representation of the geodesic equations.
 
-The trouble with the traditional way to write the geodesic equations (1.4) is that the arguments to the covariant derivative are vector fields and the velocity along the path is not a vector field. A more precise way of stating this relation is: $ nabla_(partial\/partial sans(t))^gamma d gamma (partial \/ partial sans(t)) = 0 . $ <1.5> (We know that this may be unfamiliar notation, but we will explain it in Chapter 7.)
+The trouble with the traditional way to write the geodesic equations @1.4 is that the arguments to the covariant derivative are vector fields and the velocity along the path is not a vector field. A more precise way of stating this relation is: $ nabla_(partial\/partial sans(t))^gamma d gamma (partial \/ partial sans(t)) = 0 . $ <1.5> (We know that this may be unfamiliar notation, but we will explain it in Chapter 7.)
 
 In coordinates, the geodesic equations are expressed $ D^2 q^i (t)+ sum_(j k) Gamma_(j k)^i (gamma (t))D q^j (t)D q^k (t)= 0\, $ <1.6> where $q (t)$ is the coordinate path corresponding to the manifold path $gamma$, and $Gamma_(j k)^i (sans(m))$ are Christoffel coefficients. The $Gamma_(j k)^i (sans(m))$ describe the \"shape\" of the manifold close to the manifold point $sans(m)$. They can be derived from the metric $g$.
 
@@ -247,7 +247,7 @@ The two messy residual results that we did not show are related by the metric. I
 
 This establishes that for a 2-dimensional space the Euler-Lagrange equations are equivalent to the geodesic equations. The Christoffel coefficients that appear in the geodesic equation correspond to coefficients of terms in the Euler-Lagrange equations. This analysis will work for any number of dimensions (but will take your computer longer in higher dimensions, because the complexity increases).
 
-=== Exercise 1.1: Motion on a Sphere
+=== Exercise 1.1: Motion on a Sphere <sec-1.4.1>
 The metric for a unit sphere, expressed in colatitude $theta$ and longitude $phi.alt$, is
 
 $ sans(g) (sans(u)\,sans(v))= sans(d) theta (sans(u))sans(d) theta (sans(v))+(sin theta)^2sans(d) phi.alt (sans(u))sans(d) phi.alt (sans(v)). $

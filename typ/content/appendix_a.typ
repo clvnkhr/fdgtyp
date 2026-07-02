@@ -2,18 +2,18 @@
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
 #import "../lib.typ": fdg-chapter, curl, grad, Lap, div, length
 
-#fdg-chapter("Appendix A: Scheme", numbered: true, eq-prefix: "A")[
+#fdg-chapter("Appendix A: Scheme", numbered: true, eq-prefix: "A", ref-label: "chap-appendix-a")[
 #quote(block: true)[
 Programming languages should be designed not by piling feature on top of feature, but by removing the weaknesses and restrictions that make additional features appear necessary. Scheme demonstrates that a very small number of rules for forming expressions, with no restrictions on how they are composed, suffice to form a practical and efficient programming language that is flexible enough to support most of the major programming paradigms in use today.
 
-IEEE Standard for the Scheme Programming Language \[10\], p. 3
+IEEE Standard for the Scheme Programming Language @ieee1991scheme, p. 3
 ]
 
-Here we give an elementary introduction to Scheme.#footnote[Many of the statements here are valid only assuming that no assignments are used.] For a more precise explanation of the language see the IEEE standard \[10\]; for a longer introduction see the textbook \[1\].
+Here we give an elementary introduction to Scheme.#footnote[Many of the statements here are valid only assuming that no assignments are used.] For a more precise explanation of the language see the IEEE standard @ieee1991scheme; for a longer introduction see the textbook @abelson1996sicp.
 
 Scheme is a simple programming language based on expressions. An expression names a value. For example, the numeral #raw(lang:"verbatim", "3.14") names an approximation to a familiar number. There are primitive expressions, such as a numeral, that we directly recognize, and there are compound expressions of several kinds.
 
-== Procedure Calls
+== Procedure Calls <sec-A.1>
 A #emph[procedure call] is a kind of compound expression. A procedure call is a sequence of expressions delimited by parentheses. The first subexpression in a procedure call is taken to name a procedure, and the rest of the subexpressions are taken to name the arguments to that procedure. The value produced by the procedure when applied to the given arguments is the value named by the procedure call. For example,
 
 ```scheme
@@ -32,8 +32,8 @@ $ (quad italic("operator") quad italic("operand-1") quad dots.c quad italic("ope
 
 where #emph[operator] names a procedure and #emph[operand-i] names the /i/th argument.#footnote[In Scheme every parenthesis is essential: you cannot add extra parentheses or remove any.]
 
-== Lambda Expressions
-Just as we use numerals to name numbers, we use $lambda$-expressions to name procedures.#footnote[The logician Alonzo Church \[5\] invented $lambda$-notation to allow the specification of an anonymous function of a named parameter: $bold(lambda) x[upright("expression in ") x]$. This is read, \"That function of one argument that is obtained by substituting the argument for x in the indicated expression.\"] For example, the procedure that squares its input can be written:
+== Lambda Expressions <sec-A.2>
+Just as we use numerals to name numbers, we use $lambda$-expressions to name procedures.#footnote[The logician Alonzo Church @church1941calculi invented $lambda$-notation to allow the specification of an anonymous function of a named parameter: $bold(lambda) x[upright("expression in ") x]$. This is read, \"That function of one argument that is obtained by substituting the argument for x in the indicated expression.\"] For example, the procedure that squares its input can be written:
 
 ```scheme
 (lambda (x) (* x x))
@@ -52,7 +52,7 @@ $ mono("(lambda") quad italic("formal-parameters") quad italic("body") mono(")")
 
 where #emph[formal-parameters] is a list of symbols that will be the names of the arguments to the procedure and #emph[body] is an expression that may refer to the formal parameters. The value of a procedure call is the value of the body of the procedure with the arguments substituted for the formal parameters.
 
-== Definitions
+== Definitions <sec-A.3>
 We can use the define construct to give a name to any object. For example, if we make the definitions#footnote[The definition of #raw(lang:"verbatim", "square") given here is not the definition of #raw(lang:"verbatim", "square in the Scmutils system. In Scmutils, =square") is extended for tuples to mean the sum of the squares of the components of the tuple. However, for arguments that are not tuples the Scmutils square does multiply the argument by itself.]
 
 ```scheme
@@ -104,7 +104,7 @@ Using the syntactic sugar shown above, we can write the definition more convenie
   (f (g x)))
 ```
 
-== Conditionals
+== Conditionals <sec-A.4>
 Conditional expressions may be used to choose among several expressions to produce a value. For example, a procedure that implements the absolute value function may be written:
 
 ```scheme
@@ -133,7 +133,7 @@ $ mono("(if") quad italic("predicate") quad italic("consequent") quad italic("al
 
 If the #emph[predicate] is true the value of the #raw(lang:"verbatim", "if") expression is the value of the #emph[consequent], otherwise it is the value of the #emph[alternative].
 
-== Recursive Procedures
+== Recursive Procedures <sec-A.5>
 Given conditionals and definitions, we can write recursive procedures. For example, to compute the $n$th factorial number we may write:
 
 ```scheme
@@ -151,7 +151,7 @@ Given conditionals and definitions, we can write recursive procedures. For examp
 ;; 815915283247897734345611269596115894272000000000
 ```
 
-== Local Names
+== Local Names <sec-A.6>
 The #raw(lang:"verbatim", "let") expression is used to give names to objects in a local context. For example,
 
 ```scheme
@@ -185,7 +185,7 @@ A slight variant of the #raw(lang:"verbatim", "let") expression provides a conve
 
 Here, the symbol #raw(lang:"verbatim", "factlp") following the #raw(lang:"verbatim", "let") is locally defined to be a procedure that has the variables #raw(lang:"verbatim", "count") and #raw(lang:"verbatim", "answer") as its formal parameters. It is called the first time with the expressions 1 and 1, initializing the loop. Whenever the procedure named #raw(lang:"verbatim", "factlp") is called later, these variables get new values that are the values of the operand expressions #raw(lang:"verbatim", "(+ count 1)") and #raw(lang:"verbatim", "(* count answer)").
 
-== Compound Data --- Lists and Vectors
+== Compound Data --- Lists and Vectors <sec-A.7>
 Data can be glued together to form compound data structures. A list is a data structure in which the elements are linked sequentially. A Scheme vector is a data structure in which the elements are packed in a linear array. New elements can be added to lists, but to access the $n$th element of a list takes computing time proportional to $n$. By contrast a Scheme vector is of fixed length, and its elements can be accessed in constant time. All data structures in this book are implemented as combinations of lists and Scheme vectors. Compound data objects are constructed from components by procedures called constructors and the components are accessed by selectors.
 
 The procedure #raw(lang:"verbatim", "list") is the constructor for lists. The selector #raw(lang:"verbatim", "list-ref") gets an element of the list. All selectors in Scheme are zero-based. For example,
@@ -267,7 +267,7 @@ There is a predicate #raw(lang:"verbatim", "vector?") that is true of vectors an
 
 The elements of lists and vectors may be any kind of data, including numbers, procedures, lists, and vectors. Numerous other procedures for manipulating list-structured data and vector-structured data can be found in the Scheme online documentation.
 
-== Symbols
+== Symbols <sec-A.8>
 Symbols are a very important kind of primitive data type that we use to make programs and algebraic expressions. You probably have noticed that Scheme programs look just like lists. In fact, they are lists. Some of the elements of the lists that make up programs are symbols, such as #raw(lang:"verbatim", "+") and #raw(lang:"verbatim", "vector").#footnote[Symbols may have any number of characters. A symbol may not contain whitespace or a delimiter character, such as parentheses, brackets, quotation marks, comma, or $\#$.] If we are to make programs that can manipulate programs, we need to be able to write an expression that names such a symbol. This is accomplished by the mechanism of #emph[quotation]. The name of the symbol #raw(lang:"verbatim", "+") is the expression #raw(lang:"verbatim", "'+"), and in general the name of an expression is the expression preceded by a single quote character. Thus the name of the expression #raw(lang:"verbatim", "(+ 3 a)") is #raw(lang:"verbatim", "'(+ 3 a)").
 
 We can test if two symbols are identical by using the predicate #raw(lang:"verbatim", "eq?"). For example, we can write a program to determine if an expression is a sum:

@@ -2,7 +2,7 @@
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
 #import "../lib.typ": fdg-chapter, curl, grad, Lap, div, length
 
-#fdg-chapter("Integration", numbered: true, eq-prefix: "5")[
+#fdg-chapter("Integration", numbered: true, eq-prefix: "5", ref-label: "chap-5")[
 We know how to integrate real-valued functions of a real variable. We want to extend this idea to manifolds, in such a way that the integral is independent of the coordinate system used to compute it.
 
 The integral of a real-valued function of a real variable is the limit of a sum of products of the values of the function on subintervals and the lengths of the increments of the independent variable in those subintervals:
@@ -21,7 +21,7 @@ It turns out that the value of this integral is independent of the coordinate ch
 
 $ integral_(a')^(b') bold(omega) (partial \/ partial upright(x)') compose chi^(' - 1) = integral_(a')^(b') bold(omega) (partial \/ partial upright(x) (D (chi compose chi^(' - 1)) compose chi')) compose chi^(' - 1) = integral_(a')^(b') (bold(omega) (partial \/ partial upright(x)) D (chi compose chi^(' - 1)) compose chi') compose chi^(' - 1) = integral_(a')^(b') (bold(omega) (partial \/ partial upright(x)) compose chi^(' - 1)) D (chi compose chi^(' - 1)) = integral_a^b (((bold(omega) (partial \/ partial upright(x)) compose chi^(-1)) D (chi compose chi^(' - 1))) compose g) D g = integral_a^b bold(omega) (partial\/partial upright(x))compose chi^(-1)\, $ <5.4>
 
-where we have used the rule for coordinate transformations of basis vectors (equation 3.19), linearity of forms in the first two lines, and the rule for change-of-variables under an integral in the last line.#footnote[Note $(D (chi compose chi^(' - 1))compose (chi' compose chi^(-1)))D (chi' compose chi^(-1))= 1$. With $g = chi' compose chi^(-1)$ this is $(D (g^(-1) compose g) (D g)= 1$.]
+where we have used the rule for coordinate transformations of basis vectors (equation @3.19), linearity of forms in the first two lines, and the rule for change-of-variables under an integral in the last line.#footnote[Note $(D (chi compose chi^(' - 1))compose (chi' compose chi^(-1)))D (chi' compose chi^(-1))= 1$. With $g = chi' compose chi^(-1)$ this is $(D (g^(-1) compose g) (D g)= 1$.]
 
 Because the integral is independent of the coordinate chart, we can write simply
 
@@ -29,16 +29,16 @@ $ I = integral_(sans(M)) omega\, $ <5.5>
 
 where $sans(M)$ is the 1-dimensional manifold with boundary corresponding to the interval.
 
-We are exploiting the fact that coordinate basis vectors in different coordinate systems are related by a Jacobian (see equation 3.19), which cancels the Jacobian that appears in the change-of-variables formula for integration (see equation 5.2).
+We are exploiting the fact that coordinate basis vectors in different coordinate systems are related by a Jacobian (see equation @3.19), which cancels the Jacobian that appears in the change-of-variables formula for integration (see equation @5.2).
 
-== Higher Dimensions
+== Higher Dimensions <sec-5.1>
 We have seen that we can integrate one-forms on 1-dimensional manifolds. We need higher-rank forms that we can integrate on higher-dimensional manifolds in a coordinate-independent manner.
 
 Consider the integral of a real-valued function, $sans(f) : sans(R)^n arrow.r sans(R)$, over a region $sans(U)$ in $sans(R)^n$. Under a coordinate transformation $g : sans(R)^n arrow.r sans(R)^n$, we have#footnote[The determinant is the unique function of the rows of its argument that i) is linear in each row, ii) changes sign under any interchange of rows, and iii) is one when applied to the identity multiplier.]
 
 $ integral_(sans(U)) sans(f) = integral_(g^(-1) (sans(U))) (sans(f) compose g)det(D g). $ <5.6>
 
-A rank $n$ form field takes $n$ vector field arguments and produces a real-valued manifold function: $omega (sans(v)\,sans(w)\,dots\,sans(u)) (sans(m))$. By analogy with the 1-dimensional case, higher-rank forms are linear in each argument. Higher-rank forms must also be antisymmetric under interchange of any two arguments in order to make a coordinate-free definition of integration analogous to equation (5.3).
+A rank $n$ form field takes $n$ vector field arguments and produces a real-valued manifold function: $omega (sans(v)\,sans(w)\,dots\,sans(u)) (sans(m))$. By analogy with the 1-dimensional case, higher-rank forms are linear in each argument. Higher-rank forms must also be antisymmetric under interchange of any two arguments in order to make a coordinate-free definition of integration analogous to equation @5.3.
 
 Consider an integral in the coordinate system χ:
 
@@ -48,7 +48,7 @@ Under coordinate transformations $g = chi compose chi'^(-1)$, the integral becom
 
 $ integral_(chi'(sans(U))) bold(omega) (sans(X)_0\,sans(X)_1\,dots)compose chi^(' - 1) det(D g) . $ <5.8>
 
-Using the change-of-basis formula, equation (3.19):
+Using the change-of-basis formula, equation @3.19:
 
 $ sans(X) (sans(f))= sans(X)'(sans(f)) (D (chi' compose chi^(-1)))compose chi = sans(X)'(sans(f)) (D (g^(-1))compose chi . $ <5.9>
 
@@ -56,7 +56,7 @@ If we let $M =(D (g^(-1)))compose chi$ then
 
 $ (omega (sans(X)_0\,sans(X)_1\,dots)compose chi^(' - 1))det(D g)=(omega (sans(X)' M_0\,sans(X)' M_1\,dots)compose chi^(' - 1))det(D g)=(omega (sans(X)'_0\,sans(X)'_1\,dots)compose chi^(' - 1))alpha (M_0\,M_1\,dots)det(D g)\, $ <5.10>
 
-using the multilinearity of $bold(omega)$, where $M_i$ is the $i^(upright("th"))$ column of $M$. The function $alpha$ is multilinear in the columns of $M$. To make a coordinate-independent integration we want the expression (5.10) to be the same as the integrand in
+using the multilinearity of $bold(omega)$, where $M_i$ is the $i^(upright("th"))$ column of $M$. The function $alpha$ is multilinear in the columns of $M$. To make a coordinate-independent integration we want the expression (@5.10) to be the same as the integrand in
 
 $ I' = integral_(chi'(sans(U))) omega (sans(X)'_0\,sans(X)'_1\,dots)compose chi^(' - 1) . $ <5.11>
 
@@ -66,7 +66,7 @@ Thus higher-rank form fields must be antisymmetric multilinear functions from ve
 
 $ I = I' = integral_(sans(U)) omega $ <5.12>
 
-== Wedge Product
+== Wedge Product <sec-5.2>
 There are several ways we can construct antisymmetric higher-rank forms. Given two one-form fields ω and τ we can form a two-form field $omega and tau$ as follows:
 
 $ (omega and tau) (sans(v)\,sans(w))= omega (sans(v))tau (sans(w))- omega (sans(w))tau (sans(v)). $ <5.13>
@@ -89,7 +89,7 @@ $ (sans(d) sans(x) and sans(d) sans(y) and dots) (partial\/partial sans(x))\,par
 
 This is true independent of the coordinate system.
 
-Equation (5.17) gives us
+Equation @5.17 gives us
 
 $ integral_(sans(U)) sans(d) sans(x) and sans(d) sans(y) and dots.c = upright("Volume") (sans(U)) $ <5.18>
 
@@ -103,8 +103,8 @@ $ sans(A) (sans(u)\,sans(v)) (sans(m))= sans(u)^0(sans(m))sans(v)^1 - sans(v)^0(
 
 Note that this is the area of the parallelogram in the coordinate plane, which is the range of the coordinate function. It is not the area on the manifold. To define that, we need more structure --- the metric. We will put a metric on the manifold in Chapter 9.
 
-== 3-Dimensional Euclidean Space
-Let\'s specialize to 3-dimensional Euclidean space. Following equation (5.18) we can write the coordinate-area two-form in another way: $sans(A) = sans(d) sans(x) "∧" sans(d) sans(y).$ As code:
+== 3-Dimensional Euclidean Space <sec-5.3>
+Let\'s specialize to 3-dimensional Euclidean space. Following equation @5.18 we can write the coordinate-area two-form in another way: $sans(A) = sans(d) sans(x) "∧" sans(d) sans(y).$ As code:
 
 ```scheme
 (define-coordinates (up x y z) R3-rect)
@@ -175,17 +175,17 @@ $ omega_(i_(sigma (0))\,dots.c\,i_(sigma (k - 1))) = upright("Parity") (sigma)om
 
 from which we see that there are only $binom (n, k)$ independent components of ω.
 
-== Exercise 5.1: Wedge Product
+== Exercise 5.1: Wedge Product <sec-5.4>
 Pick a coordinate system and use the computer to verify that
 
-a. the wedge product is associative for forms in your coordinate system; b. formula (5.17) is true in your coordinate system.
+a. the wedge product is associative for forms in your coordinate system; b. formula (@5.17) is true in your coordinate system.
 
-== Exterior Derivative
+== Exterior Derivative <sec-5.5>
 The intention of introducing the exterior derivative is to capture all of the classical theorems of \"vector analysis\" into one unified Stokes\'s Theorem, which asserts that the integral of a form on the boundary of a manifold is the integral of the exterior derivative of the form on the interior of the manifold:#footnote[This is a generalization of the Fundamental Theorem of Calculus.]
 
 $ integral_(partial sans(M)) omega = integral_(sans(M)) sans(d) omega . $ <5.22>
 
-As we have seen in equation (3.34), the differential of a function on a manifold is a one-form field. If a function on a manifold is considered to be a form field of rank zero,#footnote[A manifold function $sans(f)$ induces a form field $hat(sans(f))$ of rank 0 as follows:
+As we have seen in equation @3.34, the differential of a function on a manifold is a one-form field. If a function on a manifold is considered to be a form field of rank zero,#footnote[A manifold function $sans(f)$ induces a form field $hat(sans(f))$ of rank 0 as follows:
 
 $ hat(sans(f)) () (sans(m))= sans(f) (sans(m)). $ <5.40>] then the differential operator increases the rank of the form by one. We can generalize this to $k$-form fields with the exterior derivative operation.
 
@@ -209,8 +209,8 @@ $ sans(d) omega = sum_(i_0=0\,dots.c\,i_(k - 1) = 0)^(n - 1) sans(d) sans(a)_(i_
 
 Though this formula is expressed in terms of a coordinate basis, the result is independent of the choice of coordinate system.
 
-== Computing Exterior Derivatives
-We can test that the computation indicated by equation (5.24) is equivalent to the computation indicated by equation (5.26) in three dimensions with a general one-form field:
+== Computing Exterior Derivatives <sec-5.6>
+We can test that the computation indicated by equation @5.24 is equivalent to the computation indicated by equation @5.26 in three dimensions with a general one-form field:
 
 ```scheme
 (define a (literal-manifold-function 'alpha R3-rect))
@@ -268,7 +268,7 @@ Here we need another vector field because our result will be a three-form field.
 ;; 0
 ```
 
-== Properties of Exterior Derivatives
+== Properties of Exterior Derivatives <sec-5.7>
 The exterior derivative of the wedge of two form fields obeys the graded Leibniz rule. It can be written in terms of the exterior derivatives of the component form fields:
 
 $ sans(d) (omega and tau)= sans(d) omega and tau +(- 1)^k omega and sans(d) tau\, $ <5.28>
@@ -283,7 +283,7 @@ $ sans(d)^2 omega = 0 $ <5.29>
 
 This is equivalent to the statement that partial derivatives with respect to different variables commute.#footnote[See Spivak, Calculus on Manifolds, p.92]
 
-It is easy to show equation (5.29) for manifold functions:
+It is easy to show equation @5.29 for manifold functions:
 
 $ sans(d)^2 sans(f) (sans(u)\,sans(v))= sans(d) (sans(d) sans(f)) (sans(u)\,sans(v))= sans(u) (sans(d) sans(f) (sans(v)))- sans(v) (sans(d) sans(f) (sans(u)))- sans(d) sans(f) ([sans(u)\,sans(v)])= sans(u) (sans(v) (sans(f)))- sans(v) (sans(u) (sans(f)))-[sans(u)\,sans(v)] (sans(f))= 0 $ <5.30>
 
@@ -296,8 +296,8 @@ Consider the general one-form field $theta$ defined on 3-dimensional rectangular
 
 Not every closed form field is an exact form field. Whether a closed form field is exact depends on the topology of a manifold.
 
-== Stokes\'s Theorem
-The proof of the general Stokes\'s Theorem for n-dimensional orientable manifolds is quite complicated, but it is easy to see how it works for a 2-dimensional region $sans(M)$ that can be covered with a single coordinate patch.#footnote[We do not develop the machinery for integration on chains that is usually needed for a full proof of Stokes\'s Theorem. This is adequately done in other books. A beautiful treatment can be found in Spivak, Calculus on Manifolds \[17\].]
+== Stokes\'s Theorem <sec-5.8>
+The proof of the general Stokes\'s Theorem for n-dimensional orientable manifolds is quite complicated, but it is easy to see how it works for a 2-dimensional region $sans(M)$ that can be covered with a single coordinate patch.#footnote[We do not develop the machinery for integration on chains that is usually needed for a full proof of Stokes\'s Theorem. This is adequately done in other books. A beautiful treatment can be found in Spivak, Calculus on Manifolds @spivak1965calculus.]
 
 Given a coordinate chart $chi (sans(m))=(sans(x) (sans(m))\,sans(y) (sans(m)))$ we can obtain a pair of coordinate-basis vectors $partial\/partial sans(x) = X_0$ and $partial\/partial sans(y) = X_1$.
 
@@ -311,9 +311,9 @@ The area integral on the right can be written as an ordinary multidimensional in
 
 $ integral_(chi (sans(P))) sans(d) omega (partial\/partial sans(x)\,partial\/partial sans(y))compose chi^(-1) = integral_(x_(m i n))^(x_(m a x)) integral_(y_(m i n))^(y_(m a x)) (partial\/partial sans(x) (omega (partial\/partial sans(y)))- partial\/partial sans(y) (omega (partial\/partial sans(x))))compose chi^(-1) . $ <5.32>
 
-We have used equation (5.23) to expand the exterior derivative.
+We have used equation @5.23 to expand the exterior derivative.
 
-Consider just the first term of the right-hand side of equation (5.32). Then using the definition of basis vector field $partial\/partial sans(x)$ we obtain
+Consider just the first term of the right-hand side of equation @5.32. Then using the definition of basis vector field $partial\/partial sans(x)$ we obtain
 
 $ integral_(x_(m i n))^(x_(m a x)) integral_(y_(m i n))^(y_(m a x)) (partial\/partial sans(x) (omega (partial\/partial sans(y)))compose chi^(-1))= integral_(x_(m i n))^(x_(m a x)) integral_(y_(m i n))^(y_(m a x)) (X_0 (omega (partial\/partial sans(y)))compose chi^(-1))= integral_(x_(m i n))^(x_(m a x)) integral_(y_(m i n))^(y_(m a x)) partial_0 ((omega (partial\/partial sans(y)))compose chi^(-1)). $ <5.33>
 
@@ -323,7 +323,7 @@ $ integral_(chi (sans(P))) sans(d) omega (partial\/partial sans(x)\,partial\/par
 
 as was to be shown.
 
-== Vector Integral Theorems
+== Vector Integral Theorems <sec-5.9>
 Green\'s Theorem states that for an arbitrary compact set $M subset upright(R)^2$, a 2-dimensional Euclidean space:
 
 $ integral_(partial M) ((alpha compose chi)sans(d) sans(x) +(beta compose chi)sans(d) sans(y))= integral_M ((partial_0 beta - partial_1 alpha)compose chi)sans(d) sans(x) and sans(d) sans(y) . $ <5.35>
@@ -422,9 +422,9 @@ Assuming Stokes\'s Theorem, the exterior derivative of the leakage of stuff per 
 
 as expected.
 
-== Exercise 5.2: Graded Formula
-Derive equation (5.28).
+== Exercise 5.2: Graded Formula <sec-5.10>
+Derive equation @5.28.
 
-== Exercise 5.3: Iterated Exterior Derivative
-We have shown that the equation (5.29) is true for manifold functions. Show that it is true for any form field.
+== Exercise 5.3: Iterated Exterior Derivative <sec-5.11>
+We have shown that the equation @5.29 is true for manifold functions. Show that it is true for any form field.
 ]

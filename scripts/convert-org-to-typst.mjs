@@ -50,15 +50,6 @@ function typstEscape(text) {
     .replaceAll("#", "\\#");
 }
 
-function typstMarkupEscape(text) {
-  return text
-    .replaceAll("\\", "\\\\")
-    .replaceAll("[", "\\[")
-    .replaceAll("]", "\\]")
-    .replaceAll("$", "\\$")
-    .replaceAll("#", "\\#");
-}
-
 function escapeRegex(text) {
   return text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
@@ -85,6 +76,45 @@ function equationLabelPrefix(stem) {
 
   return null;
 }
+
+function chapterLabel(stem) {
+  const chapter = stem.match(/^chapter0*(\d+)$/);
+  if (chapter) return `chap-${Number(chapter[1])}`;
+
+  const appendix = stem.match(/^appendix_([a-z])$/);
+  if (appendix) return `chap-appendix-${appendix[1]}`;
+
+  return null;
+}
+
+function collectSectionLabels() {
+  const labels = new Set();
+
+  for (const file of files) {
+    const stem = file.replace(/\.org$/, "");
+    const prefix = equationLabelPrefix(stem);
+    if (!prefix) continue;
+
+    const counters = [];
+    const source = readFileSync(path.join(orgDir, file), "utf8");
+    for (const line of source.split("\n")) {
+      const heading = line.match(/^(\*+)\s+(.+)$/);
+      if (!heading || heading[1].length < 2) continue;
+
+      const depth = heading[1].length - 1;
+      counters.length = depth;
+      counters[depth - 1] = (counters[depth - 1] ?? 0) + 1;
+      for (let index = 0; index < depth - 1; index += 1) {
+        counters[index] ??= 1;
+      }
+      labels.add(`${prefix}.${counters.slice(0, depth).join(".")}`);
+    }
+  }
+
+  return labels;
+}
+
+const sectionLabels = collectSectionLabels();
 
 function normalizeDollarMath(source) {
   return source.replace(/\$\$([\s\S]*?)\$\$/g, (_match, math) => {
@@ -530,44 +560,308 @@ function applyChapterRepairs(stem, body) {
   return body;
 }
 
-function renderReferenceInline(text) {
-  const tokens = /(\[\[([^\]]+)\]\]|\/([^/]+)\/)/g;
-  let output = "";
-  let offset = 0;
+function addSectionLabels(stem, body) {
+  const prefix = equationLabelPrefix(stem);
+  if (!prefix) return body;
 
-  for (const match of text.matchAll(tokens)) {
-    output += typstMarkupEscape(text.slice(offset, match.index));
-    if (match[2]) {
-      const url = match[2];
-      output += `#link(${JSON.stringify(url)})[${typstMarkupEscape(url)}]`;
-    } else {
-      output += `#emph[${typstMarkupEscape(match[3])}]`;
+  const counters = [];
+  return body.replace(/^(={2,6})\s+(.+)$/gm, (match, marks, title) => {
+    if (/<sec-[^>]+>\s*$/.test(title)) return match;
+
+    const depth = marks.length - 1;
+    counters.length = depth;
+    counters[depth - 1] = (counters[depth - 1] ?? 0) + 1;
+    for (let index = 0; index < depth - 1; index += 1) {
+      counters[index] ??= 1;
     }
-    offset = match.index + match[0].length;
-  }
 
-  return output + typstMarkupEscape(text.slice(offset));
+    const number = `${prefix}.${counters.slice(0, depth).join(".")}`;
+    return `${marks} ${title} <sec-${number}>`;
+  });
 }
 
-function convertReferencesOrg(source) {
-  const body = source
-    .split("\n")
-    .filter(line => !line.startsWith("#+"))
-    .join("\n");
-  const entries = [];
-  const starts = [...body.matchAll(/^\[(\d+)\]\s+/gm)];
+const bibliographyEntries = [
+  {
+    type: "book",
+    key: "abelson1996sicp",
+    fields: {
+      author: "Harold Abelson and Gerald Jay Sussman and Julie Sussman",
+      title: "Structure and Interpretation of Computer Programs",
+      publisher: "MIT Press",
+      address: "Cambridge, MA",
+      year: "1996",
+    },
+  },
+  {
+    type: "book",
+    key: "abelson1980turtle",
+    fields: {
+      author: "Harold Abelson and Andrea deSessa",
+      title: "Turtle Geometry",
+      publisher: "MIT Press",
+      address: "Cambridge, MA",
+      year: "1980",
+    },
+  },
+  {
+    type: "book",
+    key: "bishop1968tensor",
+    fields: {
+      author: "R. L. Bishop and S. I. Goldberg",
+      title: "Tensor Analysis on Manifolds",
+      publisher: "MacMillan",
+      address: "New York",
+      year: "1968",
+    },
+  },
+  {
+    type: "book",
+    key: "carroll2003spacetime",
+    fields: {
+      author: "S. Carroll",
+      title: "Spacetime and Geometry: An Introduction to General Relativity",
+      publisher: "Benjamin Cummings",
+      year: "2003",
+    },
+  },
+  {
+    type: "book",
+    key: "church1941calculi",
+    fields: {
+      author: "Alonzo Church",
+      title: "The Calculi of Lambda-Conversion",
+      publisher: "Princeton University Press",
+      year: "1941",
+    },
+  },
+  {
+    type: "book",
+    key: "flanders1963forms",
+    fields: {
+      author: "Harley Flanders",
+      title: "Differential Forms with Applications to the Physical Sciences",
+      publisher: "Academic Press",
+      address: "New York",
+      year: "1963",
+      note: "Dover, New York, 1989",
+    },
+  },
+  {
+    type: "book",
+    key: "frankel1997geometry",
+    fields: {
+      author: "Theodore Frankel",
+      title: "The Geometry of Physics",
+      publisher: "Cambridge University Press",
+      year: "1997",
+    },
+  },
+  {
+    type: "book",
+    key: "galilei1623assayer",
+    fields: {
+      author: "Galileo Galilei",
+      title: "Il Saggiatore (The Assayer)",
+      year: "1623",
+    },
+  },
+  {
+    type: "book",
+    key: "hawking1973large",
+    fields: {
+      author: "S. W. Hawking and G. F. R. Ellis",
+      title: "The Large Scale Structure of Space-Time",
+      publisher: "Cambridge University Press",
+      year: "1973",
+    },
+  },
+  {
+    type: "manual",
+    key: "ieee1991scheme",
+    fields: {
+      title: "IEEE Standard for the Scheme Programming Language",
+      organization: "Institute of Electrical and Electronic Engineers, Inc.",
+      year: "1991",
+      note: "IEEE Std 1178-1990",
+    },
+  },
+  {
+    type: "book",
+    key: "misner1973gravitation",
+    fields: {
+      author: "Charles W. Misner and Kip S. Thorne and John Archibald Wheeler",
+      title: "Gravitation",
+      publisher: "W. H. Freeman {and} Company",
+      address: "San Francisco",
+      year: "1973",
+    },
+  },
+  {
+    type: "book",
+    key: "pais1982subtle",
+    fields: {
+      author: "Abraham Pais",
+      title: "Subtle is the Lord: The Science and the Life of Albert Einstein",
+      publisher: "Oxford University Press",
+      address: "Oxford, UK",
+      year: "1982",
+    },
+  },
+  {
+    type: "book",
+    key: "papert1980mindstorms",
+    fields: {
+      author: "Seymour A. Papert",
+      title: "Mindstorms: Children, Computers, and Powerful Ideas",
+      publisher: "Basic Books",
+      year: "1980",
+    },
+  },
+  {
+    type: "book",
+    key: "schutz1985first",
+    fields: {
+      author: "B. Schutz",
+      title: "A First Course in General Relativity",
+      publisher: "Cambridge University Press",
+      year: "1985",
+    },
+  },
+  {
+    type: "book",
+    key: "singer1967topology",
+    fields: {
+      author: "I. M. Singer and John A. Thorpe",
+      title: "Lecture Notes on Elementary Topology and Geometry",
+      publisher: "Scott, Foresman {and} Company",
+      address: "Glenview, Illinois",
+      year: "1967",
+    },
+  },
+  {
+    type: "book",
+    key: "spivak1970comprehensive",
+    fields: {
+      author: "Michael Spivak",
+      title: "A Comprehensive Introduction to Differential Geometry",
+      publisher: "Publish or Perish",
+      address: "Houston, Texas",
+      year: "1970",
+    },
+  },
+  {
+    type: "book",
+    key: "spivak1965calculus",
+    fields: {
+      author: "Michael Spivak",
+      title: "Calculus on Manifolds",
+      publisher: "W. A. Benjamin",
+      address: "New York, NY",
+      year: "1965",
+    },
+  },
+  {
+    type: "techreport",
+    key: "sussman2002role",
+    fields: {
+      author: "Gerald Jay Sussman and Jack Wisdom",
+      title: "The Role of Programming in the Formulation of Ideas",
+      institution: "Artificial Intelligence Laboratory",
+      number: "AIM-2002-018",
+      month: "November",
+      year: "2002",
+    },
+  },
+  {
+    type: "book",
+    key: "sussman2001sicm",
+    fields: {
+      author: "Gerald Jay Sussman and Jack Wisdom and Meinhard E. Mayer",
+      title: "Structure and Interpretation of Classical Mechanics",
+      publisher: "MIT Press",
+      address: "Cambridge, MA",
+      year: "2001",
+    },
+  },
+  {
+    type: "book",
+    key: "wald1984general",
+    fields: {
+      author: "Robert M. Wald",
+      title: "General Relativity",
+      publisher: "University of Chicago Press",
+      year: "1984",
+    },
+  },
+  {
+    type: "misc",
+    key: "fdg-software",
+    fields: {
+      title: "Free software",
+      url: "https://groups.csail.mit.edu/mac/users/gjs/6946/linux-install.htm",
+    },
+  },
+];
 
-  for (let index = 0; index < starts.length; index += 1) {
-    const match = starts[index];
-    const next = starts[index + 1];
-    const number = match[1];
-    const start = match.index + match[0].length;
-    const end = next?.index ?? body.length;
-    const text = body.slice(start, end).replace(/\s+/g, " ").trim();
-    entries.push(`\\[${number}\\] ${renderReferenceInline(text)}`);
-  }
+const citationKeyByNumber = new Map(
+  bibliographyEntries.map((entry, index) => [String(index + 1), entry.key]),
+);
 
-  return entries.join("\n\n");
+function bibEscape(value) {
+  return value.replaceAll("\\", "\\\\");
+}
+
+function renderBibtex(entries) {
+  return entries.map(entry => {
+    const fields = Object.entries(entry.fields)
+      .map(([name, value]) => `  ${name} = {${bibEscape(value)}},`)
+      .join("\n");
+    return `@${entry.type}{${entry.key},\n${fields}\n}`;
+  }).join("\n\n") + "\n";
+}
+
+function replaceCitationsAndEquationRefs(body) {
+  return body
+    .replace(/\\\[(\d+)\\\]/g, (match, number) => {
+      const key = citationKeyByNumber.get(number);
+      return key ? `@${key}` : match;
+    })
+    .replace(/\b([Ss]ections?)\s+((?:[A-C]|\d+)\.\d+(?:\.\d+)?)/g, (match, noun, number) => {
+      return sectionLabels.has(number) ? `${noun} @sec-${number}` : match;
+    })
+    .replace(/Appendices A and B/g, "Appendices @chap-appendix-a and @chap-appendix-b")
+    .replace(/Appendices A, B, and C/g, "Appendices @chap-appendix-a, @chap-appendix-b, and @chap-appendix-c")
+    .replace(/\bAppendix A\b/g, "Appendix @chap-appendix-a")
+    .replace(/\bAppendix B\b/g, "Appendix @chap-appendix-b")
+    .replace(/\bAppendix C\b/g, "Appendix @chap-appendix-c")
+    .replace(
+      /\b(equations?|Equations?|Eqs?\.)\s+\(((?:[A-C]|\d+)\.\d+)(--|[-–])((?:[A-C]|\d+)\.)?(\d+)\)/g,
+      (_match, noun, start, dash, endPrefix = "", endLast) => {
+        const implicitPrefix = start.match(/^((?:[A-C]|\d+)\.)/)?.[1] ?? "";
+        return `${noun} @${start} ${dash} @${endPrefix || implicitPrefix}${endLast}`;
+      },
+    )
+    .replace(
+      /\b(equations?|Equations?|Eqs?\.)\s+((?:[A-C]|\d+)\.\d+)(--|[-–])((?:[A-C]|\d+)\.)?(\d+)/g,
+      (_match, noun, start, dash, endPrefix = "", endLast) => {
+        const implicitPrefix = start.match(/^((?:[A-C]|\d+)\.)/)?.[1] ?? "";
+        return `${noun} @${start} ${dash} @${endPrefix || implicitPrefix}${endLast}`;
+      },
+    )
+    .replace(
+      /\b(equations?|Equations?|Eqs?\.)\s+\(((?:[A-C]|\d+)\.\d+(?:,\s*(?:[A-C]|\d+)\.\d+)+)\)/g,
+      (_match, noun, list) => `${noun} ${list.split(/,\s*/).map(number => `@${number}`).join(", ")}`,
+    )
+    .replace(/\b(equations?|Equations?|Eqs?\.)\s+\(((?:[A-C]|\d+)\.\d+)\)/g, "$1 @$2")
+    .replace(/\b(equations?|Equations?|Eqs?\.)\s+((?:[A-C]|\d+)\.\d+)/g, "$1 @$2")
+    .replace(/\b(property|Property|properties|Properties)\s+\(((?:[A-C]|\d+)\.\d+)\)/g, "$1 @$2")
+    .replace(/\b(and|or)\s+\(((?:[A-C]|\d+)\.\d+)\)/g, "$1 @$2")
+    .replace(/\(((?:[A-C]|\d+)\.\d+)\)/g, "(@$1)")
+    .replace(/@((?:[A-C]|\d+)\.\d+)(--|[-–])@((?:[A-C]|\d+)\.\d+)/g, "@$1 $2 @$3")
+    .replace(
+      /\((see equations|defined in equations|equations) (@(?:[A-C]|\d+)\.\d+ (?:--|[-–]) @(?:[A-C]|\d+)\.\d+)(?=\s+(?:that|have)\b|,)/g,
+      "($1 $2)",
+    );
 }
 
 function convert(file) {
@@ -582,7 +876,7 @@ function convert(file) {
     .replace(/(?<!\\)\\\n/g, "\\\\\n"), stem);
   writeFileSync(tempInput, source);
   const body = stem === "references"
-    ? convertReferencesOrg(originalSource)
+    ? '#bibliography("../references.bib", title: none, full: true, style: "ieee")'
     : cleanTypstOutput(execFileSync(
       "pandoc",
       ["--from=org", "--to=typst", "--wrap=none", tempInput],
@@ -593,22 +887,24 @@ function convert(file) {
   const displayTitle = chapterDisplayTitle(title);
   const numbered = isNumberedChapter(title, stem);
   const bodyWithoutLabels = body
-    .replace(/^<[A-Za-z0-9_.:-]+>\n/gm, "")
+    .replace(/^<[^>\n]+>\n/gm, "")
     .replace(/^= Footnotes\n/gm, "");
   const bodyWithoutDuplicateTitle = bodyWithoutLabels.replace(
     new RegExp(`^= ${escapeRegex(title)}\\n+`),
     "",
   );
-  const bodyWithFigures = insertFigurePdfs(stem, bodyWithoutDuplicateTitle);
+  const bodyWithSectionLabels = addSectionLabels(stem, bodyWithoutDuplicateTitle);
+  const bodyWithFigures = insertFigurePdfs(stem, bodyWithSectionLabels);
   const bodyWithChapterRepairs = applyChapterRepairs(stem, bodyWithFigures);
+  const bodyWithRefs = replaceCitationsAndEquationRefs(bodyWithChapterRepairs);
 
   const content = [
     `// Generated from ../../fdg-book/scheme/org/${file}.`,
     `// Re-run scripts/convert-org-to-typst.mjs to refresh.`,
     `#import "../lib.typ": fdg-chapter, curl, grad, Lap, div, length`,
     "",
-    `#fdg-chapter(${JSON.stringify(typstEscape(displayTitle))}, numbered: ${numbered}, eq-prefix: ${JSON.stringify(equationLabelPrefix(stem) ?? "0")})[`,
-    bodyWithChapterRepairs.trimEnd(),
+    `#fdg-chapter(${JSON.stringify(typstEscape(displayTitle))}, numbered: ${numbered}, eq-prefix: ${JSON.stringify(equationLabelPrefix(stem) ?? "0")}, ref-label: ${JSON.stringify(chapterLabel(stem) ?? "")})[`,
+    bodyWithRefs.trimEnd(),
     "]",
     "",
   ].join("\n");
@@ -635,6 +931,8 @@ writeFileSync(
     + `#pagebreak()\n\n`
     + `${includes}\n`,
 );
+
+writeFileSync(path.join(typDir, "references.bib"), renderBibtex(bibliographyEntries));
 
 writeFileSync(
   path.join(typDir, "manifest.typ"),

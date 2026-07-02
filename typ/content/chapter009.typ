@@ -2,7 +2,7 @@
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
 #import "../lib.typ": fdg-chapter, curl, grad, Lap, div, length
 
-#fdg-chapter("Metrics", numbered: true, eq-prefix: "9")[
+#fdg-chapter("Metrics", numbered: true, eq-prefix: "9", ref-label: "chap-9")[
 We often want to impose further structure on a manifold to allow us to define lengths and angles. This is done by generalizing the idea of the Euclidean dot product, which allows us to compute lengths of vectors and angles between vectors in traditional vector algebra.
 
 For vectors $arrow(u) = u^x hat(x) + u^y hat(y) + u^z hat(z)$ and $arrow(v) = v^x hat(x) + v^y hat(y) + v^z hat(z)$ the dot product is $arrow(u) dot.op arrow(v) = u^x v^x + u^y v^y + u^z v^z$. The generalization is to provide coefficients for these terms and to include cross terms, consistent with the requirement that the function of two vectors is symmetric. This symmetric, bilinear, real-valued function of two vector fields is called a #emph[metric field].
@@ -78,7 +78,7 @@ where #raw(lang:"verbatim", "contract") is the trace over a basis of a two-argum
                1form-basis)))
 ```
 
-== Metric Compatibility
+== Metric Compatibility <sec-9.1>
 A connection is said to be compatible with a metric $sans(g)$ if the covariant derivative for that connection obeys the \"product rule\":
 
 $ Delta_(sans(X)) (g (sans(Y) \, sans(Z))) = g (Delta_(sans(X)) (sans(Y)) \, sans(Z)) + g (sans(Y) \, Delta_(sans(X)) (sans(Z))) . $ <9.9>
@@ -91,7 +91,7 @@ for the coordinate basis $sans(e)$. We can then construct the Christoffel coeffi
 
 $ sum_(i j k) macron(Gamma)_(i j k) tilde(sans(e))^i (sans(u))tilde(sans(e))^j (sans(v))tilde(sans(e))^k (sans(w)) . $ <9.11>
 
-This function takes two vector fields and produces a one-form field. We can use it with equation (9.7) to construct a new function that takes two vector fields and produces a vector field:
+This function takes two vector fields and produces a one-form field. We can use it with equation @9.7 to construct a new function that takes two vector fields and produces a vector field:
 
 $ hat(Gamma) (sans(v)\,sans(w))= sum_i sans(g)^(-1) (tilde(Gamma) (sans(v) \, sans(w)) \, tilde(sans(e))^i) sans(e)_i . $ <9.12>
 
@@ -140,11 +140,11 @@ And the Christoffel coefficients of the second kind have the innermost index up:
 ;;             (up (* -1 (cos theta0) (sin theta0)) 0)))
 ```
 
-=== Exercise 9.1: Metric Compatibility
-The connections constructed from a metric by equation (9.13) are \"metric compatible,\" as described in equation (9.9). Demonstrate that this is true for a literal metric, as described on page 6, in $upright(bold(R))^4$. Your program should produce a zero.
+=== Exercise 9.1: Metric Compatibility <sec-9.1.1>
+The connections constructed from a metric by equation @9.13 are \"metric compatible,\" as described in equation @9.9. Demonstrate that this is true for a literal metric, as described on page 6, in $upright(bold(R))^4$. Your program should produce a zero.
 
-== Metrics and Lagrange Equations
-In the Introduction (Chapter 1) we showed that the Lagrange equations for a free particle constrained to a 2-dimensional surface are equivalent to the geodesic equations for motion on that surface. We illustrated that in detail in Section 7.4 for motion on a sphere.
+== Metrics and Lagrange Equations <sec-9.2>
+In the Introduction (Chapter 1) we showed that the Lagrange equations for a free particle constrained to a 2-dimensional surface are equivalent to the geodesic equations for motion on that surface. We illustrated that in detail in Section @sec-7.4 for motion on a sphere.
 
 Here we expand this understanding to show that the Christoffel symbols can be derived from the Lagrange equations. Specifically, if we solve the Lagrange equations for the acceleration (the highest-order derivatives) we find that the Christoffel symbols are the symmetrized coefficients of the quadratic velocity terms.
 
@@ -152,7 +152,7 @@ Consider the Lagrange equations for a free particle, with Lagrangian
 
 $ L_2 (t\,x\,v)= 1 / 2 g (x) (v\,v). $ <9.15>
 
-If we solve the Lagrange equations for the accelerations, the accelerations can be expressed with the geodesic equations (7.79):
+If we solve the Lagrange equations for the accelerations, the accelerations can be expressed with the geodesic equations @7.79:
 
 $ D^2 q^i + sum_(j k) (Gamma_(j k)^i compose chi^(-1) compose q) D q^j D q^k = 0 . $ <9.16>
 
@@ -198,7 +198,7 @@ We get a structure of zeros, demonstrating the correspondence between Christoffe
 
 Thus, if we have a metric specifying an inner product, the geodesic equations are equivalent to the Lagrange equations for the Lagrangian that is equal to the inner product of the generalized velocities with themselves
 
-== Kinetic Energy or Arc Length
+== Kinetic Energy or Arc Length <sec-9.3>
 A geodesic is a path of stationary length with respect to variations in the path that keep the endpoints fixed. On the other hand, the solutions of the Lagrange equations are paths of stationary action that keep the endpoints fixed. How are these solutions related?
 
 The integrand of the traditional action is the Lagrangian, which is in this case the Lagrangian $L_2$, the kinetic energy. The integrand of the arc length is
@@ -213,7 +213,7 @@ If we compute the Lagrange equations for $L_2$ we get the Lagrange equations for
 
 $ L_2 (t\,x\,v)= 1 / 2(L_1 (t\,x\,v))^2\, $ <9.19>
 
-and the Lagrange operator for $L_2$ is#footnote[$upright(bold(E))$ is the Euler-Lagrange operator, which gives the residuals of the Lagrange equations for a Lagrangian. $upright(bold(Gamma))$ extends a configuration-space path $q$ to make a state-space path, with as many terms as needed: $upright(bold(Gamma))[q] (t)=(t\,q (t)\,D q (t)\,dots.c)$. The total time derivative $D_t$ is defined by $D_t F compose upright(bold(Gamma))[q]= D (F compose upright(bold(Gamma)) [q])$ for any state function $F$ and path $q$. The Lagrange equations are $upright(bold(E))[L]compose Gamma[q]= 0$. See \[19\] for more details.]
+and the Lagrange operator for $L_2$ is#footnote[$upright(bold(E))$ is the Euler-Lagrange operator, which gives the residuals of the Lagrange equations for a Lagrangian. $upright(bold(Gamma))$ extends a configuration-space path $q$ to make a state-space path, with as many terms as needed: $upright(bold(Gamma))[q] (t)=(t\,q (t)\,D q (t)\,dots.c)$. The total time derivative $D_t$ is defined by $D_t F compose upright(bold(Gamma))[q]= D (F compose upright(bold(Gamma)) [q])$ for any state function $F$ and path $q$. The Lagrange equations are $upright(bold(E))[L]compose Gamma[q]= 0$. See @sussman2001sicm for more details.]
 
 $ bold(E)[L_2]= D_t partial_2 L_2 - partial_1 L_2\, $
 
@@ -221,13 +221,13 @@ we find
 
 $ bold(E)[L_2]= L_1 bold(E)[L_1]+ partial_2 L_1 D_t L_1 . $ <9.20>
 
-$L_2$ is the kinetic energy. It is conserved along solution paths, since there is no explicit time dependence. Because of the relation between $L_1$ and $L_2$, $L_1$ is also a conserved quantity. Let $L_1$ take the constant value $a$ on the geodesic coordinate path $q$ we are considering. Then $tau = a (t_2 - t_1)$. Since $L_1$ is conserved, $(D_t L_1)compose bold(Gamma)[q]= 0$ on the geodesic path $q$, and both $bold(E)[L_1]compose bold(Gamma)[q]= 0$ and $bold(E)[L_2]compose bold(Gamma)[q]= 0$, as required by equation (9.20).
+$L_2$ is the kinetic energy. It is conserved along solution paths, since there is no explicit time dependence. Because of the relation between $L_1$ and $L_2$, $L_1$ is also a conserved quantity. Let $L_1$ take the constant value $a$ on the geodesic coordinate path $q$ we are considering. Then $tau = a (t_2 - t_1)$. Since $L_1$ is conserved, $(D_t L_1)compose bold(Gamma)[q]= 0$ on the geodesic path $q$, and both $bold(E)[L_1]compose bold(Gamma)[q]= 0$ and $bold(E)[L_2]compose bold(Gamma)[q]= 0$, as required by equation @9.20.
 
 Since $L_2$ is homogeneous of degree 2 in the velocities, $L_1$ is homogeneous of degree 1. So we cannot solve for the highest-order derivative in the Lagrange-Euler equations derived from $L_1$: The Lagrange equations of the Lagrangian $L_1$ are dependent. But although they do not uniquely specify the evolution, they do specify the geodesic path.
 
 On the other hand, we can solve for the highest-order derivative in $bold(E)[L_2]$. This is because $L_1 bold(E)[L_1]$ is homogeneous of degree 2. So the equations derived from $L_2$ uniquely
 
-=== For Two Dimensions
+=== For Two Dimensions <sec-9.3.1>
 We can show this is true for a 2-dimensional system with a general metric. We define the Lagrangians in terms of this metric:
 
 ```scheme
@@ -301,7 +301,7 @@ $ D f (x)thin D^2 x = D^2 f (x)thin D x + D f (x)thin D^2 x\, $
 
 so $D^2 f (x)= 0$. Thus $f$ is a straight line, as required.
 
-=== Reparametrization
+=== Reparametrization <sec-9.3.2>
 More generally, a differential equation system $F[q] (t)= 0$ is said to be #emph[reparameterized] if the coordinate path $q$ is replaced with a new coordinate path $q compose f$. For example, we may change the scale of the independent variable. The system $F[q compose f]= 0$ is said to be independent of the parameterization if and only if $F[q]compose f = 0$. So the differential equation system is satisfied by $q compose f$ if and only if it is satisfied by $q$.
 
 The Lagrangian $L_1$ is homogeneous of degree 1 in the velocities; so
@@ -356,8 +356,8 @@ Although the Euler-Lagrange equations for $L_1$ are invariant under an arbitrary
 
 We see that if these expressions must be zero, then $D^2 f = 0$. This tells us that $f$ is at most affine in $t : f (t)= a t + b$.
 
-=== Exercise 9.2: SO(3) Geodesics
-We have derived a basis for SO(3) in terms of incremental rotations around the rectangular axes. See equations (4.29, 4.30, 4.31). We can use the dual basis to define a metric on SO(3).
+=== Exercise 9.2: SO(3) Geodesics <sec-9.3.3>
+We have derived a basis for SO(3) in terms of incremental rotations around the rectangular axes. See equations @4.29, @4.30, @4.31. We can use the dual basis to define a metric on SO(3).
 
 ```scheme
 (define (SO3-metric v1 v2)
@@ -368,7 +368,7 @@ We have derived a basis for SO(3) in terms of incremental rotations around the r
 
 This metric determines a connection. Show that uniform rotation about an arbitrary axis traces a geodesic on SO(3).
 
-=== Exercise 9.3: Curvature of a Spherical Surface
+=== Exercise 9.3: Curvature of a Spherical Surface <sec-9.3.4>
 The 2-dimensional surface of a 3-dimensional sphere can be embedded in three dimensions with a metric that depends on the radius:
 
 ```scheme
@@ -385,7 +385,7 @@ The 2-dimensional surface of a 3-dimensional sphere can be embedded in three dim
            (dphi v1) (dphi v2)))))
 ```
 
-If we raise one index of the Ricci tensor (see equation 8.20) by contracting it with the inverse of the metric tensor we can further contract it to obtain a scalar manifold function:
+If we raise one index of the Ricci tensor (see equation @8.20) by contracting it with the inverse of the metric tensor we can further contract it to obtain a scalar manifold function:
 
 $ R = sum_(i j) sans(g) (tilde(sans(e))^i \, tilde(sans(e))^j) r (sans(e)^i \, sans(e)^j) . $ <9.23>
 
@@ -407,10 +407,10 @@ The #raw(lang:"verbatim", "trace2down") procedure converts a tensor that takes t
 
 Evaluate the Ricci scalar for a sphere of radius $r$ to obtain a measure of its intrinsic curvature. You should obtain the answer $2\/r^2$.
 
-=== Exercise 9.4: Curvature of a Pseudosphere
+=== Exercise 9.4: Curvature of a Pseudosphere <sec-9.3.5>
 Compute the scalar curvature of the pseudosphere (see exercise 8.2). You should obtain the value −2.
 
-== General Relativity
+== General Relativity <sec-9.4>
 By analogy to Newtonian mechanics, relativistic mechanics has two parts. There are equations of motion that describe how particles move under the influence of \"forces\" and there are field equations that describe how the forces arise. In general relativity the only force considered is gravity. However, gravity is not treated as a force. Instead, gravity arises from curvature in the spacetime, and the equations of motion are motion along geodesics of that space.
 
 The geodesic equations for a spacetime with the metric
@@ -421,20 +421,20 @@ are Newton\'s equations to lowest order in $V\/c^2$:
 
 $ D^2 arrow(x) (t) = - grad V (arrow(x) (t)). $ <9.25>
 
-=== Exercise 9.5: Newton\'s Equations
-Verify that Newton\'s equations (9.25) are indeed the lowest-order terms of the geodesic equations for the metric (9.24).
+=== Exercise 9.5: Newton\'s Equations <sec-9.4.1>
+Verify that Newton\'s equations @9.25 are indeed the lowest-order terms of the geodesic equations for the metric (@9.24).
 
 Einstein\'s field equations tell how the local energy-momentum distribution determines the local shape of the spacetime, as described by the metric tensor $g$. The equations are traditionally written
 
 $ R_(mu nu) - 1 / 2 R g_(mu nu) + Lambda g_(mu nu) = frac(8 pi G, c^4) T_(mu nu) $ <9.26>
 
-where $R_(mu nu)$ are the components of the Ricci tensor (equation 8.20), $R$ is the Ricci scalar (equation 9.23),#footnote[The tensor with components $G_(mu nu) = R_(mu nu) - 1 / 2 R g_(mu nu)$ is called the Einstein tensor. In his search for an appropriate field equation for gravity, Einstein demanded #emph[general covariance] (independence of coordinate system) and local Lorentz invariance (at each point transformations must preserve the line element). These considerations led Einstein to look for a tensor equation (see Appendix C).] and $Lambda$ is the cosmological constant.
+where $R_(mu nu)$ are the components of the Ricci tensor (equation @8.20), $R$ is the Ricci scalar (equation @9.23),#footnote[The tensor with components $G_(mu nu) = R_(mu nu) - 1 / 2 R g_(mu nu)$ is called the Einstein tensor. In his search for an appropriate field equation for gravity, Einstein demanded #emph[general covariance] (independence of coordinate system) and local Lorentz invariance (at each point transformations must preserve the line element). These considerations led Einstein to look for a tensor equation (see Appendix @chap-appendix-c).] and $Lambda$ is the cosmological constant.
 
 $T_(mu nu)$ are the components of the stress-energy tensor describing the energy-momentum distribution. Equivalently, one can write
 
 $ R_(mu nu) = frac(8 pi G, c^4) (T_(mu nu) - 1 / 2 T g_(mu nu)) - Lambda g_(mu nu) $ <9.27>
 
-where $T = T_(mu nu) g^(mu nu)$.#footnote[Start with equation (9.26). Raise one index of both sides, and then contract. Notice that the trace $g_mu^mu = 4$, the dimension of spacetime. This gets $R = - (frac(8 pi G, c^4)) T$ , from which we can deduce equation (9.27).]
+where $T = T_(mu nu) g^(mu nu)$.#footnote[Start with equation @9.26. Raise one index of both sides, and then contract. Notice that the trace $g_mu^mu = 4$, the dimension of spacetime. This gets $R = - (frac(8 pi G, c^4)) T$ , from which we can deduce equation @9.27.]
 
 Einstein\'s field equations arise from a heuristic derivation by analogy to the Poisson equation for a Newtonian gravitational field:
 
@@ -442,7 +442,7 @@ $ Lap (V)= 4 pi G rho $ <9.28>
 
 where $V$ is the gravitational potential field at a point, $rho$ is the mass density at that point, and $Lap$ is the Laplacian operator.
 
-The time-time component of the Ricci tensor derived from the metric (9.24) is the Laplacian of the potential, to lowest order.
+The time-time component of the Ricci tensor derived from the metric (@9.24) is the Laplacian of the potential, to lowest order.
 
 ```scheme
 (define (Newton-metric M G c V)
@@ -485,7 +485,7 @@ The leading terms of the mess are
 
 which is the Laplacian of V . The other terms are smaller by $V\/c^2$.
 
-Now consider the right-hand side of equation (9.27). In the Poisson equation the source of the gravitational potential is the density of matter. Let the time-time component of the stress-energy tensor $T_00$ be the matter density $rho$. Here is a program for the stress-energy tensor:
+Now consider the right-hand side of equation @9.27. In the Poisson equation the source of the gravitational potential is the density of matter. Let the time-time component of the stress-energy tensor $T_00$ be the matter density $rho$. Here is a program for the stress-energy tensor:
 
 ```scheme
 (define (Tdust rho)
@@ -523,7 +523,7 @@ $ R_(mu nu) = frac(8 pi G, c^4) (T_(mu nu) - 1 / 2 T g_(mu nu)) - Lambda g_(mu n
 
 as required.
 
-=== Exercise 9.6: Curvature of Schwarzschild Spacetime
+=== Exercise 9.6: Curvature of Schwarzschild Spacetime <sec-9.4.2>
 In spherical coordinates around a nonrotating gravitating body the metric of Schwarzschild spacetime is given as:#footnote[The spacetime manifold is built from $upright(bold(R))^4$ with the addition of appropriate coordinate systems:
 
 ```scheme
@@ -548,9 +548,9 @@ In spherical coordinates around a nonrotating gravitating body the metric of Sch
                   (dphi v1) (dphi v2))))))))
 ```
 
-Show that the Ricci curvature of the Schwarzschild spacetime is zero. Use the definition of the Ricci tensor in equation (8.20).
+Show that the Ricci curvature of the Schwarzschild spacetime is zero. Use the definition of the Ricci tensor in equation @8.20.
 
-=== Exercise 9.7: Circular Orbits in Schwarzschild Spacetime
+=== Exercise 9.7: Circular Orbits in Schwarzschild Spacetime <sec-9.4.3>
 Test particles move along geodesics in spacetime. Now that we have a metric for Schwarzschild spacetime (page 147) we can use it to construct the geodesic equations and determine how test particles move. Consider circular orbits. For example, the circular orbit along a line of constant longitude is a geodesic, so it should satisfy the geodesic equations. Here is the equation of a circular path along the zero longitude line.
 
 ```scheme
@@ -564,7 +564,7 @@ This equation will satisfy the geodesic equations for compatible values of the r
 
 Surprise: You should find out that $omega^2 r^3 = G M$ --- Kepler\'s law!
 
-=== Exercise 9.8: Stability of Circular Orbits
+=== Exercise 9.8: Stability of Circular Orbits <sec-9.4.4>
 In Schwarzschild spacetime there are stable circular orbits if the coordinate $r$ is large enough, but below that value all orbits are unstable. The critical value of $r$ is larger than the Schwarzschild horizon radius. Let\'s find that value.
 
 For example, we can consider a perturbation of the orbit of constant longitude. Here is the result of adding an exponential variation of size #raw(lang:"verbatim", "epsilon"):
@@ -606,8 +606,7 @@ The characteristic equation in the eigenvalue #raw(lang:"verbatim", "lambda") ca
 
 Show that the orbits are unstable if $r < 6 G M\/c^2$.
 
-=== Exercise 9.9: Friedmann-Lemaître-Robertson-Walker
-<exercise-9.9-friedmann-lemaître-robertson-walker>
+=== Exercise 9.9: Friedmann-Lemaître-Robertson-Walker <sec-9.4.5>
 The Einstein tensor $G_(mu nu)$ (see footnote 5) can be expressed as a program:
 
 ```scheme
@@ -677,7 +676,7 @@ $ (frac(D R (t), R (t)))^2 + frac(k c^2, (R (t))^2) - frac(Lambda c^2, 3) = frac
 
 Use the programs supplied to derive the Robertson-Walker equations.
 
-=== Exercise 9.10: Cosmology
+=== Exercise 9.10: Cosmology <sec-9.4.6>
 For energy to be conserved, the stress-energy tensor must be constrained so that its covariant divergence is zero
 
 $ sum_mu Delta_(e_mu) T (tilde(sans(e))^mu \, omega) = 0 $ <9.31>
@@ -688,5 +687,5 @@ a. Show that for the perfect fluid stress-energy tensor and the FLRW metric this
 
 $ D (c^2 rho R^3) + p D (R^3) = 0 . $ <9.32>
 
-b. Assume that in a \"matter-dominated universe\" radiation pressure is negligible, so $p = 0$. Using the Robertson-Walker equations (9.30) and the energy conservation equation (9.32) show that the observation of an expanding universe is compatible with a negative curvature universe, a flat universe, or a positive curvature universe: $k in {- 1 \, 0 \, + 1}$.
+b. Assume that in a \"matter-dominated universe\" radiation pressure is negligible, so $p = 0$. Using the Robertson-Walker equations @9.30 and the energy conservation equation @9.32 show that the observation of an expanding universe is compatible with a negative curvature universe, a flat universe, or a positive curvature universe: $k in {- 1 \, 0 \, + 1}$.
 ]

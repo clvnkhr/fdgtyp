@@ -2,7 +2,7 @@
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
 #import "../lib.typ": fdg-chapter, curl, grad, Lap, div, length
 
-#fdg-chapter("Hodge Star and Electrodynamics", numbered: true, eq-prefix: "10")[
+#fdg-chapter("Hodge Star and Electrodynamics", numbered: true, eq-prefix: "10", ref-label: "chap-10")[
 The vector space of $p$-form fields on an $n$-dimensional manifold has dimension $n !\/((n - p)! p !)$. This is the same dimension as the space of $(n - p)$-form fields. So these vector spaces are isomorphic. If we have a metric there is a natural isomorphism: for each $p$-form field $bold(omega)$ on an $n$-dimensional manifold there is an $(n - p)$-form field $sans(g)^(*) bold(omega)$, called its #emph[Hodge dual].#footnote[The traditional notion is to just use an asterisk; we use $g^convolve$ to emphasize that this duality depends on the choice of metric $g$.] The Hodge dual should not be confused with the duality of vector bases and one-form bases, which is defined without reference to a metric. The Hodge dual is useful for the elegant formalization of electrodynamics.
 
 In Euclidean 3-space, if we think of a one-form as a foliation of the space, then the dual is a two-form, which can be thought of as a pack of square tubes, whose axes are perpendicular to the leaves of the foliation. The original one-form divides these tubes up into volume elements. For example, the dual of the basis oneform dx is the two-form $sans(g)^(*) sans(d) x = sans(d) y and sans(d) z$. We may think of $sans(d) x$ as a set of planes perpendicular to the $hat(x)$-axis. Then $sans(g)^(*) sans(d) x$ is a set of tubes parallel to the $hat(x)$-axis. In higher-dimensional spaces the visualization is more complicated, but the basic idea is the same. The Hodge dual of a two-form in four dimensions is a twoform that is perpendicular to the given two-form. However, if the metric is indefinite (e.g., the Lorentz metric) there is an added complication with the signs.
@@ -13,7 +13,7 @@ $ (sans(g)^(*) bold(omega))_(j_p dots.c j_(n - 1)) #h(2em) = sum_(i_0 dots.c i_(
 
 where $g^(i j)$ are the coefficients of the inverse metric and $epsilon.alt_(j_0 dots.c j_(n - 1))$ is either $- 1$ or $+ 1$ if the permutation ${0 dots.c n - 1} mapsto {j_0 dots.c j_(n - 1)}$ is odd or even, respectively.
 
-== Relationship to Vector Calculus
+== Relationship to Vector Calculus <sec-10.1>
 In 3-dimensional Euclidean space the traditional vector derivative operations are gradient, curl, and divergence. If $hat(upright(x))$, $hat(upright(y))$, $hat(upright(z))$ are the usual orthonormal rectangular vector basis, $f$ a function on the space, and $arrow(v)$ a vector field on the space, then
 
 $ grad (f)= frac(partial f, partial x) hat(upright(x)) + frac(partial f, partial y) hat(upright(y)) + frac(partial f, partial z) hat(upright(z)) curl (arrow(upright(v)))= (frac(partial v_z, partial y) - frac(partial v_y, partial z)) hat(upright(x)) + (frac(partial v_x, partial z) - frac(partial v_z, partial x)) hat(upright(y)) + (frac(partial v_y, partial x) - frac(partial v_x, partial y)) hat(upright(x)) div (arrow(upright(v)))= frac(partial v_x, partial x) + frac(partial v_y, partial y) + frac(partial v_z, partial z) . $
@@ -22,7 +22,7 @@ Recall the meaning of the traditional vector operations. Traditionally we assume
 
 $ sans(d f) = (frac(partial, partial sans(x)) sans(f)) sans(d x) + (frac(partial, partial sans(y)) sans(f)) sans(d y) + (frac(partial, partial sans(z)) sans(f)) sans(d z) . $ <10.2>
 
-The traditional gradient vector field is then just the raised gradient one-form (see equation 9.8). So
+The traditional gradient vector field is then just the raised gradient one-form (see equation @9.8). So
 
 $ grad (sans(f))= g^sharp (sans(d f)) (d f) $ <10.3>
 
@@ -103,7 +103,7 @@ The Laplacian is, as expected, the composition of the divergence and the gradien
            (gradient metric orthonormal-basis)))
 ```
 
-== Spherical Coordinates
+== Spherical Coordinates <sec-10.2>
 We can illustrate these by computing the formulas for the vector-calculus operators in spherical coordinates. We start with a 3-dimensional manifold, and we set up the conditions for spherical coordinates.
 
 ```scheme
@@ -222,7 +222,7 @@ But the divergence and Laplacian are simpler
 ;;       (* (expt r0 2) (expt (sin theta0) 2))))
 ```
 
-== The Wave Equation
+== The Wave Equation <sec-10.3>
 The kinematics of special relativity can be formulated on a flat 4-dimensional spacetime manifold.
 
 ```scheme
@@ -297,7 +297,7 @@ So, the Laplacian of a scalar field is the wave equation!
 ;;    (* -1 (((partial 3) ((partial 3) phi)) (up ct0 x0 y0 z0))))
 ```
 
-== Electrodynamics
+== Electrodynamics <sec-10.4>
 Using Hodge duals we can represent electrodynamics in an elegant way. Maxwell\'s electrodynamics is invariant under Lorentz transformations. We use 4-dimensional rectangular coordinates for the flat spacetime of special relativity.
 
 In this formulation of electrodynamics the electric and magnetic fields are represented together as a two-form field, the #emph[Faraday tensor]. Under Lorentz transformations the individual components are mixed. The Faraday tensor is:#footnote[This representation is from Misner, Thorne, and Wheeler, #emph[Gravitation], p.108.]
@@ -369,7 +369,7 @@ To develop Maxwell\'s equations we need a general Faraday field and a general cu
      (literal-manifold-function 'Iz SR)))
 ```
 
-== Maxwell\'s Equations
+== Maxwell\'s Equations <sec-10.5>
 Maxwell\'s equations in the language of differential forms are
 
 $ sans(d F) = 0\, $ <10.13>
@@ -388,7 +388,7 @@ $ div arrow(E) = 4 pi rho\, $ <10.17>
 
 $ curl arrow(B) = 1 / c frac(d arrow(E), d t) + frac(4 pi, c) arrow(I) . $ <10.18>
 
-To see how these work out, we evaluate each component of $sans(d F)$ and $sans(d) (g^(*) sans(F))- 4 pi g^(*) sans(J)$. Since these are both two-form fields, their exterior derivatives are three-form fields, so we have to provide three basis vectors to get each component. Each component equation will yield one of Maxwell\'s equations, written in coordinates, without vector notation. So, the purely spatial component $sans(d F) (partial\/partial x\,partial\/partial y\,partial\/partial z)$ of equation 10.13 is equation 10.15:
+To see how these work out, we evaluate each component of $sans(d F)$ and $sans(d) (g^(*) sans(F))- 4 pi g^(*) sans(J)$. Since these are both two-form fields, their exterior derivatives are three-form fields, so we have to provide three basis vectors to get each component. Each component equation will yield one of Maxwell\'s equations, written in coordinates, without vector notation. So, the purely spatial component $sans(d F) (partial\/partial x\,partial\/partial y\,partial\/partial z)$ of equation @10.13 is equation @10.15:
 
 ```scheme
 (((d F) d/dx d/dy d/dz) an-event)
@@ -399,7 +399,7 @@ To see how these work out, we evaluate each component of $sans(d F)$ and $sans(d
 
 $ frac(partial B_x, partial x) + frac(partial B_y, partial y) + frac(partial B_z, partial z) = 0 $ <10.19>
 
-The three mixed space and time components of equation 10.13 are equation 10.16:
+The three mixed space and time components of equation @10.13 are equation @10.16:
 
 ```scheme
 (((d F) d/dct d/dy d/dz) an-event)
@@ -428,7 +428,7 @@ $ frac(partial E_x, partial z) - frac(partial E_z, partial x) = 1 / c frac(parti
 
 $ frac(partial E_y, partial x) - frac(partial E_x, partial y) = 1 / c frac(partial B_z, partial t) . $ <10.22>
 
-The purely spatial component of equation 10.14 is equation 10.17:
+The purely spatial component of equation @10.14 is equation @10.17:
 
 ```scheme
 (((- (d (SR-star F)) (* 4 :pi (SR-star 4-current)))
@@ -442,7 +442,7 @@ The purely spatial component of equation 10.14 is equation 10.17:
 
 $ frac(partial E_x, partial x) + frac(partial E_y, partial y) + frac(partial E_z, partial z) = 4 pi rho . $ <10.23>
 
-And finally, the three mixed time and space components of equation 10.14 are equation 10.18:
+And finally, the three mixed time and space components of equation @10.14 are equation @10.18:
 
 ```scheme
 (((- (d (SR-star F)) (* 4 :pi (SR-star 4-current)))
@@ -480,7 +480,7 @@ $ frac(partial B_z, partial x) - frac(partial B_x, partial z) = - 1 / c frac(par
 
 $ frac(partial B_x, partial y) - frac(partial B_y, partial x) = - 1 / c frac(partial E_z, partial t) - frac(4 pi, c) I_z . $ <10.26>
 
-== Lorentz Force
+== Lorentz Force <sec-10.6>
 The classical force on a charged particle moving in a electromagnetic field is
 
 $ arrow(f) = q (arrow(E) + 1 / c arrow(v) times arrow(B)) . $ <10.27>
@@ -558,7 +558,7 @@ If we give a particle a more general timelike 4-velocity in the $hat(x)$ directi
 ;;    (sqrt (+ 1 (* -1 (expt v/c 2)))))
 ```
 
-=== Exercise 10.1: Relativistic Lorentz Force
+=== Exercise 10.1: Relativistic Lorentz Force <sec-10.6.1>
 Compute all components of the 4-force for a general timelike 4-velocity.
 
 a. Compare these components to the components of the nonrelativistic force given above. Interpret the differences.

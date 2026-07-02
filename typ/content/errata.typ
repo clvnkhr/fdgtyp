@@ -2,7 +2,7 @@
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
 #import "../lib.typ": fdg-chapter, curl, grad, Lap, div, length
 
-#fdg-chapter("Errata for FDG", numbered: false, eq-prefix: "0")[
+#fdg-chapter("Errata for FDG", numbered: false, eq-prefix: "0", ref-label: "")[
 == Chapter 1
 Page 9: #raw(lang:"verbatim", "Cartan") is used in #raw(lang:"verbatim", "geodesic-equation-residuals") before it is defined just after. Be careful to flip evaluation order of these two listings.
 
@@ -144,7 +144,7 @@ Page 136: The code beginning here requires the #raw(lang:"verbatim", "S2-spheric
 
 Page 141: The simplifier in the current build of #raw(lang:"verbatim", "scmutils") can\'t simplify the denominators to the book\'s terms with the #raw(lang:"verbatim", "3/2") power. If this was hand-simplified, great! Otherwise, maybe this is a regression in the simplifier. I can\'t see a setting in #raw(lang:"verbatim", "rules.scm") that would allow this, but I haven\'t looked at the full set of rules in a while…
 
-Page 146: The code in section 9.3 requires the #raw(lang:"verbatim", "spacetime-rect") coordinate system to be installed. #raw(lang:"verbatim", "spacetime-rect-basis") is also used in the first code block on this page without definition:
+Page 146: The code in section @sec-9.3 requires the #raw(lang:"verbatim", "spacetime-rect") coordinate system to be installed. #raw(lang:"verbatim", "spacetime-rect-basis") is also used in the first code block on this page without definition:
 
 ```scheme
 (define-coordinates (up t x y z) spacetime-rect)

@@ -20,6 +20,10 @@ function readTyp(file) {
   return normalize(readContentFile(file));
 }
 
+function readTypFile(file) {
+  return readFileSync(path.join(root, "typ", file), "utf8");
+}
+
 const contentFiles = readdirSync(contentDir)
   .filter(file => file.endsWith(".typ"))
   .sort();
@@ -34,9 +38,13 @@ const assertions = [
     file: "preface.typ",
     contains: [
       "This is like trying to read Les Misérables while struggling with French grammar.",
+      "#emph[Turtle Geometry] @abelson1980turtle",
+      "@papert1980mindstorms",
     ],
     excludes: [
       "Les Mis´erables",
+      "\\[2\\]",
+      "\\[13\\]",
     ],
   },
   {
@@ -44,9 +52,11 @@ const assertions = [
     contains: [
       "A mechanical system is described by a Lagrangian function of the system state (time, coordinates, and velocities).",
       "its derivative (also a function of time) into the coordinate and velocity arguments",
-      "Note that we can flexibly manipulate representations of mathematical functions. (See Appendices A and B.)",
+      "Note that we can flexibly manipulate representations of mathematical functions. (See Appendices @chap-appendix-a and @chap-appendix-b.)",
       "$ frac(d, d t) (lr(frac(partial L (t\\,q\\,dot(q)), partial dot(q))|)_(q=w (t) \\\n dot(q) = frac(d w (t), d t))) - lr(frac(partial L (t\\,q\\,dot(q)), partial q)|)_(q=w (t) \\\n dot(q) = frac(d w (t), d t)) = 0 . $",
       "$ (D f) (t)= frac(d, d x) f (x)|_(x=t) . $",
+      "A formal description of Scheme can be obtained in @ieee1991scheme. You can get the software from @fdg-software.",
+      "An informal description of Scheme can be found in Appendix @chap-appendix-a. The use of Scheme to represent mathematical objects can be found in Appendix @chap-appendix-b.",
     ],
     excludes: [
       "```scheme (time, coordinates, and velocities).",
@@ -54,6 +64,10 @@ const assertions = [
       "```scheme (See Appendices A and B.)",
       "partial dot(q))|_(q=w",
       "partial q)|_(q=w",
+      "\\[10\\]",
+      "\\[21\\]",
+      "Appendices A and B",
+      "Appendix A. The use of Scheme",
     ],
   },
   {
@@ -64,6 +78,10 @@ const assertions = [
       "(define Cartan (Christoffel->Cartan (metric->Christoffel-2 the-metric (coordinate-system->basis R2-rect))))",
       "This analysis will work for any number of dimensions (but will take your computer longer in higher dimensions, because the complexity increases).",
       "$ sans(d) theta (sans(v))= dot(theta) \\\n sans(d) phi.alt (sans(v))= dot(phi.alt)\\, $",
+      "Galileo Galilei @galilei1623assayer",
+      "equation @1.1",
+      "Section @sec-2.1",
+      "Appendix @chap-appendix-b",
     ],
     excludes: [
       "EulerLagrange",
@@ -73,6 +91,10 @@ const assertions = [
       "```scheme (but will take your computer longer in higher dimensions",
       "dot (theta)",
       "dot (phi.alt)",
+      "\\[8\\]",
+      "equation (1.1)",
+      "Section 2.1",
+      "Appendix B",
     ],
   },
   {
@@ -124,10 +146,12 @@ const assertions = [
       "sum_k sans(X)_k(sans(f))sans(c)_j^k",
       "tilde(sans(e))^i (sans(v))= sum_l sans(d)_l^i tilde(sans(X))^l (sans(v))",
       "sum_k sans(d)_k^i (sans(m))sans(c)_j^k (sans(m)).",
+      "equations @4.29 -- @4.31",
     ],
     excludes: [
       "sum_k sans(X) (sans(f))sans(c)_j^k",
       "sum_l {sans(d)_l^i",
+      "equations 4.29",
     ],
   },
   {
@@ -162,10 +186,16 @@ const assertions = [
       "(cal(D)_(sans(v)) sans(f))sans(g) .",
       "Introduce $B$ to make the dependence of $A$s on $sans(v)$ explicit:",
       "$ A_j^i (delta)= B_j^i (sans(v)) (delta). $",
+      "equations @7.18 - @7.21",
+      "@sussman2001sicm, section 1.6.3",
+      "See Appendix @chap-appendix-c",
     ],
     excludes: [
       "sans(g .)",
       "\\$A\\$s",
+      "equations 7.18",
+      "\\[19\\]",
+      "See Appendix C",
     ],
   },
   {
@@ -184,10 +214,12 @@ const assertions = [
     contains: [
       "The Lagrange equations are $upright(bold(E))[L]compose Gamma[q]= 0$.",
       "$ bold(E)[L_2]= D_t partial_2 L_2 - partial_1 L_2\\, $",
+      "Section @sec-7.4",
     ],
     excludes: [
       "$upright(bold(E))$[L]",
       "\\$#strong[E]\\$",
+      "Section 7.4",
     ],
   },
   {
@@ -237,22 +269,36 @@ const assertions = [
       "$ p v = p_0 v^0 + p_1 v^1 + p_2 v^2 . $ <B.8>",
       "Higher-order derivatives are described by exponentiating the derivative operator. Thus the $n$th derivative of a function $f$ is notated as $D^n f$.",
       "using $upright(T e X)$, and then these decorations turn into superscripts and subscripts.",
+      "equations @B.4 and @B.5",
     ],
     excludes: [
       "\\$n\\$th",
       "\\TeX",
+      "equations (B.4)",
     ],
   },
   {
     file: "references.typ",
     contains: [
-      "\\[1\\] Harold Abelson and Gerald Jay Sussman with Julie Sussman, #emph[Structure and Interpretation of Computer Programs], MIT Press, Cambridge, MA, 1996.",
-      "\\[11\\] Charles W. Misner, Kip S. Thorne, and John Archibald Wheeler, #emph[Gravitation], W. H. Freeman and Company, San Francisco, 1973.",
-      "\\[21\\] Free software is available at: #link(\"https://groups.csail.mit.edu/mac/users/gjs/6946/linux-install.htm\")[https://groups.csail.mit.edu/mac/users/gjs/6946/linux-install.htm]",
+      "#bibliography(\"../references.bib\", title: none, full: true, style: \"ieee\")",
     ],
     excludes: [
       "#fdg-chapter(\"References\", numbered: false, eq-prefix: \"0\")[ ]",
-      "/Structure and",
+      "\\[1\\] Harold Abelson",
+    ],
+  },
+];
+
+const typFileAssertions = [
+  {
+    file: "references.bib",
+    contains: [
+      "@book{abelson1996sicp,",
+      "  title = {Structure and Interpretation of Computer Programs},",
+      "@book{misner1973gravitation,",
+      "  title = {Gravitation},",
+      "@misc{fdg-software,",
+      "  url = {https://groups.csail.mit.edu/mac/users/gjs/6946/linux-install.htm},",
     ],
   },
 ];
@@ -296,6 +342,11 @@ const globalExcludes = [
   "$ \"length\"",
   "<eq:op-transform>",
   "dot (",
+  "Section 2.1",
+  "Section 7.4",
+  "section 9.3",
+  "See Appendix C",
+  "Appendices A and B",
 ];
 
 const globalRegexExcludes = [
@@ -319,6 +370,14 @@ const globalRegexExcludes = [
     name: "escaped equation label",
     regex: /\\<[A-Z0-9]+\.\d+\\>/,
   },
+  {
+    name: "escaped numeric citation",
+    regex: /\\\[(?:[1-9]|1\d|2[01])\\\]/,
+  },
+  {
+    name: "plain parenthesized equation reference",
+    regex: /\b[Ee]quations?\s+\((?:[A-C]|\d+)\.\d+/,
+  },
 ];
 
 let failures = 0;
@@ -341,6 +400,22 @@ for (const assertion of assertions) {
   for (const rejected of assertion.excludes ?? []) {
     if (text.includes(normalize(rejected))) {
       fail(`Found rejected text in ${assertion.file}:`, rejected);
+    }
+  }
+}
+
+for (const assertion of typFileAssertions) {
+  const text = normalize(readTypFile(assertion.file));
+
+  for (const expected of assertion.contains ?? []) {
+    if (!text.includes(normalize(expected))) {
+      fail(`Missing expected text in typ/${assertion.file}:`, expected);
+    }
+  }
+
+  for (const rejected of assertion.excludes ?? []) {
+    if (text.includes(normalize(rejected))) {
+      fail(`Found rejected text in typ/${assertion.file}:`, rejected);
     }
   }
 }

@@ -2,7 +2,7 @@
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
 #import "../lib.typ": fdg-chapter, curl, grad, Lap, div, length
 
-#fdg-chapter("Appendix C: Tensors", numbered: true, eq-prefix: "C")[
+#fdg-chapter("Appendix C: Tensors", numbered: true, eq-prefix: "C", ref-label: "chap-appendix-c")[
 There are a variety of objects that have meaning independent of any particular basis. Examples are form fields, vector fields, covariant derivative, and so on. We call objects that are independent of basis #emph[geometric objects]. Some of these are functions that take other geometric objects, such as vector fields and form fields, as arguments and produce further geometric objects. We refer to such functions as #emph[geometric functions]. We want the laws of physics to be independent of the coordinate systems. How we describe an experiment should not affect the result. If we use only geometric objects in our descriptions then this is automatic.
 
 A geometric function of vector fields and form fields that is linear in each argument with functions as multipliers is called a #emph[tensor]. For example, let $sans(T)$ be a geometric function of a vector field and form field that gives a real-number result at the manifold point $sans(m)$. Then
@@ -39,7 +39,7 @@ $ sans(T)_j^(' i) = sum_(k l) sans(J)_k^i sans(T)_l^k sans(K)_j^l . $ <C.7>
 
 Tensors are a restricted set of mathematical objects that are geometric, so if we restrict our descriptions to tensor expressions they are #emph[prima facie] independent of the coordinates used to represent them. So if we can represent the physical laws in terms of tensors we have built in the coordinate-system independence.
 
-Let\'s test whether the geometric function $sans(R)$, which we have called the Riemann tensor (see equation 8.2), is indeed a tensor field. A real-valued geometric function is a tensor if it is linear (over the functions) in each of its arguments. We can try it for 3-dimensional rectangular coordinates:
+Let\'s test whether the geometric function $sans(R)$, which we have called the Riemann tensor (see equation @8.2), is indeed a tensor field. A real-valued geometric function is a tensor if it is linear (over the functions) in each of its arguments. We can try it for 3-dimensional rectangular coordinates:
 
 ```scheme
 (let ((cs R3-rect))
@@ -90,7 +90,7 @@ It is easy to generalize these formulas to tensors with general arguments. We ha
 ;; (0 0 0 0)
 ```
 
-and so does the torsion (see equation 8.21):
+and so does the torsion (see equation @8.21):
 
 ```scheme
 (tensor-test

@@ -2,7 +2,7 @@
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
 #import "../lib.typ": fdg-chapter, curl, grad, Lap, div, length
 
-#fdg-chapter("Curvature", numbered: true, eq-prefix: "8")[
+#fdg-chapter("Curvature", numbered: true, eq-prefix: "8", ref-label: "chap-8")[
 If the intrinsic curvature of a manifold is not zero, a vector parallel-transported around a small loop will end up different from the vector that started. We saw the consequence of this before, on page 1 and on page 93. The Riemann tensor encapsulates this idea.
 
 The Riemann curvature operator is
@@ -45,8 +45,8 @@ Most of the sixteen coefficients of the Riemann tensor for the sphere are zero. 
 
 $ sans(R) (sans(d) theta \, frac(partial, partial phi.alt) \, frac(partial, partial theta) \, frac(partial, partial phi.alt)) (chi^(-1) (q^theta \, q^phi.alt)) = (sin (q^theta))^2\,sans(R) (sans(d) theta \, frac(partial, partial phi.alt) \, frac(partial, partial phi.alt) \, frac(partial, partial theta)) (chi^(-1) (q^theta \, q^phi.alt)) = - (sin (q^theta))^2\,sans(R) (sans(d) phi.alt \, frac(partial, partial theta) \, frac(partial, partial theta) \, frac(partial, partial phi.alt)) (chi^(-1) (q^theta \, q^phi.alt)) = - 1\,sans(R) (sans(d) phi.alt \, frac(partial, partial theta) \, frac(partial, partial phi.alt) \, frac(partial, partial theta)) (chi^(-1) (q^theta \, q^phi.alt)) = 1 . $ <8.3>
 
-== Explicit Transport
-We will show that the result of the Riemann calculation of the change in a vector, as we traverse a loop, is what we get by explicitly calculating the transport. The coordinates of the vector to be transported are governed by the differential equations (see equation 7.72)
+== Explicit Transport <sec-8.1>
+We will show that the result of the Riemann calculation of the change in a vector, as we traverse a loop, is what we get by explicitly calculating the transport. The coordinates of the vector to be transported are governed by the differential equations (see equation @7.72)
 
 $ D u^i (t)= - sum_j pi.alt_j^i (sans(v)) (chi^(-1) (sigma (t))) u^j (t) $ <8.4>
 
@@ -54,13 +54,13 @@ and the coordinates as a function of time, $sigma = chi compose gamma compose ch
 
 $ D sigma (t)= sans(v) (chi) (chi^(-1) (sigma (t))) . $ <8.5>
 
-We have to integrate these equations (8.4, 8.5) together to transport the vector over the map $sans(u)_gamma$ a finite distance along the vector field $sans(v)$.
+We have to integrate these equations @8.4, @8.5 together to transport the vector over the map $sans(u)_gamma$ a finite distance along the vector field $sans(v)$.
 
 Let $s (t)=(sigma (t)\,u (t))$ be a state tuple, combining $sigma$ the coordinates of $gamma$, and $u$ the coordinates of $sans(u)_gamma$. Then
 
 $ D s (t)= (D sigma (t) \, D u (t)) = g (s (t))\, $ <8.6>
 
-where $g$ is the tuple of right-hand sides of equations (8.4, 8.5).
+where $g$ is the tuple of right-hand sides of equations @8.4, @8.5.
 
 The differential equations describing the evolution of a function $h$ of state $s$ along the state path are
 
@@ -104,7 +104,7 @@ $ epsilon.alt^2 U ((([L_(g_w) \, L_(g_v)] - L_(g_([w\,v]))) I) (s_0))\, $ <8.12>
 
 This is what the Riemann tensor computation gives, scaled by $epsilon.alt^2$.
 
-=== Verification in Two Dimensions
+=== Verification in Two Dimensions <sec-8.1.1>
 We can verify this in two dimensions. We need to make the structure representing a state:
 
 ```scheme
@@ -171,7 +171,7 @@ So now we can demonstrate that the lowest-order change resulting from explicit p
 ;; (up 0 0)
 ```
 
-=== Geometrically
+=== Geometrically <sec-8.1.2>
 The explicit transport above was done with differential equations operating on a state consisting of coordinates and components of the vector being transported. We can simplify this so that it is entirely built on manifold objects, eliminating the state. After a long algebraic story we find that
 
 $ ((cal(R) (sans(w)\,sans(v))) (sans(u))) (sans(f))quad = sans(e) (sans(f)){(sans(w) (pi.alt (sans(v)))- sans(v) (pi.alt (sans(w)))- pi.alt ([sans(w)\,sans(v)]))tilde(sans(e)) (sans(u))quad + pi.alt (sans(w))pi.alt (sans(v))tilde(sans(e)) (sans(u))- pi.alt (sans(v))pi.alt (sans(w))tilde(sans(e)) (sans(u))} $ <8.13>
@@ -216,8 +216,8 @@ This computes the same operator as the traditional Riemann curvature operator:
 ;; 0
 ```
 
-=== Terms of the Riemann Curvature
-Since the Riemann curvature is defined as in equation (8.1),
+=== Terms of the Riemann Curvature <sec-8.1.3>
+Since the Riemann curvature is defined as in equation @8.1,
 
 $ cal(R) (sans(w)\,sans(v))=[nabla_(sans(w))\,nabla_(sans(v))]- nabla_([sans(w)\,sans(v)])\, $ <8.14>
 
@@ -269,9 +269,9 @@ The second term of the Riemann curvature operator is
 
 $ nabla_([sans(w)\,sans(v)]) sans(u) = sans(e) {[sans(w) \, sans(v)] tilde(sans(e)) (sans(u)) + pi.alt ([sans(w) \, sans(v)]) tilde(sans(e)) (u)} . $ <8.18>
 
-The difference of these is the Riemann curvature operator. Notice that the first term in each cancels, and the rest gives equation (8.13).
+The difference of these is the Riemann curvature operator. Notice that the first term in each cancels, and the rest gives equation @8.13.
 
-=== Ricci Curvature
+=== Ricci Curvature <sec-8.1.4>
 One measure of the curvature is the Ricci tensor, which is computed from the Riemann tensor by
 
 $ R (sans(u)\,sans(v))= sum_i sans(R) (tilde(sans(e))^i \, sans(u) \, sans(e)_i \, sans(v)) . $ <8.19>
@@ -284,12 +284,12 @@ Expressed as a program:
             basis))
 ```
 
-Einstein\'s field equation (9.27) for gravity, which we will encounter later, is expressed in terms of the Ricci tensor.
+Einstein\'s field equation @9.27 for gravity, which we will encounter later, is expressed in terms of the Ricci tensor.
 
-=== Exercise 8.1: Ricci of a Sphere
+=== Exercise 8.1: Ricci of a Sphere <sec-8.1.5>
 Compute the components of the Ricci tensor of the surface of a sphere.
 
-=== Exercise 8.2: Pseudosphere
+=== Exercise 8.2: Pseudosphere <sec-8.1.6>
 A pseudosphere is a surface in 3-dimensional space. It is a surface of revolution of a tractrix about its asymptote (along the $hat(z)$-axis). We can make coordinates for the surface $(t\,theta)$ where $t$ is the coordinate along the asymptote and $theta$ is the angle of revolution. We embed the pseudosphere in rectangular 3-dimensional space with
 
 ```scheme
@@ -322,7 +322,7 @@ Note that this is independent of $theta$.
 
 Compute the components of the Ricci tensor.
 
-== Torsion
+== Torsion <sec-8.2>
 There are many connections that describe the local properties of any particular manifold. A connection has a property called #emph[torsion], which is computed as follows:
 
 $ cal(T) (sans(u)\,sans(v))= nabla_(sans(u)) sans(v) - nabla_(sans(v)) sans(u) -[sans(u)\,sans(v)]. $ <8.20>
@@ -360,22 +360,22 @@ The torsion for the connection for the 2-sphere specified by the Christoffel coe
 ;; 0
 ```
 
-=== Torsion Doesn\'t Affect Geodesics
+=== Torsion Doesn\'t Affect Geodesics <sec-8.2.1>
 There are multiple connections that give the same geodesic curves. Among these connections there is always one with zero torsion. Thus, if you care about only geodesics, it is appropriate to use a torsion-free connection.
 
 Consider a basis $sans(e)$ and its dual $tilde(sans(e))$. The components of the torsion are
 
 $ tilde(sans(e)) (sans(T) (sans(e)_i \, sans(e)_j)) = Gamma_(i j)^k + Gamma_(j i)^k + Gamma_(i j)^k\, $ <8.21>
 
-where $sans(d)_(i j)^k$ are the structure constants of the basis. See equations (4.37, 4.38). For a commuting basis the structure constants are zero, and the components of the torsion are the antisymmetric part of $Gamma$ with respect to the lower indices.
+where $sans(d)_(i j)^k$ are the structure constants of the basis. See equations @4.37, @4.38. For a commuting basis the structure constants are zero, and the components of the torsion are the antisymmetric part of $Gamma$ with respect to the lower indices.
 
-Recall the geodesic equation (7.79):
+Recall the geodesic equation @7.79:
 
 $ D^2 sigma^i (t)= sum_(j k) Gamma_(j k)^i (gamma (t))D sigma^j (t)D sigma^k (t = 0 . $ <8.22>
 
 Observe that the lower indices of $Gamma$ are contracted with two copies of the velocity. Because the use of $Gamma$ is symmetrical here, any asymmetry of $Gamma$ in its lower indices is irrelevant to the geodesics. Thus one can study the geodesics of any connection by first symmetrizing the connection, eliminating torsion. The resulting equations will be simpler.
 
-== Geodesic Deviation
+== Geodesic Deviation <sec-8.3>
 Geodesics may converge and intersect (as in the lines of longitude on a sphere) or they may diverge (for example, on a saddle). To capture this notion requires some measure of the convergence or divergence, but this requires metrics (see Chapter 9). But even in the absence of a metric we can define a quantity, the #emph[geodesic deviation], that can be interpreted in terms of relative acceleration of neighboring geodesics from a reference geodesic.
 
 Let there be a one-parameter family of geodesics, with parameter $s$, and let $sans(T)$ be the vector field of tangent vectors to those geodesics:
@@ -396,7 +396,7 @@ If the connection has zero torsion, the geodesic deviation can be related to the
 
 $ nabla_(sans(T)) (nabla_(sans(T)) sans(U))= - cal(R) (sans(U)\,sans(T)) (sans(T))\, $ <8.26>
 
-as follows, using equation (8.21),
+as follows, using equation @8.21,
 
 $ nabla_(sans(T)) (nabla_(sans(T)) sans(U))= nabla_(sans(T)) (nabla_(sans(U)) sans(T))\, $ <8.27>
 
@@ -404,7 +404,7 @@ because both the torsion is zero and $[sans(T)\,sans(U)]= 0$. Continuing
 
 $ nabla_(sans(T)) (nabla_(sans(T)) sans(U))= nabla_(sans(T)) (nabla_(sans(U)) sans(T))= nabla_(sans(T)) (nabla_(sans(U)) sans(T))+ nabla_(sans(U)) (nabla_(sans(T)) sans(T))- nabla_(sans(U)) (nabla_(sans(T)) sans(T))= nabla_(sans(U)) (nabla_(sans(T)) sans(T))- cal(R) (sans(U)\,sans(T)) (sans(T))= - cal(R) (sans(U)\,sans(T)) (sans(T)). $ <8.28>
 
-In the last line the first term was dropped because $sans(T)$ satisfies the geodesic equation (8.24).
+In the last line the first term was dropped because $sans(T)$ satisfies the geodesic equation @8.24.
 
 The geodesic deviation is defined without using a metric, but it helps to have a metric (see Chapter 9) to interpret the geodesic deviation. Consider two neighboring geodesics, with parameters $s$ and $s + Delta s$. Given a metric we can assume that $t$ is proportional to path length along each geodesic, and we can define a distance $delta (s\,t\,Delta s)$ between the geodesics at the same value of the parameter $t$. So the velocity of separation of the two geodesics is
 
@@ -414,7 +414,7 @@ where $hat(s)$ is a unit vector in the direction of increasing $s$. So $nabla_(s
 
 $ nabla sans(T) (nabla_(sans(T)) sans(U))= partial_1 partial_1 delta (s\,t\,Delta s)hat(s) . $ <8.30>
 
-=== Longitude Lines on a Sphere
+=== Longitude Lines on a Sphere <sec-8.3.1>
 Consider longitude lines on the unit sphere.#footnote[The setup for this example is:
 
 ```scheme
@@ -460,7 +460,7 @@ So we can compute the geodesic deviation using #raw(lang:"verbatim", "Riemann")
 ;; 0
 ```
 
-confirming equation (8.29).
+confirming equation @8.29.
 
 Lines of longitude are geodesics. How do the lines of longitude behave? As we proceed from the North Pole, the lines of constant longitude diverge. At the Equator they are parallel and they converge towards the South Pole.
 
@@ -529,7 +529,7 @@ and the acceleration vector is the product of this result with $hat(phi.alt)$. M
 
 And this agrees with the calculation of $nabla_(sans(T)) nabla_(sans(T)) sans(U) Delta phi.alt$ for the unit sphere. We see that the separation of the lines of longitude are uniformly decelerated as they progress from pole to pole.
 
-== Bianchi Identities
+== Bianchi Identities <sec-8.4>
 There are some important mathematical properties of the Riemann curvature. These identities will be used to constrain the possible geometries that can occur.
 
 A system with a symmetric connection, $Gamma_(j k)^i = Gamma_(j k)^i$, is torsion free.#footnote[Setup for this section:
@@ -644,5 +644,5 @@ We now make the Cartan forms from the most general 2-dimensional Christoffel coe
    (literal-Christoffel-2 'Gamma R2-rect)))
 ```
 
- \[11\], \[4\], and \[14\] use our definition. \[20\] uses a different convention for the order of arguments and a different sign. See Appendix C for a definition of tensors.
+ @misner1973gravitation, @carroll2003spacetime, and @schutz1985first use our definition. @wald1984general uses a different convention for the order of arguments and a different sign. See Appendix @chap-appendix-c for a definition of tensors.
 ]

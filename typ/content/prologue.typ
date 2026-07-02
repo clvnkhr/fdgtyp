@@ -2,7 +2,7 @@
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
 #import "../lib.typ": fdg-chapter, curl, grad, Lap, div, length
 
-#fdg-chapter("Prologue", numbered: false, eq-prefix: "0")[
+#fdg-chapter("Prologue", numbered: false, eq-prefix: "0", ref-label: "")[
 == Programming and Understanding
 One way to become aware of the precision required to unambiguously communicate a mathematical idea is to program it for a computer. Rather than using canned programs purely as an aid to visualization or numerical computation, we use computer programming in a functional style to encourage clear thinking. Programming forces us to be precise and unambiguous, without forcing us to be excessively rigorous. The computer does not tolerate vague descriptions or incomplete constructions. Thus the act of programming makes us keenly aware of our errors of reasoning or unsupported conclusions.#footnote[The idea of using computer programming to develop skills of clear thinking was originally advocated by Seymour Papert. An extensive discussion of this idea, applied to the education of young children, can be found in Papert]
 
@@ -39,7 +39,7 @@ The derivative $d\/d t$ is an expression derivative. It applies to an expression
 
 These are both useful interpretations of the idea of a derivative. But functions give us more power. There are many equivalent ways to write expressions that compute the same value. For example $1\/(1\/r_1 + 1\/r_2)=(r_1 r_2)\/(r_1 + r_2)$. These expressions compute the same function of the two variables $r_1$ and $r_2$. The first expression fails if $r_1 = 0$ but the second one gives the right value of the function. If we abstract the function, say as $Pi (r_1\,r_2)$, we can ignore the details of how it is computed. The ideas become clearer because they do not depend on the detailed shape of the expressions.
 
-So let's get rid of the expression derivative $d\/d t$ and replace it with an appropriate functional derivative. If $f$ is a function then we will write $D f$ as the new function that is the derivative of $f$:#footnote[An explanation of functional derivatives is in Appendix B, page 202.]
+So let's get rid of the expression derivative $d\/d t$ and replace it with an appropriate functional derivative. If $f$ is a function then we will write $D f$ as the new function that is the derivative of $f$:#footnote[An explanation of functional derivatives is in Appendix @chap-appendix-b, page 202.]
 
 $ (D f) (t)= frac(d, d x) f (x)|_(x=t) . $
 
@@ -59,7 +59,7 @@ $ D ((partial_2 L) compose (Gamma [w])) - (partial_1 L) compose (Gamma [w]) = 0 
 
 The functions $partial_1 L$ and $partial_2 L$ are partial derivatives of the function $L$. Composition with $Gamma[w]$ evaluates these partials with coordinates and velocites appropriate for the path $w$, making functions of time. Applying $D$ takes the time derivative. The Lagrange equation states that the difference of the resulting functions of time must be zero. This statement of the Lagrange equation is complete, unambiguous, and functional. It is not encumbered with the particular choices made in expressing the Lagrangian. For example, it doesn't matter if the time is named $t$ or $tau$, and it has an explicit place for the path to be tested.
 
-This expression is equivalent to a computer program:#footnote[The programs in this book are written in Scheme, a dialect of Lisp. The details of the language are not germane to the points being made. What is important is that it is mechanically interpretable, and thus unambiguous. In this book we require that the mathematical expressions be explicit enough that they can be expressed as computer programs. Scheme is chosen because it is easy to write programs that manipulate representations of mathematical functions. An informal description of Scheme can be found in Appendix A. The use of Scheme to represent mathematical objects can be found in Appendix B. A formal description of Scheme can be obtained in \[10\]. You can get the software from \[21\].]
+This expression is equivalent to a computer program:#footnote[The programs in this book are written in Scheme, a dialect of Lisp. The details of the language are not germane to the points being made. What is important is that it is mechanically interpretable, and thus unambiguous. In this book we require that the mathematical expressions be explicit enough that they can be expressed as computer programs. Scheme is chosen because it is easy to write programs that manipulate representations of mathematical functions. An informal description of Scheme can be found in Appendix @chap-appendix-a. The use of Scheme to represent mathematical objects can be found in Appendix @chap-appendix-b. A formal description of Scheme can be obtained in @ieee1991scheme. You can get the software from @fdg-software.]
 
 ```scheme
 (define ((Lagrange-equations Lagrangian) w)
@@ -126,7 +126,7 @@ $ k x (t) + m D^2 x (t) $
 
 If this residual is zero we have the Lagrange equation for the harmonic oscillator.
 
-Note that we can flexibly manipulate representations of mathematical functions. (See Appendices A and B.)
+Note that we can flexibly manipulate representations of mathematical functions. (See Appendices @chap-appendix-a and @chap-appendix-b.)
 
 We started out thinking that the original statement of Lagrange's equations accurately captured the idea. But we really don't know until we try to teach it to a naive student. If the student is sufficiently ignorant, but is willing to ask questions, we are led to clarify the equations in the way that we did. There is no dumber but more insistent student than a computer. A computer will absolutely refuse to accept a partial statement, with missing parameters or a type error. In fact, the original statement of Lagrange's equations contained an obvious type error: the Lagrangian is a function of multiple variables, but the $d\/d t$ is applicable only to functions of one variable.
 ]

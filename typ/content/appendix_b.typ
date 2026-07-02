@@ -2,22 +2,22 @@
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
 #import "../lib.typ": fdg-chapter, curl, grad, Lap, div, length
 
-#fdg-chapter("Appendix B: Our Notation", numbered: true, eq-prefix: "B")[
+#fdg-chapter("Appendix B: Our Notation", numbered: true, eq-prefix: "B", ref-label: "chap-appendix-b")[
 #quote(block: true)[
 An adequate notation should be understood by at least two people, one of whom may be the author.
 
 Abdus Salam (1950).
 ]
 
-We adopt a #emph[functional mathematical notation] that is close to that used by Spivak in his #emph[Calculus on Manifolds] \[17\]. The use of functional notation avoids many of the ambiguities of traditional mathematical notation that can impede clear reasoning. Functional notation carefully distinguishes the function from the value of the function when applied to particular arguments. In functional notation mathematical expressions are unambiguous and self-contained.
+We adopt a #emph[functional mathematical notation] that is close to that used by Spivak in his #emph[Calculus on Manifolds] @spivak1965calculus. The use of functional notation avoids many of the ambiguities of traditional mathematical notation that can impede clear reasoning. Functional notation carefully distinguishes the function from the value of the function when applied to particular arguments. In functional notation mathematical expressions are unambiguous and self-contained.
 
 We adopt a #emph[generic arithmetic] in which the basic arithmetic operations, such as addition and multiplication, are extended to a wide variety of mathematical types. Thus, for example, the addition operator $+$ can be applied to numbers, tuples of numbers, matrices, functions, etc. Generic arithmetic formalizes the common informal practice used to manipulate mathematical objects.
 
 We often want to manipulate aggregate quantities, such as the collection of all of the rectangular coordinates of a collection of particles, without explicitly manipulating the component parts. Tensor arithmetic provides a traditional way of manipulating aggregate objects: Indices label the parts; conventions, such as the summation convention, are introduced to manipulate the indices. We introduce a #emph[tuple arithmetic] as an alternative way of manipulating aggregate quantities that usually lets us avoid labeling the parts with indices. Tuple arithmetic is inspired by tensor arithmetic but it is more general: not all of the components of a tuple need to be of the same size or type.
 
-The mathematical notation is in one-to-one correspondence with expressions of the computer language #emph[Scheme] \[10\]. Scheme is based on the $lambda$-calculus
+The mathematical notation is in one-to-one correspondence with expressions of the computer language #emph[Scheme] @ieee1991scheme. Scheme is based on the $lambda$-calculus
 
-== Functions
+== Functions <sec-B.1>
 The expression $f (x)$ denotes the value of the function $f$ at the given argument $x$\; when we wish to denote the function we write just $f$. Functions may take several arguments. For example, we may have the function that gives the Euclidean distance between two points in the plane given by their rectangular coordinates:
 
 $ d (x_1\,y_1\,x_2\,y_2)= sqrt((x_2 - x_1)^2+(y_2 - y_1)^2) . $ <B.1>
@@ -67,7 +67,7 @@ A procedure #raw(lang:"verbatim", "g") that multiplies the cube of its argument 
 ;; 7.274379414605454
 ```
 
-== Symbolic Values
+== Symbolic Values <sec-B.2>
 As in usual mathematical notation, arithmetic is extended to allow the use of symbols that represent unknown or incompletely specified mathematical objects. These symbols are manipulated as if they had values of a known type. By default, a Scheme symbol is assumed to represent a real number. So the expression #raw(lang:"verbatim", "'a") is a literal Scheme symbol that represents an unspecified real number:
 
 ```scheme
@@ -107,7 +107,7 @@ We may use such a literal function anywhere that an explicit function of the sam
 
 There is a whole language for describing the type of a literal function in terms of the number of arguments, the types of the arguments, and the types of the values. Here we describe a function that maps pairs of real numbers to real numbers with the expression #raw(lang:"verbatim", "(-> (X Real Real) Real)"). Later we will introduce structured arguments and values and show extensions of literal functions to handle these.
 
-== Tuples
+== Tuples <sec-B.3>
 There are two kinds of tuples: #emph[up] tuples and #emph[down] tuples. We write tuples as ordered lists of their components; a tuple is delimited by parentheses if it is an up tuple and by square brackets if it is a down tuple. For example, the up tuple $v$ of velocity components $v^0$, $v^1$, and $v^2$ is
 
 $ v =(v^0\,v^1\,v^2). $ <B.4>
@@ -178,7 +178,7 @@ Any tuple may be multiplied by a number by multiplying each component by the num
 
 For convenience we define the square of a tuple to be the sum of the squares of the components of the tuple. Tuples can be multiplied, as described below, but the square of a tuple is not the product of the tuple with itself.
 
-The meaning of multiplication of tuples depends on the structure of the tuples. Two tuples are compatible for contraction if they are of opposite types, they are of the same length, and corresponding elements have the following property: either they are both tuples and are compatible for contraction, or at least one is not a tuple. If two tuples are compatible for contraction then generic multiplication is interpreted as contraction: the result is the sum of the products of corresponding components of the tuples. For example, $p$ and $v$ introduced in equations (B.4) and (B.5) above are compatible for contraction; the product is
+The meaning of multiplication of tuples depends on the structure of the tuples. Two tuples are compatible for contraction if they are of opposite types, they are of the same length, and corresponding elements have the following property: either they are both tuples and are compatible for contraction, or at least one is not a tuple. If two tuples are compatible for contraction then generic multiplication is interpreted as contraction: the result is the sum of the products of corresponding components of the tuples. For example, $p$ and $v$ introduced in equations @B.4 and @B.5 above are compatible for contraction; the product is
 
 $ p v = p_0 v^0 + p_1 v^1 + p_2 v^2 . $ <B.8>
 
@@ -217,7 +217,7 @@ $ [vec(cos theta sin theta) vec(- sin theta cos theta)] [vec(cos phi sin phi) ve
 
 Multiplication of tuples that represent linear transformations is associative but generally not commutative, just as the composition of the transformations is associative but not generally commutative.
 
-== Derivatives
+== Derivatives <sec-B.4>
 The derivative of a function $f$ is a function, denoted by $D f$. Our notational convention is that $D$ is a high-precedence operator. Thus $D$ operates on the adjacent function before any other application occurs: $D f (x)$ is the same as $(D f) (x)$. Higher-order derivatives are described by exponentiating the derivative operator. Thus the $n$th derivative of a function $f$ is notated as $D^n f$.
 
 The Scheme procedure for producing the derivative of a function is named #raw(lang:"verbatim", "D"). The derivative of the #raw(lang:"verbatim", "sin") procedure is a procedure that computes #raw(lang:"verbatim", "cos"):
@@ -251,7 +251,7 @@ So at $x$,
 
 $ (D (f compose g)) (x)= D f (g (x))dot.op D g (x). $ <B.19>
 
-#raw(lang:"verbatim", "D") is an example of an operator. An operator is like a function except that multiplication of operators is interpreted as composition, whereas multiplication of functions is multiplication of the values (see equation B.3). If $D$ were an ordinary function, then the rule for multiplication would imply that $D^2 f$ would just be the product of $D f$ with itself, which is not what is intended. A product of a number and an operator scales the operator. So, for example
+#raw(lang:"verbatim", "D") is an example of an operator. An operator is like a function except that multiplication of operators is interpreted as composition, whereas multiplication of functions is multiplication of the values (see equation @B.3). If $D$ were an ordinary function, then the rule for multiplication would imply that $D^2 f$ would just be the product of $D f$ with itself, which is not what is intended. A product of a number and an operator scales the operator. So, for example
 
 ```scheme
 (((* 5 D) cos) 'x)
@@ -265,7 +265,7 @@ Arithmetic is extended to allow manipulation of operators. A typical operator is
 ;; (+ (((expt D 2) f) x) (* -1 (f x)))
 ```
 
-== Derivatives of Functions of Multiple Arguments
+== Derivatives of Functions of Multiple Arguments <sec-B.5>
 The derivative generalizes to functions that take multiple arguments. The derivative of a real-valued function of multiple arguments is an object whose contraction with the tuple of increments in the arguments gives a linear approximation to the increment in the function\'s value.
 
 A function of multiple arguments can be thought of as a function of an up tuple of those arguments. Thus an incremental argument tuple is an up tuple of components, one for each argument position. The derivative of such a function is a down tuple of the partial derivatives of the function with respect to each argument position
@@ -329,7 +329,7 @@ Mathematical notation usually does not distinguish functions of multiple argumen
 (down (((partial 0) g) x y) (((partial 1) g) x y))
 ```
 
-A phase-space state function is a function of time, coordinates, and momenta. Let $H$ be such a function. The value of $H$ is $H (t \, (x \, y) \, [p_x \, p_y])$ for time $t$, coordinates $(x\,y)$, and momenta $[p_x\,p_y]$. Let $s$ be the phase-space state tuple as in (B.6):
+A phase-space state function is a function of time, coordinates, and momenta. Let $H$ be such a function. The value of $H$ is $H (t \, (x \, y) \, [p_x \, p_y])$ for time $t$, coordinates $(x\,y)$, and momenta $[p_x\,p_y]$. Let $s$ be the phase-space state tuple as in (@B.6):
 
 $ s = (t \, (x \, y) \, [p_x \, p_y]) . $ <B.28>
 
@@ -375,7 +375,7 @@ In Scheme we must make explicit choices. We usually assume that phase-space stat
 ;;      (((partial 2 1) H) (up t (up_x y) (down p_x p_y)))))
 ```
 
-== Structured Results
+== Structured Results <sec-B.6>
 Some functions produce structured outputs. A function whose output is a tuple is equivalent to a tuple of component functions each of which produces one component of the output tuple.
 
 For example, a function that takes one numerical argument and produces a structure of outputs may be used to describe a curve through space. The following function describes a helical path around the $hat(z)$-axis in 3-dimensional space:
@@ -431,12 +431,12 @@ In Scheme:
 ;;           (* (exp y) (exp x))))
 ```
 
-=== Exercise B.1: Chain Rule
+=== Exercise B.1: Chain Rule <sec-B.6.1>
 Let $F (x\,y)= x^2 y^3$, $G (x\,y)=(F (x\,y)\,y)$, and $H (x\,y)= F (F (x\,y)\,y)$, so that $H = F compose G$.
 
 a. Compute $partial_0 F (x\,y)$ and $partial_1 F (x\,y)$. b. Compute $partial_0 F (F (x\,y)\,y)$ and $partial_1 F (F (x\,y)\,y)$. c. Compute $partial_0 G (x\,y)$ and $partial_1 G (x\,y)$. d. Compute $D F (a\,b)$, $D G (3\,5)$ and $D H (3 a^2\,5 b^3)$.
 
-=== Exercise B.2: Computing Derivatives
+=== Exercise B.2: Computing Derivatives <sec-B.6.2>
 We can represent functions of multiple arguments as procedures in several ways, depending upon how we wish to use them. The simplest idea is to identify the procedure arguments with the function\'s arguments.
 
 For example, we could write implementations of the functions that occur in exercise B.1 as follows:

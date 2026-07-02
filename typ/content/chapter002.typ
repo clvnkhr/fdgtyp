@@ -2,7 +2,7 @@
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
 #import "../lib.typ": fdg-chapter, curl, grad, Lap, div, length
 
-#fdg-chapter("Manifolds", numbered: true, eq-prefix: "2")[
+#fdg-chapter("Manifolds", numbered: true, eq-prefix: "2", ref-label: "chap-2")[
 A #emph[manifold] is a generalization of our idea of a smooth surface embedded in Euclidean space. For an #emph[n]-dimensional manifold, around every point there is a simply-connected open set, the #emph[coordinate patch], and a one-to-one continuous function, the #emph[coordinate function] or #emph[chart], mapping every point in that open set to a tuple of #emph[n] real numbers, the #emph[coordinates]. In general, several charts are needed to label all points on a manifold. It is required that if a region is in more than one coordinate patch then the coordinates are consistent in that the function mapping one set of coordinates to another is continuous (and perhaps differentiable to some degree). A consistent system of coordinate patches and coordinate functions that covers the entire manifold is called an #emph[atlas].
 
 An example of a 2-dimensional manifold is the surface of a sphere or of a coffee cup. The space of all configurations of a planar double pendulum is a more abstract example of a 2-dimensional manifold. A manifold that looks locally Euclidean may not look like Euclidean space globally: for example, it may not be simply connected. The surface of the coffee cup is not simply connected, because there is a hole in the handle for your fingers.
@@ -23,7 +23,7 @@ and give it the name `R2`. One useful patch of the plane is the one that contain
 (define U (patch 'origin R2))
 ```
 
-== Coordinate Functions
+== Coordinate Functions <sec-2.1>
 A coordinate function $chi$ maps points in a coordinate patch of a manifold to a coordinate tuple#footnote[In the text that follows we will use sans-serif names, such as $sans(f)$, $sans(v)$, $sans(m)$, to refer to objects defined on the manifold. Objects that are defined on coordinates (tuples of real numbers) will be named with symbols like $f$, $v$, $x$.]:
 
 $ x = chi (m)\, $ <2.1>
@@ -77,7 +77,7 @@ And the rectangular coordinates of a polar point are:
 ;;(up (* r0 (cos theta0)) (* r0 (sin theta0)))
 ```
 
-And we can obtain the Jacobian of the polar-to-rectangular transformation by taking its derivative#footnote[See Appendix B for an introduction to tuple arithmetic and a discussion of derivatives of functions with structured input or output.]:
+And we can obtain the Jacobian of the polar-to-rectangular transformation by taking its derivative#footnote[See Appendix @chap-appendix-b for an introduction to tuple arithmetic and a discussion of derivatives of functions with structured input or output.]:
 
 ```scheme
 ((D (compose R2-rect-chi R2-polar-chi-inverse))
@@ -86,7 +86,7 @@ And we can obtain the Jacobian of the polar-to-rectangular transformation by tak
 ;;      (up (* -1 r0 (sin theta0)) (* r0 (cos theta0))))
 ```
 
-== Manifold functions
+== Manifold functions <sec-2.2>
 Let $sans(f)$ be a real-valued function on a manifold $sans(M)$: this function maps points $sans(m)$ on the manifold to real numbers.
 
 This function has a coordinate representation $f_chi$ with respect to the coordinate function $chi$ (see figure 2.2):
@@ -97,7 +97,7 @@ $ f_chi = sans(f) compose chi^(-1) . $ <2.3> Both the coordinate representation 
 
 For example, in a 2-dimensional real manifold the coordinates of a manifold point $m$ are a pair of real numbers, $ (x\,y)= chi (sans(m))\, $ <2.5> and the manifold function $sans(f)$ is represented in coordinates by a function $f$ that takes a pair of real numbers and produces a real number $ f : sans(R)^2 arrow.r sans(R) f :(x\,y)arrow.r f (x\,y). $ <2.6> We define our manifold function $ sans(f) : sans(M) arrow.r sans(R) sans(f) : sans(m) arrow.r (f compose chi) (sans(m)). $ <2.7>
 
-== #emph[Manifold Functions Are Coordinate Independent]
+== #emph[Manifold Functions Are Coordinate Independent] <sec-2.3>
 We can illustrate the coordinate independence with a program. We will show that an arbitrary manifold function $sans(f)$, when defined by its coordinate representation in rectangular coordinates, has the same behavior when applied to a manifold point independent of whether the point is specified in rectangular or polar coordinates.
 
 We define a manifold function by specifying its behavior in rectangular coordinates#footnote[Alternatively, we can define the same function in a shorthand
@@ -144,7 +144,7 @@ We can describe the #emph[same point] using its polar coordinates:
 ;;(f-rect (up x0 y0))
 ```
 
-== Naming Coordinate Functions
+== Naming Coordinate Functions <sec-2.4>
 To make things a bit easier, we can give names to the individual coordinate functions associated with a coordinate system. Here we name the coordinate functions for the `R2-rect` coordinate system `x` and `y` and for the `R2-polar` coordinate system `r` and `theta`.
 
 ```scheme
@@ -197,7 +197,7 @@ We can also apply `h` to a point defined in terms of its polar coordinates:
 ;;   (* (expt r0 3) (cos theta0)))
 ```
 
-== Exercise 2.1: Curves
+== Exercise 2.1: Curves <sec-2.5>
 A curve may be specified in different coordinate systems. For example, a cardioid constructed by rolling a circle of radius a around another circle of the same radius is described in polar coordinates by the equation $ r = 2 a (1 + cos(theta)). $
 
 We can convert this to rectangular coordinates by evaluating the residual in rectangular coordinates.
@@ -220,7 +220,7 @@ The rectangular coordinate equation for the Lemniscate of Bernoulli is $ (x^2 + 
 #strong[b.]
 Describe a helix space curve in both rectangular and cylindrical coordinates. Use the computer to show the correspondence. Note that we provide a cylindrical coordinate system on the manifold $upright(bold(R)) 3$ for you to use. It is called `R3-cyl`\; with coordinates `(r, theta, z)`.
 
-== Exercise 2.2: Stereographic Projection
+== Exercise 2.2: Stereographic Projection <sec-2.6>
 A stereographic projection is a correspondence between points on the unit sphere and points on the plane cutting the sphere at its equator. (See figure 2.3.)
 
 #align(center)[#image("../assets/figures/fig-2-3.pdf", width: 92%)]

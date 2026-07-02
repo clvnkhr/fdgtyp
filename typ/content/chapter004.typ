@@ -2,7 +2,7 @@
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
 #import "../lib.typ": fdg-chapter, curl, grad, Lap, div, length
 
-#fdg-chapter("Basis Fields", numbered: true, eq-prefix: "4")[
+#fdg-chapter("Basis Fields", numbered: true, eq-prefix: "4", ref-label: "chap-4")[
 A vector field may be written as a linear combination of basis vector fields. If #raw(lang:"verbatim", "n") is the dimension, then any set of #raw(lang:"verbatim", "n") linearly independent vector fields may be used as a basis. The coordinate basis $sans(X)$ is an example of a basis.#footnote[We cannot say if the basis vectors are orthogonal or normalized until we introduce a metric.] We will see later that not every basis is a coordinate basis: in order to be a coordinate basis, there must be a coordinate system such that each basis element is the directional derivative operator in a corresponding coordinate direction.
 
 Let $sans(e)$ be a tuple of basis vector fields, such as the coordinate basis $sans(X)$. The general vector field $sans(v)$ applied to an arbitrary manifold function $sans(f)$ can be expressed as a linear combination
@@ -11,11 +11,11 @@ $ sans(v) (sans(f)) (sans(m))= sans(e) (sans(f)) (sans(m))sans(b) (sans(m))= sum
 
 where $sans(b)$ is a tuple-valued coefficient function on the manifold. When expressed in a coordinate basis, the coefficients that specify the direction of the vector are naturally expressed as functions $b^i$ of the coordinates of the manifold point. Here, the coefficient function $sans(b)$ is more naturally expressed as a tuple-valued function on the manifold. If $b$ is the coefficient function expressed as a function of coordinates, then $sans(b) = b compose chi$ is the coefficient function as a function on the manifold.
 
-The coordinate-basis forms have a simple definition in terms of the coordinate-basis vectors and the coordinates (equation 3.40). With this choice, the dual property, equation (3.41), holds without further fuss. More generally, we can define a basis of one-forms $tilde(sans(e))$ that is dual to $sans(e)$ in that the property
+The coordinate-basis forms have a simple definition in terms of the coordinate-basis vectors and the coordinates (equation @3.40). With this choice, the dual property, equation @3.41, holds without further fuss. More generally, we can define a basis of one-forms $tilde(sans(e))$ that is dual to $sans(e)$ in that the property
 
 $ tilde(sans(e))^i (sans(e)_j) (sans(m))= delta_j^i $ <4.2>
 
-is satisfied, analogous to property (3.41). Figure 4.1 illustrates the duality of basis fields.
+is satisfied, analogous to property @3.41. Figure 4.1 illustrates the duality of basis fields.
 
 #align(center)[#image("../assets/figures/fig-4-1.pdf", width: 92%)]
 
@@ -67,7 +67,7 @@ We use these as a vector basis and compute the dual:
   (vector-basis->dual e-vector-basis R2-polar))
 ```
 
-The procedure vector-basis-\>dual requires an auxiliary coordinate system (here #raw(lang:"verbatim", "R2-polar")) to get the $sans(c)_j^k$ coefficient functions from which we compute the $sans(d)_i^k$ coefficient functions. However, the final result is independent of this coordinate system. Then we can verify that the bases $sans(e)$ and $tilde(sans(e))$ satisfy the dual relationship (equation 3.41) by applying the dual basis to the vector basis:
+The procedure vector-basis-\>dual requires an auxiliary coordinate system (here #raw(lang:"verbatim", "R2-polar")) to get the $sans(c)_j^k$ coefficient functions from which we compute the $sans(d)_i^k$ coefficient functions. However, the final result is independent of this coordinate system. Then we can verify that the bases $sans(e)$ and $tilde(sans(e))$ satisfy the dual relationship (equation @3.41) by applying the dual basis to the vector basis:
 
 ```scheme
 ((e-dual-basis e-vector-basis) R2-rect-point)
@@ -88,7 +88,7 @@ Or we can make a general vector field with this basis and then pick out the coef
 ;; (up (bˆ0 (up x0 y0)) (bˆ1 (up x0 y0)))
 ```
 
-== Change of Basis
+== Change of Basis <sec-4.1>
 Suppose that we have a vector field v expressed in terms of one basis $sans(e)$ and we want to reexpress it in terms of another basis $sans(e')$. We have
 
 $ sans(v) (sans(f))= sum_i sans(e)_i(sans(f))sans(b)^i = sum_i sans(e')_j(sans(f))sans(b')^j . $ <4.9>
@@ -171,7 +171,7 @@ The dual basis transforms oppositely. Let
 
 $ bold(omega) = sum_i sans(a)_i tilde(sans(e))^(' i) . $ <4.18>
 
-The coefficients are#footnote[We see from equations (4.15) and (4.16) that $sans(J)$ and $sans(K)$ are inverses. We can obtain their coefficients by: $sans(J)_i^j = tilde(sans(e))^(' j) (sans(e)_i)$ and $sans(K)_i^j = tilde(sans(e))^j (sans(e)'_i)$.]
+The coefficients are#footnote[We see from equations @4.15 and @4.16 that $sans(J)$ and $sans(K)$ are inverses. We can obtain their coefficients by: $sans(J)_i^j = tilde(sans(e))^(' j) (sans(e)_i)$ and $sans(K)_i^j = tilde(sans(e))^j (sans(e)'_i)$.]
 
 $ sans(a)_i = bold(omega) (sans(e)_i)= sum_j sans(a)'_j tilde(sans(e))^(' j) (sans(e)_i)= sum_j sans(a)'_j sans(J)_i^j $ <4.19>
 
@@ -179,11 +179,11 @@ or, in tuple arithmetic,
 
 $ sans(a) = sans(a)' sans(J) . $ <4.20>
 
-Because of equation (4.18) we can deduce
+Because of equation @4.18 we can deduce
 
 $ tilde(sans(e)) = sans(K) tilde(sans(e))' . $ <4.21>
 
-== Rotation Basis
+== Rotation Basis <sec-4.2>
 One interesting basis for rotations in 3-dimensional space is not a coordinate basis.
 
 Rotations are the actions of the special orthogonal group SO(3), which is a 3-dimensional manifold. The elements of this group may be represented by the set of $3 times 3$ orthogonal matrices with determinant $+ 1$.
@@ -220,7 +220,7 @@ $ sans(e)_y = frac(cos phi.alt cos theta, sin theta) frac(partial, partial phi.a
 
 $ sans(e)_z = frac(partial, partial phi.alt) . $ <4.31>
 
-== Commutators
+== Commutators <sec-4.3>
 The commutator of two vector fields is defined as
 
 $ [sans(v)\,sans(w)] (sans(f))= sans(v) (sans(w) (sans(f)))- sans(w) (sans(v) (sans(f))). $ <4.32>
@@ -302,7 +302,7 @@ We see that
 
 $ [sans(J)_x \, sans(J)_y] = - sans(J)_z [sans(J)_y \, sans(J)_z] = - sans(J)_x [sans(J)_z \, sans(J)_x] = - sans(J)_y $ <4.39>
 
-We can also compute the commutators for the basis vector fields $sans(e)_x$, $sans(e)_y$, and $sans(e)_z$ in the SO(3) manifold (see equations 4.29--4.31) that correspond to rotations about the $x$, $y$, and $z$ axes, respectively:#footnote[Using
+We can also compute the commutators for the basis vector fields $sans(e)_x$, $sans(e)_y$, and $sans(e)_z$ in the SO(3) manifold (see equations @4.29 -- @4.31) that correspond to rotations about the $x$, $y$, and $z$ axes, respectively:#footnote[Using
 
 ```scheme
 (define Euler-angles (coordinate-system-at 'Euler 'Euler-patch SO3))
@@ -329,7 +329,7 @@ We can also compute the commutators for the basis vector fields $sans(e)_x$, $sa
 
 You can tell if a set of basis vector fields is a coordinate basis by calculating the commutators. If they are nonzero, then the basis is not a coordinate basis. If they are zero then the basis vector fields can be integrated to give the coordinate system.
 
-Recall equation (3.31)
+Recall equation @3.31
 
 $ (e^(t sans(v))) (sans(m)) = (sans(f) compose phi.alt_t^(sans(v))) (sans(m)) . $ <4.40>
 
@@ -361,16 +361,16 @@ $ sans(m) = phi.alt_1^(x sans(e)) (sans(0))= chi^(-1) (x)\, $ <4.44>
 
 where $chi$ is the coordinate function being defined. Because the elements of $sans(e)$ commute, we can translate separately along the integral curves in any order and reach the same point; the terms in the exponential can be factored into separate exponentials if needed.
 
-== Exercise 4.1: Alternate Angles
-Note that the Euler angles are singular at $theta = 0$ (where $phi.alt$ and $psi$ become degenerate), so the representations of $sans(e)_x$, $sans(e)_y$, and $sans(e)_z$ (defined in equations 4.29--4.31) have problems there. An alternate coordinate system avoids this problem, while introducing a similar problem elsewhere in the manifold. Consider the \"alternate angles\" $(theta_a\,phi.alt_a\,psi_a)$ which define a rotation matrix via $M (theta_a\,phi.alt_a\,psi_a)= R_z (phi.alt_a)R_x (theta_a)R_y (psi_a)$.
+== Exercise 4.1: Alternate Angles <sec-4.4>
+Note that the Euler angles are singular at $theta = 0$ (where $phi.alt$ and $psi$ become degenerate), so the representations of $sans(e)_x$, $sans(e)_y$, and $sans(e)_z$ (defined in equations @4.29 -- @4.31) have problems there. An alternate coordinate system avoids this problem, while introducing a similar problem elsewhere in the manifold. Consider the \"alternate angles\" $(theta_a\,phi.alt_a\,psi_a)$ which define a rotation matrix via $M (theta_a\,phi.alt_a\,psi_a)= R_z (phi.alt_a)R_x (theta_a)R_y (psi_a)$.
 
 #strong[a.] Where does the singularity appear in these alternate coordinates? Do you think you could define a coordinate system for rotations that has no singularities?
 
 #strong[b.] What do the $sans(e)_x$, $sans(e)_y$, and $sans(e)_z$ basis vector fields look like in this coordinate system?
 
-== Exercise 4.2: General Commutators
-Verify equation (4.38).
+== Exercise 4.2: General Commutators <sec-4.5>
+Verify equation @4.38.
 
-== Exercise 4.3: SO(3) Basis and Angular Momentum Basis
-How are $sans(J)_x$, $sans(J)_y$, and $sans(J)_z$ related to $sans(e)_x$, $sans(e)_y$, and $sans(e)_z$ in equations (4.29--4.31)?
+== Exercise 4.3: SO(3) Basis and Angular Momentum Basis <sec-4.6>
+How are $sans(J)_x$, $sans(J)_y$, and $sans(J)_z$ related to $sans(e)_x$, $sans(e)_y$, and $sans(e)_z$ in equations @4.29 -- @4.31?
 ]
