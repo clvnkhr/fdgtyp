@@ -1,6 +1,6 @@
 // Generated from ../../fdg-book/scheme/org/chapter003.org.
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
-#import "../lib.typ": fdg-chapter, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length
+#import "../lib.typ": fdg-chapter, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
 
 #fdg-chapter("Vector Fields and One-Form Fields", numbered: true, eq-prefix: "3", ref-label: "chap-3")[
 We want a way to think about how a function varies on a manifold. Suppose we have some complex linkage, such as a multiple pendulum. The potential energy is an important function on the multi-dimensional configuration manifold of the linkage. To understand the dynamics of the linkage we need to know how the potential energy changes as the configuration changes. The change in potential energy for a step of a certain size in a particular di- rection in the configuration space is a real physical quantity; it does not depend on how we measure the direction or the step size. What exactly this means is to be determined: What is a step size? What is a direction? We cannot subtract two configurations to determine the distance between them. It is our job here to make sense of this idea.
@@ -236,7 +236,7 @@ A one-form field is a generalization of this idea; it is something that measures
 
 Sums and scalar products of one-form fields on a manifold have the following properties. If $omega$ and $theta$ are one-form fields, and if $sans(f)$ is a real-valued manifold function, then: $ (omega + theta) (sans(v))= omega (sans(v))+ theta (sans(v))\,(sans(f) omega) (sans(v))= sans(f) omega (sans(v)). $ <3.37>
 
-Coordinate-Basis One-Form Fields
+== Coordinate-Basis One-Form Fields <sec-3.5>
 
 Given a coordinate function $chi$, we define the coordinate-basis one-form fields $tilde(sans(X))^i$ by $ tilde(sans(X))^i (sans(v)) (sans(m))= sans(v) (chi^i) (sans(m)) $ <3.38> or collectively $ tilde(sans(X)) (sans(v)) (sans(m))= sans(v) (chi) (sans(m)). $ <3.39> With this definition the coordinate-basis one-form fields are dual to the coordinate-basis vector fields in the following sense (see equation @3.15):#footnote[The Kronecker delta $delta_j^i$ is one if $i = j$ and zero otherwise.] $ tilde(sans(X))^i (sans(X)_j) (sans(m))= sans(X)_j (chi^i) (sans(m))= partial_j (chi^i compose chi^(-1)) (chi (sans(m)))= delta_j^i . $ <3.40> The tuple of basis one-form fields $tilde(X) (sans(v)) (sans(m))$ is an up structure like that of $chi$.
 

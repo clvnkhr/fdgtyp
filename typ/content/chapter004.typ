@@ -1,6 +1,6 @@
 // Generated from ../../fdg-book/scheme/org/chapter004.org.
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
-#import "../lib.typ": fdg-chapter, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length
+#import "../lib.typ": fdg-chapter, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
 
 #fdg-chapter("Basis Fields", numbered: true, eq-prefix: "4", ref-label: "chap-4")[
 A vector field may be written as a linear combination of basis vector fields. If #raw(lang:"scheme", "n") is the dimension, then any set of #raw(lang:"scheme", "n") linearly independent vector fields may be used as a basis. The coordinate basis $sans(X)$ is an example of a basis.#footnote[We cannot say if the basis vectors are orthogonal or normalized until we introduce a metric.] We will see later that not every basis is a coordinate basis: in order to be a coordinate basis, there must be a coordinate system such that each basis element is the directional derivative operator in a corresponding coordinate direction.

@@ -87,7 +87,7 @@ const assertions = [
       "So, to work with coordinates we write:",
       "Galileo Galilei @galilei1623assayer",
       "equation @1.1",
-      "Section @sec-2.1",
+      "Section #fdg-ref-page(<sec-2.1>).)",
       "Appendix @chap-appendix-b",
     ],
     excludes: [
@@ -139,6 +139,7 @@ const assertions = [
       "b (x)= D (chi compose (chi')^(-1)) (x')b'(x')",
       "(D (chi compose (chi')^(-1)) (chi' (sans(m))))^(-1)",
       "The vector field is an operator that takes a real-valued manifold function and a manifold point and produces a number.",
+      "== Coordinate-Basis One-Form Fields <sec-3.5>",
     ],
     excludes: [
       "chi'(sans(m)))))",
@@ -284,7 +285,7 @@ const assertions = [
       "A component of an up tuple is usually identified by a superscript.",
       "$ p v = p_0 v^0 + p_1 v^1 + p_2 v^2 . $ <B.8>",
       "Higher-order derivatives are described by exponentiating the derivative operator. Thus the $n$th derivative of a function $f$ is notated as $D^n f$.",
-      "using $upright(T e X)$, and then these decorations turn into superscripts and subscripts.",
+      "using #TeX, and then these decorations turn into superscripts and subscripts.",
       "equations @B.4 and @B.5",
     ],
     excludes: [

@@ -2,6 +2,7 @@
 // Edit typ/lib.typ for presentation; edit the converter for structural changes.
 
 #import "lib.typ": *
+#import "index.typ": fdg-indexed-body, fdg-index-page
 
 #show: fdg-book
 
@@ -10,21 +11,26 @@
 #outline(title: "Contents")
 #pagebreak()
 
-#include "content/preface.typ"
-#include "content/prologue.typ"
-#include "content/chapter001.typ"
-#include "content/chapter002.typ"
-#include "content/chapter003.typ"
-#include "content/chapter004.typ"
-#include "content/chapter005.typ"
-#include "content/chapter006.typ"
-#include "content/chapter007.typ"
-#include "content/chapter008.typ"
-#include "content/chapter009.typ"
-#include "content/chapter010.typ"
-#include "content/chapter011.typ"
-#include "content/appendix_a.typ"
-#include "content/appendix_b.typ"
-#include "content/appendix_c.typ"
-#include "content/references.typ"
+#fdg-indexed-body[
+  #include "content/preface.typ"
+  #include "content/prologue.typ"
+  #include "content/chapter001.typ"
+  #include "content/chapter002.typ"
+  #include "content/chapter003.typ"
+  #include "content/chapter004.typ"
+  #include "content/chapter005.typ"
+  #include "content/chapter006.typ"
+  #include "content/chapter007.typ"
+  #include "content/chapter008.typ"
+  #include "content/chapter009.typ"
+  #include "content/chapter010.typ"
+  #include "content/chapter011.typ"
+  #include "content/appendix_a.typ"
+  #include "content/appendix_b.typ"
+  #include "content/appendix_c.typ"
+  #include "content/references.typ"
+]
+
+#fdg-index-page()
+
 #include "content/errata.typ"

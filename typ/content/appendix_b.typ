@@ -1,6 +1,6 @@
 // Generated from ../../fdg-book/scheme/org/appendix_b.org.
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
-#import "../lib.typ": fdg-chapter, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length
+#import "../lib.typ": fdg-chapter, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
 
 #fdg-chapter("Appendix B: Our Notation", numbered: true, eq-prefix: "B", ref-label: "chap-appendix-b")[
 #quote(block: true)[
@@ -127,7 +127,7 @@ p
 
 ```
 
-Note that #raw(lang:"scheme", "v^0") and #raw(lang:"scheme", "p_2") are just symbols. The caret and underline characters are symbol constituents, so there is no meaning other than mnemonic to the structure of these symbols. However, our software can also display expressions using $upright(T e X)$, and then these decorations turn into superscripts and subscripts.
+Note that #raw(lang:"scheme", "v^0") and #raw(lang:"scheme", "p_2") are just symbols. The caret and underline characters are symbol constituents, so there is no meaning other than mnemonic to the structure of these symbols. However, our software can also display expressions using #TeX, and then these decorations turn into superscripts and subscripts.
 
 Tuple arithmetic is different from the usual tensor arithmetic in that the components of a tuple may also be tuples and different components need not have the same structure. For example, a tuple structure $s$ of phase-space states is
 

@@ -1,6 +1,6 @@
 // Generated from ../../fdg-book/scheme/org/appendix_a.org.
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
-#import "../lib.typ": fdg-chapter, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length
+#import "../lib.typ": fdg-chapter, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
 
 #fdg-chapter("Appendix A: Scheme", numbered: true, eq-prefix: "A", ref-label: "chap-appendix-a")[
 #quote(block: true)[

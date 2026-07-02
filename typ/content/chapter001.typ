@@ -1,6 +1,6 @@
 // Generated from ../../fdg-book/scheme/org/chapter001.org.
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
-#import "../lib.typ": fdg-chapter, fdg-page-ref, fdg-ref, fdg-ref-page, curl, grad, Lap, div, length
+#import "../lib.typ": fdg-chapter, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
 
 #fdg-chapter("Introduction", numbered: true, eq-prefix: "1", ref-label: "chap-1")[
 #quote(block: true)[
@@ -22,13 +22,13 @@ Denizens of the surface may play ball games. The balls are constrained to the su
 So there are deep connections between the dynamics of particles and the geometry of the space that the particles move in. If we understand this connection we can learn about dynamics by studying geometry and we can learn about geometry by studying dynamics. We enter dynamics with a Lagrangian and the associated Lagrange equations. Although this formulation exposes many important features of the system, such as how symmetries relate to conserved quantities, the geometry is not apparent. But when we express the Lagrangian and the Lagrange equations in differential geometry language, geometric properties become apparent. In the case of systems with no potential energy the Euler-Lagrange equations are equivalent to the geodesic equations on the configuration manifold. In fact, the coefficients of terms in the Lagrange equations are Christoffel coefficients, which define parallel transport on the manifold. Let\'s look into this a bit.
 
 == Lagrange Equations <sec-1.1>
-We write the Lagrange equations in functional notation#footnote[A short introduction to our functional notation, and why we have chosen it, is given in the prologue: Programming and Understanding. More details can be found in Appendix #fdg-ref(<chap-appendix-b>)] as follows:
+We write the Lagrange equations in functional notation#footnote[A short introduction to our functional notation, and why we have chosen it, is given in the prologue: Programming and Understanding. More details can be found in Appendix @chap-appendix-b] as follows:
 
 $ D (partial_2 L compose Gamma [q]) - partial_1 L compose Gamma[q]= 0 . $
 
 In SICM @sussman2001sicm, Section 1.6.3, we showed that a Lagrangian describing the free motion of a particle subject to a coordinate-dependent constraint can be obtained by composing a free-particle Lagrangian with a function that describes how dynamical states transform given the coordinate transformation that describes the constraints.
 
-A Lagrangian for a free particle of mass m and velocity v is just its kinetic energy, $m v^2\/2$. The procedure #raw(lang:"scheme", "Lfree") implements the free Lagrangian:#footnote[An informal description of the Scheme programming language can be found in Appendix #fdg-ref(<chap-appendix-a>, suffix: ".")]
+A Lagrangian for a free particle of mass m and velocity v is just its kinetic energy, $m v^2\/2$. The procedure #raw(lang:"scheme", "Lfree") implements the free Lagrangian:#footnote[An informal description of the Scheme programming language can be found in Appendix @chap-appendix-a.]
 
 ```scheme
 (define ((Lfree mass) state)
@@ -122,13 +122,13 @@ This program gives the Lagrangian in a coordinate-independent, geometric way. It
 
 The manifold point $sans(m)$ represented by the coordinates $x$ is given by #raw(lang:"scheme", "(define m ((point coordsys) x))"). The coordinates of $sans(m)$ in a different coordinate system are given by #raw(lang:"scheme", "((chart coordsys2) m)"). The manifold point $sans(m)$ is a geometric object that is the same point independent of how it is specified. Similarly, the velocity vector $sans(e) v$ is a geometric object, even though it is specified using components $v$ with respect to the basis $sans(e)$. Both $v$ and $sans(e)$ have as many components as the dimension of the space so their product is interpreted as a contraction.
 
-Let\'s make a general metric on a 2-dimensional real manifold:#footnote[The procedure #raw(lang:"scheme", "literal-metric") provides a metric. It is a general symmetric function of two vector fields, with literal functions of the coordinates of the manifold points for its coefficients in the given coordinate system. The quoted symbol #raw(lang:"scheme", "'g") is used to make the names of the literal coefficient functions. Literal functions are discussed in Appendix #fdg-ref(<chap-appendix-b>, suffix: ".")]
+Let\'s make a general metric on a 2-dimensional real manifold:#footnote[The procedure #raw(lang:"scheme", "literal-metric") provides a metric. It is a general symmetric function of two vector fields, with literal functions of the coordinates of the manifold points for its coefficients in the given coordinate system. The quoted symbol #raw(lang:"scheme", "'g") is used to make the names of the literal coefficient functions. Literal functions are discussed in Appendix @chap-appendix-b.]
 
 ```scheme
 (define the-metric (literal-metric 'g R2-rect))
 ```
 
-The metric is expressed in rectangular coordinates, so the coordinate system is #raw(lang:"scheme", "R2-rect").#footnote[#raw(lang:"scheme", "R2-rect") is the usual rectangular coordinate system on the 2-dimensional real manifold. (See Section #fdg-ref-page(<sec-2.1>, suffix: ".)") We supply common coordinate systems for n-dimensional real manifolds. For example, #raw(lang:"scheme", "R2-polar") is a polar coordinate system on the same manifold.] The component functions will be labeled as subscripted \~g\~s.
+The metric is expressed in rectangular coordinates, so the coordinate system is #raw(lang:"scheme", "R2-rect").#footnote[#raw(lang:"scheme", "R2-rect") is the usual rectangular coordinate system on the 2-dimensional real manifold. (See Section #fdg-ref-page(<sec-2.1>).) We supply common coordinate systems for n-dimensional real manifolds. For example, #raw(lang:"scheme", "R2-polar") is a polar coordinate system on the same manifold.] The component functions will be labeled as subscripted \~g\~s.
 
 We can now make the Lagrangian for the system:
 
@@ -180,7 +180,7 @@ So, to work with coordinates we write:
 |#
 ```
 
-Now we can compute the residuals of the Euler-Lagrange equations, but we get a large messy expression that we will not show.#footnote[For an explanation of equation residuals see #fdg-page-ref(<prologue-residuals>, suffix: ".")] However, we will save it to compare with the residuals of the geodesic equations.
+Now we can compute the residuals of the Euler-Lagrange equations, but we get a large messy expression that we will not show.#footnote[For an explanation of equation residuals see #fdg-page-ref(<prologue-residuals>).] However, we will save it to compare with the residuals of the geodesic equations.
 
 ```scheme
 (define Lagrange-residuals
