@@ -1,6 +1,6 @@
 // Generated from ../../fdg-book/scheme/org/chapter011.org.
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
-#import "../lib.typ": fdg-chapter, curl, grad, Lap, div, length
+#import "../lib.typ": fdg-chapter, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length
 
 #fdg-chapter("Special Relativity", numbered: true, eq-prefix: "11", ref-label: "chap-11")[
 Although the usual treatments of special relativity begin with the Michelson-Morley experiment, this is not how Einstein began. In fact, Einstein was impressed with Maxwell\'s work and he was emulating Maxwell\'s breakthrough.

@@ -1,6 +1,6 @@
 // Generated from ../../fdg-book/scheme/org/chapter009.org.
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
-#import "../lib.typ": fdg-chapter, curl, grad, Lap, div, length
+#import "../lib.typ": fdg-chapter, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length
 
 #fdg-chapter("Metrics", numbered: true, eq-prefix: "9", ref-label: "chap-9")[
 We often want to impose further structure on a manifold to allow us to define lengths and angles. This is done by generalizing the idea of the Euclidean dot product, which allows us to compute lengths of vectors and angles between vectors in traditional vector algebra.
@@ -141,7 +141,7 @@ And the Christoffel coefficients of the second kind have the innermost index up:
 ```
 
 === Exercise 9.1: Metric Compatibility <sec-9.1.1>
-The connections constructed from a metric by equation @9.13 are \"metric compatible,\" as described in equation @9.9. Demonstrate that this is true for a literal metric, as described on page 6, in $upright(bold(R))^4$. Your program should produce a zero.
+The connections constructed from a metric by equation @9.13 are \"metric compatible,\" as described in equation @9.9. Demonstrate that this is true for a literal metric, as described in Section #fdg-ref-page(<sec-1.2>), in $upright(bold(R))^4$. Your program should produce a zero.
 
 == Metrics and Lagrange Equations <sec-9.2>
 In the Introduction (Chapter 1) we showed that the Lagrange equations for a free particle constrained to a 2-dimensional surface are equivalent to the geodesic equations for motion on that surface. We illustrated that in detail in Section @sec-7.4 for motion on a sphere.
@@ -490,7 +490,7 @@ Now consider the right-hand side of equation @9.27. In the Poisson equation the 
   T)
 ```
 
-If we evaluate the right-hand side expression we obtain#footnote[The procedure #raw(lang:"scheme", "trace2down") is defined on page 144. This expression also uses #raw(lang:"scheme", "drop2"), which converts a tensor field that takes two one-form fields into a tensor field that takes two vector fields. Its definition is
+If we evaluate the right-hand side expression we obtain#footnote[The procedure #raw(lang:"scheme", "trace2down") is defined in Section #fdg-ref-page(<sec-9.3.4>). This expression also uses #raw(lang:"scheme", "drop2"), which converts a tensor field that takes two one-form fields into a tensor field that takes two vector fields. Its definition is
 
 ```scheme
 (define ((drop2 metric-tensor basis) tensor)
@@ -547,7 +547,7 @@ In spherical coordinates around a nonrotating gravitating body the metric of Sch
 Show that the Ricci curvature of the Schwarzschild spacetime is zero. Use the definition of the Ricci tensor in equation @8.20.
 
 === Exercise 9.7: Circular Orbits in Schwarzschild Spacetime <sec-9.4.3>
-Test particles move along geodesics in spacetime. Now that we have a metric for Schwarzschild spacetime (page 147) we can use it to construct the geodesic equations and determine how test particles move. Consider circular orbits. For example, the circular orbit along a line of constant longitude is a geodesic, so it should satisfy the geodesic equations. Here is the equation of a circular path along the zero longitude line.
+Test particles move along geodesics in spacetime. Now that we have a metric for Schwarzschild spacetime (Section #fdg-ref-page(<sec-9.4.2>)) we can use it to construct the geodesic equations and determine how test particles move. Consider circular orbits. For example, the circular orbit along a line of constant longitude is a geodesic, so it should satisfy the geodesic equations. Here is the equation of a circular path along the zero longitude line.
 
 ```scheme
 (define (prime-meridian r omega)

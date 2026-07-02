@@ -1,6 +1,6 @@
 // Generated from ../../fdg-book/scheme/org/chapter002.org.
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
-#import "../lib.typ": fdg-chapter, curl, grad, Lap, div, length
+#import "../lib.typ": fdg-chapter, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length
 
 #fdg-chapter("Manifolds", numbered: true, eq-prefix: "2", ref-label: "chap-2")[
 A #emph[manifold] is a generalization of our idea of a smooth surface embedded in Euclidean space. For an #emph[n]-dimensional manifold, around every point there is a simply-connected open set, the #emph[coordinate patch], and a one-to-one continuous function, the #emph[coordinate function] or #emph[chart], mapping every point in that open set to a tuple of #emph[n] real numbers, the #emph[coordinates]. In general, several charts are needed to label all points on a manifold. It is required that if a region is in more than one coordinate patch then the coordinates are consistent in that the function mapping one set of coordinates to another is continuous (and perhaps differentiable to some degree). A consistent system of coordinate patches and coordinate functions that covers the entire manifold is called an #emph[atlas].

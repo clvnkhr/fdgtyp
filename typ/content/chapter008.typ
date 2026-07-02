@@ -1,9 +1,9 @@
 // Generated from ../../fdg-book/scheme/org/chapter008.org.
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
-#import "../lib.typ": fdg-chapter, curl, grad, Lap, div, length
+#import "../lib.typ": fdg-chapter, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length
 
 #fdg-chapter("Curvature", numbered: true, eq-prefix: "8", ref-label: "chap-8")[
-If the intrinsic curvature of a manifold is not zero, a vector parallel-transported around a small loop will end up different from the vector that started. We saw the consequence of this before, on page 1 and on page 93. The Riemann tensor encapsulates this idea.
+If the intrinsic curvature of a manifold is not zero, a vector parallel-transported around a small loop will end up different from the vector that started. We saw the consequence of this before, on #fdg-page-ref(<intro-parallel-transport>) and #fdg-page-ref(<sec-7.16>). The Riemann tensor encapsulates this idea.
 
 The Riemann curvature operator is
 
@@ -30,7 +30,7 @@ The #raw(lang:"scheme", "Riemann-curvature") procedure is parameterized by the r
   (omega (((Riemann-curvature nabla) w v) u)))
 ```
 
-So, for example,#footnote[The connection specified by #raw(lang:"scheme", "sphere-Cartan") is defined on page 107.]
+So, for example,#footnote[The connection specified by #raw(lang:"scheme", "sphere-Cartan") is defined in Section #fdg-ref-page(<sec-7.16>).]
 
 ```scheme
 (((Riemann (covariant-derivative sphere-Cartan))

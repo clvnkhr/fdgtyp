@@ -587,6 +587,13 @@ function repairChapter11(body) {
     .replaceAll("$ Lambda = B (bold(beta))cal(R) . $", "$ Lambda = B (bold(beta)) cal(R). $");
 }
 
+function repairChapter1(body) {
+  return body.replaceAll(
+    "When you get to the Pole note that the stick is perpendicular to the line you inscribed in the ice. But you started with that stick parallel to that line and you kept the stick pointing in the same direction on the Earth throughout your walk --- how did it change orientation?",
+    "When you get to the Pole note that the stick is perpendicular to the line you inscribed in the ice. But you started with that stick parallel to that line and you kept the stick pointing in the same direction on the Earth throughout your walk --- how did it change orientation?<intro-parallel-transport>",
+  );
+}
+
 function repairChapter2(body) {
   return body.replaceAll(
     "and the manifold function $sans(f)$ is represented in coordinates by a function $f$ that takes a pair of real numbers and produces a real number $ f : sans(R)^2 arrow.r sans(R) f :(x\\,y)arrow.r f (x\\,y). $ <2.6> We define our manifold function $ sans(f) : sans(M) arrow.r sans(R) sans(f) : sans(m) arrow.r (f compose chi) (sans(m)). $ <2.7>",
@@ -611,6 +618,7 @@ function repairChapter9(body) {
 }
 
 function applyChapterRepairs(stem, body) {
+  if (stem === "chapter001") return repairChapter1(body);
   if (stem === "chapter002") return repairChapter2(body);
   if (stem === "chapter009") return repairChapter9(body);
   if (stem === "chapter011") return repairChapter11(body);
@@ -628,6 +636,52 @@ function mergeConsecutiveRawBlocks(body) {
     );
   } while (merged !== previous);
   return merged;
+}
+
+function replaceInternalPageRefs(stem, body) {
+  if (stem === "errata") return body;
+
+  return body
+    .replaceAll(
+      "Appendix @chap-appendix-b, page 202",
+      "Appendix #fdg-ref-page(<chap-appendix-b>, page-target: <sec-B.4>)",
+    )
+    .replaceAll(
+      "Section @sec-2.1, page 13",
+      "Section #fdg-ref-page(<sec-2.1>)",
+    )
+    .replaceAll(
+      "see page 27.",
+      "see #fdg-page-ref(<sec-2.4>).",
+    )
+    .replaceAll(
+      "Introduction, page 1",
+      "Introduction, #fdg-page-ref(<intro-parallel-transport>)",
+    )
+    .replaceAll(
+      "on page 1 and on page 93",
+      "on #fdg-page-ref(<intro-parallel-transport>) and #fdg-page-ref(<sec-7.16>)",
+    )
+    .replaceAll(
+      "defined on page 107",
+      "defined in Section #fdg-ref-page(<sec-7.16>)",
+    )
+    .replaceAll(
+      "defined on page 198",
+      "defined in Section #fdg-ref-page(<sec-B.2>)",
+    )
+    .replaceAll(
+      "as described on page 6",
+      "as described in Section #fdg-ref-page(<sec-1.2>)",
+    )
+    .replaceAll(
+      "defined on page 144",
+      "defined in Section #fdg-ref-page(<sec-9.3.4>)",
+    )
+    .replaceAll(
+      "Schwarzschild spacetime (page 147)",
+      "Schwarzschild spacetime (Section #fdg-ref-page(<sec-9.4.2>))",
+    );
 }
 
 function addSectionLabels(stem, body) {
@@ -968,14 +1022,15 @@ function convert(file) {
   const bodyWithChapterRepairs = applyChapterRepairs(stem, bodyWithFigures);
   const bodyWithMergedRawBlocks = mergeConsecutiveRawBlocks(bodyWithChapterRepairs);
   const bodyWithRefs = replaceCitationsAndEquationRefs(bodyWithMergedRawBlocks);
+  const bodyWithPageRefs = replaceInternalPageRefs(stem, bodyWithRefs);
 
   const content = [
     `// Generated from ../../fdg-book/scheme/org/${file}.`,
     `// Re-run scripts/convert-org-to-typst.mjs to refresh.`,
-    `#import "../lib.typ": fdg-chapter, curl, grad, Lap, div, length`,
+    `#import "../lib.typ": fdg-chapter, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length`,
     "",
     `#fdg-chapter(${JSON.stringify(typstEscape(displayTitle))}, numbered: ${numbered}, eq-prefix: ${JSON.stringify(equationLabelPrefix(stem) ?? "0")}, ref-label: ${JSON.stringify(chapterLabel(stem) ?? "")})[`,
-    bodyWithRefs.trimEnd(),
+    bodyWithPageRefs.trimEnd(),
     "]",
     "",
   ].join("\n");

@@ -1,6 +1,6 @@
 // Generated from ../../fdg-book/scheme/org/chapter006.org.
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
-#import "../lib.typ": fdg-chapter, curl, grad, Lap, div, length
+#import "../lib.typ": fdg-chapter, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length
 
 #fdg-chapter("Over a Map", numbered: true, eq-prefix: "6", ref-label: "chap-6")[
 To deal with motion on manifolds we need to think about paths on manifolds and vectors along these paths. Tangent vectors along paths are not vector fields on the manifold because they are defined only on the path. And the path may even cross itself, which would give more than one vector at a point. Here we introduce the concept of a #emph[vector field over a map].#footnote[See Bishop and Goldberg, #emph[Tensor Analysis on Manifolds] @bishop1968tensor.] A vector field over a map assigns a vector to each image point of the map. In general the map may be a function from one manifold to another. If the domain of the map is the manifold of the real line, the range of the map is a 1-dimensional path on the target manifold. One possible way to define a vector field over a map is to assign a tangent vector to each image point of a path, allowing us to work with tangent vectors to paths. A #emph[one-form field over the map] allows us to extract the components of a vector field over the map.

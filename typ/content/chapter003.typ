@@ -1,6 +1,6 @@
 // Generated from ../../fdg-book/scheme/org/chapter003.org.
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
-#import "../lib.typ": fdg-chapter, curl, grad, Lap, div, length
+#import "../lib.typ": fdg-chapter, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length
 
 #fdg-chapter("Vector Fields and One-Form Fields", numbered: true, eq-prefix: "3", ref-label: "chap-3")[
 We want a way to think about how a function varies on a manifold. Suppose we have some complex linkage, such as a multiple pendulum. The potential energy is an important function on the multi-dimensional configuration manifold of the linkage. To understand the dynamics of the linkage we need to know how the potential energy changes as the configuration changes. The change in potential energy for a step of a certain size in a particular di- rection in the configuration space is a real physical quantity; it does not depend on how we measure the direction or the step size. What exactly this means is to be determined: What is a step size? What is a direction? We cannot subtract two configurations to determine the distance between them. It is our job here to make sense of this idea.
@@ -159,7 +159,7 @@ Thus, the evolution of $sans(f) compose gamma$ can be written formally as a Tayl
 
 In particular, let $sans(f) = chi$, then $ sigma (t)=(chi compose gamma) (t)=(e^(t D) (chi compose gamma)) (0)=(e^(t sans(v)) chi) (gamma (0))\, $ <3.28> a Taylor series representation of the solution to the differential equation @3.27.
 
-For example, a vector field circular that generates a rotation about the origin is:#footnote[In this expression `d/dx` and `d/dy` are vector fields that take directional derivatives of manifold functions and evaluate them at manifold points; `x` and `y` are manifold functions. `define-coordinates` was used to create these operators and functions, see page 27.
+For example, a vector field circular that generates a rotation about the origin is:#footnote[In this expression `d/dx` and `d/dy` are vector fields that take directional derivatives of manifold functions and evaluate them at manifold points; `x` and `y` are manifold functions. `define-coordinates` was used to create these operators and functions, see #fdg-page-ref(<sec-2.4>).
 
 Note that circular is an operator---a property inherited from `d/dx` and `d/dy`.]
 

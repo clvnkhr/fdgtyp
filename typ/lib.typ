@@ -20,6 +20,41 @@
   rgb("#c8a900"),
 )
 
+#let fdg-appendix-label(target) = if target == <chap-appendix-a> {
+  "A"
+} else if target == <chap-appendix-b> {
+  "B"
+} else if target == <chap-appendix-c> {
+  "C"
+} else {
+  none
+}
+
+#let fdg-ref-suffix(suffix) = if suffix == "" {
+  none
+} else {
+  [#h(-0.25em)#suffix]
+}
+
+#let fdg-page-ref(target, suffix: "") = context {
+  let loc = query(target).first().location()
+  [#link(loc)[#("page " + str(counter(page).at(loc).first()))]#fdg-ref-suffix(suffix)]
+}
+
+#let fdg-ref(target, suffix: "") = context {
+  let appendix = fdg-appendix-label(target)
+  if appendix == none {
+    [#ref(target)#fdg-ref-suffix(suffix)]
+  } else {
+    [#link(query(target).first().location())[#appendix]#fdg-ref-suffix(suffix)]
+  }
+}
+
+#let fdg-ref-page(target, page-target: auto, suffix: "") = {
+  let page-target = if page-target == auto { target } else { page-target }
+  [#fdg-ref(target, suffix: ",") #fdg-page-ref(page-target, suffix: suffix)]
+}
+
 #let fdg-book(body) = {
   set document(
     title: "Functional Differential Geometry",
@@ -68,15 +103,7 @@
     ]
   }
   show ref: it => {
-    let appendix = if it.target == <chap-appendix-a> {
-      [A]
-    } else if it.target == <chap-appendix-b> {
-      [B]
-    } else if it.target == <chap-appendix-c> {
-      [C]
-    } else {
-      none
-    }
+    let appendix = fdg-appendix-label(it.target)
     if appendix == none {
       text(fill: fdg-link-color, it)
     } else if it.element == none {

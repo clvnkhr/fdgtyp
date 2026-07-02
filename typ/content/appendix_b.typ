@@ -1,6 +1,6 @@
 // Generated from ../../fdg-book/scheme/org/appendix_b.org.
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
-#import "../lib.typ": fdg-chapter, curl, grad, Lap, div, length
+#import "../lib.typ": fdg-chapter, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length
 
 #fdg-chapter("Appendix B: Our Notation", numbered: true, eq-prefix: "B", ref-label: "chap-appendix-b")[
 #quote(block: true)[
@@ -268,7 +268,7 @@ Suppose we have a real-valued function $g$ of two real-valued arguments, and we 
 
 $ D g (x\,y)dot.op (Delta x\,Delta y)= [partial_0 g (x \, y) + partial_1 g (x \, y)] dot.op (Delta x\,Delta y)= partial_0 g (x\,y)Delta x + partial_1 g (x\,y)Delta y . $ <B.20>
 
-Using the two-argument literal function #raw(lang:"scheme", "g") defined on page 198, we have:
+Using the two-argument literal function #raw(lang:"scheme", "g") defined in Section #fdg-ref-page(<sec-B.2>), we have:
 
 ```scheme
 ((D g) 'x 'y)
