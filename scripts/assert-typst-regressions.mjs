@@ -24,6 +24,10 @@ function readTypFile(file) {
   return readFileSync(path.join(root, "typ", file), "utf8");
 }
 
+function stripTypstProtected(text) {
+  return text.replace(/```[\s\S]*?```|`[^`\n]*`|\$[^$\n]*\$/g, "");
+}
+
 const contentFiles = readdirSync(contentDir)
   .filter(file => file.endsWith(".typ"))
   .sort();
@@ -32,6 +36,7 @@ const allContent = contentFiles
   .map(file => `\n--- ${file} ---\n${readContentFile(file)}`)
   .join("\n");
 const allContentNormalized = normalize(allContent);
+const allProseContent = stripTypstProtected(allContent);
 
 const assertions = [
   {
@@ -78,6 +83,8 @@ const assertions = [
       "(define Cartan (Christoffel->Cartan (metric->Christoffel-2 the-metric (coordinate-system->basis R2-rect))))",
       "This analysis will work for any number of dimensions (but will take your computer longer in higher dimensions, because the complexity increases).",
       "$ sans(d) theta (sans(v))= dot(theta) \\\n sans(d) phi.alt (sans(v))= dot(phi.alt)\\, $",
+      "```scheme\n((Lsphere 'm 'R)\n (up 't (up 'theta 'phi) (up 'thetadot 'phidot)))\n\n#|\n(+ (* 1/2 (expt R 2) m (expt phidot 2) (expt (sin theta) 2))\n   (* 1/2 (expt R 2) m (expt thetadot 2)))\n|#\n```",
+      "So, to work with coordinates we write:",
       "Galileo Galilei @galilei1623assayer",
       "equation @1.1",
       "Section @sec-2.1",
@@ -89,6 +96,7 @@ const assertions = [
       "#| Cartan |#",
       "```scheme (We know that this may be unfamiliar notation",
       "```scheme (but will take your computer longer in higher dimensions",
+      "```\n#|\n(+ (* 1/2 (expt R 2) m (expt phidot 2)",
       "dot (theta)",
       "dot (phi.alt)",
       "\\[8\\]",
@@ -126,10 +134,10 @@ const assertions = [
   {
     file: "chapter003.typ",
     contains: [
-      "D (sans(f) compose (chi')^(-1)) (chi'(sans(m)))",
+      "D (sans(f) compose (chi')^(-1)) (chi' (sans(m)))",
       "D (chi' compose chi^(-1)) (x)=(D (chi compose (chi')^(-1)) (x'))^(-1)",
       "b (x)= D (chi compose (chi')^(-1)) (x')b'(x')",
-      "(D (chi compose (chi')^(-1)) (chi'(sans(m))))^(-1)",
+      "(D (chi compose (chi')^(-1)) (chi' (sans(m))))^(-1)",
       "The vector field is an operator that takes a real-valued manifold function and a manifold point and produces a number.",
     ],
     excludes: [
@@ -143,7 +151,7 @@ const assertions = [
   {
     file: "chapter004.typ",
     contains: [
-      "sum_k sans(X)_k(sans(f))sans(c)_j^k",
+      "sum_k sans(X)_k (sans(f))sans(c)_j^k",
       "tilde(sans(e))^i (sans(v))= sum_l sans(d)_l^i tilde(sans(X))^l (sans(v))",
       "sum_k sans(d)_k^i (sans(m))sans(c)_j^k (sans(m)).",
       "equations @4.29 -- @4.31",
@@ -170,13 +178,21 @@ const assertions = [
   {
     file: "chapter006.typ",
     contains: [
-      "Let μ be a map from points $sans(n)$ in the manifold $sans(N)$ to points $sans(m)$ in the manifold $sans(M)$.",
+      "Let $μ$ be a map from points $sans(n)$ in the manifold $sans(N)$ to points $sans(m)$ in the manifold $sans(M)$.",
       "at points $sans(m) = mu (sans(n))$.",
-      "If we were defining $sans(u)$ as a vector field we would need the inverse of μ",
+      "$ sans(v)_mu (sans(f))= sans(v) (sans(f))compose mu\\, $ <6.1>",
+      "Note that $sans(v)_mu (sans(f))$ is a function on $sans(N)$, not $sans(M)$:",
+      "$ sans(v)_mu (sans(f)) (sans(n))= sans(v) (sans(f)) (mu (sans(n))). $ <6.2>",
+      "only value that is ever passed as `m` is `(mu:N->M n)`.",
+      "If we were defining $sans(u)$ as a vector field we would need the inverse of $μ$",
     ],
     excludes: [
+      "Let μ be a map",
       "$mathsf{N}$",
       "$sans(m) = mu (sans(n). The",
+      "sans(v)_mu(sans(f))",
+      "only value that is ever passed as m is (mu:N-\\>M n).",
+      "inverse of μ",
       "mathsf{u]",
     ],
   },
@@ -291,6 +307,37 @@ const assertions = [
 
 const typFileAssertions = [
   {
+    file: "lib.typ",
+    contains: [
+      "syntaxes: \"Scheme.sublime-syntax\"",
+      "theme: \"fdg-scheme.tmTheme\"",
+      "tab-size: 2",
+      "show raw.where(block: false): it =>",
+      "show raw.where(block: true): it =>",
+    ],
+  },
+  {
+    file: "Scheme.sublime-syntax",
+    contains: [
+      "name: Scheme",
+      "scope: source.scheme",
+      "scope: keyword.declaration.scheme",
+      "scope: support.function.scheme",
+      "scope: meta.comment.expression.scheme",
+    ],
+  },
+  {
+    file: "fdg-scheme.tmTheme",
+    contains: [
+      "<string>FDG Scheme Light</string>",
+      "<string>meta.comment.expression, meta.comment.eof, meta.comment</string>",
+      "<string>keyword.syntax, keyword.quasisyntax, keyword.unsyntax, keyword.unsyntax-splicing, keyword.control.syntax, meta.syntax, meta.quasisyntax, meta.unsyntax, meta.unsyntax-splicing</string>",
+      "<string>support.function.scheme, primitive.function.scheme</string>",
+      "<string>entity.name.function.scheme, meta.named-let.scheme entity.name.function.scheme</string>",
+      "<string>symbol.quoted.scheme, constant.symbol.literal.scheme</string>",
+    ],
+  },
+  {
     file: "references.bib",
     contains: [
       "@book{abelson1996sicp,",
@@ -307,6 +354,7 @@ const globalExcludes = [
   "\\$",
   "[fn:",
   "#block[",
+  "lang:\"verbatim\"",
   "zws",
   "eq.not",
   "dots.h",
@@ -347,6 +395,10 @@ const globalExcludes = [
   "section 9.3",
   "See Appendix C",
   "Appendices A and B",
+  "bb (",
+  "binom (",
+  "sans (",
+  "scale (",
 ];
 
 const globalRegexExcludes = [
@@ -357,6 +409,10 @@ const globalRegexExcludes = [
   {
     name: "cached result placeholder code block",
     regex: /```(?:scheme)?\s*#\| [^|\n]+ \|#\s*```/,
+  },
+  {
+    name: "unlabelled result comment block split from Scheme block",
+    regex: /```\s*#\|/,
   },
   {
     name: "prose parenthetical trapped in Scheme block",
@@ -377,6 +433,33 @@ const globalRegexExcludes = [
   {
     name: "plain parenthesized equation reference",
     regex: /\b[Ee]quations?\s+\((?:[A-C]|\d+)\.\d+/,
+  },
+  {
+    name: "subscripted parenthesized expression applied without spacing",
+    regex: /\)_[A-Za-z0-9.]+\(/,
+  },
+  {
+    name: "parenthesized subscript applied without spacing",
+    regex: /\)_\([^)]*\)\(/,
+  },
+  {
+    name: "superscripted parenthesized expression applied without spacing",
+    regex: /\)\^[A-Za-z0-9.]+\(/,
+  },
+  {
+    name: "primed parenthesized expression applied without spacing",
+    regex: /\)'(?:_[A-Za-z0-9.]+)?\(/,
+  },
+  {
+    name: "primed symbol applied without spacing",
+    regex: /\b[A-Za-z][A-Za-z0-9.]+'(?:_[A-Za-z0-9.]+)?\(/,
+  },
+];
+
+const globalProseRegexExcludes = [
+  {
+    name: "bare standalone Greek symbol in prose",
+    regex: /(^|[^\p{L}\p{N}_$])\p{Script=Greek}s?(?=$|[^\p{L}\p{N}_])/u,
   },
 ];
 
@@ -429,6 +512,12 @@ for (const rejected of globalExcludes) {
 for (const { name, regex } of globalRegexExcludes) {
   if (regex.test(allContent)) {
     fail(`Found globally rejected pattern: ${name}`, regex.toString());
+  }
+}
+
+for (const { name, regex } of globalProseRegexExcludes) {
+  if (regex.test(allProseContent)) {
+    fail(`Found globally rejected prose pattern: ${name}`, regex.toString());
   }
 }
 

@@ -4,17 +4,17 @@
 
 #fdg-chapter("Errata for FDG", numbered: false, eq-prefix: "0", ref-label: "")[
 == Chapter 1
-Page 9: #raw(lang:"verbatim", "Cartan") is used in #raw(lang:"verbatim", "geodesic-equation-residuals") before it is defined just after. Be careful to flip evaluation order of these two listings.
+Page 9: #raw(lang:"scheme", "Cartan") is used in #raw(lang:"scheme", "geodesic-equation-residuals") before it is defined just after. Be careful to flip evaluation order of these two listings.
 
 == Chapter 3
-Page 24: the definition of #raw(lang:"verbatim", "v") assumes that #raw(lang:"verbatim", "R2->R") from page 16 is still defined. This might be nice to add to the #raw(lang:"verbatim", "scmutils") library so that this code will work if users attempt chapter 3 independently.
+Page 24: the definition of #raw(lang:"scheme", "v") assumes that #raw(lang:"scheme", "R2->R") from page 16 is still defined. This might be nice to add to the #raw(lang:"scheme", "scmutils") library so that this code will work if users attempt chapter 3 independently.
 
-The listing at the bottom of the page assumes #raw(lang:"verbatim", "R2-rect-point") is still defined.
+The listing at the bottom of the page assumes #raw(lang:"scheme", "R2-rect-point") is still defined.
 
-Page 38: Note that #raw(lang:"verbatim", "omega") was already defined on page 35.
+Page 38: Note that #raw(lang:"scheme", "omega") was already defined on page 35.
 
 == Chapter 4
-Page 44: Note that you need to install the #raw(lang:"verbatim", "R2-rect") coordinate system:
+Page 44: Note that you need to install the #raw(lang:"scheme", "R2-rect") coordinate system:
 
 ```scheme
 (define-coordinates (up x y) R2-rect)
@@ -27,7 +27,7 @@ Page 60: This page restates:
 (define-coordinates (up x y z) R3-rect)
 ```
 
-But assumes that the #raw(lang:"verbatim", "R3-rect-point") binding still exists from the previous chapter:
+But assumes that the #raw(lang:"scheme", "R3-rect-point") binding still exists from the previous chapter:
 
 ```scheme
 (define R3-rect-point ((point R3-rect) (up 'x0 'y0 'z0)))
@@ -39,7 +39,7 @@ Page 60: I was concerned that
 (define-coordinates (up r theta z) R3-cyl)
 ```
 
-installs #raw(lang:"verbatim", "z"), #raw(lang:"verbatim", "dz") and #raw(lang:"verbatim", "d/dz") from cylindrical coordinates over top of the rectangular coordinates. I know that these are equivalent for all intents and purposes… just noting that maybe
+installs #raw(lang:"scheme", "z"), #raw(lang:"scheme", "dz") and #raw(lang:"scheme", "d/dz") from cylindrical coordinates over top of the rectangular coordinates. I know that these are equivalent for all intents and purposes… just noting that maybe
 
 ```scheme
 (define-coordinates (up r theta z-cyl) R3-cyl)
@@ -47,23 +47,23 @@ installs #raw(lang:"verbatim", "z"), #raw(lang:"verbatim", "dz") and #raw(lang:"
 
 would be more pedantic, and, maybe, more correct? Or maybe this affects nothing.
 
-Page 67: the definitions of #raw(lang:"verbatim", "alpha") and #raw(lang:"verbatim", "beta") assume that #raw(lang:"verbatim", "R2->R") from page 16 is still defined.
+Page 67: the definitions of #raw(lang:"scheme", "alpha") and #raw(lang:"scheme", "beta") assume that #raw(lang:"scheme", "R2->R") from page 16 is still defined.
 
-Page 67 uses #raw(lang:"verbatim", "R2-rect-point") without ever defining it. The definition is, of course,
+Page 67 uses #raw(lang:"scheme", "R2-rect-point") without ever defining it. The definition is, of course,
 
 ```scheme
 (define R2-rect-point ((point R2-rect) (up 'x0 'y0)))
 ```
 
 == Chapter 6
-Page 75: the definition of #raw(lang:"verbatim", "S2") references the nonexistent manifold family #raw(lang:"verbatim", "S^2") instead of #raw(lang:"verbatim", "S^2-type"):
+Page 75: the definition of #raw(lang:"scheme", "S2") references the nonexistent manifold family #raw(lang:"scheme", "S^2") instead of #raw(lang:"scheme", "S^2-type"):
 
 ```scheme
 (define S2 (make-manifold S^2 2 3))
 ```
 
 == Chapter 7
-On page 92, the result at the top of the page is not correct, and #raw(lang:"verbatim", "scmutils") won\'t produce it for the supplied code… I don\'t know enough to see how the book result comes about, so I submit it to you for examination! The code on the page is written for #raw(lang:"verbatim", "R3") but the result is for #raw(lang:"verbatim", "R2"). If you run the code in the book, you get:
+On page 92, the result at the top of the page is not correct, and #raw(lang:"scheme", "scmutils") won\'t produce it for the supplied code… I don\'t know enough to see how the book result comes about, so I submit it to you for examination! The code on the page is written for #raw(lang:"scheme", "R3") but the result is for #raw(lang:"scheme", "R2"). If you run the code in the book, you get:
 
 ```scheme
 ((((partial 1) f-rect) (up 1 0 0))
@@ -83,9 +83,9 @@ While the book shows:
  (* 1/24 (expt a 4) (((partial 1) f-rect) (up 1 0))))
 ```
 
-The #raw(lang:"verbatim", "(partial 0)") and #raw(lang:"verbatim", "(partial 1)") are switched, the point is in R2 vs R3 and the negative signs are distributed differently. Strange!
+The #raw(lang:"scheme", "(partial 0)") and #raw(lang:"scheme", "(partial 1)") are switched, the point is in R2 vs R3 and the negative signs are distributed differently. Strange!
 
-Page 103: I believe the code listing at the end of the page subs in #raw(lang:"verbatim", "J") where #raw(lang:"verbatim", "circular") belongs. The code shown is:
+Page 103: I believe the code listing at the end of the page subs in #raw(lang:"scheme", "J") where #raw(lang:"scheme", "circular") belongs. The code shown is:
 
 ```scheme
 (((((covariant-derivative R2-polar-Cartan) d/dx) J) f) R2-rect-point)
@@ -97,28 +97,28 @@ The correct version is:
 (((((covariant-derivative R2-polar-Cartan) d/dx) circular) f) R2-rect-point)
 ```
 
-Page 107: the definition of #raw(lang:"verbatim", "S2-Christoffel") will not work without #raw(lang:"verbatim", "S2-spherical") coordinates installed:
+Page 107: the definition of #raw(lang:"scheme", "S2-Christoffel") will not work without #raw(lang:"scheme", "S2-spherical") coordinates installed:
 
 ```scheme
 (define-coordinates (up theta phi) S2-spherical)
 ```
 
-Page 107: The definition of #raw(lang:"verbatim", "sphere") references the nonexistent #raw(lang:"verbatim", "S^2") manifold family instead of the correct #raw(lang:"verbatim", "S^2-type").
+Page 107: The definition of #raw(lang:"scheme", "sphere") references the nonexistent #raw(lang:"scheme", "S^2") manifold family instead of the correct #raw(lang:"scheme", "S^2-type").
 
 == Chapter 8
-Page 116: The code beginning here requires the #raw(lang:"verbatim", "S2-spherical") coordinate system:
+Page 116: The code beginning here requires the #raw(lang:"scheme", "S2-spherical") coordinate system:
 
 ```scheme
 (define-coordinates (up theta phi) S2-spherical)
 ```
 
-Page 127 states \"Where #raw(lang:"verbatim", "omega") is an arbitrary one-form field.\" It would be nice to add this definition to the setup in footnote 8:
+Page 127 states \"Where #raw(lang:"scheme", "omega") is an arbitrary one-form field.\" It would be nice to add this definition to the setup in footnote 8:
 
 ```scheme
 (define omega (literal-oneform-field 'omega S2-spherical))
 ```
 
-The torsion example on page 127 uses an #raw(lang:"verbatim", "f") that has not yet been defined:
+The torsion example on page 127 uses an #raw(lang:"scheme", "f") that has not yet been defined:
 
 ```scheme
 (let ((X (literal-vector-field 'X-sphere S2-spherical))
@@ -133,25 +133,25 @@ This can be fixed by adding the following to footnote 8\'s setup instructions:
 ```
 
 == Chapter 9
-Page 135: I\'m not sure if it causes any problems, but #raw(lang:"verbatim", "raise") as defined in the book does not wrap its return procedure in #raw(lang:"verbatim", "procedure->vector-field"), like the #raw(lang:"verbatim", "scmutils") version does. Other functions in the book are careful to show this, so it might be worth a note.
+Page 135: I\'m not sure if it causes any problems, but #raw(lang:"scheme", "raise") as defined in the book does not wrap its return procedure in #raw(lang:"scheme", "procedure->vector-field"), like the #raw(lang:"scheme", "scmutils") version does. Other functions in the book are careful to show this, so it might be worth a note.
 
-Page 136: The code beginning here requires the #raw(lang:"verbatim", "S2-spherical") coordinate system and #raw(lang:"verbatim", "S2-basis"):
+Page 136: The code beginning here requires the #raw(lang:"scheme", "S2-spherical") coordinate system and #raw(lang:"scheme", "S2-basis"):
 
 ```scheme
 (define-coordinates (up theta phi) S2-spherical)
 (define S2-basis (coordinate-system->basis S2-spherical))
 ```
 
-Page 141: The simplifier in the current build of #raw(lang:"verbatim", "scmutils") can\'t simplify the denominators to the book\'s terms with the #raw(lang:"verbatim", "3/2") power. If this was hand-simplified, great! Otherwise, maybe this is a regression in the simplifier. I can\'t see a setting in #raw(lang:"verbatim", "rules.scm") that would allow this, but I haven\'t looked at the full set of rules in a while…
+Page 141: The simplifier in the current build of #raw(lang:"scheme", "scmutils") can\'t simplify the denominators to the book\'s terms with the #raw(lang:"scheme", "3/2") power. If this was hand-simplified, great! Otherwise, maybe this is a regression in the simplifier. I can\'t see a setting in #raw(lang:"scheme", "rules.scm") that would allow this, but I haven\'t looked at the full set of rules in a while…
 
-Page 146: The code in section @sec-9.3 requires the #raw(lang:"verbatim", "spacetime-rect") coordinate system to be installed. #raw(lang:"verbatim", "spacetime-rect-basis") is also used in the first code block on this page without definition:
+Page 146: The code in section @sec-9.3 requires the #raw(lang:"scheme", "spacetime-rect") coordinate system to be installed. #raw(lang:"scheme", "spacetime-rect-basis") is also used in the first code block on this page without definition:
 
 ```scheme
 (define-coordinates (up t x y z) spacetime-rect)
 (define spacetime-rect-basis (coordinate-system->basis spacetime-rect))
 ```
 
-Page 147: #raw(lang:"verbatim", "V") is passed as an argument to #raw(lang:"verbatim", "Newton-metric") without first being defined. #raw(lang:"verbatim", "V") was declared inline above in the definition of #raw(lang:"verbatim", "nabla"), and should be explicitly defined like so:
+Page 147: #raw(lang:"scheme", "V") is passed as an argument to #raw(lang:"scheme", "Newton-metric") without first being defined. #raw(lang:"scheme", "V") was declared inline above in the definition of #raw(lang:"scheme", "nabla"), and should be explicitly defined like so:
 
 ```scheme
 (define V (literal-function 'V (-> (UP Real Real Real) Real)))
@@ -174,21 +174,21 @@ instead of the stated return value:
 Maybe the shown value is meant to be just the leading term, but this is worth explaining.
 
 == Chapter 10
-Page 159: the setup block should define #raw(lang:"verbatim", "SR-basis"), as it is used in the last example of the section, on page 160:
+Page 159: the setup block should define #raw(lang:"scheme", "SR-basis"), as it is used in the last example of the section, on page 160:
 
 ```scheme
 (define SR-basis (coordinate-system->basis SR))
 ```
 
-If the setup block defined #raw(lang:"verbatim", "SR-basis") then the #raw(lang:"verbatim", "SR-vector-basis") definition on page 160 could become:
+If the setup block defined #raw(lang:"scheme", "SR-basis") then the #raw(lang:"scheme", "SR-vector-basis") definition on page 160 could become:
 
 ```scheme
 (define SR-vector-basis (basis->vector-basis SR-basis))
 ```
 
-Page 159: the Minkowski metric is written with a #raw(lang:"verbatim", "c^2") term, but all of the following functions, results and discussion seem to assume that #raw(lang:"verbatim", "c") is normalized to #raw(lang:"verbatim", "1"). I would recommend a note on page 159 to this effect!
+Page 159: the Minkowski metric is written with a #raw(lang:"scheme", "c^2") term, but all of the following functions, results and discussion seem to assume that #raw(lang:"scheme", "c") is normalized to #raw(lang:"scheme", "1"). I would recommend a note on page 159 to this effect!
 
-Including the #raw(lang:"verbatim", "c^2") term explicitly would require, I believe, the following substitutions (along with result substitutions for the forms below):
+Including the #raw(lang:"scheme", "c^2") term explicitly would require, I believe, the following substitutions (along with result substitutions for the forms below):
 
 ```scheme
 ;; page 159
@@ -243,12 +243,12 @@ Including the #raw(lang:"verbatim", "c^2") term explicitly would require, I beli
  an-event)
 ```
 
-Page 165: In the definition of #raw(lang:"verbatim", "Force"), #raw(lang:"verbatim", "eta-inverse") is not defined, so the following two code examples (and, presumably, exercise 10.1b) will not run!
+Page 165: In the definition of #raw(lang:"scheme", "Force"), #raw(lang:"scheme", "eta-inverse") is not defined, so the following two code examples (and, presumably, exercise 10.1b) will not run!
 
 == Chapter 11
-Page 178: This is not necessarily a \"bug\", but simplifying the expression produced by the form at the top of the page is extremely slow on my machine, in both #raw(lang:"verbatim", "scmutils") and the Clojure port. Could be a regression? I have not been able to get the computation to complete, and GCD times out.
+Page 178: This is not necessarily a \"bug\", but simplifying the expression produced by the form at the top of the page is extremely slow on my machine, in both #raw(lang:"scheme", "scmutils") and the Clojure port. Could be a regression? I have not been able to get the computation to complete, and GCD times out.
 
-Page 180 states \"Assume that we have a base frame called #raw(lang:"verbatim", "home")\.\" The base frame defined in the library is #raw(lang:"verbatim", "the-ether")\; I would recommend including one of the the following definitions as setup:
+Page 180 states \"Assume that we have a base frame called #raw(lang:"scheme", "home")\.\" The base frame defined in the library is #raw(lang:"scheme", "the-ether")\; I would recommend including one of the the following definitions as setup:
 
 ```scheme
 (define home

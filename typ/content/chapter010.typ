@@ -349,7 +349,7 @@ One way to get electric fields is to have charges; magnetic fields can arise fro
      (* charge-density dct)))
 ```
 
-The coefficient #raw(lang:"verbatim", "(/ 1 :c)") makes the components of the one-form uniform with respect to units.
+The coefficient #raw(lang:"scheme", "(/ 1 :c)") makes the components of the one-form uniform with respect to units.
 
 To develop Maxwell\'s equations we need a general Faraday field and a general current-density field:
 

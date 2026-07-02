@@ -195,6 +195,8 @@ function normalizeOrgSource(source, stem) {
     .replaceAll("\\psia", "\\psi_a")
     .replaceAll("M_{i}}", "M_i")
     .replaceAll("\\mathsf{R}^{n}}", "\\mathsf{R}^{n}")
+    .replaceAll("\\mathsf`m`", "\\mathsf{m}")
+    .replaceAll("\\mathsf{m}gt", "\\mathsf{m}")
     .replaceAll("$\\n$", "$n$")
     .replaceAll("Les Mis´erables", "Les Misérables")
     .replaceAll("EulerLagrange", "Euler-Lagrange")
@@ -247,6 +249,8 @@ function normalizeOrgSource(source, stem) {
 const typstMathFunctions = new Set([
   "abs",
   "arrow",
+  "bb",
+  "binom",
   "bold",
   "cal",
   "ceil",
@@ -273,6 +277,7 @@ const typstMathFunctions = new Set([
   "norm",
   "root",
   "sans",
+  "scale",
   "sin",
   "sinh",
   "sqrt",
@@ -292,6 +297,18 @@ function spaceMathApplications(math) {
         if (typstMathFunctions.has(name)) return match;
         return `${name}${sub}${sup} (`;
       },
+    )
+    .replace(
+      /\b([A-Za-z][A-Za-z0-9.]+'+)(_[A-Za-z0-9.]+|_\([^)]*\))?(\^[A-Za-z0-9.]+|\^\([^)]*\))?\(/g,
+      (_match, name, sub = "", sup = "") => `${name}${sub}${sup} (`,
+    )
+    .replace(
+      /((?:\)|\])'+(?:_[A-Za-z0-9.]+|_\([^)]*\))?(?:\^[A-Za-z0-9.]+|\^\([^)]*\))?)(?=\()/g,
+      "$1 ",
+    )
+    .replace(
+      /((?:\)|\])(?:(?:_[A-Za-z0-9.]+|_\([^)]*\))(?:\^[A-Za-z0-9.]+|\^\([^)]*\))?|(?:\^[A-Za-z0-9.]+|\^\([^)]*\))))(?=\()/g,
+      "$1 ",
     )
     .replace(/(\)|\])(?=\()/g, "$1 ");
 }
@@ -337,14 +354,36 @@ function cleanTypstMath(math) {
     " lr( (D f)(t) = frac(d, d x) f(x) |)_(x=t) ",
   );
 
-  return spaceMathApplications(cleaned).replace(
+  return spaceMathApplications(cleaned)
+    .replace(/\)(\^\d+)sans\(/g, ")$1 sans(")
+    .replace(/(\)\^\d+)(?=sans\()/g, "$1 ")
+    .replace(/(\)\^[A-Za-z0-9.]+)(?=sans\()/g, "$1 ")
+    .replace(/(bb|binom|sans|scale)\s+\(/g, "$1(")
+    .replace(/\)(\^\d+)sans\(/g, ")$1 sans(")
+    .replace(
     "frac(d, d t) (frac(partial L (t\\,q\\,dot(q)), partial dot(q))|_(q=w (t) dot(q) = frac(d w (t), d t))) - frac(partial L (t\\,q\\,dot(q)), partial q)|_(q=w (t)dot(q) = frac(d w (t), d t)) = 0 .",
     "frac(d, d t) (lr(frac(partial L (t\\,q\\,dot(q)), partial dot(q))|)_(q=w (t) \\\n dot(q) = frac(d w (t), d t))) - lr(frac(partial L (t\\,q\\,dot(q)), partial q)|)_(q=w (t) \\\n dot(q) = frac(d w (t), d t)) = 0 .",
   );
 }
 
+function mathifyBareGreekInProse(body) {
+  const protectedSpan = /(```[\s\S]*?```|`[^`\n]*`|\$[^$\n]*\$)/g;
+  return body
+    .split(protectedSpan)
+    .map(part => {
+      protectedSpan.lastIndex = 0;
+      if (!part || protectedSpan.test(part)) return part;
+      protectedSpan.lastIndex = 0;
+      return part.replace(
+        /(^|[^\p{L}\p{N}_$])(\p{Script=Greek})(s?)(?=$|[^\p{L}\p{N}_])/gu,
+        (_match, prefix, symbol, plural) => `${prefix}$${symbol}$${plural}`,
+      );
+    })
+    .join("");
+}
+
 function cleanTypstOutput(body) {
-  return body.replace(/\\\$([^$\n]+?)\\\$/g, (_match, math) => {
+  return mathifyBareGreekInProse(body.replace(/\\\$([^$\n]+?)\\\$/g, (_match, math) => {
     return `$${cleanTypstMath(math)}$`;
   })
     .replace(/(?<!\\)\$([^$\n]+?)(?<!\\)\$/g, (_match, math) => {
@@ -359,11 +398,20 @@ function cleanTypstOutput(body) {
       "```scheme\n<<Cartan>>\n```",
       "```scheme\n(define Cartan\n  (Christoffel->Cartan\n   (metric->Christoffel-2 the-metric\n         (coordinate-system->basis R2-rect))))\n```",
     )
+    .replace(
+      /```scheme\n([\s\S]*?)\n```\n\n```\n(#\|[\s\S]*?\|#)\n```/g,
+      (_match, code, result) => `\`\`\`scheme\n${code}\n\n${result}\n\`\`\``,
+    )
     .replace(/\\#\|\n\n```scheme\n([\s\S]*?)\n\|#\n```\n?/g, "```scheme\n$1\n```\n")
     .replace(/(```scheme\n[\s\S]*?\n```)/g, block => block.replaceAll("’", "'"))
     .replace(/`([^`\n]+)`/g, (_match, code) => `\`${code.replaceAll("’", "'")}\``)
     .replace(/\\<([A-Z0-9]+\.\d+)\\>/g, "<$1>")
     .replaceAll("Les Mis´erables", "Les Misérables")
+    .replaceAll('lang:"verbatim"', 'lang:"scheme"')
+    .replaceAll(
+      "only value that is ever passed as m is (mu:N-\\>M n).",
+      "only value that is ever passed as `m` is `(mu:N->M n)`.",
+    )
     .replaceAll("\"curl\"", "curl")
     .replaceAll("\"grad\"", "grad")
     .replaceAll("\"Lap\"", "Lap")
@@ -378,6 +426,7 @@ function cleanTypstOutput(body) {
     )
     .replace(/\)\s*!=/g, ") !=")
     .replace(/\)\s*equiv/g, ") \"≡\"")
+    .replace(/(bb|binom|sans|scale)\s+\(/g, "$1(")
     .replaceAll("dots.h.c", "dots.c")
     .replaceAll("dots.h", "dots")
     .replaceAll("^komega", "^k omega")
@@ -392,7 +441,7 @@ function cleanTypstOutput(body) {
     .replaceAll("[(](", "[(] (")
     .replaceAll("$180^compose$", "180°")
     .replaceAll("$z = 0$\\.)", "$z = 0$.)")
-    .replace(/(#scale\([^)]*\)\[[^\]]+\])\(/g, "$1 (");
+    .replace(/(#scale\([^)]*\)\[[^\]]+\])\(/g, "$1 ("));
 }
 
 function figurePdf(file, width = "92%") {

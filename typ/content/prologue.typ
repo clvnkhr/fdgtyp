@@ -67,16 +67,16 @@ This expression is equivalent to a computer program:#footnote[The programs in th
      (compose ((partial 1) Lagrangian) (Gamma w))))
 ```
 
-In the Lagrange equations procedure the parameter #raw(lang:"verbatim", "Lagrangian") is a procedure that implements the Lagrangian. The derivatives of the Lagrangian, for example #raw(lang:"verbatim", "((partial 2) Lagrangian)"), are also procedures. The state-space path procedure #raw(lang:"verbatim", "(Gamma w)") is constructed from the configuration-space path procedure #raw(lang:"verbatim", "w") by the procedure #raw(lang:"verbatim", "Gamma"):
+In the Lagrange equations procedure the parameter #raw(lang:"scheme", "Lagrangian") is a procedure that implements the Lagrangian. The derivatives of the Lagrangian, for example #raw(lang:"scheme", "((partial 2) Lagrangian)"), are also procedures. The state-space path procedure #raw(lang:"scheme", "(Gamma w)") is constructed from the configuration-space path procedure #raw(lang:"scheme", "w") by the procedure #raw(lang:"scheme", "Gamma"):
 
 ```scheme
 (define ((Gamma w) t)
   (up t (w t) ((D w) t)))
 ```
 
-where #raw(lang:"verbatim", "up") is a constructor for a data structure that represents a state of the dynamical system (time, coordinates, velocities).
+where #raw(lang:"scheme", "up") is a constructor for a data structure that represents a state of the dynamical system (time, coordinates, velocities).
 
-The result of applying the #raw(lang:"verbatim", "Lagrange-equations") procedure to a procedure #raw(lang:"verbatim", "Lagrangian") that implements a Lagrangian function is a procedure that takes a configuration-space path procedure #raw(lang:"verbatim", "w") and returns a procedure that gives the residual of the Lagrange equations for that path at a time.
+The result of applying the #raw(lang:"scheme", "Lagrange-equations") procedure to a procedure #raw(lang:"scheme", "Lagrangian") that implements a Lagrangian function is a procedure that takes a configuration-space path procedure #raw(lang:"scheme", "w") and returns a procedure that gives the residual of the Lagrange equations for that path at a time.
 
 For example, consider the harmonic oscillator, with Lagrangian
 

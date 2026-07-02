@@ -23,14 +23,14 @@ The Riemann curvature is computed by
      (nabla (commutator w v))))
 ```
 
-The #raw(lang:"verbatim", "Riemann-curvature") procedure is parameterized by the relevant covariant-derivative operator #raw(lang:"verbatim", "nabla"), which implements $nabla$. The #raw(lang:"verbatim", "nabla") is itself dependent on the connection, which provides the details of the local geometry. The same #raw(lang:"verbatim", "Riemann-curvature") procedure works for ordinary covariant derivatives and for covariant derivatives over a map. Given two vector fields, the result of #raw(lang:"verbatim", "((Riemann-curvature nabla) w v)") is a procedure that takes a vector field and produces a vector field so we can implement the Riemann tensor as
+The #raw(lang:"scheme", "Riemann-curvature") procedure is parameterized by the relevant covariant-derivative operator #raw(lang:"scheme", "nabla"), which implements $nabla$. The #raw(lang:"scheme", "nabla") is itself dependent on the connection, which provides the details of the local geometry. The same #raw(lang:"scheme", "Riemann-curvature") procedure works for ordinary covariant derivatives and for covariant derivatives over a map. Given two vector fields, the result of #raw(lang:"scheme", "((Riemann-curvature nabla) w v)") is a procedure that takes a vector field and produces a vector field so we can implement the Riemann tensor as
 
 ```scheme
 (define ((Riemann nabla) omega u w v)
   (omega (((Riemann-curvature nabla) w v) u)))
 ```
 
-So, for example,#footnote[The connection specified by #raw(lang:"verbatim", "sphere-Cartan") is defined on page 107.]
+So, for example,#footnote[The connection specified by #raw(lang:"scheme", "sphere-Cartan") is defined on page 107.]
 
 ```scheme
 (((Riemann (covariant-derivative sphere-Cartan))
@@ -39,7 +39,7 @@ So, for example,#footnote[The connection specified by #raw(lang:"verbatim", "sph
 ;; 1
 ```
 
-Here we have computed the φ component of the result of carrying a $partial\/partial theta$ basis vector around the parallelogram defined by $partial\/partial phi.alt$ and $partial\/partial theta$. The result shows a net rotation in the $phi.alt$ direction.
+Here we have computed the $φ$ component of the result of carrying a $partial\/partial theta$ basis vector around the parallelogram defined by $partial\/partial phi.alt$ and $partial\/partial theta$. The result shows a net rotation in the $phi.alt$ direction.
 
 Most of the sixteen coefficients of the Riemann tensor for the sphere are zero. The following are the nonzero coefficients:
 
@@ -259,7 +259,7 @@ The obvious identification does not work, but neither does the other one!
 
 Let\'s compute the two parts of the Riemann curvature operator and see how this works out. First, recall
 
-$ nabla_(sans(v)) sans(u) (sans(f))= sum_i sans(e)_i(sans(f)) (sans(v) (tilde(sans(e))^i (sans(u))) + sum_j pi.alt_j^i (sans(v)) tilde(sans(e))^j (sans(u))) = sans(e) (sans(f)) (sans(v) (tilde(sans(e)) (sans(u)))+ pi.alt (sans(v))tilde(sans(e)) (sans(u)))\, $ <8.16>
+$ nabla_(sans(v)) sans(u) (sans(f))= sum_i sans(e)_i (sans(f)) (sans(v) (tilde(sans(e))^i (sans(u))) + sum_j pi.alt_j^i (sans(v)) tilde(sans(e))^j (sans(u))) = sans(e) (sans(f)) (sans(v) (tilde(sans(e)) (sans(u)))+ pi.alt (sans(v))tilde(sans(e)) (sans(u)))\, $ <8.16>
 
 where the second form uses tuple arithmetic. Now let\'s consider the first part of the Riemann curvature operator:
 
@@ -329,7 +329,7 @@ $ cal(T) (sans(u)\,sans(v))= nabla_(sans(u)) sans(v) - nabla_(sans(v)) sans(u) -
 
 The torsion takes two vector fields and produces a vector field. The torsion depends on the covariant derivative, which is constructed from the connection.
 
-We account for this dependency by parameterizing the program by #raw(lang:"verbatim", "nabla").
+We account for this dependency by parameterizing the program by #raw(lang:"scheme", "nabla").
 
 ```scheme
 (define ((torsion-vector nabla) u v)
@@ -340,7 +340,7 @@ We account for this dependency by parameterizing the program by #raw(lang:"verba
   (omega ((torsion-vector nabla) u v)))
 ```
 
-The torsion for the connection for the 2-sphere specified by the Christoffel coefficients #raw(lang:"verbatim", "S2-Christoffel") above is zero. We demonstrate this by applying the torsion to the basis vector fields:
+The torsion for the connection for the 2-sphere specified by the Christoffel coefficients #raw(lang:"scheme", "S2-Christoffel") above is zero. We demonstrate this by applying the torsion to the basis vector fields:
 
 ```scheme
 (for-each
@@ -424,7 +424,7 @@ Consider longitude lines on the unit sphere.#footnote[The setup for this example
 (define m ((point S2-spherical) (up 'theta0 'phi0)))
 (define Cartan (Christoffel->Cartan S2-Christoffel))
 (define nabla (covariant-derivative Cartan))
-```] Let #raw(lang:"verbatim", "theta") be colatitude and #raw(lang:"verbatim", "phi") be longitude. These are the parameters $s$ and $t$, respectively. Then let #raw(lang:"verbatim", "T") be the vector field #raw(lang:"verbatim", "d/dtheta") that is tangent to the longitude lines.
+```] Let #raw(lang:"scheme", "theta") be colatitude and #raw(lang:"scheme", "phi") be longitude. These are the parameters $s$ and $t$, respectively. Then let #raw(lang:"scheme", "T") be the vector field #raw(lang:"scheme", "d/dtheta") that is tangent to the longitude lines.
 
 We can verify that every longitude line is a geodesic:
 
@@ -433,9 +433,9 @@ We can verify that every longitude line is a geodesic:
 ;; 0
 ```
 
-where #raw(lang:"verbatim", "omega") is an arbitrary one-form field.
+where #raw(lang:"scheme", "omega") is an arbitrary one-form field.
 
-Now let #raw(lang:"verbatim", "U") be #raw(lang:"verbatim", "d/dphi"), then #raw(lang:"verbatim", "U") commutes with #raw(lang:"verbatim", "T"):
+Now let #raw(lang:"scheme", "U") be #raw(lang:"scheme", "d/dphi"), then #raw(lang:"scheme", "U") commutes with #raw(lang:"scheme", "T"):
 
 ```scheme
 (((commutator U T) f) m)
@@ -451,7 +451,7 @@ The torsion for the usual connection for the sphere is zero:
 ;; 0
 ```
 
-So we can compute the geodesic deviation using #raw(lang:"verbatim", "Riemann")
+So we can compute the geodesic deviation using #raw(lang:"scheme", "Riemann")
 
 ```scheme
 ((+ (omega ((nabla T) ((nabla T) U)))

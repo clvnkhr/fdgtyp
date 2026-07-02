@@ -9,7 +9,7 @@ We will have a choice of directional derivative operators that give different re
 
 $ cal(D)_(sans(v)) (sans(f))= sans(v) (sans(f)). $ <7.1>
 
-Next we specify the directional derivative of a vector field $sans(u)$ with respect to a vector field $sans(v)$. Let an integral curve of the vector field $sans(v)$ be γ, parameterized by $t$, and let $sans(m) = gamma (t)$. Let $sans(u)'$ be a vector field that results from transporting the vector field $sans(u)$ along γ for a parameter increment δ. How $sans(u)$ is transported to make $sans(u)'$ determines the type of derivative. We formulate the method of transport by:
+Next we specify the directional derivative of a vector field $sans(u)$ with respect to a vector field $sans(v)$. Let an integral curve of the vector field $sans(v)$ be $γ$, parameterized by $t$, and let $sans(m) = gamma (t)$. Let $sans(u)'$ be a vector field that results from transporting the vector field $sans(u)$ along $γ$ for a parameter increment $δ$. How $sans(u)$ is transported to make $sans(u)'$ determines the type of derivative. We formulate the method of transport by:
 
 $ sans(u)' = F_delta^(sans(v)) sans(u) . $ <7.2>
 
@@ -38,7 +38,7 @@ The linearity of transport implies that
 
 $ cal(D)_(sans(v)) (alpha sans(O) + beta sans(P))= alpha cal(D)_(sans(v)) sans(O) + beta cal(D)_(sans(v)) sans(P)\, $ <7.5>
 
-for any real α and β and manifold objects $sans(O)$ and $sans(P)$.
+for any real $α$ and $β$ and manifold objects $sans(O)$ and $sans(P)$.
 
 The directional derivative obeys superposition in its vector-field argument:
 
@@ -48,7 +48,7 @@ The directional derivative is homogeneous over the reals in its vector-field arg
 
 $ cal(D)_(alpha sans(v)) = alpha cal(D)_(sans(v))\, $ <7.7>
 
-for any real α.#footnote[For some derivative operators α can be a real-valued manifold function.] This follows from the fact that for evolution along integral curves: when α is a real number,
+for any real $α$.#footnote[For some derivative operators $α$ can be a real-valued manifold function.] This follows from the fact that for evolution along integral curves: when $α$ is a real number,
 
 $ phi.alt_t^(alpha sans(v)) (sans(m))= phi.alt_(alpha t)^(sans(v)) (sans(m)). $ <7.8>
 
@@ -101,7 +101,7 @@ We can construct a procedure that computes the Lie derivative of a vector field 
 order)))
 ```
 
-Expand the quantities in equation @7.13 to first order in δ:
+Expand the quantities in equation @7.13 to first order in $δ$:
 
 $ g (delta)= sans(y) (sans(f)) (sans(m))-(phi.alt_(delta *)^(sans(v)) sans(y)) (sans(f)) (sans(m))= sans(y) (sans(f)) (sans(m))- sans(y) (sans(f) compose phi.alt_delta^(sans(v))) (phi.alt_(- delta)^(sans(v)) (sans(m)))=(sans(y) (sans(f))- sans(y) (sans(f) + delta sans(v) (sans(f))+ dots.c)+ delta sans(v) (sans(y) (sans(f) + delta sans(v) (sans(f))+ dots.c))) (sans(m))+ dots.c =(- delta sans(y) (sans(v) (sans(f)))+ delta sans(v) (sans(y) (sans(f)))) (sans(m))+ dots.c = delta[sans(v)\,sans(y)] (sans(f)) (sans(m))+ cal(O) (delta^2). $ <7.14>
 
@@ -141,11 +141,11 @@ $ cal(L)_(sans(v)) (sans(g) sans(u)) (sans(f))=[sans(v)\,sans(g) sans(u)] (sans(
 == An Alternate View <sec-7.4>
 We can write the vector field
 
-$ sans(y) (sans(f))= sum_i y^i sans(e)_i(sans(f)). $ <7.18>
+$ sans(y) (sans(f))= sum_i y^i sans(e)_i (sans(f)). $ <7.18>
 
 By the extended product rule (equation @7.17) we get
 
-$ cal(L)_(sans(v)) sans(y) (sans(f))= sum_i(sans(v) (sans(y)^i)sans(e)_i(sans(f))+ sans(y)^i cal(L)_(sans(v)) cal(e)_i(sans(f))). $ <7.19>
+$ cal(L)_(sans(v)) sans(y) (sans(f))= sum_i(sans(v) (sans(y)^i)sans(e)_i (sans(f))+ sans(y)^i cal(L)_(sans(v)) cal(e)_i (sans(f))). $ <7.19>
 
 Because the Lie derivative of a vector field is a vector field, we can extract the components of $cal(L)_(sans(v)) sans(e)_i$ using the dual basis. We define $Delta_j^i (sans(v))$ to be those components:
 
@@ -153,7 +153,7 @@ $ Delta_j^i (sans(v))= tilde(sans(e))^i (cal(L)_(sans(v)) sans(e)_j)= tilde(sans
 
 So the Lie derivative can be written
 
-$ (cal(L)_(sans(v)) sans(y)) (sans(f))= sum_i #scale (x: 240%, y: 240%)[(] sans(v) (sans(y)^i)+ sum_j Delta_j^i (sans(v))sans(y)^j #scale (x: 240%, y: 240%)[)] sans(e)_i(f). $ <7.21>
+$ (cal(L)_(sans(v)) sans(y)) (sans(f))= sum_i #scale(x: 240%, y: 240%)[(] sans(v) (sans(y)^i)+ sum_j Delta_j^i (sans(v))sans(y)^j #scale(x: 240%, y: 240%)[)] sans(e)_i (f). $ <7.21>
 
 The components of the Lie derivatives of the basis vector fields are the structure constants for the basis vector fields. (See equation @4.37.) The structure constants are antisymmetric in the lower indices:
 
@@ -161,22 +161,22 @@ $ tilde(sans(e))^i (cal(L)_(sans(e)_k) sans(e)_j)= tilde(sans(e))^i ([sans(e)_k\
 
 Resolving $sans(v)$ into components and applying the product rule, we get
 
-$ (cal(L)_(sans(v)) sans(y)) (sans(f))= sum_k #scale (x: 120%, y: 120%)[(] sans(v)^k[sans(e)_k\,sans(y)] (sans(f))- sans(y) (sans(v)^k)sans(e)_k) (sans(f))#scale (x: 120%, y: 120%)[)] . $ <7.23>
+$ (cal(L)_(sans(v)) sans(y)) (sans(f))= sum_k #scale(x: 120%, y: 120%)[(] sans(v)^k[sans(e)_k\,sans(y)] (sans(f))- sans(y) (sans(v)^k)sans(e)_k) (sans(f))#scale(x: 120%, y: 120%)[)] . $ <7.23>
 
 So $Delta_j^i$ is related to the structure constants by
 
-$ Delta_j^i (sans(v))= tilde(sans(e))^i (cal(L)_(sans(v)) sans(e)_j)= sum_k #scale (x: 120%, y: 120%)[(] sans(v)^k tilde(sans(e))^i ([sans(e)_k\,sans(e)_j])- sans(e)_j(sans(v)^k)tilde(sans(e))^i (sans(e)_k)#scale (x: 120%, y: 120%)[)] = sum_k #scale (x: 120%, y: 120%)[(] sans(v)^k sans(d)_(k j)^i - sans(e)_j(sans(v)^k)delta_k^i #scale (x: 120%, y: 120%)[)] = sum_k sans(v)^k sans(d)_(k j)^i - sans(e)_j(sans(v)^i). $ <7.24>
+$ Delta_j^i (sans(v))= tilde(sans(e))^i (cal(L)_(sans(v)) sans(e)_j)= sum_k #scale(x: 120%, y: 120%)[(] sans(v)^k tilde(sans(e))^i ([sans(e)_k\,sans(e)_j])- sans(e)_j (sans(v)^k)tilde(sans(e))^i (sans(e)_k)#scale(x: 120%, y: 120%)[)] = sum_k #scale(x: 120%, y: 120%)[(] sans(v)^k sans(d)_(k j)^i - sans(e)_j (sans(v)^k)delta_k^i #scale(x: 120%, y: 120%)[)] = sum_k sans(v)^k sans(d)_(k j)^i - sans(e)_j (sans(v)^i). $ <7.24>
 
 Note: Despite their appearance, the $Delta_j^i$ are not form fields because $Delta_j^i (sans(f) sans(v)) != sans(f) Delta_j^i (sans(v))$.
 
 == Form Fields <sec-7.5>
-We can also define the Lie derivative of a form field ω with respect to the vector field $sans(v)$ by its action on an arbitrary vector field $sans(y)$, using the extended Leibniz rule (see equation @7.10):
+We can also define the Lie derivative of a form field $ω$ with respect to the vector field $sans(v)$ by its action on an arbitrary vector field $sans(y)$, using the extended Leibniz rule (see equation @7.10):
 
 $ (cal(L)_(sans(v)) (omega)) (sans(y)) "≡" sans(v) (omega (sans(y)))- omega (cal(L)_(sans(v)) sans(y)). $ <7.25>
 
-The first term computes the rate of change of the combination $omega (sans(y))$ along the integral curve of $sans(v)$, while the second subtracts ω applied to the change in $sans(y)$. The result is the change in ω along the curve.
+The first term computes the rate of change of the combination $omega (sans(y))$ along the integral curve of $sans(v)$, while the second subtracts $ω$ applied to the change in $sans(y)$. The result is the change in $ω$ along the curve.
 
-The Lie derivative of a $k$-form field ω with respect to a vector field $sans(v)$ is a $k$-form field that is defined by its behavior when applied to $k$ arbitrary vector fields $sans(w)_0\,dots.c\,sans(w)_(k - 1)$. We generalize equation @7.25:
+The Lie derivative of a $k$-form field $ω$ with respect to a vector field $sans(v)$ is a $k$-form field that is defined by its behavior when applied to $k$ arbitrary vector fields $sans(w)_0\,dots.c\,sans(w)_(k - 1)$. We generalize equation @7.25:
 
 $ cal(L)_(sans(v)) omega (sans(w)_0\,dots.c\,sans(w)_(k - 1))= sans(v) (omega (sans(w)_0\,dots.c\,sans(w)_(k - 1)))- sum_(i=0)^(k - 1) omega (sans(w)_0\,dots.c\,cal(L)_(sans(v)) sans(w)_i\,dots.c\,sans(w)_(k - 1)). $ <7.26>
 
@@ -198,11 +198,11 @@ $ cal(L)_(sans(v)) (alpha sans(a) + beta sans(b))= alpha cal(L)_(sans(v)) sans(a
 
 with $alpha\,beta in sans(R)$ and vector fields or one-form fields $sans(a)$ and $sans(b)$.
 
-For any $k$-form field ω and any vector field $sans(v)$ the exterior derivative commutes with the Lie derivative with respect to the vector field:
+For any $k$-form field $ω$ and any vector field $sans(v)$ the exterior derivative commutes with the Lie derivative with respect to the vector field:
 
 $ cal(L)_(sans(v)) (sans(d) omega)= sans(d) (cal(L)_(sans(v)) omega). $ <7.30>
 
-If ω is an element of surface then $sans(d) omega$ is an element of volume. The Lie derivative computes the rate of change of its argument under a deformation described by the vector field. The answer is the same whether we deform the surface before computing the volume or compute the volume and then deform it.
+If $ω$ is an element of surface then $sans(d) omega$ is an element of volume. The Lie derivative computes the rate of change of its argument under a deformation described by the vector field. The answer is the same whether we deform the surface before computing the volume or compute the volume and then deform it.
 
 We can verify this in 3-dimensional rectangular space for a general one-form field:#footnote[In these experiments we need some setup.
 
@@ -234,7 +234,7 @@ The Lie derivative satisfies another nice elementary relationship. If $sans(v)$ 
 
 $ [cal(L)_(sans(v))\,cal(L)_(sans(w))]= cal(L)_([sans(v)\,sans(w)]) . $ <7.31>
 
-Again, for our general one-form field θ:
+Again, for our general one-form field $θ$:
 
 ```scheme
 ((((- (commutator (Lie-derivative X) (Lie-derivative Y))
@@ -245,7 +245,7 @@ R3-rect-point)
 0
 ```
 
-and for the two-form field ω:
+and for the two-form field $ω$:
 
 ```scheme
 ((((- (commutator (Lie-derivative X) (Lie-derivative Y))
@@ -290,7 +290,7 @@ Apparently the result is
 $ upright("exp") (alpha cal(L)_((sans(x) thin partial\/partial sans(y) - sans(y) thin partial\/partial sans(x))))frac(partial, partial sans(y)) = - sin(a)frac(partial, partial sans(x)) + cos(a)frac(partial, partial sans(y)) . $ <7.33>
 
 == Interior Product <sec-7.9>
-There is a simple but useful operation available between vector fields and form fields called #emph[interior product]. This is the substitution of a vector field $sans(v)$ into the first argument of a $p$-form field ω to produce a $p - 1$-form field:
+There is a simple but useful operation available between vector fields and form fields called #emph[interior product]. This is the substitution of a vector field $sans(v)$ into the first argument of a $p$-form field $ω$ to produce a $p - 1$-form field:
 
 $ (i_(sans(v)) omega) (sans(v)_1\,dots.c sans(v)_(sans(p) - 1))= omega (sans(v)\,sans(v)_1\,dots.c sans(v)_(sans(p - 1))). $ <7.34>
 
@@ -352,7 +352,7 @@ A vector may be resolved as a linear combination of other vectors. If we paralle
 
 So the transport function $F_delta^(sans(v))$ is a linear operator on the components of its argument, and thus:
 
-$ F_delta^(sans(v)) sans(u) (sans(f)) (sans(m))= sum_(i\,j) (A_j^i (delta) (sans(u)^j compose phi.alt_(- delta)^(sans(v)))sans(e)_i(sans(f))) (sans(m)) $ <7.37>
+$ F_delta^(sans(v)) sans(u) (sans(f)) (sans(m))= sum_(i\,j) (A_j^i (delta) (sans(u)^j compose phi.alt_(- delta)^(sans(v)))sans(e)_i (sans(f))) (sans(m)) $ <7.37>
 
 for some functions $A_j^i$ that depend on the particular path (hence its tangent vector $sans(v)$) and the initial point. We reach back along the integral curve to pick up the components of $sans(u)$ and then parallel-transport them forward by the matrix $A_j^i (delta)$ to form the components of the parallel-transported vector at the advanced point.
 
@@ -366,15 +366,15 @@ $ g (delta)= sans(u) (sans(f)) (sans(m))-(F_delta^(sans(v)) sans(u)) (sans(f)) (
 
 Expanding with respect to a basis ${sans(e)_i}$ we get
 
-$ g (delta)= sum_i #scale (x: 300%, y: 300%)[(] sans(u)^i sans(e)_i(sans(f))- sum_j A_j^i (delta) (sans(u)^j compose phi.alt_(- delta)^(sans(v)))sans(e)_i(sans(f))#scale (x: 300%, y: 300%)[)] (sans(m)). $ <7.40>
+$ g (delta)= sum_i #scale(x: 300%, y: 300%)[(] sans(u)^i sans(e)_i (sans(f))- sum_j A_j^i (delta) (sans(u)^j compose phi.alt_(- delta)^(sans(v)))sans(e)_i (sans(f))#scale(x: 300%, y: 300%)[)] (sans(m)). $ <7.40>
 
 By the product rule for derivatives,
 
-$ D g (delta)= sum_(i j) #scale (x: 120%, y: 120%)[(] A_j^i (delta) ((sans(v) (sans(u)^j))compose phi.alt_(- delta)^(sans(v)))sans(e)_i(sans(f))- D A_j^i (delta) (sans(u)^j compose phi.alt_(- delta)^(sans(v)))sans(e)_i(sans(f))#scale (x: 120%, y: 120%)[)] (sans(m)). $ <7.41>
+$ D g (delta)= sum_(i j) #scale(x: 120%, y: 120%)[(] A_j^i (delta) ((sans(v) (sans(u)^j))compose phi.alt_(- delta)^(sans(v)))sans(e)_i (sans(f))- D A_j^i (delta) (sans(u)^j compose phi.alt_(- delta)^(sans(v)))sans(e)_i (sans(f))#scale(x: 120%, y: 120%)[)] (sans(m)). $ <7.41>
 
 So, since $A_j^i (0) (sans(m))$ is the identity multiplier, and $phi.alt_0^(sans(v))$ is the identity function,
 
-$ D g (0)= sum_i #scale (x: 300%, y: 300%)[(] sans(v) (sans(u)^i) (sans(m))sans(e)_i(sans(f))- sum_j D A_j^i (0)sans(u)^j (sans(m))sans(e)_i(sans(f))#scale (x: 300%, y: 300%)[)] thin (sans(m)). $ <7.42>
+$ D g (0)= sum_i #scale(x: 300%, y: 300%)[(] sans(v) (sans(u)^i) (sans(m))sans(e)_i (sans(f))- sum_j D A_j^i (0)sans(u)^j (sans(m))sans(e)_i (sans(f))#scale(x: 300%, y: 300%)[)] thin (sans(m)). $ <7.42>
 
 We need $D A_j^i (0)$. Parallel transport depends on the path, but not on the parameterization of the path. From this we can deduce that $D A_j^i (0)$ can be written as one-form fields applied to the vector field $sans(v)$, as follows.
 
@@ -382,7 +382,7 @@ Introduce $B$ to make the dependence of $A$s on $sans(v)$ explicit:
 
 $ A_j^i (delta)= B_j^i (sans(v)) (delta). $ <7.43>
 
-Parallel transport depends on the path but not on the rate along the path. Incrementally, if we scale the vector field $sans(v)$ by ξ,
+Parallel transport depends on the path but not on the rate along the path. Incrementally, if we scale the vector field $sans(v)$ by $ξ$,
 
 $ frac(d, d delta) (B (sans(v)) (delta))= frac(d, d delta) (B (xi sans(v)) (delta\/xi)). $ <7.44>
 
@@ -394,7 +394,7 @@ so, for $delta = 0$,
 
 $ xi D (B (sans(v))) (0)= D (B (xi sans(v))) (0). $ <7.46>
 
-The scale factor ξ can vary from place to place. So $D A_j^i (0)$ is homogeneous in $sans(v)$ over manifold functions. This is stronger than the homogeneity required by equation @7.7.
+The scale factor $ξ$ can vary from place to place. So $D A_j^i (0)$ is homogeneous in $sans(v)$ over manifold functions. This is stronger than the homogeneity required by equation @7.7.
 
 The superposition property (equation @7.6) is true of the ordinary directional derivative of manifold functions. By analogy we require it to be true of directional derivatives of vector fields.
 
@@ -427,11 +427,11 @@ As before, we can take a stab at computing the covariant derivative of a vector 
 
 So
 
-$ D g (0)= sum_i (sans(v) (sans(u)^i) (sans(m)) + sum_j pi.alt_j^i (sans(v)) (sans(m)) sans(u)^j (sans(m))) sans(e)_i(sans(f)) (sans(m)). $ <7.48>
+$ D g (0)= sum_i (sans(v) (sans(u)^i) (sans(m)) + sum_j pi.alt_j^i (sans(v)) (sans(m)) sans(u)^j (sans(m))) sans(e)_i (sans(f)) (sans(m)). $ <7.48>
 
 Thus the covariant derivative is
 
-$ nabla_(sans(v)) sans(u) (sans(f))= sum_i (sans(v) (sans(u)^i) + sum_j pi.alt_j^i (sans(v)) sans(u)^j) sans(e)_i(sans(f)). $ <7.49>
+$ nabla_(sans(v)) sans(u) (sans(f))= sum_i (sans(v) (sans(u)^i) + sum_j pi.alt_j^i (sans(v)) sans(u)^j) sans(e)_i (sans(f)). $ <7.49>
 
 The one-form fields $pi.alt_j^i$ are called the #emph[Cartan one-forms], or the #emph[connection one-forms]. They are defined with respect to the basis $sans(e)$.
 
@@ -457,16 +457,16 @@ consistent with the fact that the Cartan forms $pi.alt_j^i$ share the same prope
 
 Additionally, we can extend the product rule, for any manifold function $sans(g)$ and any vector field $sans(u)$:
 
-$ nabla_(sans(v)) (sans(g) sans(u)) (sans(f))= sum_i (sans(v) (sans(g u)^i) + sum_j pi.alt_j^i (sans(v)) sans(g u)^j) sans(e)_i(sans(f))= sum_i sans(v) (sans(g))sans(u)^i sans(e)_i(sans(f))+ sans(g) nabla_(sans(v)) (sans(u)) (sans(f))=(nabla_(sans(v)) sans(g))sans(u) (sans(f))+ sans(g) nabla_(sans(v)) (sans(u)) (sans(f)). $ <7.51>
+$ nabla_(sans(v)) (sans(g) sans(u)) (sans(f))= sum_i (sans(v) (sans(g u)^i) + sum_j pi.alt_j^i (sans(v)) sans(g u)^j) sans(e)_i (sans(f))= sum_i sans(v) (sans(g))sans(u)^i sans(e)_i (sans(f))+ sans(g) nabla_(sans(v)) (sans(u)) (sans(f))=(nabla_(sans(v)) sans(g))sans(u) (sans(f))+ sans(g) nabla_(sans(v)) (sans(u)) (sans(f)). $ <7.51>
 
 == An Alternate View <sec-7.12>
 As we did with the Lie derivative (equations @7.18 - @7.21), we can write the vector field
 
-$ sans(u) (sans(f)) (sans(m))= sum_i sans(u)^i (sans(m))sans(e)_i(sans(f)) (sans(m)). $ <7.52>
+$ sans(u) (sans(f)) (sans(m))= sum_i sans(u)^i (sans(m))sans(e)_i (sans(f)) (sans(m)). $ <7.52>
 
 By the extended product rule, equation @7.51, we get:
 
-$ nabla_(sans(v)) sans(u) (sans(f))= sum_i(sans(v) (sans(u)^i)sans(e)_i(sans(f))+ sans(u)^i nabla_(sans(v)) sans(e)_i(sans(f))). $ <7.53>
+$ nabla_(sans(v)) sans(u) (sans(f))= sum_i(sans(v) (sans(u)^i)sans(e)_i (sans(f))+ sans(u)^i nabla_(sans(v)) sans(e)_i (sans(f))). $ <7.53>
 
 Because the covariant derivative of a vector field is a vector field we can extract the components of $nabla_(sans(v)) sans(e)_i$ using the dual basis:
 
@@ -474,7 +474,7 @@ $ pi.alt_j^i (sans(v))= tilde(sans(e))^i (nabla_(sans(v)) sans(e)_j). $ <7.54>
 
 This gives an alternate expression for the Cartan one forms. So
 
-$ nabla_(sans(v)) sans(u) (sans(f))= sum_i (sans(v) (sans(u)^i) + sum_j pi.alt_j^i (sans(v)) sans(u)^j) sans(e)_i(sans(f)). $ <7.55>
+$ nabla_(sans(v)) sans(u) (sans(f))= sum_i (sans(v) (sans(u)^i) + sum_j pi.alt_j^i (sans(v)) sans(u)^j) sans(e)_i (sans(f)). $ <7.55>
 
 This analysis is parallel to the analysis of the Lie derivative, except that here we have the Cartan form fields $pi.alt_j^i$ and there we had $Delta_j^i$, which are not form fields.
 
@@ -493,7 +493,7 @@ Conversely, the Christoffel coefficients may be obtained from the Cartan forms
 $ Gamma_(j k)^i = pi.alt_j^i (sans(e)_k). $ <7.58>
 
 == Covariant Derivative of One-Form Fields <sec-7.13>
-The covariant derivative of a vector field induces a compatible covariant derivative for a one-form field. Because the application of a one-form field to a vector field yields a manifold function, we can evaluate the covariant derivative of such an application. Let τ be a one-form field and $sans(w)$ be a vector field. Then
+The covariant derivative of a vector field induces a compatible covariant derivative for a one-form field. Because the application of a one-form field to a vector field yields a manifold function, we can evaluate the covariant derivative of such an application. Let $τ$ be a one-form field and $sans(w)$ be a vector field. Then
 
 $ nabla_(sans(v)) (tau (sans(w)))= sans(v) (sum_j tau_j sans(w)^j) = sum_j(sans(v) (tau_j)sans(w)^j + tau_j sans(v) (sans(w)^j))= sum_j (sans(v) (tau_j) sans(w)^j + tau_j (tilde(sans(e))^j (nabla_(sans(v)) sans(w)) - sum_k pi.alt_k^j (sans(v)) sans(w)^k)) = sum_j (sans(v) (tau_j) sans(w)^j - tau_j sum_k pi.alt_k^j (sans(v)) sans(w)^k) + tau (nabla_(sans(v)) sans(w))= sum_j (sans(v) (tau_j) tilde(sans(e))^j - tau_j sum_k pi.alt_k^j (sans(v)) tilde(sans(e))^k) (sans(w))+ tau (nabla_(sans(v)) sans(w)). $ <7.59>
 
@@ -532,21 +532,21 @@ This program extends naturally to higher-rank form fields:
 == Change of Basis <sec-7.14>
 The basis-independence of the covariant derivative implies a relationship between the Cartan forms in one basis and the equivalent Cartan forms in another basis. Recall (equation @4.13) that the basis vector fields of two bases are always related by a linear transformation. Let $sans(J)$ be the matrix of coefficient functions and let $sans(e)$ and $sans(e)'$ be down tuples of basis vector fields. then
 
-$ sans(e) (sans(f))= sans(e)'(sans(f))sans(J) . $ <7.62>
+$ sans(e) (sans(f))= sans(e)' (sans(f))sans(J) . $ <7.62>
 
 We want the covariant derivative to be independent of basis. This will determine how the connection transforms with a change of basis:
 
-$ nabla_(sans(v)) sans(u) (sans(f))= sum_i sans(e)_i(sans(f)) (sans(v) (sans(u)^i) + sum_j pi.alt_j^i (sans(v)) upright(u)^j) = sum_(i j k) sans(e)'_i(sans(f))sans(J)_j^i (sans(v) ((sans(J)^(-1))_k^j (sans(u)')^k) + sum_l pi.alt_k^j (sans(v)) (sans(J)^(-1))_l^k (sans(u)')^l) = sum_i sans(e)'_i(sans(f)) (sans(v) ((sans(u)')^i) + sum_(j k) sans(J)_j^i sans(v) ((sans(J)^(-1))_k^j) (sans(u)')^k + sum_(j k l) sans(J)_j^i pi.alt_k^j (sans(v)) (sans(J)^(-1))_l^k (sans(u)')^l) = sum_i sans(e)'_i(sans(f)) (sans(v) ((sans(u)')^i) + sum_j (pi.alt')_j^i (sans(v)) (sans(u)')^j) . $ <7.63>
+$ nabla_(sans(v)) sans(u) (sans(f))= sum_i sans(e)_i (sans(f)) (sans(v) (sans(u)^i) + sum_j pi.alt_j^i (sans(v)) upright(u)^j) = sum_(i j k) sans(e)'_i (sans(f))sans(J)_j^i (sans(v) ((sans(J)^(-1))_k^j (sans(u)')^k) + sum_l pi.alt_k^j (sans(v)) (sans(J)^(-1))_l^k (sans(u)')^l) = sum_i sans(e)'_i (sans(f)) (sans(v) ((sans(u)')^i) + sum_(j k) sans(J)_j^i sans(v) ((sans(J)^(-1))_k^j) (sans(u)')^k + sum_(j k l) sans(J)_j^i pi.alt_k^j (sans(v)) (sans(J)^(-1))_l^k (sans(u)')^l) = sum_i sans(e)'_i (sans(f)) (sans(v) ((sans(u)')^i) + sum_j (pi.alt')_j^i (sans(v)) (sans(u)')^j) . $ <7.63>
 
 The last line of equation @7.62 gives the formula for the covariant derivative we would have written down naturally in the primed coordinates; comparing with the next-to-last line, we see that
 
-$ pi.alt'(sans(v))= sans(J v) (sans(J)^(-1))+ sans(J) pi.alt (sans(v))sans(J)^(-1) . $ <7.64>
+$ pi.alt' (sans(v))= sans(J v) (sans(J)^(-1))+ sans(J) pi.alt (sans(v))sans(J)^(-1) . $ <7.64>
 
 This transformation rule is weird. It is not a linear transformation of $pi.alt$ because the first term is an offset that depends on $sans(v)$. So it is not required that $pi.alt' = 0$ when $pi.alt = 0$. Thus $pi.alt$ is not a tensor field. See Appendix @chap-appendix-c.
 
 We can write equation @7.61 in terms of components
 
-$ sans(e)_i(sans(f))= sum_j sans(e)'_j(sans(f))sans(J)_i^j . $ <7.65>
+$ sans(e)_i (sans(f))= sum_j sans(e)'_j (sans(f))sans(J)_i^j . $ <7.65>
 
 Let $sans(K) = sans(J)^(-1)$, so $sum_j sans(K)_j^i (sans(m))sans(J)_k^j (sans(m))= delta_k^i$. Then
 
@@ -677,19 +677,19 @@ R2-rect-point)
 == Parallel Transport <sec-7.15>
 We have defined parallel transport of a vector field along integral curves of another vector field. But not all paths are integral curves of a vector field. For example, paths that cross themselves are not integral curves of any vector field.
 
-Here we extend the idea of a parallel transport of a stick to make sense for arbitrary paths on the manifold. Any path can be written as a map γ from the real-line manifold to the manifold $sans(M)$. We construct a vector field over the map $sans(u)_gamma$ by parallel-transporting the stick to all points on the path γ.
+Here we extend the idea of a parallel transport of a stick to make sense for arbitrary paths on the manifold. Any path can be written as a map $γ$ from the real-line manifold to the manifold $sans(M)$. We construct a vector field over the map $sans(u)_gamma$ by parallel-transporting the stick to all points on the path $γ$.
 
-For any path γ there are locally directional derivatives of functions on $sans(M)$ defined by tangent vectors to the curve. The vector over the map $sans(w)_gamma = d gamma (partial\/partial sans(t))$ is a directional derivative of functions on the manifold $M$ along the path γ.
+For any path $γ$ there are locally directional derivatives of functions on $sans(M)$ defined by tangent vectors to the curve. The vector over the map $sans(w)_gamma = d gamma (partial\/partial sans(t))$ is a directional derivative of functions on the manifold $M$ along the path $γ$.
 
 Our goal is to determine the equations satisfied by the vector field over the map $sans(u)_gamma$. Consider the parallel-transport $F_delta^(sans(w)_gamma) sans(u)_gamma$.#footnote[The argument $sans(w)_gamma$ makes sense because our parallel-transport operator never depended on the vector field tangent to the integral curve existing off of the curve. Because the connection is a form field (see equation @7.47), it does not depend on the value of its vector argument anywhere except at the point where it is being evaluated.
 
 The argument $sans(u)_gamma$ is more difficult. We must modify equation @7.37:
 
-$ F_delta^(sans(w)_gamma) sans(u)_gamma(sans(f)) (t)= sum_(i\,j) A_j^i (delta)u^j (t - delta)sans(e)_i^gamma (sans(f)) (t). $ <7.84>] So a vector field $sans(u)_gamma$ is parallel-transported to itself if and only if $sans(u)_gamma = F_delta^(sans(w)_gamma) sans(u)_gamma$. Restricted to a path, the equation analogous to equation @7.40 is
+$ F_delta^(sans(w)_gamma) sans(u)_gamma (sans(f)) (t)= sum_(i\,j) A_j^i (delta)u^j (t - delta)sans(e)_i^gamma (sans(f)) (t). $ <7.84>] So a vector field $sans(u)_gamma$ is parallel-transported to itself if and only if $sans(u)_gamma = F_delta^(sans(w)_gamma) sans(u)_gamma$. Restricted to a path, the equation analogous to equation @7.40 is
 
 $ g (delta)= sum_i (u^i (t) - sum_j A_j^i (delta) u^j (t - delta)) sans(e)_i^gamma (sans(f)) (sans(t))\, $ <7.67>
 
-where the coefficient function $u^i$ is now a function on the real-line parameter manifold and where we have rewritten the basis as a basis over the map γ.#footnote[You may have noticed that $t$ and $sans(t)$ appear here. The real-line manifold point $sans(t)$ has coordinate $t$.] Here $g (delta)= 0$ if $sans(u)_gamma$ is parallel-transported into itself.
+where the coefficient function $u^i$ is now a function on the real-line parameter manifold and where we have rewritten the basis as a basis over the map $γ$.#footnote[You may have noticed that $t$ and $sans(t)$ appear here. The real-line manifold point $sans(t)$ has coordinate $t$.] Here $g (delta)= 0$ if $sans(u)_gamma$ is parallel-transported into itself.
 
 Taking the derivative and setting $delta = 0$ we find
 
@@ -703,11 +703,11 @@ an ordinary differential equation in the coefficients of $sans(u)_gamma$.
 
 We can abstract these equations of parallel transport by inventing a covariant derivative over a map. We also generalize the time line to a source manifold $sans(N)$.
 
-$ nabla_(sans(v))^gamma sans(u)_gamma(sans(f)) (sans(n))= sum_i (sans(v) (u^i) (sans(n)) + sum_j^gamma pi.alt_j^i (d gamma (sans(v))) (sans(n)) u^j (sans(n))) sans(e)_i^gamma (sans(f)) (sans(n))\, $ <7.70>
+$ nabla_(sans(v))^gamma sans(u)_gamma (sans(f)) (sans(n))= sum_i (sans(v) (u^i) (sans(n)) + sum_j^gamma pi.alt_j^i (d gamma (sans(v))) (sans(n)) u^j (sans(n))) sans(e)_i^gamma (sans(f)) (sans(n))\, $ <7.70>
 
-where the map $gamma : sans(N) arrow.r sans(M)\,sans(v)$ is a vector on $sans(N)$, $sans(u)_gamma$ is a vector over the map γ, $sans(f)$ is a function on $sans(M)$, and $sans(n)$ is a point in $sans(N)$. Indeed, if $sans(w)$ is a vector field on $sans(M)$, $sans(f)$ is a manifold function on $sans(M)$, and if $d gamma (sans(v))= sans(w)_gamma$ then
+where the map $gamma : sans(N) arrow.r sans(M)\,sans(v)$ is a vector on $sans(N)$, $sans(u)_gamma$ is a vector over the map $γ$, $sans(f)$ is a function on $sans(M)$, and $sans(n)$ is a point in $sans(N)$. Indeed, if $sans(w)$ is a vector field on $sans(M)$, $sans(f)$ is a manifold function on $sans(M)$, and if $d gamma (sans(v))= sans(w)_gamma$ then
 
-$ nabla_(sans(v))^gamma sans(u)_gamma(sans(f)) (sans(n))= nabla_(sans(w)) sans(u) (sans(f)) (gamma (sans(n))). $ <7.71>
+$ nabla_(sans(v))^gamma sans(u)_gamma (sans(f)) (sans(n))= nabla_(sans(w)) sans(u) (sans(f)) (gamma (sans(n))). $ <7.71>
 
 This is why we are justified in calling $nabla_(sans(v))^gamma$ a covariant derivative.
 
@@ -715,7 +715,7 @@ Respecializing the source manifold to the real line, we can write the equations 
 
 $ nabla_(partial\/partial sans(t))^gamma sans(u)_gamma = 0 . $ <7.72>
 
-We obtain the set of differential equations @7.68 for the coordinates of $sans(u)_gamma$, the vector over the map γ, that is parallel-transported along the curve γ:
+We obtain the set of differential equations @7.68 for the coordinates of $sans(u)_gamma$, the vector over the map $γ$, that is parallel-transported along the curve $γ$:
 
 $ D u^i (t)+ sum_j^gamma pi.alt_j^i (d gamma (partial\/partial t)) (sans(t))u^j (t)= 0 . $ <7.73>
 
@@ -726,7 +726,7 @@ $ D u^i (t)+ sum_(j\,k) Gamma_(j k)^i (gamma (sans(t)))D sigma^k (t)u^j (t)= 0 $
 where $sigma = chi_(sans(M)) compose gamma compose chi_(sans(R))^(-1)$ are the coordinates of the path ($chi_(sans(M))$ and $chi_(sans(R))$ are the coordinate functions for $sans(M)$ and the real line).
 
 == On a Sphere <sec-7.16>
-Let\'s figure out what the equations of parallel transport of $sans(u)_gamma$, an arbitrary vector over the map γ, along an arbitrary path γ on a sphere are. We start by constructing the necessary manifold.
+Let\'s figure out what the equations of parallel transport of $sans(u)_gamma$, an arbitrary vector over the map $γ$, along an arbitrary path $γ$ on a sphere are. We start by constructing the necessary manifold.
 
 ```scheme
 (define sphere (make-manifold S^2 2 3))
@@ -736,7 +736,7 @@ Let\'s figure out what the equations of parallel transport of $sans(u)_gamma$, a
 (coordinate-system->basis S2-spherical))
 ```
 
-We need the path γ, which we represent as a map from the real line to $sans(M)$, and $sans(w)$, the parallel-transported vector over the map:
+We need the path $γ$, which we represent as a map from the real line to $sans(M)$, and $sans(w)$, the parallel-transported vector over the map:
 
 ```scheme
 (define gamma
@@ -818,7 +818,7 @@ These equations describe the transport on a sphere, but more generally they look
 
 $ D u (tau)= f (sigma (tau)\,D sigma (tau))u (tau)\, $ <7.77>
 
-where σ is the tuple of the coordinates of the path on the manifold and $u$ is the tuple of the components of the vector. The equation is linear in $u$ and is driven by the path σ, as in a variational equation.
+where $σ$ is the tuple of the coordinates of the path on the manifold and $u$ is the tuple of the components of the vector. The equation is linear in $u$ and is driven by the path $σ$, as in a variational equation.
 
 We now set this up for numerical integration. Let $s (t)=(t\,u (t))$ be a state tuple, combining the time and the coordinates of $sans(u)_gamma$ at that time. Then we define $g$:
 
@@ -893,7 +893,7 @@ But the transported vector can be obtained by tilting the original southward-poi
 ```
 
 == Geodesic Motion <sec-7.18>
-In geodesic motion the velocity vector is parallel-transported by itself. Recall (equation @6.9) that the velocity is the differential of the vector $partial\/partial sans(t)$ over the map γ. The equation of geodesic motion is#footnote[The equation of a geodesic path is often said to be
+In geodesic motion the velocity vector is parallel-transported by itself. Recall (equation @6.9) that the velocity is the differential of the vector $partial\/partial sans(t)$ over the map $γ$. The equation of geodesic motion is#footnote[The equation of a geodesic path is often said to be
 
 $ nabla_(sans(v)) sans(v) = 0\, $ <7.83>
 
@@ -907,7 +907,7 @@ In coordinates, this is
 
 $ D^2 sigma^i (t)+ sum_(j k) Gamma_(j k)^i (gamma (t))D sigma^j (t)D sigma^k (t)= 0\, $ <7.80>
 
-where $sigma (t)$ is the coordinate path corresponding to the manifold path γ.
+where $sigma (t)$ is the coordinate path corresponding to the manifold path $γ$.
 
 For example, let\'s consider geodesic motion on the surface of a unit sphere. We let gamma be a map from the real line to the sphere, with colatitude alpha and longitude beta, as before. The geodesic equation is:
 
@@ -953,7 +953,7 @@ Then the Lagrange equations are:
 't))
 ```
 
-$ mat(delim: "[", -(D beta (t))^2sin(alpha (t))cos(alpha (t))+ D^2 alpha (t)2 D alpha (t)D beta (t)sin(alpha (t))cos(alpha (t))+ D^2 beta (t) (sin(alpha (t)))^2) $ <7.82>
+$ mat(delim: "[", -(D beta (t))^2sin (alpha (t))cos(alpha (t))+ D^2 alpha (t)2 D alpha (t)D beta (t)sin(alpha (t))cos(alpha (t))+ D^2 beta (t) (sin(alpha (t)))^2) $ <7.82>
 
 The Lagrange equations are true of the same paths as the geodesic equations. The second Lagrange equation is the second geodesic equation multiplied by $(sin(alpha (t)))^2$, and the Lagrange equations are arranged in a down tuple, whereas the geodesic equations are arranged in an up tuple.#footnote[The geodesic equations and the Lagrange equations are related by a contraction with the metric.] The two systems are equivalent unless $alpha (t)= 0$, where the coordinate system is singular.
 

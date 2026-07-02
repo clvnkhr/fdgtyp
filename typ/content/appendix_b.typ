@@ -33,7 +33,7 @@ Functions may be composed if the range of one overlaps the domain of the other. 
 
 $ (f compose g): x mapsto (f compose g) (x)= f (g (x)). $ <B.2>
 
-A procedure #raw(lang:"verbatim", "h") that computes the cube of the sine of its argument may be defined by composing the procedures #raw(lang:"verbatim", "cube") and #raw(lang:"verbatim", "sin"):
+A procedure #raw(lang:"scheme", "h") that computes the cube of the sine of its argument may be defined by composing the procedures #raw(lang:"scheme", "cube") and #raw(lang:"scheme", "sin"):
 
 ```scheme
 (define h (compose cube sin))
@@ -53,7 +53,7 @@ Arithmetic is extended to the manipulation of functions: the usual mathematical 
 
 $ (f + g) (x)= f (x)+ g (x)\,(f g) (x)= f (x)g (x). $ <B.3>
 
-A procedure #raw(lang:"verbatim", "g") that multiplies the cube of its argument by the sine of its argument is
+A procedure #raw(lang:"scheme", "g") that multiplies the cube of its argument by the sine of its argument is
 
 ```scheme
 (define g (* cube sin))
@@ -68,21 +68,21 @@ A procedure #raw(lang:"verbatim", "g") that multiplies the cube of its argument 
 ```
 
 == Symbolic Values <sec-B.2>
-As in usual mathematical notation, arithmetic is extended to allow the use of symbols that represent unknown or incompletely specified mathematical objects. These symbols are manipulated as if they had values of a known type. By default, a Scheme symbol is assumed to represent a real number. So the expression #raw(lang:"verbatim", "'a") is a literal Scheme symbol that represents an unspecified real number:
+As in usual mathematical notation, arithmetic is extended to allow the use of symbols that represent unknown or incompletely specified mathematical objects. These symbols are manipulated as if they had values of a known type. By default, a Scheme symbol is assumed to represent a real number. So the expression #raw(lang:"scheme", "'a") is a literal Scheme symbol that represents an unspecified real number:
 
 ```scheme
 ((compose cube sin) 'a)
 ;; (expt (sin a) 3)
 ```
 
-The default printer simplifies the expression,#footnote[The procedure #raw(lang:"verbatim", "print-expression") can be used in a program to print a simplified version of an expression. The default printer in the user interface incorporates the simplifier.] and displays it in a readable form. We can use the simplifier to verify a trigonometric identity:
+The default printer simplifies the expression,#footnote[The procedure #raw(lang:"scheme", "print-expression") can be used in a program to print a simplified version of an expression. The default printer in the user interface incorporates the simplifier.] and displays it in a readable form. We can use the simplifier to verify a trigonometric identity:
 
 ```scheme
 ((- (+ (square sin) (square cos)) 1) 'a)
 ;; 0
 ```
 
-Just as it is useful to be able to manipulate symbolic numbers, it is useful to be able to manipulate symbolic functions. The procedure #raw(lang:"verbatim", "literal-function") makes a procedure that acts as a function having no properties other than its name. By default, a literal function is defined to take one real argument and produce one real value. For example, we may want to work with a function $f : upright(bold(R)) arrow.r upright(bold(R))$:
+Just as it is useful to be able to manipulate symbolic numbers, it is useful to be able to manipulate symbolic functions. The procedure #raw(lang:"scheme", "literal-function") makes a procedure that acts as a function having no properties other than its name. By default, a literal function is defined to take one real argument and produce one real value. For example, we may want to work with a function $f : upright(bold(R)) arrow.r upright(bold(R))$:
 
 ```scheme
 ((literal-function 'f) 'x)
@@ -94,7 +94,7 @@ Just as it is useful to be able to manipulate symbolic numbers, it is useful to 
 ;; (f (g x))
 ```
 
-We can also make literal functions of multiple, possibly structured arguments that return structured values. For example, to denote a literal function named #raw(lang:"verbatim", "g") that takes two real arguments and returns a real value ($g : upright(bold(R)) times upright(bold(R)) arrow.r upright(bold(R))$) we may write:
+We can also make literal functions of multiple, possibly structured arguments that return structured values. For example, to denote a literal function named #raw(lang:"scheme", "g") that takes two real arguments and returns a real value ($g : upright(bold(R)) times upright(bold(R)) arrow.r upright(bold(R))$) we may write:
 
 ```scheme
 (define g (literal-function 'g (-> (X Real Real) Real)))
@@ -105,7 +105,7 @@ We can also make literal functions of multiple, possibly structured arguments th
 
 We may use such a literal function anywhere that an explicit function of the same type may be used.
 
-There is a whole language for describing the type of a literal function in terms of the number of arguments, the types of the arguments, and the types of the values. Here we describe a function that maps pairs of real numbers to real numbers with the expression #raw(lang:"verbatim", "(-> (X Real Real) Real)"). Later we will introduce structured arguments and values and show extensions of literal functions to handle these.
+There is a whole language for describing the type of a literal function in terms of the number of arguments, the types of the arguments, and the types of the values. Here we describe a function that maps pairs of real numbers to real numbers with the expression #raw(lang:"scheme", "(-> (X Real Real) Real)"). Later we will introduce structured arguments and values and show extensions of literal functions to handle these.
 
 == Tuples <sec-B.3>
 There are two kinds of tuples: #emph[up] tuples and #emph[down] tuples. We write tuples as ordered lists of their components; a tuple is delimited by parentheses if it is an up tuple and by square brackets if it is a down tuple. For example, the up tuple $v$ of velocity components $v^0$, $v^1$, and $v^2$ is
@@ -118,7 +118,7 @@ $ p =[p_0\,p_1\,p_2]. $ <B.5>
 
 A component of an up tuple is usually identified by a superscript. A component of a down tuple is usually identified by a subscript. We use zero-based indexing when referring to tuple elements. This notation follows the usual convention in tensor arithmetic.
 
-We make tuples with the constructors #raw(lang:"verbatim", "up") and #raw(lang:"verbatim", "down"):
+We make tuples with the constructors #raw(lang:"scheme", "up") and #raw(lang:"scheme", "down"):
 
 ```scheme
 (define v (up 'v^0 'v^1 'v^2))
@@ -133,7 +133,7 @@ p
 
 ```
 
-Note that #raw(lang:"verbatim", "v^0") and #raw(lang:"verbatim", "p_2") are just symbols. The caret and underline characters are symbol constituents, so there is no meaning other than mnemonic to the structure of these symbols. However, our software can also display expressions using $upright(T e X)$, and then these decorations turn into superscripts and subscripts.
+Note that #raw(lang:"scheme", "v^0") and #raw(lang:"scheme", "p_2") are just symbols. The caret and underline characters are symbol constituents, so there is no meaning other than mnemonic to the structure of these symbols. However, our software can also display expressions using $upright(T e X)$, and then these decorations turn into superscripts and subscripts.
 
 Tuple arithmetic is different from the usual tensor arithmetic in that the components of a tuple may also be tuples and different components need not have the same structure. For example, a tuple structure $s$ of phase-space states is
 
@@ -151,21 +151,21 @@ $ I (s)= s I_0 (s)= y I_1 (s)=(x\,y)I_2 (s)=[p_x\,p_y]I_(1\,0) (s)= x dots.c I_(
 
 The sequence of integer subscripts on the selector describes the access chain to the desired component.
 
-The procedure #raw(lang:"verbatim", "component") is the general selector procedure that implements the selector function $I_z$:
+The procedure #raw(lang:"scheme", "component") is the general selector procedure that implements the selector function $I_z$:
 
 ```scheme
 ((component 0 1) (up (up 'a 'b) (up 'c 'd)))
 ;; b
 ```
 
-To access a component of a tuple we may also use the selector procedure #raw(lang:"verbatim", "ref"), which takes a tuple and an index and returns the indicated element of the tuple:
+To access a component of a tuple we may also use the selector procedure #raw(lang:"scheme", "ref"), which takes a tuple and an index and returns the indicated element of the tuple:
 
 ```scheme
 (ref (up 'a 'b 'c) 1)
 ;; b
 ```
 
-We use zero-based indexing everywhere. The procedure #raw(lang:"verbatim", "ref") can be used to access any substructure of a tree of tuples:
+We use zero-based indexing everywhere. The procedure #raw(lang:"scheme", "ref") can be used to access any substructure of a tree of tuples:
 
 ```scheme
 (ref (up (up 'a 'b) (up 'c 'd)) 0 1)
@@ -182,7 +182,7 @@ The meaning of multiplication of tuples depends on the structure of the tuples. 
 
 $ p v = p_0 v^0 + p_1 v^1 + p_2 v^2 . $ <B.8>
 
-So the product of tuples that are compatible for contraction is an inner product. Using the tuples #raw(lang:"verbatim", "p") and #raw(lang:"verbatim", "v") defined above gives us
+So the product of tuples that are compatible for contraction is an inner product. Using the tuples #raw(lang:"scheme", "p") and #raw(lang:"scheme", "v") defined above gives us
 
 ```scheme
 (* p v)
@@ -203,7 +203,7 @@ Tuple structures can be made to represent linear transformations. For example, t
 
 $ mat(delim: "[", cos theta - sin theta sin theta cos theta) $ <B.11>
 
-can be represented as a tuple structure:#footnote[To emphasize the relationship of simple tuple structures to matrix notation we often format #raw(lang:"verbatim", "up") tuples as vertical arrangements of components and #raw(lang:"verbatim", "down") tuples as horizontal arrangements of components. However, we could just as well have written this tuple as $[(cos theta \, sin theta) \, (- sin theta \, cos theta)]$.]
+can be represented as a tuple structure:#footnote[To emphasize the relationship of simple tuple structures to matrix notation we often format #raw(lang:"scheme", "up") tuples as vertical arrangements of components and #raw(lang:"scheme", "down") tuples as horizontal arrangements of components. However, we could just as well have written this tuple as $[(cos theta \, sin theta) \, (- sin theta \, cos theta)]$.]
 
 $ [vec(cos theta sin theta) vec(- sin theta cos theta)] . $ <B.12>
 
@@ -220,7 +220,7 @@ Multiplication of tuples that represent linear transformations is associative bu
 == Derivatives <sec-B.4>
 The derivative of a function $f$ is a function, denoted by $D f$. Our notational convention is that $D$ is a high-precedence operator. Thus $D$ operates on the adjacent function before any other application occurs: $D f (x)$ is the same as $(D f) (x)$. Higher-order derivatives are described by exponentiating the derivative operator. Thus the $n$th derivative of a function $f$ is notated as $D^n f$.
 
-The Scheme procedure for producing the derivative of a function is named #raw(lang:"verbatim", "D"). The derivative of the #raw(lang:"verbatim", "sin") procedure is a procedure that computes #raw(lang:"verbatim", "cos"):
+The Scheme procedure for producing the derivative of a function is named #raw(lang:"scheme", "D"). The derivative of the #raw(lang:"scheme", "sin") procedure is a procedure that computes #raw(lang:"scheme", "cos"):
 
 ```scheme
 (define derivative-of-sine (D sin))
@@ -251,7 +251,7 @@ So at $x$,
 
 $ (D (f compose g)) (x)= D f (g (x))dot.op D g (x). $ <B.19>
 
-#raw(lang:"verbatim", "D") is an example of an operator. An operator is like a function except that multiplication of operators is interpreted as composition, whereas multiplication of functions is multiplication of the values (see equation @B.3). If $D$ were an ordinary function, then the rule for multiplication would imply that $D^2 f$ would just be the product of $D f$ with itself, which is not what is intended. A product of a number and an operator scales the operator. So, for example
+#raw(lang:"scheme", "D") is an example of an operator. An operator is like a function except that multiplication of operators is interpreted as composition, whereas multiplication of functions is multiplication of the values (see equation @B.3). If $D$ were an ordinary function, then the rule for multiplication would imply that $D^2 f$ would just be the product of $D f$ with itself, which is not what is intended. A product of a number and an operator scales the operator. So, for example
 
 ```scheme
 (((* 5 D) cos) 'x)
@@ -274,14 +274,14 @@ Suppose we have a real-valued function $g$ of two real-valued arguments, and we 
 
 $ D g (x\,y)dot.op (Delta x\,Delta y)= [partial_0 g (x \, y) + partial_1 g (x \, y)] dot.op (Delta x\,Delta y)= partial_0 g (x\,y)Delta x + partial_1 g (x\,y)Delta y . $ <B.20>
 
-Using the two-argument literal function #raw(lang:"verbatim", "g") defined on page 198, we have:
+Using the two-argument literal function #raw(lang:"scheme", "g") defined on page 198, we have:
 
 ```scheme
 ((D g) 'x 'y)
 ;; (down (((partial 0) g) x y) (((partial 1) g) x y))
 ```
 
-In general, partial derivatives are just the components of the derivative of a function that takes multiple arguments (or structured arguments or both; see below). So a partial derivative of a function is a composition of a component selector and the derivative of that function.#footnote[Partial derivative operators such as #raw(lang:"verbatim", "(partial 2)") are operators, so #raw(lang:"verbatim", "(expt (partial 1) 2)") is a second partial derivative.] Indeed:
+In general, partial derivatives are just the components of the derivative of a function that takes multiple arguments (or structured arguments or both; see below). So a partial derivative of a function is a composition of a component selector and the derivative of that function.#footnote[Partial derivative operators such as #raw(lang:"scheme", "(partial 2)") are operators, so #raw(lang:"scheme", "(expt (partial 1) 2)") is a second partial derivative.] Indeed:
 
 $ partial_0 g = I_0 compose D g\, $ <B.21>
 

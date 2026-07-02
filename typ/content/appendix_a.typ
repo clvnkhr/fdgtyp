@@ -11,7 +11,7 @@ IEEE Standard for the Scheme Programming Language @ieee1991scheme, p. 3
 
 Here we give an elementary introduction to Scheme.#footnote[Many of the statements here are valid only assuming that no assignments are used.] For a more precise explanation of the language see the IEEE standard @ieee1991scheme; for a longer introduction see the textbook @abelson1996sicp.
 
-Scheme is a simple programming language based on expressions. An expression names a value. For example, the numeral #raw(lang:"verbatim", "3.14") names an approximation to a familiar number. There are primitive expressions, such as a numeral, that we directly recognize, and there are compound expressions of several kinds.
+Scheme is a simple programming language based on expressions. An expression names a value. For example, the numeral #raw(lang:"scheme", "3.14") names an approximation to a familiar number. There are primitive expressions, such as a numeral, that we directly recognize, and there are compound expressions of several kinds.
 
 == Procedure Calls <sec-A.1>
 A #emph[procedure call] is a kind of compound expression. A procedure call is a sequence of expressions delimited by parentheses. The first subexpression in a procedure call is taken to name a procedure, and the rest of the subexpressions are taken to name the arguments to that procedure. The value produced by the procedure when applied to the given arguments is the value named by the procedure call. For example,
@@ -26,7 +26,7 @@ A #emph[procedure call] is a kind of compound expression. A procedure call is a 
 ;; 3.14
 ```
 
-are both compound expressions that name the same number as the numeral #raw(lang:"verbatim", "3.14").#footnote[In examples we show the value that would be printed by the Scheme system using slanted characters following the input expression.] In these cases the symbols #raw(lang:"verbatim", "+") and #raw(lang:"verbatim", "*") name procedures that add and multiply, respectively. If we replace any subexpression of any expression with an expression that names the same thing as the original subexpression, the thing named by the overall expression remains unchanged. In general, a procedure call is written
+are both compound expressions that name the same number as the numeral #raw(lang:"scheme", "3.14").#footnote[In examples we show the value that would be printed by the Scheme system using slanted characters following the input expression.] In these cases the symbols #raw(lang:"scheme", "+") and #raw(lang:"scheme", "*") name procedures that add and multiply, respectively. If we replace any subexpression of any expression with an expression that names the same thing as the original subexpression, the thing named by the overall expression remains unchanged. In general, a procedure call is written
 
 $ (quad italic("operator") quad italic("operand-1") quad dots.c quad italic("operand-n") quad) $
 
@@ -53,7 +53,7 @@ $ mono("(lambda") quad italic("formal-parameters") quad italic("body") mono(")")
 where #emph[formal-parameters] is a list of symbols that will be the names of the arguments to the procedure and #emph[body] is an expression that may refer to the formal parameters. The value of a procedure call is the value of the body of the procedure with the arguments substituted for the formal parameters.
 
 == Definitions <sec-A.3>
-We can use the define construct to give a name to any object. For example, if we make the definitions#footnote[The definition of #raw(lang:"verbatim", "square") given here is not the definition of #raw(lang:"verbatim", "square in the Scmutils system. In Scmutils, =square") is extended for tuples to mean the sum of the squares of the components of the tuple. However, for arguments that are not tuples the Scmutils square does multiply the argument by itself.]
+We can use the define construct to give a name to any object. For example, if we make the definitions#footnote[The definition of #raw(lang:"scheme", "square") given here is not the definition of #raw(lang:"scheme", "square in the Scmutils system. In Scmutils, =square") is extended for tuples to mean the sum of the squares of the components of the tuple. However, for arguments that are not tuples the Scmutils square does multiply the argument by itself.]
 
 ```scheme
 (define pi 3.141592653589793)
@@ -61,7 +61,7 @@ We can use the define construct to give a name to any object. For example, if we
 (define square (lambda (x) (* x x)))
 ```
 
-we can then use the symbols #raw(lang:"verbatim", "pi") and =square wherever the numeral or the $lambda$-expression could appear. For example, the area of the surface of a sphere of radius 5 meters is
+we can then use the symbols #raw(lang:"scheme", "pi") and =square wherever the numeral or the $lambda$-expression could appear. For example, the area of the surface of a sphere of radius 5 meters is
 
 ```scheme
 (* 4 pi (square 5))
@@ -114,11 +114,11 @@ Conditional expressions may be used to choose among several expressions to produ
         ((> x 0) x)))
 ```
 
-The conditional #raw(lang:"verbatim", "cond") takes a number of clauses. Each clause has a predicate expression, which may be either true or false, and a consequent expression. The value of the #raw(lang:"verbatim", "cond") expression is the value of the consequent expression of the first clause for which the corresponding predicate expression is true. The general form of a conditional expression is
+The conditional #raw(lang:"scheme", "cond") takes a number of clauses. Each clause has a predicate expression, which may be either true or false, and a consequent expression. The value of the #raw(lang:"scheme", "cond") expression is the value of the consequent expression of the first clause for which the corresponding predicate expression is true. The general form of a conditional expression is
 
 $ mono("(cond ") mono("(") italic("predicate-1") quad italic("consequent-1") mono(")") dots.c mono("(") italic("predicate-n") quad italic("consequent-n") mono("))") $
 
-For convenience there is a special predicate expression #raw(lang:"verbatim", "else") that can be used as the predicate in the last clause of a #raw(lang:"verbatim", "cond"). The #raw(lang:"verbatim", "if") construct provides another way to make a conditional when there is only a binary choice to be made. For example, because we have to do something special only when the argument is negative, we could have defined #raw(lang:"verbatim", "abs") as:
+For convenience there is a special predicate expression #raw(lang:"scheme", "else") that can be used as the predicate in the last clause of a #raw(lang:"scheme", "cond"). The #raw(lang:"scheme", "if") construct provides another way to make a conditional when there is only a binary choice to be made. For example, because we have to do something special only when the argument is negative, we could have defined #raw(lang:"scheme", "abs") as:
 
 ```scheme
 (define (abs x)
@@ -127,11 +127,11 @@ For convenience there is a special predicate expression #raw(lang:"verbatim", "e
       x))
 ```
 
-The general form of an #raw(lang:"verbatim", "if") expression is
+The general form of an #raw(lang:"scheme", "if") expression is
 
 $ mono("(if") quad italic("predicate") quad italic("consequent") quad italic("alternative") mono(")") $
 
-If the #emph[predicate] is true the value of the #raw(lang:"verbatim", "if") expression is the value of the #emph[consequent], otherwise it is the value of the #emph[alternative].
+If the #emph[predicate] is true the value of the #raw(lang:"scheme", "if") expression is the value of the #emph[consequent], otherwise it is the value of the #emph[alternative].
 
 == Recursive Procedures <sec-A.5>
 Given conditionals and definitions, we can write recursive procedures. For example, to compute the $n$th factorial number we may write:
@@ -152,7 +152,7 @@ Given conditionals and definitions, we can write recursive procedures. For examp
 ```
 
 == Local Names <sec-A.6>
-The #raw(lang:"verbatim", "let") expression is used to give names to objects in a local context. For example,
+The #raw(lang:"scheme", "let") expression is used to give names to objects in a local context. For example,
 
 ```scheme
 (define (f radius)
@@ -164,13 +164,13 @@ The #raw(lang:"verbatim", "let") expression is used to give names to objects in 
 ;; 1
 ```
 
-The general form of a #raw(lang:"verbatim", "let") expression is
+The general form of a #raw(lang:"scheme", "let") expression is
 
 $ mono("(let (") mono("(") italic("variable-1") quad italic("expression-1") mono(")") dots.c mono("(") italic("variable-n") quad italic("expression-n") mono("))") #h(2em) italic("body") mono(")") $
 
-The value of the #raw(lang:"verbatim", "let") expression is the value of the #emph[body] expression in the context where the variables #emph[variable-i] have the values of the expressions #emph[expression-i]. The expressions #emph[expression-i] may not refer to any of the variables.
+The value of the #raw(lang:"scheme", "let") expression is the value of the #emph[body] expression in the context where the variables #emph[variable-i] have the values of the expressions #emph[expression-i]. The expressions #emph[expression-i] may not refer to any of the variables.
 
-A slight variant of the #raw(lang:"verbatim", "let") expression provides a convenient way to express looping constructs. We can write a procedure that implements an alternative algorithm for computing factorials as follows:
+A slight variant of the #raw(lang:"scheme", "let") expression provides a convenient way to express looping constructs. We can write a procedure that implements an alternative algorithm for computing factorials as follows:
 
 ```scheme
 (define (factorial n)
@@ -183,12 +183,12 @@ A slight variant of the #raw(lang:"verbatim", "let") expression provides a conve
 ;; 720
 ```
 
-Here, the symbol #raw(lang:"verbatim", "factlp") following the #raw(lang:"verbatim", "let") is locally defined to be a procedure that has the variables #raw(lang:"verbatim", "count") and #raw(lang:"verbatim", "answer") as its formal parameters. It is called the first time with the expressions 1 and 1, initializing the loop. Whenever the procedure named #raw(lang:"verbatim", "factlp") is called later, these variables get new values that are the values of the operand expressions #raw(lang:"verbatim", "(+ count 1)") and #raw(lang:"verbatim", "(* count answer)").
+Here, the symbol #raw(lang:"scheme", "factlp") following the #raw(lang:"scheme", "let") is locally defined to be a procedure that has the variables #raw(lang:"scheme", "count") and #raw(lang:"scheme", "answer") as its formal parameters. It is called the first time with the expressions 1 and 1, initializing the loop. Whenever the procedure named #raw(lang:"scheme", "factlp") is called later, these variables get new values that are the values of the operand expressions #raw(lang:"scheme", "(+ count 1)") and #raw(lang:"scheme", "(* count answer)").
 
 == Compound Data --- Lists and Vectors <sec-A.7>
 Data can be glued together to form compound data structures. A list is a data structure in which the elements are linked sequentially. A Scheme vector is a data structure in which the elements are packed in a linear array. New elements can be added to lists, but to access the $n$th element of a list takes computing time proportional to $n$. By contrast a Scheme vector is of fixed length, and its elements can be accessed in constant time. All data structures in this book are implemented as combinations of lists and Scheme vectors. Compound data objects are constructed from components by procedures called constructors and the components are accessed by selectors.
 
-The procedure #raw(lang:"verbatim", "list") is the constructor for lists. The selector #raw(lang:"verbatim", "list-ref") gets an element of the list. All selectors in Scheme are zero-based. For example,
+The procedure #raw(lang:"scheme", "list") is the constructor for lists. The selector #raw(lang:"scheme", "list-ref") gets an element of the list. All selectors in Scheme are zero-based. For example,
 
 ```scheme
 (define a-list (list 6 946 8 356 12 620))
@@ -207,7 +207,7 @@ a-list
 ;; 6
 ```
 
-Lists are built from pairs. A pair is made using the constructor #raw(lang:"verbatim", "cons"). The selectors for the two components of the pair are #raw(lang:"verbatim", "car") and #raw(lang:"verbatim", "cdr") (pronounced \"could-er\").#footnote[These names are accidents of history. They stand for \"Contents of the Address part of Register\" and \"Contents of the Decrement part of Register\" of the IBM 704 computer, which was used for the first implementation of Lisp in the late 1950s. Scheme is a dialect of Lisp.] A list is a chain of pairs, such that the #raw(lang:"verbatim", "car") of each pair is the list element and the #raw(lang:"verbatim", "cdr") of each pair is the next pair, except for the last #raw(lang:"verbatim", "cdr"), which is a distinguishable value called the empty list and is written #raw(lang:"verbatim", "()"). Thus,
+Lists are built from pairs. A pair is made using the constructor #raw(lang:"scheme", "cons"). The selectors for the two components of the pair are #raw(lang:"scheme", "car") and #raw(lang:"scheme", "cdr") (pronounced \"could-er\").#footnote[These names are accidents of history. They stand for \"Contents of the Address part of Register\" and \"Contents of the Decrement part of Register\" of the IBM 704 computer, which was used for the first implementation of Lisp in the late 1950s. Scheme is a dialect of Lisp.] A list is a chain of pairs, such that the #raw(lang:"scheme", "car") of each pair is the list element and the #raw(lang:"scheme", "cdr") of each pair is the next pair, except for the last #raw(lang:"scheme", "cdr"), which is a distinguishable value called the empty list and is written #raw(lang:"scheme", "()"). Thus,
 
 ```scheme
 (car a-list)
@@ -237,11 +237,11 @@ another-list
 ;; 946
 ```
 
-Both #raw(lang:"verbatim", "a-list") and #raw(lang:"verbatim", "another-list") share the same tail (their #raw(lang:"verbatim", "cdr")).
+Both #raw(lang:"scheme", "a-list") and #raw(lang:"scheme", "another-list") share the same tail (their #raw(lang:"scheme", "cdr")).
 
-There is a predicate #raw(lang:"verbatim", "pair?") that is true of pairs and false on all other types of data.
+There is a predicate #raw(lang:"scheme", "pair?") that is true of pairs and false on all other types of data.
 
-Vectors are simpler than lists. There is a constructor #raw(lang:"verbatim", "vector") that can be used to make vectors and a selector =vector-ref for accessing the elements of a vector:
+Vectors are simpler than lists. There is a constructor #raw(lang:"scheme", "vector") that can be used to make vectors and a selector =vector-ref for accessing the elements of a vector:
 
 ```scheme
 (define a-vector
@@ -263,14 +263,14 @@ a-vector
 
 Notice that a vector is distinguished from a list on printout by the character $\#$ appearing before the initial parenthesis.
 
-There is a predicate #raw(lang:"verbatim", "vector?") that is true of vectors and false for all other types of data.
+There is a predicate #raw(lang:"scheme", "vector?") that is true of vectors and false for all other types of data.
 
 The elements of lists and vectors may be any kind of data, including numbers, procedures, lists, and vectors. Numerous other procedures for manipulating list-structured data and vector-structured data can be found in the Scheme online documentation.
 
 == Symbols <sec-A.8>
-Symbols are a very important kind of primitive data type that we use to make programs and algebraic expressions. You probably have noticed that Scheme programs look just like lists. In fact, they are lists. Some of the elements of the lists that make up programs are symbols, such as #raw(lang:"verbatim", "+") and #raw(lang:"verbatim", "vector").#footnote[Symbols may have any number of characters. A symbol may not contain whitespace or a delimiter character, such as parentheses, brackets, quotation marks, comma, or $\#$.] If we are to make programs that can manipulate programs, we need to be able to write an expression that names such a symbol. This is accomplished by the mechanism of #emph[quotation]. The name of the symbol #raw(lang:"verbatim", "+") is the expression #raw(lang:"verbatim", "'+"), and in general the name of an expression is the expression preceded by a single quote character. Thus the name of the expression #raw(lang:"verbatim", "(+ 3 a)") is #raw(lang:"verbatim", "'(+ 3 a)").
+Symbols are a very important kind of primitive data type that we use to make programs and algebraic expressions. You probably have noticed that Scheme programs look just like lists. In fact, they are lists. Some of the elements of the lists that make up programs are symbols, such as #raw(lang:"scheme", "+") and #raw(lang:"scheme", "vector").#footnote[Symbols may have any number of characters. A symbol may not contain whitespace or a delimiter character, such as parentheses, brackets, quotation marks, comma, or $\#$.] If we are to make programs that can manipulate programs, we need to be able to write an expression that names such a symbol. This is accomplished by the mechanism of #emph[quotation]. The name of the symbol #raw(lang:"scheme", "+") is the expression #raw(lang:"scheme", "'+"), and in general the name of an expression is the expression preceded by a single quote character. Thus the name of the expression #raw(lang:"scheme", "(+ 3 a)") is #raw(lang:"scheme", "'(+ 3 a)").
 
-We can test if two symbols are identical by using the predicate #raw(lang:"verbatim", "eq?"). For example, we can write a program to determine if an expression is a sum:
+We can test if two symbols are identical by using the predicate #raw(lang:"scheme", "eq?"). For example, we can write a program to determine if an expression is a sum:
 
 ```scheme
 (define (sum? expression)
@@ -285,7 +285,7 @@ We can test if two symbols are identical by using the predicate #raw(lang:"verba
 ;; #f
 ```
 
-Here #raw(lang:"verbatim", "#t") and #raw(lang:"verbatim", "#f") are the printed representations of the boolean values true and false.
+Here #raw(lang:"scheme", "#t") and #raw(lang:"scheme", "#f") are the printed representations of the boolean values true and false.
 
-Consider what would happen if we were to leave out the quote in the expression #raw(lang:"verbatim", "(sum? '(+ 3 a))"). If the variable #raw(lang:"verbatim", "a") had the value 4 we would be asking if 7 is a sum. But what we wanted to know was whether the expression #raw(lang:"verbatim", "(+ 3 a)") is a sum. That is why we need the quote.
+Consider what would happen if we were to leave out the quote in the expression #raw(lang:"scheme", "(sum? '(+ 3 a))"). If the variable #raw(lang:"scheme", "a") had the value 4 we would be asking if 7 is a sum. But what we wanted to know was whether the expression #raw(lang:"scheme", "(+ 3 a)") is a sum. That is why we need the quote.
 ]

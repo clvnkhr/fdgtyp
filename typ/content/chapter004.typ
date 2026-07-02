@@ -3,11 +3,11 @@
 #import "../lib.typ": fdg-chapter, curl, grad, Lap, div, length
 
 #fdg-chapter("Basis Fields", numbered: true, eq-prefix: "4", ref-label: "chap-4")[
-A vector field may be written as a linear combination of basis vector fields. If #raw(lang:"verbatim", "n") is the dimension, then any set of #raw(lang:"verbatim", "n") linearly independent vector fields may be used as a basis. The coordinate basis $sans(X)$ is an example of a basis.#footnote[We cannot say if the basis vectors are orthogonal or normalized until we introduce a metric.] We will see later that not every basis is a coordinate basis: in order to be a coordinate basis, there must be a coordinate system such that each basis element is the directional derivative operator in a corresponding coordinate direction.
+A vector field may be written as a linear combination of basis vector fields. If #raw(lang:"scheme", "n") is the dimension, then any set of #raw(lang:"scheme", "n") linearly independent vector fields may be used as a basis. The coordinate basis $sans(X)$ is an example of a basis.#footnote[We cannot say if the basis vectors are orthogonal or normalized until we introduce a metric.] We will see later that not every basis is a coordinate basis: in order to be a coordinate basis, there must be a coordinate system such that each basis element is the directional derivative operator in a corresponding coordinate direction.
 
 Let $sans(e)$ be a tuple of basis vector fields, such as the coordinate basis $sans(X)$. The general vector field $sans(v)$ applied to an arbitrary manifold function $sans(f)$ can be expressed as a linear combination
 
-$ sans(v) (sans(f)) (sans(m))= sans(e) (sans(f)) (sans(m))sans(b) (sans(m))= sum_i sans(e)_i(sans(f)) (sans(m))sans(b)^i (sans(m))\, $ <4.1>
+$ sans(v) (sans(f)) (sans(m))= sans(e) (sans(f)) (sans(m))sans(b) (sans(m))= sum_i sans(e)_i (sans(f)) (sans(m))sans(b)^i (sans(m))\, $ <4.1>
 
 where $sans(b)$ is a tuple-valued coefficient function on the manifold. When expressed in a coordinate basis, the coefficients that specify the direction of the vector are naturally expressed as functions $b^i$ of the coordinates of the manifold point. Here, the coefficient function $sans(b)$ is more naturally expressed as a tuple-valued function on the manifold. If $b$ is the coefficient function expressed as a function of coordinates, then $sans(b) = b compose chi$ is the coefficient function as a function on the manifold.
 
@@ -21,7 +21,7 @@ is satisfied, analogous to property @3.41. Figure 4.1 illustrates the duality of
 
 To solve for the dual basis $tilde(sans(e))$ given the basis $sans(e)$, we express the basis vectors $sans(e)$ in terms of a coordinate basis#footnote[We write the vector components on the right and the tuple of basis vectors on the left because if we think of the basis vectors as organized as a row and the components as organized as a column then the formula is just a matrix multiplication.]
 
-$ sans(e)_j(sans(f))= sum_k sans(X)_k(sans(f))sans(c)_j^k\, $ <4.3>
+$ sans(e)_j (sans(f))= sum_k sans(X)_k (sans(f))sans(c)_j^k\, $ <4.3>
 
 and the dual one-forms $tilde(sans(e))$ in terms of the dual coordinate one-forms
 
@@ -41,7 +41,7 @@ A set of vector fields ${ sans(e)_i }$ may be linearly independent in the sense 
 
 The dual form fields can be used to determine the coefficients $sans(b)$ of a vector field $sans(v)$ relative to a basis $sans(e)$, by applying the dual basis form fields $tilde(sans(e))$ to the vector field. Let
 
-$ sans(v) (sans(f))= sum_i sans(e)_i(sans(f))sans(b)^i . $ <4.7>
+$ sans(v) (sans(f))= sum_i sans(e)_i (sans(f))sans(b)^i . $ <4.7>
 
 Then
 
@@ -67,7 +67,7 @@ We use these as a vector basis and compute the dual:
   (vector-basis->dual e-vector-basis R2-polar))
 ```
 
-The procedure vector-basis-\>dual requires an auxiliary coordinate system (here #raw(lang:"verbatim", "R2-polar")) to get the $sans(c)_j^k$ coefficient functions from which we compute the $sans(d)_i^k$ coefficient functions. However, the final result is independent of this coordinate system. Then we can verify that the bases $sans(e)$ and $tilde(sans(e))$ satisfy the dual relationship (equation @3.41) by applying the dual basis to the vector basis:
+The procedure vector-basis-\>dual requires an auxiliary coordinate system (here #raw(lang:"scheme", "R2-polar")) to get the $sans(c)_j^k$ coefficient functions from which we compute the $sans(d)_i^k$ coefficient functions. However, the final result is independent of this coordinate system. Then we can verify that the bases $sans(e)$ and $tilde(sans(e))$ satisfy the dual relationship (equation @3.41) by applying the dual basis to the vector basis:
 
 ```scheme
 ((e-dual-basis e-vector-basis) R2-rect-point)
@@ -91,7 +91,7 @@ Or we can make a general vector field with this basis and then pick out the coef
 == Change of Basis <sec-4.1>
 Suppose that we have a vector field v expressed in terms of one basis $sans(e)$ and we want to reexpress it in terms of another basis $sans(e')$. We have
 
-$ sans(v) (sans(f))= sum_i sans(e)_i(sans(f))sans(b)^i = sum_i sans(e')_j(sans(f))sans(b')^j . $ <4.9>
+$ sans(v) (sans(f))= sum_i sans(e)_i (sans(f))sans(b)^i = sum_i sans(e')_j (sans(f))sans(b')^j . $ <4.9>
 
 The coefficients $sans(b')$ can be obtained from $sans(v)$ by applying the dual basis
 
@@ -107,7 +107,7 @@ $ sans(b')^j = sum_i sans(J)_i^j sans(b)^i\, $ <4.12>
 
 and
 
-$ sans(e)_i(sans(f))= sum_j sans(e')_j(sans(f))sans(J)_i^j . $ <4.13>
+$ sans(e)_i (sans(f))= sum_j sans(e')_j (sans(f))sans(J)_i^j . $ <4.13>
 
 The Jacobian $sans(J)$ is a structure of manifold functions. Using tuple arithmetic, we can write
 
@@ -233,7 +233,7 @@ because the individual partial derivatives commute. The vanishing commutator is 
 
 More generally, the commutator of two vector fields is a vector field. Let $sans(v)$ be a vector field with coefficient function $sans(c) = c compose chi$, and $sans(u)$ be a vector field with coefficient function $sans(b) = b compose chi$, both with respect to the coordinate basis $sans(X)$. Then
 
-$ [sans(u)\,sans(v)] (sans(f))= sans(u) (sans(v) (sans(f)))- sans(v) (sans(u) (sans(f)))= sans(u) (sum_i sans(X)_i (sans(f)) sans(c)^i) - sans(v) (sum_j sans(X)_j (sans(f)) sans(b)^j) = sum_j sans(X)_j (sum_i sans(X)_i (sans(f)) sans(c)^i) sans(b)^j - sum_i sans(X)_i (sum_j sans(X)_j (sans(f)) sans(b)^j) sans(c)^i = sum_(i j) [sans(X)_j \, sans(X)_i] (sans(f))sans(c)^i sans(med b)^j + sum_i sans(X)_i(sans(f))sum_j (sans(X)_j (sans(c)^i) sans(b)^j - sans(X)_j (sans(med b)^i) sans(c)^j) = sum_i sans(X)_i(sans(f))sans(a)^i\, $ <4.34>
+$ [sans(u)\,sans(v)] (sans(f))= sans(u) (sans(v) (sans(f)))- sans(v) (sans(u) (sans(f)))= sans(u) (sum_i sans(X)_i (sans(f)) sans(c)^i) - sans(v) (sum_j sans(X)_j (sans(f)) sans(b)^j) = sum_j sans(X)_j (sum_i sans(X)_i (sans(f)) sans(c)^i) sans(b)^j - sum_i sans(X)_i (sum_j sans(X)_j (sans(f)) sans(b)^j) sans(c)^i = sum_(i j) [sans(X)_j \, sans(X)_i] (sans(f))sans(c)^i sans(med b)^j + sum_i sans(X)_i (sans(f))sum_j (sans(X)_j (sans(c)^i) sans(b)^j - sans(X)_j (sans(med b)^i) sans(c)^j) = sum_i sans(X)_i (sans(f))sans(a)^i\, $ <4.34>
 
 where the coefficient function $sans(a)$ of the commutator vector field is
 
@@ -241,7 +241,7 @@ $ sans(a)^i = sum_j (sans(X)_j (sans(c)^i) sans(b)^j - sans(X)_j (sans(b)^i) san
 
 We used the fact, shown above, that the commutator of two coordinate basis fields is zero.
 
-We can check this formula for the commutator for the general vector fields #raw(lang:"verbatim", "e0") and #raw(lang:"verbatim", "e1") in polar coordinates:
+We can check this formula for the commutator for the general vector fields #raw(lang:"scheme", "e0") and #raw(lang:"scheme", "e1") in polar coordinates:
 
 ```scheme
 (let* ((polar-basis (coordinate-system->basis R2-polar))
@@ -258,7 +258,7 @@ We can check this formula for the commutator for the general vector fields #raw(
 
 Let $sans(e)$ be a tuple of basis vector fields. The commutator of two basis fields can be expressed in terms of the basis vector fields:
 
-$ [sans(e)_i\,sans(e)_j] (sans(f))= sum_k sans(d)_(i j)^k sans(e)_k(sans(f))\, $ <4.36>
+$ [sans(e)_i\,sans(e)_j] (sans(f))= sum_k sans(d)_(i j)^k sans(e)_k (sans(f))\, $ <4.36>
 
 where $sans(d)_(i j)^k$ are functions of $sans(m)$, called the #emph[structure constants] for the basis vector fields. The coefficients are
 
@@ -268,7 +268,7 @@ The commutator $[sans(u)\,sans(v)]$ with respect to a non-coordinate basis $sans
 
 $ [sans(u)\,sans(v)] (sans(f))= sum_k sans(e)_k (sans(f)) (sans(u) (sans(c)^k) - sans(v) (sans(b)^k) + sum_(i j) sans(c)^i sans(b)^j sans(d)_(j i)^k) $ <4.38>
 
-Define the vector fields #raw(lang:"verbatim", "Jx"), #raw(lang:"verbatim", "Jy"), and #raw(lang:"verbatim", "Jz") that generate rotations about the three rectangular axes in three dimensions:#footnote[Using
+Define the vector fields #raw(lang:"scheme", "Jx"), #raw(lang:"scheme", "Jy"), and #raw(lang:"scheme", "Jz") that generate rotations about the three rectangular axes in three dimensions:#footnote[Using
 
 ```scheme
 (define R3-rect (coordinate-system-at 'rectangular 'origin R3))

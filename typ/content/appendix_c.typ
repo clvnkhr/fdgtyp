@@ -19,9 +19,9 @@ $ sans(T)_j^i = sans(T) (e_j\,tilde(e)^i)\, $ <C.3>
 
 for basis vector fields $sans(e)_j$ and dual form fields $tilde(e)^i$. On the left, $sans(T)_j^i$ is a function of place (manifold point); on the right, $sans(T)$ is a function of a vector field and a form field that returns a function of place.
 
-Now we consider a change of basis, $sans(e) (sans(f))= sans(e)'(sans(f))sans(J)$ or
+Now we consider a change of basis, $sans(e) (sans(f))= sans(e)' (sans(f))sans(J)$ or
 
-$ sans(e)_i(sans(f))= sum_j sans(e)'(sans(f))sans(J)_i^j\, $ <C.4>
+$ sans(e)_i (sans(f))= sum_j sans(e)' (sans(f))sans(J)_i^j\, $ <C.4>
 
 Where $sans(J)$ typically depends on place. The corresponding dual basis transforms as
 
@@ -80,7 +80,7 @@ $ sans(R)_(j k l)^i = sum_(m n p q) sans(J)_m^i sans(R)_(n p q)^m sans(K)_j^n sa
 
 Whew!
 
-It is easy to generalize these formulas to tensors with general arguments. We have formulated the general tensor test as a program #raw(lang:"verbatim", "tensor-test") that takes the procedure #raw(lang:"verbatim", "T") to be tested, a list of argument types, and a coordinate system to be used. It tests each argument for linearity (over functions). If the function passed as T is a tensor, the result will be a list of zeros.
+It is easy to generalize these formulas to tensors with general arguments. We have formulated the general tensor test as a program #raw(lang:"scheme", "tensor-test") that takes the procedure #raw(lang:"scheme", "T") to be tested, a list of argument types, and a coordinate system to be used. It tests each argument for linearity (over functions). If the function passed as T is a tensor, the result will be a list of zeros.
 
 ```scheme
 (tensor-test

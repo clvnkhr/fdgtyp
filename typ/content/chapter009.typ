@@ -67,7 +67,7 @@ But raising a one-form field to make a vector field is a bit more complicated:
                 basis))))
 ```
 
-where #raw(lang:"verbatim", "contract") is the trace over a basis of a two-argument function that takes a vector field and a one-form field as its arguments.#footnote[Notice that #raw(lang:"verbatim", "raise") and #raw(lang:"verbatim", "lower") are not symmetrical. This is because vector fields and form fields are not symmetrical: a vector field takes a manifold function as its argument, whereas a form field takes a vector field as its argument. This asymmetry is not apparent in traditional treatments based on index notation.]
+where #raw(lang:"scheme", "contract") is the trace over a basis of a two-argument function that takes a vector field and a one-form field as its arguments.#footnote[Notice that #raw(lang:"scheme", "raise") and #raw(lang:"scheme", "lower") are not symmetrical. This is because vector fields and form fields are not symmetrical: a vector field takes a manifold function as its argument, whereas a form field takes a vector field as its argument. This asymmetry is not apparent in traditional treatments based on index notation.]
 
 ```scheme
 (define (contract proc basis)
@@ -168,7 +168,7 @@ We can verify this computationally. Given a metric, we can construct a Lagrangia
   L)
 ```
 
-The following code compares the Christoffel symbols with the coefficients of the terms of second order in velocity appearing in the accelerations, determined by solving the Lagrange equations for the highest-order derivative.#footnote[The procedure #raw(lang:"verbatim", "Lagrange-explicit") produces the accelerations of the coordinates. In this code the division operator (#raw(lang:"verbatim", "/")) multiplies its first argument on the left by the inverse of its second argument.
+The following code compares the Christoffel symbols with the coefficients of the terms of second order in velocity appearing in the accelerations, determined by solving the Lagrange equations for the highest-order derivative.#footnote[The procedure #raw(lang:"scheme", "Lagrange-explicit") produces the accelerations of the coordinates. In this code the division operator (#raw(lang:"scheme", "/")) multiplies its first argument on the left by the inverse of its second argument.
 
 ```scheme
 (define (Lagrange-explicit L)
@@ -389,7 +389,7 @@ If we raise one index of the Ricci tensor (see equation @8.20) by contracting it
 
 $ R = sum_(i j) sans(g) (tilde(sans(e))^i \, tilde(sans(e))^j) r (sans(e)^i \, sans(e)^j) . $ <9.23>
 
-The #raw(lang:"verbatim", "trace2down") procedure converts a tensor that takes two vector fields into a tensor that takes a vector field and a one-form field, and then it contracts the result over a basis to make a trace. It is useful for getting the Ricci scalar from the Ricci tensor, given a metric and a basis.
+The #raw(lang:"scheme", "trace2down") procedure converts a tensor that takes two vector fields into a tensor that takes a vector field and a one-form field, and then it contracts the result over a basis to make a trace. It is useful for getting the Ricci scalar from the Ricci tensor, given a metric and a basis.
 
 ```scheme
 (define ((trace2down metric basis) tensor)
@@ -494,7 +494,7 @@ Now consider the right-hand side of equation @9.27. In the Poisson equation the 
   T)
 ```
 
-If we evaluate the right-hand side expression we obtain#footnote[The procedure #raw(lang:"verbatim", "trace2down") is defined on page 144. This expression also uses #raw(lang:"verbatim", "drop2"), which converts a tensor field that takes two one-form fields into a tensor field that takes two vector fields. Its definition is
+If we evaluate the right-hand side expression we obtain#footnote[The procedure #raw(lang:"scheme", "trace2down") is defined on page 144. This expression also uses #raw(lang:"scheme", "drop2"), which converts a tensor field that takes two one-form fields into a tensor field that takes two vector fields. Its definition is
 
 ```scheme
 (define ((drop2 metric-tensor basis) tensor)
@@ -560,14 +560,14 @@ Test particles move along geodesics in spacetime. Now that we have a metric for 
            (chart R1-rect)))
 ```
 
-This equation will satisfy the geodesic equations for compatible values of the radius #raw(lang:"verbatim", "r") and the angular velocity =omega. If you substitute this into the geodesic equation and set the residual to zero you will obtain a constraint relating #raw(lang:"verbatim", "r and =omega"). Do it.
+This equation will satisfy the geodesic equations for compatible values of the radius #raw(lang:"scheme", "r") and the angular velocity =omega. If you substitute this into the geodesic equation and set the residual to zero you will obtain a constraint relating #raw(lang:"scheme", "r and =omega"). Do it.
 
 Surprise: You should find out that $omega^2 r^3 = G M$ --- Kepler\'s law!
 
 === Exercise 9.8: Stability of Circular Orbits <sec-9.4.4>
 In Schwarzschild spacetime there are stable circular orbits if the coordinate $r$ is large enough, but below that value all orbits are unstable. The critical value of $r$ is larger than the Schwarzschild horizon radius. Let\'s find that value.
 
-For example, we can consider a perturbation of the orbit of constant longitude. Here is the result of adding an exponential variation of size #raw(lang:"verbatim", "epsilon"):
+For example, we can consider a perturbation of the orbit of constant longitude. Here is the result of adding an exponential variation of size #raw(lang:"scheme", "epsilon"):
 
 ```scheme
 (define (prime-meridian+X r epsilon X)
@@ -593,7 +593,7 @@ Plugging this into the geodesic equation yields a structure of residuals:
      ((point R1-rect) 't))))
 ```
 
-The characteristic equation in the eigenvalue #raw(lang:"verbatim", "lambda") can be obtained as the numerator of the expression:
+The characteristic equation in the eigenvalue #raw(lang:"scheme", "lambda") can be obtained as the numerator of the expression:
 
 ```scheme
 (determinant
@@ -651,7 +651,7 @@ One exact solution to the Einstein equations was found by Alexander Friedmann in
     g))
 ```
 
-Here #raw(lang:"verbatim", "c") is the speed of light, #raw(lang:"verbatim", "k") is the intrinsic curvature, and #raw(lang:"verbatim", "R") is a length scale that is a function of time.
+Here #raw(lang:"scheme", "c") is the speed of light, #raw(lang:"scheme", "k") is the intrinsic curvature, and #raw(lang:"scheme", "R") is a length scale that is a function of time.
 
 The associated stress-energy tensor is
 
@@ -668,7 +668,7 @@ The associated stress-energy tensor is
     T))
 ```
 
-where #raw(lang:"verbatim", "rho is the energy density, and =p") is the pressure in an ideal fluid model.
+where #raw(lang:"scheme", "rho is the energy density, and =p") is the pressure in an ideal fluid model.
 
 The Robertson-Walker equations are:
 

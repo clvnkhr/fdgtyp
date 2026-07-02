@@ -347,7 +347,7 @@ A new frame is defined by a Poincaré transformation from a given frame (see equ
 
 Points in spacetime are called events. It must be possible to compare two events to determine if they are the same. This is accomplished in any particular experiment by building all frames involved in that experiment from a base frame, and representing the events as coordinates in that base frame.
 
-When one frame is built upon another, to determine the event from frame-specific coordinates or to determine the frame-specific coordinates for an event requires composition of the boosts that relate the frames to each other. The two procedures that are required to implement this strategy are#footnote[The procedure #raw(lang:"verbatim", "make-SR-coordinates") labels the given coordinates with the given frame. The procedures that manipulate coordinates, such as #raw(lang:"verbatim", "(point ancestor-frame)"), check that the coordinates they are given are in the appropriate frame. This error checking makes it easier to debug relativity procedures.]
+When one frame is built upon another, to determine the event from frame-specific coordinates or to determine the frame-specific coordinates for an event requires composition of the boosts that relate the frames to each other. The two procedures that are required to implement this strategy are#footnote[The procedure #raw(lang:"scheme", "make-SR-coordinates") labels the given coordinates with the given frame. The procedures that manipulate coordinates, such as #raw(lang:"scheme", "(point ancestor-frame)"), check that the coordinates they are given are in the appropriate frame. This error checking makes it easier to debug relativity procedures.]
 
 ```scheme
 (define ((coordinates->event ancestor-frame this-frame
@@ -366,7 +366,7 @@ When one frame is built upon another, to determine the event from frame-specific
                         (- ((chart ancestor-frame) event) origin))))
 ```
 
-With these two procedures, the procedure #raw(lang:"verbatim", "make-SR-frame") constructs a new relativistic frame by a Poincaré transformation from a given frame.
+With these two procedures, the procedure #raw(lang:"scheme", "make-SR-frame") constructs a new relativistic frame by a Poincaré transformation from a given frame.
 
 ```scheme
 (define make-SR-frame
@@ -374,7 +374,7 @@ With these two procedures, the procedure #raw(lang:"verbatim", "make-SR-frame") 
 ```
 
 === Velocity Addition Formula <sec-11.8.1>
-For example, we can derive the traditional velocity addition formula. Assume that we have a base frame called #raw(lang:"verbatim", "home"). We can make a frame #raw(lang:"verbatim", "A") by a boost from home in the $hat(x)$ direction, with components $(1\,0\,0)$, and with a dimensionless measure of the speed $v_a\/c$. We also specify that the 4-tuple origin of this new frame coincides with the origin of #raw(lang:"verbatim", "home").
+For example, we can derive the traditional velocity addition formula. Assume that we have a base frame called #raw(lang:"scheme", "home"). We can make a frame #raw(lang:"scheme", "A") by a boost from home in the $hat(x)$ direction, with components $(1\,0\,0)$, and with a dimensionless measure of the speed $v_a\/c$. We also specify that the 4-tuple origin of this new frame coincides with the origin of #raw(lang:"scheme", "home").
 
 ```scheme
 (define A
@@ -384,7 +384,7 @@ For example, we can derive the traditional velocity addition formula. Assume tha
                  (make-SR-coordinates home (up 0 0 0 0))))
 ```
 
-Frame #raw(lang:"verbatim", "B") is built on frame #raw(lang:"verbatim", "A") similarly, boosted by $v_b\/c$.
+Frame #raw(lang:"scheme", "B") is built on frame #raw(lang:"scheme", "A") similarly, boosted by $v_b\/c$.
 
 ```scheme
 (define B
@@ -394,7 +394,7 @@ Frame #raw(lang:"verbatim", "B") is built on frame #raw(lang:"verbatim", "A") si
                  (make-SR-coordinates A (up 0 0 0 0))))
 ```
 
-So any point at rest in frame #raw(lang:"verbatim", "B") will have a speed relative to home. For the spatial origin of frame #raw(lang:"verbatim", "B"), with #raw(lang:"verbatim", "B") coordinates #raw(lang:"verbatim", "(up 'ct 0 0 0)"), we have
+So any point at rest in frame #raw(lang:"scheme", "B") will have a speed relative to home. For the spatial origin of frame #raw(lang:"scheme", "B"), with #raw(lang:"scheme", "B") coordinates #raw(lang:"scheme", "(up 'ct 0 0 0)"), we have
 
 ```scheme
 (let ((B-origin-home-coords

@@ -13,11 +13,11 @@ If we change variables $(x = g (y))$, then the form of the integral changes:
 
 $ integral_a^b f = integral_a^b f (x)d x = integral_(g^(-1) (a))^(g^(-1) (b)) f (g (y))D g (y)d y = integral_(g^(-1) (a))^(g^(-1) (b)) (f compose g)D g $ <5.2>
 
-We can make a coordinate-independent notion of integration in the following way. An interval of the real line is a 1-dimensional manifold with boundary. We can assign a coordinate chart χ to this manifold. Let $x = chi (sans(m))$. The coordinate basis is associated with a coordinate-basis vector field, here $partial\/partial sans(x)$. Let ω be a one-form on this manifold. The application of ω to $partial\/partial sans(x)$ is a real-valued function on the manifold. If we compose this with the inverse chart, we get a real-valued function of a real variable. We can then write the usual integral of this function
+We can make a coordinate-independent notion of integration in the following way. An interval of the real line is a 1-dimensional manifold with boundary. We can assign a coordinate chart $χ$ to this manifold. Let $x = chi (sans(m))$. The coordinate basis is associated with a coordinate-basis vector field, here $partial\/partial sans(x)$. Let $ω$ be a one-form on this manifold. The application of $ω$ to $partial\/partial sans(x)$ is a real-valued function on the manifold. If we compose this with the inverse chart, we get a real-valued function of a real variable. We can then write the usual integral of this function
 
 $ I = integral_a^b omega (partial\/partial sans(x))compose chi^(-1) $ <5.3>
 
-It turns out that the value of this integral is independent of the coordinate chart used in its definition. Consider a different coordinate chart $x' = chi'(sans(m))$, with associated basis vector field $partial\/partial x'$. Let $g = chi' compose chi^(-1)$. We have
+It turns out that the value of this integral is independent of the coordinate chart used in its definition. Consider a different coordinate chart $x' = chi' (sans(m))$, with associated basis vector field $partial\/partial x'$. Let $g = chi' compose chi^(-1)$. We have
 
 $ integral_(a')^(b') bold(omega) (partial \/ partial upright(x)') compose chi^(' - 1) = integral_(a')^(b') bold(omega) (partial \/ partial upright(x) (D (chi compose chi^(' - 1)) compose chi')) compose chi^(' - 1) = integral_(a')^(b') (bold(omega) (partial \/ partial upright(x)) D (chi compose chi^(' - 1)) compose chi') compose chi^(' - 1) = integral_(a')^(b') (bold(omega) (partial \/ partial upright(x)) compose chi^(' - 1)) D (chi compose chi^(' - 1)) = integral_a^b (((bold(omega) (partial \/ partial upright(x)) compose chi^(-1)) D (chi compose chi^(' - 1))) compose g) D g = integral_a^b bold(omega) (partial\/partial upright(x))compose chi^(-1)\, $ <5.4>
 
@@ -40,17 +40,17 @@ $ integral_(sans(U)) sans(f) = integral_(g^(-1) (sans(U))) (sans(f) compose g)de
 
 A rank $n$ form field takes $n$ vector field arguments and produces a real-valued manifold function: $omega (sans(v)\,sans(w)\,dots\,sans(u)) (sans(m))$. By analogy with the 1-dimensional case, higher-rank forms are linear in each argument. Higher-rank forms must also be antisymmetric under interchange of any two arguments in order to make a coordinate-free definition of integration analogous to equation @5.3.
 
-Consider an integral in the coordinate system χ:
+Consider an integral in the coordinate system $χ$:
 
 $ integral_(chi (sans(U))) omega (sans(X)_0\,sans(X)_1\,dots)compose chi^(-1) . $ <5.7>
 
 Under coordinate transformations $g = chi compose chi'^(-1)$, the integral becomes
 
-$ integral_(chi'(sans(U))) bold(omega) (sans(X)_0\,sans(X)_1\,dots)compose chi^(' - 1) det(D g) . $ <5.8>
+$ integral_(chi' (sans(U))) bold(omega) (sans(X)_0\,sans(X)_1\,dots)compose chi^(' - 1) det(D g) . $ <5.8>
 
 Using the change-of-basis formula, equation @3.19:
 
-$ sans(X) (sans(f))= sans(X)'(sans(f)) (D (chi' compose chi^(-1)))compose chi = sans(X)'(sans(f)) (D (g^(-1))compose chi . $ <5.9>
+$ sans(X) (sans(f))= sans(X)' (sans(f)) (D (chi' compose chi^(-1)))compose chi = sans(X)' (sans(f)) (D (g^(-1))compose chi . $ <5.9>
 
 If we let $M =(D (g^(-1)))compose chi$ then
 
@@ -58,24 +58,24 @@ $ (omega (sans(X)_0\,sans(X)_1\,dots)compose chi^(' - 1))det(D g)=(omega (sans(X
 
 using the multilinearity of $bold(omega)$, where $M_i$ is the $i^(upright("th"))$ column of $M$. The function $alpha$ is multilinear in the columns of $M$. To make a coordinate-independent integration we want the expression (@5.10) to be the same as the integrand in
 
-$ I' = integral_(chi'(sans(U))) omega (sans(X)'_0\,sans(X)'_1\,dots)compose chi^(' - 1) . $ <5.11>
+$ I' = integral_(chi' (sans(U))) omega (sans(X)'_0\,sans(X)'_1\,dots)compose chi^(' - 1) . $ <5.11>
 
-For this to be the case, $alpha (M_0\,M_1\,dots)$ must be $(det(D (g))^(-1)= det(M)$. So α is an antisymmetric function, and thus so is ω.
+For this to be the case, $alpha (M_0\,M_1\,dots)$ must be $(det(D (g))^(-1)= det(M)$. So $α$ is an antisymmetric function, and thus so is $ω$.
 
 Thus higher-rank form fields must be antisymmetric multilinear functions from vector fields to manifold functions. So we have a coordinate-independent definition of integration of form fields on a manifold and we can write
 
 $ I = I' = integral_(sans(U)) omega $ <5.12>
 
 == Wedge Product <sec-5.2>
-There are several ways we can construct antisymmetric higher-rank forms. Given two one-form fields ω and τ we can form a two-form field $omega and tau$ as follows:
+There are several ways we can construct antisymmetric higher-rank forms. Given two one-form fields $ω$ and $τ$ we can form a two-form field $omega and tau$ as follows:
 
 $ (omega and tau) (sans(v)\,sans(w))= omega (sans(v))tau (sans(w))- omega (sans(w))tau (sans(v)). $ <5.13>
 
-More generally we can form the wedge of higher-rank forms. Let ω be a $k$-form field and τ be an $l$-form field. We can form a $(k + l)$-form field $omega and tau$ as follows:
+More generally we can form the wedge of higher-rank forms. Let $ω$ be a $k$-form field and $τ$ be an $l$-form field. We can form a $(k + l)$-form field $omega and tau$ as follows:
 
 $ omega and tau = frac((k + l)!, k ! l !) upright("Alt") (omega "⊗" tau) $ <5.14>
 
-where, if η is a function on $m$ vectors,
+where, if $η$ is a function on $m$ vectors,
 
 $ upright("Alt") (eta) (sans(v)_0\,dots\,sans(v)_(m - 1))= frac(1, m !) sum_(sigma epsilon.alt upright("Perm") (m)) upright("Parity") (sigma)eta (sans(v)_(sigma (0))\,dots\,sans(v)_(sigma (m - 1)))\, $ <5.15>
 
@@ -99,7 +99,7 @@ where $upright("Volume") (sans(U))$ is the ordinary volume of the region corresp
 
 An example two-form (see figure 5.1) is the oriented area of a parallelogram in the $(x\,y)$ coordinate plane at the point $sans(m)$ spanned by two vectors $sans(u) = sans(u)^0 partial\/partial sans(x) + sans(u)^1 partial\/partial sans(y)$ and $sans(v) = sans(v)^0 partial\/partial sans(x) + sans(v)^1 partial\/partial sans(y),$ which is given by
 
-$ sans(A) (sans(u)\,sans(v)) (sans(m))= sans(u)^0(sans(m))sans(v)^1 - sans(v)^0(sans(m))sans(u)^1(sans(m)). $ <5.19>
+$ sans(A) (sans(u)\,sans(v)) (sans(m))= sans(u)^0 (sans(m))sans(v)^1 - sans(v)^0 (sans(m))sans(u)^1 (sans(m)). $ <5.19>
 
 Note that this is the area of the parallelogram in the coordinate plane, which is the range of the coordinate function. It is not the area on the manifold. To define that, we need more structure --- the metric. We will put a metric on the manifold in Chapter 9.
 
@@ -165,7 +165,7 @@ This last expression is the determinant of a $3 times 3$ matrix:
 
 If we did the same operations in cylindrical coordinates we would get the analogous formula, showing that what we are computing is volume in the coordinate space, not volume on the manifold.
 
-Because of antisymmetry, if the rank of a form is greater than the dimension of the manifold then the form is identically zero. The $k$-forms on an $n$-dimensional manifold form a module of dimension $binom (n, k)$. We can write a coordinate-basis expression for a $k$-form as
+Because of antisymmetry, if the rank of a form is greater than the dimension of the manifold then the form is identically zero. The $k$-forms on an $n$-dimensional manifold form a module of dimension $binom(n, k)$. We can write a coordinate-basis expression for a $k$-form as
 
 $ omega = sum_(i_0\,dots.c\,i_(k - 1))^n omega_(i_0\,dots.c\,i_(k - 1)) sans(d) sans(x)^(i_0) and dots.c and sans(d) sans(x)^(i_(k - 1)) . $ <5.20>
 
@@ -173,7 +173,7 @@ The antisymmetry of the wedge product implies that
 
 $ omega_(i_(sigma (0))\,dots.c\,i_(sigma (k - 1))) = upright("Parity") (sigma)omega_(i_0\,dots.c\,i_(k - 1))\, $ <5.21>
 
-from which we see that there are only $binom (n, k)$ independent components of ω.
+from which we see that there are only $binom(n, k)$ independent components of $ω$.
 
 == Exercise 5.1: Wedge Product <sec-5.4>
 Pick a coordinate system and use the computer to verify that
@@ -189,9 +189,9 @@ As we have seen in equation @3.34, the differential of a function on a manifold 
 
 $ hat(sans(f)) () (sans(m))= sans(f) (sans(m)). $ <5.40>] then the differential operator increases the rank of the form by one. We can generalize this to $k$-form fields with the exterior derivative operation.
 
-Consider a one-form ω. We define#footnote[The definition is chosen to make Stokes\'s Theorem pretty.]
+Consider a one-form $ω$. We define#footnote[The definition is chosen to make Stokes\'s Theorem pretty.]
 
-$ sans(d) omega (sans(v)_1\,sans(v)_2)= sans(v)_1(omega (sans(v)_2))- sans(v)_2(omega (sans(v)_1))- omega ([sans(v)_1\,sans(v)_2]). $ <5.23>
+$ sans(d) omega (sans(v)_1\,sans(v)_2)= sans(v)_1 (omega (sans(v)_2))- sans(v)_2 (omega (sans(v)_1))- omega ([sans(v)_1\,sans(v)_2]). $ <5.23>
 
 More generally, the exterior derivative of a $k$-form field is a $k + 1$-form field, given by:#footnote[See Spivak, Differential Geometry, Volume 1, p.289.]
 
@@ -199,7 +199,7 @@ $ sans(d) omega (sans(v)_0\,dots.c\,sans(v)_k)= sum_(i=0)^k {((- 1)^i sans(v)_i 
 
 This formula is coordinate-system independent. This is the way we compute the exterior derivative in our software.
 
-If the form field ω is represented in a coordinate basis
+If the form field $ω$ is represented in a coordinate basis
 
 $ omega = sum_(i_0=0\,dots.c\,i_(k - 1) = 0)^(n - 1) sans(a)_(i_0\,dots.c\,i_(k - 1)) sans(d) sans(x)^(i_0) and dots.c and sans(d) sans(x)^(i_(k - 1)) $ <5.25>
 
@@ -243,7 +243,7 @@ Let
 
 $ omega = a sans(d) sans(y) and sans(d) sans(z) + b sans(d) sans(z) and sans(d) sans(x) + c sans(d) sans(x) and sans(d) sans(y)\, $ <5.27>
 
-where $a = α ˆ χ,$ $b = β ˆ χ,$ $c = γ ˆ χ,$ and α, β, and γ are real-valued functions of three real arguments. As a program,
+where $a = α ˆ χ,$ $b = β ˆ χ,$ $c = γ ˆ χ,$ and $α$, $β$, and $γ$ are real-valued functions of three real arguments. As a program,
 
 ```scheme
 (define omega
@@ -273,9 +273,9 @@ The exterior derivative of the wedge of two form fields obeys the graded Leibniz
 
 $ sans(d) (omega and tau)= sans(d) omega and tau +(- 1)^k omega and sans(d) tau\, $ <5.28>
 
-where $k$ is the rank of ω.
+where $k$ is the rank of $ω$.
 
-A form field ω that is the exterior derivative of another form field $omega = sans(d) theta$ is called exact. A form field whose exterior derivative is zero is called closed.
+A form field $ω$ that is the exterior derivative of another form field $omega = sans(d) theta$ is called exact. A form field whose exterior derivative is zero is called closed.
 
 Every exact form field is a closed form field: applying the exterior derivative operator twice always yields zero:
 
@@ -335,7 +335,7 @@ We can test this. By Stokes\'s Theorem, the integrands are related by an exterio
 (define w (literal-vector-field 'w-rect R2-rect))
 ```
 
-We can now test our integrands:#footnote[Using #raw(lang:"verbatim", "(define R2-rect-basis (coordinate-system->basis R2-rect))").
+We can now test our integrands:#footnote[Using #raw(lang:"scheme", "(define R2-rect-basis (coordinate-system->basis R2-rect))").
 
 Here we extract $sans(d) sans(x)$ and $sans(d) sans(y)$ from R2-rect-basis to avoid globally installing coordinates.]
 

@@ -4,6 +4,7 @@
 #let div = math.op("div")
 #let length = math.op("length")
 #let fdg-equation-prefix = state("fdg-equation-prefix", "0")
+#let fdg-link-color = rgb("#245f86")
 
 #let fdg-book(body) = {
   set document(
@@ -27,6 +28,12 @@
     leading: 0.58em,
   )
   set heading(numbering: "1.1")
+  set ref(supplement: none)
+  set raw(
+    syntaxes: "Scheme.sublime-syntax",
+    theme: "fdg-scheme.tmTheme",
+    tab-size: 2,
+  )
   set math.equation(numbering: it => {
     "(" + fdg-equation-prefix.at(here()) + "." + str(it) + ")"
   })
@@ -41,14 +48,47 @@
   show heading: it => {
     block(above: 1.1em, below: 0.45em, it)
   }
+  show link: it => {
+    text(fill: fdg-link-color)[
+      #underline(offset: 2pt, stroke: 0.45pt + fdg-link-color, it.body)
+    ]
+  }
+  show ref: it => {
+    let appendix = if it.target == <chap-appendix-a> {
+      [A]
+    } else if it.target == <chap-appendix-b> {
+      [B]
+    } else if it.target == <chap-appendix-c> {
+      [C]
+    } else {
+      none
+    }
+    if appendix == none {
+      text(fill: fdg-link-color, it)
+    } else if it.element == none {
+      text(fill: fdg-link-color, appendix)
+    } else {
+      link(it.element.location(), text(fill: fdg-link-color, appendix))
+    }
+  }
   show raw.where(block: true): it => {
     block(
-      fill: rgb("#f7f7f5"),
-      stroke: rgb("#d8d8d2"),
+      fill: rgb("#fbf7ef"),
+      stroke: rgb("#d8c7ad"),
       inset: 8pt,
       radius: 3pt,
       width: 100%,
-      text(font: "JetBrains Mono", size: 8.4pt, it),
+      text(font: "JetBrains Mono", size: 8.35pt, fill: rgb("#27211d"), it),
+    )
+  }
+  show raw.where(block: false): it => {
+    box(
+      fill: rgb("#f7efe1"),
+      stroke: rgb("#decab0"),
+      inset: (x: 2.2pt, y: 0.35pt),
+      outset: (y: 1.1pt),
+      radius: 1.8pt,
+      text(font: "JetBrains Mono", fill: rgb("#27211d"), it),
     )
   }
   show quote: it => {

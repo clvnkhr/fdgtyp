@@ -28,7 +28,7 @@ $ D (partial_2 L compose Gamma [q]) - partial_1 L compose Gamma[q]= 0 . $
 
 In SICM @sussman2001sicm, Section 1.6.3, we showed that a Lagrangian describing the free motion of a particle subject to a coordinate-dependent constraint can be obtained by composing a free-particle Lagrangian with a function that describes how dynamical states transform given the coordinate transformation that describes the constraints.
 
-A Lagrangian for a free particle of mass m and velocity v is just its kinetic energy, $m v^2\/2$. The procedure #raw(lang:"verbatim", "Lfree") implements the free Lagrangian:#footnote[An informal description of the Scheme programming language can be found in Appendix @chap-appendix-a.]
+A Lagrangian for a free particle of mass m and velocity v is just its kinetic energy, $m v^2\/2$. The procedure #raw(lang:"scheme", "Lfree") implements the free Lagrangian:#footnote[An informal description of the Scheme programming language can be found in Appendix @chap-appendix-a.]
 
 ```scheme
 (define ((Lfree mass) state)
@@ -39,7 +39,7 @@ For us the dynamical state of a system of particles is a tuple of time, coordina
 
 For motion of a point constrained to move on the surface of a sphere the configuration space has two dimensions. We can describe the position of the point with the generalized coordinates colatitude and longitude. If the sphere is embedded in 3-dimensional space the position of the point in that space can be given by a coordinate transformation from colatitude and longitude to three rectangular coordinates.
 
-For a sphere of radius R the procedure #raw(lang:"verbatim", "sphere->R3") implements the transformation of coordinates from colatitude $theta$ and longitude $phi.alt$ on the surface of the sphere to rectangular coordinates in the embedding space. (The $hat(z)$ axis goes through the North Pole, and the Equator is in the plane $z = 0$.)
+For a sphere of radius R the procedure #raw(lang:"scheme", "sphere->R3") implements the transformation of coordinates from colatitude $theta$ and longitude $phi.alt$ on the surface of the sphere to rectangular coordinates in the embedding space. (The $hat(z)$ axis goes through the North Pole, and the Equator is in the plane $z = 0$.)
 
 ```scheme
 (define ((sphere->R3 R) state)
@@ -50,7 +50,7 @@ For a sphere of radius R the procedure #raw(lang:"verbatim", "sphere->R3") imple
           (* R (cos theta))))))       ; z
 ```
 
-The coordinate transformation maps the generalized coordinates on the sphere to the 3-dimensional rectangular coordinates. Given this coordinate transformation we construct a corresponding transformation of velocities; these make up the state transformation. The procedure #raw(lang:"verbatim", "F->C") implements the derivation of a transformation of states from a coordinate transformation:
+The coordinate transformation maps the generalized coordinates on the sphere to the 3-dimensional rectangular coordinates. Given this coordinate transformation we construct a corresponding transformation of velocities; these make up the state transformation. The procedure #raw(lang:"scheme", "F->C") implements the derivation of a transformation of states from a coordinate transformation:
 
 ```scheme
 (define ((F->C F) state)
@@ -73,9 +73,7 @@ So the value of the Lagrangian at an arbitrary dynamical state is:
 ```scheme
 ((Lsphere 'm 'R)
  (up 't (up 'theta 'phi) (up 'thetadot 'phidot)))
-```
 
-```
 #|
 (+ (* 1/2 (expt R 2) m (expt phidot 2) (expt (sin theta) 2))
    (* 1/2 (expt R 2) m (expt thetadot 2)))
@@ -90,7 +88,7 @@ Let\'s now take a step into the geometry. A surface has a metric which tells us 
 
 The metric is a symmetric function of two vector fields that gives a number for every point on the manifold. (Vector fields are introduced in Chapter 3). Metrics may be used to compute the length of a vector field at each point, or alternatively to compute the inner product of two vector fields at each point. For example, the metric for the sphere of radius $R$ is
 
-$ sans(g) (sans(u)\,sans(v))= R^2 sans(d) theta (sans(u))sans(d) theta (sans(v))+ R^2 (sin theta)^2sans(d) phi.alt (sans(u))sans(d) phi.alt (sans(v))\, $ <1.2>
+$ sans(g) (sans(u)\,sans(v))= R^2 sans(d) theta (sans(u))sans(d) theta (sans(v))+ R^2 (sin theta)^2 sans(d) phi.alt (sans(u))sans(d) phi.alt (sans(v))\, $ <1.2>
 
 where $sans(u)$ and $sans(v)$ are vector fields, and $sans(d) theta$ and $sans(d) phi.alt$ are one-form fields that extract the named components of the vector-field argument. (One-form fields are introduced in Chapter 3.) We can think of $sans(d) theta (sans(u))$ as a function of a point that gives the size of the vector field $sans(u)$ in the $theta$ direction at the point. Notice that $sans(g) (sans(u)\,sans(u))$ is a weighted sum of the squares of the components of $sans(u)$. In fact, if we identify
 
@@ -122,15 +120,15 @@ This program gives the Lagrangian in a coordinate-independent, geometric way. It
     ((L2 mass metric) ((point coordsys) x) (* e v))))
 ```
 
-The manifold point $sans(m)$ represented by the coordinates $x$ is given by #raw(lang:"verbatim", "(define m ((point coordsys) x))"). The coordinates of $sans(m)$ in a different coordinate system are given by #raw(lang:"verbatim", "((chart coordsys2) m)"). The manifold point $sans(m)$ is a geometric object that is the same point independent of how it is specified. Similarly, the velocity vector $sans(e) v$ is a geometric object, even though it is specified using components $v$ with respect to the basis $sans(e)$. Both $v$ and $sans(e)$ have as many components as the dimension of the space so their product is interpreted as a contraction.
+The manifold point $sans(m)$ represented by the coordinates $x$ is given by #raw(lang:"scheme", "(define m ((point coordsys) x))"). The coordinates of $sans(m)$ in a different coordinate system are given by #raw(lang:"scheme", "((chart coordsys2) m)"). The manifold point $sans(m)$ is a geometric object that is the same point independent of how it is specified. Similarly, the velocity vector $sans(e) v$ is a geometric object, even though it is specified using components $v$ with respect to the basis $sans(e)$. Both $v$ and $sans(e)$ have as many components as the dimension of the space so their product is interpreted as a contraction.
 
-Let\'s make a general metric on a 2-dimensional real manifold:#footnote[The procedure #raw(lang:"verbatim", "literal-metric") provides a metric. It is a general symmetric function of two vector fields, with literal functions of the coordinates of the manifold points for its coefficients in the given coordinate system. The quoted symbol #raw(lang:"verbatim", "'g") is used to make the names of the literal coefficient functions. Literal functions are discussed in Appendix @chap-appendix-b.]
+Let\'s make a general metric on a 2-dimensional real manifold:#footnote[The procedure #raw(lang:"scheme", "literal-metric") provides a metric. It is a general symmetric function of two vector fields, with literal functions of the coordinates of the manifold points for its coefficients in the given coordinate system. The quoted symbol #raw(lang:"scheme", "'g") is used to make the names of the literal coefficient functions. Literal functions are discussed in Appendix @chap-appendix-b.]
 
 ```scheme
 (define the-metric (literal-metric 'g R2-rect))
 ```
 
-The metric is expressed in rectangular coordinates, so the coordinate system is #raw(lang:"verbatim", "R2-rect").#footnote[#raw(lang:"verbatim", "R2-rect") is the usual rectangular coordinate system on the 2-dimensional real manifold. (See Section @sec-2.1, page 13.) We supply common coordinate systems for n-dimensional real manifolds. For example, #raw(lang:"verbatim", "R2-polar") is a polar coordinate system on the same manifold.] The component functions will be labeled as subscripted \~g\~s.
+The metric is expressed in rectangular coordinates, so the coordinate system is #raw(lang:"scheme", "R2-rect").#footnote[#raw(lang:"scheme", "R2-rect") is the usual rectangular coordinate system on the 2-dimensional real manifold. (See Section @sec-2.1, page 13.) We supply common coordinate systems for n-dimensional real manifolds. For example, #raw(lang:"scheme", "R2-polar") is a polar coordinate system on the same manifold.] The component functions will be labeled as subscripted \~g\~s.
 
 We can now make the Lagrangian for the system:
 
@@ -142,9 +140,7 @@ And we can apply our Lagrangian to an arbitrary state:
 
 ```scheme
 (L (up 't (up 'x 'y) (up 'vx 'vy)))
-```
 
-```
 #|
 (+ (* 1/2 m (expt vx 2) (g_00 (up x y)))
    (* m vx vy (g_01 (up x y)))
@@ -155,23 +151,23 @@ And we can apply our Lagrangian to an arbitrary state:
 Compare this result with equation @1.3.
 
 == Euler-Lagrange Residuals <sec-1.3>
-The Euler-Lagrange equations are satisfied on realizable paths. Let $gamma$ be a path on the manifold of configurations. (A path is a map from the 1-dimensional real line to the configuration manifold. We introduce maps between manifolds in Chapter 6.) Consider an arbitrary path:#footnote[The procedure #raw(lang:"verbatim", "literal-manifold-map") makes a map from the manifold implied by its second argument to the manifold implied by the third argument. These arguments must be coordinate systems. The quoted symbol that is the first argument is used to name the literal coordinate functions that define the map.]
+The Euler-Lagrange equations are satisfied on realizable paths. Let $gamma$ be a path on the manifold of configurations. (A path is a map from the 1-dimensional real line to the configuration manifold. We introduce maps between manifolds in Chapter 6.) Consider an arbitrary path:#footnote[The procedure #raw(lang:"scheme", "literal-manifold-map") makes a map from the manifold implied by its second argument to the manifold implied by the third argument. These arguments must be coordinate systems. The quoted symbol that is the first argument is used to name the literal coordinate functions that define the map.]
 
 ```scheme
 (define gamma (literal-manifold-map 'q R1-rect R2-rect))
 ```
 
-The values of $gamma$ are points on the manifold, not a coordinate representation of the points. We may evaluate #raw(lang:"verbatim", "gamma") only on points of the real-line manifold; #raw(lang:"verbatim", "gamma") produces points on the $bb (R)^2$ manifold. So to go from the literal real-number coordinate #raw(lang:"verbatim", "'t") to a point on the real line we use #raw(lang:"verbatim", "((point R1-rect) 't)") and to go from a point #raw(lang:"verbatim", "m") in $bb (R)^2$ to its coordinate representation we use #raw(lang:"verbatim", "((chart R2-rect) m)"). (The procedures point and chart are introduced in Chapter 2.) Thus
+The values of $gamma$ are points on the manifold, not a coordinate representation of the points. We may evaluate #raw(lang:"scheme", "gamma") only on points of the real-line manifold; #raw(lang:"scheme", "gamma") produces points on the $bb(R)^2$ manifold. So to go from the literal real-number coordinate #raw(lang:"scheme", "'t") to a point on the real line we use #raw(lang:"scheme", "((point R1-rect) 't)") and to go from a point #raw(lang:"scheme", "m") in $bb(R)^2$ to its coordinate representation we use #raw(lang:"scheme", "((chart R2-rect) m)"). (The procedures point and chart are introduced in Chapter 2.) Thus
 
 ```scheme
 ((chart R2-rect) (gamma ((point R1-rect) 't)))
-```
 
-```
 #|
 (up (q^0 t) (q^1 t))
 |#
 ```
+
+So, to work with coordinates we write:
 
 ```scheme
 (define coordinate-path
@@ -180,9 +176,7 @@ The values of $gamma$ are points on the manifold, not a coordinate representatio
 
 ```scheme
 (coordinate-path 't)
-```
 
-```
 #|
 (up (q^0 t) (q^1 t))
 |#
@@ -213,11 +207,11 @@ We can get and save the geodesic equation residuals by:
    ((point R1-rect) 't)))
 ```
 
-where #raw(lang:"verbatim", "d/dt") is a vector field on the real line#footnote[We established #raw(lang:"verbatim", "t") as a coordinate function on the rectangular coordinates of the real line by
+where #raw(lang:"scheme", "d/dt") is a vector field on the real line#footnote[We established #raw(lang:"scheme", "t") as a coordinate function on the rectangular coordinates of the real line by
 
 `(define-coordinates t R1-rect)`
 
-This had the effect of also defining #raw(lang:"verbatim", "d/dt") as a coordinate vector field and #raw(lang:"verbatim", "dt") as a one-form field on the real line.] and #raw(lang:"verbatim", "Cartan") is a way of encapsulating the geometry, as specified by the Christoffel coefficients. The Christoffel coefficients are computed from the metric:
+This had the effect of also defining #raw(lang:"scheme", "d/dt") as a coordinate vector field and #raw(lang:"scheme", "dt") as a one-form field on the real line.] and #raw(lang:"scheme", "Cartan") is a way of encapsulating the geometry, as specified by the Christoffel coefficients. The Christoffel coefficients are computed from the metric:
 
 ```scheme
 (define Cartan
@@ -250,7 +244,7 @@ This establishes that for a 2-dimensional space the Euler-Lagrange equations are
 === Exercise 1.1: Motion on a Sphere <sec-1.4.1>
 The metric for a unit sphere, expressed in colatitude $theta$ and longitude $phi.alt$, is
 
-$ sans(g) (sans(u)\,sans(v))= sans(d) theta (sans(u))sans(d) theta (sans(v))+(sin theta)^2sans(d) phi.alt (sans(u))sans(d) phi.alt (sans(v)). $
+$ sans(g) (sans(u)\,sans(v))= sans(d) theta (sans(u))sans(d) theta (sans(v))+(sin theta)^2 sans(d) phi.alt (sans(u))sans(d) phi.alt (sans(v)). $
 
 Compute the Lagrange equations for motion of a free particle on the sphere and convince yourself that they describe great circles. For example, consider motion on the equator ($theta = pi\/2$) and motion on a line of longitude ($phi.alt$ is constant).
 ]
