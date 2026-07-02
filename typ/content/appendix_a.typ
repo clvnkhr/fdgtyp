@@ -28,7 +28,7 @@ are both compound expressions that name the same number as the numeral #raw(lang
 
 $ (quad italic("operator") quad italic("operand-1") quad dots.c quad italic("operand-n") quad) $
 
-where #emph[operator] names a procedure and #emph[operand-i] names the /i/th argument.#footnote[In Scheme every parenthesis is essential: you cannot add extra parentheses or remove any.]
+where #emph[operator] names a procedure and #emph[operand-i] names the $i$th argument.#footnote[In Scheme every parenthesis is essential: you cannot add extra parentheses or remove any.]
 
 == Lambda Expressions <sec-A.2>
 Just as we use numerals to name numbers, we use $lambda$-expressions to name procedures.#footnote[The logician Alonzo Church @church1941calculi invented $lambda$-notation to allow the specification of an anonymous function of a named parameter: $bold(lambda) x[upright("expression in ") x]$. This is read, \"That function of one argument that is obtained by substituting the argument for x in the indicated expression.\"] For example, the procedure that squares its input can be written:
@@ -51,7 +51,7 @@ $ mono("(lambda") quad italic("formal-parameters") quad italic("body") mono(")")
 where #emph[formal-parameters] is a list of symbols that will be the names of the arguments to the procedure and #emph[body] is an expression that may refer to the formal parameters. The value of a procedure call is the value of the body of the procedure with the arguments substituted for the formal parameters.
 
 == Definitions <sec-A.3>
-We can use the define construct to give a name to any object. For example, if we make the definitions#footnote[The definition of #raw(lang:"scheme", "square") given here is not the definition of #raw(lang:"scheme", "square in the Scmutils system. In Scmutils, =square") is extended for tuples to mean the sum of the squares of the components of the tuple. However, for arguments that are not tuples the Scmutils square does multiply the argument by itself.]
+We can use the define construct to give a name to any object. For example, if we make the definitions#footnote[The definition of #raw(lang:"scheme", "square") given here is not the definition of #raw(lang:"scheme", "square") in the Scmutils system. In Scmutils, #raw(lang:"scheme", "square") is extended for tuples to mean the sum of the squares of the components of the tuple. However, for arguments that are not tuples the Scmutils square does multiply the argument by itself.]
 
 ```scheme
 (define pi 3.141592653589793)
@@ -59,7 +59,7 @@ We can use the define construct to give a name to any object. For example, if we
 (define square (lambda (x) (* x x)))
 ```
 
-we can then use the symbols #raw(lang:"scheme", "pi") and =square wherever the numeral or the $lambda$-expression could appear. For example, the area of the surface of a sphere of radius 5 meters is
+we can then use the symbols #raw(lang:"scheme", "pi") and #raw(lang:"scheme", "square") wherever the numeral or the $lambda$-expression could appear. For example, the area of the surface of a sphere of radius 5 meters is
 
 ```scheme
 (* 4 pi (square 5))
@@ -223,7 +223,7 @@ Both #raw(lang:"scheme", "a-list") and #raw(lang:"scheme", "another-list") share
 
 There is a predicate #raw(lang:"scheme", "pair?") that is true of pairs and false on all other types of data.
 
-Vectors are simpler than lists. There is a constructor #raw(lang:"scheme", "vector") that can be used to make vectors and a selector =vector-ref for accessing the elements of a vector:
+Vectors are simpler than lists. There is a constructor #raw(lang:"scheme", "vector") that can be used to make vectors and a selector #raw(lang:"scheme", "vector-ref") for accessing the elements of a vector:
 
 ```scheme
 (define a-vector

@@ -331,7 +331,7 @@ Here we extract $sans(d) sans(x)$ and $sans(d) sans(y)$ from R2-rect-basis to av
 
 ```scheme
 (define alpha (literal-function 'alpha R2->R))
-(define beta (literal function 'beta R2->R))
+(define beta (literal-function 'beta R2->R))
 
 (let ((dx (ref (basis->1form-basis R2-rect-basis) 0))
       (dy (ref (basis-1>form-basis R2-rect-basis) 1)))
@@ -354,10 +354,7 @@ where $sans(n)$ is the outward-pointing normal to the surface $partial M$. Again
 
 Note that even the statement of this theorem cannot be made with the machinery we have developed at this point. The concepts \"outward-pointing normal,\" area $A$, and volume $V$ on the manifold are not definable without using a metric
 
-```scheme
-(see Chapter 9). However, for orthonormal rectangular coordinates in
-$\mathrm{R}^{3}$ we can interpret the integrands in terms of forms.
-```
+(see Chapter 9). However, for orthonormal rectangular coordinates in $upright(R)^3$ we can interpret the integrands in terms of forms.
 
 Let the vector field describing the flow of stuff be
 
@@ -372,7 +369,7 @@ because any part of the boundary will have $y upright("-") z$, $z upright("-") x
 ```scheme
 (define a (literal-manifold-function 'a-rect R3-rect))
 (define b (literal-manifold-function 'b-rect R3-rect))
-(define c (literal-manifold function 'c-rect R3-rect))
+(define c (literal-manifold-function 'c-rect R3-rect))
 
 (define flux-through-boundary-element
   (+ (* a (wedge dy dz))

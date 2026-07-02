@@ -367,7 +367,7 @@ function cleanTypstMath(math) {
 }
 
 function mathifyBareGreekInProse(body) {
-  const protectedSpan = /(```[\s\S]*?```|`[^`\n]*`|\$[^$\n]*\$)/g;
+  const protectedSpan = /(```[\s\S]*?```|`[^`\n]*`|\$[\s\S]*?\$)/g;
   return body
     .split(protectedSpan)
     .map(part => {
@@ -382,8 +382,38 @@ function mathifyBareGreekInProse(body) {
     .join("");
 }
 
+function repairInlineCodeTranspilation(body) {
+  const repaired = body
+    .replaceAll(
+      '#raw(lang:"scheme", "square in the Scmutils system. In Scmutils, =square")',
+      '#raw(lang:"scheme", "square") in the Scmutils system. In Scmutils, #raw(lang:"scheme", "square")',
+    )
+    .replaceAll(
+      '#raw(lang:"scheme", "r and =omega")',
+      '#raw(lang:"scheme", "r") and #raw(lang:"scheme", "omega")',
+    )
+    .replaceAll(
+      '#raw(lang:"scheme", "rho is the energy density, and =p")',
+      '#raw(lang:"scheme", "rho") is the energy density, and #raw(lang:"scheme", "p")',
+    );
+
+  const protectedSpan = /(```[\s\S]*?```|`[^`\n]*`|\$[\s\S]*?\$|#raw\(lang:"scheme", "[^"]*"\))/g;
+  return repaired
+    .split(protectedSpan)
+    .map(part => {
+      protectedSpan.lastIndex = 0;
+      if (!part || protectedSpan.test(part)) return part;
+      protectedSpan.lastIndex = 0;
+      return part.replace(
+        /(?<![=#])=([A-Za-z][A-Za-z0-9_:+*/<>!?-]*)(?=$|[\s.,;:)])/g,
+        (_match, code) => `#raw(lang:"scheme", "${code}")`,
+      );
+    })
+    .join("");
+}
+
 function cleanTypstOutput(body) {
-  return mathifyBareGreekInProse(body.replace(/\\\$([^$\n]+?)\\\$/g, (_match, math) => {
+  return mathifyBareGreekInProse(repairInlineCodeTranspilation(body.replace(/\\\$([^$\n]+?)\\\$/g, (_match, math) => {
     return `$${cleanTypstMath(math)}$`;
   })
     .replace(/(?<!\\)\$([^$\n]+?)(?<!\\)\$/g, (_match, math) => {
@@ -395,6 +425,14 @@ function cleanTypstOutput(body) {
     .replace(/^#block\[\n([\s\S]*?)^\]\n?/gm, (_match, inner) => `${inner.trimEnd()}\n`)
     .replace(/^\$\s*\$\n?/gm, "")
     .replace(/```(?:scheme)?\n#\| [^|\n]+ \|#\n```\n?/g, "")
+    .replace(
+      /#footnote\[The analogous recovery of coefficient tuples from vector fields is equation\s+```scheme\s+\(@3\.3\):[\s\S]*?```\]/g,
+      "#footnote[The analogous recovery of coefficient tuples from vector fields is equation @3.3: $b^i_(chi, sans(v)) = sans(v)(chi^i) compose chi^(-1)$.]",
+    )
+    .replace(
+      /```scheme\n\(see Chapter 9\)\. However, for orthonormal rectangular coordinates in\n\$\\mathrm\{R\}\^\{3\}\$ we can interpret the integrands in terms of forms\.\n```/g,
+      "(see Chapter 9). However, for orthonormal rectangular coordinates in $upright(R)^3$ we can interpret the integrands in terms of forms.",
+    )
     .replaceAll(
       "```scheme\n<<Cartan>>\n```",
       "```scheme\n(define Cartan\n  (Christoffel->Cartan\n   (metric->Christoffel-2 the-metric\n         (coordinate-system->basis R2-rect))))\n```",
@@ -432,6 +470,12 @@ function cleanTypstOutput(body) {
     .replaceAll("dots.h.c", "dots.c")
     .replaceAll("dots.h", "dots")
     .replaceAll("^komega", "^k omega")
+    .replaceAll("/i/th argument", "$i$th argument")
+    .replace(/#strong\[#strong\[([^\]\n]+)\]\]/g, "#strong[$1]")
+    .replaceAll("(literal function", "(literal-function")
+    .replaceAll("(literal-manifold function", "(literal-manifold-function")
+    .replaceAll("sans(() sans(", "sans(v) (sans(")
+    .replaceAll("u_(() x)", "u_i (x)")
     .replaceAll("sum_k sans(X) (sans(f))sans(c)_j^k", "sum_k sans(X)_k(sans(f))sans(c)_j^k")
     .replaceAll("$v = v^{0}{∂}/{∂x} + v^{1}{∂}/{∂y},$", "$sans(v) = sans(v)^0 partial\\/partial sans(x) + sans(v)^1 partial\\/partial sans(y),$")
     .replaceAll("$A = dx ∧ dy.$", "$sans(A) = sans(d) sans(x) \"∧\" sans(d) sans(y).$")
@@ -443,7 +487,7 @@ function cleanTypstOutput(body) {
     .replaceAll("[(](", "[(] (")
     .replaceAll("$180^compose$", "180°")
     .replaceAll("$z = 0$\\.)", "$z = 0$.)")
-    .replace(/(#scale\([^)]*\)\[[^\]]+\])\(/g, "$1 ("));
+    .replace(/(#scale\([^)]*\)\[[^\]]+\])\(/g, "$1 (")));
 }
 
 function figurePdf(file, width = "92%") {
@@ -619,6 +663,13 @@ function repairChapter2(body) {
   );
 }
 
+function repairChapter3(body) {
+  return body.replace(
+    /#footnote\[The analogous recovery of coefficient tuples from vector fields is equation\s+```scheme\s+\(@3\.3\):[\s\S]*?```\]/,
+    "#footnote[The analogous recovery of coefficient tuples from vector fields is equation @3.3: $b^i_(chi, sans(v)) = sans(v)(chi^i) compose chi^(-1)$.]",
+  );
+}
+
 function repairChapter9(body) {
   return body
     .replaceAll(
@@ -639,6 +690,7 @@ function applyChapterRepairs(stem, body) {
   if (stem === "prologue") return repairPrologue(body);
   if (stem === "chapter001") return repairChapter1(body);
   if (stem === "chapter002") return repairChapter2(body);
+  if (stem === "chapter003") return repairChapter3(body);
   if (stem === "chapter009") return repairChapter9(body);
   if (stem === "chapter011") return repairChapter11(body);
   return body;
@@ -1044,8 +1096,10 @@ function convert(file) {
   const bodyWithFigures = insertFigurePdfs(stem, bodyWithSectionLabels);
   const bodyWithChapterRepairs = applyChapterRepairs(stem, bodyWithFigures);
   const bodyWithMergedRawBlocks = mergeConsecutiveRawBlocks(bodyWithChapterRepairs);
-  const bodyWithRefs = replaceCitationsAndEquationRefs(bodyWithMergedRawBlocks);
+  const bodyWithPostMergeRepairs = stem === "chapter003" ? repairChapter3(bodyWithMergedRawBlocks) : bodyWithMergedRawBlocks;
+  const bodyWithRefs = replaceCitationsAndEquationRefs(bodyWithPostMergeRepairs);
   const bodyWithPageRefs = replaceInternalPageRefs(stem, bodyWithRefs);
+  const bodyWithFinalRepairs = stem === "chapter003" ? repairChapter3(bodyWithPageRefs) : bodyWithPageRefs;
 
   const content = [
     `// Generated from ../../fdg-book/scheme/org/${file}.`,
@@ -1053,7 +1107,7 @@ function convert(file) {
     `#import "../lib.typ": fdg-chapter, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX`,
     "",
     `#fdg-chapter(${JSON.stringify(typstEscape(displayTitle))}, numbered: ${numbered}, eq-prefix: ${JSON.stringify(equationLabelPrefix(stem) ?? "0")}, ref-label: ${JSON.stringify(chapterLabel(stem) ?? "")})[`,
-    bodyWithPageRefs.trimEnd(),
+    bodyWithFinalRepairs.trimEnd(),
     "]",
     "",
   ].join("\n");

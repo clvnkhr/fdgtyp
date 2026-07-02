@@ -78,7 +78,7 @@ We can recover the coordinate components of the vector field by applying the vec
 
 Coordinate Representation
 
-The vector field $sans(v)$ has a coordinate representation $v$: $ sans(() sans(f)) (sans(m))= D (f compose chi^(-1)) (chi (sans(m)))b (chi (sans(m)))= D f (x)b (x)= v (f) (x)\, $ <3.7> with the definitions $f = sans(f) compose chi^(-1)$ and $x = chi (sans(m))$. The function $b$ is the coefficient function for the vector field $sans(v)$. It provides a scale factor for the component in each coordinate direction. However, $v$ is the coordinate representation of the vector field $sans(v)$ in that it takes directional derivatives of coordinate representations of manifold functions.
+The vector field $sans(v)$ has a coordinate representation $v$: $ sans(v) (sans(f)) (sans(m))= D (f compose chi^(-1)) (chi (sans(m)))b (chi (sans(m)))= D f (x)b (x)= v (f) (x)\, $ <3.7> with the definitions $f = sans(f) compose chi^(-1)$ and $x = chi (sans(m))$. The function $b$ is the coefficient function for the vector field $sans(v)$. It provides a scale factor for the component in each coordinate direction. However, $v$ is the coordinate representation of the vector field $sans(v)$ in that it takes directional derivatives of coordinate representations of manifold functions.
 
 Given a vector field `v` and a coordinate system coordsys we can construct the coordinate representation of the vector field.#footnote[The `make-operator` procedure takes a procedure and returns an operator.]
 
@@ -106,10 +106,10 @@ The vector fields on a manifold form a vector space over the field of real numbe
 
 Vector fields have the following properties. Let $sans(u)$ and $sans(v)$ be vector fields and let $alpha$ be a real-valued manifold function. Then $ (sans(u) + sans(v)) (f)= sans(u) (sans(f))+ sans(v) (sans(f)) (alpha sans(f)) (sans(f))= alpha (sans(u) (sans(f))). $ <3.8>
 
-Vector fields are linear operators. Assume $sans(f)$ and $sans(g)$ are functions on the manifold, $a$ and $b$ are real constants.#footnote[If $sans(f)$ has structured output then $sans(v) (sans(f))$ is the structure resulting from $sans(v)$ being applied to each component of $sans(f)$.] The constants $a$ and $b$ are not manifold functions, because vector fields take derivatives. See equation @3.13. $ sans(v) (a sans(f) + b sans(g)) (sans(m))= a sans(v) (sans(f)) (sans(m))+ b sans(v) (sans(g)) (sans(m))sans(v) (a sans(f)) (sans(m))= a sans(v) (sans(f)) (sans(m)) $ <3.9> Vector fields satisfy the product rule (Leibniz rule). $ sans(() sans(f g)) (sans(m))= sans(v) (sans(f)) (sans(m))sans(g) (sans(m))+ sans(f) (sans(m))sans(v) (sans(g)) (sans(m)) $ <3.10> Vector fields satisfy the chain rule. Let $F$ be a function on the range of $sans(f)$. $ sans(v) (F compose sans(f)) (sans(m))= D F (sans(f) (sans(m)))sans(v) (sans(f)) (sans(m)) $ <3.11>
+Vector fields are linear operators. Assume $sans(f)$ and $sans(g)$ are functions on the manifold, $a$ and $b$ are real constants.#footnote[If $sans(f)$ has structured output then $sans(v) (sans(f))$ is the structure resulting from $sans(v)$ being applied to each component of $sans(f)$.] The constants $a$ and $b$ are not manifold functions, because vector fields take derivatives. See equation @3.13. $ sans(v) (a sans(f) + b sans(g)) (sans(m))= a sans(v) (sans(f)) (sans(m))+ b sans(v) (sans(g)) (sans(m))sans(v) (a sans(f)) (sans(m))= a sans(v) (sans(f)) (sans(m)) $ <3.9> Vector fields satisfy the product rule (Leibniz rule). $ sans(v) (sans(f g)) (sans(m))= sans(v) (sans(f)) (sans(m))sans(g) (sans(m))+ sans(f) (sans(m))sans(v) (sans(g)) (sans(m)) $ <3.10> Vector fields satisfy the chain rule. Let $F$ be a function on the range of $sans(f)$. $ sans(v) (F compose sans(f)) (sans(m))= D F (sans(f) (sans(m)))sans(v) (sans(f)) (sans(m)) $ <3.11>
 
 == Coordinate-Basis Vector Fields <sec-3.2>
-For an $n$-dimensional manifold any set of $n$ linearly independent vector fields#footnote[A set of vector fields, ${ sans(v)_i }$, is linearly independent with respect to manifold functions if we cannot find nonzero manifold functions, ${ sans(a)_i }$, such that $ sum_i sans(a)_i sans(v)_i (sans(f))= sans(0) (sans(f))\, $ <3.58> where $sans(0)$ is the vector field such that $sans(0) (sans(f)) (sans(m))= 0$ for all $sans(f)$ and $sans(m)$.] form a #emph[basis] in that any vector field can be expressed as a linear combination of the basis fields with manifold-function coefficients. Given a coordinate system we can construct a basis as follows: we choose the component tuple $b_i (x)$ (see equation @3.5) to be the $i$th unit tuple $u_(() x)$---an up tuple with one in the $i$th position and zeros in all other positions---selecting the partial derivative in that direction. Here $u_i$ is a constant function. Like $b$, it formally takes coordinates of a point as an argument, but it ignores them. We then define the basis vector field $sans(X)_i$ by $ sans(X)_i (sans(f)) (sans(m))= D (sans(f) compose chi^(-1)) (chi (sans(m)))u_i (chi (sans(m)))= partial_i (sans(f) compose chi^(-1)) (chi (sans(m))). $ <3.12>
+For an $n$-dimensional manifold any set of $n$ linearly independent vector fields#footnote[A set of vector fields, ${ sans(v)_i }$, is linearly independent with respect to manifold functions if we cannot find nonzero manifold functions, ${ sans(a)_i }$, such that $ sum_i sans(a)_i sans(v)_i (sans(f))= sans(0) (sans(f))\, $ <3.58> where $sans(0)$ is the vector field such that $sans(0) (sans(f)) (sans(m))= 0$ for all $sans(f)$ and $sans(m)$.] form a #emph[basis] in that any vector field can be expressed as a linear combination of the basis fields with manifold-function coefficients. Given a coordinate system we can construct a basis as follows: we choose the component tuple $b_i (x)$ (see equation @3.5) to be the $i$th unit tuple $u_i (x)$---an up tuple with one in the $i$th position and zeros in all other positions---selecting the partial derivative in that direction. Here $u_i$ is a constant function. Like $b$, it formally takes coordinates of a point as an argument, but it ignores them. We then define the basis vector field $sans(X)_i$ by $ sans(X)_i (sans(f)) (sans(m))= D (sans(f) compose chi^(-1)) (chi (sans(m)))u_i (chi (sans(m)))= partial_i (sans(f) compose chi^(-1)) (chi (sans(m))). $ <3.12>
 
 In terms of $sans(X)_i$ the vector field of equation @3.6 is $ sans(v) (sans(f)) (sans(m))= sum_i sans(X)_i (sans(f)) (sans(m))b^i (chi (sans(m))). $ <3.13> We can also write $ sans(v) (sans(f)) (sans(m))= sans(X) (sans(f)) (sans(m))b (chi (sans(m)))\, $ <3.14> letting the tuple algebra do its job.
 
@@ -211,7 +211,7 @@ Note that these are just the series for $cos Delta t$ and $sin Delta t$, so the 
 
 For functions whose series expansions have finite radius of convergence, evolution can progress beyond the point at which the Taylor series converges because evolution is well defined whenever the integral curve is defined.
 
-#strong[#strong[Exercise 3.1: State Derivatives]]
+#strong[Exercise 3.1: State Derivatives]
 
 Newton\'s equations for the motion of a particle in a plane, subject to a force that depends only on the position in the plane, are a system of second-order differential equations for the rectangular coordinates $(X\,Y)$ of the particle: $ D^2 X (t)= A_x (X (t)\,Y (t))upright(" and ") D^2 Y (t)= A_y (X (t)\,Y (t))\, $ <3.30> where $A$ is the acceleration of the particle.
 
@@ -242,11 +242,7 @@ Given a coordinate function $chi$, we define the coordinate-basis one-form field
 
 The general one-form field $omega$ is a linear combination of coordinate-basis one-form fields: $ omega (sans(v))=(a compose chi)tilde(sans(X)) (sans(v)) $ <3.41> with coefficient-function tuple $a (x)$, for $x = chi (sans(m))$. We can write this more simply as $ omega (sans(v))=(a compose chi)tilde(sans(X)) (sans(v))\, $ <3.42> because everything is evaluated at $sans(m)$.
 
-The coefficient tuple can be recovered from the one-form field:#footnote[The analogous recovery of coefficient tuples from vector fields is equation
-
-```scheme
-(@3.3): $b^i_{\chi, \mathsf{v}} = \mathsf{v}(\chi^i) \circ \chi^{-1}$.
-```] $ a_i (x)= omega (tilde(X)_i) (chi^(-1) (x)). $ <3.43> This follows from the dual relationship (@3.41). We can see this as a program:#footnote[The procedure `components->1form-field` is analogous to the procedure `components->vector-field` introduced earlier.]
+The coefficient tuple can be recovered from the one-form field:#footnote[The analogous recovery of coefficient tuples from vector fields is equation @3.3: $b^i_(chi, sans(v)) = sans(v)(chi^i) compose chi^(-1)$.] $ a_i (x)= omega (tilde(X)_i) (chi^(-1) (x)). $ <3.43> This follows from the dual relationship (@3.41). We can see this as a program:#footnote[The procedure `components->1form-field` is analogous to the procedure `components->vector-field` introduced earlier.]
 
 ```scheme
 (define omega
@@ -363,15 +359,15 @@ The coefficient tuple $a (x)$ is a down structure compatible for contraction wit
 
 Comparing equation @3.56 with equation @3.23 we see that one-form components and vector components transform oppositely, so that $ a (x)b (x)= a'(x')b'(x')\, $ <3.57> as expected because $omega (sans(v)) (sans(m))$ is independent of coordinates.
 
-#strong[#strong[Exercise 3.2: Verification]]
+#strong[Exercise 3.2: Verification]
 
 Verify that the coefficients of a one-form field transform as described in equation @3.56. You should use equation @3.44 in your derivation.
 
-#strong[#strong[Exercise 3.3: Hill Climbing]]
+#strong[Exercise 3.3: Hill Climbing]
 
 The topography of a region on the Earth can be specified by a manifold function $sans(h)$ that gives the altitude at each point on the manifold. Let $sans(v)$ be a vector field on the manifold, perhaps specifying a direction and rate of walking at every point on the manifold.
 
-#strong[#strong[a.]] Form an expression that gives the power that must be expended to follow the vector field at each point.
+#strong[a.] Form an expression that gives the power that must be expended to follow the vector field at each point.
 
-#strong[#strong[b.]] Write this as a computational expression.
+#strong[b.] Write this as a computational expression.
 ]

@@ -556,7 +556,7 @@ Test particles move along geodesics in spacetime. Now that we have a metric for 
            (chart R1-rect)))
 ```
 
-This equation will satisfy the geodesic equations for compatible values of the radius #raw(lang:"scheme", "r") and the angular velocity =omega. If you substitute this into the geodesic equation and set the residual to zero you will obtain a constraint relating #raw(lang:"scheme", "r and =omega"). Do it.
+This equation will satisfy the geodesic equations for compatible values of the radius #raw(lang:"scheme", "r") and the angular velocity #raw(lang:"scheme", "omega"). If you substitute this into the geodesic equation and set the residual to zero you will obtain a constraint relating #raw(lang:"scheme", "r") and #raw(lang:"scheme", "omega"). Do it.
 
 Surprise: You should find out that $omega^2 r^3 = G M$ --- Kepler\'s law!
 
@@ -664,7 +664,7 @@ The associated stress-energy tensor is
     T))
 ```
 
-where #raw(lang:"scheme", "rho is the energy density, and =p") is the pressure in an ideal fluid model.
+where #raw(lang:"scheme", "rho") is the energy density, and #raw(lang:"scheme", "p") is the pressure in an ideal fluid model.
 
 The Robertson-Walker equations are:
 
