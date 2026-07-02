@@ -8,12 +8,17 @@
 
 #fdg-title-page()
 
+#set page(numbering: "i")
+
 #outline(title: "Contents")
 #pagebreak()
 
 #fdg-indexed-body[
   #include "content/preface.typ"
   #include "content/prologue.typ"
+  #pagebreak()
+  #set page(numbering: "1")
+  #counter(page).update(1)
   #include "content/chapter001.typ"
   #include "content/chapter002.typ"
   #include "content/chapter003.typ"
@@ -31,6 +36,7 @@
   #include "content/references.typ"
 ]
 
+#set page(numbering: "1")
 #fdg-index-page()
 
 #include "content/errata.typ"

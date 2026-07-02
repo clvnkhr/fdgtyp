@@ -1,4 +1,5 @@
 #import "@preview/in-dexter:0.7.2": index, make-index
+#import "lib.typ": fdg-draft-mode
 
 #let fdg-code-index(term) = index(
   term,
@@ -6,7 +7,9 @@
   apply-casing: false,
 )
 
-#let fdg-indexed-body(body) = {
+#let fdg-indexed-body(body) = if fdg-draft-mode {
+  body
+} else {
   show "Abuse of notation": it => [#index("Abuse of notation")#it]
   show "Access chain": it => [#index("Access chain")#it]
   show "Ampere": it => [#index("Ampere")#it]
@@ -272,7 +275,9 @@
   body
 }
 
-#let fdg-index-page() = {
+#let fdg-index-page() = if fdg-draft-mode {
+  none
+} else {
   pagebreak()
   heading(level: 1, numbering: none, outlined: true)[Index]
 

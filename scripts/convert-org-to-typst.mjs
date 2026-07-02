@@ -590,10 +590,19 @@ function repairChapter11(body) {
 }
 
 function repairChapter1(body) {
-  return body.replaceAll(
+  return body
+    .replaceAll(
     "When you get to the Pole note that the stick is perpendicular to the line you inscribed in the ice. But you started with that stick parallel to that line and you kept the stick pointing in the same direction on the Earth throughout your walk --- how did it change orientation?",
     "When you get to the Pole note that the stick is perpendicular to the line you inscribed in the ice. But you started with that stick parallel to that line and you kept the stick pointing in the same direction on the Earth throughout your walk --- how did it change orientation?<intro-parallel-transport>",
-  );
+    )
+    .replaceAll(
+      "We will explain this in depth in Chapter 7.",
+      "We will explain this in depth in Section #fdg-ref-page(<sec-7.10>, suffix: \".\")",
+    )
+    .replaceAll(
+      "we will explain it in Chapter 7.",
+      "we will explain it in Section #fdg-ref-page(<sec-7.10>, suffix: \".\")",
+    );
 }
 
 function repairPrologue(body) {
@@ -1058,7 +1067,16 @@ const chapters = files.map(convert);
 
 const indexedIncludes = chapters
   .filter(({ stem }) => stem !== "errata")
-  .map(({ stem }) => `  #include "content/${stem}.typ"`)
+  .map(({ stem }) => {
+    const include = `  #include "content/${stem}.typ"`;
+    if (stem !== "chapter001") return include;
+    return [
+      "  #pagebreak()",
+      "  #set page(numbering: \"1\")",
+      "  #counter(page).update(1)",
+      include,
+    ].join("\n");
+  })
   .join("\n");
 const errataInclude = '#include "content/errata.typ"';
 
@@ -1070,11 +1088,14 @@ writeFileSync(
     + `#import "index.typ": fdg-indexed-body, fdg-index-page\n\n`
     + `#show: fdg-book\n\n`
     + `#fdg-title-page()\n\n`
+    + `#set page(numbering: "i")\n`
+    + `\n`
     + `#outline(title: "Contents")\n`
     + `#pagebreak()\n\n`
     + `#fdg-indexed-body[\n`
     + `${indexedIncludes}\n`
     + `]\n\n`
+    + `#set page(numbering: "1")\n`
     + `#fdg-index-page()\n\n`
     + `${errataInclude}\n`,
 );

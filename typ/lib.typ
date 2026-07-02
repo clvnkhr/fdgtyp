@@ -1,6 +1,7 @@
 #import "@preview/iridis:0.1.0"
 #import "@preview/metalogo:1.2.0": LaTeX, TeX
 #import "@preview/cetz:0.5.2"
+#import "@preview/hydra:0.6.3": hydra
 
 #let curl = math.op("curl")
 #let grad = math.op("grad")
@@ -12,6 +13,7 @@
 #let fdg-raw-fill = rgb("#fffdf8")
 #let fdg-raw-stroke = rgb("#eadfcf")
 #let fdg-raw-text = rgb("#27211d")
+#let fdg-draft-mode = sys.inputs.at("draft", default: "false") == "true"
 #let fdg-iridis-palette = (
   rgb("#7d00e5"),
   rgb("#ff0000"),
@@ -57,6 +59,27 @@
   [#fdg-ref(target, suffix: ",") #fdg-page-ref(page-target, suffix: suffix)]
 }
 
+#let fdg-running-header = context {
+  let page-numbering = here().page-numbering()
+  if page-numbering == none {
+    none
+  } else {
+    let page-number = numbering(page-numbering, counter(page).get().first())
+    let page = if page-numbering == "i" {
+      text(size: 9pt, style: "italic")[#page-number]
+    } else {
+      text(size: 9pt)[#page-number]
+    }
+    let title = text(size: 9pt, style: "italic")[#hydra(1)]
+    let header = if calc.odd(here().page()) {
+      [#title #h(1fr) #page]
+    } else {
+      [#page #h(1fr) #title]
+    }
+    [#header #v(-0.9em) #line(length: 100%, stroke: 0.35pt)]
+  }
+}
+
 #let fdg-book(body) = {
   set document(
     title: "Functional Differential Geometry",
@@ -66,6 +89,8 @@
     paper: "us-letter",
     margin: (x: 0.82in, y: 0.78in),
     numbering: "1",
+    header: fdg-running-header,
+    footer: none,
     // fill: black,
   )
   set text(
@@ -240,11 +265,22 @@
 }
 
 #let fdg-title-page() = {
-  set page(numbering: none, margin: 0pt)
-  fdg-cover-page()
-  pagebreak()
+  set page(numbering: none)
+  if fdg-draft-mode {
+    align(center)[
+      #v(32%)
+      #text(size: 25pt, weight: "semibold")[Functional Differential Geometry]
 
-  set page(margin: (x: 0.82in, y: 0.78in))
+      #v(1.2em)
+      #text(size: 12pt, fill: rgb("#777"))[Draft mode]
+    ]
+    pagebreak()
+  } else {
+    page(margin: 0pt, header: none, footer: none)[
+      #fdg-cover-page()
+    ]
+  }
+
   align(center)[
     #v(18%)
     #text(size: 25pt, weight: "semibold")[Functional Differential Geometry]
@@ -300,11 +336,16 @@
     Albert Einstein, in Relativity, the Special and General Theory, (1961), p. v
   ]
   pagebreak()
-  set page(numbering: "1")
 }
 
 #let fdg-chapter(title, body, numbered: true, eq-prefix: none, ref-label: "") = {
   pagebreak(weak: true)
+  if numbered or title not in ("Preface", "Prologue") {
+    set page(numbering: "1")
+  }
+  if ref-label == "chap-1" {
+    counter(page).update(1)
+  }
   counter(math.equation).update(0)
   if eq-prefix != none {
     fdg-equation-prefix.update(eq-prefix)
