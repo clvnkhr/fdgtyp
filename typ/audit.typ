@@ -276,7 +276,7 @@ Chapter 11 is a special case because the Org source contains empty equation envi
   [ID], [Region], [Status], [Finding],
   [C1-001], [Artifact metadata], [#st-accepted], [Published PDF is 249 pages at 432 x 639.36 pt. Current book PDF is 170 US-letter pages. Draft PDF is 167 US-letter pages. Letter layout is intentional; page-for-page reproduction is out of scope.],
   [C1-002], [Cover/title], [#st-accepted], [Published PDF begins with a simple title leaf and title page. `fdg-book.pdf` begins with a custom Typst cover, then a title page with title/authors/MIT Press location text. `typ/main.pdf` uses a draft title leaf instead of the custom cover. This is intentional.],
-  [C1-003], [Copyright/CIP], [#st-partial-exact], [Current book and draft PDFs preserve the copyright, Creative Commons license text, MIT Press sales paragraph, Computer Modern/LaTeX statement, Library of Congress data, ISBN, subject lines, classification, control number, and print line. Extraction differs in punctuation/ligatures/underscore handling, but no content loss was found in the sampled front matter.],
+  [C1-003], [Copyright/CIP], [#st-partial-exact], [Current book and draft PDFs preserve the copyright, Creative Commons license text, MIT Press sales paragraph, Computer Modern/LaTeX statement, Library of Congress data, ISBN, subject lines, classification, control number, and print line. Source of current rendering: `typ/fdg-lib/title.typ:40-69`; caller: `typ/main.typ` title setup. Published evidence: front matter pages from `pdftotext -f 1 -l 10 fdg-book/fdg_book.pdf -`; current evidence: `pdftotext -f 1 -l 10 fdg-book.pdf -`. Extraction differs in punctuation/ligatures/underscore handling, but no content loss was found in the sampled front matter.],
   [C1-004], [Einstein quote], [#st-accepted], [The quote text and attribution are present. Published PDF renders visible quotation marks around the passage; current Typst uses a quote block without literal enclosing quotation marks. Treat as accepted styling unless visual inspection later shows ambiguity.],
   [C1-005], [Contents], [#st-accepted], [Published contents is less granular and uses published pagination. Current Typst contents is generated from headings, includes more subsections/exercises, and uses Typst page numbers. Ordering is coherent and no missing top-level region was found in the sampled contents.],
   [C1-006], [Page numbering], [#st-accepted], [Current Typst sets front matter to roman numerals after title pages, then resets chapter 1 to Arabic page 1. Absolute and roman page numbers differ from the published PDF because layout and contents granularity differ intentionally.],
@@ -292,14 +292,14 @@ Chunk 1 front-matter follow-up findings:
   stroke: 0.4pt,
   inset: 4pt,
   [ID], [Region], [Status], [Finding / requested correction],
-  [C1-010], [License banner], [#st-bug], [The current Typst copyright page is missing the Creative Commons `CC BY-NC-SA` banner/mark from the desired front matter treatment. Record as a visual/content fidelity issue; no implementation change made in this audit pass.],
-  [C1-011], [MIT Press sales email], [#st-bug], [`special_sales@mitpress.mit.edu` should be set as raw/monospace text. `creativecommons.org` should remain in the main text font, which is currently correct.],
-  [C1-012], [LaTeX logo], [#st-exact], [`LaTeX` is rendered stylistically with the expected baseline offsets via the `metalogo` import. This is correct and should be preserved.],
-  [C1-013], [CIP heading spacing], [#st-bug], [There should be additional vertical space before `Library of Congress Cataloging-in-Publication Data`. Current front matter needs visual spacing adjustment.],
-  [C1-014], [CIP `p. cm.` line], [#st-bug], [The `p. cm.` line should be indented relative to the surrounding Cataloging-in-Publication lines.],
-  [C1-015], [Print line], [#st-bug], [The final print-number line `10 9 8 7 6 5 4 3 2 1` should have wider spacing between numbers than the current Typst rendering.],
-  [C1-016], [Classification punctuation], [#st-bug], [`516.3'6--dc23` should use an em dash before `dc23`, matching the published/CIP typography more closely.],
-  [C1-017], [Control number alignment], [#st-bug], [`2012042107` should be right-aligned on the copyright/CIP page.],
+  [C1-010], [License banner], [#st-bug], [Current rendering is built in `typ/fdg-lib/title.typ:40-69`; the license paragraph is at `:43`. The copyright page is missing the Creative Commons `CC BY-NC-SA` banner/mark from the desired front matter treatment. Repair entry point: add the mark/banner in `title.typ` near the license paragraph, then visually compare current `fdg-book.pdf` front matter against published PDF front matter pages. No implementation change made in this audit pass.],
+  [C1-011], [MIT Press sales email], [#st-bug], [Current source is `typ/fdg-lib/title.typ:47`. `special_sales@mitpress.mit.edu` should be set as raw/monospace text; `creativecommons.org` in `title.typ:43` should remain in the main text font, which is currently correct. Repair should be local to the sales paragraph, likely using Typst raw/monospace markup for only the email address.],
+  [C1-012], [LaTeX logo], [#st-exact], [`typ/fdg-lib/title.typ:49` uses `#LaTeX`; `typ/fdg-lib/title.typ:1` imports it from the `metalogo` package via `basics.typ`. The rendered stylistic baseline offsets are correct and should be preserved.],
+  [C1-013], [CIP heading spacing], [#st-bug], [Current source is `typ/fdg-lib/title.typ:51-52`: only `#v(1em)` precedes `Library of Congress Cataloging-in-Publication Data`. There should be additional vertical space before this heading. Repair entry point: adjust the vertical spacing in `title.typ`, then visually compare the copyright/CIP page.],
+  [C1-014], [CIP `p. cm.` line], [#st-bug], [Current source is `typ/fdg-lib/title.typ:56`. The `p. cm.` line should be indented relative to surrounding Cataloging-in-Publication lines. Repair entry point: wrap or isolate that line in `title.typ` with the desired indentation rather than changing generated content.],
+  [C1-015], [Print line], [#st-bug], [Current source is `typ/fdg-lib/title.typ:67-68`. The final print-number line `10 9 8 7 6 5 4 3 2 1` should have wider spacing between numbers than the current Typst rendering. Repair entry point: use explicit spacing or a small table/sequence in `title.typ`.],
+  [C1-016], [Classification punctuation], [#st-bug], [Current source is `typ/fdg-lib/title.typ:63`, which has `516.3'6--dc23`. It should use an em dash before `dc23`, matching the published/CIP typography more closely. Repair is a local punctuation change in `title.typ`.],
+  [C1-017], [Control number alignment], [#st-bug], [Current source is `typ/fdg-lib/title.typ:65`. `2012042107` should be right-aligned on the copyright/CIP page. Repair entry point: align just this line in `title.typ` and visually compare the front matter page.],
 )
 
 Chunk 1 evidence commands:
@@ -313,6 +313,237 @@ pdfinfo fdg-book.pdf
 pdfinfo typ/main.pdf
 sed -n '1,140p' typ/fdg-lib/title.typ
 sed -n '1,120p' typ/main.typ
+```
+
+== Chunk 2 Audit Entries: References and Citations
+
+#table(
+  columns: (0.85in, 1.35in, 1.15in, auto),
+  stroke: 0.4pt,
+  inset: 4pt,
+  [ID], [Region], [Status], [Finding],
+  [C2-001], [Reference order], [#st-exact], [Published PDF, `fdg-book/scheme/org/references.org:4-64`, `typ/references.bib:1-156`, and `typ/fdg-lib/refs.typ:12-34` now agree on the 21-entry order: SICP is [1], Turtle Geometry [2], Bishop/Goldberg [3], Carroll [4], Church [5], Flanders [6], Frankel [7], Galilei [8], Hawking/Ellis [9], IEEE Scheme [10], MTW [11], Pais [12], Papert [13], Schutz [14], Singer/Thorpe [15], Spivak Comprehensive [16], Spivak Calculus [17], Sussman/Wisdom Role [18], SICM [19], Wald [20], software [21]. Citation seeding implementation lives at `typ/fdg-lib/refs.typ:36-43`.],
+  [C2-002], [Citation numbering], [#st-partial-exact], [Sampled current PDF callouts match the published numbering after citation-order seeding: Turtle Geometry [2], Galileo Galilei [8], SICM [19], Spivak Calculus [17], Bishop/Goldberg [3], MTW/Carroll/Schutz/Wald [11]/[4]/[14]/[20], IEEE Scheme [10]. A later pass should mechanically check every citation callout.],
+  [C2-003], [Bibliography style], [#st-bug], [Current visible bibliography source is `typ/content/references.typ:5-6`, generated by `scripts/convert-org-to-typst.mjs:1215-1217`, using `#bibliography("../references.bib", title: none, full: true, style: "ieee")`. This preserves numbering but renders IEEE-style prose, not the published bibliography prose from `fdg-book/scheme/org/references.org:4-64`. Repair entry point: either change bibliography style machinery or implement the manual visible bibliography prototype in C2-F02/C2-F05 while keeping hidden bibliography/citation resolution.],
+  [C2-004], [Author names], [#st-bug], [Entry data locations: [1] is `fdg-book/scheme/org/references.org:4-5` and `typ/references.bib:1-7`; [19] is Org `:58-59` and BibTeX `:138-144`. Current bibliography abbreviates most authors to initials and renders `and` where published prose uses `with Julie Sussman` and `with Meinhard E. Mayer`. Repair likely requires manual published-prose rendering, because BibTeX author lists cannot express these `with` phrases using IEEE style.],
+  [C2-005], [Entry [6]], [#st-bug], [Published [6] is `fdg-book/scheme/org/references.org:19-20`. BibTeX entry is `typ/references.bib:39-46`, with `note = {Dover, New York, 1989}` at `:45`. Current IEEE output drops the note. Repair entry point: custom/manual visible bibliography or style support that renders `note` for this entry.],
+  [C2-006], [Entry [10]], [#st-bug], [Published [10] is `fdg-book/scheme/org/references.org:30-31`. BibTeX entry is `typ/references.bib:68-73`, with `organization` at `:70` and `note`/standard number at `:72`. Current IEEE output renders only the title/year and loses the standard number/organization. Repair entry point: manual visible bibliography or adjusted entry/style mapping for manuals.],
+  [C2-007], [Entry [18]], [#st-bug], [Published [18] is `fdg-book/scheme/org/references.org:54-56`. BibTeX entry is `typ/references.bib:129-136`. Current output quotes the title, says `technical report AIM-2002–18`, and abbreviates the month; published prose says `Artificial Intelligence Laboratory memo AIM-2002-018, November 2002.` Repair should preserve published wording exactly in a manual visible bibliography or custom renderer.],
+  [C2-008], [Entry [21]], [#st-bug], [Published [21] is `fdg-book/scheme/org/references.org:63-64`. BibTeX entry is `typ/references.bib:153-156`. Current output renders an IEEE online citation; published prose reads `Free software is available at:` followed by the URL. Repair likely requires manual visible bibliography text.],
+  [C2-009], [Publisher/address order], [#st-bug], [For many book entries, published prose uses `Publisher, Address, Year`; current IEEE output often uses `Address: Publisher, Year` or separates sentences. Examples: [1], [2], [3], [11], [15], [16], [17], [19].],
+  [C2-010], [Title styling], [#st-unchecked], [Published bibliography visually italicizes book/report titles in the source/PDF. `pdftotext` cannot verify styling; a visual PDF inspection or screenshot comparison should decide whether generated bibliography title styling is acceptable.],
+)
+
+Chunk 2 reference-entry map:
+
+#table(
+  columns: (0.45in, 1.6in, 1.8in, auto),
+  stroke: 0.35pt,
+  inset: 3pt,
+  [No.], [BibTeX key], [Published lead], [Current status],
+  [1], [`abelson1996sicp`], [SICP, full names with Julie Sussman], [#st-bug author style],
+  [2], [`abelson1980turtle`], [Turtle Geometry], [#st-bug author/punctuation style],
+  [3], [`bishop1968tensor`], [Tensor Analysis on Manifolds], [#st-bug publisher/address style],
+  [4], [`carroll2003spacetime`], [Spacetime and Geometry], [#st-bug author style],
+  [5], [`church1941calculi`], [The Calculi of Lambda-Conversion], [#st-bug author style],
+  [6], [`flanders1963forms`], [Differential Forms... + Dover note], [#st-bug missing rendered note],
+  [7], [`frankel1997geometry`], [The Geometry of Physics], [#st-bug author style],
+  [8], [`galilei1623assayer`], [Il Saggiatore], [#st-bug author style],
+  [9], [`hawking1973large`], [The Large Scale Structure of Space-Time], [#st-bug hyphen/title style],
+  [10], [`ieee1991scheme`], [IEEE Std 1178-1990], [#st-bug missing standard/org],
+  [11], [`misner1973gravitation`], [Gravitation], [#st-bug author/address style],
+  [12], [`pais1982subtle`], [Subtle is the Lord], [#st-bug author style],
+  [13], [`papert1980mindstorms`], [Mindstorms], [#st-bug author style],
+  [14], [`schutz1985first`], [B. Schutz A First Course...], [#st-bug punctuation/style],
+  [15], [`singer1967topology`], [Lecture Notes on Elementary Topology and Geometry], [#st-bug author/address style],
+  [16], [`spivak1970comprehensive`], [A Comprehensive Introduction to Differential Geometry], [#st-bug author/address style],
+  [17], [`spivak1965calculus`], [Calculus on Manifolds], [#st-bug author/address style],
+  [18], [`sussman2002role`], [Role of Programming memo], [#st-bug report wording],
+  [19], [`sussman2001sicm`], [SICM, with Meinhard E. Mayer], [#st-bug author style],
+  [20], [`wald1984general`], [General Relativity], [#st-bug author style],
+  [21], [`fdg-software`], [Free software is available at], [#st-bug URL prose],
+)
+
+Chunk 2 potential fix notes, not yet implemented:
+
+#table(
+  columns: (0.9in, 1.35in, 1.15in, auto),
+  stroke: 0.4pt,
+  inset: 4pt,
+  [ID], [Idea], [Status], [Initial finding],
+  [C2-F01], [Custom CSL/bibliography style], [#st-unchecked], [A custom CSL-style route may improve author-name and punctuation choices while preserving generated bibliography machinery. Unknown risk: exact published quirks such as `with Julie Sussman`, `Free software is available at:`, the [6] Dover note, and the [18] memo wording may be difficult or impossible to express cleanly in CSL. Needs a small prototype before choosing.],
+  [C2-F02], [Manual visible bibliography], [#st-partial-exact], [Most exact route is to render the visible references from a structured published-order list or directly from `fdg-book/scheme/org/references.org:4-64`, while keeping Typst citations resolved through a hidden generated bibliography. Current generated visible source is only `typ/content/references.typ:5-6`; generator branch is `scripts/convert-org-to-typst.mjs:1215-1217`. A local test showed that `@abelson1996sicp` fails without any bibliography, but compiles as `[1]` when `#bibliography("typ/references.bib", ...)` is hidden in a zero-sized box. The hidden bibliography did not appear in extracted PDF text in that test.],
+  [C2-F03], [Generator-owned solution], [#st-accepted], [If manual visible bibliography is chosen, it should be generated by `scripts/convert-org-to-typst.mjs` or a helper data structure, not hand-edited in `typ/content/references.typ`, because that file is regenerated from Org.],
+  [C2-F04], [Citation order seed], [#st-exact], [`fdg-reference-order` and `fdg-seed-bibliography-order()` already solve numbering/order. Any future bibliography fix should preserve this behavior or replace it with an equally explicit published-order mechanism.],
+  [C2-F05], [Recommended first prototype], [#st-unchecked], [Prototype a manual visible `fdg-published-bibliography()` that renders the 21 entries exactly enough to match `references.org`, plus a hidden `#bibliography` solely for citation resolution. Verify page count, visible reference text, citation callouts, and that no hidden references leak into text extraction.],
+)
+
+Chunk 2 evidence commands:
+
+```text
+pdftotext fdg-book/fdg_book.pdf /private/tmp/fdg-published-all.txt
+pdftotext fdg-book.pdf /private/tmp/fdg-current-all.txt
+sed -n '11320,11375p' /private/tmp/fdg-published-all.txt
+sed -n '11165,11230p' /private/tmp/fdg-current-all.txt
+rg -n '@[A-Za-z][A-Za-z0-9_-]+' typ/content/*.typ
+sed -n '1,220p' typ/references.bib
+sed -n '1,180p' fdg-book/scheme/org/references.org
+sed -n '1,90p' typ/fdg-lib/refs.typ
+typst compile - /private/tmp/no-bib-test.pdf
+typst compile - /private/tmp/hidden-bib-test.pdf
+pdftotext /private/tmp/hidden-bib-test.pdf -
+```
+
+== Chunk 3 Audit Entries: Preface, Prologue, Chapters 1-2
+
+#table(
+  columns: (0.85in, 1.35in, 1.15in, auto),
+  stroke: 0.4pt,
+  inset: 4pt,
+  [ID], [Region], [Status], [Finding],
+  [C3-001], [Chunk scope], [#st-partial-exact], [`PDF-FIDELITY-NOTES.md` records a deeper pass through the preface, prologue, chapter 1, and chapter 2 on 2026-07-02. This chunk preserves those prior repairs and adds fresh spot findings from the published PDF text, Org source, generated Typst source, and current `fdg-book.pdf`. It is not yet a line-by-line exhaustive pass.],
+  [C3-002], [Preface structure], [#st-partial-exact], [The preface body, `Acknowledgements` heading, author signature, location, and date are present in current Typst output. The sampled acknowledgement citations now resolve to the published numbers: Turtle Geometry [2] and Mindstorms [13].],
+  [C3-003], [Preface coverage], [#st-partial-exact], [No new preface content loss was found in this chunk beyond citation/reference items already tracked elsewhere. Detailed quote typography and similar visual style checks are intentionally out of scope for this pass.],
+  [C3-004], [Prologue prose/code classification], [#st-partial-exact], [Prior repairs prevented wrapped explanatory prose from being misclassified as Scheme blocks. Sampled current output around the Lagrange-equation discussion now reads as prose and math rather than accidental code; representative Scheme listings such as `Lagrange-equations`, `Gamma`, and oscillator examples remain code blocks.],
+  [C3-005], [Prologue footnote citation], [#st-bug], [Published footnote 1 ends `can be found in Papert [13].` Org source location: `fdg-book/scheme/org/prologue.org:288-291` includes the literal terminal `[13]`. Generated location: `typ/content/prologue.typ:7` drops it, and current `fdg-book.pdf` ends the footnote at plain `Papert`. This is a converter/reference-handling bug inside footnotes, not an upstream Org omission. Likely repair entry points: citation replacement in `scripts/convert-org-to-typst.mjs:1160-1165` and footnote/main split handling around `scripts/convert-org-to-typst.mjs:152-156`. Fix should translate this source reference to `@papert1980mindstorms` or otherwise preserve the generated citation in the footnote.],
+  [C3-006], [Prologue source drift], [#st-source-drift], [Both Org and current Typst say `for mass m and spring constant k. this lagrangian is implemented by` with lowercase `this` and lowercase `lagrangian`. Because the same wording appears in the upstream Org, this is not a converter regression, but it should be compared against the published PDF visually/textually before deciding whether to preserve source or repair to published prose.],
+  [C3-007], [Chapter 1 opening/citation], [#st-partial-exact], [The chapter 1 Galileo epigraph and citation resolve to [8], matching the published PDF and Org source. No additional typography check is requested for this row.],
+  [C3-008], [Chapter 1 degree glyphs], [#st-bug], [Published PDF extraction renders both longitude mentions as `90◦ E`, with spacing before `E`. Org source location: `fdg-book/scheme/org/chapter001.org:43-44` has mixed glyphs (`90◦E`, then `90°E`). Generated location: `typ/content/chapter001.typ:14` preserves the mixture and omits the space before `E`. Repair entry point: source normalization in `scripts/convert-org-to-typst.mjs` targeted repairs or upstream Org cleanup, followed by visual check of the chapter 1 opening page.],
+  [C3-009], [Chapter 1 `Cartan` repair], [#st-partial-exact], [Prior notes say the noweb `Cartan` placeholder was expanded and standalone cached-result placeholders not in the published PDF were removed. Org source around `fdg-book/scheme/org/chapter001.org:455-464` still uses the noweb `<<Cartan>>` pattern and cached result marker. Generated output at `typ/content/chapter001.typ:208-219` contains the explanatory paragraph and explicit `(define Cartan (Christoffel->Cartan ...))` block. Converter repair entry point: `scripts/convert-org-to-typst.mjs:536-537`. A later pass should compare every surrounding Scheme result line, but the known placeholder bug appears repaired.],
+  [C3-010], [Chapter 1 footnote numbering], [#st-bug], [The published page around the first `Cartan` discussion shows `where d/dt is a vector field on the real line8`. Source location: `fdg-book/scheme/org/chapter001.org:455` contains `[fn:8]`; generated location: `typ/content/chapter001.typ:208-212` is the corresponding Typst footnote. Current output shows the marker as `14`, because Typst footnotes are numbered continuously through front matter/prologue instead of following the published sequence for chapter 1. Repair entry point is likely a global footnote-numbering policy/helper, not the local paragraph. Published footnote numbering is now a fidelity requirement.],
+  [C3-011], [Chapter 2 intro footnote], [#st-partial-exact], [The latitude/longitude footnote is present. Org source is `fdg-book/scheme/org/chapter002.org:368-371`, with `$180^{\\circ}$`; generated/current Typst is `typ/content/chapter002.typ:10`, with `180° meridian`. Converter repair entry point for this known fix is `scripts/convert-org-to-typst.mjs:599`. Published extraction shows `180◦ meridian`; glyph choice and spacing still need visual comparison, but content is present.],
+  [C3-012], [Chapter 2 section 2.3 repairs], [#st-partial-exact], [Known source/PDF drift fixes in the coordinate-independence section are present. Org heading source is `fdg-book/scheme/org/chapter002.org:159`, with `Indepenedent`; generated heading is `typ/content/chapter002.typ:102`, corrected to `Independent`. The repaired prose `functions that map` is at `typ/content/chapter002.typ:116`; converter repair entry point includes `scripts/convert-org-to-typst.mjs:206` plus nearby chapter 2 targeted repairs around `:207-209`. Re-check this cluster when regenerating chapter 2.],
+  [C3-013], [Chapter 2 formulas], [#st-partial-exact], [Prior notes say cardioid formulas were repaired from PDF/source drift. Org source is `fdg-book/scheme/org/chapter002.org:256-277`, including the bad traditional formula at `:277`; generated/current Typst is `typ/content/chapter002.typ:193-207`, now showing `r = 2 a (1 + cos(theta))` and `(x^2 + y^2 - 2 a x)^2 = 4 a^2 (x^2 + y^2)`. A later visual/equation pass should verify exact math styling, equation breaks, punctuation, and display/inline placement. Repair should remain converter-owned so regeneration preserves the PDF-derived fix.],
+  [C3-014], [Chapter 2 figures], [#st-unchecked], [Figures 2-1, 2-2, and 2-3 are included in Typst at `typ/content/chapter002.typ:37`, `:94`, and `:218`; assets are `typ/assets/figures/fig-2-1.pdf`, `fig-2-2.pdf`, and `fig-2-3.pdf`; helper is `typ/fdg-lib/figures.typ:3-11`. This chunk did not raster-compare figure placement, scaling, caption punctuation, or adjacency to the published PDF. Leave this as an explicit visual-audit target for the chapter 2 exhaustive pass.],
+  [C3-015], [Chunk 3 completion marker], [#st-unchecked], [This chunk still needs normalized section-level text diffs for every paragraph, footnote, equation, Scheme block, result block, exercise, figure caption, and cross-reference in preface, prologue, chapter 1, and chapter 2. Current entries are enough to guide the next exhaustive run, not enough to close the chunk as exact.],
+)
+
+Chunk 3 evidence commands:
+
+```text
+pdftotext fdg-book/fdg_book.pdf /private/tmp/fdg-published-all.txt
+pdftotext fdg-book.pdf /private/tmp/fdg-current-all.txt
+rg -n "Papert|lagrangian|90|Cartan|coordinate independent|functions that map|cardioid|180|Stokes|Acknowledgements|Galileo|Assayer" \
+  fdg-book/scheme/org/prologue.org \
+  fdg-book/scheme/org/chapter001.org \
+  fdg-book/scheme/org/chapter002.org \
+  typ/content/preface.typ \
+  typ/content/prologue.typ \
+  typ/content/chapter001.typ \
+  typ/content/chapter002.typ \
+  /private/tmp/fdg-published-all.txt \
+  /private/tmp/fdg-current-all.txt
+sed -n '492,530p' /private/tmp/fdg-published-all.txt
+sed -n '368,390p' /private/tmp/fdg-current-all.txt
+sed -n '748,770p' /private/tmp/fdg-published-all.txt
+sed -n '554,566p' /private/tmp/fdg-current-all.txt
+```
+
+== Chunk 4 Audit Entries: Chapters 3-5
+
+#table(
+  columns: (0.85in, 1.35in, 1.15in, auto),
+  stroke: 0.4pt,
+  inset: 4pt,
+  [ID], [Region], [Status], [Finding],
+  [C4-001], [Chunk scope], [#st-partial-exact], [This chunk covers representative evidence from chapters 3, 4, and 5: published PDF text, Org source, generated Typst source, and current `fdg-book.pdf` extraction. It is not yet a complete paragraph/equation/code audit.],
+  [C4-002], [Chapter 3 structure], [#st-partial-exact], [Chapter 3 is present as `Vector Fields and One-Form Fields`, with major sections including `Vector Fields`, `Coordinate-Basis Vector Fields`, integral curves, Lie derivatives, one-form fields, and exercises. Sampled opening prose and equation flow are present, but the chapter needs full equation/code/result comparison.],
+  [C4-003], [Chapter 3 literal hyphenation], [#st-bug], [Visual check of current `fdg-book.pdf` physical page 28 confirms visible literal hyphenation artifacts. Exact locations: `fdg-book/scheme/org/chapter003.org:8` and generated `typ/content/chapter003.typ:6` contain `di- rection`; `typ/content/chapter003.typ:23` contains `directional deriva- tives`; `typ/content/chapter003.typ:35` contains `com- ponents`. Published PDF visual page for the chapter 3 opening shows normal line-break hyphenation without the extra post-hyphen space. Repair entry point: add a converter/post-merge cleanup in `scripts/convert-org-to-typst.mjs` near the existing targeted `.replaceAll(...)` repairs, then regenerate rather than hand-editing generated Typst.],
+  [C4-004], [Chapter 3 footnote numbering], [#st-bug], [Published chapter 3 starts its first note as footnote 1. Current output shows the first chapter 3 note as 25. Because published footnote numbering is now a fidelity requirement, chapter 3 and later chapters need a numbering policy/fix rather than treating this as layout drift.],
+  [C4-005], [Chapter 3 equation references], [#st-bug], [Visual/text checks confirm reference drift near the chapter 3 one-form discussion. Source location: `fdg-book/scheme/org/chapter003.org:628` says `This follows from the dual relationship (3.41)`. Generated location: `typ/content/chapter003.typ:273` has `(@3.41)`, but current output resolves this as `((3.43))`; published visual page 35 shows `(3.41)`. Likely causes to inspect: equation labels around `typ/content/chapter003.typ:269-273`, equation creation in `scripts/convert-org-to-typst.mjs:136-146`, and reference rewriting in `scripts/convert-org-to-typst.mjs:1160-1196`. Fix should preserve the published reference number and avoid double parentheses.],
+  [C4-006], [Chapter 4 equation 4.3], [#st-partial-exact], [`PDF-FIDELITY-NOTES.md` records that chapter 4 equation 4.3 was repaired by restoring the missing `X_k` subscript from the published PDF. Current Typst now renders the basis expansion as `sum_k sans(X)_k ... sans(c)_j^k`. Preserve this known repair and verify visually in the exhaustive pass.],
+  [C4-007], [Equation 4.6 line break], [#st-bug], [Visual check clarifies that the useful issue here is equation layout, not the word `coefficents`. Published physical page 64 keeps equation (4.6) as one displayed equation: `sum_k d_k^i(m)c_j^k(m)` stays together before the equation number. Current physical page 42 splits the final factor `c_j^k(m)` onto a new line below the equation number, making the display read awkwardly. Source locations: Org equation at `fdg-book/scheme/org/chapter004.org:80-83`; generated Typst at `typ/content/chapter004.typ:42-45`. The prose typo `coefficents` appears in Org `:86`, generated Typst `:47`, and the published PDF, so preserve it unless a separate errata policy says to correct published typos. Repair entry point is the equation conversion/line-break handling for 4.6, not the following prose.],
+  [C4-008], [Chapter 4 cross-references], [#st-bug], [Published chapter 4 references property/equation `(3.41)` in the dual-basis introduction and before the `e-dual-basis` check. Source locations: `fdg-book/scheme/org/chapter004.org:30-31`, `:39`, and `:135-136`. Generated locations: `typ/content/chapter004.typ:16`, `:20`, and `:79`. Current visual page 41 resolves these as `(3.43)`. Because equation/reference numbers should match the published PDF, fix chapter 3 equation labels first, then re-check all chapter 4 references to `3.40`, `3.41`, and nearby one-form equations.],
+  [C4-009], [Figure 4.1], [#st-partial-exact], [Visual check of current physical page 41 shows one visible figure 4.1 caption, not a visible duplicate caption. Source locations: Org placeholder/caption at `fdg-book/scheme/org/chapter004.org:42-49`, generated figure call at `typ/content/chapter004.typ:22`, and figure helper at `typ/fdg-lib/figures.typ:3-11`. `pdftotext` extraction shows both the generated Typst caption and embedded caption text from the imported figure PDF, so future automated diff tooling should ignore or normalize text embedded in figure assets. This is not currently a visible page-fidelity bug.],
+  [C4-010], [Figure 4.2], [#st-partial-exact], [Visual check of current physical page 49 shows figure 4.2 and following prose are cleanly separated. Generated figure call: `typ/content/chapter004.typ:377`. The malformed `Take a point4.2 ...` sequence seen in text extraction is an extraction-order artifact, not a visible layout bug. Future text-based audits should cross-check suspect figure-adjacent extraction against rendered page images before filing layout bugs.],
+  [C4-011], [Chapter 4 exercises], [#st-partial-exact], [Exercises 4.2 and 4.3 are present in generated Typst. This chunk did not compare their full text against Org/published PDF, so keep them open for the exhaustive chapter 4 pass.],
+  [C4-012], [Chapter 5 structure], [#st-partial-exact], [Chapter 5 is present as `Integration`, with sections through `Stokes's Theorem` and associated exercises. Sampled opening integration formulas, wedge-product material, exterior derivative material, and Stokes material are present. Full equation/code/result comparison remains open.],
+  [C4-013], [Figure 5.1], [#st-partial-exact], [Visual check of current physical page 54 shows one visible figure 5.1 caption and no visible duplicate. Generated figure call: `typ/content/chapter005.typ:109`; helper: `typ/fdg-lib/figures.typ:3-11`. Published physical page 80 has the corresponding single caption. `pdftotext` extraction duplicates/mangles caption text from the imported figure asset, e.g. `area 0of`; classify this as text-layer/extraction behavior rather than a visible page-fidelity bug.],
+  [C4-014], [Chapter 5 equation numbering], [#st-bug], [Visual checks confirm equation-number drift. Source: `fdg-book/scheme/org/chapter005.org:335-337` is the one-form exterior derivative display and `:342-348` is the general exterior derivative display. Generated: `typ/content/chapter005.typ:195-197` contains a displayed equation inside footnote 49 labelled `<5.40>`, then `:199-201` labels the one-form definition `<5.23>`, and `:203-207` labels the general definition `<5.24>`. Current visual page 55 shows footnote equation `(5.23)`, pushing the visible body equations on page 56 to `(5.24)` and `(5.25)`; published physical page 83 labels those body equations `(5.23)` and `(5.24)`. Likely fix: prevent display equations inside footnotes from stepping the visible chapter equation counter, or manually set their published number/unnumbered behavior.],
+  [C4-015], [Equation 5.24 formula text], [#st-source-drift], [Visual checks confirm published equation (5.24) has the commutator term `omega([v_i, v_j], ...)`, while current equation (5.25) visibly shows `omega(v_i, v_j], ...)` with a closing bracket but no matching opening bracket. Source location: `fdg-book/scheme/org/chapter005.org:346`; generated location: `typ/content/chapter005.typ:207`. Repair should be PDF-derived during the exhaustive chapter 5 equation pass. This likely requires a manual converter-side repair in `scripts/convert-org-to-typst.mjs` that both restores the missing opening commutator bracket and adds explicit alignment characters/line breaks so the display matches the published PDF layout, rather than relying on generic math conversion.],
+  [C4-016], [Chapter 5 citation], [#st-partial-exact], [The Stokes theorem footnote cites Spivak, Calculus on Manifolds. Current reference numbering infrastructure should make this [17], but this chunk did not mechanically inspect the current footnote callout; verify during the full chapter 5 citation/footnote pass.],
+  [C4-017], [Chunk 4 completion marker], [#st-unchecked], [Still unchecked for chapters 3-5: every equation number/reference target, all footnote numbers/text, all Scheme blocks and result blocks, all exercises, all figure visual crops/captions, and normalized paragraph text. Current entries identify high-value defects to fix before a fully exhaustive comparison.],
+)
+
+Chunk 4 evidence commands:
+
+```text
+rg -n "di- rection|deriva- tives|com- ponents|3\\.41|3\\.43|Figure 4\\.1|Figure 4\\.2|Figure 5\\.1|5\\.24|coefficents" \
+  fdg-book/scheme/org/chapter003.org \
+  fdg-book/scheme/org/chapter004.org \
+  fdg-book/scheme/org/chapter005.org \
+  typ/content/chapter003.typ \
+  typ/content/chapter004.typ \
+  typ/content/chapter005.typ \
+  /private/tmp/fdg-published-all.txt \
+  /private/tmp/fdg-current-all.txt
+sed -n '1568,1630p' /private/tmp/fdg-published-all.txt
+sed -n '1518,1624p' /private/tmp/fdg-current-all.txt
+sed -n '2492,2588p' /private/tmp/fdg-published-all.txt
+sed -n '2450,2555p' /private/tmp/fdg-current-all.txt
+sed -n '3548,3558p' /private/tmp/fdg-published-all.txt
+sed -n '3518,3530p' /private/tmp/fdg-current-all.txt
+sed -n '3698,3714p' /private/tmp/fdg-published-all.txt
+sed -n '3748,3762p' /private/tmp/fdg-current-all.txt
+sed -n '1,180p' typ/fdg-lib/figures.typ
+pdftoppm -png -r 180 -f 28 -l 28 fdg-book.pdf /private/tmp/fdg-current-p28
+pdftoppm -png -r 180 -f 41 -l 41 fdg-book.pdf /private/tmp/fdg-current-p41
+pdftoppm -png -r 180 -f 49 -l 49 fdg-book.pdf /private/tmp/fdg-current-p49
+pdftoppm -png -r 180 -f 54 -l 54 fdg-book.pdf /private/tmp/fdg-current-p54
+pdftoppm -png -r 180 -f 56 -l 56 fdg-book.pdf /private/tmp/fdg-current-p56
+pdftoppm -png -r 180 -f 28 -l 28 fdg-book/fdg_book.pdf /private/tmp/fdg-published-p28
+pdftoppm -png -r 180 -f 42 -l 42 fdg-book/fdg_book.pdf /private/tmp/fdg-published-p42
+pdftoppm -png -r 180 -f 80 -l 80 fdg-book/fdg_book.pdf /private/tmp/fdg-published-p80
+pdftoppm -png -r 180 -f 83 -l 83 fdg-book/fdg_book.pdf /private/tmp/fdg-published-p83
+```
+
+== Chunk 5 Audit Entries: Chapters 6-8
+
+#table(
+  columns: (0.85in, 1.35in, 1.15in, auto),
+  stroke: 0.4pt,
+  inset: 4pt,
+  [ID], [Region], [Status], [Finding],
+  [C5-001], [Chunk scope], [#st-partial-exact], [This chunk covers representative evidence from chapters 6, 7, and 8: Org source, generated Typst, published PDF text extraction, current PDF extraction, and visual page checks for figure pages and the main chapter 8 numbering defect. It is not yet a full paragraph/equation/code/result audit.],
+  [C5-002], [Chapter 6 structure], [#st-partial-exact], [Chapter 6 is present as `Over a Map`, with sections from vector fields over a map through pushforward along integral curves and exercises. Primary generated span begins at `typ/content/chapter006.typ:5`; sampled Org source begins at `fdg-book/scheme/org/chapter006.org:1`; published chapter 6 begins around published physical page 92. Full equation/code/result comparison remains open.],
+  [C5-003], [Figure 6.1], [#st-partial-exact], [Visual check of current physical page 62 shows one visible figure 6.1 caption, no visible duplicate caption, and a clean relation between the figure, caption, equations (6.1)-(6.2), and following code block. Generated figure call: `typ/content/chapter006.typ:14`; asset: `typ/assets/figures/fig-6-1.pdf`; helper: `typ/fdg-lib/figures.typ:3-11`. Published extraction places the matching figure/caption on published physical page 93. `pdftotext` reports a duplicate caption because embedded figure-asset text is extracted as well as the generated Typst caption; treat that as a text-layer artifact unless a rendered-page check later contradicts it.],
+  [C5-004], [Chapter 6 Scheme typo], [#st-source-drift], [The `form-field->form-field-over-map` listing in Org and current Typst calls `(make fake-vector-field V-over-mu n)`, while the surrounding definition/prose and the published PDF use `make-fake-vector-field`. Source locations: `fdg-book/scheme/org/chapter006.org:117-131`, especially `:128`; generated Typst: `typ/content/chapter006.typ:65-80`, especially `:76`; current visual page 63 shows the spaced call; published physical page 95 shows `make-fake-vector-field`. Repair should be converter/source-aware: either patch upstream Org input or add a targeted converter repair in `scripts/convert-org-to-typst.mjs` before regeneration.],
+  [C5-005], [Chapter 6 Scheme typo], [#st-source-drift], [The sphere coordinate-system setup in Org and current Typst says `(coordinate-system at 'spherical 'north-pole S2)`, but the published PDF uses `(coordinate-system-at 'spherical 'north-pole S2)`. Source locations: `fdg-book/scheme/org/chapter006.org:168-174`, especially `:171`; generated Typst: `typ/content/chapter006.typ:100-106`, especially `:103`; current visual page 64 shows the spaced form; published physical page 96 shows the hyphenated procedure name. Repair path is the same as C5-004: source correction or a targeted converter repair, then regenerate.],
+  [C5-006], [Chapter 6 pullback code], [#st-source-drift], [The pullback function listing in Org and current Typst has a variable-name mismatch: parameter `f-on-m` but body `f-on-M`. Published PDF uses `f-on-M` consistently. Source locations: `fdg-book/scheme/org/chapter006.org:275-279`; generated Typst: `typ/content/chapter006.typ:181-186`; current physical page 65 shows `f-on-m` followed by `f-on-M`; published physical page 98 shows `(define ((pullback-function mu:N->M) f-on-M)` and `(compose f-on-M mu:N->M)`. Treat as a source/published drift needing a targeted source or converter repair, not a layout issue.],
+  [C5-007], [Chapter 7 opening typo], [#st-source-drift], [Org and current Typst say `We can asume without loss of generality`; published PDF says `We can assume without loss of generality`. Source locations: `fdg-book/scheme/org/chapter007.org:38-41`; generated Typst: `typ/content/chapter007.typ:16`; current visual/text page 69 shows `asume`; published physical page 104 shows `assume`. This is a good early source-drift repair target because it is visible prose, not typography.],
+  [C5-008], [Equation 7.9 repair], [#st-partial-exact], [`PDF-FIDELITY-NOTES.md` records the existing repair for chapter 7 equation 7.9: punctuation was moved out of `mathsf{g}`. Current generated Typst at `typ/content/chapter007.typ:57` renders the final factor as `sans(g)` followed by punctuation, rather than including the period inside the styled `g`. Org source location is `fdg-book/scheme/org/chapter007.org:101-103`, where the original `\mathsf{g.}` defect appears. Preserve this known PDF-derived repair and visually re-check during the exhaustive chapter 7 equation pass.],
+  [C5-009], [Equation 7.14 notation/layout], [#st-partial-exact], [Generated Typst for equation 7.14 contains `phi.alt_(delta *)^(sans(v))` at `typ/content/chapter007.typ:102`. Org source `fdg-book/scheme/org/chapter007.org:176-183` has `\phi^{\mathsf{v}}_{\delta *}`; published physical page 107 visually shows the intended pushforward star attached to the lower delta, not a literal `delta *` word sequence. Current visual page 71 renders the display as a mathematical subscript-star expression, so this is not yet filed as a visible formula bug. However, the Typst source is fragile and should be revisited if equation 7.14 is manually aligned or normalized by the converter.],
+  [C5-010], [Figure 7.1], [#st-partial-exact], [Visual check of current physical page 82 shows one visible figure 7.1 caption, a clean figure crop, and no visible duplicate caption. Generated figure call: `typ/content/chapter007.typ:654`; asset: `typ/assets/figures/fig-7-1.pdf`; helper: `typ/fdg-lib/figures.typ:3-11`. Published extraction places the corresponding caption on published physical page 125. As with other imported figures, `pdftotext` sees both generated caption text and embedded asset text; future automated audits should normalize figure text layers or require image-page confirmation before filing caption duplication.],
+  [C5-011], [Chapter 8 structure], [#st-partial-exact], [Chapter 8 is present as `Curvature`, with opening Riemann curvature definitions, explicit transport, verification, torsion, and Bianchi identities. Generated span begins at `typ/content/chapter008.typ:5`; sampled Org source begins at `fdg-book/scheme/org/chapter008.org:1`; current chapter starts on current physical page 90; published chapter 8 starts around published physical page 136. Full equation/code/result comparison remains open.],
+  [C5-012], [Chapter 8 equation numbering], [#st-bug], [Visual check confirms a body equation-numbering drift caused by numbered display equations inside a footnote. Generated Typst puts footnote equations `<8.33>` and `<8.34>` inside the footnote at `typ/content/chapter008.typ:91-100`, then labels the next body displays `<8.10>`, `<8.11>`, and `<8.12>` at `:102-115`. Current visual page 92 instead prints those body equations as `(8.12)`, `(8.13)`, and `(8.14)`, while the footnote prints `(8.10)` and `(8.11)`. Published physical page 139 prints the body equations as `(8.10)`, `(8.11)`, and `(8.12)`. Likely fix is shared with C4-014: display equations inside footnotes should not advance the visible body equation counter, or they need explicit published-number handling. Inspect equation creation/counter behavior in `typ/fdg-lib/chapter.typ` and equation conversion in `scripts/convert-org-to-typst.mjs`.],
+  [C5-013], [Chapter 8 punctuation], [#st-source-drift], [Org and current Typst contain a visible space before comma in `However , if ...`; the published PDF has `However, if ...`. Source location: `fdg-book/scheme/org/chapter008.org:166-169`; generated Typst: `typ/content/chapter008.typ:113`; current visual page 92 shows `However ,`; published physical page 139 shows `However,`. This can be corrected either in source or by a narrow converter cleanup for space-before-punctuation artifacts.],
+  [C5-014], [Chapter 8 symmetric connection], [#st-source-drift], [Org and current Typst state the symmetric-connection condition tautologically as `Gamma_(j k)^i = Gamma_(j k)^i`. Published PDF correctly shows `Gamma^i_jk = Gamma^i_kj`. Source location: `fdg-book/scheme/org/chapter008.org:743-744`; generated Typst: `typ/content/chapter008.typ:553-556`; current visual page 100 shows identical lower indices on both sides; published physical page 150 shows the lower indices swapped on the right. This should be a PDF-derived mathematical repair in source/converter output, not a style adjustment.],
+  [C5-015], [Chapter 8 torsion errata], [#st-project-added], [Current end-matter errata notes that the torsion example on page 127 uses an undefined `f`. That errata is intentional project-added material, so do not treat it as a published-body mismatch. During the exhaustive chapter 8 pass, compare the body example against published PDF and compare the errata note against `fdg-book/scheme/org/errata.org` / `typ/content/errata.typ` separately.],
+  [C5-016], [Chunk 5 completion marker], [#st-unchecked], [Still unchecked for chapters 6-8: every equation number/reference target, all published footnote numbers/text, every Scheme block and result block, all exercises, all citations, all section-title line breaks, and figure scaling against the published pages. Current entries identify high-value source drift and one shared equation-counter defect to fix before a fully exhaustive comparison.],
+)
+
+Chunk 5 evidence commands:
+
+```text
+nl -ba typ/content/chapter006.typ | sed -n '1,220p'
+nl -ba typ/content/chapter007.typ | sed -n '1,220p;640,670p;948,1002p'
+nl -ba typ/content/chapter008.typ | sed -n '1,240p;548,584p'
+nl -ba fdg-book/scheme/org/chapter006.org | sed -n '70,210p;220,310p'
+nl -ba fdg-book/scheme/org/chapter007.org | sed -n '1,210p'
+nl -ba fdg-book/scheme/org/chapter008.org | sed -n '1,190p;720,770p'
+pdftotext -f 62 -l 65 fdg-book.pdf -
+pdftotext -f 93 -l 98 fdg-book/fdg_book.pdf -
+pdftotext -f 69 -l 71 fdg-book.pdf -
+pdftotext -f 104 -l 107 fdg-book/fdg_book.pdf -
+pdftotext -f 82 -l 82 fdg-book.pdf -
+pdftotext -f 125 -l 125 fdg-book/fdg_book.pdf -
+pdftotext -f 92 -l 92 fdg-book.pdf -
+pdftotext -f 139 -l 139 fdg-book/fdg_book.pdf -
+pdftotext -f 100 -l 101 fdg-book.pdf -
+pdftotext -f 150 -l 151 fdg-book/fdg_book.pdf -
+pdftoppm -f 62 -singlefile -png -r 130 fdg-book.pdf /tmp/fdg-current-p62
+pdftoppm -f 82 -singlefile -png -r 130 fdg-book.pdf /tmp/fdg-current-p82
+pdftoppm -f 92 -singlefile -png -r 130 fdg-book.pdf /tmp/fdg-current-p92
 ```
 
 == Exhaustive Audit Plan
@@ -354,8 +585,9 @@ Recommended workflow for each chunk:
 1. Extract normalized text from the published PDF, Org source, generated Typst source, and current `fdg-book.pdf`.
 2. Compare first at section level, then split mismatching sections into prose, equation, code, figure, footnote, citation, and index/reference entries.
 3. Classify each mismatch as `EXACT`, `ACCEPTED-STYLISTIC`, `SOURCE-DRIFT`, `PDF-DERIVED-REPAIR`, `PROJECT-ADDED`, `BUG`, or `UNCHECKED`.
-4. Fix clear bugs immediately when they are local and low risk; otherwise leave an audit entry with evidence and follow-up.
-5. Rebuild `fdg-book.pdf` and `typ/audit.pdf`, then record verification evidence in this file.
+4. For every `BUG`, `SOURCE-DRIFT`, or `PDF-DERIVED-REPAIR` row, include enough repair coordinates for a future maintainer to start efficiently: Org file/line, generated Typst file/line, published/current physical PDF page, visual-vs-text-extraction status, and likely helper/converter file to inspect.
+5. Fix clear bugs immediately when they are local and low risk; otherwise leave an audit entry with evidence and follow-up.
+6. Rebuild `fdg-book.pdf` and `typ/audit.pdf`, then record verification evidence in this file.
 
 == Settled Decisions and Remaining Questions
 
@@ -363,6 +595,7 @@ Recommended workflow for each chunk:
 - Settled: errata is intentional project end matter.
 - Settled: `typ/main.pdf` and `fdg-book.pdf` should differ only by cover/index material.
 - Settled: this audit lives as a standalone Typst document.
+- Settled: published footnote numbering is a fidelity requirement.
 - Remaining: whether current generated IEEE-style bibliography formatting is acceptable now that numbering/order matches.
 - Remaining: how should generated index entries be compared when page geometry intentionally differs?
 
