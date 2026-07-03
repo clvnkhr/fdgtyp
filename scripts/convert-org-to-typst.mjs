@@ -55,7 +55,9 @@ function escapeRegex(text) {
 }
 
 function chapterDisplayTitle(title) {
-  return title.replace(/^Chapter\s+\d+:\s*/, "");
+  return title
+    .replace(/^Chapter\s+\d+:\s*/, "")
+    .replace(/^Appendix\s+[A-Z]:\s*/, "");
 }
 
 function isNumberedChapter(title, stem) {
@@ -777,11 +779,11 @@ function repairChapter1(body) {
     )
     .replaceAll(
       "We will explain this in depth in Chapter 7.",
-      "We will explain this in depth in Section #fdg-ref-page(<sec-7.10>, suffix: \".\")",
+      "We will explain this in depth in Section #fdg-ref-page(<sec-7.10>).",
     )
     .replaceAll(
       "we will explain it in Chapter 7.",
-      "we will explain it in Section #fdg-ref-page(<sec-7.10>, suffix: \".\")",
+      "we will explain it in Section #fdg-ref-page(<sec-7.10>).",
     );
 }
 
@@ -1260,6 +1262,21 @@ const indexedIncludes = chapters
   .filter(({ stem }) => stem !== "errata")
   .map(({ stem }) => {
     const include = `  #include "content/${stem}.typ"`;
+    if (stem === "appendix_a") {
+      return [
+        "  #[",
+        "    #counter(heading).update(0)",
+        "    #set heading(numbering: \"A.1\", supplement: [Appendix])",
+        `    #include "content/${stem}.typ"`,
+      ].join("\n");
+    }
+    if (stem === "appendix_b") return `    #include "content/${stem}.typ"`;
+    if (stem === "appendix_c") {
+      return [
+        `    #include "content/${stem}.typ"`,
+        "  ]",
+      ].join("\n");
+    }
     if (stem !== "chapter001") return include;
     return [
       "  #pagebreak()",

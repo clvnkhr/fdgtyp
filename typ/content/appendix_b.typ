@@ -2,7 +2,7 @@
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
 #import "../lib.typ": fdg-chapter, fdg-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
 
-#fdg-chapter("Appendix B: Our Notation", numbered: true, eq-prefix: "B", ref-label: "chap-appendix-b")[
+#fdg-chapter("Our Notation", numbered: true, eq-prefix: "B", ref-label: "chap-appendix-b")[
 #quote(block: true)[
 An adequate notation should be understood by at least two people, one of whom may be the author.
 

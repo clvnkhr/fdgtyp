@@ -30,9 +30,13 @@
   #include "content/chapter009.typ"
   #include "content/chapter010.typ"
   #include "content/chapter011.typ"
-  #include "content/appendix_a.typ"
-  #include "content/appendix_b.typ"
-  #include "content/appendix_c.typ"
+  #[
+    #counter(heading).update(0)
+    #set heading(numbering: "A.1", supplement: [Appendix])
+    #include "content/appendix_a.typ"
+    #include "content/appendix_b.typ"
+    #include "content/appendix_c.typ"
+  ]
   #include "content/references.typ"
 ]
 

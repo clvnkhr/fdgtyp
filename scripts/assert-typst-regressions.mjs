@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
+import { execFileSync } from "node:child_process";
 import path from "node:path";
 
 const root = process.cwd();
@@ -375,11 +376,26 @@ const typFileAssertions = [
   {
     file: "lib.typ",
     contains: [
-      "syntaxes: \"Scheme.sublime-syntax\"",
-      "theme: \"fdg-scheme.tmTheme\"",
+      '#import "fdg-lib/basics.typ": *',
+      '#import "fdg-lib/layout.typ": *',
+      '#import "fdg-lib/chapter.typ": *',
+    ],
+  },
+  {
+    file: "fdg-lib/layout.typ",
+    contains: [
+      "syntaxes: \"../Scheme.sublime-syntax\"",
+      "theme: \"../fdg-scheme.tmTheme\"",
       "tab-size: 2",
       "show raw.where(block: false): it =>",
       "show raw.where(block: true): it =>",
+    ],
+  },
+  {
+    file: "fdg-lib/refs.typ",
+    contains: [
+      '#let fdg-page-ref(target) = ref(target, supplement: "page", form: "page")',
+      "#let fdg-ref(target) = ref(target)",
     ],
   },
   {
@@ -544,12 +560,54 @@ const globalProseRegexExcludes = [
   },
 ];
 
+const pdfTextAssertions = [
+  {
+    file: "main.pdf",
+    contains: [
+      "An explanation of functional derivatives is in Appendix B, page",
+      "See Appendix B for an introduction to tuple arithmetic",
+      "See Appendix C for a definition of tensors.",
+      "A Scheme",
+      "A.1 Procedure Calls",
+      "B Our Notation",
+      "References",
+    ],
+    excludes: [
+      "Appendix B , page",
+      "Appendix C: References",
+      "Appendix Appendix",
+      "See Appendix 14",
+    ],
+  },
+];
+
 let failures = 0;
 
 function fail(message, detail) {
   failures += 1;
   console.error(message);
   if (detail) console.error(`  ${detail}`);
+}
+
+function readPdfText(file) {
+  const pdfPath = path.join(root, "typ", file);
+  if (!existsSync(pdfPath)) {
+    fail(`Missing PDF for text regression checks: typ/${file}`);
+    return "";
+  }
+
+  try {
+    return normalize(execFileSync("pdftotext", [pdfPath, "-"], {
+      encoding: "utf8",
+      maxBuffer: 128 * 1024 * 1024,
+    }));
+  } catch (error) {
+    fail(
+      `Unable to extract PDF text from typ/${file}:`,
+      error instanceof Error ? error.message : String(error),
+    );
+    return "";
+  }
 }
 
 for (const assertion of assertions) {
@@ -570,6 +628,22 @@ for (const assertion of assertions) {
 
 for (const assertion of typFileAssertions) {
   const text = normalize(readTypFile(assertion.file));
+
+  for (const expected of assertion.contains ?? []) {
+    if (!text.includes(normalize(expected))) {
+      fail(`Missing expected text in typ/${assertion.file}:`, expected);
+    }
+  }
+
+  for (const rejected of assertion.excludes ?? []) {
+    if (text.includes(normalize(rejected))) {
+      fail(`Found rejected text in typ/${assertion.file}:`, rejected);
+    }
+  }
+}
+
+for (const assertion of pdfTextAssertions) {
+  const text = readPdfText(assertion.file);
 
   for (const expected of assertion.contains ?? []) {
     if (!text.includes(normalize(expected))) {
@@ -869,6 +943,7 @@ console.log(
   `Typst regression assertions passed (` +
     [
       `targeted files: ${assertions.length}`,
+      `PDF text files: ${pdfTextAssertions.length}`,
       `generated files: ${contentFiles.length}`,
       `global checks: ${globalExcludes.length + globalRegexExcludes.length + globalProseRegexExcludes.length}`,
       `figures: ${figureUses.length}`,
