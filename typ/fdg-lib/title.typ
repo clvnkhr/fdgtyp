@@ -1,10 +1,11 @@
 #import "basics.typ": LaTeX, fdg-draft-mode
 #import "cover.typ": fdg-cover-page
 
-#let fdg-title-page() = {
+#let fdg-title-page(seed: none) = {
   set page(numbering: none)
   if fdg-draft-mode {
     align(center)[
+      #place(top + left, seed)
       #v(32%)
       #text(size: 25pt, weight: "semibold")[Functional Differential Geometry]
 
@@ -14,6 +15,7 @@
     pagebreak()
   } else {
     page(margin: 0pt, header: none, footer: none)[
+      #place(top + left, seed)
       #fdg-cover-page()
     ]
   }

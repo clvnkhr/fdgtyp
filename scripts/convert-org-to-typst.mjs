@@ -1295,7 +1295,7 @@ writeFileSync(
     + `#import "lib.typ": *\n`
     + `#import "index.typ": fdg-indexed-body, fdg-index-page\n\n`
     + `#show: fdg-book\n\n`
-    + `#fdg-title-page()\n\n`
+    + `#fdg-title-page(seed: fdg-seed-bibliography-order())\n\n`
     + `#set page(numbering: "i")\n`
     + `\n`
     + `#outline(title: "Contents")\n`

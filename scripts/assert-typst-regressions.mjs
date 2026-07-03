@@ -396,6 +396,10 @@ const typFileAssertions = [
     contains: [
       '#let fdg-page-ref(target) = ref(target, supplement: "page", form: "page")',
       "#let fdg-ref(target) = ref(target)",
+      "#let fdg-reference-order = (",
+      "#let fdg-seed-bibliography-order() = box(width: 0pt, height: 0pt)[",
+      "<abelson1996sicp>",
+      "<fdg-software>",
     ],
   },
   {

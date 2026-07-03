@@ -6,7 +6,7 @@
 
 #show: fdg-book
 
-#fdg-title-page()
+#fdg-title-page(seed: fdg-seed-bibliography-order())
 
 #set page(numbering: "i")
 
