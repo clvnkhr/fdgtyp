@@ -14,7 +14,7 @@
 #let fdg-raw-fill = rgb("#fffdf8")
 #let fdg-raw-stroke = rgb("#eadfcf")
 #let fdg-raw-text = rgb("#27211d")
-#let fdg-draft-mode = sys.inputs.at("draft", default: "false") == "true"
+#let fdg-draft-mode = sys.inputs.at("draft", default: "true") == "true"
 #let fdg-iridis-palette = (
   rgb("#7d00e5"),
   rgb("#ff0000"),
