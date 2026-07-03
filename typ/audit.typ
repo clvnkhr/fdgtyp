@@ -154,6 +154,7 @@ Every fix should add or update a regression when the behavior can be checked che
   [P2], [#bug], [Index note and symbol entries], [Published index page 240 says procedure definition locators are italic and `n` marks footnotes. Current page 163 says generated entries include procedure definitions and lacks the opening symbol-entry block. Fix `typ/index.typ:13-390` or document limitations explicitly.],
   [P2], [#bug], [Copyright/CIP front matter], [Known visual details still need repair: missing CC BY-NC-SA banner; `special_sales@mitpress.mit.edu` raw/monospace; extra vertical space before Library of Congress line; indent before `p. cm.`; wider print-line spacing; em dash before `dc23`; right-align `2012042107`. Source: `typ/fdg-lib/title.typ:40-69`.],
   [P2], [#partial], [References formatting], [Numbering/order now match samples via seeded bibliography order. Exhaustively compare all callouts and all 21 bibliography entries; decide whether IEEE-style formatting is acceptable.],
+  [P3], [#partial], [Cover art tuning], [Fine-tune the custom cover in `typ/fdg-lib/cover.typ`: the particle trajectory should run against the edge of the potential wells rather than floating too far inside/away from them. A 3D diagram/scene could be considered if it communicates the geometry cleanly, but this is low priority compared with content/counter fixes.],
   [P3], [#partial], [Errata wording/code], [Keep errata as project-added, but adjust low-confidence wording and fix suggested code names. `literal-oneform-field` should be `literal-1form-field`; suggested literal symbols should be quoted.],
   [P3], [#partial], [Figures], [Current PDF crops are visually serviceable but create text-layer extraction artifacts. Plan CeTZ redraws figure by figure after content-critical fixes.],
 )
@@ -174,6 +175,7 @@ This table reconciles the rough audit against this polished audit. Every rough r
   [C1-015], [#bug], [Front matter], [Increase spacing in the final `10 9 8 7 6 5 4 3 2 1` print line.],
   [C1-016], [#bug], [Front matter], [Use an em dash before `dc23`.],
   [C1-017], [#bug], [Front matter], [Right-align `2012042107`.],
+  [Cover art], [#partial], [Front matter], [Fine-tune the custom cover art in `typ/fdg-lib/cover.typ`: the particle trajectory should run against the edge of the wells. Optional 3D diagram exploration is allowed but low priority.],
   [C2-003], [#bug], [References], [Current IEEE bibliography style does not match published prose; prototype manual visible bibliography or custom renderer.],
   [C2-004], [#bug], [References], [Restore published author phrasing, including `with Julie Sussman` and `with Meinhard E. Mayer`.],
   [C2-005], [#bug], [References], [Entry [6] must render the Dover/New York/1989 note.],
@@ -264,6 +266,8 @@ Actionable details:
 - Increase spacing in the `10 9 8 7 6 5 4 3 2 1` print line.
 - Use an em dash before `dc23`.
 - Right-align `2012042107`.
+- Fine-tune the custom cover art in `typ/fdg-lib/cover.typ`: the particle trajectory should run against the edge of the potential wells. Consider a 3D diagram/scene only if it improves the geometric reading without becoming a distraction; this is low priority.
+- Add a final visual QA pass for cover/title/end-matter variants after content-critical fixes, because subjective polish issues such as cover trajectory placement are easy to miss in text extraction.
 
 Evidence:
 
@@ -271,6 +275,7 @@ Evidence:
 pdftotext -f 1 -l 10 fdg-book/fdg_book.pdf -
 pdftotext -f 1 -l 10 fdg-book.pdf -
 nl -ba typ/fdg-lib/title.typ | sed -n '35,75p'
+nl -ba typ/fdg-lib/cover.typ | sed -n '1,120p'
 ```
 
 === References And Citations
@@ -496,6 +501,7 @@ pdftotext -f 166 -l 170 fdg-book.pdf -
   [Equation drift], [Text assertions for B.7, B.10, C.1, C.10, 10.3, and 10.6 after fixes.],
   [References/crossrefs], [No double-parenthesized equation references such as `((11.11))`.],
   [Figures], [All 8 figure assets or future CeTZ figures are present; generated captions do not duplicate visibly.],
+  [Cover], [Cover trajectory touches/reads against the edge of the wells; any optional 3D version is visually checked across desktop/PDF export and retained only if clearer than the 2D cover.],
   [Index], [Index note matches chosen policy; representative symbol entries exist; representative code entries exist.],
   [Errata], [Errata generated source uses `literal-1form-field`, quoted literal symbols, and expected chapter headings.],
 )
@@ -510,9 +516,10 @@ Recommended order:
 4. Fix converter-level reference rewriting, including double-parenthesized equation refs.
 5. Re-audit references formatting and all citation callouts.
 6. Polish front matter details.
-7. Clean errata wording and run executable errata verification.
-8. Rework index policy/implementation.
-9. Start CeTZ figure migration after content-critical issues are stable.
+7. Fine-tune cover art and run a final visual QA pass for cover/title/end-matter variants.
+8. Clean errata wording and run executable errata verification.
+9. Rework index policy/implementation.
+10. Start CeTZ figure migration after content-critical issues are stable.
 
 == Commit Trail
 
