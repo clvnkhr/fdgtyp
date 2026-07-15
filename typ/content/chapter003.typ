@@ -227,7 +227,7 @@ For functions whose series expansions have finite radius of convergence, evoluti
 
 Newton\'s equations for the motion of a particle in a plane, subject to a force that depends only on the position in the plane, are a system of second-order differential equations for the rectangular coordinates $(X\,Y)$ of the particle: $ D^2 X (t)= A_x (X (t)\,Y (t))upright(" and ") D^2 Y (t)= A_y (X (t)\,Y (t))\, $ <3.30> where $A$ is the acceleration of the particle.
 
-These are equivalent to a system of first-order equations for the coordinate path $sigma = chi compose gamma$, where $chi =(sans(t)\,sans(x)\,sans(y)\,sans(v)_x\,sans(v)_y)$ is a coordinate system on the manifold Rh $bb(R)^5$. Then our equations are: $ D (sans(t) compose gamma) &= 1 \
+These are equivalent to a system of first-order equations for the coordinate path $sigma = chi compose gamma$, where $chi =(sans(t)\,sans(x)\,sans(y)\,sans(v)_x\,sans(v)_y)$ is a coordinate system on the manifold $bb(R)^5$. Then our equations are: $ D (sans(t) compose gamma) &= 1 \
  D (sans(x) compose gamma) &= sans(v)_x compose gamma \
  D (sans(y) compose gamma) &= sans(v)_y compose gamma \
  D (sans(v)_x compose gamma) &= A_x (sans(x) compose gamma\,sans(y) compose gamma)\

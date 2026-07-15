@@ -292,6 +292,7 @@ function normalizeOrgSource(source, stem) {
     .replaceAll("Les Mis´erables", "Les Misérables")
     .replaceAll("EulerLagrange", "Euler-Lagrange")
     .replaceAll("Indepenedent", "Independent")
+    .replaceAll("on the manifold Rh $\\mathbb{R}^5$", "on the manifold $\\mathbb{R}^5$")
     .replaceAll("Papert\n[13].", "Papert @papert1980mindstorms.")
     .replaceAll("this lagrangian is implemented by", "This Lagrangian is implemented by")
     .replaceAll("90◦E meridian", "90◦ E meridian")
@@ -302,6 +303,12 @@ function normalizeOrgSource(source, stem) {
     .replaceAll("com-\n   ponents", "components")
     .replaceAll("(make fake-vector-field V-over-mu n)", "(make-fake-vector-field V-over-mu n)")
     .replaceAll("(coordinate-system at 'spherical 'north-pole S2)", "(coordinate-system-at 'spherical 'north-pole S2)")
+    // Repair recurring whitespace/transcription damage in Scheme identifiers.
+    .replace(/\(pull\s+back(?=\s)/g, "(pullback")
+    .replace(/\bred(?=\s+coords\b)/g, "ref")
+    .replace(/\bref\s+coord(?=\s)/g, "ref coords")
+    .replace(/\bsign(?=\s+long\b)/g, "sin")
+    .replace(/\blong\s+p\b/g, "longp")
     .replaceAll("(define ((pullback-function mu:N->M) f-on-m)", "(define ((pullback-function mu:N->M) f-on-M)")
     .replaceAll("We can asume without loss of generality", "We can assume without loss of generality")
     .replaceAll("However , if", "However, if")
@@ -590,6 +597,21 @@ function normalizeMultilineMath(body) {
       return `${line.slice(0, equalsAt).trimEnd()} &= ${line.slice(equalsAt + 1).trimStart()}`;
     }).join("\\\n");
     return `$${aligned}$`;
+  });
+}
+
+function normalizeCollapsedLetteredLists(body) {
+  return body.replace(/^a\. ([^\n]+)$/gm, (line, content) => {
+    const items = content.split(/;\s+([b-z])\.\s+/);
+    if (items.length < 3) return line;
+
+    const bodies = [items[0]];
+    for (let index = 1; index < items.length; index += 2) {
+      const expectedLetter = String.fromCharCode(97 + bodies.length);
+      if (items[index] !== expectedLetter || !items[index + 1]) return line;
+      bodies.push(items[index + 1]);
+    }
+    return `#enum(numbering: "a.")${bodies.map(item => `[${item}]`).join("")}`;
   });
 }
 
@@ -1795,11 +1817,11 @@ function convert(file) {
   writeFileSync(tempInput, source);
   const body = stem === "references"
     ? '#bibliography("../references.bib", title: none, full: true, style: "ieee")'
-    : cleanTypstOutput(execFileSync(
+    : normalizeCollapsedLetteredLists(cleanTypstOutput(execFileSync(
       "pandoc",
       ["--from=org", "--to=typst", "--wrap=none", tempInput],
       { encoding: "utf8", maxBuffer: 128 * 1024 * 1024 },
-    ));
+    )));
 
   const title = readTitle(file);
   const displayTitle = chapterDisplayTitle(title);

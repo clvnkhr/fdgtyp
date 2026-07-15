@@ -40,7 +40,7 @@
   [
     #sym.copyright 2013 Massachusetts Institute of Technology
 
-    #box(stroke: 0.5pt, inset: (x: 4pt, y: 2pt))[#text(size: 8pt, weight: "bold")[CC BY-NC-SA]]
+    #image("../assets/cc-by-nc-sa.svg", width: 114pt)
 
     This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License. To view a copy of this license, visit creativecommons.org.
 
@@ -50,8 +50,8 @@
 
     This book was set in Computer Modern by the authors with the #LaTeX typesetting system and was printed and bound in the United States of America.
 
-    #v(1.6em)
-    Library of Congress Cataloging-in-Publication Data
+    #v(1fr)
+    #align(center)[Library of Congress Cataloging-in-Publication Data]
 
     Sussman, Gerald Jay. \
     Functional Differential Geometry / Gerald Jay Sussman and Jack Wisdom; with Will Farr. \

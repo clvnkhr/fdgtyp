@@ -247,6 +247,7 @@ const assertions = [
   {
     file: "chapter003.typ",
     contains: [
+      "on the manifold $bb(R)^5$",
       "D (sans(f) compose (chi')^(-1)) (chi' (sans(m)))",
       "D (chi' compose chi^(-1)) (x)=(D (chi compose (chi')^(-1)) (x'))^(-1)",
       "b (x)= D (chi compose (chi')^(-1)) (x')b'(x')",
@@ -260,6 +261,7 @@ const assertions = [
       "corresponding components",
     ],
     excludes: [
+      "manifold Rh",
       "chi'(sans(m)))))",
       "D (sans(f) ?(chi')",
       "chi^1",
@@ -309,6 +311,7 @@ const assertions = [
   {
     file: "chapter005.typ",
     contains: [
+      '#enum(numbering: "a.")[the wedge product is associative for forms in your coordinate system][formula #ref(<5.17>) is true in your coordinate system.]',
       "and $sans(v) = sans(v)^0 partial\\/partial sans(x) + sans(v)^1 partial\\/partial sans(y),$ which is given by",
       "$sans(A) = sans(d) sans(x) \"∧\" sans(d) sans(y).$",
       "Here we extract $sans(d) sans(x)$ and $sans(d) sans(y)$ from #raw(lang:\"scheme\", \"R2-rect-basis\")",
@@ -333,6 +336,7 @@ const assertions = [
   {
     file: "chapter006.typ",
     contains: [
+      "(d ((pullback mu) f))",
       "Let $μ$ be a map from points $sans(n)$ in the manifold $sans(N)$ to points $sans(m)$ in the manifold $sans(M)$.",
       "at points $sans(m) = mu (sans(n))$.",
       "$ sans(v)_mu (sans(f))= sans(v) (sans(f))compose mu\\, $ <6.1>",
@@ -360,6 +364,10 @@ const assertions = [
   {
     file: "chapter007.typ",
     contains: [
+      "(let ((colat (ref coords 0))",
+      "(long (ref coords 1))",
+      "(y (* (sin colat) (sin long)))",
+      "(up colatp longp)",
       "(cal(D)_(sans(v)) sans(f))sans(g) .",
       "Introduce $B$ to make the dependence of $A$s on $sans(v)$ explicit:",
       "$ A_j^i (delta)= B_j^i (sans(v)) (delta). $",
@@ -608,7 +616,7 @@ const typFileAssertions = [
   {
     file: "fdg-lib/title.typ",
     contains: [
-      "CC BY-NC-SA",
+      '#image("../assets/cc-by-nc-sa.svg", width: 114pt)',
       '#raw("special_sales@mitpress.mit.edu")',
       "#v(1.6em)",
       "#h(1.2em)p. cm.",

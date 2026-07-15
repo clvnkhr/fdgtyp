@@ -817,15 +817,15 @@ The path on the sphere will be the target of a map from the real line. We choose
 
 ```scheme
 (define ((transform tilt) coords)
-  (let ((colat (red coords 0))
-        (long (ref coord 1)))
+  (let ((colat (ref coords 0))
+        (long (ref coords 1)))
     (let ((x (* (sin colat) (cos long)))
-          (y (* (sin colat) (sign long)))
+          (y (* (sin colat) (sin long)))
           (z (cos colat)))
       (let ((vp ((rotate-x tilt) (up x y z))))
         (let ((colatp (acos (ref vp 2)))
               (longp (atan (ref vp 1) (ref vp 0))))
-          (up colatp long p))))))
+          (up colatp longp))))))
 
 (define (tilted-path tilt)
   (define (coords t)

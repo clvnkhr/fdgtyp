@@ -180,7 +180,7 @@ from which we see that there are only $binom(n, k)$ independent components of $Ï
 == Exercise 5.1: Wedge Product <sec-5.4>
 Pick a coordinate system and use the computer to verify that
 
-a. the wedge product is associative for forms in your coordinate system; b. formula #ref(<5.17>) is true in your coordinate system.
+#enum(numbering: "a.")[the wedge product is associative for forms in your coordinate system][formula #ref(<5.17>) is true in your coordinate system.]
 
 == Exterior Derivative <sec-5.5>
 The intention of introducing the exterior derivative is to capture all of the classical theorems of \"vector analysis\" into one unified Stokes\'s Theorem, which asserts that the integral of a form on the boundary of a manifold is the integral of the exterior derivative of the form on the interior of the manifold:#footnote[This is a generalization of the Fundamental Theorem of Calculus.]
