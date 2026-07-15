@@ -125,7 +125,6 @@ v
 (define p (down 'p_0 'p_1 'p_2))
 p
 ;; (down p_0 p_1 p_2)
-
 ```
 
 Note that #raw(lang:"scheme", "v^0") and #raw(lang:"scheme", "p_2") are just symbols. The caret and underline characters are symbol constituents, so there is no meaning other than mnemonic to the structure of these symbols. However, our software can also display expressions using #TeX, and then these decorations turn into superscripts and subscripts.
@@ -351,9 +350,9 @@ In Scheme we must make explicit choices. We usually assume that phase-space stat
 
 ```scheme
 (define H
-  (literal-function
-   'H
-   (-> (UP Real (UP Real Real) (DOWN Real Real)) Real)))
+  (literal-function 'H
+                    (-> (UP Real (UP Real Real) (DOWN Real Real))
+                        Real)))
 
 (H s)
 ;; (H (up t (up x y) (down p x p y)))
@@ -451,8 +450,6 @@ For example, we may define procedures that implement the functions above as foll
   (let ((x (ref v 0))
         (y (ref v 1)))
     (* (square x) (cube y))))
-
-
 
 (define (g v)
   (let ((x (ref v 0))

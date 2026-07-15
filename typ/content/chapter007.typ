@@ -29,9 +29,9 @@ The general pattern of constructing a directional derivative operator from a tra
 
 ```scheme
 (define (((((F->directional-derivative F) v) u) f) m)
-(define (g delta)
-(- ((u f) m) (((((F v) delta) u) f) m)))
-((D g) 0))
+  (define (g delta)
+    (- ((u f) m) (((((F v) delta) u) f) m)))
+  ((D g) 0))
 ```
 
 The linearity of transport implies that
@@ -85,16 +85,15 @@ We can construct a procedure that computes the Lie derivative of a vector field 
 
 ```scheme
 (define (Lie-directional coordsys order)
-(let ((Phi (phi coordsys order)))
-(F->directional-derivative (F-Lie Phi))))
+  (let ((Phi (phi coordsys order)))
+    (F->directional-derivative (F-Lie Phi))))
 
 (define (((F-Lie phi) v) delta)
-(pushforward-vector ((phi v) delta) ((phi v) (- delta))))
+  (pushforward-vector ((phi v) delta) ((phi v) (- delta))))
 
 (define ((((phi coordsys order) v) delta) m)
-((point coordsys)
-(series:sum (((exp (* delta v)) (chart coordsys)) m)
-order)))
+  ((point coordsys) (series:sum (((exp (* delta v)) (chart coordsys)) m)
+                                order)))
 ```
 
 Expand the quantities in equation @7.13 to first order in $δ$:
@@ -112,11 +111,10 @@ Verifying this computation
 
 ```scheme
 (let ((v (literal-vector-field 'v-rect R3-rect))
-(w (literal-vector-field 'w-rect R3-rect))
-(f (literal-manifold-function 'f-rect R3-rect)))
-((- ((((Lie-directional R3-rect 2) v) w) f)
-((commutator v w) f))
-((point R3-rect) (up 'x0 'y0 'z0))))
+      (w (literal-vector-field 'w-rect R3-rect))
+      (f (literal-manifold-function 'f-rect R3-rect)))
+  ((- ((((Lie-directional R3-rect 2) v) w) f) ((commutator v w) f))
+   ((point R3-rect) (up 'x0 'y0 'z0))))
 0
 ```
 
@@ -124,7 +122,7 @@ Although this is tested to second order, evaluating the derivative at zero ensur
 
 ```scheme
 (define ((Lie-derivative-vector V) Y)
-(commutator V Y))
+  (commutator V Y))
 ```
 
 We can think of the Lie derivative as the rate of change of the manifold function $sans(y) (sans(f))$ as we move in the $sans(v)$ direction, adjusted to take into account that some of the variation is due to the variation of $sans(f)$:
@@ -216,20 +214,18 @@ We can verify this in 3-dimensional rectangular space for a general one-form fie
 ```]
 
 ```scheme
-(((- ((Lie-derivative V) (d theta))
-(d ((Lie-derivative V) theta)))
-X Y)
-R3-rect-point)
+(((- ((Lie-derivative V) (d theta)) (d ((Lie-derivative V) theta))) X Y)
+ R3-rect-point)
 0
 ```
 
 and for the general two-form field:
 
 ```scheme
-(((- ((Lie-derivative V) (d omega))
-(d ((Lie-derivative V) omega)))
-X Y Z)
-R3-rect-point)
+(((- ((Lie-derivative V) (d omega)) (d ((Lie-derivative V) omega))) X
+                                                                    Y
+                                                                    Z)
+ R3-rect-point)
 0
 ```
 
@@ -241,10 +237,10 @@ Again, for our general one-form field $θ$:
 
 ```scheme
 ((((- (commutator (Lie-derivative X) (Lie-derivative Y))
-(Lie-derivative (commutator X Y)))
-theta)
-Z)
-R3-rect-point)
+      (Lie-derivative (commutator X Y)))
+   theta)
+  Z)
+ R3-rect-point)
 0
 ```
 
@@ -252,10 +248,11 @@ and for the two-form field $ω$:
 
 ```scheme
 ((((- (commutator (Lie-derivative X) (Lie-derivative Y))
-(Lie-derivative (commutator X Y)))
-omega)
-Z V)
-R3-rect-point)
+      (Lie-derivative (commutator X Y)))
+   omega)
+  Z
+  V)
+ R3-rect-point)
 0
 ```
 
@@ -276,16 +273,26 @@ We can apply the exponential of the Lie derivative with respect to $sans(J)_z$ t
 
 ```scheme
 (series:for-each print-expression
-((((exp (* 'a (Lie-derivative Jz))) d/dy)
-(literal-manifold-function 'f-rect R3-rect))
-((point R3-rect) (up 1 0 0)))
-5)
-/(((partial 0) f-rect) (up 1 0))/
-/(* -1 a (((partial 1) f-rect) (up 1 0)))/
-/(* -1/2 (expt a 2) (((partial 0) f-rect) (up 1 0)))/
-/(* 1/6 (expt a 3) (((partial 1) f-rect) (up 1 0)))/
-/(* 1/24 (expt a 4) (((partial 0) f-rect) (up 1 0)))/
-/;Value: .../
+                 ((((exp (* 'a (Lie-derivative Jz))) d/dy)
+                   (literal-manifold-function 'f-rect R3-rect))
+                  ((point R3-rect) (up 1 0 0)))
+                 5)
+/
+(((partial 0) f-rect) (up 1 0))
+/
+/
+(* -1 a (((partial 1) f-rect) (up 1 0)))
+/
+/
+(* -1/2 (expt a 2) (((partial 0) f-rect) (up 1 0)))
+/
+/
+(* 1/6 (expt a 3) (((partial 1) f-rect) (up 1 0)))
+/
+/
+(* 1/24 (expt a 4) (((partial 0) f-rect) (up 1 0)))
+/
+/ ;Value: .../
 ```
 
 Apparently the result is
@@ -317,17 +324,13 @@ We can verify Cartan\'s formula in a simple case with a program:
 (define c (literal-manifold-function 'gamma R3-rect))
 
 (define omega
-(+ (* a (wedge dx dy))
-(* b (wedge dy dz))
-(* c (wedge dz dx))))
+  (+ (* a (wedge dx dy)) (* b (wedge dy dz)) (* c (wedge dz dx))))
 
 (define ((L1 X) omega)
-(+ ((interior-product X) (d omega))
-(d ((interior-product X) omega))))
+  (+ ((interior-product X) (d omega)) (d ((interior-product X) omega))))
 
-((- (((Lie-derivative X) omega) Y Z)
-(((L1 X) omega) Y Z))
-((point R3-rect) (up 'x0 'y0 'z0)))
+((- (((Lie-derivative X) omega) Y Z) (((L1 X) omega) Y Z))
+ ((point R3-rect) (up 'x0 'y0 'z0)))
 0
 ```
 
@@ -403,19 +406,18 @@ As before, we can take a stab at computing the covariant derivative of a vector 
 
 ```scheme
 (define (covariant-derivative-vector omega coordsys order)
-(let ((Phi (phi coordsys order)))
-(F->directional-derivative
-(F-parallel omega Phi coordsys))))
+  (let ((Phi (phi coordsys order)))
+    (F->directional-derivative (F-parallel omega Phi coordsys))))
 
 (define ((((((F-parallel omega phi coordsys) v) delta) u) f) m)
-(let ((basis (coordinate-system->basis coordsys)))
-(let ((etilde (basis->1form-basis basis))
-(e (basis->vector-basis basis)))
-(let ((m0 (((phi v) (- delta)) m)))
-(let ((Aij (+ (identity-like ((omega v) m0))
-(* delta (- ((omega v) m0)))))
-(ui ((etilde u) m0)))
-(* ((e f) m) (* Aij ui)))))))
+  (let ((basis (coordinate-system->basis coordsys)))
+    (let ((etilde (basis->1form-basis basis))
+          (e (basis->vector-basis basis)))
+      (let ((m0 (((phi v) (- delta)) m)))
+        (let ((Aij (+ (identity-like ((omega v) m0))
+                      (* delta (- ((omega v) m0)))))
+              (ui ((etilde u) m0)))
+          (* ((e f) m) (* Aij ui)))))))
 ```
 
 So
@@ -432,14 +434,13 @@ As a program, the covariant derivative is:#footnote[This program is incomplete. 
 
 ```scheme
 (define ((((covariant-derivative-vector Cartan) V) U) f)
-(let ((basis (Cartan->basis Cartan))
-(Cartan-forms (Cartan->forms Cartan)))
-(let ((vector-basis (basis->vector-basis basis))
-(1form-basis (basis->1-form-basis basis)))
-(let ((u-components (1form-basis U)))
-(* (vector-basis f)
-(+ (V u-components)
-(* (Cartan-forms V) u-components)))))))
+  (let ((basis (Cartan->basis Cartan))
+        (Cartan-forms (Cartan->forms Cartan)))
+    (let ((vector-basis (basis->vector-basis basis))
+          (1form-basis (basis->1-form-basis basis)))
+      (let ((u-components (1form-basis U)))
+        (* (vector-basis f)
+           (+ (V u-components) (* (Cartan-forms V) u-components)))))))
 ```
 
 An important property of $nabla_(sans(v)) sans(u)$ is that it is linear over manifold functions $sans(g)$ in the first argument
@@ -508,22 +509,25 @@ As a program this is
 
 ```scheme
 (define ((((covariant-derivative-1form Cartan) V) tau) U)
-(let ((nabla_V ((covariant-derivative-vector Cartan) V)))
-(- (V (tau U)) (tau (nabla_V U)))))
+  (let ((nabla_V ((covariant-derivative-vector Cartan) V)))
+    (- (V (tau U)) (tau (nabla_V U)))))
 ```
 
 This program extends naturally to higher-rank form fields:
 
 ```scheme
 (define ((((covariant-derivative-form Cartan) V) tau) vs)
-(let ((k (get-rank tau))
-(nabla_V ((covariant-derivative-vector Cartan) V)))
-(- (V (apply tau vs))
-(sigma (lambda (i)
-(apply tau
-(list-with-substituted-coord vs i
-(nabla_V (list-ref vs i)))))
-0 (- k 1)))))
+  (let ((k (get-rank tau))
+        (nabla_V ((covariant-derivative-vector Cartan) V)))
+    (- (V (apply tau vs))
+       (sigma (lambda (i)
+                (apply tau
+                       (list-with-substituted-coord
+                        vs
+                        i
+                        (nabla_V (list-ref vs i)))))
+              0
+              (- k 1)))))
 ```
 
 == Change of Basis <sec-7.14>
@@ -556,20 +560,19 @@ The transformation rule for $pi.alt$ is implemented in the following program:
 
 ```scheme
 (define (Cartan-transform Cartan basis-prime)
-(let ((basis (Cartan->basis Cartan))
-(forms (Cartan->forms Cartan))
-(prime-dual-basis (basis->1form-basis basis-prime))
-(prime-vector-basis (basis->vector-basis basis-prime)))
-(let ((vector-basis (basis->vector-basis basis))
-(1form-basis (basis->1form-basis basis)))
-(let ((J-inv (s:map/r 1form-basis prime-vector-basis))
-(J (s:map/r prime-dual-basis vector-basis)))
-(let ((omega-prime-forms
-(procedure->1form-field
-(lambda (v)
-(+ (* J (v J-inv))
-(* J (* (forms v) J-inv)))))))
-(make-Cartan omega-prime-forms basis-prime))))))
+  (let ((basis (Cartan->basis Cartan))
+        (forms (Cartan->forms Cartan))
+        (prime-dual-basis (basis->1form-basis basis-prime))
+        (prime-vector-basis (basis->vector-basis basis-prime)))
+    (let ((vector-basis (basis->vector-basis basis))
+          (1form-basis (basis->1form-basis basis)))
+      (let ((J-inv (s:map/r 1form-basis prime-vector-basis))
+            (J (s:map/r prime-dual-basis vector-basis)))
+        (let ((omega-prime-forms (procedure->1form-field
+                                  (lambda (v)
+                                    (+ (* J (v J-inv))
+                                       (* J (* (forms v) J-inv)))))))
+          (make-Cartan omega-prime-forms basis-prime))))))
 ```
 
 The #raw(lang:"scheme", "s:map/r") procedure constructs a tuple of the same shape as its second argument whose elements are the result of applying the first argument to the corresponding elements of the second argument.
@@ -585,36 +588,31 @@ We can illustrate that the covariant derivative is independent of the coordinate
 
 ```scheme
 (define R2-rect-Christoffel
-(make-Christoffel
-(let ((zero (lambda (m) 0)))
-(down (down (up zero zero)
-(up zero zero))
-(down (up zero zero)
-(up zero zero))))
-R2-rect-basis))
+  (make-Christoffel (let ((zero (lambda (m) 0)))
+                      (down (down (up zero zero) (up zero zero))
+                            (down (up zero zero) (up zero zero))))
+                    R2-rect-basis))
 ```
 
 With these Christoffel coefficients, parallel transport preserves the components relative to the rectangular basis. This corresponds to our usual notion of parallel in the plane. We will see later in Chapter 9 that these Christoffel coefficients are a natural choice for the plane. From these we obtain the Cartan form:#footnote[The code for making the Cartan forms is as follows:
 
 ```scheme
 (define (Christoffel->Cartan Christoffel)
-(let ((basis (Christoffel->basis Christoffel))
-(Christoffel-symbols (Christoffel->symbols Christoffel)))
-(make-Cartan
-(* Christoffel-symbols (basis->1-form-basis basis))
-basis)))
+  (let ((basis (Christoffel->basis Christoffel))
+        (Christoffel-symbols (Christoffel->symbols Christoffel)))
+    (make-Cartan (* Christoffel-symbols (basis->1-form-basis basis))
+                 basis)))
 ```]
 
 ```scheme
-(define R2-rect-Cartan
-(Christoffel->Cartan R2-rect-Christoffel))
+(define R2-rect-Cartan (Christoffel->Cartan R2-rect-Christoffel))
 ```
 
 And from equation @7.63 we can get the corresponding Cartan form for polar coordinates:
 
 ```scheme
 (define R2-polar-Cartan
-(Cartan-transform R2-rect-Cartan R2-polar-basis))
+  (Cartan-transform R2-rect-Cartan R2-polar-basis))
 ```
 
 The vector field $partial\/partial theta$ generates a rotation in the plane (the same as circular). The covariant derivative with respect to $partial\/partial sans(x)$ of $partial\/partial theta$ applied to an arbitrary manifold function is:
@@ -625,18 +623,20 @@ The vector field $partial\/partial theta$ generates a rotation in the plane (the
 (define f (literal-manifold-function 'f-rect R2-rect))
 (define R2-rect-point ((point R2-rect) (up 'x0 'y0)))
 
-(((((covariant-derivative R2-rect-Cartan) d/dx)
-circular)
-f)
-R2-rect-point)
-/(((partial 1) f-rect) (up x0 y0))/
+(((((covariant-derivative R2-rect-Cartan) d/dx) circular) f)
+ R2-rect-point)
+/
+(((partial 1) f-rect) (up x0 y0))
+/
 ```
 
 Note that this is the same thing as $partial\/partial sans(y)$ applied to the function:
 
 ```scheme
 ((d/dy f) R2-rect-point)
-/(((partial 1) f-rect) (up x0 y0))/
+/
+(((partial 1) f-rect) (up x0 y0))
+/
 ```
 
 In rectangular coordinates, where the Christoffel coefficients are zero, the covariant derivative $nabla_(sans(u)) sans(v)$ is the vector whose coefficients are obtained by applying $sans(u)$ to the coefficients of $sans(v)$. Here, only one coefficient of $partial\/partial theta$ depends on $x$, the coefficient of $partial\/partial sans(y)$, and it depends linearly on $x$. So $nabla_(partial\/partial sans(x)) partial\/partial theta = partial\/partial sans(y)$. (See figure 7.1.)
@@ -648,9 +648,10 @@ In rectangular coordinates, where the Christoffel coefficients are zero, the cov
 Note that we get the same answer if we use polar coordinates to compute the covariant derivative:
 
 ```scheme
-(((((covariant-derivative R2-polar-Cartan) d/dx) J) f)
-R2-rect-point)
-/(((partial 1) f-rect) (up x0 y0))/
+(((((covariant-derivative R2-polar-Cartan) d/dx) J) f) R2-rect-point)
+/
+(((partial 1) f-rect) (up x0 y0))
+/
 ```
 
 In rectangular coordinates the Christoffel coefficients are all zero; in polar coordinates there are nonzero coefficients, but the value of the covariant derivative is the same. In polar coordinates the basis elements vary with position, and the Christoffel coefficients compensate for this.
@@ -662,11 +663,11 @@ Of course, this is a pretty special situation. Let\'s try something more general
 (define W (literal-vector-field 'W-rect R2-rect))
 
 (((((- (covariant-derivative R2-rect-Cartan)
-(covariant-derivative R2-polar-Cartan))
-V)
-W)
-f)
-R2-rect-point)
+       (covariant-derivative R2-polar-Cartan))
+    V)
+   W)
+  f)
+ R2-rect-point)
 0
 ```
 
@@ -727,19 +728,17 @@ Let\'s figure out what the equations of parallel transport of $sans(u)_gamma$, a
 ```scheme
 (define sphere (make-manifold S^2 2 3))
 (define S2-spherical
-(coordinate-system-at 'spherical 'north-pole sphere))
-(define S2-basis
-(coordinate-system->basis S2-spherical))
+  (coordinate-system-at 'spherical 'north-pole sphere))
+(define S2-basis (coordinate-system->basis S2-spherical))
 ```
 
 We need the path $γ$, which we represent as a map from the real line to $sans(M)$, and $sans(w)$, the parallel-transported vector over the map:
 
 ```scheme
 (define gamma
-(compose (point S2-spherical)
-(up (literal-function 'alpha)
-(literal-function 'beta))
-(chart R1-rect)))
+  (compose (point S2-spherical)
+           (up (literal-function 'alpha) (literal-function 'beta))
+           (chart R1-rect)))
 ```
 
 where alpha is the colatitude and beta is the longitude.
@@ -747,28 +746,24 @@ where alpha is the colatitude and beta is the longitude.
 We also need an arbitrary vector field u#sub[gamma] over the map gamma. To make this we multiply the structure of literal component functions by the vector basis structure.
 
 ```scheme
-(define basis-over-gamma
-(basis->basis-over-map gamma S2-basis))
+(define basis-over-gamma (basis->basis-over-map gamma S2-basis))
 
 (define u_gamma
-(* (up (compose (literal-function 'u^0)
-(chart R1-rect))
-(compose (literal-function 'u^1)
-(chart R1-rect)))
-(basis->vector-basis basis-over-gamma)))
+  (* (up (compose (literal-function 'u^0) (chart R1-rect))
+         (compose (literal-function 'u^1) (chart R1-rect)))
+     (basis->vector-basis basis-over-gamma)))
 ```
 
 We specify a connection by giving the Christoffel coefficients.#footnote[We will show later that these Christoffel coefficients are a natural choice for the sphere.]
 
 ```scheme
 (define S2-Christoffel
-(make-Christoffel
-(let ((zero (lambda (point) 0)))
-(down (down (up zero zero)
-(up zero (/ 1 (tan theta))))
-(down (up zero (/1 (tan theta)))
-(up (-  (* (sin theta) (cos theta))) zero))))
-S2-basis))
+  (make-Christoffel
+   (let ((zero (lambda (point) 0)))
+     (down (down (up zero zero) (up zero (/ 1 (tan theta))))
+           (down (up zero (/1 (tan theta)))
+                 (up (- (* (sin theta) (cos theta))) zero))))
+   S2-basis))
 
 (define sphere-Cartan (Christoffel->Cartan S2-Christoffel))
 ```
@@ -821,37 +816,33 @@ We illustrate parallel transport in a case where we should know the answer: we c
 
 ```scheme
 (define (g gamma Cartan)
-(let ((omega
-((Cartan->forms
-(Cartan->Cartan-over-map Cartan gamma))
-((differential gamma) d/dt))))
-(define ((the-state-derivative) state)
-(let ((t ((point R1-rect) (ref state 0)))
-(u (ref state 1)))
-(up 1 (* -1 (omega t) u))))
-the-state-derivative))
+  (let ((omega ((Cartan->forms (Cartan->Cartan-over-map Cartan gamma))
+                ((differential gamma) d/dt))))
+    (define ((the-state-derivative) state)
+      (let ((t ((point R1-rect) (ref state 0)))
+            (u (ref state 1)))
+        (up 1 (* -1 (omega t) u))))
+    the-state-derivative))
 ```
 
 The path on the sphere will be the target of a map from the real line. We choose one that starts at the origin of longitudes on the equator and follows the great circle that makes a given tilt angle with the equator.
 
 ```scheme
 (define ((transform tilt) coords)
-(let ((colat (red coords 0))
-(long (ref coord 1)))
-(let ((x (* (sin colat) (cos long)))
-(y (* (sin colat) (sign  long)))
-(z (cos colat)))
-(let ((vp ((rotate-x tilt) (up x y z))))
-(let ((colatp (acos (ref vp 2)))
-(longp (atan (ref vp 1) (ref vp 0))))
-(up colatp long p))))))
+  (let ((colat (red coords 0))
+        (long (ref coord 1)))
+    (let ((x (* (sin colat) (cos long)))
+          (y (* (sin colat) (sign long)))
+          (z (cos colat)))
+      (let ((vp ((rotate-x tilt) (up x y z))))
+        (let ((colatp (acos (ref vp 2)))
+              (longp (atan (ref vp 1) (ref vp 0))))
+          (up colatp long p))))))
 
 (define (tilted-path tilt)
-(define (coords t)
-((transform tilt) (up :pi/2 t)))
-(compose (point S2-spherical)
-coords
-(chart R1-rect)))
+  (define (coords t)
+    ((transform tilt) (up :pi/2 t)))
+  (compose (point S2-spherical) coords (chart R1-rect)))
 ```
 
 A southward pointing vector, with components (up 1 0), is transformed to an initial vector for the tilted path by multiplying by the derivative of the tilt transform at the initial point. We then parallel transport this vector by numerically integrating the differential equations. In this example we tilt by 1 radian, and we advance for $pi\/2$ radians. In this case we know the answer: by advancing by $pi\/2$ we walk around the circle a quarter of the way and at that point the transported vector points south:
@@ -877,7 +868,9 @@ But the transported vector can be obtained by tilting the original southward-poi
 
 ```scheme
 (* ((D (transform 1)) (up :pi/2 1)) (up 1 0))
-/(up .7651502649370375 .9117920272004736)/
+/
+(up .7651502649370375 .9117920272004736)
+/
 ```
 
 == Geodesic Motion <sec-7.18>
@@ -900,12 +893,10 @@ where $sigma (t)$ is the coordinate path corresponding to the manifold path $γ$
 For example, let\'s consider geodesic motion on the surface of a unit sphere. We let gamma be a map from the real line to the sphere, with colatitude alpha and longitude beta, as before. The geodesic equation is:
 
 ```scheme
-(show-expression
-(((((covariant-derivative sphere-Cartan gamma)
-d/dt)
-((differential gamma) d/dt))
-(chart S2-spherical))
-((point R1-rect) 't0)))
+(show-expression (((((covariant-derivative sphere-Cartan gamma) d/dt)
+                    ((differential gamma) d/dt))
+                   (chart S2-spherical))
+                  ((point R1-rect) 't0)))
 ```
 
 $ vec(- cos(alpha (t 0))sin(alpha (t 0)) (D beta (t 0))^2+ D^2 alpha (t 0), frac(2 D beta (t 0)cos(alpha (t 0))D alpha (t 0), sin(alpha (t))) + D^2 beta (t 0)) $
@@ -914,27 +905,26 @@ The geodesic equation is the same as the Lagrange equation for free motion const
 
 ```scheme
 (define (Lfree s)
-(* 1/2 (square (velocity s))))
+  (* 1/2 (square (velocity s))))
 
 (define (sphere->R3 s)
-(let ((q (coordinate s)))
-(let ((theta (ref q 0)) (phi (ref q 1)))
-(up (* (sin theta) (cos phi))
-(* (sin theta) (sin phi))
-(cos theta)))))
+  (let ((q (coordinate s)))
+    (let ((theta (ref q 0))
+          (phi (ref q 1)))
+      (up (* (sin theta) (cos phi))
+          (* (sin theta) (sin phi))
+          (cos theta)))))
 
-(define Lsphere
-(compose Lfree (F->C sphere->R3)))
+(define Lsphere (compose Lfree (F->C sphere->R3)))
 ```
 
 Then the Lagrange equations are:
 
 ```scheme
 (show-expression
-(((Lagrange-equations Lsphere)
-(up (literal-function 'alpha)
-(literal-function 'beta)))
-'t))
+ (((Lagrange-equations Lsphere) (up (literal-function 'alpha)
+                                    (literal-function 'beta)))
+  't))
 ```
 
 $ mat(delim: "[", -(D beta (t))^2sin (alpha (t))cos(alpha (t))+ D^2 alpha (t), 2 D alpha (t)D beta (t)sin(alpha (t))cos(alpha (t))+ D^2 beta (t) (sin(alpha (t)))^2) $
@@ -945,33 +935,32 @@ The Lagrange equations are true of the same paths as the geodesic equations. The
 We have just seen that the Lagrange equations for the motion of a free particle constrained to the surface of a sphere determine the geodesics on the sphere. We can investigate the phenomenon in the Hamiltonian formulation. The Hamiltonian is obtained from the Lagrangian by a Legendre transformation:
 
 ```scheme
-(define Hsphere
-(Lagrangian->Hamiltonian Lsphere))
+(define Hsphere (Lagrangian->Hamiltonian Lsphere))
 ```
 
 We can get the coordinate representation of the Hamiltonian vector field as follows:
 
 ```scheme
 ((phase-space-derivative Hsphere)
-(up 't (up 'theta 'phi) (down 'p_theta 'p_phi)))
-/(up 1/
-/(up p_theta/
-/(/ p_phi (expt (sin theta) 2)))/
-/(down (/ (* (expt p_phi 2) (cos theta))/
-/(expt (sin theta) 3))/
-/0))/
+ (up 't (up 'theta 'phi) (down 'p_theta 'p_phi)))
+/
+(up 1/
+    /
+    (up p_theta/ / (/ p_phi (expt (sin theta) 2)))
+    /
+    /
+    (down (/ (* (expt p_phi 2) (cos theta)) / / (expt (sin theta) 3))
+          /
+          /0))
+/
 ```
 
 The state space for Hamiltonian evolution has five dimensions: time, two dimensions of position on the sphere, and two dimensions of momentum:
 
 ```scheme
-(define state-space
-(make-manifold R^n 5))
-(define states
-(coordinate-system-at 'rectangular 'origin state-space))
-(define-coordinates
-(up t (up theta phi) (down p_theta p_phi))
-states)
+(define state-space (make-manifold R^n 5))
+(define states (coordinate-system-at 'rectangular 'origin state-space))
+(define-coordinates (up t (up theta phi) (down p_theta p_phi)) states)
 ```
 
 So now we have coordinate functions and the coordinate-basis vector fields and coordinate-basis one-form fields.
@@ -993,15 +982,12 @@ b. Show that there is no connection that for every vector field makes the Lie de
 (define theta (+ (* a dx) (* b dy) (* c dz)))
 
 (define omega
-(+ (* a (wedge dy dz))
-(* b (wedge dz dx))
-(* c (wedge dx dy))))
+  (+ (* a (wedge dy dz)) (* b (wedge dz dx)) (* c (wedge dx dy))))
 
 (define X (literal-vector-field 'X-rect R3-rect))
 (define Y (literal-vector-field 'Y-rect R3-rect))
 (define Z (literal-vector-field 'Z-rect R3-rect))
 (define V (literal-vector-field 'V-rect R3-rect))
-(define R3-rect-point
-((point R3-rect) (up 'x0 'y0 'z0)))
+(define R3-rect-point ((point R3-rect) (up 'x0 'y0 'z0)))
 ```
 ]

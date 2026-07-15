@@ -921,10 +921,13 @@ function repairChapter2(body) {
 }
 
 function repairChapter3(body) {
-  return body.replace(
-    /#footnote\[The analogous recovery of coefficient tuples from vector fields is equation\s+```scheme\s+\(@3\.3\):[\s\S]*?```\]/,
-    "#footnote[The analogous recovery of coefficient tuples from vector fields is equation @3.3: $b^i_(chi, sans(v)) = sans(v)(chi^i) compose chi^(-1)$.]",
-  );
+  return body
+    .replace(
+      /#footnote\[The analogous recovery of coefficient tuples from vector fields is equation\s+```scheme\s+\(@3\.3\):[\s\S]*?```\]/,
+      "#footnote[The analogous recovery of coefficient tuples from vector fields is equation @3.3: $b^i_(chi, sans(v)) = sans(v)(chi^i) compose chi^(-1)$.]",
+    )
+    // The vendored source closes `coordinatize` before its final expression.
+    .replace("(* ((D f) x) (b x)))))\n(make-operator coordinatized-v))", "(* ((D f) x) (b x))))\n  (make-operator coordinatized-v))");
 }
 
 function repairChapter4(body) {

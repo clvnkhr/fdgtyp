@@ -27,9 +27,8 @@ We can implement this definition as:
 
 ```scheme
 (define ((vector-field->vector-field-over-map mu:N->M) v-on-m)
-  (procedure->vector-field
-   (lambda (f-on-M)
-     (compose (v-on-M f-on-M) mu:N->M))))
+  (procedure->vector-field (lambda (f-on-M)
+                             (compose (v-on-M f-on-M) mu:N->M))))
 ```
 
 == Differential of a Map <sec-6.3>
@@ -41,7 +40,7 @@ which takes its argument in the source manifold $sans(N)$. The differential of a
 
 ```scheme
 (define (((differential mu) v) f)
-(v (compose f mu)))
+  (v (compose f mu)))
 ```
 
 The nomenclature of this subject is confused. The \"differential of a map between manifolds,\" $d mu$, takes one more argument than the \"differential of a real-valued function on a manifold,\" $sans(d) sans(f)$, but when the target manifold of $μ$ is the reals and $I$ is the identity function on the reals,
@@ -99,8 +98,7 @@ For example, let $mu$ map the time line to the unit sphere.#footnote[We execute 
 
 ```scheme
 (define S2 (make-manifold S^2 2 3))
-(define S2-spherical
-  (coordinate-system-at 'spherical 'north-pole S2))
+(define S2-spherical (coordinate-system-at 'spherical 'north-pole S2))
 (define-coordinates (up theta phi) S2-spherical)
 (define S2-basis (coordinate-system->basis S2-spherical))
 ```
@@ -114,22 +112,18 @@ A general path on the sphere is:#footnote[We provide a shortcut to make literal 
 ```scheme
 (define mu
   (compose (point S2-spherical)
-           (up (literal-function 'theta)
-               (literal-function 'phi))
+           (up (literal-function 'theta) (literal-function 'phi))
            (chart R1-rect)))
 ```
 
 The basis over the map is constructed from the basis on the sphere:
 
 ```scheme
-(define S2-basis-over-mu
-  (basis->basis-over-map mu S2-basis))
+(define S2-basis-over-mu (basis->basis-over-map mu S2-basis))
 
-(define h
-  (literal-manifold-function 'h-spherical S2-spherical))
+(define h (literal-manifold-function 'h-spherical S2-spherical))
 
-(((basis->vector-basis S2-basis-over-mu) h)
- ((point R1-rect) 't0))
+(((basis->vector-basis S2-basis-over-mu) h) ((point R1-rect) 't0))
 ;; (down
 ;;  (((partial 0) h-spherical) (up (theta t0) (phi t0)))
 ;;  (((partial 1) h-spherical) (up (theta t0) (phi t0))))
@@ -156,8 +150,7 @@ where $t$ is the coordinate for the point $sans(t)$.
 For example, the coordinate velocities on a sphere are
 
 ```scheme
-(((basis->1form-basis S2-basis-over-mu)
-  ((differential mu) d/dt))
+(((basis->1form-basis S2-basis-over-mu) ((differential mu) d/dt))
  ((point R1-rect) 't0))
 ;; (up ((D theta) t0) ((D phi) t0)))
 ```
@@ -182,7 +175,7 @@ This is implemented as:
 
 ```scheme
 (define ((pullback-function mu:N->M) f-on-M)
-(compose f-on-M mu:N->M))
+  (compose f-on-M mu:N->M))
 ```
 
 A vector field over the map that was constructed by restriction (equation @6.1) can be seen as the pullback of the function constructed by application of the vector field to a function:
@@ -220,8 +213,7 @@ This is implemented as:
 ```scheme
 (define ((pushforward-vector mu:N->M mu^-1:M->N) v-on-N)
   (procedure->vector-field
-   (lambda (f)
-     (compose (v-on-N (compose f mu:N->M)) mu^-1:M->N))))
+   (lambda (f) (compose (v-on-N (compose f mu:N->M)) mu^-1:M->N))))
 ```
 
 == Pullback of a Vector Field <sec-6.13>
@@ -278,8 +270,7 @@ This is implemented as follows:#footnote[There is a generic pullback procedure t
         ((pullback function mu:N->M) omega-on-M)
         (procedure->nform-field
          (lambda vectors-on-N
-           (apply ((form-field->form-field-over-map mu:N->M)
-                   omega-on-M)
+           (apply ((form-field->form-field-over-map mu:N->M) omega-on-M)
                   (map (differential mu:N->M) vectors-on-N)))
          k))))
 ```

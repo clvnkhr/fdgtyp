@@ -68,8 +68,7 @@ We use these as a vector basis and compute the dual:
 
 ```scheme
 (define e-vector-basis (down e0 e1))
-(define e-dual-basis
-  (vector-basis->dual e-vector-basis R2-polar))
+(define e-dual-basis (vector-basis->dual e-vector-basis R2-polar))
 ```
 
 The procedure vector-basis-\>dual requires an auxiliary coordinate system (here #raw(lang:"scheme", "R2-polar")) to get the $sans(c)_j^k$ coefficient functions from which we compute the $sans(d)_i^k$ coefficient functions. However, the final result is independent of this coordinate system. Then we can verify that the bases $sans(e)$ and $tilde(sans(e))$ satisfy the dual relationship (equation @3.41) by applying the dual basis to the vector basis:
@@ -259,8 +258,7 @@ We can check this formula for the commutator for the general vector fields #raw(
        (polar-dual-basis (basis->1form-basis polar-basis))
        (f (literal-manifold-function 'f-rect R2-rect)))
   ((- ((commutator e0 e1) f)
-      (* (- (e0 (polar-dual-basis e1))
-            (e1 (polar-dual-basis e0)))
+      (* (- (e0 (polar-dual-basis e1)) (e1 (polar-dual-basis e0)))
          (polar-vector-basis f)))
    R2-rect-point))
 ;; 0

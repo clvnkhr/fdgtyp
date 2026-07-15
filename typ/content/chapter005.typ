@@ -158,10 +158,9 @@ This last expression is the determinant of a $3 times 3$ matrix:
 
 ```scheme
 (- (((wedge dx dy dz) u v w) R3-rect-point)
-   (determinant
-    (matrix-by-rows (list 'u^0 'u^1 'u^2)
-                    (list 'v^0 'v^1 'v^2)
-                    (list 'w^0 'w^1 'w^2))))
+   (determinant (matrix-by-rows (list 'u^0 'u^1 'u^2)
+                                (list 'v^0 'v^1 'v^2)
+                                (list 'w^0 'w^1 'w^2))))
 ;; 0
 ```
 
@@ -230,11 +229,9 @@ The test will require two arbitrary vector fields
 (define X (literal-vector-field 'X-rect R3-rect))
 (define Y (literal-vector-field 'Y-rect R3-rect))
 
-(((- (d theta)
-     (+ (wedge (d a) dx)
-        (wedge (d b) dy)
-        (wedge (d c) dz)))
-  X Y)
+(((- (d theta) (+ (wedge (d a) dx) (wedge (d b) dy) (wedge (d c) dz)))
+  X
+  Y)
  R3-rect-point)
 ;; 0
 ```
@@ -249,9 +246,7 @@ where $a = α ˆ χ,$ $b = β ˆ χ,$ $c = γ ˆ χ,$ and $α$, $β$, and $γ$ a
 
 ```scheme
 (define omega
-  (+ (* a (wedge dy dz))
-     (* b (wedge dz dx))
-     (* c (wedge dx dy))))
+  (+ (* a (wedge dy dz)) (* b (wedge dz dx)) (* c (wedge dx dy))))
 ```
 
 Here we need another vector field because our result will be a three-form field.
@@ -260,10 +255,10 @@ Here we need another vector field because our result will be a three-form field.
 (define Z (literal-vector-field 'Z-rect R3-rect))
 
 (((- (d omega)
-     (+ (wedge (d a) dy dz)
-        (wedge (d b) dz dx)
-        (wedge (d c) dx dy)))
-  X Y Z)
+     (+ (wedge (d a) dy dz) (wedge (d b) dz dx) (wedge (d c) dx dy)))
+  X
+  Y
+  Z)
  R3-rect-point)
 ;; 0
 ```
@@ -354,11 +349,11 @@ Here we extract $sans(d) sans(x)$ and $sans(d) sans(y)$ from #raw(lang:"scheme",
       (dy (ref (basis-1>form-basis R2-rect-basis) 1)))
   (((- (d (+ (* (compose alpha (chart R2-rect)) dx)
              (* (compose beta (chart R2-rect)) dy)))
-       (* (compose (- ((partial 0) beta)
-                      ((partial 1) alpha))
+       (* (compose (- ((partial 0) beta) ((partial 1) alpha))
                    (chart R2-rect))
           (wedge dx dy)))
-    v w)
+    v
+    w)
    R2-rect-point))
 ;; 0
 ```
@@ -389,9 +384,7 @@ because any part of the boundary will have $y upright("-") z$, $z upright("-") x
 (define c (literal-manifold-function 'c-rect R3-rect))
 
 (define flux-through-boundary-element
-  (+ (* a (wedge dy dz))
-     (* b (wedge dz dx))
-     (* c (wedge dx dy))))
+  (+ (* a (wedge dy dz)) (* b (wedge dz dx)) (* c (wedge dx dy))))
 ```
 
 The rate of production of stuff in each element of volume is $upright(div) (sans(w))d V$. We interpret this as the three-form
@@ -402,8 +395,7 @@ or:
 
 ```scheme
 (define production-in-volume-element
-  (* (+ (d/dx a) (d/dy b) (d/dz c))
-     (wedge dx dy dz)))
+  (* (+ (d/dx a) (d/dy b) (d/dz c)) (wedge dx dy dz)))
 ```
 
 Assuming Stokes\'s Theorem, the exterior derivative of the leakage of stuff per unit area through the boundary must be the rate of production of stuff per unit volume in the interior. We check this by applying the difference to arbitrary vector fields at an arbitrary point:
@@ -413,9 +405,9 @@ Assuming Stokes\'s Theorem, the exterior derivative of the leakage of stuff per 
 (define Y (literal-vector-field 'Y-rect R3-rect))
 (define Z (literal-vector-field 'Z-rect R3-rect))
 
-(((- production-in-volume-element
-     (d flux-through-boundary-element))
-  X Y Z)
+(((- production-in-volume-element (d flux-through-boundary-element)) X
+                                                                     Y
+                                                                     Z)
  R3-rect-point)
 0
 ```

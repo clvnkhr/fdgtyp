@@ -88,11 +88,7 @@ The divergence is defined even if we don\'t have a metric, but have only a conne
 (define (((divergence Cartan) v) point)
   (let ((basis (Cartan->basis Cartan))
         (nabla (covariant-derivative Cartan)))
-    (contract
-     (lambda (ei wi)
-       ((wi ((nabla ei) v)) point))
-     basis)))
-
+    (contract (lambda (ei wi) ((wi ((nabla ei) v)) point)) basis)))
 ```
 
 If the Cartan form is derived from a metric these programs yield the same answer.
@@ -113,8 +109,7 @@ We can illustrate these by computing the formulas for the vector-calculus operat
 
 (define-coordinates (up r theta phi) spherical)
 
-(define R3-spherical-point
-  ((point spherical) (up 'r0 'theta0 'phi0)))
+(define R3-spherical-point ((point spherical) (up 'r0 'theta0 'phi0)))
 ```
 
 The geometry is specified by the metric:
@@ -124,8 +119,7 @@ The geometry is specified by the metric:
   (+ (* (dr v1) (dr v2))
      (* (square r)
         (+ (* (dtheta v1) (dtheta v2))
-           (* (expt (sin theta) 2)
-              (dphi v1) (dphi v2))))))
+           (* (expt (sin theta) 2) (dphi v1) (dphi v2))))))
 ```
 
 We also need an orthonormal basis for the spherical coordinates. The coordinate basis is orthogonal but not normalized.
@@ -137,12 +131,10 @@ We also need an orthonormal basis for the spherical coordinates. The coordinate 
 
 (define e_2 (* (/ 1 (* r (sin theta))) d/dphi))
 
-(define orthonormal-spherical-vector-basis
-  (down e_0 e_1 e_2))
+(define orthonormal-spherical-vector-basis (down e_0 e_1 e_2))
 
 (define orthonormal-spherical-1form-basis
-  (vector-basis->dual orthonormal-spherical-vector-basis
-                      spherical))
+  (vector-basis->dual orthonormal-spherical-vector-basis spherical))
 
 (define orthonormal-spherical-basis
   (make-basis orthonormal-spherical-vector-basis
@@ -429,8 +421,7 @@ $ frac(partial E_y, partial x) - frac(partial E_x, partial y) = 1 / c frac(parti
 The purely spatial component of equation @10.14 is equation @10.17:
 
 ```scheme
-(((- (d (SR-star F)) (* 4 :pi (SR-star 4-current)))
-  d/dx d/dy d/dz)
+(((- (d (SR-star F)) (* 4 :pi (SR-star 4-current))) d/dx d/dy d/dz)
  an-event)
 ;; (+ (* -4 :pi (rho (up ct0 x0 y0 z0)))
 ;;    (((partial 1) Ex) (up ct0 x0 y0 z0))
@@ -443,8 +434,7 @@ $ frac(partial E_x, partial x) + frac(partial E_y, partial y) + frac(partial E_z
 And finally, the three mixed time and space components of equation @10.14 are equation @10.18:
 
 ```scheme
-(((- (d (SR-star F)) (* 4 :pi (SR-star 4-current)))
-  d/dct d/dy d/dz)
+(((- (d (SR-star F)) (* 4 :pi (SR-star 4-current))) d/dct d/dy d/dz)
  an-event)
 ;; (+ (((partial 0) Ex) (up ct0 x0 y0 z0))
 ;;    (* -1 (((partial 2) Bz) (up ct0 x0 y0 z0)))
@@ -455,8 +445,7 @@ And finally, the three mixed time and space components of equation @10.14 are eq
 $ frac(partial B_y, partial z) - frac(partial B_z, partial y) = - 1 / c frac(partial E_x, partial t) - frac(4 pi, c) I_x\, $ <10.24>
 
 ```scheme
-(((- (d (SR-star F)) (* 4 :pi (SR-star 4-current)))
-  d/dct d/dz d/dx)
+(((- (d (SR-star F)) (* 4 :pi (SR-star 4-current))) d/dct d/dz d/dx)
  an-event)
 ;; (+ (((partial 0) Ey) (up ct0 x0 y0 z0))
 ;;    (* -1 (((partial 3) Bx) (up ct0 x0 y0 z0)))
@@ -467,8 +456,7 @@ $ frac(partial B_y, partial z) - frac(partial B_z, partial y) = - 1 / c frac(par
 $ frac(partial B_z, partial x) - frac(partial B_x, partial z) = - 1 / c frac(partial E_y, partial t) - frac(4 pi, c) I_y\, $ <10.25>
 
 ```scheme
-(((- (d (SR-star F)) (* 4 :pi (SR-star 4-current)))
-  d/dct d/dx d/dy)
+(((- (d (SR-star F)) (* 4 :pi (SR-star 4-current))) d/dct d/dx d/dy)
  an-event)
 ;; (+ (((partial 0) Ez) (up ct0 x0 y0 z0))
 ;;    (* -1 (((partial 1) By) (up ct0 x0 y0 z0)))
@@ -522,14 +510,14 @@ where $U$ is the 4-velocity of the charged particle, $F$ is the Faraday tensor, 
 
 ```scheme
 (define (Force charge F 4velocity component)
-  (* -1 charge
-     (contract (lambda (a b)
-                 (contract (lambda (e w)
-                             (* (w 4velocity)
-                                (F e a)
-                                (eta-inverse b component)))
-                           SR-basis))
-               SR-basis)))
+  (* -1
+     charge
+     (contract
+      (lambda (a b)
+        (contract (lambda (e w)
+                    (* (w 4velocity) (F e a) (eta-inverse b component)))
+                  SR-basis))
+      SR-basis)))
 ```
 
 So, for example, the force in the $hat(x)$ direction for a stationary particle is

@@ -422,6 +422,7 @@ const assertions = [
       "The Lagrange equations are $upright(bold(E))[L]compose Gamma[q]= 0$.",
       "$ bold(E)[L_2]= D_t partial_2 L_2 - partial_1 L_2\\, $",
       "Section @sec-7.4",
+      "```scheme\n(determinant\n (submatrix (((* (partial 1) (partial 0))\n              geodesic-equation+X-residuals)\n             0\n             (up 0 0 0))\n            0 3 0 3))\n```",
     ],
     excludes: [
       "$upright(bold(E))$[L]",
@@ -515,9 +516,9 @@ const assertions = [
       "Given conditionals and definitions, we can write recursive procedures. For example, to compute the $n$th factorial number we may write:",
       "```scheme\n(operator operand-1 ... operand-n)\n```",
       "```scheme\n(lambda formal-parameters body)\n```",
-      "```scheme\n(cond (predicate-1 consequent-1)\n      ...\n      (predicate-n consequent-n))\n```",
+      "```scheme\n(cond\n  (predicate-1 consequent-1) ...\n  (predicate-n consequent-n))\n```",
       "```scheme\n(if predicate consequent alternative)\n```",
-      "```scheme\n(let ((variable-1 expression-1)\n      ...\n      (variable-n expression-n))\n  body)\n```",
+      "```scheme\n(let ((variable-1 expression-1) ...\n      (variable-n expression-n))\n  body)\n```",
     ],
     excludes: [
       "\\$n\\$th",

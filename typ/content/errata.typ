@@ -94,7 +94,8 @@ Page 103: I believe the code listing at the end of the page subs in #raw(lang:"s
 The correct version is:
 
 ```scheme
-(((((covariant-derivative R2-polar-Cartan) d/dx) circular) f) R2-rect-point)
+(((((covariant-derivative R2-polar-Cartan) d/dx) circular) f)
+ R2-rect-point)
 ```
 
 Page 107: the definition of #raw(lang:"scheme", "S2-Christoffel") will not work without #raw(lang:"scheme", "S2-spherical") coordinates installed:
@@ -230,16 +231,19 @@ Including the #raw(lang:"scheme", "c^2") term explicitly would require, I believ
 (((d F) (* (/ 1 ':c) d/dct) d/dx d/dy) an-event)
 
 ;; page 164
-(((- (d (SR-star F)) (* 4 :pi (SR-star 4-current)))
-  (* (/ 1 ':c) d/dct) d/dy d/dz)
+(((- (d (SR-star F)) (* 4 :pi (SR-star 4-current))) (* (/ 1 ':c) d/dct)
+                                                    d/dy
+                                                    d/dz)
  an-event)
 
-(((- (d (SR-star F)) (* 4 :pi (SR-star 4-current)))
-  (* (/ 1 ':c) d/dct) d/dz d/dx)
+(((- (d (SR-star F)) (* 4 :pi (SR-star 4-current))) (* (/ 1 ':c) d/dct)
+                                                    d/dz
+                                                    d/dx)
  an-event)
 
-(((- (d (SR-star F)) (* 4 :pi (SR-star 4-current)))
-  (* (/ 1 ':c) d/dct) d/dx d/dy)
+(((- (d (SR-star F)) (* 4 :pi (SR-star 4-current))) (* (/ 1 ':c) d/dct)
+                                                    d/dx
+                                                    d/dy)
  an-event)
 ```
 
@@ -252,8 +256,7 @@ Page 180 states \"Assume that we have a base frame called #raw(lang:"scheme", "h
 
 ```scheme
 (define home
-  ((frame-maker base-frame-point base-frame-chart)
-   'home 'home))
+  ((frame-maker base-frame-point base-frame-chart) 'home 'home))
 
 (define home the-ether)
 ```

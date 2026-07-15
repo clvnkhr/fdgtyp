@@ -64,24 +64,21 @@ For each of the coordinate systems above we obtain the coordinate functions and 
 The coordinate transformations are then just compositions. The polar coordinates of a rectangular point are:
 
 ```scheme
-((compose R2-polar-chi R2-rect-chi-inverse)
- (up 'x0 'y0))
+((compose R2-polar-chi R2-rect-chi-inverse) (up 'x0 'y0))
 ;;(up (sqrt (+ (expt x0 2) (expt y0 2))) (atan y0 x0))
 ```
 
 And the rectangular coordinates of a polar point are:
 
 ```scheme
-((compose R2-rect-chi R2-polar-chi-inverse)
- (up 'r0 'theta0))
+((compose R2-rect-chi R2-polar-chi-inverse) (up 'r0 'theta0))
 ;;(up (* r0 (cos theta0)) (* r0 (sin theta0)))
 ```
 
 And we can obtain the Jacobian of the polar-to-rectangular transformation by taking its derivative#footnote[See Appendix @chap-appendix-b for an introduction to tuple arithmetic and a discussion of derivatives of functions with structured input or output.]:
 
 ```scheme
-((D (compose R2-rect-chi R2-polar-chi-inverse))
- (up 'r0 'theta0))
+((D (compose R2-rect-chi R2-polar-chi-inverse)) (up 'r0 'theta0))
 ;;(down (up (cos theta0) (sin theta0))
 ;;      (up (* -1 r0 (sin theta0)) (* r0 (cos theta0))))
 ```
@@ -109,8 +106,7 @@ We define a manifold function by specifying its behavior in rectangular coordina
 ```]:
 
 ```scheme
-(define f
-  (compose (literal-function 'f-rect R2->R) R2-rect-chi))
+(define f (compose (literal-function 'f-rect R2->R) R2-rect-chi))
 ```
 
 where `R2->R` is a signature for functions that map an up structure of two reals to a real:
@@ -129,9 +125,8 @@ We can describe the #emph[same point] using its polar coordinates:
 
 ```scheme
 (define corresponding-polar-point
-  (R2-polar-chi-inverse
-   (up (sqrt (+ (square 'x0) (square 'y0)))
-       (atan 'y0 'x0))))
+  (R2-polar-chi-inverse (up (sqrt (+ (square 'x0) (square 'y0)))
+                            (atan 'y0 'x0))))
 ```
 
 `(f R2-rect-point)` and `(f corresponding-polar-point)` agree, even though the point has been specified in two different coordinate systems:
@@ -196,8 +191,7 @@ We can convert this to rectangular coordinates by evaluating the residual in rec
 
 ```scheme
 (define-coordinates (up r theta) R2-polar)
-((- r (* 2 'a (+ 1 (cos theta))))
- ((point R2-rect) (up 'x 'y)))
+((- r (* 2 'a (+ 1 (cos theta)))) ((point R2-rect) (up 'x 'y)))
 ;;(/ (+ (* -2 a x)
 ;;      (* -2 a (sqrt (+ (expt x 2) (expt y 2))))
 ;;      (expt x 2) (expt y 2))
@@ -224,11 +218,10 @@ The coordinate system for points on the sphere in terms of rectangular coordinat
 We can compute the colatitude and longitude of a point on the sphere corresponding to a point on the plane with the following incantation:
 
 ```scheme
-((compose
-  (chart S2-spherical)
-  (point S2-Riemann)
-  (chart R2-rect)
-  (point R2-polar))
+((compose (chart S2-spherical)
+          (point S2-Riemann)
+          (chart R2-rect)
+          (point R2-polar))
  (up 'rho 'theta))
 ;;(up (acos (/ (+ -1 (expt rho 2))
 ;;             (+ +1 (expt rho 2))))

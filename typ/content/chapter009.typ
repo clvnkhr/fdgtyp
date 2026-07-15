@@ -52,7 +52,8 @@ Lowering a vector field with respect to a metric is a simple program:
 
 ```scheme
 (define ((lower metric) u)
-  (define (omega v) (metric v u))
+  (define (omega v)
+    (metric v u))
   (procedure->1form-field omega))
 ```
 
@@ -62,9 +63,7 @@ But raising a one-form field to make a vector field is a bit more complicated:
 (define (raise metric basis)
   (let ((gi (metric:invert metric basis)))
     (lambda (omega)
-      (contract (lambda (e i w^i)
-                  (* (gi omega w^i) e i))
-                basis))))
+      (contract (lambda (e i w^i) (* (gi omega w^i) e i)) basis))))
 ```
 
 where #raw(lang:"scheme", "contract") is the trace over a basis of a two-argument function that takes a vector field and a one-form field as its arguments.#footnote[Notice that #raw(lang:"scheme", "raise") and #raw(lang:"scheme", "lower") are not symmetrical. This is because vector fields and form fields are not symmetrical: a vector field takes a manifold function as its argument, whereas a form field takes a vector field as its argument. This asymmetry is not apparent in traditional treatments based on index notation.]
@@ -73,9 +72,7 @@ where #raw(lang:"scheme", "contract") is the trace over a basis of a two-argumen
 (define (contract proc basis)
   (let ((vector-basis (basis->vector-basis basis))
         (1form-basis (basis->1form-basis basis)))
-    (s:sigma/r proc
-               vector-basis
-               1form-basis)))
+    (s:sigma/r proc vector-basis 1form-basis)))
 ```
 
 == Metric Compatibility <sec-9.1>
@@ -110,16 +107,13 @@ So, for example, we can compute the Christoffel coefficients for the sphere from
 (define ((g-sphere R) u v)
   (* (square R)
      (+ (* (dtheta u) (dtheta v))
-        (* (compose (square sin) theta)
-           (dphi u)
-           (dphi v)))))
+        (* (compose (square sin) theta) (dphi u) (dphi v)))))
 ```
 
 The Christoffel coefficients of the first kind are a complex structure with all three indices down:
 
 ```scheme
-((Christoffel->symbols
-  (metric->Christoffel-1 (g-sphere 'R) S2-basis))
+((Christoffel->symbols (metric->Christoffel-1 (g-sphere 'R) S2-basis))
  ((point S2-spherical) (up 'theta0 'phi0)))
 ;; (down
 ;;  (down (down 0 0)
@@ -132,8 +126,7 @@ The Christoffel coefficients of the first kind are a complex structure with all 
 And the Christoffel coefficients of the second kind have the innermost index up:
 
 ```scheme
-((Christoffel->symbols
-  (metric->Christoffel-2 (g-sphere 'R) S2-basis))
+((Christoffel->symbols (metric->Christoffel-2 (g-sphere 'R) S2-basis))
  ((point S2-spherical) (up 'theta0 'phi0)))
 ;; (down (down (up 0 0)
 ;;             (up 0 (/ (cos theta0) (sin theta0))))
@@ -162,9 +155,9 @@ We can verify this computationally. Given a metric, we can construct a Lagrangia
 ```scheme
 (define (metric->Lagrangian metric coordsys)
   (define (L state)
-    (let ((q (ref state 1)) (qd (ref state 2)))
-      (define v
-        (components->vector-field (lambda (m) qd) coordsys))
+    (let ((q (ref state 1))
+          (qd (ref state 2)))
+      (define v (components->vector-field (lambda (m) qd) coordsys))
       ((* 1/2 (metric v v)) ((point coordsys) q))))
   L)
 ```
@@ -186,9 +179,9 @@ The following code compares the Christoffel symbols with the coefficients of the
   (+ (* 1/2
         (((expt (partial 2) 2) (Lagrange-explicit L2))
          (up 't q (corresponding-velocities q))))
-     ((Christoffel->symbols
-       (metric->Christoffel-2 metric
-                              (coordinate-system->basis R3-rect)))
+     ((Christoffel->symbols (metric->Christoffel-2
+                             metric
+                             (coordinate-system->basis R3-rect)))
       ((point R3-rect) q))))
 ;; (down (down (up 0 0 0) (up 0 0 0) (up 0 0 0))
 ;;       (down (up 0 0 0) (up 0 0 0) (up 0 0 0))
@@ -232,9 +225,7 @@ On the other hand, we can solve for the highest-order derivative in $bold(E)[L_2
 We can show this is true for a 2-dimensional system with a general metric. We define the Lagrangians in terms of this metric:
 
 ```scheme
-(define L2
-  (metric->Lagrangian (literal-metric 'm R2-rect)
-                      R2-rect))
+(define L2 (metric->Lagrangian (literal-metric 'm R2-rect) R2-rect))
 
 (define (L1 state)
   (sqrt (* 2 (L2 state))))
@@ -243,9 +234,8 @@ We can show this is true for a 2-dimensional system with a general metric. We de
 Although the mass matrix of $L_2$ is nonsingular
 
 ```scheme
-(determinant
- (((partial 2) ((partial 2) L2))
-  (up 't (up 'x 'y) (up 'vx 'vy))))
+(determinant (((partial 2) ((partial 2) L2))
+              (up 't (up 'x 'y) (up 'vx 'vy))))
 ;; (+ (* (m_00 (up x y)) (m_11 (up x y)))
 ;;    (* -1 (expt (m_01 (up x y)) 2)))
 ```
@@ -253,9 +243,8 @@ Although the mass matrix of $L_2$ is nonsingular
 the mass matrix of $L_1$ has determinant zero
 
 ```scheme
-(determinant
- (((partial 2) ((partial 2) L1))
-  (up 't (up 'x 'y) (up 'vx 'vy))))
+(determinant (((partial 2) ((partial 2) L1))
+              (up 't (up 'x 'y) (up 'vx 'vy))))
 ;; 0
 ```
 
@@ -267,8 +256,8 @@ We can show this dependence explicitly, for a simple system. Consider the simple
 (define (L1 state)
   (sqrt (square (velocity state))))
 
-(((Lagrange-equations L1)
-  (up (literal-function 'x) (literal-function 'y)))
+(((Lagrange-equations L1) (up (literal-function 'x)
+                              (literal-function 'y)))
  't)
 ;; (down
 ;;  (/ (+ (* (((expt D 2) x) t) (expt ((D y) t) 2))
@@ -277,7 +266,6 @@ We can show this dependence explicitly, for a simple system. Consider the simple
 ;;  (/ (+ (* -1 (((expt D 2) x) t) ((D x) t) ((D y) t))
 ;;        (* (expt ((D x) t) 2) (((expt D 2) y) t)))
 ;;     (expt (+ (expt ((D x) t) 2) (expt ((D y) t) 2)) 3/2)))
-
 ```
 
 These residuals must be zero; so the numerators must be zero.#footnote[We cheated: We hand-simplified the denominator to make the result more obvious.] They are:
@@ -315,14 +303,8 @@ We can check this in a simple case. For two dimensions $q =(x\,y)$, the conditio
       (y (literal-function 'y))
       (f (literal-function 'f))
       (E1 (Euler-Lagrange-operator L1)))
-  ((- (compose E1
-               (Gamma (up (compose x f)
-                          (compose y f))
-                      4))
-      (* (compose E1
-                  (Gamma (up x y) 4)
-                  f)
-         (D f)))
+  ((- (compose E1 (Gamma (up (compose x f) (compose y f)) 4))
+      (* (compose E1 (Gamma (up x y) 4) f) (D f)))
    't))
 ;; (down 0 0)
 ```
@@ -338,11 +320,8 @@ Although the Euler-Lagrange equations for $L_1$ are invariant under an arbitrary
 ```scheme
 (let ((q (up (literal-function 'x) (literal-function 'y)))
       (f (literal-function 'f)))
-  ((- (compose (Euler-Lagrange-operator L2)
-               (Gamma (compose q f) 4))
-      (* (compose (Euler-Lagrange-operator L2)
-                  (Gamma q 4)
-                  f)
+  ((- (compose (Euler-Lagrange-operator L2) (Gamma (compose q f) 4))
+      (* (compose (Euler-Lagrange-operator L2) (Gamma q 4) f)
          (expt (D f) 2)))
    't))
 ;; (down
@@ -361,9 +340,7 @@ We have derived a basis for SO(3) in terms of incremental rotations around the r
 
 ```scheme
 (define (SO3-metric v1 v2)
-  (+ (* (e^x v1) (e^x v2))
-     (* (e^y v1) (e^y v2))
-     (* (e^z v1) (e^z v2))))
+  (+ (* (e^x v1) (e^x v2)) (* (e^y v1) (e^y v2)) (* (e^z v1) (e^z v2))))
 ```
 
 This metric determines a connection. Show that uniform rotation about an arbitrary axis traces a geodesic on SO(3).
@@ -373,16 +350,14 @@ The 2-dimensional surface of a 3-dimensional sphere can be embedded in three dim
 
 ```scheme
 (define M (make-manifold S^2-type 2 3))
-(define spherical
-  (coordinate-system-at 'spherical 'north-pole M))
+(define spherical (coordinate-system-at 'spherical 'north-pole M))
 (define-coordinates (up theta phi) spherical)
 (define spherical-basis (coordinate-system->basis spherical))
 
 (define ((spherical-metric r) v1 v2)
   (* (square r)
      (+ (* (dtheta v1) (dtheta v2))
-        (* (square (sin theta))
-           (dphi v1) (dphi v2)))))
+        (* (square (sin theta)) (dphi v1) (dphi v2)))))
 ```
 
 If we raise one index of the Ricci tensor (see equation @8.20) by contracting it with the inverse of the metric tensor we can further contract it to obtain a scalar manifold function:
@@ -393,16 +368,13 @@ The #raw(lang:"scheme", "trace2down") procedure converts a tensor that takes two
 
 ```scheme
 (define ((trace2down metric basis) tensor)
-  (let ((inverse-metric-tensor
-         (metric:invert metric-tensor basis)))
-    (contract
-     (lambda (v1 w1)
-       (contract
-        (lambda (v w)
-          (* (inverse-metric-tensor w1 w)
-             (tensor v v1)))
-        basis))
-     basis)))
+  (let ((inverse-metric-tensor (metric:invert metric-tensor basis)))
+    (contract (lambda (v1 w1)
+                (contract (lambda (v w)
+                            (* (inverse-metric-tensor w1 w)
+                               (tensor v v1)))
+                          basis))
+              basis)))
 ```
 
 Evaluate the Ricci scalar for a sphere of radius $r$ to obtain a measure of its intrinsic curvature. You should obtain the answer $2\/r^2$.
@@ -446,9 +418,7 @@ The time-time component of the Ricci tensor derived from the metric #ref(<9.24>)
 
 ```scheme
 (define (Newton-metric M G c V)
-  (let ((a
-         (+ 1 (* (/ 2 (square c))
-                 (compose V (up x y z))))))
+  (let ((a (+ 1 (* (/ 2 (square c)) (compose V (up x y z))))))
     (define (g v1 v2)
       (+ (* -1 (square c) a (dt v1) (dt v2))
          (* (dx v1) (dx v2))
@@ -457,18 +427,18 @@ The time-time component of the Ricci tensor derived from the metric #ref(<9.24>)
     g))
 
 (define (Newton-connection M G c V)
-  (Christoffel->Cartan
-   (metric->Christoffel-2 (Newton-metric M G c V)
-                          spacetime-rect-basis)))
+  (Christoffel->Cartan (metric->Christoffel-2 (Newton-metric M G c V)
+                                              spacetime-rect-basis)))
 
 (define nabla
   (covariant-derivative
-   (Newton-connection 'M 'G ':c
-                      (literal-function 'V (-> (UP Real Real Real) Real)))))
+   (Newton-connection
+    'M
+    'G
+    ':c
+    (literal-function 'V (-> (UP Real Real Real) Real)))))
 
-
-(((Ricci nabla (coordinate-system->basis spacetime-rect))
-  d/dt d/dt)
+(((Ricci nabla (coordinate-system->basis spacetime-rect)) d/dt d/dt)
  ((point spacetime-rect) (up 't 'x 'y 'z)))
 ;; mess
 ```
@@ -497,18 +467,20 @@ If we evaluate the right-hand side expression we obtain#footnote[The procedure #
 ```scheme
 (define ((drop2 metric-tensor basis) tensor)
   (lambda (v1 v2)
-    (contract
-     (lambda (e1 w1)
-       (contract
-        (lambda (e2 w2)
-          (* (metric-tensor v1 e1) (tensor w1 w2) (metric-tensor e2 v2)))
-        basis))
-     basis)))
+    (contract (lambda (e1 w1)
+                (contract (lambda (e2 w2)
+                            (* (metric-tensor v1 e1)
+                               (tensor w1 w2)
+                               (metric-tensor e2 v2)))
+                          basis))
+              basis)))
 ```]
 
 ```scheme
 (let ((g (Newton-metric 'M 'G ':c V)))
-  (let ((T ij ((drop2 g spacetime-rect-basis) (Tdust 'rho))))
+  (let ((T
+         ij
+         ((drop2 g spacetime-rect-basis) (Tdust 'rho))))
     (let ((T ((trace2down g spacetime-rect-basis) T ij)))
       ((- (T ij d/dt d/dt) (* 1/2 T (g d/dt d/dt)))
        ((point spacetime-rect) (up 't 'x 'y 'z))))))
@@ -542,8 +514,7 @@ In spherical coordinates around a nonrotating gravitating body the metric of Sch
          (* (/ 1 a) (dr v1) (dr v2))
          (* (square r)
             (+ (* (dtheta v1) (dtheta v2))
-               (* (square (sin theta))
-                  (dphi v1) (dphi v2))))))))
+               (* (square (sin theta)) (dphi v1) (dphi v2))))))))
 ```
 
 Show that the Ricci curvature of the Schwarzschild spacetime is zero. Use the definition of the Ricci tensor in equation @8.20.
@@ -569,15 +540,14 @@ For example, we can consider a perturbation of the orbit of constant longitude. 
 
 ```scheme
 (define (prime-meridian+X r epsilon X)
-  (compose
-   (point spacetime-sphere)
-   (lambda (t)
-     (up (+ t (* epsilon (* (ref X 0) (exp (* 'lambda t)))))
-         (+ r (* epsilon (* (ref X 1) (exp (* 'lambda t)))))
-         (+ (* (sqrt (/ (* 'G 'M) (expt r 3))) t)
-            (* epsilon (* (ref X 2) (exp (* 'lambda t)))))
-         0))
-   (chart R1-rect)))
+  (compose (point spacetime-sphere)
+           (lambda (t)
+             (up (+ t (* epsilon (* (ref X 0) (exp (* 'lambda t)))))
+                 (+ r (* epsilon (* (ref X 1) (exp (* 'lambda t)))))
+                 (+ (* (sqrt (/ (* 'G 'M) (expt r 3))) t)
+                    (* epsilon (* (ref X 2) (exp (* 'lambda t)))))
+                 0))
+           (chart R1-rect)))
 ```
 
 Plugging this into the geodesic equation yields a structure of residuals:
@@ -610,26 +580,24 @@ The Einstein tensor $G_(mu nu)$ (see footnote 5) can be expressed as a program:
 ```scheme
 (define (Einstein coordinate-system metric-tensor)
   (let* ((basis (coordinate-system->basis coordinate-system))
-         (connection
-          (Christoffel->Cartan
-           (metric->Christoffel-2 metric-tensor basis)))
+         (connection (Christoffel->Cartan
+                      (metric->Christoffel-2 metric-tensor basis)))
          (nabla (covariant-derivative connection))
          (Ricci-tensor (Ricci nabla basis))
-         (Ricci-scalar
-          ((trace2down metric-tensor basis) Ricci-tensor)))
+         (Ricci-scalar ((trace2down metric-tensor basis) Ricci-tensor)))
     (define (Einstein-tensor v1 v2)
       (- (Ricci-tensor v1 v2)
          (* 1/2 Ricci-scalar (metric-tensor v1 v2))))
     Einstein-tensor))
 
-(define (Einstein-field-equation
-         coordinate-system metric-tensor Lambda stress-energy-tensor)
-  (let ((Einstein-tensor
-         (Einstein coordinate-system metric-tensor)))
+(define (Einstein-field-equation coordinate-system
+                                 metric-tensor
+                                 Lambda
+                                 stress-energy-tensor)
+  (let ((Einstein-tensor (Einstein coordinate-system metric-tensor)))
     (define EFE-residuals
       (- (+ Einstein-tensor (* Lambda metric-tensor))
-         (* (/ (* 8 :pi :G) (expt :c 4))
-            stress-energy-tensor)))
+         (* (/ (* 8 :pi :G) (expt :c 4)) stress-energy-tensor)))
     EFE-residuals))
 ```
 
@@ -643,9 +611,9 @@ One exact solution to the Einstein equations was found by Alexander Friedmann in
     (define (g v1 v2)
       (+ (* -1 (square c) (dt v1) (dt v2))
          (* a (dr v1) (dr v2))
-         (* b (+ (* (dtheta v1) (dtheta v2))
-                 (* (square (sin theta))
-                    (dphi v1) (dphi v2))))))
+         (* b
+            (+ (* (dtheta v1) (dtheta v2))
+               (* (square (sin theta)) (dphi v1) (dphi v2))))))
     g))
 ```
 
@@ -659,9 +627,9 @@ The associated stress-energy tensor is
   (let* ((basis (coordinate-system->basis spacetime-sphere))
          (inverse-metric (metric:invert metric basis)))
     (define (T w1 w2)
-      (+ (* (+ (compose rho t)
-               (/ (compose p t) (square c)))
-            (w1 d/dt) (w2 d/dt))
+      (+ (* (+ (compose rho t) (/ (compose p t) (square c)))
+            (w1 d/dt)
+            (w2 d/dt))
          (* (compose p t) (inverse-metric w1 w2))))
     T))
 ```

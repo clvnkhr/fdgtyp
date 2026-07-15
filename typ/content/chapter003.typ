@@ -43,8 +43,7 @@ We implement the definition of a vector field #ref(<3.4>) as:
 ```scheme
 (define (components->vector-field components coordsys)
   (define (v f)
-    (compose (* (D (compose f (point coordsys)))
-                components)
+    (compose (* (D (compose f (point coordsys))) components)
              (chart coordsys)))
   (procedure->vector-field v))
 ```
@@ -55,10 +54,9 @@ Given a coordinate system and coefficient functions that map coordinates to real
 
 ```scheme
 (define v
-  (components->vector-field
-   (up (literal-function 'b^0 R2->R)
-       (literal-function 'b^1 R2->R))
-   R2-rect))
+  (components->vector-field (up (literal-function 'b^0 R2->R)
+                                (literal-function 'b^1 R2->R))
+                            R2-rect))
 ```
 
 To make it convenient to define literal vector fields we provide a shorthand: `(define v (literal-vector-field 'b R2-rect))` This makes a vector field with component functions named `b^0` and `b^1` and names the result `v`. When this vector field is applied to an arbitrary manifold function it gives the directional derivative of that manifold function in the direction specified by the components `b^0` and `b^1`:
@@ -88,17 +86,16 @@ Given a vector field `v` and a coordinate system coordsys we can construct the c
 ```scheme
 (define (coordinatize v coordsys)
   (define ((coordinatized-v f) x)
-    (let ((b (compose (v (chart coordsys))
-                      (point coordsys))))
-      (* ((D f) x) (b x)))))
-(make-operator coordinatized-v))
+    (let ((b (compose (v (chart coordsys)) (point coordsys))))
+      (* ((D f) x) (b x))))
+  (make-operator coordinatized-v))
 ```
 
 We can apply a coordinatized vector field to a function of coordinates to get the same answer as before.
 
 ```scheme
-(((coordinatize v R2-rect) (literal-function 'f-rect R2->R))
- (up 'x0 'y0))
+(((coordinatize v R2-rect) (literal-function 'f-rect R2->R)) (up 'x0
+                                                                 'y0))
 ;; (+ (* (((partial 0) f-rect) (up x0 y0)) (b?0 (up x0 y0)))
 ;;    (* (((partial 1) f-rect) (up x0 y0)) (b?1 (up x0 y0))))
 ```
@@ -185,10 +182,10 @@ Note that circular is an operator---a property inherited from `d/dx` and `d/dy`.
 We can exponentiate the circular vector field, to generate an evolution in a circle around the origin starting at `(1, 0)`:
 
 ```scheme
-(series:for-each print-expression
-                 (((exp (* 't circular)) (chart R2-rect))
-                  ((point R2-rect) (up 1 0)))
-                 6)
+(series:for-each
+ print-expression
+ (((exp (* 't circular)) (chart R2-rect)) ((point R2-rect) (up 1 0)))
+ 6)
 ;; (up 1 0)
 ;; (up 0 t)
 ;; (up (* -1/2 (expt t 2)) 0)
@@ -203,9 +200,7 @@ We can define an evolution operator $sans(E)_(Delta t\,sans(v))$ using equation 
 
 ```scheme
 (define ((((evolution order) delta-t v) f) m)
-  (series:sum
-   (((exp (* delta-t v)) f) m)
-   order))
+  (series:sum (((exp (* delta-t v)) f) m) order))
 ```
 
 We can evolve circular from the initial point up to the parameter `t`, and accumulate the first six terms as follows:
@@ -267,14 +262,11 @@ The coefficient tuple can be recovered from the one-form field:#footnote[The ana
 
 ```scheme
 (define omega
-  (components->1form-field
-   (down (literal-function 'a
-                             0 R2->R)
-         (literal-function 'a
-                             1 R2->R))
-   R2-rect))
+  (components->1form-field (down (literal-function 'a 0 R2->R)
+                                 (literal-function 'a 1 R2->R))
+                           R2-rect))
 
-       ((omega (down d/dx d/dy)) R2-rect-point)
+((omega (down d/dx d/dy)) R2-rect-point)
 ;;       (down (a_0 (up x0 y0)) (a_1 (up x0 y0)))
 ```
 

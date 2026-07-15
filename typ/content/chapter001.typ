@@ -44,10 +44,11 @@ For a sphere of radius R the procedure #raw(lang:"scheme", "sphere->R3") impleme
 ```scheme
 (define ((sphere->R3 R) state)
   (let ((q (coordinate state)))
-    (let ((theta (ref q 0)) (phi (ref q 1)))
+    (let ((theta (ref q 0))
+          (phi (ref q 1)))
       (up (* R (sin theta) (cos phi)) ; x
           (* R (sin theta) (sin phi)) ; y
-          (* R (cos theta))))))       ; z
+          (* R (cos theta)))))) ; z
 ```
 
 The coordinate transformation maps the generalized coordinates on the sphere to the 3-dimensional rectangular coordinates. Given this coordinate transformation we construct a corresponding transformation of velocities; these make up the state transformation. The procedure #raw(lang:"scheme", "F->C") implements the derivation of a transformation of states from a coordinate transformation:
@@ -57,8 +58,7 @@ The coordinate transformation maps the generalized coordinates on the sphere to 
   (up (time state)
       (F state)
       (+ (((partial 0) F) state)
-         (* (((partial 1) F) state)
-            (velocity state)))))
+         (* (((partial 1) F) state) (velocity state)))))
 ```
 
 A Lagrangian governing free motion on a sphere of radius $R$ is then the composition of the free Lagrangian with the transformation of states.
@@ -71,8 +71,7 @@ A Lagrangian governing free motion on a sphere of radius $R$ is then the composi
 So the value of the Lagrangian at an arbitrary dynamical state is:
 
 ```scheme
-((Lsphere 'm 'R)
- (up 't (up 'theta 'phi) (up 'thetadot 'phidot)))
+((Lsphere 'm 'R) (up 't (up 'theta 'phi) (up 'thetadot 'phidot)))
 
 #|
 (+ (* 1/2 (expt R 2) m (expt phidot 2) (expt (sin theta) 2))
@@ -170,8 +169,7 @@ The values of $gamma$ are points on the manifold, not a coordinate representatio
 So, to work with coordinates we write:
 
 ```scheme
-(define coordinate-path
-  (compose (chart R2-rect) gamma (point R1-rect)))
+(define coordinate-path (compose (chart R2-rect) gamma (point R1-rect)))
 
 (coordinate-path 't)
 
@@ -213,18 +211,16 @@ This had the effect of also defining #raw(lang:"scheme", "d/dt") as a coordinate
 
 ```scheme
 (define Cartan
-  (Christoffel->Cartan
-   (metric->Christoffel-2 the-metric
-         (coordinate-system->basis R2-rect))))
+  (Christoffel->Cartan (metric->Christoffel-2 the-metric
+                                              (coordinate-system->basis
+                                               R2-rect))))
 ```
 
 The two messy residual results that we did not show are related by the metric. If we change the representation of the geodesic equations by \"lowering\" them using the mass and the metric, we see that the residuals are equal:
 
 ```scheme
 (define metric-components
-  (metric->components
-   the-metric
-   (coordinate-system->basis R2-rect)))
+  (metric->components the-metric (coordinate-system->basis R2-rect)))
 
 (- Lagrange-residuals
    (* (* 'm (metric-components (gamma ((point R1-rect) 't))))

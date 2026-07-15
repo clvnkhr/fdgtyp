@@ -83,20 +83,20 @@ Whew!
 It is easy to generalize these formulas to tensors with general arguments. We have formulated the general tensor test as a program #raw(lang:"scheme", "tensor-test") that takes the procedure #raw(lang:"scheme", "T") to be tested, a list of argument types, and a coordinate system to be used. It tests each argument for linearity (over functions). If the function passed as T is a tensor, the result will be a list of zeros.
 
 ```scheme
-(tensor-test
- (Riemann (covariant-derivative (literal-Cartan 'G R3-rect)))
- '(1form vector vector vector)
- R3-rect)
+(tensor-test (Riemann (covariant-derivative (literal-Cartan 'G
+                                                            R3-rect)))
+             '(1form vector vector vector)
+             R3-rect)
 ;; (0 0 0 0)
 ```
 
 and so does the torsion (see equation @8.21):
 
 ```scheme
-(tensor-test
- (torsion (covariant-derivative (literal-Cartan 'G R3-rect)))
- '(1form vector vector)
- R3-rect)
+(tensor-test (torsion (covariant-derivative (literal-Cartan 'G
+                                                            R3-rect)))
+             '(1form vector vector)
+             R3-rect)
 ;; (up 0 0 0)
 ```
 
@@ -109,16 +109,16 @@ is a geometric object, since the result is independent of the coordinate system 
 ```scheme
 (define ((F nabla) omega u v)
   (omega ((nabla u) v)))
-(((- (F (covariant-derivative
-         (Christoffel->Cartan
-          (metric->Christoffel-2
-           (coordinate-system->metric S2-spherical)
-           (coordinate-system->basis S2-spherical)))))
-     (F (covariant-derivative
-         (Christoffel->Cartan
-          (metric->Christoffel-2
-           (coordinate-system->metric S2-stereographic)
-           (coordinate-system->basis S2-stereographic))))))
+(((-
+   (F (covariant-derivative
+       (Christoffel->Cartan (metric->Christoffel-2
+                             (coordinate-system->metric S2-spherical)
+                             (coordinate-system->basis S2-spherical)))))
+   (F (covariant-derivative
+       (Christoffel->Cartan
+        (metric->Christoffel-2
+         (coordinate-system->metric S2-stereographic)
+         (coordinate-system->basis S2-stereographic))))))
   (literal-1form-field 'omega S2-spherical)
   (literal-vector-field 'u S2-spherical)
   (literal-vector-field 'v S2-spherical))
@@ -129,10 +129,9 @@ is a geometric object, since the result is independent of the coordinate system 
 But it is not a tensor field:
 
 ```scheme
-(tensor-test
- (F (covariant-derivative (literal-Cartan 'G R3-rect)))
- '(1form vector vector)
- R3-rect)
+(tensor-test (F (covariant-derivative (literal-Cartan 'G R3-rect)))
+             '(1form vector vector)
+             R3-rect)
 ;; (0 0 MESS)
 ```
 

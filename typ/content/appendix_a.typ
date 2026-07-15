@@ -73,7 +73,8 @@ we can then use the symbols #raw(lang:"scheme", "pi") and #raw(lang:"scheme", "s
 Procedure definitions may be expressed more conveniently using \"syntactic sugar.\" The squaring procedure may be defined
 
 ```scheme
-(define (square x) (* x x))
+(define (square x)
+  (* x x))
 ```
 
 which we may read: \"To square #emph[x] multiply #emph[x] by #emph[x]\.\"
@@ -81,10 +82,7 @@ which we may read: \"To square #emph[x] multiply #emph[x] by #emph[x]\.\"
 In Scheme, procedures may be passed as arguments and returned as values. For example, it is possible to make a procedure that implements the mathematical notion of the composition of two functions:#footnote[The examples are indented to help with readability. Scheme does not care about extra white space, so we may add as much as we please to make things easier to read.]
 
 ```scheme
-(define compose
-  (lambda (f g)
-    (lambda (x)
-      (f (g x)))))
+(define compose (lambda (f g) (lambda (x) (f (g x)))))
 
 ((compose square sin) 2)
 ;; .826821810431806
@@ -97,8 +95,7 @@ Using the syntactic sugar shown above, we can write the definition more convenie
 
 ```scheme
 (define (compose f g)
-  (lambda (x)
-    (f (g x))))
+  (lambda (x) (f (g x))))
 
 (define ((compose f g) x)
   (f (g x)))
@@ -109,17 +106,18 @@ Conditional expressions may be used to choose among several expressions to produ
 
 ```scheme
 (define (abs x)
-  (cond ((< x 0) (- x))
-        ((= x 0) x)
-        ((> x 0) x)))
+  (cond
+    ((< x 0) (- x))
+    ((= x 0) x)
+    ((> x 0) x)))
 ```
 
 The conditional #raw(lang:"scheme", "cond") takes a number of clauses. Each clause has a predicate expression, which may be either true or false, and a consequent expression. The value of the #raw(lang:"scheme", "cond") expression is the value of the consequent expression of the first clause for which the corresponding predicate expression is true. The general form of a conditional expression is
 
 ```scheme
-(cond (predicate-1 consequent-1)
-      ...
-      (predicate-n consequent-n))
+(cond
+  (predicate-1 consequent-1) ...
+  (predicate-n consequent-n))
 ```
 
 For convenience there is a special predicate expression #raw(lang:"scheme", "else") that can be used as the predicate in the last clause of a #raw(lang:"scheme", "cond"). The #raw(lang:"scheme", "if") construct provides another way to make a conditional when there is only a binary choice to be made. For example, because we have to do something special only when the argument is negative, we could have defined #raw(lang:"scheme", "abs") as:
@@ -171,8 +169,7 @@ The #raw(lang:"scheme", "let") expression is used to give names to objects in a 
 The general form of a #raw(lang:"scheme", "let") expression is
 
 ```scheme
-(let ((variable-1 expression-1)
-      ...
+(let ((variable-1 expression-1) ...
       (variable-n expression-n))
   body)
 ```
@@ -183,7 +180,8 @@ A slight variant of the #raw(lang:"scheme", "let") expression provides a conveni
 
 ```scheme
 (define (factorial n)
-  (let factlp ((count 1) (answer 1))
+  (let factlp ((count 1)
+               (answer 1))
     (if (> count n)
         answer
         (factlp (+ count 1) (* count answer)))))
@@ -224,8 +222,7 @@ Lists are built from pairs. A pair is made using the constructor #raw(lang:"sche
 (car (cdr a-list))
 ;; 946
 
-(define another-list
-  (cons 32 (cdr a-list)))
+(define another-list (cons 32 (cdr a-list)))
 
 another-list
 ;; (32 946 8 356 12 620)
@@ -241,8 +238,7 @@ There is a predicate #raw(lang:"scheme", "pair?") that is true of pairs and fals
 Vectors are simpler than lists. There is a constructor #raw(lang:"scheme", "vector") that can be used to make vectors and a selector #raw(lang:"scheme", "vector-ref") for accessing the elements of a vector:
 
 ```scheme
-(define a-vector
-  (vector 37 63 49 21 88 56))
+(define a-vector (vector 37 63 49 21 88 56))
 
 a-vector
 ;; #(37 63 49 21 88 56)
@@ -267,8 +263,7 @@ We can test if two symbols are identical by using the predicate #raw(lang:"schem
 
 ```scheme
 (define (sum? expression)
-  (and (pair? expression)
-       (eq? (car expression) '+)))
+  (and (pair? expression) (eq? (car expression) '+)))
 (sum? '(+ 3 a))
 ;; #t
 

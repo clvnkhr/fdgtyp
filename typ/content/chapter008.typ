@@ -19,8 +19,7 @@ The Riemann curvature is computed by
 
 ```scheme
 (define ((Riemann-curvature nabla) w v)
-  (- (commutator (nabla w) (nabla v))
-     (nabla (commutator w v))))
+  (- (commutator (nabla w) (nabla v)) (nabla (commutator w v))))
 ```
 
 The #raw(lang:"scheme", "Riemann-curvature") procedure is parameterized by the relevant #raw(lang:"scheme", "covariant-derivative") operator #raw(lang:"scheme", "nabla"), which implements $nabla$. The #raw(lang:"scheme", "nabla") is itself dependent on the connection, which provides the details of the local geometry. The same #raw(lang:"scheme", "Riemann-curvature") procedure works for ordinary covariant derivatives and for covariant derivatives over a map. Given two vector fields, the result of #raw(lang:"scheme", "((Riemann-curvature nabla) w v)") is a procedure that takes a vector field and produces a vector field so we can implement the Riemann tensor as
@@ -33,8 +32,10 @@ The #raw(lang:"scheme", "Riemann-curvature") procedure is parameterized by the r
 So, for example,#footnote[The connection specified by #raw(lang:"scheme", "sphere-Cartan") is defined in Section #fdg-ref-page(<sec-7.16>).]
 
 ```scheme
-(((Riemann (covariant-derivative sphere-Cartan))
-  dphi d/dtheta d/dphi d/dtheta)
+(((Riemann (covariant-derivative sphere-Cartan)) dphi
+                                                 d/dtheta
+                                                 d/dphi
+                                                 d/dtheta)
  ((point S2-spherical) (up 'theta0 'phi0)))
 ;; 1
 ```
@@ -119,11 +120,14 @@ This is what the Riemann tensor computation gives, scaled by $epsilon.alt^2$.
 We can verify this in two dimensions. We need to make the structure representing a state:
 
 ```scheme
-(define (make-state sigma u) (vector sigma u))
+(define (make-state sigma u)
+  (vector sigma u))
 
-(define (Sigma state) (ref state 0))
+(define (Sigma state)
+  (ref state 0))
 
-(define (U-select state) (ref state 1))
+(define (U-select state)
+  (ref state 1))
 ```
 
 And now we get to the meat of the matter: First we find the rate of change of the components of the vector $sans(u)$ as we carry it along the vector field $sans(v)$.#footnote[The setup for this experiment is a bit complicated. We need to make a manifold with a general connection.
@@ -136,9 +140,7 @@ And now we get to the meat of the matter: First we find the rate of change of th
 ```scheme
 (define ((Du v) state)
   (let ((CF (Cartan->forms general-Cartan-2)))
-    (* -1
-       ((CF v) (Chi-inverse (Sigma state)))
-       (U-select state))))
+    (* -1 ((CF v) (Chi-inverse (Sigma state))) (U-select state))))
 ```
 
 We also need to determine the rate of change of the coordinates of the integral curve of $sans(v)$.
@@ -174,11 +176,9 @@ So now we can demonstrate that the lowest-order change resulting from explicit p
   (let ((nabla (covariant-derivative general-Cartan-2))
         (m (Chi-inverse sigma)))
     (let ((s (make-state sigma ((U Chi) m))))
-      (- (((- (commutator (L V) (L W))
-              (L (commutator V W)))
-           U-select)
-          s)
-         (((((Riemann-curvature nabla) W V) U) Chi) m)))))
+      (-
+       (((- (commutator (L V) (L W)) (L (commutator V W))) U-select) s)
+       (((((Riemann-curvature nabla) W V) U) Chi) m)))))
 ;; (up 0 0)
 ```
 
@@ -198,9 +198,7 @@ or as a program:
          (fi (basis->1form-basis basis))
          (ei (basis->vector-basis basis)))
     (* (ei f)
-       (+ (* (- (- (w (CF v)) (v (CF w)))
-                (CF (commutator w v)))
-             (fi u))
+       (+ (* (- (- (w (CF v)) (v (CF w))) (CF (commutator w v))) (fi u))
           (- (* (CF w) (* (CF v) (fi u)))
              (* (CF v) (* (CF w) (fi u))))))))
 ```
@@ -245,8 +243,7 @@ Unfortunately, this does not work, as demonstrated below:
   (let ((m (Chi-inverse sigma)))
     (let ((s (make-state sigma ((U Chi) m))))
       (- (((commutator (L W) (L V)) U-select) s)
-         ((((commutator (nabla W) (nabla V)) U) Chi)
-          m)))))
+         ((((commutator (nabla W) (nabla V)) U) Chi) m)))))
 ;; a nonzero mess
 ```
 
@@ -261,8 +258,7 @@ The obvious identification does not work, but neither does the other one!
   (let ((m (Chi-inverse sigma)))
     (let ((s (make-state sigma ((U Chi) m))))
       (- (((commutator (L W) (L V)) U-select) s)
-         ((((nabla (commutator W V)) U) Chi)
-          m)))))
+         ((((nabla (commutator W V)) U) Chi) m)))))
 ;; a nonzero mess
 ```
 
@@ -299,8 +295,7 @@ Expressed as a program:
 
 ```scheme
 (define ((Ricci nabla basis) u v)
-  (contract (lambda (ei wi) ((Riemann nabla) wi u ei v))
-            basis))
+  (contract (lambda (ei wi) ((Riemann nabla) wi u ei v)) basis))
 ```
 
 Einstein\'s field equation @9.27 for gravity, which we will encounter later, is expressed in terms of the Ricci tensor.
@@ -313,7 +308,8 @@ A pseudosphere is a surface in 3-dimensional space. It is a surface of revolutio
 
 ```scheme
 (define (pseudosphere q)
-  (let ((t (ref q 0)) (theta (ref q 1)))
+  (let ((t (ref q 0))
+        (theta (ref q 1)))
     (up (* (sech t) (cos theta))
         (* (sech t) (sin theta))
         (- t (tanh t)))))
@@ -322,19 +318,16 @@ A pseudosphere is a surface in 3-dimensional space. It is a surface of revolutio
 The structure of Christoffel coefficients for the pseudosphere is
 
 ```scheme
-(down
- (down (up (/ (+ (* 2 (expt (cosh t) 2) (expt (sinh t) 2))
-                 (* -2 (expt (sinh t) 4)) (expt (cosh t) 2)
-                 (* -2 (expt (sinh t) 2)))
-              (+ (* (cosh t) (expt (sinh t) 3))
-                 (* (cosh t) (sinh t))))
-           0)
-       (up 0
-           (/ (* -1 (sinh t)) (cosh t))))
- (down (up 0
-           (/ (* -1 (sinh t)) (cosh t)))
-       (up (/ (cosh t) (+ (expt (sinh t) 3) (sinh t)))
-           0)))
+(down (down (up (/ (+ (* 2 (expt (cosh t) 2) (expt (sinh t) 2))
+                      (* -2 (expt (sinh t) 4))
+                      (expt (cosh t) 2)
+                      (* -2 (expt (sinh t) 2)))
+                   (+ (* (cosh t) (expt (sinh t) 3))
+                      (* (cosh t) (sinh t))))
+                0)
+            (up 0 (/ (* -1 (sinh t)) (cosh t))))
+      (down (up 0 (/ (* -1 (sinh t)) (cosh t)))
+            (up (/ (cosh t) (+ (expt (sinh t) 3) (sinh t))) 0)))
 ```
 
 Note that this is independent of $theta$.
@@ -352,8 +345,7 @@ We account for this dependency by parameterizing the program by #raw(lang:"schem
 
 ```scheme
 (define ((torsion-vector nabla) u v)
-  (- (- ((nabla u) v) ((nabla v) u))
-     (commutator u v)))
+  (- (- ((nabla u) v) ((nabla v) u)) (commutator u v)))
 
 (define ((torsion nabla) omega u v)
   (omega ((torsion-vector nabla) u v)))
@@ -367,8 +359,7 @@ The torsion for the connection for the 2-sphere specified by the Christoffel coe
    (for-each
     (lambda (y)
       (print-expression
-       ((((torsion-vector (covariant-derivative sphere-Cartan))
-          x y)
+       ((((torsion-vector (covariant-derivative sphere-Cartan)) x y)
          (literal-manifold-function 'f S2-spherical))
         ((point S2-spherical) (up 'theta0 'phi0)))))
     (list d/dtheta d/dphi)))
@@ -475,9 +466,7 @@ The torsion for the usual connection for the sphere is zero:
 So we can compute the geodesic deviation using #raw(lang:"scheme", "Riemann")
 
 ```scheme
-((+ (omega ((nabla T) ((nabla T) U)))
-    ((Riemann nabla) omega T U T))
- m)
+((+ (omega ((nabla T) ((nabla T) U))) ((Riemann nabla) omega T U T)) m)
 ;; 0
 ```
 
@@ -508,8 +497,7 @@ Let\'s interpret these results. On a sphere of radius $R$ the distance at colati
 The direction of the velocity is the unit vector in the $phi.alt$ direction:
 
 ```scheme
-(define phi-hat
-  (* (/ 1 (sin theta)) d/dphi))
+(define phi-hat (* (/ 1 (sin theta)) d/dphi))
 ```
 
 This comes from the fact that the separation of lines of longitude is proportional to the sine of the colatitude. So the velocity vector field is the product.
@@ -517,9 +505,7 @@ This comes from the fact that the separation of lines of longitude is proportion
 We can measure the $phi.alt$ component with $d phi.alt$:
 
 ```scheme
-((dphi (* (((partial 1) (delta 'R))
-           'phi0 'theta0 'Delta-phi)
-          phi-hat))
+((dphi (* (((partial 1) (delta 'R)) 'phi0 'theta0 'Delta-phi) phi-hat))
  m)
 ;; (/ (* Delta-phi R (cos theta0)) (sin theta0))
 ```
@@ -529,17 +515,16 @@ This agrees with $nabla_(sans(T)) sans(U) Delta phi.alt$ for the unit sphere. In
 Similarly, the magnitude of the acceleration is
 
 ```scheme
-(((partial 1) ((partial 1) (delta 'R)))
- 'phi0 'theta0 'Delta-phi)
+(((partial 1) ((partial 1) (delta 'R))) 'phi0 'theta0 'Delta-phi)
 ;; (* -1 Delta-phi R (sin theta0))
 ```
 
 and the acceleration vector is the product of this result with $hat(phi.alt)$. Measuring this with $d phi.alt$ we get:
 
 ```scheme
-((dphi (* (((partial 1) ((partial 1) (delta 'R)))
-           'phi0 'theta0 'Delta-phi)
-          phi-hat))
+((dphi
+  (* (((partial 1) ((partial 1) (delta 'R))) 'phi0 'theta0 'Delta-phi)
+     phi-hat))
  m)
 ;; (* -1 Delta-phi R)
 ```
@@ -562,12 +547,10 @@ A system with a symmetric connection, $Gamma_(j k)^i = Gamma_(k j)^i$, is torsio
 ```scheme
 (define nabla
   (covariant-derivative
-   (Christoffel->Cartan
-    (symmetrize-Christoffel
-     (literal-Christoffel-2 'C R4-rect)))))
+   (Christoffel->Cartan (symmetrize-Christoffel
+                         (literal-Christoffel-2 'C R4-rect)))))
 
-(((torsion nabla) omega X Y)
- (typical-point R4-rect))
+(((torsion nabla) omega X Y) (typical-point R4-rect))
 ;; 0
 ```
 
@@ -575,9 +558,7 @@ The Bianchi identities are defined in terms of a cyclic-summation operator, whic
 
 ```scheme
 (define ((cyclic-sum f) x y z)
-  (+ (f x y z)
-     (f y z x)
-     (f z x y)))
+  (+ (f x y z) (f y z x) (f z x y)))
 ```
 
 The first Bianchi identity is
@@ -587,10 +568,7 @@ $ sans(R) (omega\,sans(x)\,sans(y)\,sans(z)) + sans(R) (omega\,sans(y)\,sans(z)\
 or, as a program:
 
 ```scheme
-(((cyclic-sum
-   (lambda (x y z)
-     ((Riemann nabla) omega x y z)))
-  X Y Z)
+(((cyclic-sum (lambda (x y z) ((Riemann nabla) omega x y z))) X Y Z)
  (typical-point R4-rect))
 ;; 0
 ```
@@ -602,11 +580,11 @@ $ nabla_(sans(x)) sans(R) (omega\,sans(v)\,sans(y)\,sans(z)) + nabla_(sans(y)) s
 or, as a program:
 
 ```scheme
-(((cyclic-sum
-   (lambda (x y z)
-     (((nabla x) (Riemann nabla))
-      omega V y z)))
-  X Y Z)
+(((cyclic-sum (lambda (x y z)
+                (((nabla x) (Riemann nabla)) omega V y z)))
+  X
+  Y
+  Z)
  (typical-point R4-rect))
 ;; 0
 ```
@@ -616,8 +594,7 @@ Things get more complicated when there is torsion. We can make a general connect
 ```scheme
 (define nabla
   (covariant-derivative
-   (Christoffel->Cartan
-    (literal-Christoffel-2 'C R4-rect))))
+   (Christoffel->Cartan (literal-Christoffel-2 'C R4-rect))))
 
 (define R (Riemann nabla))
 (define T (torsion-vector nabla))
@@ -629,12 +606,13 @@ Things get more complicated when there is torsion. We can make a general connect
 The first Bianchi identity is now:#footnote[The Bianchi identities are much nastier to write in traditional mathematical notation than as Scheme programs.]
 
 ```scheme
-(((cyclic-sum
-   (lambda (x y z)
-     (- (R omega x y z)
-        (+ (omega (T (T x y) z))
-           (((nabla x) TT) omega y z)))))
-  X Y Z)
+(((cyclic-sum (lambda (x y z)
+                (- (R omega x y z)
+                   (+ (omega (T (T x y) z))
+                      (((nabla x) TT) omega y z)))))
+  X
+  Y
+  Z)
  (typical-point R4-rect))
 ;; 0
 ```
@@ -642,11 +620,11 @@ The first Bianchi identity is now:#footnote[The Bianchi identities are much nast
 and the second Bianchi identity for a general connection is
 
 ```scheme
-(((cyclic-sum
-   (lambda (x y z)
-     (+ (((nabla x) R) omega V y z)
-        (R omega V (T x y) z))))
-  X Y Z)
+(((cyclic-sum (lambda (x y z)
+                (+ (((nabla x) R) omega V y z) (R omega V (T x y) z))))
+  X
+  Y
+  Z)
  (typical-point R4-rect))
 ;; 0
 ```
@@ -655,8 +633,7 @@ We now make the Cartan forms from the most general 2-dimensional Christoffel coe
 
 ```scheme
 (define general-Cartan-2
-  (Christoffel->Cartan
-   (literal-Christoffel-2 'Gamma R2-rect)))
+  (Christoffel->Cartan (literal-Christoffel-2 'Gamma R2-rect)))
 ```
 
  @misner1973gravitation, @carroll2003spacetime, and @schutz1985first use our definition. @wald1984general uses a different convention for the order of arguments and a different sign. See Appendix @chap-appendix-c for a definition of tensors.

@@ -88,8 +88,7 @@ for mass $m$ and spring constant $k$. This Lagrangian is implemented by
 (define ((L-harmonic m k) local)
   (let ((q (coordinate local))
         (v (velocity local)))
-    (- (* 1/2 m (square v))
-       (* 1/2 k (square q)))))
+    (- (* 1/2 m (square v)) (* 1/2 k (square q)))))
 ```
 
 We know that the motion of a harmonic oscillator is a sinusoid with a given amplitude $a$, frequency $omega$, and phase $phi$:
@@ -102,10 +101,7 @@ Suppose we have forgotten how the constants in the solution relate to the physic
 (define (proposed-solution t)
   (* 'a (cos (+ (* 'omega t) 'phi))))
 
-(->tex
- (((Lagrange-equations (L-harmonic 'm 'k))
-   proposed-solution)
-  't))
+(->tex (((Lagrange-equations (L-harmonic 'm 'k)) proposed-solution) 't))
 ```
 
 $ - a m omega^2 cos (omega t + phi.alt) + a k cos (omega t + phi.alt) $
@@ -114,10 +110,8 @@ The residual here shows that for nonzero amplitude, the only solutions allowed a
 But, suppose we had no idea what the solution looks like. We could propose a literal function for the path:
 
 ```scheme
-(->tex
- (((Lagrange-equations (L-harmonic 'm 'k))
-   (literal-function 'x))
-  't))
+(->tex (((Lagrange-equations (L-harmonic 'm 'k)) (literal-function 'x))
+        't))
 ```
 
 $ k x (t) + m D^2 x (t) $

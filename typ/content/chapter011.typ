@@ -217,7 +217,8 @@ We represent a 4-tuple as a flat up-tuple of components.
 (define (make-4tuple ct space)
   (up ct (ref space 0) (ref space 1) (ref space 2)))
 
-(define (4tuple->ct v) (ref v 0))
+(define (4tuple->ct v)
+  (ref v 0))
 (define (4tuple->space v)
   (up (ref v 1) (ref v 2) (ref v 3)))
 ```
@@ -249,11 +250,10 @@ The general boost $B$ is
       (let ((xi-p-time (4tuple->ct xi-p))
             (xi-p-space (4tuple->space xi-p)))
         (let ((beta-dot-xi-p (dot-product beta xi-p-space)))
-          (make-4tuple
-           (* gamma (+ xi-p-time beta-dot-xi-p))
-           (+ (* gamma beta xi-p-time)
-              xi-p-space
-              (* factor beta beta-dot-xi-p))))))))
+          (make-4tuple (* gamma (+ xi-p-time beta-dot-xi-p))
+                       (+ (* gamma beta xi-p-time)
+                          xi-p-space
+                          (* factor beta beta-dot-xi-p))))))))
 ```
 
 We can check that the interval is invariant:
@@ -277,12 +277,10 @@ It is inconvenient that the general boost as just defined does not work if $bold
       (let ((bx (dot-product direction delta-x-prime))
             (gamma (/ 1 (sqrt (- 1 betasq)))))
         (let ((alpha (- gamma 1)))
-          (let ((delta-ct
-                 (* gamma (+ delta-ct-prime (* bx v/c))))
-                (delta-x
-                 (+ (* gamma v/c direction delta-ct-prime)
-                    delta-x-prime
-                    (* alpha direction bx))))
+          (let ((delta-ct (* gamma (+ delta-ct-prime (* bx v/c))))
+                (delta-x (+ (* gamma v/c direction delta-ct-prime)
+                            delta-x-prime
+                            (* alpha direction bx))))
             (make-4tuple delta-ct delta-x)))))))
 ```
 
@@ -304,9 +302,7 @@ The extended rotation can be implemented:
 
 ```scheme
 (define ((extended-rotation R) xi)
-  (make-4tuple
-   (4tuple->ct xi)
-   (R (4tuple->space xi))))
+  (make-4tuple (4tuple->ct xi) (R (4tuple->space xi))))
 ```
 
 In terms of this we can check the relation between boosts and rotations:
@@ -314,14 +310,10 @@ In terms of this we can check the relation between boosts and rotations:
 ```scheme
 (let ((beta (up 'bx 'by 'bz))
       (xi (make-4tuple 'ct (up 'x 'y 'z)))
-      (R (compose
-          (rotate-x 'theta)
-          (rotate-y 'phi)
-          (rotate-z 'psi)))
-      (R-inverse (compose
-                  (rotate-z (- 'psi))
-                  (rotate-y (- 'phi))
-                  (rotate-x (- 'theta)))))
+      (R (compose (rotate-x 'theta) (rotate-y 'phi) (rotate-z 'psi)))
+      (R-inverse (compose (rotate-z (- 'psi))
+                          (rotate-y (- 'phi))
+                          (rotate-x (- 'theta)))))
   (- ((general-boost beta) xi)
      ((compose (extended-rotation R-inverse)
                (general-boost (R beta))
@@ -352,16 +344,22 @@ Points in spacetime are called events. It must be possible to compare two events
 When one frame is built upon another, to determine the event from frame-specific coordinates or to determine the frame-specific coordinates for an event requires composition of the boosts that relate the frames to each other. The two procedures that are required to implement this strategy are#footnote[The procedure #raw(lang:"scheme", "make-SR-coordinates") labels the given coordinates with the given frame. The procedures that manipulate coordinates, such as #raw(lang:"scheme", "(point ancestor-frame)"), check that the coordinates they are given are in the appropriate frame. This error checking makes it easier to debug relativity procedures.]
 
 ```scheme
-(define ((coordinates->event ancestor-frame this-frame
-                             boost-direction v/c origin)
+(define ((coordinates->event ancestor-frame
+                             this-frame
+                             boost-direction
+                             v/c
+                             origin)
          coords)
   ((point ancestor-frame)
    (make-SR-coordinates ancestor-frame
                         (+ ((general-boost2 boost-direction v/c) coords)
                            origin))))
 
-(define ((event->coordinates ancestor-frame this-frame
-                             boost-direction v/c origin)
+(define ((event->coordinates ancestor-frame
+                             this-frame
+                             boost-direction
+                             v/c
+                             origin)
          event)
   (make-SR-coordinates this-frame
                        ((general-boost2 (- boost-direction) v/c)
@@ -380,7 +378,8 @@ For example, we can derive the traditional velocity addition formula. Assume tha
 
 ```scheme
 (define A
-  (make-SR-frame 'A home
+  (make-SR-frame 'A
+                 home
                  (up 1 0 0)
                  'va/c
                  (make-SR-coordinates home (up 0 0 0 0))))
@@ -390,7 +389,8 @@ Frame #raw(lang:"scheme", "B") is built on frame #raw(lang:"scheme", "A") simila
 
 ```scheme
 (define B
-  (make-SR-frame 'B A
+  (make-SR-frame 'B
+                 A
                  (up 1 0 0)
                  'vb/c
                  (make-SR-coordinates A (up 0 0 0 0))))
@@ -400,11 +400,9 @@ So any point at rest in frame #raw(lang:"scheme", "B") will have a speed relativ
 
 ```scheme
 (let ((B-origin-home-coords
-       ((chart home)
-        ((point B)
-         (make-SR-coordinates B (up 'ct 0 0 0))))))
-  (/ (ref B-origin-home-coords 1)
-     (ref B-origin-home-coords 0)))
+       ((chart home) ((point B) (make-SR-coordinates B
+                                                     (up 'ct 0 0 0))))))
+  (/ (ref B-origin-home-coords 1) (ref B-origin-home-coords 0)))
 ;; (/ (+ va/c vb/c) (+ 1 (* va/c vb/c)))
 ```
 
@@ -412,8 +410,7 @@ obtaining the traditional velocity-addition formula. (Note that the resulting ve
 
 ```scheme
 (define (add-v/cs va/c vb/c)
-  (/ (+ va/c vb/c)
-     (+ 1 (* va/c vb/c))))
+  (/ (+ va/c vb/c) (+ 1 (* va/c vb/c))))
 ```
 
 == Twin Paradox <sec-11.9>
@@ -423,20 +420,18 @@ The experiment begins at the start event, which we arbitrarily place at the orig
 
 ```scheme
 (define start-event
-  ((point home)
-   (make-SR-coordinates home (up 0 0 0 0))))
+  ((point home) (make-SR-coordinates home (up 0 0 0 0))))
 ```
 
 There is a homebody and a traveller. The traveller leaves home at the start event and proceeds at 24/25 of the speed of light in the $hat(x)$ direction. We define a frame for the traveller, by boosting from the home frame.
 
 ```scheme
 (define outgoing
-  (make-SR-frame 'outgoing       ; for debugging
-                 home            ; base frame
-                 (up 1 0 0)      ; x direction
-                 24/25           ; velocity as fraction of c
-                 ((chart home)
-                  start-event)))
+  (make-SR-frame 'outgoing ; for debugging
+                 home ; base frame
+                 (up 1 0 0) ; x direction
+                 24/25 ; velocity as fraction of c
+                 ((chart home) start-event)))
 ```
 
 After 25 years of home time the traveller is 24 light-years out. We define that event using the coordinates in the home frame. Here we scale the time coordinate by the speed of light so that the units of $c t$ slot in the 4-vector are the same as the units in the spatial slots. Since $v\/c$ = 24/25 we must multiply that by the speed of light to get the velocity. This is multiplied by 25 years to get the $hat(x)$ coordinate of the traveller in the home frame at the turning point.
@@ -444,8 +439,7 @@ After 25 years of home time the traveller is 24 light-years out. We define that 
 ```scheme
 (define traveller-at-turning-point-event
   ((point home)
-   (make-SR-coordinates home
-                        (up (* :c 25) (* 25 24/25 :c) 0 0))))
+   (make-SR-coordinates home (up (* :c 25) (* 25 24/25 :c) 0 0))))
 ```
 
 Note that the first component of the coordinates of an event is the speed of light multiplied by time. The other components are distances. For example, the second component (the $hat(x)$ component) is the distance travelled in 25 years at 24/25 the speed of light. This is 24 light-years.
@@ -474,9 +468,8 @@ The proper time interval is 7 years, as seen in any frame, because it measures t
     ((chart outgoing) start-event)))
 ;; (* 7 :c)
 
-(proper-time-interval
- (- ((chart home) traveller-at-turning-point-event)
-    ((chart home) start-event)))
+(proper-time-interval (- ((chart home) traveller-at-turning-point-event)
+                         ((chart home) start-event)))
 ;; (* 7 :c)
 ```
 
@@ -484,21 +477,18 @@ When the traveller is at the turning point, the event of the homebody is:
 
 ```scheme
 (define halfway-at-home-event
-  ((point home)
-   (make-SR-coordinates home (up (* :c 25) 0 0 0))))
+  ((point home) (make-SR-coordinates home (up (* :c 25) 0 0 0))))
 ```
 
 and the homebody has aged
 
 ```scheme
-(proper-time-interval
- (- ((chart home) halfway-at-home-event)
-    ((chart home) start-event)))
+(proper-time-interval (- ((chart home) halfway-at-home-event)
+                         ((chart home) start-event)))
 ;; (* 25 :c)
 
-(proper-time-interval
- (- ((chart outgoing) halfway-at-home-event)
-    ((chart outgoing) start-event)))
+(proper-time-interval (- ((chart outgoing) halfway-at-home-event)
+                         ((chart outgoing) start-event)))
 ;; (* 25 :c)
 ```
 
@@ -509,8 +499,7 @@ As seen by the traveller, home is moving in the $- hat(x)$ direction at 24/25 of
 ```scheme
 (define home-at-outgoing-turning-point-event
   ((point outgoing)
-   (make-SR-coordinates outgoing
-                        (up (* 7 :c) (* 7 -24/25 :c) 0 0))))
+   (make-SR-coordinates outgoing (up (* 7 :c) (* 7 -24/25 :c) 0 0))))
 ```
 
 Since home is speeding away from the traveller, the twin at home has aged less than the traveller. This may seem weird, but it is OK because this event is different from the halfway event in the home frame.
@@ -526,33 +515,30 @@ The traveller turns around abruptly at this point (painful!) and begins the retu
 
 ```scheme
 (define incoming
-  (make-SR-frame 'incoming home
-                 (up -1 0 0) 24/25
-                 ((chart home)
-                  traveller-at-turning-point-event)))
+  (make-SR-frame 'incoming
+                 home
+                 (up -1 0 0)
+                 24/25
+                 ((chart home) traveller-at-turning-point-event)))
 ```
 
 After 50 years of home time the traveller reunites with the homebody:
 
 ```scheme
 (define end-event
-  ((point home)
-   (make-SR-coordinates home (up (* :c 50) 0 0 0))))
+  ((point home) (make-SR-coordinates home (up (* :c 50) 0 0 0))))
 ```
 
 Indeed, the traveller comes home after 7 more years in the incoming frame:
 
 ```scheme
 (- ((chart incoming) end-event)
-   (make-SR-coordinates incoming
-                        (up (* :c 7) 0 0 0)))
+   (make-SR-coordinates incoming (up (* :c 7) 0 0 0)))
 ;; (up 0 0 0 0)
 
 (- ((chart home) end-event)
-   ((chart home)
-    ((point incoming)
-     (make-SR-coordinates incoming
-                          (up (* :c 7) 0 0 0)))))
+   ((chart home) ((point incoming)
+                  (make-SR-coordinates incoming (up (* :c 7) 0 0 0)))))
 ;; (up 0 0 0 0)
 ```
 
@@ -571,9 +557,8 @@ The traveller ages only 7 years on the return segment, so his total aging is 14 
 But the homebody ages 50 years:
 
 ```scheme
-(proper-time-interval
- (- ((chart home) end-event)
-    ((chart home) start-event)))
+(proper-time-interval (- ((chart home) end-event)
+                         ((chart home) start-event)))
 ;; (* 50 :c)
 ```
 
@@ -581,9 +566,8 @@ At the turning point of the traveller the homebody is at
 
 ```scheme
 (define home-at-incoming-turning-point-event
-  ((point incoming)
-   (make-SR-coordinates incoming
-                        (up 0 (* 7 -24/25 :c) 0 0))))
+  ((point incoming) (make-SR-coordinates incoming
+                                         (up 0 (* 7 -24/25 :c) 0 0))))
 ```
 
 The time elapsed for the homebody between the reunion and the turning point of the homebody, as viewed by the incoming traveller, is about 2 years.
