@@ -134,14 +134,13 @@ The possible $Lambda$ that are consistent with the preservation of the interval 
 == Simple Lorentz Transformations <sec-11.3>
 Consider the linear transformation, in the first two coordinates,
 
-$ xi^0 = p (xi')^0 + q (xi')^1 \
-xi^1 = r (xi')^0 + s (xi')^1. $ <11.26>
+$ xi^0 = p (xi')^0 + q (xi')^1 xi^1 = r (xi')^0 + s (xi')^1. $ <11.26>
 
 The requirement to preserve the interval gives the constraints
 
-$ p^2 - r^2 = 1\,\
- p q - r s = 0\,\
- q^2 - s^2 = - 1 . $ <11.27>
+$ p^2 - r^2 &= 1\,\
+ p q - r s &= 0\,\
+ q^2 - s^2 &= - 1 . $ <11.27>
 
 There are four parameters to determine, and only three equations, so the solutions have a free parameter. It turns out that a good choice is $beta = q\/p$. Solve to find
 
@@ -149,8 +148,7 @@ $ p = 1 / sqrt(1 - beta^2) = gamma (beta)\, $ <11.28>
 
 and also $p = s$ and $q = r = beta p$. This defines $gamma$. Written out, the transformation is
 
-$ xi^0 = gamma (beta) ((xi')^0 + beta (xi')^1) \
- xi^1 = gamma (beta) (beta (xi')^0 + (xi')^1) . $ <11.29>
+$ xi^0 = gamma (beta) ((xi')^0 + beta (xi')^1) xi^1 = gamma (beta) (beta (xi')^0 + (xi')^1) . $ <11.29>
 
 Simple physical arguments#footnote[See, for instance, Mermin, \"Space and Time in Special Relativity.\"] show that this mathematical result relates the time and space coordinates for two systems in uniform relative motion. The parameter $beta$ is related to the relative velocity.
 
@@ -172,10 +170,10 @@ A consistent interpretation is that the origin of the primed system moves with v
 
 We can fill in the components of this simple boost:
 
-$ xi^0 = gamma (beta) ((xi')^0 + beta (xi')^1) \
- xi^1 = gamma (beta) (beta (xi')^0 + (xi')^1) \
- xi^2 =(xi')^2\
- xi^3 =(xi')^3. $ <11.33>
+$ xi^0 &= gamma (beta) ((xi')^0 + beta (xi')^1) \
+ xi^1 &= gamma (beta) (beta (xi')^0 + (xi')^1) \
+ xi^2 &= (xi')^2\
+ xi^3 &= (xi')^3. $ <11.33>
 
 == More General Lorentz Transformations <sec-11.4>
 One direction was special in our consideration of simple boosts. We can make use of this fact to find boosts in any direction.
@@ -196,14 +194,14 @@ $ bold(xi)^perp = bold(xi) - bold(xi)^parallel . $ <11.36>
 
 In the simple boost of equation @11.33 we can identify $xi^1$ with the magnitude $|bold(xi)^parallel|$ of the parallel component. The perpendicular component is unchanged:
 
-$ xi^0 = gamma (beta) ((xi')^0 + beta | (bold(xi))^parallel |)\,\
-|bold(xi)^parallel|= gamma (beta) (beta (xi')^0 + | (bold(xi))^parallel |)\,\
- bold(xi)^perp = (bold(xi)')^perp . $ <11.37>
+$ xi^0 &= gamma (beta) ((xi')^0 + beta | (bold(xi))^parallel |)\,\
+|bold(xi)^parallel| &= gamma (beta) (beta (xi')^0 + | (bold(xi))^parallel |)\,\
+ bold(xi)^perp &= (bold(xi)')^perp . $ <11.37>
 
 Putting the components back together, this leads to
 
-$ xi^0 = gamma (beta) ((xi')^0 + bold(beta) dot.op bold(xi)) \
- bold(xi) = gamma (beta) (bold(beta) (xi')^0 + bold(xi)' \
+$ xi^0 &= gamma (beta) ((xi')^0 + bold(beta) dot.op bold(xi)) \
+ bold(xi) &= gamma (beta) (bold(beta) (xi')^0 + bold(xi)' \
  &quad + frac(gamma (beta)- 1, beta^2) bold(beta) (bold(beta) dot.op bold(xi)))\, $ <11.38>
 
 which gives the components of the general boost $B$ along velocity $c bold(beta)$:
@@ -259,11 +257,9 @@ The general boost $B$ is
 We can check that the interval is invariant:
 
 ```scheme
-(- (proper-space-interval
-    ((general-boost (up 'vx 'vy 'vz))
-     (make-4tuple 'ct (up 'x 'y 'z))))
-   (proper-space-interval
-    (make-4tuple 'ct (up 'x 'y 'z)))))
+(- (proper-space-interval ((general-boost (up 'vx 'vy 'vz))
+                           (make-4tuple 'ct (up 'x 'y 'z))))
+   (proper-space-interval (make-4tuple 'ct (up 'x 'y 'z))))
 ;; 0
 ```
 
@@ -289,8 +285,7 @@ This is well behaved as $v\/c$ goes to zero.
 == Rotations <sec-11.6>
 A linear transformation that does not change the magnitude of the spatial and time components, individually, leaves the interval invariant. So a transformation that rotates the spatial coordinates and leaves the time component unchanged is also a Lorentz transformation. Let $R$ be a 3-dimensional rotation. Then the extension to a Lorentz transformation $cal(R)$ is defined by
 
-$ (xi^0\,bold(xi)) &= cal(R) (R) ((xi')^0 \, bold(xi)') \
- &= ((xi')^0 \, R (bold(xi)')) . $ <11.40>
+$ (xi^0\,bold(xi)) &= cal(R) (R) ((xi')^0 \, bold(xi)') = ((xi')^0 \, R (bold(xi)')) . $ <11.40>
 
 Examining the expression for the general boost, equation @11.38, we see that the boost transforms simply as the arguments are rotated. Indeed,
 

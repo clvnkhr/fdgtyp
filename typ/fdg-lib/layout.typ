@@ -82,7 +82,7 @@
     let raw-lang = if it.lang == none { "raw" } else { it.lang }
     block(
       fill: fdg-raw-fill,
-      stroke: fdg-raw-stroke,
+      stroke: none,
       inset: 8pt,
       radius: 3pt,
       width: 100%,
@@ -103,7 +103,7 @@
   show raw.where(block: false): it => {
     box(
       fill: fdg-raw-fill,
-      stroke: fdg-raw-stroke,
+      stroke: none,
       inset: (x: 2.2pt, y: 0.35pt),
       outset: (y: 1.1pt),
       radius: 1.8pt,

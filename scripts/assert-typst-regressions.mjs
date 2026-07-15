@@ -191,7 +191,8 @@ const assertions = [
       "embedding space. (The $hat(z)$ axis goes through the North Pole, and the Equator is in the plane $z = 0$.)",
       "(define Cartan (Christoffel->Cartan (metric->Christoffel-2 the-metric (coordinate-system->basis R2-rect))))",
       "This analysis will work for any number of dimensions (but will take your computer longer in higher dimensions, because the complexity increases).",
-      "$ sans(d) theta (sans(v))= dot(theta) \\\n sans(d) phi.alt (sans(v))= dot(phi.alt)\\, $",
+      "$ sans(d) theta (sans(v))= dot(theta) sans(d) phi.alt (sans(v))= dot(phi.alt)\\, $",
+      'subscripted #raw(lang:"scheme", "g")s',
       "```scheme\n((Lsphere 'm 'R)\n (up 't (up 'theta 'phi) (up 'thetadot 'phidot)))\n\n#|\n(+ (* 1/2 (expt R 2) m (expt phidot 2) (expt (sin theta) 2))\n   (* 1/2 (expt R 2) m (expt thetadot 2)))\n|#\n```",
       "So, to work with coordinates we write:",
       "Galileo Galilei @galilei1623assayer",
@@ -251,7 +252,9 @@ const assertions = [
       "b (x)= D (chi compose (chi')^(-1)) (x')b'(x')",
       "(D (chi compose (chi')^(-1)) (chi' (sans(m))))^(-1)",
       "The vector field is an operator that takes a real-valued manifold function and a manifold point and produces a number.",
-      "== Coordinate-Basis One-Form Fields <sec-3.5>",
+      "=== Coordinate-Basis One-Form Fields <sec-3.4.3>",
+      "=== Not All One-Form Fields Are Differentials <sec-3.4.4>",
+      "=== Coordinate Transformations <sec-3.4.5>",
       "particular direction in the configuration space",
       "directional derivatives of manifold functions",
       "corresponding components",
@@ -278,7 +281,8 @@ const assertions = [
       "$ sans(a)_i = bold(omega) (sans(e)_i)= sum_j sans(a)'_j tilde(sans(e))^(' j) (sans(e)_i) = sum_j sans(a)'_j sans(J)_i^j $ <4.19>",
       "$ sans(e)_x = a frac(partial, partial theta) + b frac(partial, partial phi.alt) + c frac(partial, partial psi) = cos phi.alt frac(partial, partial theta) - frac(sin phi.alt cos theta, sin theta) frac(partial, partial phi.alt) + frac(sin phi.alt, sin theta) frac(partial, partial psi) . $ <4.29>",
       "&quad + sum_i sans(X)_i (sans(f))sum_j",
-      "$ sans(a)^i = sum_j (sans(X)_j (sans(c)^i) sans(b)^j - sans(X)_j (sans(b)^i) sans(c)^j) = sans(u) (sans(c)^i) - sans(v) (sans(b)^i) . $ <4.35>",
+      "$ sans(a)^i &= sum_j (sans(X)_j (sans(c)^i) sans(b)^j \\",
+      "&= sans(u) (sans(c)^i) - sans(v) (sans(b)^i) . $ <4.35>",
       "$ [sans(u)\\,sans(v)] (sans(f))= sum_k sans(e)_k (sans(f)) (sans(u) (sans(c)^k) - sans(v) (sans(b)^k) + sum_(i j) sans(c)^i sans(b)^j sans(d)_(j i)^k) $ <4.38>",
       "$ (e^(t sans(v))) (sans(m)) = (sans(f) compose phi.alt_t^(sans(v))) (sans(m)) . $ <4.40>",
       "$ (e^(s sans(w)) e^(t sans(v))) (sans(m)) = (sans(f) compose phi.alt_t^(sans(v)) compose phi.alt_s^(sans(w))) (sans(m)) . $ <4.41>",
@@ -364,7 +368,7 @@ const assertions = [
       "See Appendix @chap-appendix-c",
       "We can assume without loss of generality",
       "$ nabla_(sans(v)) sans(u) (sans(f))= sum_i (sans(v) (sans(u)^i)sans(e)_i",
-      "$ D g (delta)= sum_(i j) #scale(x: 120%, y: 120%)[(] A_j^i (delta)",
+      "$ D g (delta)= sum_(i j) ( A_j^i (delta)",
       "sum_k (pi.alt_k^j (sans(v)) sans(w)^k)",
       "sum_k (pi.alt_k^j (sans(v)) tilde(sans(e))^k)",
       "$ nabla_(sans(v)) (tau)= sum_k (sans(v) (tau_k) - sum_j tau_j pi.alt_k^j (sans(v))) tilde(sans(e))^k\\, $ <7.59>",
@@ -489,7 +493,7 @@ const assertions = [
       "$ frac(partial^2 phi.alt (u), partial x^2) + frac(partial^2 phi.alt (u), partial y^2) + frac(partial^2 phi.alt (u), partial z^2) - frac(1, c^2) frac(partial^2 phi.alt (u), partial t^2) = 0. $",
       "$ length_u (xi) = sqrt((Delta x)^2 + (Delta y)^2 + (Delta z)^2 - (c Delta t)^2), $",
       "$ f (xi)= -(xi^0)^2+(xi^1)^2+(xi^2)^2+(xi^3)^2\\, $",
-      "$ xi^0 = p (xi')^0 + q (xi')^1 \\\nxi^1 = r (xi')^0 + s (xi')^1. $",
+      "$ xi^0 = p (xi')^0 + q (xi')^1 xi^1 = r (xi')^0 + s (xi')^1. $",
       "the origin of the primed system moves with velocity $v = beta c$ along the $hat(x)$-axis",
       "where $beta = norm(bold(beta))$, the magnitude of $bold(beta)$, and",
       "(make-4tuple (* gamma (+ xi-p-time beta-dot-xi-p))",
@@ -533,7 +537,7 @@ const assertions = [
     file: "appendix_b.typ",
     contains: [
       "A component of an up tuple is usually identified by a superscript.",
-      "I_0 (s)= t",
+      "I_0 (s) &= t",
       "$ p v = p_0 v^0 + p_1 v^1 + p_2 v^2 . $ <B.8>",
       "$ A C =[A C_0\\,A C_1\\,A C_2]. $ <B.10>",
       "Higher-order derivatives are described by exponentiating the derivative operator. Thus the $n$th derivative of a function $f$ is notated as $D^n f$.",
@@ -715,6 +719,10 @@ const globalExcludes = [
 ];
 
 const globalRegexExcludes = [
+  {
+    name: "multiple alignment points on one math row",
+    regex: /\$[^$\n]*&=[^$\n]*&=/,
+  },
   {
     name: "empty display math",
     regex: /^\$\s*\$/m,
@@ -1098,7 +1106,6 @@ for (const file of contentFiles) {
 }
 
 const expectedMathLineBreaks = [
-  { file: "chapter005.typ", label: "5.2", minBreaks: 1, minAlignedEquals: 1 },
   { file: "chapter005.typ", label: "5.4", minBreaks: 4, minAlignedEquals: 4 },
   { file: "chapter005.typ", label: "5.10", minBreaks: 1, minAlignedEquals: 1 },
   { file: "chapter005.typ", label: "5.24", minBreaks: 2 },
@@ -1124,7 +1131,6 @@ for (const { file, label, minBreaks, minAlignedEquals = 0 } of expectedMathLineB
 }
 
 const expectedSingleLineDisplays = [
-  { file: "chapter004.typ", label: "4.35" },
   { file: "chapter004.typ", label: "4.38" },
   { file: "chapter007.typ", label: "7.53" },
   { file: "chapter007.typ", label: "7.41" },

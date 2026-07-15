@@ -31,7 +31,8 @@ $ tilde(sans(e))^i (sans(v))= sum_l sans(d)_l^i tilde(sans(X))^l (sans(v))\, $ <
 
 then
 
-$ tilde(sans(e))^i (sans(e)_j) = sum_l sans(d)_l^i tilde(sans(X))^l (sans(e)_j)  &= sum_l sans(d)_l^i sans(e)_j (chi^l) \
+$ tilde(sans(e))^i (sans(e)_j) &= sum_l sans(d)_l^i tilde(sans(X))^l (sans(e)_j) \
+ &= sum_l sans(d)_l^i sans(e)_j (chi^l) \
  &= sum_l sans(d)_l^i sum_k sans(X)_k (chi^l) sans(c)_j^k \
  &= sum_(k l) sans(d)_l^i delta_k^l sans(c)_j^k \
  &= sum_k sans(d)_k^i sans(c)_j^k . $ <4.5>
@@ -71,7 +72,7 @@ We use these as a vector basis and compute the dual:
 (define e-dual-basis (vector-basis->dual e-vector-basis R2-polar))
 ```
 
-The procedure vector-basis-\>dual requires an auxiliary coordinate system (here #raw(lang:"scheme", "R2-polar")) to get the $sans(c)_j^k$ coefficient functions from which we compute the $sans(d)_i^k$ coefficient functions. However, the final result is independent of this coordinate system. Then we can verify that the bases $sans(e)$ and $tilde(sans(e))$ satisfy the dual relationship (equation @3.41) by applying the dual basis to the vector basis:
+The procedure #raw(lang:"scheme", "vector-basis->dual") requires an auxiliary coordinate system (here #raw(lang:"scheme", "R2-polar")) to get the $sans(c)_j^k$ coefficient functions from which we compute the $sans(d)_i^k$ coefficient functions. However, the final result is independent of this coordinate system. Then we can verify that the bases $sans(e)$ and $tilde(sans(e))$ satisfy the dual relationship (equation @3.41) by applying the dual basis to the vector basis:
 
 ```scheme
 ((e-dual-basis e-vector-basis) R2-rect-point)
@@ -231,14 +232,16 @@ $ [sans(v)\,sans(w)] (sans(f))= sans(v) (sans(w) (sans(f)))- sans(w) (sans(v) (s
 
 In the special case that the two vector fields are coordinate basis fields, the commutator is zero:
 
-$ [sans(X)_i \, sans(X)_j] (sans(f))= sans(X)_i (sans(X)_j (sans(f))) - sans(X)_j (sans(X)_i (sans(f)))  &= partial_i partial_j (sans(f) compose chi^(-1)) compose chi - partial_j partial_i (sans(f) compose chi^(-1)) compose chi \
+$ [sans(X)_i \, sans(X)_j] (sans(f)) &= sans(X)_i (sans(X)_j (sans(f))) - sans(X)_j (sans(X)_i (sans(f))) \
+ &= partial_i partial_j (sans(f) compose chi^(-1)) compose chi - partial_j partial_i (sans(f) compose chi^(-1)) compose chi \
  &= 0\, $ <4.33>
 
 because the individual partial derivatives commute. The vanishing commutator is telling us that we get to the same manifold point by integrating from a point along first one basis vector field and then another as from integrating in the other order. If the commutator is zero we can use the integral curves of the basis vector fields to form a coordinate mesh.
 
 More generally, the commutator of two vector fields is a vector field. Let $sans(v)$ be a vector field with coefficient function $sans(c) = c compose chi$, and $sans(u)$ be a vector field with coefficient function $sans(b) = b compose chi$, both with respect to the coordinate basis $sans(X)$. Then
 
-$ [sans(u)\,sans(v)] (sans(f))= sans(u) (sans(v) (sans(f)))- sans(v) (sans(u) (sans(f))) &= sans(u) (sum_i sans(X)_i (sans(f)) sans(c)^i) - sans(v) (sum_j sans(X)_j (sans(f)) sans(b)^j) \
+$ [sans(u)\,sans(v)] (sans(f)) &= sans(u) (sans(v) (sans(f)))- sans(v) (sans(u) (sans(f)))\
+ &= sans(u) (sum_i sans(X)_i (sans(f)) sans(c)^i) - sans(v) (sum_j sans(X)_j (sans(f)) sans(b)^j) \
  &= sum_j sans(X)_j (sum_i sans(X)_i (sans(f)) sans(c)^i) sans(b)^j - sum_i sans(X)_i (sum_j sans(X)_j (sans(f)) sans(b)^j) sans(c)^i \
  &= sum_(i j) [sans(X)_j \, sans(X)_i] (sans(f))sans(c)^i sans(med b)^j \
  &quad + sum_i sans(X)_i (sans(f))sum_j (sans(X)_j (sans(c)^i) sans(b)^j - sans(X)_j (sans(med b)^i) sans(c)^j) \
@@ -246,7 +249,9 @@ $ [sans(u)\,sans(v)] (sans(f))= sans(u) (sans(v) (sans(f)))- sans(v) (sans(u) (s
 
 where the coefficient function $sans(a)$ of the commutator vector field is
 
-$ sans(a)^i = sum_j (sans(X)_j (sans(c)^i) sans(b)^j - sans(X)_j (sans(b)^i) sans(c)^j) = sans(u) (sans(c)^i) - sans(v) (sans(b)^i) . $ <4.35>
+$ sans(a)^i &= sum_j (sans(X)_j (sans(c)^i) sans(b)^j \
+ &quad - sans(X)_j (sans(b)^i) sans(c)^j) \
+ &= sans(u) (sans(c)^i) - sans(v) (sans(b)^i) . $ <4.35>
 
 We used the fact, shown above, that the commutator of two coordinate basis fields is zero.
 
@@ -302,9 +307,9 @@ Define the vector fields #raw(lang:"scheme", "Jx"), #raw(lang:"scheme", "Jy"), a
 
 We see that
 
-$ [sans(J)_x \, sans(J)_y] = - sans(J)_z \
- [sans(J)_y \, sans(J)_z] = - sans(J)_x \
- [sans(J)_z \, sans(J)_x] = - sans(J)_y $ <4.39>
+$ [sans(J)_x \, sans(J)_y] &= - sans(J)_z \
+ [sans(J)_y \, sans(J)_z] &= - sans(J)_x \
+ [sans(J)_z \, sans(J)_x] &= - sans(J)_y $ <4.39>
 
 We can also compute the commutators for the basis vector fields $sans(e)_x$, $sans(e)_y$, and $sans(e)_z$ in the SO(3) manifold (see equations @4.29 -- @4.31) that correspond to rotations about the $x$, $y$, and $z$ axes, respectively:#footnote[Using
 
@@ -345,8 +350,7 @@ $ (e^(epsilon.alt sans(v)) e^(epsilon.alt sans(w)) e^(- epsilon.alt sans(v)) e^(
 
 To second order in $epsilon.alt$ the result is#footnote[For non-commuting operators $A$ and $B$,
 
-$ e^A e^B e^(- A) e^(- B)  &= (1 + A + A^2 / 2 + dots.c) (1 + B + B^2 / 2 + dots.c) times (1 - A + A^2 / 2 + dots.c) (1 - B + B^2 / 2 + dots.c) \
- &= 1 +[A\,B]+ dots.c\, $
+$ e^A e^B e^(- A) e^(- B) &= (1 + A + A^2 / 2 + dots.c) (1 + B + B^2 / 2 + dots.c) times (1 - A + A^2 / 2 + dots.c) (1 - B + B^2 / 2 + dots.c) = 1 +[A\,B]+ dots.c\, $
 
 to second order in $A$ and $B$. All higher-order terms can be written in terms of higher-order commutators of $A$ and $B$. An example of a higher-order commutator is $[A\,[A\,B]]$.]
 

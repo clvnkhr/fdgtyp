@@ -34,7 +34,7 @@ $ x^i = chi^i (m). $ <2.2> The number of independent components of $x$ is the di
 
 Assume we have two coordinate functions $chi$ and $chi'$. The coordinate transformation from $chi'$ coordinates to $chi$ coordinates is just the composition $chi compose chi^(' - 1)$ , where $chi^(' - 1)$ is the functional inverse of $chi'$ (see figure 2.1).
 
-#fdg-figure(image("../assets/figures/fig-2-1.pdf", width: 49.2%), [Here there are two overlapping coordinate patches that are the domains of the two coordinate functions $chi$ and $chi'$. It is possible to represent manifold points in the overlap using either coordinate system. The coordinate transformation from $chi'$ coordinates to $chi$ coordinates is just the composition $chi circle chi'^(-1)$.])
+#fdg-figure(image("../assets/figures/fig-2-1.pdf", width: 49.2%), [Here there are two overlapping coordinate patches that are the domains of the two coordinate functions $chi$ and $chi'$. It is possible to represent manifold points in the overlap using either coordinate system. The coordinate transformation from $chi'$ coordinates to $chi$ coordinates is just the composition $chi compose chi'^(-1)$.])
 
  We assume that the coordinate transformation is continuous and differentiable to any degree we require.
 
@@ -88,13 +88,11 @@ Let $sans(f)$ be a real-valued function on a manifold $sans(M)$: this function m
 
 This function has a coordinate representation $f_chi$ with respect to the coordinate function $chi$ (see figure 2.2):
 
-#fdg-figure(image("../assets/figures/fig-2-2.pdf", width: 49.2%), [The coordinate function $chi$ maps points on the manifold in the coordinate patch to a tuple of coordinates. A function $f$ on the manifold $M$ can be represented in coordinates by a function $f_chi = f circle chi^(-1)$.])
+#fdg-figure(image("../assets/figures/fig-2-2.pdf", width: 49.2%), [The coordinate function $chi$ maps points on the manifold in the coordinate patch to a tuple of coordinates. A function $f$ on the manifold $M$ can be represented in coordinates by a function $f_chi = f compose chi^(-1)$.])
 
  $ f_chi = sans(f) compose chi^(-1) . $ <2.3> Both the coordinate representation $f_chi$ and the tuple $x$ depend on the coordinate system, but the value $f_chi (x)$ is independent of coordinates: $ f_chi (x)=(sans(f) compose chi^(-1)) (chi (sans(m)))= sans(f) (sans(m)). $ <2.4> The subscript $chi$ may be dropped when it is unambiguous.
 
-For example, in a 2-dimensional real manifold the coordinates of a manifold point $m$ are a pair of real numbers, $ (x\,y)= chi (sans(m))\, $ <2.5> and the manifold function $sans(f)$ is represented in coordinates by a function $f$ that takes a pair of real numbers and produces a real number $ f : sans(R)^2 arrow.r sans(R) \
- f :(x\,y)arrow.r f (x\,y). $ <2.6> We define our manifold function $ sans(f) : sans(M) arrow.r sans(R) \
- sans(f) : sans(m) arrow.r (f compose chi) (sans(m)). $ <2.7>
+For example, in a 2-dimensional real manifold the coordinates of a manifold point $m$ are a pair of real numbers, $ (x\,y)= chi (sans(m))\, $ <2.5> and the manifold function $sans(f)$ is represented in coordinates by a function $f$ that takes a pair of real numbers and produces a real number $ f : sans(R)^2 arrow.r sans(R) f :(x\,y)arrow.r f (x\,y). $ <2.6> We define our manifold function $ sans(f) : sans(M) arrow.r sans(R) sans(f) : sans(m) arrow.r (f compose chi) (sans(m)). $ <2.7>
 
 == #emph[Manifold Functions Are Coordinate Independent] <sec-2.3>
 We can illustrate the coordinate independence with a program. We will show that an arbitrary manifold function $sans(f)$, when defined by its coordinate representation in rectangular coordinates, has the same behavior when applied to a manifold point independent of whether the point is specified in rectangular or polar coordinates.

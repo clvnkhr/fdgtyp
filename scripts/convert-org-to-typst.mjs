@@ -154,7 +154,21 @@ function normalizeLatexDisplayEnvironments(source, stem) {
   return source.replace(
     /\\begin\{(equation\*?|align\*?)\}([\s\S]*?)\\end\{\1\}/g,
     (_match, env, math) => {
-      const trimmed = math.replace(/\\label\{[^}]+\}/g, "").trim();
+      const seenAlignLines = new Set();
+      const trimmed = math
+        .replace(/\\label\{[^}]+\}/g, "")
+        // Some imported align environments repeat an equation once with and
+        // once without `\\nonumber`. Remove exact repeated equation rows.
+        .split(/(?<=\\\\)\s*\n|\n/)
+        .filter(line => {
+          const key = line.replace(/\\nonumber/g, "").replace(/\\\\\s*$/, "").replace(/\s+/g, " ").trim();
+          if (!key || !line.includes("&=")) return true;
+          if (seenAlignLines.has(key)) return false;
+          seenAlignLines.add(key);
+          return true;
+        })
+        .join("\n")
+        .trim();
       const numbered = !env.endsWith("*") && labelPrefix && !suppressPublishedEquationNumber(stem, trimmed);
       const label = numbered ? `<${labelPrefix}.${equationIndex += 1}>` : "";
       if (!trimmed) return "";
@@ -191,7 +205,12 @@ function wrapBareSchemeBlocks(source) {
     if (!inOrgBlock && line.startsWith("(") && !proseParenStart.test(line)) {
       const block = [];
       while (index < lines.length && lines[index].trim() !== "") {
-        block.push(lines[index].replaceAll("’", "'"));
+        const blockLine = lines[index].replaceAll("’", "'");
+        // The source uses /.../ lines for displayed evaluator output. Within
+        // a Scheme example these are results, not executable expressions.
+        block.push(blockLine.startsWith("/")
+          ? `;; ${blockLine.slice(1, blockLine.endsWith("/") ? -1 : undefined)}`
+          : blockLine);
         index += 1;
       }
       output.push("#+begin_src scheme", ...block, "#+end_src");
@@ -238,12 +257,30 @@ function applyPdfFidelitySourceRepairs(source, stem) {
       );
   }
 
+  if (stem === "chapter007") {
+    return source.replaceAll(
+      "((state-advancer (g (tilted-path 1) (sphere-Cartan))",
+      "((state-advancer (g (tilted-path 1) sphere-Cartan))",
+    );
+  }
+
+  if (stem === "chapter011") {
+    return source.replaceAll(
+      "(make-4tuple 'ct (up 'x 'y 'z)))))\n;; 0",
+      "(make-4tuple 'ct (up 'x 'y 'z))))\n;; 0",
+    );
+  }
+
   return source;
 }
 
 function normalizeOrgSource(source, stem) {
   const repairedSource = applyPdfFidelitySourceRepairs(source, stem);
   return wrapBareSchemeBlocks(normalizeDollarMath(normalizeLatexDisplaysWithFootnotes(repairedSource, stem)))
+    // Pandoc emits Org headings below level three as plain paragraphs in
+    // Typst. Mark them here so the cleanup pass can preserve them as visible
+    // subheadings without changing their source hierarchy/section labels.
+    .replace(/^\*{4,}\s+(.+)$/gm, "FDGSUBHEADING $1")
     // Clear typos and unsupported macros in the imported Org math. These are
     // applied to a temporary source copy so the subtree remains pristine.
     .replaceAll("\\psia", "\\psi_a")
@@ -471,7 +508,7 @@ function cleanTypstMath(math) {
     " lr( (D f)(t) = frac(d, d x) f(x) |)_(x=t) ",
   );
 
-  let alignedBreakCount = 0;
+  let previousAlignmentBreakEnd = 0;
   const finalized = spaceMathApplications(cleaned)
     .replace(/\s+,/g, ",")
     .replace(/\)(\^\d+)sans\(/g, ")$1 sans(")
@@ -480,9 +517,13 @@ function cleanTypstMath(math) {
     .replace(/(bb|binom|sans|scale)\s+\(/g, "$1(")
     .replace(/\)(\^\d+)sans\(/g, ")$1 sans(")
     .replace(/\bsum_([A-Za-z0-9]+)\(/g, "sum_$1 (")
-    .replace(/"FDGBREAK"\s*=/g, () => {
-      alignedBreakCount += 1;
-      return alignedBreakCount === 1 ? " &=" : "\\\n &=";
+    // A break before the first `&=` can merely separate a long left-hand side
+    // from its equals sign. Join that continuation, but preserve a break once
+    // the current row already has an alignment point.
+    .replace(/"FDGBREAK"\s*=/g, (_match, offset, whole) => {
+      const currentRow = whole.slice(previousAlignmentBreakEnd, offset);
+      previousAlignmentBreakEnd = offset + '"FDGBREAK"'.length;
+      return /(?<![<>!])=/.test(currentRow) ? "\\\n &=" : " &=";
     })
     .replaceAll("\"FDGBREAK\"", "\\\n")
     .replace(/\\\n\s+([+-])/g, "\\\n &quad $1")
@@ -517,6 +558,46 @@ function compactShortSingleEqualsDisplay(math) {
     .trim();
 
   return compact.length <= 220 ? ` ${compact} ` : math;
+}
+
+function normalizeMultilineMath(body) {
+  return body.replace(/\$([^$]*\\\n[^$]*)\$/g, (display, math) => {
+    const lines = math.split(/\\\n/);
+    let depth = 0;
+    const equalsPositions = lines.map(line => {
+      let equalsAt = -1;
+      for (let index = 0; index < line.length; index += 1) {
+        const char = line[index];
+        if ("([{".includes(char)) depth += 1;
+        else if (")]}".includes(char)) depth = Math.max(0, depth - 1);
+        else if (equalsAt < 0 && char === "=" && depth === 0 && !"<>!".includes(line[index - 1] ?? "")) equalsAt = index;
+      }
+      return equalsAt;
+    });
+    const equationLines = equalsPositions.filter(index => index >= 0);
+
+    // A short two-line derivation reads better on one line and lets Typst size
+    // delimiters naturally. Longer systems retain line breaks and align on =.
+    if (lines.length === 2) {
+      const compact = math.replace(/\\\n\s*&?(?:quad\s+)?/g, " ").replace(/\s+/g, " ").trim();
+      if (compact.length <= 220) return `$ ${compact} $`;
+    }
+
+    if (equationLines.length < 2) return display;
+    const aligned = lines.map((line, lineIndex) => {
+      const equalsAt = equalsPositions[lineIndex];
+      if (equalsAt < 0 || line[equalsAt - 1] === "&") return line;
+      return `${line.slice(0, equalsAt).trimEnd()} &= ${line.slice(equalsAt + 1).trimStart()}`;
+    }).join("\\\n");
+    return `$${aligned}$`;
+  });
+}
+
+function removeRedundantScaledDelimiters(body) {
+  return body.replace(
+    /#scale\([^\n]*?\)\[\(\]([^\n]*?)#scale\([^\n]*?\)\[\)\]/g,
+    (_match, inner) => `(${inner})`,
+  );
 }
 
 function mathifyBareGreekInProse(body) {
@@ -592,6 +673,12 @@ function rawifyBareSchemeIdentifiers(body) {
         updated = updated.replace(pattern, `#raw(lang:"scheme", "${identifier}")`);
       }
       return updated
+        // Pandoc escapes `>` in prose. Tokens containing Scheme's `->` are
+        // procedure names, not prose punctuation, so render them as code.
+        .replace(
+          /(?<![A-Za-z0-9_#-])([A-Za-z][A-Za-z0-9_:+*/!?-]*-\\>[A-Za-z0-9_:+*/!?-]+)(?![A-Za-z0-9_-])/g,
+          (_match, identifier) => `#raw(lang:"scheme", "${identifier.replace("-\\>", "->")}")`,
+        )
         .replace(
           /(?<![A-Za-z0-9_#-])F-\\>directional-derivative(?![A-Za-z0-9_-])/g,
           '#raw(lang:"scheme", "F->directional-derivative")',
@@ -612,6 +699,8 @@ function cleanTypstOutput(body) {
     return `$${cleanTypstMath(math)}$`;
   })
     .replace(/^=== ([a-z])\.\n/gm, "#strong[$1.]\n")
+    .replace(/^FDGSUBHEADING (.+)$/gm, "=== $1")
+    .replace(/\\~([^~\n]+)\\~/g, (_match, code) => `#raw(lang:"scheme", "${code}")`)
     .replace(/^== Metric Music\n/gm, "#heading(level: 2, numbering: none)[Metric Music]\n")
     .replace(/^Coordinate-Basis One-Form Fields\n/gm, "== Coordinate-Basis One-Form Fields <sec-3.5>\n")
     .replace(/^#block\[\n([\s\S]*?)^\]\n?/gm, (_match, inner) => `${inner.trimEnd()}\n`)
@@ -695,8 +784,8 @@ function cleanTypstOutput(body) {
 }
 
 const figureCaptions = {
-  "fig-2-1.pdf": "Here there are two overlapping coordinate patches that are the domains of the two coordinate functions $chi$ and $chi'$. It is possible to represent manifold points in the overlap using either coordinate system. The coordinate transformation from $chi'$ coordinates to $chi$ coordinates is just the composition $chi circle chi'^(-1)$.",
-  "fig-2-2.pdf": "The coordinate function $chi$ maps points on the manifold in the coordinate patch to a tuple of coordinates. A function $f$ on the manifold $M$ can be represented in coordinates by a function $f_chi = f circle chi^(-1)$.",
+  "fig-2-1.pdf": "Here there are two overlapping coordinate patches that are the domains of the two coordinate functions $chi$ and $chi'$. It is possible to represent manifold points in the overlap using either coordinate system. The coordinate transformation from $chi'$ coordinates to $chi$ coordinates is just the composition $chi compose chi'^(-1)$.",
+  "fig-2-2.pdf": "The coordinate function $chi$ maps points on the manifold in the coordinate patch to a tuple of coordinates. A function $f$ on the manifold $M$ can be represented in coordinates by a function $f_chi = f compose chi^(-1)$.",
   "fig-2-3.pdf": "For each point on the sphere (except for its north pole) a line is drawn from the north pole through the point and extending to the equatorial plane. The corresponding point on the plane is where the line intersects the plane. The rectangular coordinates of this point on the plane are the Riemann coordinates of the point on the sphere. The points on the plane can also be specified with polar coordinates $(rho, theta)$ and the points on the sphere are specified both by Riemann coordinates and the traditional colatitude and longitude $(phi, lambda)$.",
   "fig-4-1.pdf": "Let arrows $e_0$ and $e_1$ depict the vectors of a basis vector field at a particular point. Then the foliations shown by the parallel lines depict the dual basis one-form fields at that point. The dotted lines represent the field $tilde(e)^0$ and the dashed lines represent the field $tilde(e)^1$. The spacings of the lines are $1/3$ unit. That the vectors pierce three of the lines representing their duals and do not pierce any of the lines representing the other basis elements is one way to see the relationship $tilde(e)^i (e_j)(m) = delta^i_j$.",
   "fig-4-2.pdf": "The commutator of two vector fields computes the residual of a small loop following their integral curves.",
@@ -1032,6 +1121,14 @@ function repairChapter5(body) {
 
 function repairChapter7(body) {
   return body
+    .replaceAll(
+      "sum_k pi.alt_k^j (sans(v)) sans(w)^k",
+      "sum_k (pi.alt_k^j (sans(v)) sans(w)^k)",
+    )
+    .replaceAll(
+      "sum_k pi.alt_k^j (sans(v)) tilde(sans(e))^k",
+      "sum_k (pi.alt_k^j (sans(v)) tilde(sans(e))^k)",
+    )
     .replaceAll(
       "$ D g (delta)= \\\n sum_(i j) #scale(x: 120%, y: 120%)[(] A_j^i (delta) ((sans(v) (sans(u)^j))compose phi.alt_(- delta)^(sans(v)))sans(e)_i (sans(f))- D A_j^i (delta) (sans(u)^j compose phi.alt_(- delta)^(sans(v)))sans(e)_i (sans(f))#scale(x: 120%, y: 120%)[)] (sans(m)). $ <7.41>",
       "$ D g (delta)= sum_(i j) #scale(x: 120%, y: 120%)[(] A_j^i (delta) ((sans(v) (sans(u)^j))compose phi.alt_(- delta)^(sans(v)))sans(e)_i (sans(f))- D A_j^i (delta) (sans(u)^j compose phi.alt_(- delta)^(sans(v)))sans(e)_i (sans(f))#scale(x: 120%, y: 120%)[)] (sans(m)). $ <7.41>",
@@ -1731,6 +1828,9 @@ function convert(file) {
   const bodyWithPostMathRepairs = stem === "chapter010"
     ? compactChapter10AuditedDisplays(repairChapter10(bodyWithTypstMathRepairs))
     : bodyWithTypstMathRepairs;
+  const bodyWithNormalizedDisplays = removeRedundantScaledDelimiters(
+    normalizeMultilineMath(bodyWithPostMathRepairs),
+  );
 
   const content = [
     `// Generated from ../../fdg-book/scheme/org/${file}.`,
@@ -1738,7 +1838,7 @@ function convert(file) {
     `#import "../lib.typ": fdg-chapter, fdg-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX`,
     "",
     `#fdg-chapter(${JSON.stringify(typstEscape(displayTitle))}, numbered: ${numbered}, eq-prefix: ${JSON.stringify(equationLabelPrefix(stem) ?? "0")}, ref-label: ${JSON.stringify(chapterLabel(stem) ?? "")})[`,
-    bodyWithPostMathRepairs.trimEnd(),
+    bodyWithNormalizedDisplays.trimEnd(),
     "]",
     "",
   ].join("\n");

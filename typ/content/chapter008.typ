@@ -45,13 +45,13 @@ Here we have computed the $φ$ component of the result of carrying a $partial\/p
 Most of the sixteen coefficients of the Riemann tensor for the sphere are zero. The following are the nonzero coefficients:
 
 $ sans(R) (sans(d) theta \, frac(partial, partial phi.alt) \, frac(partial, partial theta) \, frac(partial, partial phi.alt)) \
- (chi^(-1) (q^theta \, q^phi.alt)) = (sin (q^theta))^2\,\
+ (chi^(-1) (q^theta \, q^phi.alt)) &= (sin (q^theta))^2\,\
  sans(R) (sans(d) theta \, frac(partial, partial phi.alt) \, frac(partial, partial phi.alt) \, frac(partial, partial theta)) \
- (chi^(-1) (q^theta \, q^phi.alt)) = - (sin (q^theta))^2\,\
+ (chi^(-1) (q^theta \, q^phi.alt)) &= - (sin (q^theta))^2\,\
  sans(R) (sans(d) phi.alt \, frac(partial, partial theta) \, frac(partial, partial theta) \, frac(partial, partial phi.alt)) \
- (chi^(-1) (q^theta \, q^phi.alt)) = - 1\,\
+ (chi^(-1) (q^theta \, q^phi.alt)) &= - 1\,\
  sans(R) (sans(d) phi.alt \, frac(partial, partial theta) \, frac(partial, partial phi.alt) \, frac(partial, partial theta)) \
- (chi^(-1) (q^theta \, q^phi.alt)) = 1 . $ <8.3>
+ (chi^(-1) (q^theta \, q^phi.alt)) &= 1 . $ <8.3>
 
 == Explicit Transport <sec-8.1>
 We will show that the result of the Riemann calculation of the change in a vector, as we traverse a loop, is what we get by explicitly calculating the transport. The coordinates of the vector to be transported are governed by the differential equations (see equation @7.72)
@@ -94,15 +94,14 @@ $ e_A (F compose G)= F compose (e^A G)\, $
 
 for any state function $G$ and any compatible $F$. As a consequence, we have the following identity:
 
-$ e^A e^B I = e^A ((e^B I) compose I) = \
- (e^B I) compose (e^A I)\, $
+$ e^A e^B I = e^A ((e^B I) compose I) = (e^B I) compose (e^A I)\, $
 
 where $I$ is the identity function on states.]
 
 $ (e^(- epsilon.alt L_(g_v)) I) compose (e^(- epsilon.alt L_(g_w)) I) compose (e^(epsilon.alt L_(g_v)) I) \
  compose (e^(epsilon.alt L_(g_w)) I) (s_0) \
- quad = (e^(epsilon.alt L_(g_w)) e^(epsilon.alt L_(g_v)) e^(- epsilon.alt L_(g_w)) e^(- epsilon.alt L_(g_v)) I) (s_0) \
- quad = (e^(epsilon.alt^2 [L_(g_w) \, L_(g_v)] + dots.c) I) (s_0) . $ <8.10>
+ quad &= (e^(epsilon.alt L_(g_w)) e^(epsilon.alt L_(g_v)) e^(- epsilon.alt L_(g_w)) e^(- epsilon.alt L_(g_v)) I) (s_0) \
+ quad &= (e^(epsilon.alt^2 [L_(g_w) \, L_(g_v)] + dots.c) I) (s_0) . $ <8.10>
 
 So the lowest-order change in the transported vector is
 
@@ -266,7 +265,7 @@ Let\'s compute the two parts of the Riemann curvature operator and see how this 
 
 $ nabla_(sans(v)) sans(u) (sans(f)) &= sum_i sans(e)_i (sans(f)) (sans(v) (tilde(sans(e))^i (sans(u))) \
  &quad + sum_j pi.alt_j^i (sans(v)) tilde(sans(e))^j (sans(u))) \
- &= sans(e) (sans(f)) (sans(v) (tilde(sans(e)) (sans(u))) \
+ &= sans(e) (sans(f)) (sans(v) (tilde(sans(e)) (sans(u)))\
  &quad + pi.alt (sans(v))tilde(sans(e)) (sans(u)))\, $ <8.16>
 
 where the second form uses tuple arithmetic. Now let\'s consider the first part of the Riemann curvature operator:
@@ -412,7 +411,8 @@ $ nabla_(sans(T)) (nabla_(sans(T)) sans(U))= nabla_(sans(T)) (nabla_(sans(U)) sa
 
 because both the torsion is zero and $[sans(T)\,sans(U)]= 0$. Continuing
 
-$ nabla_(sans(T)) (nabla_(sans(T)) sans(U))= nabla_(sans(T)) (nabla_(sans(U)) sans(T)) &= nabla_(sans(T)) (nabla_(sans(U)) sans(T))+ nabla_(sans(U)) (nabla_(sans(T)) sans(T))- nabla_(sans(U)) (nabla_(sans(T)) sans(T))\
+$ nabla_(sans(T)) (nabla_(sans(T)) sans(U)) &= nabla_(sans(T)) (nabla_(sans(U)) sans(T))\
+ &= nabla_(sans(T)) (nabla_(sans(U)) sans(T))+ nabla_(sans(U)) (nabla_(sans(T)) sans(T))- nabla_(sans(U)) (nabla_(sans(T)) sans(T))\
  &= nabla_(sans(U)) (nabla_(sans(T)) sans(T))- cal(R) (sans(U)\,sans(T)) (sans(T))\
  &= - cal(R) (sans(U)\,sans(T)) (sans(T)). $ <8.28>
 

@@ -51,8 +51,7 @@ Which is the same as
 
 Arithmetic is extended to the manipulation of functions: the usual mathematical operations may be applied to functions. Examples are addition and multiplication; we may add or multiply two functions if they take the same kinds of arguments and if their values can be added or multiplied:
 
-$ (f + g) (x)= f (x)+ g (x)\,\
-(f g) (x)= f (x)g (x). $ <B.3>
+$ (f + g) (x)= f (x)+ g (x)\, (f g) (x)= f (x)g (x). $ <B.3>
 
 A procedure #raw(lang:"scheme", "g") that multiplies the cube of its argument by the sine of its argument is
 
@@ -141,13 +140,13 @@ It is an up tuple of the time, the coordinates, and the momenta. The time $t$ ha
 
 In order to reference components of tuple structures there are selector functions, for example:
 
-$ I (s)= s \
- I_0 (s)= t \
- I_1 (s)=(x\,y)\
- I_2 (s)=[p_x\,p_y]\
- I_(1\,0) (s)= x \
+$ I (s) &= s \
+ I_0 (s) &= t \
+ I_1 (s) &= (x\,y)\
+ I_2 (s) &= [p_x\,p_y]\
+ I_(1\,0) (s) &= x \
  dots.c \
- I_(2\,1) (s)= p_y . $ <B.7>
+ I_(2\,1) (s) &= p_y . $ <B.7>
 
 The sequence of integer subscripts on the selector describes the access chain to the desired component.
 
@@ -272,7 +271,7 @@ A function of multiple arguments can be thought of as a function of an up tuple 
 
 Suppose we have a real-valued function $g$ of two real-valued arguments, and we want to approximate the increment in the value of $g$ from its value at $x\,y$. If the arguments are incremented by the tuple $(Delta x\,Delta y)$ we compute:
 
-$ D g (x\,y)dot.op (Delta x\,Delta y)= [partial_0 g (x \, y) + partial_1 g (x \, y)] dot.op (Delta x\,Delta y) &= partial_0 g (x\,y)Delta x + partial_1 g (x\,y)Delta y . $ <B.20>
+$ D g (x\,y)dot.op (Delta x\,Delta y)= [partial_0 g (x \, y) + partial_1 g (x \, y)] dot.op (Delta x\,Delta y) = partial_0 g (x\,y)Delta x + partial_1 g (x\,y)Delta y . $ <B.20>
 
 Using the two-argument literal function #raw(lang:"scheme", "g") defined in Section #fdg-ref-page(<sec-B.2>), we have:
 
@@ -333,7 +332,8 @@ We often show a function of multiple arguments that include tuples by indicating
 
 The derivative of $H$ is a function that produces an object that can be contracted with an increment in the argument structure to produce an increment in the function\'s value. The derivative is a down tuple of three partial derivatives. The first partial derivative is the partial derivative with respect to the numerical argument. The second partial derivative is a down tuple of partial derivatives with respect to each component of the up-tuple argument. The third partial derivative is an up tuple of partial derivatives with respect to each component of the down-tuple argument:
 
-$ D H (s)= [partial_0 H (s) \, partial_1 H (s) \, partial_2 H (s)]  &= [partial_0 H (s) \, [partial_(1\,0) H (s) \, partial_(1\,1) H (s)] \, \
+$ D H (s) &= [partial_0 H (s) \, partial_1 H (s) \, partial_2 H (s)] \
+ &= [partial_0 H (s) \, [partial_(1\,0) H (s) \, partial_(1\,1) H (s)] \, \
  [partial_(2\,0) H (s) \, partial_(2\,1) H (s)]]\, $ <B.29>
 
 where $partial_(1\,0)$ indicates the partial derivative with respect to the first component (index 0) of the second argument (index 1) of the function, and so on. Indeed, $partial_z F = I_z compose D F$ for any function $F$ and access chain $z$. So, if we let $Delta s$ be an incremental phase-space state tuple,

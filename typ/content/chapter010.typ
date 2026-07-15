@@ -16,9 +16,9 @@ where $g^(i j)$ are the coefficients of the inverse metric and $epsilon.alt_(j_0
 == Relationship to Vector Calculus <sec-10.1>
 In 3-dimensional Euclidean space the traditional vector derivative operations are gradient, curl, and divergence. If $hat(upright(x))$, $hat(upright(y))$, $hat(upright(z))$ are the usual orthonormal rectangular vector basis, $f$ a function on the space, and $arrow(v)$ a vector field on the space, then
 
-$ grad (f)= frac(partial f, partial x) hat(upright(x)) + frac(partial f, partial y) hat(upright(y)) + frac(partial f, partial z) hat(upright(z)) \
- curl (arrow(upright(v)))= (frac(partial v_z, partial y) - frac(partial v_y, partial z)) hat(upright(x)) + (frac(partial v_x, partial z) - frac(partial v_z, partial x)) hat(upright(y)) + (frac(partial v_y, partial x) - frac(partial v_x, partial y)) hat(upright(x)) \
- div (arrow(upright(v)))= frac(partial v_x, partial x) + frac(partial v_y, partial y) + frac(partial v_z, partial z) . $
+$ grad (f) &= frac(partial f, partial x) hat(upright(x)) + frac(partial f, partial y) hat(upright(y)) + frac(partial f, partial z) hat(upright(z)) \
+ curl (arrow(upright(v))) &= (frac(partial v_z, partial y) - frac(partial v_y, partial z)) hat(upright(x)) + (frac(partial v_x, partial z) - frac(partial v_z, partial x)) hat(upright(y)) + (frac(partial v_y, partial x) - frac(partial v_x, partial y)) hat(upright(x)) \
+ div (arrow(upright(v))) &= frac(partial v_x, partial x) + frac(partial v_y, partial y) + frac(partial v_z, partial z) . $
 
 Recall the meaning of the traditional vector operations. Traditionally we assume that there is a metric that allows us to determine distances between locations and angles between vectors. Such a metric establishes local scale factors relating coordinate increments to actual distances. The vector gradient, $grad (f)$, points in the direction of steepest increase in the function with respect to actual distances. By contrast, the gradient one-form, df, does not depend on a metric, so there is no concept of distance built in to it. Nevertheless, the concepts are related. The gradient one-form is given by
 

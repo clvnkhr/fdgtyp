@@ -98,7 +98,8 @@ We can construct a procedure that computes the Lie derivative of a vector field 
 
 Expand the quantities in equation @7.13 to first order in $δ$:
 
-$ g (delta)= sans(y) (sans(f)) (sans(m))-(phi.alt_(delta *)^(sans(v)) sans(y)) (sans(f)) (sans(m)) &= sans(y) (sans(f)) (sans(m))- sans(y) (sans(f) compose phi.alt_delta^(sans(v))) (phi.alt_(- delta)^(sans(v)) (sans(m)))\
+$ g (delta) &= sans(y) (sans(f)) (sans(m))-(phi.alt_(delta *)^(sans(v)) sans(y)) (sans(f)) (sans(m))\
+ &= sans(y) (sans(f)) (sans(m))- sans(y) (sans(f) compose phi.alt_delta^(sans(v))) (phi.alt_(- delta)^(sans(v)) (sans(m)))\
  &=(sans(y) (sans(f))- sans(y) (sans(f) + delta sans(v) (sans(f))+ dots.c)+ delta sans(v) (sans(y) (sans(f) + delta sans(v) (sans(f))+ dots.c))) (sans(m))+ dots.c \
  &=(- delta sans(y) (sans(v) (sans(f)))+ delta sans(v) (sans(y) (sans(f)))) (sans(m))+ dots.c \
  &= delta[sans(v)\,sans(y)] (sans(f)) (sans(m))+ cal(O) (delta^2). $ <7.14>
@@ -127,14 +128,16 @@ Although this is tested to second order, evaluating the derivative at zero ensur
 
 We can think of the Lie derivative as the rate of change of the manifold function $sans(y) (sans(f))$ as we move in the $sans(v)$ direction, adjusted to take into account that some of the variation is due to the variation of $sans(f)$:
 
-$ (cal(L)_(sans(v)) sans(y)) (sans(f))=[sans(v)\,sans(y)] (sans(f)) &= sans(v) (sans(y) (sans(f)))- sans(y) (sans(v) (sans(f)))\
+$ (cal(L)_(sans(v)) sans(y)) (sans(f)) &= [sans(v)\,sans(y)] (sans(f))\
+ &= sans(v) (sans(y) (sans(f)))- sans(y) (sans(v) (sans(f)))\
  &= sans(v) (sans(y) (sans(f)))- sans(y) (cal(L)_(sans(v)) (sans(f))). $ <7.16>
 
 The first term in the commutator, $sans(v) (sans(y) (sans(f)))$, measures the rate of change of the combination $sans(y) (sans(f))$ along the integral curves of $sans(v)$. The change in $sans(y) (sans(f))$ is due to both the intrinsic change in $sans(y)$ along the curve and the change in $sans(f)$ along the curve; the second term in the commutator subtracts this latter quantity. The result is the intrinsic change in $sans(y)$ along the integral curves of $sans(v)$.
 
 Additionally, we can extend the product rule, for any manifold function $sans(g)$ and any vector field $sans(u)$:
 
-$ cal(L)_(sans(v)) (sans(g) sans(u)) (sans(f))=[sans(v)\,sans(g) sans(u)] (sans(f)) &= sans(v) (sans(g))sans(u) (sans(f))+ sans(g)[sans(v)\,sans(u)] (sans(f))\
+$ cal(L)_(sans(v)) (sans(g) sans(u)) (sans(f)) &= [sans(v)\,sans(g) sans(u)] (sans(f))\
+ &= sans(v) (sans(g))sans(u) (sans(f))+ sans(g)[sans(v)\,sans(u)] (sans(f))\
  &=(cal(L)_(sans(v)) sans(g))sans(u) (sans(f))+ sans(g) (cal(L)_(sans(v)) sans(u)) (sans(f)). $ <7.17>
 
 == An Alternate View <sec-7.4>
@@ -152,7 +155,7 @@ $ Delta_j^i (sans(v))= tilde(sans(e))^i (cal(L)_(sans(v)) sans(e)_j)= tilde(sans
 
 So the Lie derivative can be written
 
-$ (cal(L)_(sans(v)) sans(y)) (sans(f))= sum_i #scale(x: 240%, y: 240%)[(] sans(v) (sans(y)^i)+ sum_j Delta_j^i (sans(v))sans(y)^j #scale(x: 240%, y: 240%)[)] sans(e)_i (f). $ <7.21>
+$ (cal(L)_(sans(v)) sans(y)) (sans(f))= sum_i ( sans(v) (sans(y)^i)+ sum_j Delta_j^i (sans(v))sans(y)^j ) sans(e)_i (f). $ <7.21>
 
 The components of the Lie derivatives of the basis vector fields are the structure constants for the basis vector fields. (See equation @4.37.) The structure constants are antisymmetric in the lower indices:
 
@@ -160,12 +163,13 @@ $ tilde(sans(e))^i (cal(L)_(sans(e)_k) sans(e)_j)= tilde(sans(e))^i ([sans(e)_k\
 
 Resolving $sans(v)$ into components and applying the product rule, we get
 
-$ (cal(L)_(sans(v)) sans(y)) (sans(f))= sum_k #scale(x: 120%, y: 120%)[(] sans(v)^k[sans(e)_k\,sans(y)] (sans(f))- sans(y) (sans(v)^k)sans(e)_k) (sans(f))#scale(x: 120%, y: 120%)[)] . $ <7.23>
+$ (cal(L)_(sans(v)) sans(y)) (sans(f))= sum_k ( sans(v)^k[sans(e)_k\,sans(y)] (sans(f))- sans(y) (sans(v)^k)sans(e)_k) (sans(f))) . $ <7.23>
 
 So $Delta_j^i$ is related to the structure constants by
 
-$ Delta_j^i (sans(v))= tilde(sans(e))^i (cal(L)_(sans(v)) sans(e)_j) &= sum_k #scale(x: 120%, y: 120%)[(] sans(v)^k tilde(sans(e))^i ([sans(e)_k\,sans(e)_j])- sans(e)_j (sans(v)^k)tilde(sans(e))^i (sans(e)_k)#scale(x: 120%, y: 120%)[)] \
- &= sum_k #scale(x: 120%, y: 120%)[(] sans(v)^k sans(d)_(k j)^i - sans(e)_j (sans(v)^k)delta_k^i #scale(x: 120%, y: 120%)[)] \
+$ Delta_j^i (sans(v)) &= tilde(sans(e))^i (cal(L)_(sans(v)) sans(e)_j)\
+ &= sum_k ( sans(v)^k tilde(sans(e))^i ([sans(e)_k\,sans(e)_j])- sans(e)_j (sans(v)^k)tilde(sans(e))^i (sans(e)_k)) \
+ &= sum_k ( sans(v)^k sans(d)_(k j)^i - sans(e)_j (sans(v)^k)delta_k^i ) \
  &= sum_k sans(v)^k sans(d)_(k j)^i - sans(e)_j (sans(v)^i). $ <7.24>
 
 Note: Despite their appearance, the $Delta_j^i$ are not form fields because $Delta_j^i (sans(f) sans(v)) != sans(f) Delta_j^i (sans(v))$.
@@ -261,7 +265,7 @@ The Lie derivative computes the rate of change of objects as they are advanced a
 
 The operator $e^(t cal(L)_(sans(v))) = 1 + t cal(L)_v + frac(t^2, 2 !) cal(L)_(sans(v))^2 + dots.c$ evolves objects along the curve by parameter $t$. For example, the exponential of a Lie derivative applied to a vector field is
 
-$ e^(t cal(L)_(sans(v))) sans(y) = sans(y) + t cal(L)_(sans(v)) sans(y) + t^2 / 2 cal(L)_(sans(v))^2 sans(y) + dots.c  &= sans(y) + t[sans(v)\,sans(y)]+ t^2 / 2[sans(v)\,[sans(v)\,sans(y)]]+ dots.c . $ <7.32>
+$ e^(t cal(L)_(sans(v))) sans(y) = sans(y) + t cal(L)_(sans(v)) sans(y) + t^2 / 2 cal(L)_(sans(v))^2 sans(y) + dots.c = sans(y) + t[sans(v)\,sans(y)]+ t^2 / 2[sans(v)\,[sans(v)\,sans(y)]]+ dots.c . $ <7.32>
 
 Consider a simple case. We advanced the coordinate-basis vector field $partial\/partial sans(y)$ by an angle $a$ around the circle. Let $sans(J)_z = x partial\/partial sans(y) - y partial\/partial sans(x)$, the circular vector field. We recall
 
@@ -277,22 +281,12 @@ We can apply the exponential of the Lie derivative with respect to $sans(J)_z$ t
                    (literal-manifold-function 'f-rect R3-rect))
                   ((point R3-rect) (up 1 0 0)))
                  5)
-/
-(((partial 0) f-rect) (up 1 0))
-/
-/
-(* -1 a (((partial 1) f-rect) (up 1 0)))
-/
-/
-(* -1/2 (expt a 2) (((partial 0) f-rect) (up 1 0)))
-/
-/
-(* 1/6 (expt a 3) (((partial 1) f-rect) (up 1 0)))
-/
-/
-(* 1/24 (expt a 4) (((partial 0) f-rect) (up 1 0)))
-/
-/ ;Value: .../
+;; (((partial 0) f-rect) (up 1 0))
+;; (* -1 a (((partial 1) f-rect) (up 1 0)))
+;; (* -1/2 (expt a 2) (((partial 0) f-rect) (up 1 0)))
+;; (* 1/6 (expt a 3) (((partial 1) f-rect) (up 1 0)))
+;; (* 1/24 (expt a 4) (((partial 0) f-rect) (up 1 0)))
+;; ;Value: ...
 ```
 
 Apparently the result is
@@ -364,15 +358,15 @@ $ g (delta)= sans(u) (sans(f)) (sans(m))-(F_delta^(sans(v)) sans(u)) (sans(f)) (
 
 Expanding with respect to a basis ${sans(e)_i}$ we get
 
-$ g (delta)= sum_i #scale(x: 300%, y: 300%)[(] sans(u)^i sans(e)_i (sans(f))- sum_j A_j^i (delta) (sans(u)^j compose phi.alt_(- delta)^(sans(v)))sans(e)_i (sans(f))#scale(x: 300%, y: 300%)[)] (sans(m)). $ <7.40>
+$ g (delta)= sum_i ( sans(u)^i sans(e)_i (sans(f))- sum_j A_j^i (delta) (sans(u)^j compose phi.alt_(- delta)^(sans(v)))sans(e)_i (sans(f))) (sans(m)). $ <7.40>
 
 By the product rule for derivatives,
 
-$ D g (delta)= sum_(i j) #scale(x: 120%, y: 120%)[(] A_j^i (delta) ((sans(v) (sans(u)^j))compose phi.alt_(- delta)^(sans(v)))sans(e)_i (sans(f))- D A_j^i (delta) (sans(u)^j compose phi.alt_(- delta)^(sans(v)))sans(e)_i (sans(f))#scale(x: 120%, y: 120%)[)] (sans(m)). $ <7.41>
+$ D g (delta)= sum_(i j) ( A_j^i (delta) ((sans(v) (sans(u)^j))compose phi.alt_(- delta)^(sans(v)))sans(e)_i (sans(f))- D A_j^i (delta) (sans(u)^j compose phi.alt_(- delta)^(sans(v)))sans(e)_i (sans(f))) (sans(m)). $ <7.41>
 
 So, since $A_j^i (0) (sans(m))$ is the identity multiplier, and $phi.alt_0^(sans(v))$ is the identity function,
 
-$ D g (0)= sum_i #scale(x: 300%, y: 300%)[(] sans(v) (sans(u)^i) (sans(m))sans(e)_i (sans(f))- sum_j D A_j^i (0)sans(u)^j (sans(m))sans(e)_i (sans(f))#scale(x: 300%, y: 300%)[)] thin (sans(m)). $ <7.42>
+$ D g (0)= sum_i ( sans(v) (sans(u)^i) (sans(m))sans(e)_i (sans(f))- sum_j D A_j^i (0)sans(u)^j (sans(m))sans(e)_i (sans(f))) thin (sans(m)). $ <7.42>
 
 We need $D A_j^i (0)$. Parallel transport depends on the path, but not on the parameterization of the path. From this we can deduce that $D A_j^i (0)$ can be written as one-form fields applied to the vector field $sans(v)$, as follows.
 
@@ -451,7 +445,8 @@ consistent with the fact that the Cartan forms $pi.alt_j^i$ share the same prope
 
 Additionally, we can extend the product rule, for any manifold function $sans(g)$ and any vector field $sans(u)$:
 
-$ nabla_(sans(v)) (sans(g) sans(u)) (sans(f))= sum_i (sans(v) (sans(g u)^i) + sum_j pi.alt_j^i (sans(v)) sans(g u)^j) sans(e)_i (sans(f)) &= sum_i sans(v) (sans(g))sans(u)^i sans(e)_i (sans(f))+ sans(g) nabla_(sans(v)) (sans(u)) (sans(f))\
+$ nabla_(sans(v)) (sans(g) sans(u)) (sans(f)) &= sum_i (sans(v) (sans(g u)^i) + sum_j pi.alt_j^i (sans(v)) sans(g u)^j) sans(e)_i (sans(f))\
+ &= sum_i sans(v) (sans(g))sans(u)^i sans(e)_i (sans(f))+ sans(g) nabla_(sans(v)) (sans(u)) (sans(f))\
  &=(nabla_(sans(v)) sans(g))sans(u) (sans(f))+ sans(g) nabla_(sans(v)) (sans(u)) (sans(f)). $ <7.51>
 
 == An Alternate View <sec-7.12>
@@ -490,7 +485,8 @@ $ Gamma_(j k)^i = pi.alt_j^i (sans(e)_k). $ <7.58>
 == Covariant Derivative of One-Form Fields <sec-7.13>
 The covariant derivative of a vector field induces a compatible covariant derivative for a one-form field. Because the application of a one-form field to a vector field yields a manifold function, we can evaluate the covariant derivative of such an application. Let $τ$ be a one-form field and $sans(w)$ be a vector field. Then
 
-$ nabla_(sans(v)) (tau (sans(w)))= sans(v) (sum_j tau_j sans(w)^j)  &= sum_j (sans(v) (tau_j)sans(w)^j + tau_j sans(v) (sans(w)^j))\
+$ nabla_(sans(v)) (tau (sans(w))) &= sans(v) (sum_j tau_j sans(w)^j) \
+ &= sum_j (sans(v) (tau_j)sans(w)^j + tau_j sans(v) (sans(w)^j))\
  &= sum_j (sans(v) (tau_j) sans(w)^j + tau_j (tilde(sans(e))^j (nabla_(sans(v)) sans(w)) - sum_k (pi.alt_k^j (sans(v)) sans(w)^k))) \
  &= sum_j (sans(v) (tau_j) sans(w)^j - tau_j sum_k (pi.alt_k^j (sans(v)) sans(w)^k)) + tau (nabla_(sans(v)) sans(w))\
  &= sum_j (sans(v) (tau_j) tilde(sans(e))^j - tau_j sum_k (pi.alt_k^j (sans(v)) tilde(sans(e))^k)) (sans(w))+ tau (nabla_(sans(v)) sans(w)). $
@@ -537,7 +533,8 @@ $ sans(e) (sans(f))= sans(e)' (sans(f))sans(J) . $ <7.61>
 
 We want the covariant derivative to be independent of basis. This will determine how the connection transforms with a change of basis:
 
-$ nabla_(sans(v)) sans(u) (sans(f))= sum_i sans(e)_i (sans(f)) (sans(v) (sans(u)^i) + sum_j pi.alt_j^i (sans(v)) upright(u)^j)  &= sum_(i j k) sans(e)'_i (sans(f))sans(J)_j^i (sans(v) ((sans(J)^(-1))_k^j (sans(u)')^k) + sum_l pi.alt_k^j (sans(v)) (sans(J)^(-1))_l^k (sans(u)')^l) \
+$ nabla_(sans(v)) sans(u) (sans(f)) &= sum_i sans(e)_i (sans(f)) (sans(v) (sans(u)^i) + sum_j pi.alt_j^i (sans(v)) upright(u)^j) \
+ &= sum_(i j k) sans(e)'_i (sans(f))sans(J)_j^i (sans(v) ((sans(J)^(-1))_k^j (sans(u)')^k) + sum_l pi.alt_k^j (sans(v)) (sans(J)^(-1))_l^k (sans(u)')^l) \
  &= sum_i sans(e)'_i (sans(f)) (sans(v) ((sans(u)')^i) + sum_(j k) sans(J)_j^i sans(v) ((sans(J)^(-1))_k^j) (sans(u)')^k \
  &quad + sum_(j k l) sans(J)_j^i pi.alt_k^j (sans(v)) (sans(J)^(-1))_l^k (sans(u)')^l) \
  &= sum_i sans(e)'_i (sans(f)) (sans(v) ((sans(u)')^i) + sum_j (pi.alt')_j^i (sans(v)) (sans(u)')^j) . $ <7.62>
@@ -625,18 +622,14 @@ The vector field $partial\/partial theta$ generates a rotation in the plane (the
 
 (((((covariant-derivative R2-rect-Cartan) d/dx) circular) f)
  R2-rect-point)
-/
-(((partial 1) f-rect) (up x0 y0))
-/
+;; (((partial 1) f-rect) (up x0 y0))
 ```
 
 Note that this is the same thing as $partial\/partial sans(y)$ applied to the function:
 
 ```scheme
 ((d/dy f) R2-rect-point)
-/
-(((partial 1) f-rect) (up x0 y0))
-/
+;; (((partial 1) f-rect) (up x0 y0))
 ```
 
 In rectangular coordinates, where the Christoffel coefficients are zero, the covariant derivative $nabla_(sans(u)) sans(v)$ is the vector whose coefficients are obtained by applying $sans(u)$ to the coefficients of $sans(v)$. Here, only one coefficient of $partial\/partial theta$ depends on $x$, the coefficient of $partial\/partial sans(y)$, and it depends linearly on $x$. So $nabla_(partial\/partial sans(x)) partial\/partial theta = partial\/partial sans(y)$. (See figure 7.1.)
@@ -649,9 +642,7 @@ Note that we get the same answer if we use polar coordinates to compute the cova
 
 ```scheme
 (((((covariant-derivative R2-polar-Cartan) d/dx) J) f) R2-rect-point)
-/
-(((partial 1) f-rect) (up x0 y0))
-/
+;; (((partial 1) f-rect) (up x0 y0))
 ```
 
 In rectangular coordinates the Christoffel coefficients are all zero; in polar coordinates there are nonzero coefficients, but the value of the covariant derivative is the same. In polar coordinates the basis elements vary with position, and the Christoffel coefficients compensate for this.
@@ -774,23 +765,20 @@ Finally, we compute the residual of the equation @7.71 that governs parallel tra
 (define-coordinates t R1-rect)
 
 (s:map/r
-(lambda (omega)
-((omega
-(((covariant-derivative sphere-Cartan gamma)
-d/dt)
-u_gamma))
-((point R1-rect) 'tau)))
-(basis->1form-basis basis-over-gamma))
-/(up + (* -1/
-/(sin (alpha tau))/
-/(cos (alpha tau))/
-/((D beta) tau)/
-/(u^1 tau))/
-/((D u^0) tau))/
-/(/ (+ (* (u^0 tau) (cos (alpha tau)) ((D beta) tau))/
-/(* ((D alpha) tau) (cos (alpha tau)) (u^1 tau))/
-/(* ((D u^1) tau) (sin (alpha tau))))/
-/(sign (alpha tau))))/
+ (lambda (omega)
+   ((omega (((covariant-derivative sphere-Cartan gamma) d/dt) u_gamma))
+    ((point R1-rect) 'tau)))
+ (basis->1form-basis basis-over-gamma))
+;; (up + (* -1
+;; (sin (alpha tau))
+;; (cos (alpha tau))
+;; ((D beta) tau)
+;; (u^1 tau))
+;; ((D u^0) tau))
+;; (/ (+ (* (u^0 tau) (cos (alpha tau)) ((D beta) tau))
+;; (* ((D alpha) tau) (cos (alpha tau)) (u^1 tau))
+;; (* ((D u^1) tau) (sin (alpha tau))))
+;; (sign (alpha tau))))
 ```
 
 Thus the equations governing the evolution of the components of the transported vector are:
@@ -849,28 +837,26 @@ A southward pointing vector, with components (up 1 0), is transformed to an init
 
 ```scheme
 ((state-advancer (g (tilted-path 1) sphere-Cartan))
-(up 0 (* ((D (transform 1)) (up :pi/2 0)) (up 1 0)))
-pi/2)
-/up 1.5707963267948957/
-/(up .9999999999997626 7.376378522558262e-13))/
+ (up 0 (* ((D (transform 1)) (up :pi/2 0)) (up 1 0)))
+ pi/2)
+;; up 1.5707963267948957
+;; (up .9999999999997626 7.376378522558262e-13))
 ```
 
 However, if we transport by 1 radian rather than $pi\/2$, the numbers are not so pleasant, and the transported vector no longer points south:
 
 ```scheme
-((state-advancer (g (tilted-path 1) (sphere-Cartan))
-(up 0 (* ((D (transform 1)) (up :pi/2 0)) (up 1 0)))
-1)
-/(up 1. (up .7651502649360408 .9117920272006472))/
+((state-advancer (g (tilted-path 1) sphere-Cartan))
+ (up 0 (* ((D (transform 1)) (up :pi/2 0)) (up 1 0)))
+ 1)
+;; (up 1. (up .7651502649360408 .9117920272006472))
 ```
 
 But the transported vector can be obtained by tilting the original southward-pointing vector after parallel-transporting along the equator:#footnote[A southward-pointing vector remains southward-pointing when it is parallel-transported along the equator. To do this we do not have to integrate the differential equations, because we know the answer.]
 
 ```scheme
 (* ((D (transform 1)) (up :pi/2 1)) (up 1 0))
-/
-(up .7651502649370375 .9117920272004736)
-/
+;; (up .7651502649370375 .9117920272004736)
 ```
 
 == Geodesic Motion <sec-7.18>
@@ -901,7 +887,7 @@ For example, let\'s consider geodesic motion on the surface of a unit sphere. We
 
 $ vec(- cos(alpha (t 0))sin(alpha (t 0)) (D beta (t 0))^2+ D^2 alpha (t 0), frac(2 D beta (t 0)cos(alpha (t 0))D alpha (t 0), sin(alpha (t))) + D^2 beta (t 0)) $
 
-The geodesic equation is the same as the Lagrange equation for free motion constrained to the surface of the unit sphere. The Lagrangian for motion on the sphere is the composition of the free-particle Lagrangian and the state transformation induced by the coordinate constraint:#footnote[The method of formulating a system with constraints by composing a free system with the state-space coordinate transformation that represents the constraints can be found in @sussman2001sicm, section 1.6.3. The procedure F-\>C takes a coordinate transformation and produces a corresponding transformation of Lagrangian state.]
+The geodesic equation is the same as the Lagrange equation for free motion constrained to the surface of the unit sphere. The Lagrangian for motion on the sphere is the composition of the free-particle Lagrangian and the state transformation induced by the coordinate constraint:#footnote[The method of formulating a system with constraints by composing a free system with the state-space coordinate transformation that represents the constraints can be found in @sussman2001sicm, section 1.6.3. The procedure #raw(lang:"scheme", "F->C") takes a coordinate transformation and produces a corresponding transformation of Lagrangian state.]
 
 ```scheme
 (define (Lfree s)
@@ -943,16 +929,12 @@ We can get the coordinate representation of the Hamiltonian vector field as foll
 ```scheme
 ((phase-space-derivative Hsphere)
  (up 't (up 'theta 'phi) (down 'p_theta 'p_phi)))
-/
-(up 1/
-    /
-    (up p_theta/ / (/ p_phi (expt (sin theta) 2)))
-    /
-    /
-    (down (/ (* (expt p_phi 2) (cos theta)) / / (expt (sin theta) 3))
-          /
-          /0))
-/
+;; (up 1
+;; (up p_theta
+;; (/ p_phi (expt (sin theta) 2)))
+;; (down (/ (* (expt p_phi 2) (cos theta))
+;; (expt (sin theta) 3))
+;; 0))
 ```
 
 The state space for Hamiltonian evolution has five dimensions: time, two dimensions of position on the sphere, and two dimensions of momentum:

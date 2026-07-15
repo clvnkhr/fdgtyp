@@ -94,12 +94,11 @@ $ hat(Gamma) (sans(v)\,sans(w)) &= sum_i sans(g)^(-1) (tilde(Gamma) (sans(v) \, 
 
 We can now construct the Christoffel coefficients of the second kind:
 
-$ Gamma_(j k)^i = tilde(sans(e))^i (hat(Gamma) (sans(e)_j \, sans(e)_k))  &= sum_m macron(Gamma)_(m j k) sans(g)^(-1) (tilde(sans(e))^m \, tilde(sans(e))^i) $ <9.13>
+$ Gamma_(j k)^i = tilde(sans(e))^i (hat(Gamma) (sans(e)_j \, sans(e)_k)) = sum_m macron(Gamma)_(m j k) sans(g)^(-1) (tilde(sans(e))^m \, tilde(sans(e))^i) $ <9.13>
 
 The Cartan forms are then just
 
-$ pi.alt_j^i  &= sum_k Gamma_(j k)^i tilde(upright(e))^k \
- &= sum_k tilde(upright(e))^i (hat(Gamma) (upright(e)_j \, upright(e)_k)) tilde(upright(e))^k . $ <9.14>
+$ pi.alt_j^i &= sum_k Gamma_(j k)^i tilde(upright(e))^k = sum_k tilde(upright(e))^i (hat(Gamma) (upright(e)_j \, upright(e)_k)) tilde(upright(e))^k . $ <9.14>
 
 So, for example, we can compute the Christoffel coefficients for the sphere from the metric for the sphere. First, we need the metric:
 
@@ -270,8 +269,7 @@ We can show this dependence explicitly, for a simple system. Consider the simple
 
 These residuals must be zero; so the numerators must be zero.#footnote[We cheated: We hand-simplified the denominator to make the result more obvious.] They are:
 
-$ D^2 x thin (D y)^2= D x thin D y thin D^2 y \
- D^2 x thin D x thin D y =(D x)^2thin D^2 y $
+$ D^2 x thin (D y)^2= D x thin D y thin D^2 y D^2 x thin D x thin D y =(D x)^2thin D^2 y $
 
 Note that the only constraint is $D^2 x thin D y = D x thin D^2 y$, so the resulting Lagrange equations are dependent.
 
@@ -638,8 +636,7 @@ where #raw(lang:"scheme", "rho") is the energy density, and #raw(lang:"scheme", 
 
 The Robertson-Walker equations are:
 
-$ (frac(D R (t), R (t)))^2 + frac(k c^2, (R (t))^2) - frac(Lambda c^2, 3) = frac(8 pi G, 3) rho (t)\,\
- 2 frac(D^2 R (t), R (t)) - 2 / 3 Lambda c^2 = - 8 pi G (frac(rho (t), 3) + frac(p (t), c^2)) . $ <9.30>
+$ (frac(D R (t), R (t)))^2 + frac(k c^2, (R (t))^2) - frac(Lambda c^2, 3) = frac(8 pi G, 3) rho (t)\, 2 frac(D^2 R (t), R (t)) - 2 / 3 Lambda c^2 = - 8 pi G (frac(rho (t), 3) + frac(p (t), c^2)) . $ <9.30>
 
 Use the programs supplied to derive the Robertson-Walker equations.
 

@@ -11,7 +11,8 @@ $ integral_a^b f = integral_a^b f (x)d x = lim_(Delta x_i arrow.r 0) sum_i f (x_
 
 If we change variables $(x = g (y))$, then the form of the integral changes:
 
-$ integral_a^b f = integral_a^b f (x)d x  &= integral_(g^(-1) (a))^(g^(-1) (b)) f (g (y))D g (y)d y \
+$ integral_a^b f &= integral_a^b f (x)d x \
+ &= integral_(g^(-1) (a))^(g^(-1) (b)) f (g (y))D g (y)d y \
  &= integral_(g^(-1) (a))^(g^(-1) (b)) (f compose g)D g $ <5.2>
 
 We can make a coordinate-independent notion of integration in the following way. An interval of the real line is a 1-dimensional manifold with boundary. We can assign a coordinate chart $χ$ to this manifold. Let $x = chi (sans(m))$. The coordinate basis is associated with a coordinate-basis vector field, here $partial\/partial sans(x)$. Let $ω$ be a one-form on this manifold. The application of $ω$ to $partial\/partial sans(x)$ is a real-valued function on the manifold. If we compose this with the inverse chart, we get a real-valued function of a real variable. We can then write the usual integral of this function
@@ -280,7 +281,8 @@ This is equivalent to the statement that partial derivatives with respect to dif
 
 It is easy to show equation @5.29 for manifold functions:
 
-$ sans(d)^2 sans(f) (sans(u)\,sans(v))= sans(d) (sans(d) sans(f)) (sans(u)\,sans(v)) &= sans(u) (sans(d) sans(f) (sans(v)))- sans(v) (sans(d) sans(f) (sans(u)))- sans(d) sans(f) ([sans(u)\,sans(v)])\
+$ sans(d)^2 sans(f) (sans(u)\,sans(v)) &= sans(d) (sans(d) sans(f)) (sans(u)\,sans(v))\
+ &= sans(u) (sans(d) sans(f) (sans(v)))- sans(v) (sans(d) sans(f) (sans(u)))- sans(d) sans(f) ([sans(u)\,sans(v)])\
  &= sans(u) (sans(v) (sans(f)))- sans(v) (sans(u) (sans(f)))-[sans(u)\,sans(v)] (sans(f))\
  &= 0 $ <5.30>
 

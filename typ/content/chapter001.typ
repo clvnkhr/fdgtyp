@@ -91,8 +91,7 @@ $ sans(g) (sans(u)\,sans(v))= R^2 sans(d) theta (sans(u))sans(d) theta (sans(v))
 
 where $sans(u)$ and $sans(v)$ are vector fields, and $sans(d) theta$ and $sans(d) phi.alt$ are one-form fields that extract the named components of the vector-field argument. (One-form fields are introduced in Chapter 3.) We can think of $sans(d) theta (sans(u))$ as a function of a point that gives the size of the vector field $sans(u)$ in the $theta$ direction at the point. Notice that $sans(g) (sans(u)\,sans(u))$ is a weighted sum of the squares of the components of $sans(u)$. In fact, if we identify
 
-$ sans(d) theta (sans(v))= dot(theta) \
- sans(d) phi.alt (sans(v))= dot(phi.alt)\, $
+$ sans(d) theta (sans(v))= dot(theta) sans(d) phi.alt (sans(v))= dot(phi.alt)\, $
 
 then the coefficients in the metric are the same as the coefficients in the value of the Lagrangian, equation @1.1, apart from a factor of $m\/2$.
 
@@ -127,7 +126,7 @@ Let\'s make a general metric on a 2-dimensional real manifold:#footnote[The proc
 (define the-metric (literal-metric 'g R2-rect))
 ```
 
-The metric is expressed in rectangular coordinates, so the coordinate system is #raw(lang:"scheme", "R2-rect").#footnote[#raw(lang:"scheme", "R2-rect") is the usual rectangular coordinate system on the 2-dimensional real manifold. (See Section #fdg-ref-page(<sec-2.1>).) We supply common coordinate systems for n-dimensional real manifolds. For example, #raw(lang:"scheme", "R2-polar") is a polar coordinate system on the same manifold.] The component functions will be labeled as subscripted \~g\~s.
+The metric is expressed in rectangular coordinates, so the coordinate system is #raw(lang:"scheme", "R2-rect").#footnote[#raw(lang:"scheme", "R2-rect") is the usual rectangular coordinate system on the 2-dimensional real manifold. (See Section #fdg-ref-page(<sec-2.1>).) We supply common coordinate systems for n-dimensional real manifolds. For example, #raw(lang:"scheme", "R2-polar") is a polar coordinate system on the same manifold.] The component functions will be labeled as subscripted #raw(lang:"scheme", "g")s.
 
 We can now make the Lagrangian for the system:
 
