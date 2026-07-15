@@ -3,7 +3,7 @@
 #import "../lib.typ": fdg-chapter, fdg-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
 
 #fdg-chapter("Vector Fields and One-Form Fields", numbered: true, eq-prefix: "3", ref-label: "chap-3")[
-We want a way to think about how a function varies on a manifold. Suppose we have some complex linkage, such as a multiple pendulum. The potential energy is an important function on the multi-dimensional configuration manifold of the linkage. To understand the dynamics of the linkage we need to know how the potential energy changes as the configuration changes. The change in potential energy for a step of a certain size in a particular di- rection in the configuration space is a real physical quantity; it does not depend on how we measure the direction or the step size. What exactly this means is to be determined: What is a step size? What is a direction? We cannot subtract two configurations to determine the distance between them. It is our job here to make sense of this idea.
+We want a way to think about how a function varies on a manifold. Suppose we have some complex linkage, such as a multiple pendulum. The potential energy is an important function on the multi-dimensional configuration manifold of the linkage. To understand the dynamics of the linkage we need to know how the potential energy changes as the configuration changes. The change in potential energy for a step of a certain size in a particular direction in the configuration space is a real physical quantity; it does not depend on how we measure the direction or the step size. What exactly this means is to be determined: What is a step size? What is a direction? We cannot subtract two configurations to determine the distance between them. It is our job here to make sense of this idea.
 
 So we would like something like a derivative, but there are problems. Since we cannot subtract two manifold points, we cannot take the derivative of a manifold function in the way described in elementary calculus. But we can take the derivative of a coordinate representation of a manifold function, because it takes real-number coordinates as its arguments. This is a start, but it is not independent of coordinate system. Let\'s see what we can build out of this.
 
@@ -20,7 +20,7 @@ The invariant product $(D f (x))Delta x$ is the #emph[directional derivative] of
 
 $ D_b (f) (x)=(D f (x))b (x). $ <3.3>
 
-Now we bring this back to the manifold and develop a useful generalization of the idea of directional derivative for functions on a manifold, rather than functions on $bb(R)^n$. A #emph[vector field] on a manifold is an assignment of a vector to each point on the manifold. In elementary geometry, a vector is an arrow anchored at a point on the manifold with a magnitude and a direction. In differential geometry, a vector is an operator that takes directional deriva- tives of manifold functions at its anchor point. The direction and magnitude of the vector are the direction and scale factor of the directional derivative.
+Now we bring this back to the manifold and develop a useful generalization of the idea of directional derivative for functions on a manifold, rather than functions on $bb(R)^n$. A #emph[vector field] on a manifold is an assignment of a vector to each point on the manifold. In elementary geometry, a vector is an arrow anchored at a point on the manifold with a magnitude and a direction. In differential geometry, a vector is an operator that takes directional derivatives of manifold functions at its anchor point. The direction and magnitude of the vector are the direction and scale factor of the directional derivative.
 
 Let $sans(m)$ be a point on a manifold, $sans(v)$ be a vector field on the manifold, and $sans(f)$ be a real-valued function on the manifold. Then $sans(v) (sans(f))$ is the directional derivative of the function $sans(f)$ and $sans(v) (sans(f)) (sans(m))$ is the directional derivative of the function $sans(f)$ at the point $sans(m)$. The vector field is an operator that takes a real-valued manifold function and a manifold point and produces a number. The order of arguments is chosen to make $sans(v) (sans(f))$ be a new manifold function that can be manipulated further. Directional derivative operators, unlike ordinary derivative operators, produce a result of the same type as their argument. Note that there is no mention here of any coordinate system. The vector field specifies a direction and magnitude at each manifold point that is independent of how it is described using any coordinate system.
 
@@ -30,17 +30,15 @@ $ b_(chi\,sans(v))^i = sans(v) (chi^i)compose chi^(-1) . $ <3.4>
 
 Note that we have chosen the coordinate components to be functions of the coordinate tuple, not of a manifold point.
 
-A vector with coordinate components $b_(chi\,sans(v))$ applies to a manifold function $sans(f)$ via $ sans(v) (sans(f)) (sans(m))=((D (sans(f) compose chi^(-1))b_(chi\,sans(v)))compose chi) (sans(m))\
- &= D (sans(f) compose chi^(-1)) (chi (sans(m)))b_(chi\,sans(v)) (chi (sans(m)))\
- &= sum_i partial_i (sans(f) compose chi^(-1)) (chi (sans(m)))b_(chi\,sans(v))^i (chi (sans(m))). $ <3.5> In equation @3.4, the quantity $sans(f) compose$ is the coordinate representation of the manifold function $sans(f)$. We take its derivative, and weight the components of the derivative with the coordinate components $b_(chi\,sans(v))$ of the vector field that specify its direction and magnitude. Since this product is a function of coordinates we use $chi$ to extract the coordinates from the manifold point m. In equation @3.5, the composition of the product with the coordinate chart $chi$ is replaced by function evaluation. In equation @3.6 the tuple multiplication is expressed explicitly as a sum of products of corresponding com- ponents. So the application of the vector is a linear combination of the partial derivatives of $sans(f)$ in the coordinate directions weighted by the vector components. This computes the rate of change of $sans(f)$ in the direction specified by the vector.
+A vector with coordinate components $b_(chi\,sans(v))$ applies to a manifold function $sans(f)$ via $ sans(v) (sans(f)) (sans(m))=((D (sans(f) compose chi^(-1))b_(chi\,sans(v)))compose chi) (sans(m)) &= D (sans(f) compose chi^(-1)) (chi (sans(m)))b_(chi\,sans(v)) (chi (sans(m)))\
+ &= sum_i partial_i (sans(f) compose chi^(-1)) (chi (sans(m)))b_(chi\,sans(v))^i (chi (sans(m))). $ <3.5> In equation @3.4, the quantity $sans(f) compose$ is the coordinate representation of the manifold function $sans(f)$. We take its derivative, and weight the components of the derivative with the coordinate components $b_(chi\,sans(v))$ of the vector field that specify its direction and magnitude. Since this product is a function of coordinates we use $chi$ to extract the coordinates from the manifold point m. In equation @3.5, the composition of the product with the coordinate chart $chi$ is replaced by function evaluation. In equation @3.6 the tuple multiplication is expressed explicitly as a sum of products of corresponding components. So the application of the vector is a linear combination of the partial derivatives of $sans(f)$ in the coordinate directions weighted by the vector components. This computes the rate of change of $sans(f)$ in the direction specified by the vector.
 
-Equations @3.3 and @3.5 are consistent: $ sans(v) (x) (chi^(-1) (x))= D (chi compose chi^(-1)) (x)b_(chi\,sans(v)) (x)\
- &= D (I) (x)b_(chi\,sans(v)) (x)\
+Equations @3.3 and @3.5 are consistent: $ sans(v) (x) (chi^(-1) (x))= D (chi compose chi^(-1)) (x)b_(chi\,sans(v)) (x) &= D (I) (x)b_(chi\,sans(v)) (x)\
  &= b_(chi\,sans(v)) (x). $ <3.6>
 
 The coefficient tuple $b_(chi\,sans(v)) (x)$ is an up structure compatible for addition to the coordinates. Note that for any vector field v the coefficients $b_(chi\,sans(v)) (x)$ are different for different coordinate functions $chi$. In the text that follows we will usually drop the subscripts on $b$, understanding that it is dependent on the coordinate system and the vector field.
 
-We implement the definition of a vector field (@3.4) as:
+We implement the definition of a vector field #ref(<3.4>) as:
 
 ```scheme
 (define (components->vector-field components coordsys)
@@ -82,8 +80,7 @@ We can recover the coordinate components of the vector field by applying the vec
 
 Coordinate Representation
 
-The vector field $sans(v)$ has a coordinate representation $v$: $ sans(v) (sans(f)) (sans(m))= D (f compose chi^(-1)) (chi (sans(m)))b (chi (sans(m)))\
- &= D f (x)b (x)\
+The vector field $sans(v)$ has a coordinate representation $v$: $ sans(v) (sans(f)) (sans(m))= D (f compose chi^(-1)) (chi (sans(m)))b (chi (sans(m))) &= D f (x)b (x)\
  &= v (f) (x)\, $ <3.7> with the definitions $f = sans(f) compose chi^(-1)$ and $x = chi (sans(m))$. The function $b$ is the coefficient function for the vector field $sans(v)$. It provides a scale factor for the component in each coordinate direction. However, $v$ is the coordinate representation of the vector field $sans(v)$ in that it takes directional derivatives of coordinate representations of manifold functions.
 
 Given a vector field `v` and a coordinate system coordsys we can construct the coordinate representation of the vector field.#footnote[The `make-operator` procedure takes a procedure and returns an operator.]
@@ -117,8 +114,7 @@ Vector fields are linear operators. Assume $sans(f)$ and $sans(g)$ are functions
  sans(v) (a sans(f)) (sans(m))= a sans(v) (sans(f)) (sans(m)) $ <3.9> Vector fields satisfy the product rule (Leibniz rule). $ sans(v) (sans(f g)) (sans(m))= sans(v) (sans(f)) (sans(m))sans(g) (sans(m))+ sans(f) (sans(m))sans(v) (sans(g)) (sans(m)) $ <3.10> Vector fields satisfy the chain rule. Let $F$ be a function on the range of $sans(f)$. $ sans(v) (F compose sans(f)) (sans(m))= D F (sans(f) (sans(m)))sans(v) (sans(f)) (sans(m)) $ <3.11>
 
 == Coordinate-Basis Vector Fields <sec-3.2>
-For an $n$-dimensional manifold any set of $n$ linearly independent vector fields#footnote[A set of vector fields, ${ sans(v)_i }$, is linearly independent with respect to manifold functions if we cannot find nonzero manifold functions, ${ sans(a)_i }$, such that $ sum_i sans(a)_i sans(v)_i (sans(f))= sans(0) (sans(f))\, $ <3.58> where $sans(0)$ is the vector field such that $sans(0) (sans(f)) (sans(m))= 0$ for all $sans(f)$ and $sans(m)$.] form a #emph[basis] in that any vector field can be expressed as a linear combination of the basis fields with manifold-function coefficients. Given a coordinate system we can construct a basis as follows: we choose the component tuple $b_i (x)$ (see equation @3.5) to be the $i$th unit tuple $u_i (x)$---an up tuple with one in the $i$th position and zeros in all other positions---selecting the partial derivative in that direction. Here $u_i$ is a constant function. Like $b$, it formally takes coordinates of a point as an argument, but it ignores them. We then define the basis vector field $sans(X)_i$ by $ sans(X)_i (sans(f)) (sans(m))= D (sans(f) compose chi^(-1)) (chi (sans(m)))u_i (chi (sans(m)))\
- &= partial_i (sans(f) compose chi^(-1)) (chi (sans(m))). $ <3.12>
+For an $n$-dimensional manifold any set of $n$ linearly independent vector fields#footnote[A set of vector fields, ${ sans(v)_i }$, is linearly independent with respect to manifold functions if we cannot find nonzero manifold functions, ${ sans(a)_i }$, such that $ sum_i sans(a)_i sans(v)_i (sans(f))= sans(0) (sans(f))\, $ where $sans(0)$ is the vector field such that $sans(0) (sans(f)) (sans(m))= 0$ for all $sans(f)$ and $sans(m)$.] form a #emph[basis] in that any vector field can be expressed as a linear combination of the basis fields with manifold-function coefficients. Given a coordinate system we can construct a basis as follows: we choose the component tuple $b_i (x)$ (see equation @3.5) to be the $i$th unit tuple $u_i (x)$---an up tuple with one in the $i$th position and zeros in all other positions---selecting the partial derivative in that direction. Here $u_i$ is a constant function. Like $b$, it formally takes coordinates of a point as an argument, but it ignores them. We then define the basis vector field $sans(X)_i$ by $ sans(X)_i (sans(f)) (sans(m))= D (sans(f) compose chi^(-1)) (chi (sans(m)))u_i (chi (sans(m))) &= partial_i (sans(f) compose chi^(-1)) (chi (sans(m))). $ <3.12>
 
 In terms of $sans(X)_i$ the vector field of equation @3.6 is $ sans(v) (sans(f)) (sans(m))= sum_i sans(X)_i (sans(f)) (sans(m))b^i (chi (sans(m))). $ <3.13> We can also write $ sans(v) (sans(f)) (sans(m))= sans(X) (sans(f)) (sans(m))b (chi (sans(m)))\, $ <3.14> letting the tuple algebra do its job.
 
@@ -143,12 +139,11 @@ More general functions and vectors can be made as combinations of these simple p
 
 Coordinate Transformations
 
-Consider a coordinate change from the chart $chi$ to the chart $chi'$. $ sans(sans(X)) (sans(f)) (m)= D (sans(f) compose chi^(-1)) (chi (sans(m)))\
- &= D (sans(f) compose (chi')^(-1)compose chi' compose chi^(-1)) (chi (sans(m)))\
+Consider a coordinate change from the chart $chi$ to the chart $chi'$. $ sans(sans(X)) (sans(f)) (m)= D (sans(f) compose chi^(-1)) (chi (sans(m))) &= D (sans(f) compose (chi')^(-1)compose chi' compose chi^(-1)) (chi (sans(m)))\
  &= D (sans(f) compose (chi')^(-1)) (chi' (sans(m))) (D (chi' compose chi^(-1))) (chi (sans(m)))\
  &= sans(X)' (sans(f)) (sans(m)) (D (chi' compose chi^(-1))) (chi (sans(m))). $ <3.16> This is the rule for the transformation of basis vector fields. The second factor can be recognized as \`\`∂x\'/∂x,\'\' the Jacobian.#footnote[This notation helps one remember the transformation rule:
 
-$ frac(partial f, partial x^i) = sum_j frac(partial f, partial x^(' j)) frac(partial x^(' j), partial x^i)\, $ <3.59>
+$ frac(partial f, partial x^i) = sum_j frac(partial f, partial x^(' j)) frac(partial x^(' j), partial x^i)\, $
 
 which is the relation in the usual Leibniz notation. As Spivak pointed out in #emph[Calculus on Manifolds], p.45, $f$ means something different on each side of the equation.]
 
@@ -162,8 +157,7 @@ A vector field gives a direction and rate for every point on a manifold. We can 
 More formally, let $sans(v)$ be a vector field on the manifold $sans(M)$. An integral curve $gamma_(sans(m))^(sans(v)) : sans(R) arrow.r sans(M)$ of $sans(v)$ is a parametric path on $sans(M)$ satisfying $ D (sans(f) compose gamma_(sans(m))^(sans(v))) (t)= sans(v) (sans(f)) (gamma_(sans(m))^(sans(v)) (t))=(sans(v) (sans(f))compose gamma_(sans(m))^(sans(v))) (t)\
  gamma_(sans(m))^(sans(v)) (0)= sans(m)\, $ <3.21> for arbitrary functions $sans(f)$ on the manifold, with real values or structured real values. The rate of change of a function along an integral curve is the vector field applied to the function evaluated at the appropriate place along the curve. Often we will simply write $gamma$, rather than $gamma_(sans(m))^(sans(v))$. Another useful variation is $phi.alt_t^(sans(v)) (sans(m))= gamma_(sans(m))^(sans(v)) (t)$.
 
-We can recover the differential equations satisfied by a coordinate representation of the integral curve by letting $sans(f) = chi$, the coordinate function, and letting $sigma = chi compose gamma$ be the coordinate path corresponding to the curve $gamma$. Then the derivative of the coordinate path $sigma$ is $ D sigma (t)= D (chi compose gamma) (t)\
- &=(sans(v) (chi)compose gamma) (t)\
+We can recover the differential equations satisfied by a coordinate representation of the integral curve by letting $sans(f) = chi$, the coordinate function, and letting $sigma = chi compose gamma$ be the coordinate path corresponding to the curve $gamma$. Then the derivative of the coordinate path $sigma$ is $ D sigma (t)= D (chi compose gamma) (t) &=(sans(v) (chi)compose gamma) (t)\
  &=(sans(v) (chi)compose chi^(-1) compose chi compose gamma) (t)\
  &=(b compose sigma) (t) $ <3.22> where $b = sans(v) (chi)compose chi^(-1)$ is the coefficient function for the vector field $sans(v)$ for coordinates $chi$ (see equation @3.7). So the coordinate path $sigma$ satisfies the differential equations $ D sigma = b compose sigma . $ <3.23>
 
@@ -174,8 +168,7 @@ Iterating the process described by equation @3.24 we can compute higher-order de
  dots.c \
  D^n (sans(f) compose gamma)= sans(v)^n (sans(f))compose gamma $ <3.24>
 
-Thus, the evolution of $sans(f) compose gamma$ can be written formally as a Taylor series in the parameter: $ (f compose gamma) (t)\
- &=(f compose gamma) (0)+ t D (sans(f) compose gamma) (0)+ 1 / 2 t^2 D^2 (sans(f) compose gamma) (0)+ dots.c \
+Thus, the evolution of $sans(f) compose gamma$ can be written formally as a Taylor series in the parameter: $ (f compose gamma) (t) &=(f compose gamma) (0)+ t D (sans(f) compose gamma) (0)+ 1 / 2 t^2 D^2 (sans(f) compose gamma) (0)+ dots.c \
  &=(e^(t D) (sans(f) compose gamma)) (0)\
  &= e^(t sans(v) sans(f)) (gamma (0)). $ <3.25> Using $phi.alt$ rather than $gamma$ $ (sans(f) compose gamma_(sans(m))^(sans(v))) (t)=(sans(f) compose phi.alt_t^(sans(v))) (sans(m))\, $ <3.26> so, when the series converges, $ (e^(t sans(v)) sans(f)) (sans(m))=(sans(f) compose phi.alt_t^(sans(v))) (sans(m)). $ <3.27>
 
@@ -270,7 +263,7 @@ Given a coordinate function $chi$, we define the coordinate-basis one-form field
 
 The general one-form field $omega$ is a linear combination of coordinate-basis one-form fields: $ omega (sans(v))=(a compose chi)tilde(sans(X)) (sans(v)) $ <3.41> with coefficient-function tuple $a (x)$, for $x = chi (sans(m))$. We can write this more simply as $ omega (sans(v))=(a compose chi)tilde(sans(X)) (sans(v))\, $ <3.42> because everything is evaluated at $sans(m)$.
 
-The coefficient tuple can be recovered from the one-form field:#footnote[The analogous recovery of coefficient tuples from vector fields is equation @3.3: $b^i_(chi, sans(v)) = sans(v)(chi^i) compose chi^(-1)$.] $ a_i (x)= omega (tilde(X)_i) (chi^(-1) (x)). $ <3.43> This follows from the dual relationship (@3.41). We can see this as a program:#footnote[The procedure `components->1form-field` is analogous to the procedure `components->vector-field` introduced earlier.]
+The coefficient tuple can be recovered from the one-form field:#footnote[The analogous recovery of coefficient tuples from vector fields is equation @3.3: $b^i_(chi, sans(v)) = sans(v)(chi^i) compose chi^(-1)$.] $ a_i (x)= omega (tilde(X)_i) (chi^(-1) (x)). $ <3.43> This follows from the dual relationship #ref(<3.41>). We can see this as a program:#footnote[The procedure `components->1form-field` is analogous to the procedure `components->vector-field` introduced earlier.]
 
 ```scheme
 (define omega
@@ -369,8 +362,7 @@ The coefficients of a differential are (see equation @3.45): $ sans(c)_i = sans(
 
 Coordinate Transformations
 
-Consider a coordinate change from the chart $chi$ to the chart $chi'$. $ tilde(sans(X)) (sans(v))= sans(v) (chi)\
- &= sans(v) (chi compose (chi')^(-1)compose chi')\
+Consider a coordinate change from the chart $chi$ to the chart $chi'$. $ tilde(sans(X)) (sans(v))= sans(v) (chi) &= sans(v) (chi compose (chi')^(-1)compose chi')\
  &=(D (chi compose (chi')^(-1))compose chi')sans(v) (chi')\
  &=(D (chi compose (chi')^(-1))compose chi')compose tilde(sans(X))' (v)\, $ <3.52> where the third line follows from the chain rule for vector fields.
 

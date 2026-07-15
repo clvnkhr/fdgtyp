@@ -11,8 +11,7 @@ $ integral_a^b f = integral_a^b f (x)d x = lim_(Delta x_i arrow.r 0) sum_i f (x_
 
 If we change variables $(x = g (y))$, then the form of the integral changes:
 
-$ integral_a^b f = integral_a^b f (x)d x \
- &= integral_(g^(-1) (a))^(g^(-1) (b)) f (g (y))D g (y)d y \
+$ integral_a^b f = integral_a^b f (x)d x  &= integral_(g^(-1) (a))^(g^(-1) (b)) f (g (y))D g (y)d y \
  &= integral_(g^(-1) (a))^(g^(-1) (b)) (f compose g)D g $ <5.2>
 
 We can make a coordinate-independent notion of integration in the following way. An interval of the real line is a 1-dimensional manifold with boundary. We can assign a coordinate chart $χ$ to this manifold. Let $x = chi (sans(m))$. The coordinate basis is associated with a coordinate-basis vector field, here $partial\/partial sans(x)$. Let $ω$ be a one-form on this manifold. The application of $ω$ to $partial\/partial sans(x)$ is a real-valued function on the manifold. If we compose this with the inverse chart, we get a real-valued function of a real variable. We can then write the usual integral of this function
@@ -21,8 +20,7 @@ $ I = integral_a^b omega (partial\/partial sans(x))compose chi^(-1) $ <5.3>
 
 It turns out that the value of this integral is independent of the coordinate chart used in its definition. Consider a different coordinate chart $x' = chi' (sans(m))$, with associated basis vector field $partial\/partial x'$. Let $g = chi' compose chi^(-1)$. We have
 
-$ integral_(a')^(b') bold(omega) (partial \/ partial upright(x)') compose chi^(' - 1) \
- &= integral_(a')^(b') bold(omega) (partial \/ partial upright(x) (D (chi compose chi^(' - 1)) compose chi')) compose chi^(' - 1) \
+$ integral_(a')^(b') bold(omega) (partial \/ partial upright(x)') compose chi^(' - 1)  &= integral_(a')^(b') bold(omega) (partial \/ partial upright(x) (D (chi compose chi^(' - 1)) compose chi')) compose chi^(' - 1) \
  &= integral_(a')^(b') (bold(omega) (partial \/ partial upright(x)) D (chi compose chi^(' - 1)) compose chi') compose chi^(' - 1) \
  &= integral_(a')^(b') (bold(omega) (partial \/ partial upright(x)) compose chi^(' - 1)) D (chi compose chi^(' - 1)) \
  &= integral_a^b (((bold(omega) (partial \/ partial upright(x)) compose chi^(-1)) D (chi compose chi^(' - 1))) compose g) D g \
@@ -61,11 +59,10 @@ $ sans(X) (sans(f))= sans(X)' (sans(f)) (D (chi' compose chi^(-1)))compose chi =
 
 If we let $M =(D (g^(-1)))compose chi$ then
 
-$ (omega (sans(X)_0\,sans(X)_1\,dots)compose chi^(' - 1))det(D g)\
- &=(omega (sans(X)' M_0\,sans(X)' M_1\,dots)compose chi^(' - 1))det(D g)\
+$ (omega (sans(X)_0\,sans(X)_1\,dots)compose chi^(' - 1))det(D g) &=(omega (sans(X)' M_0\,sans(X)' M_1\,dots)compose chi^(' - 1))det(D g)\
  &=(omega (sans(X)'_0\,sans(X)'_1\,dots)compose chi^(' - 1))alpha (M_0\,M_1\,dots)det(D g)\, $ <5.10>
 
-using the multilinearity of $bold(omega)$, where $M_i$ is the $i^(upright("th"))$ column of $M$. The function $alpha$ is multilinear in the columns of $M$. To make a coordinate-independent integration we want the expression (@5.10) to be the same as the integrand in
+using the multilinearity of $bold(omega)$, where $M_i$ is the $i^(upright("th"))$ column of $M$. The function $alpha$ is multilinear in the columns of $M$. To make a coordinate-independent integration we want the expression #ref(<5.10>) to be the same as the integrand in
 
 $ I' = integral_(chi' (sans(U))) omega (sans(X)'_0\,sans(X)'_1\,dots)compose chi^(' - 1) . $ <5.11>
 
@@ -86,13 +83,11 @@ $ omega and tau = frac((k + l)!, k ! l !) upright("Alt") (omega "⊗" tau) $ <5.
 
 where, if $η$ is a function on $m$ vectors,
 
-$ upright("Alt") (eta) (sans(v)_0\,dots\,sans(v)_(m - 1))\
- &= frac(1, m !) sum_(sigma epsilon.alt upright("Perm") (m)) upright("Parity") (sigma)eta (sans(v)_(sigma (0))\,dots\,sans(v)_(sigma (m - 1)))\, $ <5.15>
+$ upright("Alt") (eta) (sans(v)_0\,dots\,sans(v)_(m - 1)) &= frac(1, m !) sum_(sigma epsilon.alt upright("Perm") (m)) upright("Parity") (sigma)eta (sans(v)_(sigma (0))\,dots\,sans(v)_(sigma (m - 1)))\, $ <5.15>
 
 and where
 
-$ omega "⊗" tau (sans(v)_0\,dots\,sans(v)_(k - 1)\,sans(v)_k\,dots\,sans(v)_(k + l - 1))\
- &= omega (sans(v)_0\,dots\,sans(v)_(k - 1))tau (sans(v)_k\,dots\,sans(v)_(k + l - 1)). $ <5.16>
+$ omega "⊗" tau (sans(v)_0\,dots\,sans(v)_(k - 1)\,sans(v)_k\,dots\,sans(v)_(k + l - 1)) &= omega (sans(v)_0\,dots\,sans(v)_(k - 1))tau (sans(v)_k\,dots\,sans(v)_(k + l - 1)). $ <5.16>
 
 The wedge product is associative, and thus we need not specify the order of a multiple application. The factorial coefficients of these formulas are chosen so that
 
@@ -185,7 +180,7 @@ from which we see that there are only $binom(n, k)$ independent components of $�
 == Exercise 5.1: Wedge Product <sec-5.4>
 Pick a coordinate system and use the computer to verify that
 
-a. the wedge product is associative for forms in your coordinate system; b. formula (@5.17) is true in your coordinate system.
+a. the wedge product is associative for forms in your coordinate system; b. formula #ref(<5.17>) is true in your coordinate system.
 
 == Exterior Derivative <sec-5.5>
 The intention of introducing the exterior derivative is to capture all of the classical theorems of \"vector analysis\" into one unified Stokes\'s Theorem, which asserts that the integral of a form on the boundary of a manifold is the integral of the exterior derivative of the form on the interior of the manifold:#footnote[This is a generalization of the Fundamental Theorem of Calculus.]
@@ -194,7 +189,7 @@ $ integral_(partial sans(M)) omega = integral_(sans(M)) sans(d) omega . $ <5.22>
 
 As we have seen in equation @3.34, the differential of a function on a manifold is a one-form field. If a function on a manifold is considered to be a form field of rank zero,#footnote[A manifold function $sans(f)$ induces a form field $hat(sans(f))$ of rank 0 as follows:
 
-$ hat(sans(f)) () (sans(m))= sans(f) (sans(m)). $ <5.40>] then the differential operator increases the rank of the form by one. We can generalize this to $k$-form fields with the exterior derivative operation.
+$ hat(sans(f)) () (sans(m))= sans(f) (sans(m)). $] then the differential operator increases the rank of the form by one. We can generalize this to $k$-form fields with the exterior derivative operation.
 
 Consider a one-form $ω$. We define#footnote[The definition is chosen to make Stokes\'s Theorem pretty.]
 
@@ -202,9 +197,9 @@ $ sans(d) omega (sans(v)_1\,sans(v)_2)= sans(v)_1 (omega (sans(v)_2))- sans(v)_2
 
 More generally, the exterior derivative of a $k$-form field is a $k + 1$-form field, given by:#footnote[See Spivak, Differential Geometry, Volume 1, p.289.]
 
-$ sans(d) omega (sans(v)_0\,dots.c\,sans(v)_k)\
- &= sum_(i=0)^k {((- 1)^i sans(v)_i (omega (sans(v)_0 \, dots.c \, sans(v)_(i - 1) \, sans(v)_(i + 1) \, dots.c \, sans(v)_k)) + \
- sum_(j=i + 1)^k (- 1)^(i + j) omega (sans(v)_i \, sans(v)_j] \, sans(v)_0 \, dots.c \, sans(v)_(i - 1) \, sans(v)_(i + 1) \, dots.c \, sans(v)_(j - 1) \, sans(v)_(j + 1) \, dots.c \, sans(v)_k))} . $ <5.24>
+$ sans(d) omega (sans(v)_0\,dots.c\,sans(v)_k) &= sum_(i=0)^k \
+ &quad {((- 1)^i sans(v)_i (omega (sans(v)_0 \, dots.c \, sans(v)_(i - 1) \, sans(v)_(i + 1) \, dots.c \, sans(v)_k))\
+ &quad + sum_(j=i + 1)^k (- 1)^(i + j) omega ([sans(v)_i\,sans(v)_j] \, sans(v)_0 \, dots.c \, sans(v)_(i - 1) \, sans(v)_(i + 1) \, dots.c \, sans(v)_(j - 1) \, sans(v)_(j + 1) \, dots.c \, sans(v)_k))} . $ <5.24>
 
 This formula is coordinate-system independent. This is the way we compute the exterior derivative in our software.
 
@@ -290,8 +285,7 @@ This is equivalent to the statement that partial derivatives with respect to dif
 
 It is easy to show equation @5.29 for manifold functions:
 
-$ sans(d)^2 sans(f) (sans(u)\,sans(v))= sans(d) (sans(d) sans(f)) (sans(u)\,sans(v))\
- &= sans(u) (sans(d) sans(f) (sans(v)))- sans(v) (sans(d) sans(f) (sans(u)))- sans(d) sans(f) ([sans(u)\,sans(v)])\
+$ sans(d)^2 sans(f) (sans(u)\,sans(v))= sans(d) (sans(d) sans(f)) (sans(u)\,sans(v)) &= sans(u) (sans(d) sans(f) (sans(v)))- sans(v) (sans(d) sans(f) (sans(u)))- sans(d) sans(f) ([sans(u)\,sans(v)])\
  &= sans(u) (sans(v) (sans(f)))- sans(v) (sans(u) (sans(f)))-[sans(u)\,sans(v)] (sans(f))\
  &= 0 $ <5.30>
 
@@ -317,24 +311,21 @@ $ integral_(partial sans(P)) omega = integral_(sans(P)) sans(d) omega . $ <5.31>
 
 The area integral on the right can be written as an ordinary multidimensional integral using the coordinate basis vectors (recall that the integral is independent of the choice of coordinates):
 
-$ integral_(chi (sans(P))) sans(d) omega (partial\/partial sans(x)\,partial\/partial sans(y))compose chi^(-1) \
- &= integral_(x_"min")^(x_"max") integral_(y_"min")^(y_"max") (partial\/partial sans(x) (omega (partial\/partial sans(y)))- partial\/partial sans(y) (omega (partial\/partial sans(x))))compose chi^(-1) . $ <5.32>
+$ integral_(chi (sans(P))) sans(d) omega (partial\/partial sans(x)\,partial\/partial sans(y))compose chi^(-1)  &= integral_(x_"min")^(x_"max") integral_(y_"min")^(y_"max") (partial\/partial sans(x) (omega (partial\/partial sans(y)))- partial\/partial sans(y) (omega (partial\/partial sans(x))))compose chi^(-1) . $ <5.32>
 
 We have used equation @5.23 to expand the exterior derivative.
 
 Consider just the first term of the right-hand side of equation @5.32. Then using the definition of basis vector field $partial\/partial sans(x)$ we obtain
 
-$ integral_(x_"min")^(x_"max") integral_(y_"min")^(y_"max") (partial\/partial sans(x) (omega (partial\/partial sans(y)))compose chi^(-1))\
- &= integral_(x_"min")^(x_"max") integral_(y_"min")^(y_"max") (X_0 (omega (partial\/partial sans(y)))compose chi^(-1))\
+$ integral_(x_"min")^(x_"max") integral_(y_"min")^(y_"max") (partial\/partial sans(x) (omega (partial\/partial sans(y)))compose chi^(-1)) &= integral_(x_"min")^(x_"max") integral_(y_"min")^(y_"max") (X_0 (omega (partial\/partial sans(y)))compose chi^(-1))\
  &= integral_(x_"min")^(x_"max") integral_(y_"min")^(y_"max") partial_0 ((omega (partial\/partial sans(y)))compose chi^(-1)). $ <5.33>
 
 This integral can now be evaluated using the Fundamental Theorem of Calculus. Accumulating the results for both integrals
 
-$ integral_(chi (sans(P))) sans(d) omega (partial\/partial sans(x)\,partial\/partial sans(y))compose chi^(-1) \
- &= integral_(x_"min")^(x_"max") ((omega (partial\/partial sans(x)))compose chi^(-1)) (x\,y_"min")d x \
- integral_(y_"min")^(y_"max") ((omega (partial\/partial sans(y))compose chi^(-1)) (x_"max"\,y)d y \
- - integral_(x_"min")^(x_"max") ((omega (partial\/partial sans(x)))compose chi^(-1)) (x\,y_"max")d x \
- - integral_(y_"min")^(y_"max") ((omega (partial\/partial sans(y)))compose chi^(-1)) (x_"min"\,y)d y \
+$ integral_(chi (sans(P))) sans(d) omega (partial\/partial sans(x)\,partial\/partial sans(y))compose chi^(-1) &= integral_(x_"min")^(x_"max") ((omega (partial\/partial sans(x)))compose chi^(-1)) (x\,y_"min")d x \
+ &quad + integral_(y_"min")^(y_"max") ((omega (partial\/partial sans(y)))compose chi^(-1)) (x_"max"\,y)d y \
+ &quad - integral_(x_"min")^(x_"max") ((omega (partial\/partial sans(x)))compose chi^(-1)) (x\,y_"max")d x \
+ &quad - integral_(y_"min")^(y_"max") ((omega (partial\/partial sans(y)))compose chi^(-1)) (x_"min"\,y)d y \
  &= integral_(partial sans(P)) omega\, $ <5.34>
 
 as was to be shown.

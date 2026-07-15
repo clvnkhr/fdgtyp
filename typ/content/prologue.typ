@@ -4,7 +4,7 @@
 
 #fdg-chapter("Prologue", numbered: false, eq-prefix: "0", ref-label: "")[
 == Programming and Understanding
-One way to become aware of the precision required to unambiguously communicate a mathematical idea is to program it for a computer. Rather than using canned programs purely as an aid to visualization or numerical computation, we use computer programming in a functional style to encourage clear thinking. Programming forces us to be precise and unambiguous, without forcing us to be excessively rigorous. The computer does not tolerate vague descriptions or incomplete constructions. Thus the act of programming makes us keenly aware of our errors of reasoning or unsupported conclusions.#footnote[The idea of using computer programming to develop skills of clear thinking was originally advocated by Seymour Papert. An extensive discussion of this idea, applied to the education of young children, can be found in Papert]
+One way to become aware of the precision required to unambiguously communicate a mathematical idea is to program it for a computer. Rather than using canned programs purely as an aid to visualization or numerical computation, we use computer programming in a functional style to encourage clear thinking. Programming forces us to be precise and unambiguous, without forcing us to be excessively rigorous. The computer does not tolerate vague descriptions or incomplete constructions. Thus the act of programming makes us keenly aware of our errors of reasoning or unsupported conclusions.#footnote[The idea of using computer programming to develop skills of clear thinking was originally advocated by Seymour Papert. An extensive discussion of this idea, applied to the education of young children, can be found in Papert @papert1980mindstorms.]
 
 Although this book is about differential geometry, we can show how thinking about programming can help in understanding in a more elementary context. The traditional use of Leibniz's notation and Newton's notation is convenient in simple situations, but in more complicated situations it can be a serious handicap to clear reasoning.
 
@@ -55,8 +55,7 @@ $ frac(d, d t) ((partial_2 L) (Gamma [w] (t))) - (partial_1 L) (Gamma [w] (t)) =
 
 If we now define composition of functions $(f compose g) (x)= f (g (x))$, we can express the Lagrange equations entirely in terms of functions:
 
-$ D ((partial_2 L) compose (Gamma [w])) \
- - (partial_1 L) compose (Gamma [w]) = 0 . $
+$ D ((partial_2 L) compose (Gamma [w])) - (partial_1 L) compose (Gamma [w]) = 0 . $
 
 The functions $partial_1 L$ and $partial_2 L$ are partial derivatives of the function $L$. Composition with $Gamma[w]$ evaluates these partials with coordinates and velocites appropriate for the path $w$, making functions of time. Applying $D$ takes the time derivative. The Lagrange equation states that the difference of the resulting functions of time must be zero. This statement of the Lagrange equation is complete, unambiguous, and functional. It is not encumbered with the particular choices made in expressing the Lagrangian. For example, it doesn't matter if the time is named $t$ or $tau$, and it has an explicit place for the path to be tested.
 
@@ -83,7 +82,7 @@ For example, consider the harmonic oscillator, with Lagrangian
 
 $ L (t\,q\,v)= 1 / 2 m v^2 - 1 / 2 k q^2\, $
 
-for mass $m$ and spring constant $k$. this lagrangian is implemented by
+for mass $m$ and spring constant $k$. This Lagrangian is implemented by
 
 ```scheme
 (define ((L-harmonic m k) local)

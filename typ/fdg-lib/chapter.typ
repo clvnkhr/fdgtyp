@@ -9,6 +9,7 @@
     counter(page).update(1)
   }
   counter(math.equation).update(0)
+  counter(footnote).update(0)
   fdg-figure-counter.update(0)
   if eq-prefix != none {
     fdg-equation-prefix.update(eq-prefix)

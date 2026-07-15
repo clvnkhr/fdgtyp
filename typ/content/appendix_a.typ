@@ -26,7 +26,9 @@ A #emph[procedure call] is a kind of compound expression. A procedure call is a 
 
 are both compound expressions that name the same number as the numeral #raw(lang:"scheme", "3.14").#footnote[In examples we show the value that would be printed by the Scheme system using slanted characters following the input expression.] In these cases the symbols #raw(lang:"scheme", "+") and #raw(lang:"scheme", "*") name procedures that add and multiply, respectively. If we replace any subexpression of any expression with an expression that names the same thing as the original subexpression, the thing named by the overall expression remains unchanged. In general, a procedure call is written
 
-$ (quad italic("operator") quad italic("operand-1") quad dots.c quad italic("operand-n") quad) $
+```scheme
+(operator operand-1 ... operand-n)
+```
 
 where #emph[operator] names a procedure and #emph[operand-i] names the $i$th argument.#footnote[In Scheme every parenthesis is essential: you cannot add extra parentheses or remove any.]
 
@@ -46,7 +48,9 @@ This expression can be read: \"The procedure of one argument, $x$, that multipli
 
 The general form of a $lambda$-expression is
 
-$ mono("(lambda") quad italic("formal-parameters") quad italic("body") mono(")") $
+```scheme
+(lambda formal-parameters body)
+```
 
 where #emph[formal-parameters] is a list of symbols that will be the names of the arguments to the procedure and #emph[body] is an expression that may refer to the formal parameters. The value of a procedure call is the value of the body of the procedure with the arguments substituted for the formal parameters.
 
@@ -112,9 +116,11 @@ Conditional expressions may be used to choose among several expressions to produ
 
 The conditional #raw(lang:"scheme", "cond") takes a number of clauses. Each clause has a predicate expression, which may be either true or false, and a consequent expression. The value of the #raw(lang:"scheme", "cond") expression is the value of the consequent expression of the first clause for which the corresponding predicate expression is true. The general form of a conditional expression is
 
-$ mono("(cond ") mono("(") italic("predicate-1") quad italic("consequent-1") mono(")") \
- dots.c \
- mono("(") italic("predicate-n") quad italic("consequent-n") mono("))") $
+```scheme
+(cond (predicate-1 consequent-1)
+      ...
+      (predicate-n consequent-n))
+```
 
 For convenience there is a special predicate expression #raw(lang:"scheme", "else") that can be used as the predicate in the last clause of a #raw(lang:"scheme", "cond"). The #raw(lang:"scheme", "if") construct provides another way to make a conditional when there is only a binary choice to be made. For example, because we have to do something special only when the argument is negative, we could have defined #raw(lang:"scheme", "abs") as:
 
@@ -127,7 +133,9 @@ For convenience there is a special predicate expression #raw(lang:"scheme", "els
 
 The general form of an #raw(lang:"scheme", "if") expression is
 
-$ mono("(if") quad italic("predicate") quad italic("consequent") quad italic("alternative") mono(")") $
+```scheme
+(if predicate consequent alternative)
+```
 
 If the #emph[predicate] is true the value of the #raw(lang:"scheme", "if") expression is the value of the #emph[consequent], otherwise it is the value of the #emph[alternative].
 
@@ -162,10 +170,12 @@ The #raw(lang:"scheme", "let") expression is used to give names to objects in a 
 
 The general form of a #raw(lang:"scheme", "let") expression is
 
-$ mono("(let (") mono("(") italic("variable-1") quad italic("expression-1") mono(")") \
- dots.c \
- mono("(") italic("variable-n") quad italic("expression-n") mono("))") \
- #h(2em) italic("body") mono(")") $
+```scheme
+(let ((variable-1 expression-1)
+      ...
+      (variable-n expression-n))
+  body)
+```
 
 The value of the #raw(lang:"scheme", "let") expression is the value of the #emph[body] expression in the context where the variables #emph[variable-i] have the values of the expressions #emph[expression-i]. The expressions #emph[expression-i] may not refer to any of the variables.
 

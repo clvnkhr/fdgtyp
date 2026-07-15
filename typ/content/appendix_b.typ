@@ -143,7 +143,7 @@ It is an up tuple of the time, the coordinates, and the momenta. The time $t$ ha
 In order to reference components of tuple structures there are selector functions, for example:
 
 $ I (s)= s \
- I_0 (s)= y \
+ I_0 (s)= t \
  I_1 (s)=(x\,y)\
  I_2 (s)=[p_x\,p_y]\
  I_(1\,0) (s)= x \
@@ -198,7 +198,7 @@ $ A B =(A B^0\,A B^1\,A B^2). $ <B.9>
 
 If $A$ and $C$ are not compatible for contraction and $C =[C_0\,C_1\,C_2]$, the product is
 
-$ A B =[A C_0\,A C_1\,A C_2]. $ <B.10>
+$ A C =[A C_0\,A C_1\,A C_2]. $ <B.10>
 
 Tuple structures can be made to represent linear transformations. For example, the rotation commonly represented by the matrix
 
@@ -214,8 +214,7 @@ $ [vec(cos theta, sin theta) vec(- sin theta, cos theta)] vec(x, y) = vec(x cos 
 
 The product of two tuples that represent linear transformations -- which are not compatible for contraction -- represents the composition of the linear transformations. For example, the product of the tuples representing two rotations is
 
-$ [vec(cos theta, sin theta) vec(- sin theta, cos theta)] [vec(cos phi, sin phi) vec(- sin phi, cos phi)] \
- &= [vec(cos(theta + phi), sin(theta + phi)) vec(- sin(theta + phi), cos(theta + phi))] . $ <B.14>
+$ [vec(cos theta, sin theta) vec(- sin theta, cos theta)] [vec(cos phi, sin phi) vec(- sin phi, cos phi)]  &= [vec(cos(theta + phi), sin(theta + phi)) vec(- sin(theta + phi), cos(theta + phi))] . $ <B.14>
 
 Multiplication of tuples that represent linear transformations is associative but generally not commutative, just as the composition of the transformations is associative but not generally commutative.
 
@@ -274,8 +273,7 @@ A function of multiple arguments can be thought of as a function of an up tuple 
 
 Suppose we have a real-valued function $g$ of two real-valued arguments, and we want to approximate the increment in the value of $g$ from its value at $x\,y$. If the arguments are incremented by the tuple $(Delta x\,Delta y)$ we compute:
 
-$ D g (x\,y)dot.op (Delta x\,Delta y)= [partial_0 g (x \, y) + partial_1 g (x \, y)] dot.op (Delta x\,Delta y)\
- &= partial_0 g (x\,y)Delta x + partial_1 g (x\,y)Delta y . $ <B.20>
+$ D g (x\,y)dot.op (Delta x\,Delta y)= [partial_0 g (x \, y) + partial_1 g (x \, y)] dot.op (Delta x\,Delta y) &= partial_0 g (x\,y)Delta x + partial_1 g (x\,y)Delta y . $ <B.20>
 
 Using the two-argument literal function #raw(lang:"scheme", "g") defined in Section #fdg-ref-page(<sec-B.2>), we have:
 
@@ -300,8 +298,7 @@ $ D g (x\,y)=[3 x^2 y^5\,5 x^3 y^4] $ <B.24>
 
 and the first-order approximation of the increment for changing the arguments by $Delta x$ and $Delta y$ is
 
-$ g (x + Delta x\,y + Delta y)- g (x\,y)approx[3 x^2 y^5\,5 x^3 y^4]dot.op (Delta x\,Delta y)\
- &= 3 x^2 y^5 Delta x + 5 x^3 y^4 Delta y . $ <B.25>
+$ g (x + Delta x\,y + Delta y)- g (x\,y)approx[3 x^2 y^5\,5 x^3 y^4]dot.op (Delta x\,Delta y) &= 3 x^2 y^5 Delta x + 5 x^3 y^4 Delta y . $ <B.25>
 
 Partial derivatives of compositions also obey a chain rule:
 
@@ -327,7 +324,7 @@ Mathematical notation usually does not distinguish functions of multiple argumen
 (down (((partial 0) g) x y) (((partial 1) g) x y))
 ```
 
-A phase-space state function is a function of time, coordinates, and momenta. Let $H$ be such a function. The value of $H$ is $H (t \, (x \, y) \, [p_x \, p_y])$ for time $t$, coordinates $(x\,y)$, and momenta $[p_x\,p_y]$. Let $s$ be the phase-space state tuple as in (@B.6):
+A phase-space state function is a function of time, coordinates, and momenta. Let $H$ be such a function. The value of $H$ is $H (t \, (x \, y) \, [p_x \, p_y])$ for time $t$, coordinates $(x\,y)$, and momenta $[p_x\,p_y]$. Let $s$ be the phase-space state tuple as in #ref(<B.6>):
 
 $ s = (t \, (x \, y) \, [p_x \, p_y]) . $ <B.28>
 
@@ -337,8 +334,7 @@ We often show a function of multiple arguments that include tuples by indicating
 
 The derivative of $H$ is a function that produces an object that can be contracted with an increment in the argument structure to produce an increment in the function\'s value. The derivative is a down tuple of three partial derivatives. The first partial derivative is the partial derivative with respect to the numerical argument. The second partial derivative is a down tuple of partial derivatives with respect to each component of the up-tuple argument. The third partial derivative is an up tuple of partial derivatives with respect to each component of the down-tuple argument:
 
-$ D H (s)= [partial_0 H (s) \, partial_1 H (s) \, partial_2 H (s)] \
- &= [partial_0 H (s) \, [partial_(1\,0) H (s) \, partial_(1\,1) H (s)] \, \
+$ D H (s)= [partial_0 H (s) \, partial_1 H (s) \, partial_2 H (s)]  &= [partial_0 H (s) \, [partial_(1\,0) H (s) \, partial_(1\,1) H (s)] \, \
  [partial_(2\,0) H (s) \, partial_(2\,1) H (s)]]\, $ <B.29>
 
 where $partial_(1\,0)$ indicates the partial derivative with respect to the first component (index 0) of the second argument (index 1) of the function, and so on. Indeed, $partial_z F = I_z compose D F$ for any function $F$ and access chain $z$. So, if we let $Delta s$ be an incremental phase-space state tuple,
@@ -347,9 +343,7 @@ $ Delta s = (Delta t \, (Delta x \, Delta y) \, [Delta p_x \, Delta p_y]) $ <B.3
 
 then
 
-$ D H (s)Delta s = partial_0 H (s)Delta t \
- + partial_(1\,0) H (s)Delta x + partial_(1\,1) H (s)Delta y \
- + partial_(2\,0) H (s)Delta p_x + partial_(2\,1) H (s)Delta p_y . $ <B.31>
+$ D H (s)Delta s = partial_0 H (s)Delta t + partial_(1\,0) H (s)Delta x + partial_(1\,1) H (s)Delta y + partial_(2\,0) H (s)Delta p_x + partial_(2\,1) H (s)Delta p_y . $ <B.31>
 
 Caution: Partial derivative operators with respect to different structured arguments generally do not commute.
 

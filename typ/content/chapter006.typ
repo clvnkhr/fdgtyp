@@ -73,7 +73,7 @@ The procedure that constructs a $k$-form over the map from a $k$-form is:
      (lambda (n)
        ((apply w-on-M
                (map (lambda (V-over-mu)
-                      (make fake-vector-field V-over-mu n))
+                      (make-fake-vector-field V-over-mu n))
                     vectors-over-map))
         (mu:N->M n))))
    (get-rank w-on-M)))
@@ -100,7 +100,7 @@ For example, let $mu$ map the time line to the unit sphere.#footnote[We execute 
 ```scheme
 (define S2 (make-manifold S^2 2 3))
 (define S2-spherical
-  (coordinate-system at 'spherical 'north-pole S2))
+  (coordinate-system-at 'spherical 'north-pole S2))
 (define-coordinates (up theta phi) S2-spherical)
 (define S2-basis (coordinate-system->basis S2-spherical))
 ```
@@ -181,7 +181,7 @@ $ (sans(E)_(t\,sans(v)) sans(f)) (sans(m))= sans(f) (phi.alt_t^(sans(v)) (sans(m
 This is implemented as:
 
 ```scheme
-(define ((pullback-function mu:N->M) f-on-m)
+(define ((pullback-function mu:N->M) f-on-M)
 (compose f-on-M mu:N->M))
 ```
 

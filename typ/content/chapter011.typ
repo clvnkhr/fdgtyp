@@ -37,7 +37,7 @@ It is easy to see that these equations are mutually contradictory. Indeed, if we
 
 $ div curl arrow(B) = 0 = frac(4 pi, c) div arrow(I), $ <11.6>
 
-which directly contradicts conservation of charge (@11.5).
+which directly contradicts conservation of charge #ref(<11.5>).
 
 Maxwell patched this bug by adding in the displacement current, changing equation @11.3 to read
 
@@ -65,7 +65,7 @@ A crucial point in Einstein\'s inspiration for relativity is, quoting Einstein (
 
 Let\'s be more precise about this. Consider a plane sinusoidal wave moving in the $hat(x)$ direction with velocity $c$ in free space ($rho = 0$ and $arrow(I) = 0$). This is a perfectly good solution of the wave equation. Now suppose that an observer is moving with the wave in the $hat(x)$ direction with velocity $c$. Such an observer will see no time variation of the field. So the wave equation reduces to Laplace\'s equation. But a sinusoidal variation in space is not a solution of Laplace\'s equation.
 
-Einstein believed that the Maxwell-Lorentz electromagnetic theory was fundamentally correct, though he was unhappy with an apparent asymmetry in the formulation. Consider a system consisting of a conductor and a magnet. If the conductor is moved and the magnet is held stationary (a stationary magnetic field) then the charge carriers in the conductor are subject to the Lorentz force (@11.11), causing them to move. However, if the magnet is moved past a stationary conductor then the changing magnetic field induces an electric field in the conductor by equation @11.4, which causes the charge carriers in the conductor to move. The actual current which results is identical for both explanations if the relative velocity of the magnet and the conductor are the same. To Einstein, there should not have been two explanations for the same phenomenon.
+Einstein believed that the Maxwell-Lorentz electromagnetic theory was fundamentally correct, though he was unhappy with an apparent asymmetry in the formulation. Consider a system consisting of a conductor and a magnet. If the conductor is moved and the magnet is held stationary (a stationary magnetic field) then the charge carriers in the conductor are subject to the Lorentz force #ref(<11.11>), causing them to move. However, if the magnet is moved past a stationary conductor then the changing magnetic field induces an electric field in the conductor by equation @11.4, which causes the charge carriers in the conductor to move. The actual current which results is identical for both explanations if the relative velocity of the magnet and the conductor are the same. To Einstein, there should not have been two explanations for the same phenomenon.
 
 == Invariance of the Wave Equation <sec-11.1>
 Let $u =(t\,x\,y\,z)$ be a tuple of time and space coordinates that specify a point in spacetime.#footnote[Points in spacetime are often called #emph[events].] If $phi.alt (t\,x\,y\,z)$ is a scalar field over time and space, the homogeneous linear wave equation is
@@ -134,7 +134,7 @@ The possible $Lambda$ that are consistent with the preservation of the interval 
 == Simple Lorentz Transformations <sec-11.3>
 Consider the linear transformation, in the first two coordinates,
 
-$ xi^0 = p (xi')^0 + q (xi')^1 \\
+$ xi^0 = p (xi')^0 + q (xi')^1 \
 xi^1 = r (xi')^0 + s (xi')^1. $ <11.26>
 
 The requirement to preserve the interval gives the constraints
@@ -188,8 +188,7 @@ $ bold(xi) = bold(xi)^perp + bold(xi)^parallel\, $ <11.34>
 
 where $bold(beta) dot.op bold(xi) = 0$. (This is the ordinary dot product in three dimensions.) Explicitly,
 
-$ bold(xi)^parallel \
- &= bold(beta) / beta (bold(beta) / beta dot.op bold(xi))\, $ <11.35>
+$ bold(xi)^parallel  &= bold(beta) / beta (bold(beta) / beta dot.op bold(xi))\, $ <11.35>
 
 where $beta = norm(bold(beta))$, the magnitude of $bold(beta)$, and
 
@@ -205,7 +204,7 @@ Putting the components back together, this leads to
 
 $ xi^0 = gamma (beta) ((xi')^0 + bold(beta) dot.op bold(xi)) \
  bold(xi) = gamma (beta) (bold(beta) (xi')^0 + bold(xi)' \
- + frac(gamma (beta)- 1, beta^2) bold(beta) (bold(beta) dot.op bold(xi)))\, $ <11.38>
+ &quad + frac(gamma (beta)- 1, beta^2) bold(beta) (bold(beta) dot.op bold(xi)))\, $ <11.38>
 
 which gives the components of the general boost $B$ along velocity $c bold(beta)$:
 
@@ -292,8 +291,7 @@ This is well behaved as $v\/c$ goes to zero.
 == Rotations <sec-11.6>
 A linear transformation that does not change the magnitude of the spatial and time components, individually, leaves the interval invariant. So a transformation that rotates the spatial coordinates and leaves the time component unchanged is also a Lorentz transformation. Let $R$ be a 3-dimensional rotation. Then the extension to a Lorentz transformation $cal(R)$ is defined by
 
-$ (xi^0\,bold(xi))\
- &= cal(R) (R) ((xi')^0 \, bold(xi)') \
+$ (xi^0\,bold(xi)) &= cal(R) (R) ((xi')^0 \, bold(xi)') \
  &= ((xi')^0 \, R (bold(xi)')) . $ <11.40>
 
 Examining the expression for the general boost, equation @11.38, we see that the boost transforms simply as the arguments are rotated. Indeed,
@@ -344,7 +342,7 @@ We can use property @11.41 to see this. Suppose we follow a general boost by a r
 $ cal(R) (R) compose B (bold(beta)) = B (R (bold(beta))) compose cal(R) (R). $ <11.43>
 
 === Exercise 11.1: Lorentz Decomposition <sec-11.7.1>
-The counting of free parameters supports the conclusion that the general Lorentz transformation can be constructed by combining generalized rotations and boosts. Then the decomposition (@11.42) follows from property @11.41. Find a more convincing proof.
+The counting of free parameters supports the conclusion that the general Lorentz transformation can be constructed by combining generalized rotations and boosts. Then the decomposition #ref(<11.42>) follows from property @11.41. Find a more convincing proof.
 
 == Special Relativity Frames <sec-11.8>
 A new frame is defined by a Poincaré transformation from a given frame (see equation @11.23). The transformation is specified by a boost magnitude and a unit-vector boost direction, relative to the given frame, and the position of the origin of the frame being defined in the given frame.

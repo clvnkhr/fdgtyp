@@ -45,6 +45,29 @@ const expectedFigures = [
   "fig-7-1.pdf",
 ];
 
+const expectedFootnoteCounts = {
+  "preface.typ": 0,
+  "prologue.typ": 6,
+  "chapter001.typ": 8,
+  "chapter002.typ": 10,
+  "chapter003.typ": 12,
+  "chapter004.typ": 8,
+  "chapter005.typ": 10,
+  "chapter006.typ": 7,
+  "chapter007.typ": 19,
+  "chapter008.typ": 9,
+  "chapter009.typ": 8,
+  "chapter010.typ": 4,
+  "chapter011.typ": 6,
+  "appendix_a.typ": 8,
+  "appendix_b.typ": 3,
+  "appendix_c.typ": 0,
+  "references.typ": 0,
+  "errata.typ": 0,
+};
+
+const expectedGeneratedDoubleBackslashCounts = {};
+
 function normalize(text) {
   return text
     .replace(/\s+/g, " ")
@@ -103,6 +126,21 @@ const allContent = contentFiles
   .join("\n");
 const allContentNormalized = normalize(allContent);
 const allProseContent = stripCodeRawAndMath(allContent);
+const expectedEquationLabelCounts = {
+  "chapter001.typ": { prefix: "1", count: 6 },
+  "chapter002.typ": { prefix: "2", count: 7 },
+  "chapter003.typ": { prefix: "3", count: 57 },
+  "chapter004.typ": { prefix: "4", count: 44 },
+  "chapter005.typ": { prefix: "5", count: 39 },
+  "chapter006.typ": { prefix: "6", count: 28 },
+  "chapter007.typ": { prefix: "7", count: 79 },
+  "chapter008.typ": { prefix: "8", count: 32 },
+  "chapter009.typ": { prefix: "9", count: 32 },
+  "chapter010.typ": { prefix: "10", count: 28 },
+  "chapter011.typ": { prefix: "11", count: 43 },
+  "appendix_b.typ": { prefix: "B", count: 35 },
+  "appendix_c.typ": { prefix: "C", count: 11 },
+};
 
 const assertions = [
   {
@@ -128,6 +166,8 @@ const assertions = [
       "$ (D f) (t)= frac(d, d x) f (x)|_(x=t) . $",
       "A formal description of Scheme can be obtained in @ieee1991scheme. You can get the software from @fdg-software.",
       "An informal description of Scheme can be found in Appendix @chap-appendix-a. The use of Scheme to represent mathematical objects can be found in Appendix @chap-appendix-b.",
+      "can be found in Papert @papert1980mindstorms.",
+      "This Lagrangian is implemented by",
     ],
     excludes: [
       "```scheme (time, coordinates, and velocities).",
@@ -139,6 +179,9 @@ const assertions = [
       "\\[21\\]",
       "Appendices A and B",
       "Appendix A. The use of Scheme",
+      "can be found in Papert]",
+      "Papert \\@papert1980mindstorms",
+      "this lagrangian is implemented by",
     ],
   },
   {
@@ -155,6 +198,8 @@ const assertions = [
       "equation @1.1",
       "Section #fdg-ref-page(<sec-2.1>).)",
       "Appendix @chap-appendix-b",
+      "90◦ E meridian",
+      "90°E meridian",
     ],
     excludes: [
       "EulerLagrange",
@@ -169,6 +214,7 @@ const assertions = [
       "equation (1.1)",
       "Section 2.1",
       "Appendix B",
+      "90◦E meridian",
     ],
   },
   {
@@ -206,6 +252,9 @@ const assertions = [
       "(D (chi compose (chi')^(-1)) (chi' (sans(m))))^(-1)",
       "The vector field is an operator that takes a real-valued manifold function and a manifold point and produces a number.",
       "== Coordinate-Basis One-Form Fields <sec-3.5>",
+      "particular direction in the configuration space",
+      "directional derivatives of manifold functions",
+      "corresponding components",
     ],
     excludes: [
       "chi'(sans(m)))))",
@@ -213,19 +262,43 @@ const assertions = [
       "chi^1",
       "^(\"\"^1)",
       "function\\$f\\$at",
+      "di- rection",
+      "deriva- tives",
+      "com- ponents",
     ],
   },
   {
     file: "chapter004.typ",
     contains: [
       "sum_k sans(X)_k (sans(f))sans(c)_j^k",
+      "$ sans(v) (sans(f)) (sans(m))= sans(e) (sans(f)) (sans(m)) sans(b) (sans(m))= sum_i sans(e)_i (sans(f)) (sans(m))sans(b)^i (sans(m))\\, $ <4.1>",
       "tilde(sans(e))^i (sans(v))= sum_l sans(d)_l^i tilde(sans(X))^l (sans(v))",
-      "sum_k sans(d)_k^i (sans(m))\\ sans(c)_j^k (sans(m)).",
+      "sum_k sans(d)_k^i (sans(m)) sans(c)_j^k (sans(m)).",
+      "$ sans(v) (sans(f))= sum_i sans(e)_i (sans(f))sans(b)^i = sum_i sans(e')_j (sans(f))sans(b')^j . $ <4.9>",
+      "$ sans(a)_i = bold(omega) (sans(e)_i)= sum_j sans(a)'_j tilde(sans(e))^(' j) (sans(e)_i) = sum_j sans(a)'_j sans(J)_i^j $ <4.19>",
+      "$ sans(e)_x = a frac(partial, partial theta) + b frac(partial, partial phi.alt) + c frac(partial, partial psi) = cos phi.alt frac(partial, partial theta) - frac(sin phi.alt cos theta, sin theta) frac(partial, partial phi.alt) + frac(sin phi.alt, sin theta) frac(partial, partial psi) . $ <4.29>",
+      "&quad + sum_i sans(X)_i (sans(f))sum_j",
+      "$ sans(a)^i = sum_j (sans(X)_j (sans(c)^i) sans(b)^j - sans(X)_j (sans(b)^i) sans(c)^j) = sans(u) (sans(c)^i) - sans(v) (sans(b)^i) . $ <4.35>",
+      "$ [sans(u)\\,sans(v)] (sans(f))= sum_k sans(e)_k (sans(f)) (sans(u) (sans(c)^k) - sans(v) (sans(b)^k) + sum_(i j) sans(c)^i sans(b)^j sans(d)_(j i)^k) $ <4.38>",
+      "$ (e^(t sans(v))) (sans(m)) = (sans(f) compose phi.alt_t^(sans(v))) (sans(m)) . $ <4.40>",
+      "$ (e^(s sans(w)) e^(t sans(v))) (sans(m)) = (sans(f) compose phi.alt_t^(sans(v)) compose phi.alt_s^(sans(w))) (sans(m)) . $ <4.41>",
+      "$ (e^(epsilon.alt sans(v)) e^(epsilon.alt sans(w)) e^(- epsilon.alt sans(v)) e^(- epsilon.alt sans(w)) sans(f)) (sans(m)) . $ <4.42>",
+      "(1 + B + B^2 / 2 + dots.c) times (1 - A + A^2 / 2 + dots.c)",
       "equations @4.29 -- @4.31",
     ],
     excludes: [
       "sum_k sans(X) (sans(f))sans(c)_j^k",
+      "sans(e) (sans(f)) (sans(m))\\\n sans(b) (sans(m))= \\",
       "sum_l {sans(d)_l^i",
+      "sum_k sans(d)_k^i (sans(m))\\\n sans(c)_j^k (sans(m)).",
+      "$ sans(v) (sans(f))= sum_i sans(e)_i (sans(f))sans(b)^i \\\n &= sum_i sans(e')_j",
+      "tilde(sans(e))^(' j) (sans(e)_i)\\\n &= sum_j sans(a)'_j sans(J)_i^j",
+      "$ sans(e)_x = a frac(partial, partial theta) + b frac(partial, partial phi.alt) + c frac(partial, partial psi) \\\n &=",
+      "$ sans(a)^i = sum_j (sans(X)_j (sans(c)^i) sans(b)^j \\\n",
+      "$ [sans(u)\\,sans(v)] (sans(f))= sum_k sans(e)_k (sans(f)) (\\\n",
+      "$ (e^(t sans(v))) (sans(m)) \\\n &=",
+      "$ (e^(s sans(w)) e^(t sans(v))) (sans(m)) \\\n &=",
+      "$ (e^(epsilon.alt sans(v)) e^(epsilon.alt sans(w)) \\\n e^(- epsilon.alt sans(v))",
       "equations 4.29",
     ],
   },
@@ -235,11 +308,22 @@ const assertions = [
       "and $sans(v) = sans(v)^0 partial\\/partial sans(x) + sans(v)^1 partial\\/partial sans(y),$ which is given by",
       "$sans(A) = sans(d) sans(x) \"∧\" sans(d) sans(y).$",
       "Here we extract $sans(d) sans(x)$ and $sans(d) sans(y)$ from #raw(lang:\"scheme\", \"R2-rect-basis\")",
+      "$ sans(d) omega (sans(v)_0\\,dots.c\\,sans(v)_k) &= sum_(i=0)^k",
+      "$ sans(d) omega (sans(v)_0\\,dots.c\\,sans(v)_k) &= sum_(i=0)^k \\\n &quad",
+      "omega ([sans(v)_i\\,sans(v)_j]",
+      "&quad + sum_(j=i + 1)^k",
+      "$ integral_(chi (sans(P))) sans(d) omega (partial\\/partial sans(x)\\,partial\\/partial sans(y))compose chi^(-1) &= integral_(x_\"min\")^(x_\"max\")",
+      "&quad + integral_(y_\"min\")^(y_\"max\")",
     ],
     excludes: [
       "$v = v^{0}{∂}/{∂x} + v^{1}{∂}/{∂y},$",
       "$A = dx ∧ dy.$",
       "Here we extract $sans(d)$sans(x)$",
+      "$ sans(d) omega (sans(v)_0\\,dots.c\\,sans(v)_k) =\\\n &quad",
+      "$ sans(d) omega (sans(v)_0\\,dots.c\\,sans(v)_k)\\\n &=",
+      "omega (sans(v)_i \\, sans(v)_j]",
+      "\n integral_(y_\"min\")^(y_\"max\") ((omega (partial\\/partial sans(y))compose chi^(-1))",
+      "<5.40>",
     ],
   },
   {
@@ -252,6 +336,9 @@ const assertions = [
       "$ sans(v)_mu (sans(f)) (sans(n))= sans(v) (sans(f)) (mu (sans(n))). $ <6.2>",
       "only value that is ever passed as `m` is `(mu:N->M n)`.",
       "If we were defining $sans(u)$ as a vector field we would need the inverse of $μ$",
+      "(make-fake-vector-field V-over-mu n)",
+      "(coordinate-system-at 'spherical 'north-pole S2)",
+      "(define ((pullback-function mu:N->M) f-on-M)",
     ],
     excludes: [
       "Let μ be a map",
@@ -261,6 +348,9 @@ const assertions = [
       "only value that is ever passed as m is (mu:N-\\>M n).",
       "inverse of μ",
       "mathsf{u]",
+      "(make fake-vector-field V-over-mu n)",
+      "(coordinate-system at 'spherical 'north-pole S2)",
+      "(define ((pullback-function mu:N->M) f-on-m)",
     ],
   },
   {
@@ -272,6 +362,20 @@ const assertions = [
       "equations @7.18 - @7.21",
       "@sussman2001sicm, section 1.6.3",
       "See Appendix @chap-appendix-c",
+      "We can assume without loss of generality",
+      "$ nabla_(sans(v)) sans(u) (sans(f))= sum_i (sans(v) (sans(u)^i)sans(e)_i",
+      "$ D g (delta)= sum_(i j) #scale(x: 120%, y: 120%)[(] A_j^i (delta)",
+      "sum_k (pi.alt_k^j (sans(v)) sans(w)^k)",
+      "sum_k (pi.alt_k^j (sans(v)) tilde(sans(e))^k)",
+      "$ nabla_(sans(v)) (tau)= sum_k (sans(v) (tau_k) - sum_j tau_j pi.alt_k^j (sans(v))) tilde(sans(e))^k\\, $ <7.59>",
+      "$ nabla_(sans(v)) (tau (sans(u)))=(nabla_(sans(v)) tau) (sans(u))+ tau (nabla_(sans(v)) sans(u)). $ <7.60>",
+      "$ sans(e) (sans(f))= sans(e)' (sans(f))sans(J) . $ <7.61>",
+      "$ D u^1 (tau)= - frac(cos(alpha (tau)), sin(alpha (tau))) (D beta (tau)u^0 (tau)+ D alpha (tau)u^1 (tau)). $ <7.74>",
+      "$ D u (tau)= f (sigma (tau)\\,D sigma (tau))u (tau)\\, $ <7.75>",
+      "$ g (s (t))= D s (t)=(1\\,D u (t))\\, $ <7.76>",
+      "$ nabla_(sans(v)) sans(v) = 0\\, $ <7.77>",
+      "$ nabla_(partial\\/partial sans(t))^gamma d gamma (partial\\/partial sans(t))= 0 . $ <7.78>",
+      "$ D^2 sigma^i (t)+ sum_(j k) Gamma_(j k)^i (gamma (t))D sigma^j (t)D sigma^k (t)= 0\\, $ <7.79>",
     ],
     excludes: [
       "sans(g .)",
@@ -279,17 +383,37 @@ const assertions = [
       "equations 7.18",
       "\\[19\\]",
       "See Appendix C",
+      "We can asume without loss of generality",
+      "sum_i(sans(v) (sans(u)^i)",
+      "$ D g (delta)= \\\n",
+      "sum_k pi.alt_k^j (sans(v)) sans(w)^k",
+      "sum_k pi.alt_k^j (sans(v)) tilde(sans(e))^k",
+      "$ D u^0 (tau)= sin(alpha (tau))cos(alpha (tau))D beta (tau)u^1 (tau)\\, $ <7.74>",
+      "<7.80>",
+      "<7.81>",
+      "<7.82>",
     ],
   },
   {
     file: "chapter008.typ",
     contains: [
-      "$ cal(R) (bold(omega)\\,sans(u)\\,sans(v)\\,sans(w)) =\\\n bold(omega) ((cal(R) (sans(w) \\, sans(v))) (sans(u)))\\, $",
       "This computes the same operator as the traditional Riemann curvature operator:",
+      "However, if $sans(w)$ and $sans(v)$ do not commute",
+      "$Gamma_(j k)^i = Gamma_(k j)^i$",
+      "$ cal(R) (bold(omega)\\,sans(u)\\,sans(v)\\,sans(w)) = bold(omega) ((cal(R) (sans(w) \\, sans(v))) (sans(u)))\\, $ <8.2>",
+      "$ nabla_(sans(v)) sans(u) (sans(f)) &= sum_i sans(e)_i (sans(f))",
+      "&quad + sum_j pi.alt_j^i (sans(v)) tilde(sans(e))^j (sans(u)))",
+      "$ nabla_([sans(w)\\,sans(v)]) sans(u) = sans(e) {[sans(w) \\, sans(v)] tilde(sans(e)) (sans(u)) + pi.alt ([sans(w) \\, sans(v)]) tilde(sans(e)) (u)} . $ <8.18>",
     ],
     excludes: [
       ")bold(omega)",
       "cal(R) (bold(omega)\\,sans(u)\\,sans(v)\\,sans(w))bold(omega)",
+      "$ cal(R) (bold(omega)\\,sans(u)\\,sans(v)\\,sans(w)) =\\\n",
+      "<8.33>",
+      "<8.34>",
+      "However , if",
+      "$Gamma_(j k)^i = Gamma_(j k)^i$",
+      "$ nabla_([sans(w)\\,sans(v)]) sans(u) = sans(e) {[sans(w) \\, sans(v)] tilde(sans(e)) (sans(u)) \\\n",
     ],
   },
   {
@@ -306,6 +430,55 @@ const assertions = [
     ],
   },
   {
+    file: "chapter010.typ",
+    contains: [
+      "$ (sans(g)^(*) bold(omega))_(j_p dots.c j_(n - 1)) = sum_(i_0 dots.c i_(p - 1) j_0 dots.c j_(p - 1)) frac(1, p !) omega_(i_0 dots.c i_(p - 1)) g^(i_0 j_0) dots.c g^(i_(p - 1) j_(p - 1)) epsilon.alt_(j_0 dots.c j_(n - 1)) $ <10.1>",
+      "$ sans(d f) = (frac(partial, partial sans(x)) sans(f)) sans(d x) + (frac(partial, partial sans(y)) sans(f)) sans(d y) + (frac(partial, partial sans(z)) sans(f)) sans(d z) . $ <10.2>",
+      "$ grad (sans(f)) &= g^sharp (sans(d f)) $ <10.3>",
+      "- frac(partial theta_z, partial sans(x))) sans(d y) +",
+      "$ sans(d) theta = (frac(partial theta_z, partial sans(y)) - frac(partial theta_y, partial sans(z))) sans(d y) and sans(d z) + (frac(partial theta_x, partial sans(z)) - frac(partial theta_z, partial sans(x))) sans(d z) and sans(d x) + (frac(partial theta_y, partial sans(x)) - frac(partial theta_x, partial sans(y))) sans(d x) and sans(d y) . $ <10.5>",
+      "$ g^(*) (sans(d) theta) = (frac(partial theta_z, partial sans(y)) - frac(partial theta_y, partial sans(z))) sans(d x) + (frac(partial theta_x, partial sans(z)) - frac(partial theta_z, partial sans(x))) sans(d y) + (frac(partial theta_y, partial sans(x)) - frac(partial theta_x, partial sans(y))) sans(d z) . $ <10.6>",
+      "$ curl (sans(v)) &= g^sharp (g^(*) (sans(d) (g^flat (sans(v)))))\\, $ <10.7>",
+      "$ sans(d) (g^(*) theta)= (frac(partial theta_x, partial sans(x)) + frac(partial theta_y, partial sans(y)) + frac(partial theta_z, partial sans(z))) sans(d x) and sans(d y) and sans(d z) . $ <10.8>",
+      "$ g^(*) sans(d) (g^(*) theta)= frac(partial theta_x, partial sans(x)) + frac(partial theta_y, partial sans(y)) + frac(partial theta_z, partial sans(z)) . $ <10.9>",
+      "$ div (sans(v)) &= g^(*) (sans(d) (g^(*) (g^flat (sans(v))))) . $ <10.10>",
+      "$ sans(g) (sans(u)\\,sans(v)) = - c^2 sans(d t) (sans(u))thin sans(d t) (sans(v)) + sans(d x) (sans(u))thin sans(d x) (sans(v)) + sans(d y) (sans(u))thin sans(d y) (sans(v)) + sans(d z) (sans(u))thin sans(d z) (sans(v)). $ <10.11>",
+      "$ frac(partial B_x, partial x) + frac(partial B_y, partial y) + frac(partial B_z, partial z) = 0 $ <10.19>",
+      "$ frac(partial E_z, partial y) - frac(partial E_y, partial z) = 1 / c frac(partial B_x, partial t)\\, $ <10.20>",
+      "$ frac(partial E_x, partial z) - frac(partial E_z, partial x) = 1 / c frac(partial B_y, partial t)\\, $ <10.21>",
+      "$ frac(partial E_y, partial x) - frac(partial E_x, partial y) = 1 / c frac(partial B_z, partial t) . $ <10.22>",
+      "$ frac(partial E_x, partial x) + frac(partial E_y, partial y) + frac(partial E_z, partial z) = 4 pi rho . $ <10.23>",
+      "$ frac(partial B_y, partial z) - frac(partial B_z, partial y) = - 1 / c frac(partial E_x, partial t) - frac(4 pi, c) I_x\\, $ <10.24>",
+      "$ frac(partial B_z, partial x) - frac(partial B_x, partial z) = - 1 / c frac(partial E_y, partial t) - frac(4 pi, c) I_y\\, $ <10.25>",
+      "$ frac(partial B_x, partial y) - frac(partial B_y, partial x) = - 1 / c frac(partial E_z, partial t) - frac(4 pi, c) I_z . $ <10.26>",
+    ],
+    excludes: [
+      "$ (sans(g)^(*) bold(omega))_(j_p dots.c j_(n - 1)) \\",
+      "frac(1, p !) \\",
+      "$ sans(d f) = (frac(partial, partial sans(x)) sans(f)) sans(d x) \\",
+      "$ grad (sans(f))= g^sharp (sans(d f)) $ <10.3>",
+      "$ grad (sans(f))= g^sharp (sans(d f)) (d f) $ <10.3>",
+      "- frac(partial theta_z, partial sans(x))) sans(d x) \\",
+      "$ sans(d) theta = (frac(partial theta_z, partial sans(y)) \\",
+      "$ g^(*) (sans(d) theta) = (frac(partial theta_z, partial sans(y)) \\",
+      "sans(d x) and sans(d z) \\",
+      "$ curl (sans(v)) = g^sharp",
+      "$ sans(d) (g^(*) theta)= (\\",
+      "$ g^(*) sans(d) (g^(*) theta)= \\",
+      "$ div (sans(v)) = g^(*)",
+      "$ sans(g) (sans(u)\\,sans(v))= \\",
+      "$ sans(g) (sans(u)\\,sans(v)) = - c^2 sans(d t) (sans(u))thin sans(d t) (sans(v)) + sans(d x) (sans(u))thin sans(d x) (sans(v)) \\",
+      "$ frac(partial B_x, partial x) \\",
+      "$ frac(partial E_z, partial y) \\",
+      "$ frac(partial E_x, partial z) \\",
+      "$ frac(partial E_y, partial x) \\",
+      "$ frac(partial E_x, partial x) \\",
+      "$ frac(partial B_y, partial z) \\",
+      "$ frac(partial B_z, partial x) \\",
+      "$ frac(partial B_x, partial y) \\",
+    ],
+  },
+  {
     file: "chapter011.typ",
     contains: [
       "By analogy, Einstein noticed that Maxwell\\'s equations were inconsistent with Galilean relativity.",
@@ -315,7 +488,7 @@ const assertions = [
       "$ frac(partial^2 phi.alt (u), partial x^2) + frac(partial^2 phi.alt (u), partial y^2) + frac(partial^2 phi.alt (u), partial z^2) - frac(1, c^2) frac(partial^2 phi.alt (u), partial t^2) = 0. $",
       "$ length_u (xi) = sqrt((Delta x)^2 + (Delta y)^2 + (Delta z)^2 - (c Delta t)^2), $",
       "$ f (xi)= -(xi^0)^2+(xi^1)^2+(xi^2)^2+(xi^3)^2\\, $",
-      "$ xi^0 = p (xi')^0 + q (xi')^1 \\\\\nxi^1 = r (xi')^0 + s (xi')^1. $",
+      "$ xi^0 = p (xi')^0 + q (xi')^1 \\\nxi^1 = r (xi')^0 + s (xi')^1. $",
       "the origin of the primed system moves with velocity $v = beta c$ along the $hat(x)$-axis",
       "where $beta = norm(bold(beta))$, the magnitude of $bold(beta)$, and",
       "(make-4tuple (* gamma (+ xi-p-time beta-dot-xi-p))",
@@ -340,16 +513,28 @@ const assertions = [
     file: "appendix_a.typ",
     contains: [
       "Given conditionals and definitions, we can write recursive procedures. For example, to compute the $n$th factorial number we may write:",
+      "```scheme\n(operator operand-1 ... operand-n)\n```",
+      "```scheme\n(lambda formal-parameters body)\n```",
+      "```scheme\n(cond (predicate-1 consequent-1)\n      ...\n      (predicate-n consequent-n))\n```",
+      "```scheme\n(if predicate consequent alternative)\n```",
+      "```scheme\n(let ((variable-1 expression-1)\n      ...\n      (variable-n expression-n))\n  body)\n```",
     ],
     excludes: [
       "\\$n\\$th",
+      'italic("operator")',
+      'mono("(lambda")',
+      'mono("(cond ")',
+      'mono("(if")',
+      'mono("(let (")',
     ],
   },
   {
     file: "appendix_b.typ",
     contains: [
       "A component of an up tuple is usually identified by a superscript.",
+      "I_0 (s)= t",
       "$ p v = p_0 v^0 + p_1 v^1 + p_2 v^2 . $ <B.8>",
+      "$ A C =[A C_0\\,A C_1\\,A C_2]. $ <B.10>",
       "Higher-order derivatives are described by exponentiating the derivative operator. Thus the $n$th derivative of a function $f$ is notated as $D^n f$.",
       "using #TeX, and then these decorations turn into superscripts and subscripts.",
       "equations @B.4 and @B.5",
@@ -358,6 +543,19 @@ const assertions = [
       "\\$n\\$th",
       "\\TeX",
       "equations (B.4)",
+      "I_0 (s)= y",
+      "$ A B =[A C_0\\,A C_1\\,A C_2]. $ <B.10>",
+    ],
+  },
+  {
+    file: "appendix_c.typ",
+    contains: [
+      "sans(g) sans(T) (sans(v)\\,bold(omega)) $ <C.1>",
+      "$ sans(R)_(j k l)^(' i) = sum_(m n p q) sans(J)_m^i sans(R)_(n p q)^m sans(K)_j^n sans(K)_k^p sans(K)_l^q . $ <C.10>",
+    ],
+    excludes: [
+      "sans(g) sans(T) (sans(u)\\,bold(omega)) $ <C.1>",
+      "$ sans(R)_(j k l)^i = sum_(m n p q) sans(J)_m^i sans(R)_(n p q)^m sans(K)_j^n sans(K)_k^p sans(K)_l^q . $ <C.10>",
     ],
   },
   {
@@ -400,6 +598,23 @@ const typFileAssertions = [
       "#let fdg-seed-bibliography-order() = box(width: 0pt, height: 0pt)[",
       "<abelson1996sicp>",
       "<fdg-software>",
+    ],
+  },
+  {
+    file: "fdg-lib/title.typ",
+    contains: [
+      "CC BY-NC-SA",
+      '#raw("special_sales@mitpress.mit.edu")',
+      "#v(1.6em)",
+      "#h(1.2em)p. cm.",
+      "516.3'6—dc23",
+      "#align(right)[2012042107]",
+      "10 #h(0.35em) 9 #h(0.35em) 8",
+    ],
+    excludes: [
+      "special\\_sales\\@mitpress.mit.edu",
+      "516.3'6--dc23",
+      "10 9 8 7 6 5 4 3 2 1",
     ],
   },
   {
@@ -532,6 +747,10 @@ const globalRegexExcludes = [
     regex: /\b[Ee]quations?\s+\((?:[A-C]|\d+)\.\d+/,
   },
   {
+    name: "literal parenthesized Typst equation ref",
+    regex: /\(@(?:[A-C]|\d+)\.\d+\)/,
+  },
+  {
     name: "subscripted parenthesized expression applied without spacing",
     regex: /\)_[A-Za-z0-9.]+\(/,
   },
@@ -575,12 +794,17 @@ const pdfTextAssertions = [
       "A.1 Procedure Calls",
       "B Our Notation",
       "References",
+      "1 It is customary to shorten \"Euler-Lagrange equations\" to \"Lagrange equations.\"",
+      "1 The quote is from Pais [12], p. 131.",
+      "7 These names are accidents of history.",
     ],
     excludes: [
       "Appendix B , page",
       "Appendix C: References",
       "Appendix Appendix",
       "See Appendix 14",
+      "108 These names are accidents of history.",
+      "((11.11))",
     ],
   },
 ];
@@ -696,6 +920,23 @@ for (const file of convertedOrgFiles) {
 
 for (const file of contentFiles) {
   const text = contentByFile.get(file);
+  const actualDoubleBackslashes = matchAll(/\\\\/g, text).length;
+  const expectedDoubleBackslashes = expectedGeneratedDoubleBackslashCounts[file] ?? 0;
+  if (actualDoubleBackslashes !== expectedDoubleBackslashes) {
+    fail(
+      `Unexpected literal double-backslash count in ${file}:`,
+      `${actualDoubleBackslashes} found, expected ${expectedDoubleBackslashes}`,
+    );
+  }
+  const expectedFootnotes = expectedFootnoteCounts[file];
+  if (expectedFootnotes === undefined) {
+    fail(`Missing expected footnote count configuration for ${file}`);
+  } else {
+    const actualFootnotes = matchAll(/#footnote\[/g, text).length;
+    if (actualFootnotes !== expectedFootnotes) {
+      fail(`Unexpected footnote count in ${file}:`, `${actualFootnotes} found, expected ${expectedFootnotes}`);
+    }
+  }
   const stem = file.replace(/\.typ$/, "");
   const expectedSource = `// Generated from ../../fdg-book/scheme/org/${stem}.org.`;
   if (!text.startsWith(expectedSource)) {
@@ -778,32 +1019,156 @@ for (const file of contentFiles) {
   for (const match of matchAll(/#raw\((?!lang:"scheme")/g, text)) {
     fail("Raw span missing Scheme language:", describeMatch(file, text, match));
   }
+  for (const match of matchAll(/\$[^\n&$]*\\\n\s*&=/g, text)) {
+    fail("Math display breaks immediately before its first aligned equals:", describeMatch(file, text, match));
+  }
+  for (const match of matchAll(/\\\n\s+[+-]/g, text)) {
+    fail("Math continuation row starts with an unaligned operator:", describeMatch(file, text, match));
+  }
+  for (const match of matchAll(/\\\n\s*&[+-]/g, text)) {
+    fail("Math continuation operator should use &quad spacing:", describeMatch(file, text, match));
+  }
+  for (const match of matchAll(/\b(?:vec|mat)\([^$\n]*&quad/g, text)) {
+    fail("Alignment spacing leaked inside a vec/mat call:", describeMatch(file, text, match));
+  }
+}
+
+function displayByLabel(text, label) {
+  const lines = text.split("\n");
+  const targetSuffix = `$ <${label}>`;
+
+  for (let start = 0; start < lines.length; start += 1) {
+    if (!lines[start].startsWith("$")) continue;
+
+    for (let end = start; end < lines.length; end += 1) {
+      if (lines[end].endsWith(targetSuffix)) {
+        return lines.slice(start, end + 1).join("\n");
+      }
+      if (end > start && lines[end].trim() === "") break;
+    }
+  }
+
+  return null;
+}
+
+function labelledDisplays(text) {
+  const lines = text.split("\n");
+  const displays = [];
+
+  for (let start = 0; start < lines.length; start += 1) {
+    if (!lines[start].startsWith("$")) continue;
+
+    for (let end = start; end < lines.length; end += 1) {
+      const label = lines[end].match(/\$ <([^>]+)>$/)?.[1];
+      if (label) {
+        displays.push({
+          label,
+          text: lines.slice(start, end + 1).join("\n"),
+        });
+        start = end;
+        break;
+      }
+      if (end > start && lines[end].trim() === "") break;
+    }
+  }
+
+  return displays;
+}
+
+function equationLabels(text) {
+  return matchAll(/\$\s*<((?:\d+|[BC])\.\d+)>/g, text).map(match => match[1]);
+}
+
+for (const file of contentFiles) {
+  const text = contentByFile.get(file);
+  for (const display of labelledDisplays(text)) {
+    const breaks = matchAll(/\\\n/g, display.text).length;
+    if (breaks === 0) continue;
+
+    const equals = matchAll(/(?<![<>!])=/g, display.text).length;
+    const compactLength = display.text.replace(/\s+/g, " ").length;
+    if (equals === 1 && compactLength < 220) {
+      fail(
+        "Short single-equals display should not have forced linebreaks:",
+        `${file}:${display.label}: ${compactLength} chars`,
+      );
+    }
+  }
 }
 
 const expectedMathLineBreaks = [
-  { file: "chapter005.typ", label: "5.2", minBreaks: 2, minAlignedEquals: 2 },
-  { file: "chapter005.typ", label: "5.4", minBreaks: 5, minAlignedEquals: 5 },
-  { file: "chapter005.typ", label: "5.10", minBreaks: 2, minAlignedEquals: 2 },
-  { file: "chapter005.typ", label: "5.24", minBreaks: 2, minAlignedEquals: 1 },
-  { file: "chapter005.typ", label: "5.30", minBreaks: 3, minAlignedEquals: 3 },
-  { file: "chapter005.typ", label: "5.34", minBreaks: 4, minAlignedEquals: 4 },
-  { file: "chapter007.typ", label: "7.41", minBreaks: 1 },
+  { file: "chapter005.typ", label: "5.2", minBreaks: 1, minAlignedEquals: 1 },
+  { file: "chapter005.typ", label: "5.4", minBreaks: 4, minAlignedEquals: 4 },
+  { file: "chapter005.typ", label: "5.10", minBreaks: 1, minAlignedEquals: 1 },
+  { file: "chapter005.typ", label: "5.24", minBreaks: 2 },
+  { file: "chapter005.typ", label: "5.30", minBreaks: 2, minAlignedEquals: 2 },
+  { file: "chapter005.typ", label: "5.34", minBreaks: 4, minAlignedEquals: 1 },
 ];
 
 for (const { file, label, minBreaks, minAlignedEquals = 0 } of expectedMathLineBreaks) {
   const text = contentByFile.get(file);
-  const match = text.match(new RegExp(`\\$([\\s\\S]*?)\\$ <${label.replace(".", "\\.")}>`));
-  if (!match) {
+  const display = displayByLabel(text, label);
+  if (!display) {
     fail(`Missing expected math display ${label} in ${file}`);
     continue;
   }
-  const breaks = matchAll(/\\\n/g, match[1]).length;
+  const breaks = matchAll(/\\\n/g, display).length;
   if (breaks < minBreaks) {
     fail(`Math display ${label} lost source line breaks in ${file}:`, `${breaks} found, expected at least ${minBreaks}`);
   }
-  const alignedEquals = matchAll(/\\\n\s*&=/g, match[1]).length;
+  const alignedEquals = matchAll(/\\\n\s*&=/g, display).length;
   if (alignedEquals < minAlignedEquals) {
     fail(`Math display ${label} lost aligned equals in ${file}:`, `${alignedEquals} found, expected at least ${minAlignedEquals}`);
+  }
+}
+
+const expectedSingleLineDisplays = [
+  { file: "chapter004.typ", label: "4.35" },
+  { file: "chapter004.typ", label: "4.38" },
+  { file: "chapter007.typ", label: "7.53" },
+  { file: "chapter007.typ", label: "7.41" },
+  { file: "chapter008.typ", label: "8.18" },
+];
+
+for (const { file, label } of expectedSingleLineDisplays) {
+  const text = contentByFile.get(file);
+  const display = displayByLabel(text, label);
+  if (!display) {
+    fail(`Missing expected math display ${label} in ${file}`);
+    continue;
+  }
+  if (/\\\n/.test(display)) {
+    fail(`Math display ${label} should be a single generated line in ${file}:`, display);
+  }
+}
+
+{
+  for (const [file, { prefix, count }] of Object.entries(expectedEquationLabelCounts)) {
+    const labels = equationLabels(contentByFile.get(file)).filter(label => label.startsWith(`${prefix}.`));
+    const expectedLabels = Array.from({ length: count }, (_, index) => `${prefix}.${index + 1}`);
+    if (labels.length !== expectedLabels.length) {
+      fail(
+        "Published equation label count changed:",
+        `${file}: ${labels.length} found, expected ${expectedLabels.length}`,
+      );
+    }
+    for (let index = 0; index < expectedLabels.length; index += 1) {
+      if (labels[index] !== expectedLabels[index]) {
+        fail(
+          "Published equation label sequence changed:",
+          `${file} position ${index + 1}: found ${labels[index] ?? "missing"}, expected ${expectedLabels[index]}`,
+        );
+        break;
+      }
+    }
+  }
+
+  const checkedFiles = Object.keys(expectedEquationLabelCounts).length;
+  if (checkedFiles !== 13) {
+    fail(
+      "Unexpected number of equation-label sections checked:",
+      `${checkedFiles} found, expected 13`,
+    );
   }
 }
 
@@ -950,6 +1315,7 @@ console.log(
       `PDF text files: ${pdfTextAssertions.length}`,
       `generated files: ${contentFiles.length}`,
       `global checks: ${globalExcludes.length + globalRegexExcludes.length + globalProseRegexExcludes.length}`,
+      `equation-label sections: ${Object.keys(expectedEquationLabelCounts).length}`,
       `figures: ${figureUses.length}`,
       `labels: ${definedLabels.size}`,
       `bibliography keys: ${bibKeys.size}`,

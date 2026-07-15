@@ -7,11 +7,9 @@ There are a variety of objects that have meaning independent of any particular b
 
 A geometric function of vector fields and form fields that is linear in each argument with functions as multipliers is called a #emph[tensor]. For example, let $sans(T)$ be a geometric function of a vector field and form field that gives a real-number result at the manifold point $sans(m)$. Then
 
-$ sans(T) (sans(f) sans(u) + sans(g) sans(v)\,bold(omega))\
- &= sans(f) thin sans(T) (sans(u)\,bold(omega))+ sans(g) sans(T) (sans(u)\,bold(omega)) $ <C.1>
+$ sans(T) (sans(f) sans(u) + sans(g) sans(v)\,bold(omega)) &= sans(f) thin sans(T) (sans(u)\,bold(omega))+ sans(g) sans(T) (sans(v)\,bold(omega)) $ <C.1>
 
-$ sans(T) (sans(u)\,sans(f) bold(omega) + sans(g) bold(theta))\
- &= sans(f) thin sans(T) (sans(u)\,bold(omega))+ sans(g) sans(T) (sans(u)\,bold(theta))\, $ <C.2>
+$ sans(T) (sans(u)\,sans(f) bold(omega) + sans(g) bold(theta)) &= sans(f) thin sans(T) (sans(u)\,bold(omega))+ sans(g) sans(T) (sans(u)\,bold(theta))\, $ <C.2>
 
 where $sans(u)$ and $sans(v)$ are vector fields, $bold(omega)$ and $bold(theta)$ are form fields, and $sans(f)$ and $sans(g)$ are manifold functions. That a tensor is linear over functions and not just constants is important.
 
@@ -78,7 +76,7 @@ $ sans(R)_(j k l)^i = sum_(m n p q) sans(K)_m^i sans(R)_(n p q)^(' m) sans(J)_j^
 
 or
 
-$ sans(R)_(j k l)^i = sum_(m n p q) sans(J)_m^i sans(R)_(n p q)^m sans(K)_j^n sans(K)_k^p sans(K)_l^q . $ <C.10>
+$ sans(R)_(j k l)^(' i) = sum_(m n p q) sans(J)_m^i sans(R)_(n p q)^m sans(K)_j^n sans(K)_k^p sans(K)_l^q . $ <C.10>
 
 Whew!
 

@@ -11,8 +11,7 @@ $ cal(R) (sans(w)\,sans(v))=[nabla_(sans(w))\,nabla_(sans(v))]- nabla_([sans(w)\
 
 The traditional Riemann tensor is
 
-$ cal(R) (bold(omega)\,sans(u)\,sans(v)\,sans(w)) =\
- bold(omega) ((cal(R) (sans(w) \, sans(v))) (sans(u)))\, $ <8.2>
+$ cal(R) (bold(omega)\,sans(u)\,sans(v)\,sans(w)) = bold(omega) ((cal(R) (sans(w) \, sans(v))) (sans(u)))\, $ <8.2>
 
 where $bold(omega)$ is a one-form field that measures the incremental change in the vector field $sans(u)$ caused by parallel-transporting it around the loop defined by the vector fields $sans(w)$ and $sans(v)$. $sans(R)$ allows us to compute the #emph[intrinsic curvature] of a manifold at a point.
 
@@ -90,12 +89,12 @@ Consider parallel-transporting a vector $sans(u)$ around a parallelogram defined
 
 The state $s =(sigma\,u)$ after transporting $s_0$ around the loop is#footnote[The parallel-transport operators are evolution operators, and therefore descend into composition:
 
-$ e_A (F compose G)= F compose (e^A G)\, $ <8.33>
+$ e_A (F compose G)= F compose (e^A G)\, $
 
 for any state function $G$ and any compatible $F$. As a consequence, we have the following identity:
 
 $ e^A e^B I = e^A ((e^B I) compose I) = \
- (e^B I) compose (e^A I)\, $ <8.34>
+ (e^B I) compose (e^A I)\, $
 
 where $I$ is the identity function on states.]
 
@@ -110,7 +109,7 @@ $ epsilon.alt^2 U (([L_(g_w) \, L_(g_v)] I) (s_0))\, $ <8.11>
 
 where $U (sigma\,u)= u$.
 
-However , if $sans(w)$ and $sans(v)$ do not commute, the indicated loop does not bring $sigma$ back to the starting point, to second order in $epsilon.alt$. We must account for the commutator. (See figure 4.2.) In the general case the lowest order change in the transported vector is
+However, if $sans(w)$ and $sans(v)$ do not commute, the indicated loop does not bring $sigma$ back to the starting point, to second order in $epsilon.alt$. We must account for the commutator. (See figure 4.2.) In the general case the lowest order change in the transported vector is
 
 $ epsilon.alt^2 U ((([L_(g_w) \, L_(g_v)] - L_(g_([w\,v]))) I) (s_0))\, $ <8.12>
 
@@ -269,27 +268,25 @@ The obvious identification does not work, but neither does the other one!
 
 Let\'s compute the two parts of the Riemann curvature operator and see how this works out. First, recall
 
-$ nabla_(sans(v)) sans(u) (sans(f))= sum_i sans(e)_i (sans(f)) (sans(v) (tilde(sans(e))^i (sans(u))) \
- + sum_j pi.alt_j^i (sans(v)) tilde(sans(e))^j (sans(u))) \
- &= sans(e) (sans(f)) (sans(v) (tilde(sans(e)) (sans(u)))\
- + pi.alt (sans(v))tilde(sans(e)) (sans(u)))\, $ <8.16>
+$ nabla_(sans(v)) sans(u) (sans(f)) &= sum_i sans(e)_i (sans(f)) (sans(v) (tilde(sans(e))^i (sans(u))) \
+ &quad + sum_j pi.alt_j^i (sans(v)) tilde(sans(e))^j (sans(u))) \
+ &= sans(e) (sans(f)) (sans(v) (tilde(sans(e)) (sans(u))) \
+ &quad + pi.alt (sans(v))tilde(sans(e)) (sans(u)))\, $ <8.16>
 
 where the second form uses tuple arithmetic. Now let\'s consider the first part of the Riemann curvature operator:
 
-$ [nabla_(sans(w)) \, nabla_(sans(v))] sans(u) \
- &= nabla_(sans(w)) nabla_(sans(v)) sans(u) - nabla_(sans(v)) nabla_(sans(w)) sans(u) \
+$ [nabla_(sans(w)) \, nabla_(sans(v))] sans(u)  &= nabla_(sans(w)) nabla_(sans(v)) sans(u) - nabla_(sans(v)) nabla_(sans(w)) sans(u) \
  &= sans(e) { sans(w) (sans(v) (tilde(sans(e)) (sans(u)))+ pi.alt (sans(v))tilde(sans(e)) (sans(u)))\
- + pi.alt (sans(w)) (sans(v) (tilde(sans(e)) (sans(u)))+ pi.alt (sans(v))tilde(sans(e)) (sans(u)))} \
- - sans(e) { sans(v) (sans(w) (tilde(sans(e)) (sans(u)))+ pi.alt (sans(w))tilde(sans(e)) (sans(u)))\
- + pi.alt (sans(v)) (sans(w) (tilde(sans(e)) (sans(u)))+ pi.alt (sans(w))tilde(sans(e)) (sans(u)))} \
+ &quad + pi.alt (sans(w)) (sans(v) (tilde(sans(e)) (sans(u)))+ pi.alt (sans(v))tilde(sans(e)) (sans(u)))} \
+ &quad - sans(e) { sans(v) (sans(w) (tilde(sans(e)) (sans(u)))+ pi.alt (sans(w))tilde(sans(e)) (sans(u)))\
+ &quad + pi.alt (sans(v)) (sans(w) (tilde(sans(e)) (sans(u)))+ pi.alt (sans(w))tilde(sans(e)) (sans(u)))} \
  &= sans(e) {[sans(w)\,sans(v)]tilde(sans(e)) (sans(u))\
- + sans(w) (pi.alt (sans(v)))tilde(sans(e)) (sans(u))- sans(v) (pi.alt (sans(w)))tilde(sans(e)) (sans(u))\
- + pi.alt (sans(w))pi.alt (sans(v))tilde(sans(e)) (sans(u))- pi.alt (sans(v))pi.alt (sans(w))tilde(sans(e)) (sans(u))} . $ <8.17>
+ &quad + sans(w) (pi.alt (sans(v)))tilde(sans(e)) (sans(u))- sans(v) (pi.alt (sans(w)))tilde(sans(e)) (sans(u))\
+ &quad + pi.alt (sans(w))pi.alt (sans(v))tilde(sans(e)) (sans(u))- pi.alt (sans(v))pi.alt (sans(w))tilde(sans(e)) (sans(u))} . $ <8.17>
 
 The second term of the Riemann curvature operator is
 
-$ nabla_([sans(w)\,sans(v)]) sans(u) = sans(e) {[sans(w) \, sans(v)] tilde(sans(e)) (sans(u)) \
- + pi.alt ([sans(w) \, sans(v)]) tilde(sans(e)) (u)} . $ <8.18>
+$ nabla_([sans(w)\,sans(v)]) sans(u) = sans(e) {[sans(w) \, sans(v)] tilde(sans(e)) (sans(u)) + pi.alt ([sans(w) \, sans(v)]) tilde(sans(e)) (u)} . $ <8.18>
 
 The difference of these is the Riemann curvature operator. Notice that the first term in each cancels, and the rest gives equation @8.13.
 
@@ -424,8 +421,7 @@ $ nabla_(sans(T)) (nabla_(sans(T)) sans(U))= nabla_(sans(T)) (nabla_(sans(U)) sa
 
 because both the torsion is zero and $[sans(T)\,sans(U)]= 0$. Continuing
 
-$ nabla_(sans(T)) (nabla_(sans(T)) sans(U))= nabla_(sans(T)) (nabla_(sans(U)) sans(T))\
- &= nabla_(sans(T)) (nabla_(sans(U)) sans(T))+ nabla_(sans(U)) (nabla_(sans(T)) sans(T))- nabla_(sans(U)) (nabla_(sans(T)) sans(T))\
+$ nabla_(sans(T)) (nabla_(sans(T)) sans(U))= nabla_(sans(T)) (nabla_(sans(U)) sans(T)) &= nabla_(sans(T)) (nabla_(sans(U)) sans(T))+ nabla_(sans(U)) (nabla_(sans(T)) sans(T))- nabla_(sans(U)) (nabla_(sans(T)) sans(T))\
  &= nabla_(sans(U)) (nabla_(sans(T)) sans(T))- cal(R) (sans(U)\,sans(T)) (sans(T))\
  &= - cal(R) (sans(U)\,sans(T)) (sans(T)). $ <8.28>
 
@@ -553,7 +549,7 @@ And this agrees with the calculation of $nabla_(sans(T)) nabla_(sans(T)) sans(U)
 == Bianchi Identities <sec-8.4>
 There are some important mathematical properties of the Riemann curvature. These identities will be used to constrain the possible geometries that can occur.
 
-A system with a symmetric connection, $Gamma_(j k)^i = Gamma_(j k)^i$, is torsion free.#footnote[Setup for this section:
+A system with a symmetric connection, $Gamma_(j k)^i = Gamma_(k j)^i$, is torsion free.#footnote[Setup for this section:
 
 ```scheme
 (define omega (literal-1form-field 'omega-rect R4-rect))
@@ -586,9 +582,7 @@ The Bianchi identities are defined in terms of a cyclic-summation operator, whic
 
 The first Bianchi identity is
 
-$ sans(R) (omega\,sans(x)\,sans(y)\,sans(z))\
- + sans(R) (omega\,sans(y)\,sans(z)\,sans(x))\
- + sans(R) (omega\,sans(z)\,sans(x)\,sans(y))= 0\, $ <8.31>
+$ sans(R) (omega\,sans(x)\,sans(y)\,sans(z)) + sans(R) (omega\,sans(y)\,sans(z)\,sans(x)) + sans(R) (omega\,sans(z)\,sans(x)\,sans(y))= 0\, $ <8.31>
 
 or, as a program:
 
@@ -603,9 +597,7 @@ or, as a program:
 
 The second Bianchi identity is
 
-$ nabla_(sans(x)) sans(R) (omega\,sans(v)\,sans(y)\,sans(z))\
- + nabla_(sans(y)) sans(R) (omega\,sans(v)\,sans(z)\,sans(x))\
- + nabla_(sans(z)) sans(R) (omega\,sans(v)\,sans(x)\,sans(y))= 0 $ <8.32>
+$ nabla_(sans(x)) sans(R) (omega\,sans(v)\,sans(y)\,sans(z)) + nabla_(sans(y)) sans(R) (omega\,sans(v)\,sans(z)\,sans(x)) + nabla_(sans(z)) sans(R) (omega\,sans(v)\,sans(x)\,sans(y))= 0 $ <8.32>
 
 or, as a program:
 

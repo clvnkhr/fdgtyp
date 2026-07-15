@@ -9,17 +9,11 @@ For vectors $arrow(u) = u^x hat(x) + u^y hat(y) + u^z hat(z)$ and $arrow(v) = v^
 
 For example, the natural metric on a sphere of radius $R$ is
 
-$ sans(g) (sans(u)\,sans(v))= \
- R^2 (sans(d) theta (sans(u)) sans(d) theta (sans(v)) \
- + (sin theta)^2 sans(d) phi.alt (sans(u)) sans(d) phi.alt (sans(v)))\, $ <9.1>
+$ sans(g) (sans(u)\,sans(v))= R^2 (sans(d) theta (sans(u)) sans(d) theta (sans(v)) + (sin theta)^2 sans(d) phi.alt (sans(u)) sans(d) phi.alt (sans(v)))\, $ <9.1>
 
 and the Minkowski metric on the 4-dimensional space of special relativity is
 
-$ sans(g) (sans(u)\,sans(v))= \
- sans(d) x (sans(u))sans(d) x (sans(v))\
- + sans(d) y (sans(u))sans(d) y (sans(v))\
- + sans(d) z (sans(u))sans(d) z (sans(v))\
- - c^2 sans(d) t (sans(u))sans(d) t (sans(v)). $ <9.2>
+$ sans(g) (sans(u)\,sans(v))= sans(d) x (sans(u))sans(d) x (sans(v)) + sans(d) y (sans(u))sans(d) y (sans(v)) + sans(d) z (sans(u))sans(d) z (sans(v)) - c^2 sans(d) t (sans(u))sans(d) t (sans(v)). $ <9.2>
 
 Although these examples are expressed in terms of a coordinate basis, the value of the metric on vector fields does not depend on the coordinate system that is used to specify the metric.
 
@@ -87,14 +81,11 @@ where #raw(lang:"scheme", "contract") is the trace over a basis of a two-argumen
 == Metric Compatibility <sec-9.1>
 A connection is said to be compatible with a metric $sans(g)$ if the covariant derivative for that connection obeys the \"product rule\":
 
-$ Delta_(sans(X)) (g (sans(Y) \, sans(Z))) = g (Delta_(sans(X)) (sans(Y)) \, sans(Z)) \
- + g (sans(Y) \, Delta_(sans(X)) (sans(Z))) . $ <9.9>
+$ Delta_(sans(X)) (g (sans(Y) \, sans(Z))) = g (Delta_(sans(X)) (sans(Y)) \, sans(Z)) + g (sans(Y) \, Delta_(sans(X)) (sans(Z))) . $ <9.9>
 
 For a metric there is a unique torsion-free connection that is compatible with it. The Christoffel coefficients of the first kind are computed from the metric by the following:
 
-$ macron(Gamma)_(i j k) = 1 / 2 (sans(e)_k (sans(g) (sans(e)_i \, sans(e)_j)) \
- + sans(e)_j (sans(g) (sans(e)_i \, sans(e)_k)) \
- - sans(e)_i (sans(g) (sans(e)_j \, sans(e)_k))) $ <9.10>
+$ macron(Gamma)_(i j k) = 1 / 2 (sans(e)_k (sans(g) (sans(e)_i \, sans(e)_j)) + sans(e)_j (sans(g) (sans(e)_i \, sans(e)_k)) - sans(e)_i (sans(g) (sans(e)_j \, sans(e)_k))) $ <9.10>
 
 for the coordinate basis $sans(e)$. We can then construct the Christoffel coefficients of the second kind (the ones used previously to define a connection) by \"raising the first index.\" To do this we define a function of three vectors, with a weird currying:
 
@@ -102,18 +93,15 @@ $ sum_(i j k) macron(Gamma)_(i j k) tilde(sans(e))^i (sans(u))tilde(sans(e))^j (
 
 This function takes two vector fields and produces a one-form field. We can use it with equation @9.7 to construct a new function that takes two vector fields and produces a vector field:
 
-$ hat(Gamma) (sans(v)\,sans(w))\
- &= sum_i sans(g)^(-1) (tilde(Gamma) (sans(v) \, sans(w)) \, tilde(sans(e))^i) sans(e)_i . $ <9.12>
+$ hat(Gamma) (sans(v)\,sans(w)) &= sum_i sans(g)^(-1) (tilde(Gamma) (sans(v) \, sans(w)) \, tilde(sans(e))^i) sans(e)_i . $ <9.12>
 
 We can now construct the Christoffel coefficients of the second kind:
 
-$ Gamma_(j k)^i = tilde(sans(e))^i (hat(Gamma) (sans(e)_j \, sans(e)_k)) \
- &= sum_m macron(Gamma)_(m j k) sans(g)^(-1) (tilde(sans(e))^m \, tilde(sans(e))^i) $ <9.13>
+$ Gamma_(j k)^i = tilde(sans(e))^i (hat(Gamma) (sans(e)_j \, sans(e)_k))  &= sum_m macron(Gamma)_(m j k) sans(g)^(-1) (tilde(sans(e))^m \, tilde(sans(e))^i) $ <9.13>
 
 The Cartan forms are then just
 
-$ pi.alt_j^i \
- &= sum_k Gamma_(j k)^i tilde(upright(e))^k \
+$ pi.alt_j^i  &= sum_k Gamma_(j k)^i tilde(upright(e))^k \
  &= sum_k tilde(upright(e))^i (hat(Gamma) (upright(e)_j \, upright(e)_k)) tilde(upright(e))^k . $ <9.14>
 
 So, for example, we can compute the Christoffel coefficients for the sphere from the metric for the sphere. First, we need the metric:
@@ -318,8 +306,7 @@ More generally, a differential equation system $F[q] (t)= 0$ is said to be #emph
 
 The Lagrangian $L_1$ is homogeneous of degree 1 in the velocities; so
 
-$ bold(E)[L_1]compose Gamma[q compose f]\
- - (bold(E) [L_1] compose Gamma [q] compose f) D f = 0 . $ <9.21>
+$ bold(E)[L_1]compose Gamma[q compose f] - (bold(E) [L_1] compose Gamma [q] compose f) D f = 0 . $ <9.21>
 
 We can check this in a simple case. For two dimensions $q =(x\,y)$, the condition under which a reparameterization $f$ of the geodesic paths with coordinates $q$ satisfies the Lagrange equations for $L_1$ is:
 
@@ -344,8 +331,7 @@ This residual is identically satisfied, showing that the Lagrange equations for 
 
 The Lagrangian $L_2$ is homogeneous of degree 2 in the velocities; so
 
-$ bold(E)[L_2][q compose f]-(bold(E)[L_2][q]compose f) (D f)^2\
- &= (partial_2 L_2 compose Gamma [q] compose f) (D^2 f). $ <9.22>
+$ bold(E)[L_2][q compose f]-(bold(E)[L_2][q]compose f) (D f)^2 &= (partial_2 L_2 compose Gamma [q] compose f) (D^2 f). $ <9.22>
 
 Although the Euler-Lagrange equations for $L_1$ are invariant under an arbitrary reparameterization $(D f != 0)$, the Euler-Lagrange equations for $L_2$ are invariant only for a restricted set of $f$. The conditions under which a reparameterization $f$ of geodesic paths with coordinates $q$ satisfies the Lagrange equations for $L_2$ are:
 
@@ -401,8 +387,7 @@ The 2-dimensional surface of a 3-dimensional sphere can be embedded in three dim
 
 If we raise one index of the Ricci tensor (see equation @8.20) by contracting it with the inverse of the metric tensor we can further contract it to obtain a scalar manifold function:
 
-$ R = sum_(i j) sans(g) (tilde(sans(e))^i \, tilde(sans(e))^j) \
- r (sans(e)^i \, sans(e)^j) . $ <9.23>
+$ R = sum_(i j) sans(g) (tilde(sans(e))^i \, tilde(sans(e))^j) r (sans(e)^i \, sans(e)^j) . $ <9.23>
 
 The #raw(lang:"scheme", "trace2down") procedure converts a tensor that takes two vector fields into a tensor that takes a vector field and a one-form field, and then it contracts the result over a basis to make a trace. It is useful for getting the Ricci scalar from the Ricci tensor, given a metric and a basis.
 
@@ -437,7 +422,7 @@ are Newton\'s equations to lowest order in $V\/c^2$:
 $ D^2 arrow(x) (t) = - grad V (arrow(x) (t)). $ <9.25>
 
 === Exercise 9.5: Newton\'s Equations <sec-9.4.1>
-Verify that Newton\'s equations @9.25 are indeed the lowest-order terms of the geodesic equations for the metric (@9.24).
+Verify that Newton\'s equations @9.25 are indeed the lowest-order terms of the geodesic equations for the metric #ref(<9.24>).
 
 Einstein\'s field equations tell how the local energy-momentum distribution determines the local shape of the spacetime, as described by the metric tensor $g$. The equations are traditionally written
 
@@ -457,7 +442,7 @@ $ Lap (V)= 4 pi G rho $ <9.28>
 
 where $V$ is the gravitational potential field at a point, $rho$ is the mass density at that point, and $Lap$ is the Laplacian operator.
 
-The time-time component of the Ricci tensor derived from the metric (@9.24) is the Laplacian of the potential, to lowest order.
+The time-time component of the Ricci tensor derived from the metric #ref(<9.24>) is the Laplacian of the potential, to lowest order.
 
 ```scheme
 (define (Newton-metric M G c V)

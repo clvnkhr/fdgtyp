@@ -132,6 +132,21 @@ function normalizeDollarMath(source) {
   });
 }
 
+function suppressPublishedEquationNumber(stem, math) {
+  if (stem !== "chapter007") return false;
+
+  return (
+    (
+      math.includes("\\nabla_{\\mathsf{v}}(\\tau(\\mathsf{w}))") &&
+      math.includes("\\tau(\\nabla_{\\mathsf{v}}\\mathsf{w})") &&
+      math.includes("\\nabla_{\\mathsf{v}}\\mathsf{w})")
+    ) ||
+    math.includes("Du^{0}(\\tau)=\\sin(\\alpha(\\tau))\\cos(\\alpha(\\tau))D\\beta(\\tau)u^{1}(\\tau)") ||
+    math.includes("\\left(\\begin{array}{c}") ||
+    math.includes("\\left[\\begin{array}{c}")
+  );
+}
+
 function normalizeLatexDisplayEnvironments(source, stem) {
   const labelPrefix = equationLabelPrefix(stem);
   let equationIndex = 0;
@@ -140,7 +155,7 @@ function normalizeLatexDisplayEnvironments(source, stem) {
     /\\begin\{(equation\*?|align\*?)\}([\s\S]*?)\\end\{\1\}/g,
     (_match, env, math) => {
       const trimmed = math.replace(/\\label\{[^}]+\}/g, "").trim();
-      const numbered = !env.endsWith("*") && labelPrefix;
+      const numbered = !env.endsWith("*") && labelPrefix && !suppressPublishedEquationNumber(stem, trimmed);
       const label = numbered ? `<${labelPrefix}.${equationIndex += 1}>` : "";
       if (!trimmed) return "";
       return label ? `$$${trimmed}$$\n${label}` : `$$${trimmed}$$`;
@@ -190,8 +205,45 @@ function wrapBareSchemeBlocks(source) {
   return output.join("\n");
 }
 
+function applyPdfFidelitySourceRepairs(source, stem) {
+  // These repairs are derived from the published PDF. Keep them here rather
+  // than editing the vendored Org snapshot.
+  if (stem === "appendix_b") {
+    return source
+      .replaceAll("I_0(s) &= y \\\\", "I_0(s) &= t \\\\")
+      .replaceAll("AB = [AC_0, AC_1, AC_2].", "AC = [AC_0, AC_1, AC_2].");
+  }
+
+  if (stem === "appendix_c") {
+    return source
+      .replaceAll(
+        "+ \\mathsf{g} \\mathsf{T}(\\mathsf{u}, \\boldsymbol{\\omega})",
+        "+ \\mathsf{g} \\mathsf{T}(\\mathsf{v}, \\boldsymbol{\\omega})",
+      )
+      .replaceAll(
+        "\\mathsf{R}_{jkl}^i = \\sum_{mnpq}{\\mathsf{J}_m^i \\mathsf{R}_{npq}^m \\mathsf{K}_j^n \\mathsf{K}_k^p \\mathsf{K}_l^q}.",
+        "\\mathsf{R}_{jkl}^{\\prime i} = \\sum_{mnpq}{\\mathsf{J}_m^i \\mathsf{R}_{npq}^m \\mathsf{K}_j^n \\mathsf{K}_k^p \\mathsf{K}_l^q}.",
+      );
+  }
+
+  if (stem === "chapter010") {
+    return source
+      .replaceAll(
+        "\\operatorname{grad}(\\mathsf{f}) = g^\\sharp(\\mathsf{df})\n(df)",
+        "\\operatorname{grad}(\\mathsf{f}) = g^\\sharp(\\mathsf{df})",
+      )
+      .replaceAll(
+        "- \\frac{\\partial\\theta_z}{\\partial\\mathsf{x}} \\right) \\mathsf{dx} \\\\",
+        "- \\frac{\\partial\\theta_z}{\\partial\\mathsf{x}} \\right) \\mathsf{dy} \\\\",
+      );
+  }
+
+  return source;
+}
+
 function normalizeOrgSource(source, stem) {
-  return wrapBareSchemeBlocks(normalizeDollarMath(normalizeLatexDisplayEnvironments(source, stem)))
+  const repairedSource = applyPdfFidelitySourceRepairs(source, stem);
+  return wrapBareSchemeBlocks(normalizeDollarMath(normalizeLatexDisplaysWithFootnotes(repairedSource, stem)))
     // Clear typos and unsupported macros in the imported Org math. These are
     // applied to a temporary source copy so the subtree remains pristine.
     .replaceAll("\\psia", "\\psi_a")
@@ -203,6 +255,20 @@ function normalizeOrgSource(source, stem) {
     .replaceAll("Les Mis´erables", "Les Misérables")
     .replaceAll("EulerLagrange", "Euler-Lagrange")
     .replaceAll("Indepenedent", "Independent")
+    .replaceAll("Papert\n[13].", "Papert @papert1980mindstorms.")
+    .replaceAll("this lagrangian is implemented by", "This Lagrangian is implemented by")
+    .replaceAll("90◦E meridian", "90◦ E meridian")
+    .replaceAll("di- rection", "direction")
+    .replaceAll("deriva- tives", "derivatives")
+    .replaceAll("com- ponents", "components")
+    .replaceAll("deriva-\ntives", "derivatives")
+    .replaceAll("com-\n   ponents", "components")
+    .replaceAll("(make fake-vector-field V-over-mu n)", "(make-fake-vector-field V-over-mu n)")
+    .replaceAll("(coordinate-system at 'spherical 'north-pole S2)", "(coordinate-system-at 'spherical 'north-pole S2)")
+    .replaceAll("(define ((pullback-function mu:N->M) f-on-m)", "(define ((pullback-function mu:N->M) f-on-M)")
+    .replaceAll("We can asume without loss of generality", "We can assume without loss of generality")
+    .replaceAll("However , if", "However, if")
+    .replaceAll("\\Gamma_{jk}^i = \\Gamma_{jk}^i", "\\Gamma_{jk}^i = \\Gamma_{kj}^i")
     .replaceAll("functions hat map", "functions that map")
     .replaceAll("(compose (literal-function 'f-rect R2->R) R2-rect-chi)", "(compose (literal-function 'f-rect R2->R) R2-rect-chi))")
     .replaceAll("(define R2-rect-point (R2-rect-chi-inverse (up 'x0 'y0))))", "(define R2-rect-point (R2-rect-chi-inverse (up 'x0 'y0)))")
@@ -405,6 +471,7 @@ function cleanTypstMath(math) {
     " lr( (D f)(t) = frac(d, d x) f(x) |)_(x=t) ",
   );
 
+  let alignedBreakCount = 0;
   const finalized = spaceMathApplications(cleaned)
     .replace(/\s+,/g, ",")
     .replace(/\)(\^\d+)sans\(/g, ")$1 sans(")
@@ -412,8 +479,15 @@ function cleanTypstMath(math) {
     .replace(/(\)\^[A-Za-z0-9.]+)(?=sans\()/g, "$1 ")
     .replace(/(bb|binom|sans|scale)\s+\(/g, "$1(")
     .replace(/\)(\^\d+)sans\(/g, ")$1 sans(")
-    .replace(/"FDGBREAK"\s*=/g, "\\\n &=")
+    .replace(/\bsum_([A-Za-z0-9]+)\(/g, "sum_$1 (")
+    .replace(/"FDGBREAK"\s*=/g, () => {
+      alignedBreakCount += 1;
+      return alignedBreakCount === 1 ? " &=" : "\\\n &=";
+    })
     .replaceAll("\"FDGBREAK\"", "\\\n")
+    .replace(/\\\n\s+([+-])/g, "\\\n &quad $1")
+    .replace(/,\s*&quad\s+([+-])/g, ", $1")
+    .replace(/\\\\(?=\n)/g, "\\")
     .replace(
     "frac(d, d t) (frac(partial L (t\\,q\\,dot(q)), partial dot(q))|_(q=w (t) dot(q) = frac(d w (t), d t))) - frac(partial L (t\\,q\\,dot(q)), partial q)|_(q=w (t)dot(q) = frac(d w (t), d t)) = 0 .",
     "frac(d, d t) (lr(frac(partial L (t\\,q\\,dot(q)), partial dot(q))|)_(q=w (t) \\\n dot(q) = frac(d w (t), d t))) - lr(frac(partial L (t\\,q\\,dot(q)), partial q)|)_(q=w (t) \\\n dot(q) = frac(d w (t), d t)) = 0 .",
@@ -423,7 +497,26 @@ function cleanTypstMath(math) {
     "frac(d, d t) (lr(frac(partial L (t\\,q\\,dot(q)), partial dot(q))|)_(q=w (t) \"FDGBREAK\" dot(q) = frac(d w (t), d t))) - lr(frac(partial L (t\\,q\\,dot(q)), partial q)|)_(q=w (t) \"FDGBREAK\" dot(q) = frac(d w (t), d t)) = 0 .",
   );
 
-  return commaSeparateMathCallLinebreaks(finalized).replace(/\s+,/g, ",");
+  return compactShortSingleEqualsDisplay(commaSeparateMathCallLinebreaks(finalized)
+    .replace(/,\s*&quad\s+([+-])/g, ", $1")
+    .replace(/\s+,/g, ","));
+}
+
+function compactShortSingleEqualsDisplay(math) {
+  if (!/\\\n/.test(math)) return math;
+
+  const equals = [...math.matchAll(/(?<![<>!])=/g)].length;
+  if (equals !== 1) return math;
+
+  const compact = math
+    .replace(/\\\n\s*&quad\s*/g, " ")
+    .replace(/\\\n\s*/g, " ")
+    .replace(/\s+/g, " ")
+    .replace(/\(\s+/g, "(")
+    .replace(/\s+\)/g, ")")
+    .trim();
+
+  return compact.length <= 220 ? ` ${compact} ` : math;
 }
 
 function mathifyBareGreekInProse(body) {
@@ -788,10 +881,36 @@ function repairChapter1(body) {
 }
 
 function repairPrologue(body) {
-  return body.replaceAll(
-    "By thinking computationally we have reformulated the Lagrange equations into a form that is explicit enough to specify a computation. We could convert it into a program for any symbolic manipulation program because it tells us #emph[how] to manipulate expressions to compute the residuals of Lagrange's equations for a purported solution path.#footnote",
-    "By thinking computationally we have reformulated the Lagrange equations into a form that is explicit enough to specify a computation. We could convert it into a program for any symbolic manipulation program because it tells us #emph[how] to manipulate expressions to compute the residuals of Lagrange's equations for a purported solution path.<prologue-residuals>#footnote",
-  );
+  return body
+    .replaceAll("Papert \\@papert1980mindstorms", "Papert @papert1980mindstorms")
+    .replaceAll(
+      "By thinking computationally we have reformulated the Lagrange equations into a form that is explicit enough to specify a computation. We could convert it into a program for any symbolic manipulation program because it tells us #emph[how] to manipulate expressions to compute the residuals of Lagrange's equations for a purported solution path.#footnote",
+      "By thinking computationally we have reformulated the Lagrange equations into a form that is explicit enough to specify a computation. We could convert it into a program for any symbolic manipulation program because it tells us #emph[how] to manipulate expressions to compute the residuals of Lagrange's equations for a purported solution path.<prologue-residuals>#footnote",
+    );
+}
+
+function repairAppendixA(body) {
+  return body
+    .replaceAll(
+      '$ (quad italic("operator") quad italic("operand-1") quad dots.c quad italic("operand-n") quad) $',
+      "```scheme\n(operator operand-1 ... operand-n)\n```",
+    )
+    .replaceAll(
+      '$ mono("(lambda") quad italic("formal-parameters") quad italic("body") mono(")") $',
+      "```scheme\n(lambda formal-parameters body)\n```",
+    )
+    .replaceAll(
+      '$ mono("(cond ") mono("(") italic("predicate-1") quad italic("consequent-1") mono(")") \\\n dots.c \\\n mono("(") italic("predicate-n") quad italic("consequent-n") mono("))") $',
+      "```scheme\n(cond (predicate-1 consequent-1)\n      ...\n      (predicate-n consequent-n))\n```",
+    )
+    .replaceAll(
+      '$ mono("(if") quad italic("predicate") quad italic("consequent") quad italic("alternative") mono(")") $',
+      "```scheme\n(if predicate consequent alternative)\n```",
+    )
+    .replaceAll(
+      '$ mono("(let (") mono("(") italic("variable-1") quad italic("expression-1") mono(")") \\\n dots.c \\\n mono("(") italic("variable-n") quad italic("expression-n") mono("))") \\\n #h(2em) italic("body") mono(")") $',
+      "```scheme\n(let ((variable-1 expression-1)\n      ...\n      (variable-n expression-n))\n  body)\n```",
+    );
 }
 
 function repairChapter2(body) {
@@ -806,6 +925,158 @@ function repairChapter3(body) {
     /#footnote\[The analogous recovery of coefficient tuples from vector fields is equation\s+```scheme\s+\(@3\.3\):[\s\S]*?```\]/,
     "#footnote[The analogous recovery of coefficient tuples from vector fields is equation @3.3: $b^i_(chi, sans(v)) = sans(v)(chi^i) compose chi^(-1)$.]",
   );
+}
+
+function repairChapter4(body) {
+  return body
+    .replaceAll(
+      "$ tilde(sans(e))^i (sans(e)_j) (sans(m))= delta_j^i = sum_k sans(d)_k^i (sans(m))\\\n sans(c)_j^k (sans(m)). $ <4.6>",
+      "$ tilde(sans(e))^i (sans(e)_j) (sans(m))= delta_j^i = sum_k sans(d)_k^i (sans(m)) sans(c)_j^k (sans(m)). $ <4.6>",
+    )
+    .replaceAll(
+      "$ sans(v) (sans(f))= sum_i sans(e)_i (sans(f))sans(b)^i \\\n &= sum_i sans(e')_j (sans(f))sans(b')^j . $ <4.9>",
+      "$ sans(v) (sans(f))= sum_i sans(e)_i (sans(f))sans(b)^i = sum_i sans(e')_j (sans(f))sans(b')^j . $ <4.9>",
+    )
+    .replaceAll(
+      "$ sans(v) (sans(f))= sum_i sans(e)_i (sans(f))sans(b)^i  &= sum_i sans(e')_j (sans(f))sans(b')^j . $ <4.9>",
+      "$ sans(v) (sans(f))= sum_i sans(e)_i (sans(f))sans(b)^i = sum_i sans(e')_j (sans(f))sans(b')^j . $ <4.9>",
+    )
+    .replaceAll(
+      "$ sans(v) (sans(f)) (sans(m))= sans(e) (sans(f)) (sans(m))\\\n sans(b) (sans(m))= \\\n sum_i sans(e)_i (sans(f)) (sans(m))sans(b)^i (sans(m))\\, $ <4.1>",
+      "$ sans(v) (sans(f)) (sans(m))= sans(e) (sans(f)) (sans(m)) sans(b) (sans(m))= sum_i sans(e)_i (sans(f)) (sans(m))sans(b)^i (sans(m))\\, $ <4.1>",
+    )
+    .replaceAll(
+      "$ sans(a)_i = bold(omega) (sans(e)_i)= sum_j sans(a)'_j tilde(sans(e))^(' j) (sans(e)_i)\\\n &= sum_j sans(a)'_j sans(J)_i^j $ <4.19>",
+      "$ sans(a)_i = bold(omega) (sans(e)_i)= sum_j sans(a)'_j tilde(sans(e))^(' j) (sans(e)_i) = sum_j sans(a)'_j sans(J)_i^j $ <4.19>",
+    )
+    .replaceAll(
+      "$ sans(a)_i = bold(omega) (sans(e)_i)= sum_j sans(a)'_j tilde(sans(e))^(' j) (sans(e)_i) &= sum_j sans(a)'_j sans(J)_i^j $ <4.19>",
+      "$ sans(a)_i = bold(omega) (sans(e)_i)= sum_j sans(a)'_j tilde(sans(e))^(' j) (sans(e)_i) = sum_j sans(a)'_j sans(J)_i^j $ <4.19>",
+    )
+    .replaceAll(
+      "$ sans(e)_x = a frac(partial, partial theta) + b frac(partial, partial phi.alt) + c frac(partial, partial psi) \\\n &= cos phi.alt frac(partial, partial theta) - frac(sin phi.alt cos theta, sin theta) frac(partial, partial phi.alt) + frac(sin phi.alt, sin theta) frac(partial, partial psi) . $ <4.29>",
+      "$ sans(e)_x = a frac(partial, partial theta) + b frac(partial, partial phi.alt) + c frac(partial, partial psi) = cos phi.alt frac(partial, partial theta) - frac(sin phi.alt cos theta, sin theta) frac(partial, partial phi.alt) + frac(sin phi.alt, sin theta) frac(partial, partial psi) . $ <4.29>",
+    )
+    .replaceAll(
+      "$ sans(e)_x = a frac(partial, partial theta) + b frac(partial, partial phi.alt) + c frac(partial, partial psi)  &= cos phi.alt frac(partial, partial theta) - frac(sin phi.alt cos theta, sin theta) frac(partial, partial phi.alt) + frac(sin phi.alt, sin theta) frac(partial, partial psi) . $ <4.29>",
+      "$ sans(e)_x = a frac(partial, partial theta) + b frac(partial, partial phi.alt) + c frac(partial, partial psi) = cos phi.alt frac(partial, partial theta) - frac(sin phi.alt cos theta, sin theta) frac(partial, partial phi.alt) + frac(sin phi.alt, sin theta) frac(partial, partial psi) . $ <4.29>",
+    )
+    .replaceAll(
+      "$ [sans(u)\\,sans(v)] (sans(f))= sans(u) (sans(v) (sans(f)))- sans(v) (sans(u) (sans(f))) &= sans(u) (sum_i sans(X)_i (sans(f)) sans(c)^i) - sans(v) (sum_j sans(X)_j (sans(f)) sans(b)^j) \\\n &= sum_j sans(X)_j (sum_i sans(X)_i (sans(f)) sans(c)^i) sans(b)^j - sum_i sans(X)_i (sum_j sans(X)_j (sans(f)) sans(b)^j) sans(c)^i \\\n &= sum_(i j) [sans(X)_j \\, sans(X)_i] (sans(f))sans(c)^i sans(med b)^j \\\n + sum_i sans(X)_i (sans(f))sum_j (sans(X)_j (sans(c)^i) sans(b)^j - sans(X)_j (sans(med b)^i) sans(c)^j) \\\n &= sum_i sans(X)_i (sans(f))sans(a)^i\\, $ <4.34>",
+      "$ [sans(u)\\,sans(v)] (sans(f))= sans(u) (sans(v) (sans(f)))- sans(v) (sans(u) (sans(f))) &= sans(u) (sum_i sans(X)_i (sans(f)) sans(c)^i) - sans(v) (sum_j sans(X)_j (sans(f)) sans(b)^j) \\\n &= sum_j sans(X)_j (sum_i sans(X)_i (sans(f)) sans(c)^i) sans(b)^j - sum_i sans(X)_i (sum_j sans(X)_j (sans(f)) sans(b)^j) sans(c)^i \\\n &= sum_(i j) [sans(X)_j \\, sans(X)_i] (sans(f))sans(c)^i sans(med b)^j \\\n &+ sum_i sans(X)_i (sans(f))sum_j (sans(X)_j (sans(c)^i) sans(b)^j - sans(X)_j (sans(med b)^i) sans(c)^j) \\\n &= sum_i sans(X)_i (sans(f))sans(a)^i\\, $ <4.34>",
+    )
+    .replaceAll(
+      "$ sans(a)^i = sum_j (sans(X)_j (sans(c)^i) sans(b)^j \\\n - sans(X)_j (sans(b)^i) sans(c)^j)  &= sans(u) (sans(c)^i) - sans(v) (sans(b)^i) . $ <4.35>",
+      "$ sans(a)^i = sum_j (sans(X)_j (sans(c)^i) sans(b)^j - sans(X)_j (sans(b)^i) sans(c)^j) = sans(u) (sans(c)^i) - sans(v) (sans(b)^i) . $ <4.35>",
+    )
+    .replaceAll(
+      "$ sans(a)^i = sum_j (sans(X)_j (sans(c)^i) sans(b)^j \\\n &- sans(X)_j (sans(b)^i) sans(c)^j)  &= sans(u) (sans(c)^i) - sans(v) (sans(b)^i) . $ <4.35>",
+      "$ sans(a)^i = sum_j (sans(X)_j (sans(c)^i) sans(b)^j - sans(X)_j (sans(b)^i) sans(c)^j) = sans(u) (sans(c)^i) - sans(v) (sans(b)^i) . $ <4.35>",
+    )
+    .replaceAll(
+      "$ sans(a)^i = sum_j (sans(X)_j (sans(c)^i) sans(b)^j \\\n &quad - sans(X)_j (sans(b)^i) sans(c)^j)  &= sans(u) (sans(c)^i) - sans(v) (sans(b)^i) . $ <4.35>",
+      "$ sans(a)^i = sum_j (sans(X)_j (sans(c)^i) sans(b)^j - sans(X)_j (sans(b)^i) sans(c)^j) = sans(u) (sans(c)^i) - sans(v) (sans(b)^i) . $ <4.35>",
+    )
+    .replaceAll(
+      "$ [sans(u)\\,sans(v)] (sans(f))= sum_k sans(e)_k (sans(f)) (\\\n sans(u) (sans(c)^k) - sans(v) (sans(b)^k) + sum_(i j) sans(c)^i sans(b)^j sans(d)_(j i)^k \\\n) $ <4.38>",
+      "$ [sans(u)\\,sans(v)] (sans(f))= sum_k sans(e)_k (sans(f)) (sans(u) (sans(c)^k) - sans(v) (sans(b)^k) + sum_(i j) sans(c)^i sans(b)^j sans(d)_(j i)^k) $ <4.38>",
+    )
+    .replaceAll(
+      "$ e^A e^B e^(- A) e^(- B)  &= (1 + A + A^2 / 2 + dots.c) (1 + B + B^2 / 2 + dots.c) \\\n times (1 - A + A^2 / 2 + dots.c) (1 - B + B^2 / 2 + dots.c) \\\n &= 1 +[A\\,B]+ dots.c\\, $",
+      "$ e^A e^B e^(- A) e^(- B)  &= (1 + A + A^2 / 2 + dots.c) (1 + B + B^2 / 2 + dots.c) times (1 - A + A^2 / 2 + dots.c) (1 - B + B^2 / 2 + dots.c) \\\n &= 1 +[A\\,B]+ dots.c\\, $",
+    )
+    .replaceAll(
+      "$ (e^(t sans(v))) (sans(m)) \\\n &= (sans(f) compose phi.alt_t^(sans(v))) (sans(m)) . $ <4.40>",
+      "$ (e^(t sans(v))) (sans(m)) = (sans(f) compose phi.alt_t^(sans(v))) (sans(m)) . $ <4.40>",
+    )
+    .replaceAll(
+      "$ (e^(t sans(v))) (sans(m))  &= (sans(f) compose phi.alt_t^(sans(v))) (sans(m)) . $ <4.40>",
+      "$ (e^(t sans(v))) (sans(m)) = (sans(f) compose phi.alt_t^(sans(v))) (sans(m)) . $ <4.40>",
+    )
+    .replaceAll(
+      "$ (e^(s sans(w)) e^(t sans(v))) (sans(m)) \\\n &= (sans(f) compose phi.alt_t^(sans(v)) compose phi.alt_s^(sans(w))) (sans(m)) . $ <4.41>",
+      "$ (e^(s sans(w)) e^(t sans(v))) (sans(m)) = (sans(f) compose phi.alt_t^(sans(v)) compose phi.alt_s^(sans(w))) (sans(m)) . $ <4.41>",
+    )
+    .replaceAll(
+      "$ (e^(s sans(w)) e^(t sans(v))) (sans(m))  &= (sans(f) compose phi.alt_t^(sans(v)) compose phi.alt_s^(sans(w))) (sans(m)) . $ <4.41>",
+      "$ (e^(s sans(w)) e^(t sans(v))) (sans(m)) = (sans(f) compose phi.alt_t^(sans(v)) compose phi.alt_s^(sans(w))) (sans(m)) . $ <4.41>",
+    )
+    .replaceAll(
+      "$ (e^(epsilon.alt sans(v)) e^(epsilon.alt sans(w)) \\\n e^(- epsilon.alt sans(v)) e^(- epsilon.alt sans(w)) sans(f)) (sans(m)) . $ <4.42>",
+      "$ (e^(epsilon.alt sans(v)) e^(epsilon.alt sans(w)) e^(- epsilon.alt sans(v)) e^(- epsilon.alt sans(w)) sans(f)) (sans(m)) . $ <4.42>",
+    );
+}
+
+function repairChapter5(body) {
+  return body
+    .replaceAll(
+      "$ sans(d) omega (sans(v)_0\\,dots.c\\,sans(v)_k)\\\n &= sum_(i=0)^k {((- 1)^i sans(v)_i (omega (sans(v)_0 \\, dots.c \\, sans(v)_(i - 1) \\, sans(v)_(i + 1) \\, dots.c \\, sans(v)_k)) + \\\n sum_(j=i + 1)^k (- 1)^(i + j) omega (sans(v)_i \\, sans(v)_j] \\, sans(v)_0 \\, dots.c \\, sans(v)_(i - 1) \\, sans(v)_(i + 1) \\, dots.c \\, sans(v)_(j - 1) \\, sans(v)_(j + 1) \\, dots.c \\, sans(v)_k))} . $ <5.24>",
+      "$ sans(d) omega (sans(v)_0\\,dots.c\\,sans(v)_k) &= sum_(i=0)^k \\\n &quad {((- 1)^i sans(v)_i (omega (sans(v)_0 \\, dots.c \\, sans(v)_(i - 1) \\, sans(v)_(i + 1) \\, dots.c \\, sans(v)_k))\\\n &quad + sum_(j=i + 1)^k (- 1)^(i + j) omega ([sans(v)_i\\,sans(v)_j] \\, sans(v)_0 \\, dots.c \\, sans(v)_(i - 1) \\, sans(v)_(i + 1) \\, dots.c \\, sans(v)_(j - 1) \\, sans(v)_(j + 1) \\, dots.c \\, sans(v)_k))} . $ <5.24>",
+    )
+    .replaceAll(
+      "$ sans(d) omega (sans(v)_0\\,dots.c\\,sans(v)_k) &= sum_(i=0)^k {((- 1)^i sans(v)_i (omega (sans(v)_0 \\, dots.c \\, sans(v)_(i - 1) \\, sans(v)_(i + 1) \\, dots.c \\, sans(v)_k)) + \\\n sum_(j=i + 1)^k (- 1)^(i + j) omega (sans(v)_i \\, sans(v)_j] \\, sans(v)_0 \\, dots.c \\, sans(v)_(i - 1) \\, sans(v)_(i + 1) \\, dots.c \\, sans(v)_(j - 1) \\, sans(v)_(j + 1) \\, dots.c \\, sans(v)_k))} . $ <5.24>",
+      "$ sans(d) omega (sans(v)_0\\,dots.c\\,sans(v)_k) &= sum_(i=0)^k \\\n &quad {((- 1)^i sans(v)_i (omega (sans(v)_0 \\, dots.c \\, sans(v)_(i - 1) \\, sans(v)_(i + 1) \\, dots.c \\, sans(v)_k))\\\n &quad + sum_(j=i + 1)^k (- 1)^(i + j) omega ([sans(v)_i\\,sans(v)_j] \\, sans(v)_0 \\, dots.c \\, sans(v)_(i - 1) \\, sans(v)_(i + 1) \\, dots.c \\, sans(v)_(j - 1) \\, sans(v)_(j + 1) \\, dots.c \\, sans(v)_k))} . $ <5.24>",
+    )
+    .replaceAll(
+      "$ integral_(chi (sans(P))) sans(d) omega (partial\\/partial sans(x)\\,partial\\/partial sans(y))compose chi^(-1)  &= integral_(x_\"min\")^(x_\"max\") ((omega (partial\\/partial sans(x)))compose chi^(-1)) (x\\,y_\"min\")d x \\\n integral_(y_\"min\")^(y_\"max\") ((omega (partial\\/partial sans(y))compose chi^(-1)) (x_\"max\"\\,y)d y \\\n &- integral_(x_\"min\")^(x_\"max\") ((omega (partial\\/partial sans(x)))compose chi^(-1)) (x\\,y_\"max\")d x \\\n &- integral_(y_\"min\")^(y_\"max\") ((omega (partial\\/partial sans(y)))compose chi^(-1)) (x_\"min\"\\,y)d y \\\n &= integral_(partial sans(P)) omega\\, $ <5.34>",
+      "$ integral_(chi (sans(P))) sans(d) omega (partial\\/partial sans(x)\\,partial\\/partial sans(y))compose chi^(-1) &= integral_(x_\"min\")^(x_\"max\") ((omega (partial\\/partial sans(x)))compose chi^(-1)) (x\\,y_\"min\")d x \\\n &quad + integral_(y_\"min\")^(y_\"max\") ((omega (partial\\/partial sans(y)))compose chi^(-1)) (x_\"max\"\\,y)d y \\\n &quad - integral_(x_\"min\")^(x_\"max\") ((omega (partial\\/partial sans(x)))compose chi^(-1)) (x\\,y_\"max\")d x \\\n &quad - integral_(y_\"min\")^(y_\"max\") ((omega (partial\\/partial sans(y)))compose chi^(-1)) (x_\"min\"\\,y)d y \\\n &= integral_(partial sans(P)) omega\\, $ <5.34>",
+    )
+    .replaceAll(
+      "$ integral_(chi (sans(P))) sans(d) omega (partial\\/partial sans(x)\\,partial\\/partial sans(y))compose chi^(-1)  &= integral_(x_\"min\")^(x_\"max\") ((omega (partial\\/partial sans(x)))compose chi^(-1)) (x\\,y_\"min\")d x \\\n integral_(y_\"min\")^(y_\"max\") ((omega (partial\\/partial sans(y))compose chi^(-1)) (x_\"max\"\\,y)d y \\\n &quad - integral_(x_\"min\")^(x_\"max\") ((omega (partial\\/partial sans(x)))compose chi^(-1)) (x\\,y_\"max\")d x \\\n &quad - integral_(y_\"min\")^(y_\"max\") ((omega (partial\\/partial sans(y)))compose chi^(-1)) (x_\"min\"\\,y)d y \\\n &= integral_(partial sans(P)) omega\\, $ <5.34>",
+      "$ integral_(chi (sans(P))) sans(d) omega (partial\\/partial sans(x)\\,partial\\/partial sans(y))compose chi^(-1) &= integral_(x_\"min\")^(x_\"max\") ((omega (partial\\/partial sans(x)))compose chi^(-1)) (x\\,y_\"min\")d x \\\n &quad + integral_(y_\"min\")^(y_\"max\") ((omega (partial\\/partial sans(y)))compose chi^(-1)) (x_\"max\"\\,y)d y \\\n &quad - integral_(x_\"min\")^(x_\"max\") ((omega (partial\\/partial sans(x)))compose chi^(-1)) (x\\,y_\"max\")d x \\\n &quad - integral_(y_\"min\")^(y_\"max\") ((omega (partial\\/partial sans(y)))compose chi^(-1)) (x_\"min\"\\,y)d y \\\n &= integral_(partial sans(P)) omega\\, $ <5.34>",
+    );
+}
+
+function repairChapter7(body) {
+  return body
+    .replaceAll(
+      "$ D g (delta)= \\\n sum_(i j) #scale(x: 120%, y: 120%)[(] A_j^i (delta) ((sans(v) (sans(u)^j))compose phi.alt_(- delta)^(sans(v)))sans(e)_i (sans(f))- D A_j^i (delta) (sans(u)^j compose phi.alt_(- delta)^(sans(v)))sans(e)_i (sans(f))#scale(x: 120%, y: 120%)[)] (sans(m)). $ <7.41>",
+      "$ D g (delta)= sum_(i j) #scale(x: 120%, y: 120%)[(] A_j^i (delta) ((sans(v) (sans(u)^j))compose phi.alt_(- delta)^(sans(v)))sans(e)_i (sans(f))- D A_j^i (delta) (sans(u)^j compose phi.alt_(- delta)^(sans(v)))sans(e)_i (sans(f))#scale(x: 120%, y: 120%)[)] (sans(m)). $ <7.41>",
+    )
+    .replaceAll(
+      "$ nabla_(sans(v)) (tau (sans(w)))= sans(v) (sum_j tau_j sans(w)^j)  &= sum_j(sans(v) (tau_j)sans(w)^j + tau_j sans(v) (sans(w)^j))\\\n &= sum_j (sans(v) (tau_j) sans(w)^j + tau_j (tilde(sans(e))^j (nabla_(sans(v)) sans(w)) - sum_k pi.alt_k^j (sans(v)) sans(w)^k)) \\\n &= sum_j (sans(v) (tau_j) sans(w)^j - tau_j sum_k pi.alt_k^j (sans(v)) sans(w)^k) + tau (nabla_(sans(v)) sans(w))\\\n &= sum_j (sans(v) (tau_j) tilde(sans(e))^j - tau_j sum_k pi.alt_k^j (sans(v)) tilde(sans(e))^k) (sans(w))+ tau (nabla_(sans(v)) sans(w)). $ <7.59>",
+      "$ nabla_(sans(v)) (tau (sans(w)))= sans(v) (sum_j tau_j sans(w)^j)  &= sum_j(sans(v) (tau_j)sans(w)^j + tau_j sans(v) (sans(w)^j))\\\n &= sum_j (sans(v) (tau_j) sans(w)^j + tau_j (tilde(sans(e))^j (nabla_(sans(v)) sans(w)) - sum_k (pi.alt_k^j (sans(v)) sans(w)^k))) \\\n &= sum_j (sans(v) (tau_j) sans(w)^j - tau_j sum_k (pi.alt_k^j (sans(v)) sans(w)^k)) + tau (nabla_(sans(v)) sans(w))\\\n &= sum_j (sans(v) (tau_j) tilde(sans(e))^j - tau_j sum_k (pi.alt_k^j (sans(v)) tilde(sans(e))^k)) (sans(w))+ tau (nabla_(sans(v)) sans(w)). $ <7.59>",
+    )
+    .replaceAll(
+      "$ nabla_(sans(v)) (tau (sans(w)))= sans(v) (sum_j tau_j sans(w)^j)  &= sum_j (sans(v) (tau_j)sans(w)^j + tau_j sans(v) (sans(w)^j))\\\n &= sum_j (sans(v) (tau_j) sans(w)^j + tau_j (tilde(sans(e))^j (nabla_(sans(v)) sans(w)) - sum_k pi.alt_k^j (sans(v)) sans(w)^k)) \\\n &= sum_j (sans(v) (tau_j) sans(w)^j - tau_j sum_k pi.alt_k^j (sans(v)) sans(w)^k) + tau (nabla_(sans(v)) sans(w))\\\n &= sum_j (sans(v) (tau_j) tilde(sans(e))^j - tau_j sum_k pi.alt_k^j (sans(v)) tilde(sans(e))^k) (sans(w))+ tau (nabla_(sans(v)) sans(w)). $ <7.59>",
+      "$ nabla_(sans(v)) (tau (sans(w)))= sans(v) (sum_j tau_j sans(w)^j)  &= sum_j (sans(v) (tau_j)sans(w)^j + tau_j sans(v) (sans(w)^j))\\\n &= sum_j (sans(v) (tau_j) sans(w)^j + tau_j (tilde(sans(e))^j (nabla_(sans(v)) sans(w)) - sum_k (pi.alt_k^j (sans(v)) sans(w)^k))) \\\n &= sum_j (sans(v) (tau_j) sans(w)^j - tau_j sum_k (pi.alt_k^j (sans(v)) sans(w)^k)) + tau (nabla_(sans(v)) sans(w))\\\n &= sum_j (sans(v) (tau_j) tilde(sans(e))^j - tau_j sum_k (pi.alt_k^j (sans(v)) tilde(sans(e))^k)) (sans(w))+ tau (nabla_(sans(v)) sans(w)). $ <7.59>",
+    )
+    .replaceAll(
+      "$ nabla_(sans(v)) (tau (sans(w)))= sans(v) (sum_j tau_j sans(w)^j)  &= sum_j (sans(v) (tau_j)sans(w)^j + tau_j sans(v) (sans(w)^j))\\\n &= sum_j (sans(v) (tau_j) sans(w)^j + tau_j (tilde(sans(e))^j (nabla_(sans(v)) sans(w)) - sum_k pi.alt_k^j (sans(v)) sans(w)^k)) \\\n &= sum_j (sans(v) (tau_j) sans(w)^j - tau_j sum_k pi.alt_k^j (sans(v)) sans(w)^k) + tau (nabla_(sans(v)) sans(w))\\\n &= sum_j (sans(v) (tau_j) tilde(sans(e))^j - tau_j sum_k pi.alt_k^j (sans(v)) tilde(sans(e))^k) (sans(w))+ tau (nabla_(sans(v)) sans(w)). $",
+      "$ nabla_(sans(v)) (tau (sans(w)))= sans(v) (sum_j tau_j sans(w)^j)  &= sum_j (sans(v) (tau_j)sans(w)^j + tau_j sans(v) (sans(w)^j))\\\n &= sum_j (sans(v) (tau_j) sans(w)^j + tau_j (tilde(sans(e))^j (nabla_(sans(v)) sans(w)) - sum_k (pi.alt_k^j (sans(v)) sans(w)^k))) \\\n &= sum_j (sans(v) (tau_j) sans(w)^j - tau_j sum_k (pi.alt_k^j (sans(v)) sans(w)^k)) + tau (nabla_(sans(v)) sans(w))\\\n &= sum_j (sans(v) (tau_j) tilde(sans(e))^j - tau_j sum_k (pi.alt_k^j (sans(v)) tilde(sans(e))^k)) (sans(w))+ tau (nabla_(sans(v)) sans(w)). $",
+    )
+    .replaceAll(
+      "$ nabla_(sans(v)) sans(v) = 0\\, $",
+      "$ nabla_(sans(v)) sans(v) = 0\\, $ <7.77>",
+    )
+    .replaceAll(
+      "$ nabla_(partial\\/partial sans(t))^gamma d gamma (partial\\/partial sans(t))= 0 . $ <7.77>",
+      "$ nabla_(partial\\/partial sans(t))^gamma d gamma (partial\\/partial sans(t))= 0 . $ <7.78>",
+    )
+    .replaceAll(
+      "$ D^2 sigma^i (t)+ sum_(j k) Gamma_(j k)^i (gamma (t))D sigma^j (t)D sigma^k (t)= 0\\, $ <7.78>",
+      "$ D^2 sigma^i (t)+ sum_(j k) Gamma_(j k)^i (gamma (t))D sigma^j (t)D sigma^k (t)= 0\\, $ <7.79>",
+    );
+}
+
+function repairChapter8(body) {
+  return body
+    .replaceAll(
+      "$ cal(R) (bold(omega)\\,sans(u)\\,sans(v)\\,sans(w)) =\\\n bold(omega) ((cal(R) (sans(w) \\, sans(v))) (sans(u)))\\, $ <8.2>",
+      "$ cal(R) (bold(omega)\\,sans(u)\\,sans(v)\\,sans(w)) = bold(omega) ((cal(R) (sans(w) \\, sans(v))) (sans(u)))\\, $ <8.2>",
+    )
+    .replaceAll(
+      "$ cal(R) (bold(omega)\\,sans(u)\\,sans(v)\\,sans(w)) =\\\nbold(omega) ((cal(R) (sans(w) \\, sans(v))) (sans(u)))\\, $ <8.2>",
+      "$ cal(R) (bold(omega)\\,sans(u)\\,sans(v)\\,sans(w)) = bold(omega) ((cal(R) (sans(w) \\, sans(v))) (sans(u)))\\, $ <8.2>",
+    )
+    .replaceAll(
+      "$ nabla_(sans(v)) sans(u) (sans(f))= sum_i sans(e)_i (sans(f)) (sans(v) (tilde(sans(e))^i (sans(u))) \\\n &quad + sum_j pi.alt_j^i (sans(v)) tilde(sans(e))^j (sans(u)))  &= sans(e) (sans(f)) (sans(v) (tilde(sans(e)) (sans(u)))\\\n &quad + pi.alt (sans(v))tilde(sans(e)) (sans(u)))\\, $ <8.16>",
+      "$ nabla_(sans(v)) sans(u) (sans(f)) &= sum_i sans(e)_i (sans(f)) (sans(v) (tilde(sans(e))^i (sans(u))) \\\n &quad + sum_j pi.alt_j^i (sans(v)) tilde(sans(e))^j (sans(u))) \\\n &= sans(e) (sans(f)) (sans(v) (tilde(sans(e)) (sans(u))) \\\n &quad + pi.alt (sans(v))tilde(sans(e)) (sans(u)))\\, $ <8.16>",
+    )
+    .replaceAll(
+      "$ nabla_([sans(w)\\,sans(v)]) sans(u) = sans(e) {[sans(w) \\, sans(v)] tilde(sans(e)) (sans(u)) \\\n &quad + pi.alt ([sans(w) \\, sans(v)]) tilde(sans(e)) (u)} . $ <8.18>",
+      "$ nabla_([sans(w)\\,sans(v)]) sans(u) = sans(e) {[sans(w) \\, sans(v)] tilde(sans(e)) (sans(u)) + pi.alt ([sans(w) \\, sans(v)]) tilde(sans(e)) (u)} . $ <8.18>",
+    );
 }
 
 function repairChapter9(body) {
@@ -824,11 +1095,217 @@ function repairChapter9(body) {
     );
 }
 
+function repairChapter10(body) {
+  return body
+    .replaceAll(
+      String.raw`$ (sans(g)^(*) bold(omega))_(j_p dots.c j_(n - 1)) \
+ #h(2em) = sum_(i_0 dots.c i_(p - 1) j_0 dots.c j_(p - 1)) frac(1, p !) \
+ omega_(i_0 dots.c i_(p - 1)) g^(i_0 j_0) dots.c g^(i_(p - 1) j_(p - 1)) epsilon.alt_(j_0 dots.c j_(n - 1)) $ <10.1>`,
+      String.raw`$ (sans(g)^(*) bold(omega))_(j_p dots.c j_(n - 1)) = sum_(i_0 dots.c i_(p - 1) j_0 dots.c j_(p - 1)) frac(1, p !) omega_(i_0 dots.c i_(p - 1)) g^(i_0 j_0) dots.c g^(i_(p - 1) j_(p - 1)) epsilon.alt_(j_0 dots.c j_(n - 1)) $ <10.1>`,
+    )
+    .replaceAll(
+      String.raw`$ sans(d f) = (frac(partial, partial sans(x)) sans(f)) sans(d x) \
+ + (frac(partial, partial sans(y)) sans(f)) sans(d y) \
+ + (frac(partial, partial sans(z)) sans(f)) sans(d z) . $ <10.2>`,
+      String.raw`$ sans(d f) = (frac(partial, partial sans(x)) sans(f)) sans(d x) + (frac(partial, partial sans(y)) sans(f)) sans(d y) + (frac(partial, partial sans(z)) sans(f)) sans(d z) . $ <10.2>`,
+    )
+    .replaceAll(
+      String.raw`$ sans(d) theta = (frac(partial theta_z, partial sans(y)) \
+ - frac(partial theta_y, partial sans(z))) sans(d y) and sans(d z) \
+ + (frac(partial theta_x, partial sans(z)) \
+ - frac(partial theta_z, partial sans(x))) sans(d z) and sans(d x) \
+ + (frac(partial theta_y, partial sans(x)) \
+ - frac(partial theta_x, partial sans(y))) sans(d x) and sans(d y) . $ <10.5>`,
+      String.raw`$ sans(d) theta = (frac(partial theta_z, partial sans(y)) - frac(partial theta_y, partial sans(z))) sans(d y) and sans(d z) + (frac(partial theta_x, partial sans(z)) - frac(partial theta_z, partial sans(x))) sans(d z) and sans(d x) + (frac(partial theta_y, partial sans(x)) - frac(partial theta_x, partial sans(y))) sans(d x) and sans(d y) . $ <10.5>`,
+    )
+    .replaceAll(
+      String.raw`$ g^(*) (sans(d) theta) = (frac(partial theta_z, partial sans(y)) \
+ - frac(partial theta_y, partial sans(z))) sans(d x) \
+ + (frac(partial theta_x, partial sans(z)) \
+ - frac(partial theta_z, partial sans(x))) sans(d y) \
+ + (frac(partial theta_y, partial sans(x)) \
+ - frac(partial theta_x, partial sans(y))) sans(d z) . $ <10.6>`,
+      String.raw`$ g^(*) (sans(d) theta) = (frac(partial theta_z, partial sans(y)) - frac(partial theta_y, partial sans(z))) sans(d x) + (frac(partial theta_x, partial sans(z)) - frac(partial theta_z, partial sans(x))) sans(d y) + (frac(partial theta_y, partial sans(x)) - frac(partial theta_x, partial sans(y))) sans(d z) . $ <10.6>`,
+    )
+    .replaceAll(
+      String.raw`$ sans(d) (g^(*) theta)= (\
+ frac(partial theta_x, partial sans(x)) \
+ + frac(partial theta_y, partial sans(y)) \
+ + frac(partial theta_z, partial sans(z)) \
+) sans(d x) and sans(d y) and sans(d z) . $ <10.8>`,
+      String.raw`$ sans(d) (g^(*) theta)= (frac(partial theta_x, partial sans(x)) + frac(partial theta_y, partial sans(y)) + frac(partial theta_z, partial sans(z))) sans(d x) and sans(d y) and sans(d z) . $ <10.8>`,
+    )
+    .replaceAll(
+      String.raw`$ g^(*) sans(d) (g^(*) theta)= \
+ frac(partial theta_x, partial sans(x)) \
+ + frac(partial theta_y, partial sans(y)) \
+ + frac(partial theta_z, partial sans(z)) . $ <10.9>`,
+      String.raw`$ g^(*) sans(d) (g^(*) theta)= frac(partial theta_x, partial sans(x)) + frac(partial theta_y, partial sans(y)) + frac(partial theta_z, partial sans(z)) . $ <10.9>`,
+    )
+    .replaceAll(
+      String.raw`$ sans(g) (sans(u)\,sans(v))= \
+ - c^2 sans(d t) (sans(u))thin sans(d t) (sans(v))\
+ + sans(d x) (sans(u))thin sans(d x) (sans(v))\
+ + sans(d y) (sans(u))thin sans(d y) (sans(v))\
+ + sans(d z) (sans(u))thin sans(d z) (sans(v)). $ <10.11>`,
+      String.raw`$ sans(g) (sans(u)\,sans(v)) = - c^2 sans(d t) (sans(u))thin sans(d t) (sans(v)) + sans(d x) (sans(u))thin sans(d x) (sans(v)) + sans(d y) (sans(u))thin sans(d y) (sans(v)) + sans(d z) (sans(u))thin sans(d z) (sans(v)). $ <10.11>`,
+    )
+    .replaceAll(
+      String.raw`$ frac(partial B_x, partial x) \
+ + frac(partial B_y, partial y) \
+ + frac(partial B_z, partial z) = 0 $ <10.19>`,
+      String.raw`$ frac(partial B_x, partial x) + frac(partial B_y, partial y) + frac(partial B_z, partial z) = 0 $ <10.19>`,
+    )
+    .replaceAll(
+      String.raw`$ frac(partial E_z, partial y) \
+ - frac(partial E_y, partial z) \
+ &= 1 / c frac(partial B_x, partial t)\, $ <10.20>`,
+      String.raw`$ frac(partial E_z, partial y) - frac(partial E_y, partial z) = 1 / c frac(partial B_x, partial t)\, $ <10.20>`,
+    )
+    .replaceAll(
+      String.raw`$ frac(partial E_x, partial z) \
+ - frac(partial E_z, partial x) \
+ &= 1 / c frac(partial B_y, partial t)\, $ <10.21>`,
+      String.raw`$ frac(partial E_x, partial z) - frac(partial E_z, partial x) = 1 / c frac(partial B_y, partial t)\, $ <10.21>`,
+    )
+    .replaceAll(
+      String.raw`$ frac(partial E_y, partial x) \
+ - frac(partial E_x, partial y) \
+ &= 1 / c frac(partial B_z, partial t) . $ <10.22>`,
+      String.raw`$ frac(partial E_y, partial x) - frac(partial E_x, partial y) = 1 / c frac(partial B_z, partial t) . $ <10.22>`,
+    )
+    .replaceAll(
+      String.raw`$ frac(partial E_x, partial x) \
+ + frac(partial E_y, partial y) \
+ + frac(partial E_z, partial z) = 4 pi rho . $ <10.23>`,
+      String.raw`$ frac(partial E_x, partial x) + frac(partial E_y, partial y) + frac(partial E_z, partial z) = 4 pi rho . $ <10.23>`,
+    )
+    .replaceAll(
+      String.raw`$ frac(partial B_y, partial z) \
+ - frac(partial B_z, partial y) \
+ &= - 1 / c frac(partial E_x, partial t) - frac(4 pi, c) I_x\, $ <10.24>`,
+      String.raw`$ frac(partial B_y, partial z) - frac(partial B_z, partial y) = - 1 / c frac(partial E_x, partial t) - frac(4 pi, c) I_x\, $ <10.24>`,
+    )
+    .replaceAll(
+      String.raw`$ frac(partial B_z, partial x) \
+ - frac(partial B_x, partial z) \
+ &= - 1 / c frac(partial E_y, partial t) - frac(4 pi, c) I_y\, $ <10.25>`,
+      String.raw`$ frac(partial B_z, partial x) - frac(partial B_x, partial z) = - 1 / c frac(partial E_y, partial t) - frac(4 pi, c) I_y\, $ <10.25>`,
+    )
+    .replaceAll(
+      String.raw`$ frac(partial B_x, partial y) \
+ - frac(partial B_y, partial x) \
+ &= - 1 / c frac(partial E_z, partial t) - frac(4 pi, c) I_z . $ <10.26>`,
+      String.raw`$ frac(partial B_x, partial y) - frac(partial B_y, partial x) = - 1 / c frac(partial E_z, partial t) - frac(4 pi, c) I_z . $ <10.26>`,
+    )
+    .replaceAll(
+      String.raw`$ frac(partial E_z, partial y) \
+ - frac(partial E_y, partial z)  &= 1 / c frac(partial B_x, partial t)\, $ <10.20>`,
+      String.raw`$ frac(partial E_z, partial y) - frac(partial E_y, partial z) = 1 / c frac(partial B_x, partial t)\, $ <10.20>`,
+    )
+    .replaceAll(
+      String.raw`$ frac(partial E_x, partial z) \
+ - frac(partial E_z, partial x)  &= 1 / c frac(partial B_y, partial t)\, $ <10.21>`,
+      String.raw`$ frac(partial E_x, partial z) - frac(partial E_z, partial x) = 1 / c frac(partial B_y, partial t)\, $ <10.21>`,
+    )
+    .replaceAll(
+      String.raw`$ frac(partial E_y, partial x) \
+ - frac(partial E_x, partial y)  &= 1 / c frac(partial B_z, partial t) . $ <10.22>`,
+      String.raw`$ frac(partial E_y, partial x) - frac(partial E_x, partial y) = 1 / c frac(partial B_z, partial t) . $ <10.22>`,
+    )
+    .replaceAll(
+      String.raw`$ frac(partial B_y, partial z) \
+ - frac(partial B_z, partial y)  &= - 1 / c frac(partial E_x, partial t) - frac(4 pi, c) I_x\, $ <10.24>`,
+      String.raw`$ frac(partial B_y, partial z) - frac(partial B_z, partial y) = - 1 / c frac(partial E_x, partial t) - frac(4 pi, c) I_x\, $ <10.24>`,
+    )
+    .replaceAll(
+      String.raw`$ frac(partial B_z, partial x) \
+ - frac(partial B_x, partial z)  &= - 1 / c frac(partial E_y, partial t) - frac(4 pi, c) I_y\, $ <10.25>`,
+      String.raw`$ frac(partial B_z, partial x) - frac(partial B_x, partial z) = - 1 / c frac(partial E_y, partial t) - frac(4 pi, c) I_y\, $ <10.25>`,
+    )
+    .replaceAll(
+      String.raw`$ frac(partial B_x, partial y) \
+ - frac(partial B_y, partial x)  &= - 1 / c frac(partial E_z, partial t) - frac(4 pi, c) I_z . $ <10.26>`,
+      String.raw`$ frac(partial B_x, partial y) - frac(partial B_y, partial x) = - 1 / c frac(partial E_z, partial t) - frac(4 pi, c) I_z . $ <10.26>`,
+    )
+    .replaceAll(
+      String.raw`$ curl (sans(v))\
+ &= g^sharp (g^(*) (sans(d) (g^flat (sans(v)))))\, $ <10.7>`,
+      String.raw`$ curl (sans(v)) &= g^sharp (g^(*) (sans(d) (g^flat (sans(v)))))\, $ <10.7>`,
+    )
+    .replaceAll(
+      String.raw`$ div (sans(v))\
+ &= g^(*) (sans(d) (g^(*) (g^flat (sans(v))))) . $ <10.10>`,
+      String.raw`$ div (sans(v)) &= g^(*) (sans(d) (g^(*) (g^flat (sans(v))))) . $ <10.10>`,
+    )
+    .replace(
+      /\$ curl \(sans\(v\)\)\\\n\s*&= g\^sharp \(g\^\(\*\) \(sans\(d\) \(g\^flat \(sans\(v\)\)\)\)\)\\, \$ <10\.7>/g,
+      String.raw`$ curl (sans(v)) &= g^sharp (g^(*) (sans(d) (g^flat (sans(v)))))\, $ <10.7>`,
+    )
+    .replace(
+      /\$ div \(sans\(v\)\)\\\n\s*&= g\^\(\*\) \(sans\(d\) \(g\^\(\*\) \(g\^flat \(sans\(v\)\)\)\)\) \. \$ <10\.10>/g,
+      String.raw`$ div (sans(v)) &= g^(*) (sans(d) (g^(*) (g^flat (sans(v))))) . $ <10.10>`,
+    )
+    .replaceAll(
+      String.raw`$ grad (sans(f))= g^sharp (sans(d f)) $ <10.3>`,
+      String.raw`$ grad (sans(f)) &= g^sharp (sans(d f)) $ <10.3>`,
+    );
+}
+
+function replaceDisplayByLabel(body, label, replacement) {
+  const lines = body.split("\n");
+  const targetSuffix = `$ <${label}>`;
+
+  for (let start = 0; start < lines.length; start += 1) {
+    if (!lines[start].startsWith("$")) continue;
+
+    for (let end = start; end < lines.length; end += 1) {
+      if (lines[end].endsWith(targetSuffix)) {
+        lines.splice(start, end - start + 1, ...replacement.split("\n"));
+        return lines.join("\n");
+      }
+      if (end > start && lines[end].trim() === "") break;
+    }
+  }
+
+  return body;
+}
+
+function compactChapter10AuditedDisplays(body) {
+  const replacements = {
+    "10.2": String.raw`$ sans(d f) = (frac(partial, partial sans(x)) sans(f)) sans(d x) + (frac(partial, partial sans(y)) sans(f)) sans(d y) + (frac(partial, partial sans(z)) sans(f)) sans(d z) . $ <10.2>`,
+    "10.5": String.raw`$ sans(d) theta = (frac(partial theta_z, partial sans(y)) - frac(partial theta_y, partial sans(z))) sans(d y) and sans(d z) + (frac(partial theta_x, partial sans(z)) - frac(partial theta_z, partial sans(x))) sans(d z) and sans(d x) + (frac(partial theta_y, partial sans(x)) - frac(partial theta_x, partial sans(y))) sans(d x) and sans(d y) . $ <10.5>`,
+    "10.6": String.raw`$ g^(*) (sans(d) theta) = (frac(partial theta_z, partial sans(y)) - frac(partial theta_y, partial sans(z))) sans(d x) + (frac(partial theta_x, partial sans(z)) - frac(partial theta_z, partial sans(x))) sans(d y) + (frac(partial theta_y, partial sans(x)) - frac(partial theta_x, partial sans(y))) sans(d z) . $ <10.6>`,
+    "10.8": String.raw`$ sans(d) (g^(*) theta)= (frac(partial theta_x, partial sans(x)) + frac(partial theta_y, partial sans(y)) + frac(partial theta_z, partial sans(z))) sans(d x) and sans(d y) and sans(d z) . $ <10.8>`,
+    "10.9": String.raw`$ g^(*) sans(d) (g^(*) theta)= frac(partial theta_x, partial sans(x)) + frac(partial theta_y, partial sans(y)) + frac(partial theta_z, partial sans(z)) . $ <10.9>`,
+    "10.11": String.raw`$ sans(g) (sans(u)\,sans(v)) = - c^2 sans(d t) (sans(u))thin sans(d t) (sans(v)) + sans(d x) (sans(u))thin sans(d x) (sans(v)) + sans(d y) (sans(u))thin sans(d y) (sans(v)) + sans(d z) (sans(u))thin sans(d z) (sans(v)). $ <10.11>`,
+    "10.19": String.raw`$ frac(partial B_x, partial x) + frac(partial B_y, partial y) + frac(partial B_z, partial z) = 0 $ <10.19>`,
+    "10.20": String.raw`$ frac(partial E_z, partial y) - frac(partial E_y, partial z) = 1 / c frac(partial B_x, partial t)\, $ <10.20>`,
+    "10.21": String.raw`$ frac(partial E_x, partial z) - frac(partial E_z, partial x) = 1 / c frac(partial B_y, partial t)\, $ <10.21>`,
+    "10.22": String.raw`$ frac(partial E_y, partial x) - frac(partial E_x, partial y) = 1 / c frac(partial B_z, partial t) . $ <10.22>`,
+    "10.23": String.raw`$ frac(partial E_x, partial x) + frac(partial E_y, partial y) + frac(partial E_z, partial z) = 4 pi rho . $ <10.23>`,
+    "10.24": String.raw`$ frac(partial B_y, partial z) - frac(partial B_z, partial y) = - 1 / c frac(partial E_x, partial t) - frac(4 pi, c) I_x\, $ <10.24>`,
+    "10.25": String.raw`$ frac(partial B_z, partial x) - frac(partial B_x, partial z) = - 1 / c frac(partial E_y, partial t) - frac(4 pi, c) I_y\, $ <10.25>`,
+    "10.26": String.raw`$ frac(partial B_x, partial y) - frac(partial B_y, partial x) = - 1 / c frac(partial E_z, partial t) - frac(4 pi, c) I_z . $ <10.26>`,
+  };
+
+  let repaired = body;
+  for (const [label, replacement] of Object.entries(replacements)) {
+    repaired = replaceDisplayByLabel(repaired, label, replacement);
+  }
+  return repaired;
+}
+
 function applyChapterRepairs(stem, body) {
   if (stem === "prologue") return repairPrologue(body);
+  if (stem === "appendix_a") return repairAppendixA(body);
   if (stem === "chapter001") return repairChapter1(body);
   if (stem === "chapter002") return repairChapter2(body);
   if (stem === "chapter003") return repairChapter3(body);
+  if (stem === "chapter004") return repairChapter4(body);
+  if (stem === "chapter005") return repairChapter5(body);
+  if (stem === "chapter007") return repairChapter7(body);
+  if (stem === "chapter008") return repairChapter8(body);
   if (stem === "chapter009") return repairChapter9(body);
   if (stem === "chapter011") return repairChapter11(body);
   return body;
@@ -1193,7 +1670,11 @@ function replaceCitationsAndEquationRefs(body) {
     .replace(/\b(equations?|Equations?|Eqs?\.)\s+((?:[A-C]|\d+)\.\d+)/g, "$1 @$2")
     .replace(/\b(property|Property|properties|Properties)\s+\(((?:[A-C]|\d+)\.\d+)\)/g, "$1 @$2")
     .replace(/\b(and|or)\s+\(((?:[A-C]|\d+)\.\d+)\)/g, "$1 @$2")
-    .replace(/\(((?:[A-C]|\d+)\.\d+)\)/g, "(@$1)")
+    .replace(/\(((?:[A-C]|\d+)\.\d+)\)/g, (_match, number) => `#ref(<${number}>)`)
+    .replace(
+      /#footnote\[The analogous recovery of coefficient tuples from vector fields is equation\s+```scheme\s+#ref\(<3\.3>\):[\s\S]*?```\]/g,
+      "#footnote[The analogous recovery of coefficient tuples from vector fields is equation @3.3: $b^i_(chi, sans(v)) = sans(v)(chi^i) compose chi^(-1)$.]",
+    )
     .replace(/@((?:[A-C]|\d+)\.\d+)(--|[-–])@((?:[A-C]|\d+)\.\d+)/g, "@$1 $2 @$3")
     .replace(
       /\((see equations|defined in equations|equations) (@(?:[A-C]|\d+)\.\d+ (?:--|[-–]) @(?:[A-C]|\d+)\.\d+)(?=\s+(?:that|have)\b|,)/g,
@@ -1237,8 +1718,16 @@ function convert(file) {
   const bodyWithPostMergeRepairs = stem === "chapter003" ? repairChapter3(bodyWithMergedRawBlocks) : bodyWithMergedRawBlocks;
   const bodyWithRefs = replaceCitationsAndEquationRefs(bodyWithPostMergeRepairs);
   const bodyWithPageRefs = replaceInternalPageRefs(stem, bodyWithRefs);
-  const bodyWithFinalRepairs = stem === "chapter003" ? repairChapter3(bodyWithPageRefs) : bodyWithPageRefs;
+  const bodyWithTypstLinebreaks = bodyWithPageRefs.replace(/\\\\(?=\n)/g, "\\");
+  const bodyWithFinalRepairs = stem === "chapter003"
+    ? repairChapter3(bodyWithTypstLinebreaks)
+    : stem === "chapter010"
+      ? compactChapter10AuditedDisplays(repairChapter10(bodyWithTypstLinebreaks))
+      : bodyWithTypstLinebreaks;
   const bodyWithTypstMathRepairs = normalizeTypstSubsupBraces(bodyWithFinalRepairs);
+  const bodyWithPostMathRepairs = stem === "chapter010"
+    ? compactChapter10AuditedDisplays(repairChapter10(bodyWithTypstMathRepairs))
+    : bodyWithTypstMathRepairs;
 
   const content = [
     `// Generated from ../../fdg-book/scheme/org/${file}.`,
@@ -1246,7 +1735,7 @@ function convert(file) {
     `#import "../lib.typ": fdg-chapter, fdg-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX`,
     "",
     `#fdg-chapter(${JSON.stringify(typstEscape(displayTitle))}, numbered: ${numbered}, eq-prefix: ${JSON.stringify(equationLabelPrefix(stem) ?? "0")}, ref-label: ${JSON.stringify(chapterLabel(stem) ?? "")})[`,
-    bodyWithTypstMathRepairs.trimEnd(),
+    bodyWithPostMathRepairs.trimEnd(),
     "]",
     "",
   ].join("\n");
