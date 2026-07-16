@@ -1,6 +1,6 @@
 // Generated from ../../fdg-book/scheme/org/chapter006.org.
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
-#import "../lib.typ": fdg-chapter, fdg-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
+#import "../lib.typ": fdg-chapter, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
 
 #fdg-chapter("Over a Map", numbered: true, eq-prefix: "6", ref-label: "chap-6")[
 To deal with motion on manifolds we need to think about paths on manifolds and vectors along these paths. Tangent vectors along paths are not vector fields on the manifold because they are defined only on the path. And the path may even cross itself, which would give more than one vector at a point. Here we introduce the concept of a #emph[vector field over a map].#footnote[See Bishop and Goldberg, #emph[Tensor Analysis on Manifolds] @bishop1968tensor.] A vector field over a map assigns a vector to each image point of the map. In general the map may be a function from one manifold to another. If the domain of the map is the manifold of the real line, the range of the map is a 1-dimensional path on the target manifold. One possible way to define a vector field over a map is to assign a tangent vector to each image point of a path, allowing us to work with tangent vectors to paths. A #emph[one-form field over the map] allows us to extract the components of a vector field over the map.
@@ -11,7 +11,7 @@ Let $μ$ be a map from points $sans(n)$ in the manifold $sans(N)$ to points $san
 == Restricted Vector Fields <sec-6.2>
 One way to make a vector field over a map is to restrict a vector field on $sans(M)$ to the image of $sans(N)$ over $μ$, as illustrated in figure 6.1.
 
-#fdg-figure(image("../assets/figures/fig-6-1.pdf", width: 49.2%), [The vector field $v$ on $M$ is indicated by arrows. The solid arrows are $v_mu$, the restricted vector field over the map $mu$. The vector field over the map is restricted to the image of $N$ in $M$.])
+#fdg-figure(fdg-cetz-figure("fig-6-1"), [The vector field $v$ on $M$ is indicated by arrows. The solid arrows are $v_mu$, the restricted vector field over the map $mu$. The vector field over the map is restricted to the image of $N$ in $M$.])
 
 
 

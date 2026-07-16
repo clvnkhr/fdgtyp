@@ -44,6 +44,8 @@
 
     This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License. To view a copy of this license, visit creativecommons.org.
 
+    This Typst edition was converted from the source material published by #link("https://github.com/mentat-collective/fdg-book")[mentat-collective/fdg-book].
+
     Other than as provided by this license, no part of this book may be reproduced, transmitted, or displayed by any electronic or mechanical means without permission from the MIT Press or as permitted by law.
 
     MIT Press books may be purchased at special quantity discounts for business or sales promotional use. For information, please email #raw("special_sales@mitpress.mit.edu") or write to Special Sales Department, The MIT Press, 55 Hayward Street, Cambridge, MA 02142.

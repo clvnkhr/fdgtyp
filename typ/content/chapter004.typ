@@ -1,6 +1,6 @@
 // Generated from ../../fdg-book/scheme/org/chapter004.org.
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
-#import "../lib.typ": fdg-chapter, fdg-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
+#import "../lib.typ": fdg-chapter, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
 
 #fdg-chapter("Basis Fields", numbered: true, eq-prefix: "4", ref-label: "chap-4")[
 A vector field may be written as a linear combination of basis vector fields. If #raw(lang:"scheme", "n") is the dimension, then any set of #raw(lang:"scheme", "n") linearly independent vector fields may be used as a basis. The coordinate basis $sans(X)$ is an example of a basis.#footnote[We cannot say if the basis vectors are orthogonal or normalized until we introduce a metric.] We will see later that not every basis is a coordinate basis: in order to be a coordinate basis, there must be a coordinate system such that each basis element is the directional derivative operator in a corresponding coordinate direction.
@@ -17,7 +17,7 @@ $ tilde(sans(e))^i (sans(e)_j) (sans(m))= delta_j^i $ <4.2>
 
 is satisfied, analogous to property @3.41. Figure 4.1 illustrates the duality of basis fields.
 
-#fdg-figure(image("../assets/figures/fig-4-1.pdf", width: 49.2%), [Let arrows $e_0$ and $e_1$ depict the vectors of a basis vector field at a particular point. Then the foliations shown by the parallel lines depict the dual basis one-form fields at that point. The dotted lines represent the field $tilde(e)^0$ and the dashed lines represent the field $tilde(e)^1$. The spacings of the lines are $1/3$ unit. That the vectors pierce three of the lines representing their duals and do not pierce any of the lines representing the other basis elements is one way to see the relationship $tilde(e)^i (e_j)(m) = delta^i_j$.])
+#fdg-figure(fdg-cetz-figure("fig-4-1"), [Let arrows $e_0$ and $e_1$ depict the vectors of a basis vector field at a particular point. Then the foliations shown by the parallel lines depict the dual basis one-form fields at that point. The dotted lines represent the field $tilde(e)^0$ and the dashed lines represent the field $tilde(e)^1$. The spacings of the lines are $1/3$ unit. That the vectors pierce three of the lines representing their duals and do not pierce any of the lines representing the other basis elements is one way to see the relationship $tilde(e)^i (e_j)(m) = delta^i_j$.])
 
 
 
@@ -358,7 +358,7 @@ $ (e^(epsilon.alt^2[sans(v)\,sans(w)]) sans(f)) (sans(m)) $ <4.43>
 
 This result is illustrated in figure 4.2.
 
-#fdg-figure(image("../assets/figures/fig-4-2.pdf", width: 49.2%), [The commutator of two vector fields computes the residual of a small loop following their integral curves.])
+#fdg-figure(fdg-cetz-figure("fig-4-2"), [The commutator of two vector fields computes the residual of a small loop following their integral curves.])
 
 
 

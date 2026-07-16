@@ -551,6 +551,8 @@ const assertions = [
       "Higher-order derivatives are described by exponentiating the derivative operator. Thus the $n$th derivative of a function $f$ is notated as $D^n f$.",
       "using #TeX, and then these decorations turn into superscripts and subscripts.",
       "equations @B.4 and @B.5",
+      ";; (H (up t (up x y) (down p_x p_y)))",
+      "(((partial 0) H) (up t (up x y) (down p_x p_y)))",
     ],
     excludes: [
       "\\$n\\$th",
@@ -558,6 +560,8 @@ const assertions = [
       "equations (B.4)",
       "I_0 (s)= y",
       "$ A B =[A C_0\\,A C_1\\,A C_2]. $ <B.10>",
+      ";; (H (up t (up x y) (down p x p y)))",
+      "(up_x y)",
     ],
   },
   {
@@ -617,8 +621,9 @@ const typFileAssertions = [
     file: "fdg-lib/title.typ",
     contains: [
       '#image("../assets/cc-by-nc-sa.svg", width: 114pt)',
+      'This Typst edition was converted from the source material published by #link("https://github.com/mentat-collective/fdg-book")[mentat-collective/fdg-book].',
       '#raw("special_sales@mitpress.mit.edu")',
-      "#v(1.6em)",
+      "#v(1.2em)",
       "#h(1.2em)p. cm.",
       "516.3'6—dc23",
       "#align(right)[2012042107]",
@@ -935,6 +940,14 @@ for (const file of convertedOrgFiles) {
   }
 }
 
+const chapter1Org = readFileSync(path.join(orgDir, "chapter001.org"), "utf8");
+if (chapter1Org.includes("So, to work with coordinates we write:")) {
+  fail(
+    "Converter-supplied Chapter 1 transition leaked into the vendored Org source:",
+    "So, to work with coordinates we write:",
+  );
+}
+
 for (const file of contentFiles) {
   const text = contentByFile.get(file);
   const actualDoubleBackslashes = matchAll(/\\\\/g, text).length;
@@ -962,7 +975,7 @@ for (const file of contentFiles) {
   if (!text.includes("// Re-run scripts/convert-org-to-typst.mjs to refresh.")) {
     fail(`Missing regeneration header in ${file}`);
   }
-  const importLine = '#import "../lib.typ": fdg-chapter, fdg-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX';
+  const importLine = '#import "../lib.typ": fdg-chapter, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX';
   if (!text.includes(importLine)) {
     fail(`Missing standard content import in ${file}`);
   }
@@ -1239,8 +1252,8 @@ for (const file of contentFiles) {
 const figureUses = [];
 for (const file of contentFiles) {
   const text = contentByFile.get(file);
-  for (const match of matchAll(/#fdg-figure\(image\("\.\.\/assets\/figures\/([^"]+)", width: ([^)]+)\), \[([\s\S]*?)\]\)/g, text)) {
-    figureUses.push({ file, asset: match[1], width: match[2], caption: match[3] });
+  for (const match of matchAll(/#fdg-figure\(fdg-cetz-figure\("([^"]+)"\), \[([\s\S]*?)\]\)/g, text)) {
+    figureUses.push({ file, asset: `${match[1]}.pdf`, caption: match[2] });
   }
   for (const match of matchAll(/#align\(center\)\[#image|#figure\(image\("\.\.\/assets\/figures\//g, text)) {
     fail("Found legacy figure/image insertion:", describeMatch(file, text, match));
@@ -1262,9 +1275,6 @@ for (const asset of expectedFigures) {
 for (const use of figureUses) {
   if (!expectedFigures.includes(use.asset)) {
     fail("Unexpected figure asset used:", `${use.file}: ${use.asset}`);
-  }
-  if (use.width !== "49.2%") {
-    fail("Unexpected figure width:", `${use.file}: ${use.asset} width ${use.width}`);
   }
   if (!use.caption.trim()) {
     fail("Empty figure caption:", `${use.file}: ${use.asset}`);

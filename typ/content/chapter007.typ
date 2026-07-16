@@ -1,6 +1,6 @@
 // Generated from ../../fdg-book/scheme/org/chapter007.org.
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
-#import "../lib.typ": fdg-chapter, fdg-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
+#import "../lib.typ": fdg-chapter, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
 
 #fdg-chapter("Directional Derivatives", numbered: true, eq-prefix: "7", ref-label: "chap-7")[
 The vector field was a generalization of the directional derivative to functions on a manifold. When we want to generalize the directional derivative idea to operate on other manifold objects, such as directional derivatives of vector fields or of form fields, there are several useful choices. In the same way that a vector field applies to a function to produce a function, we will build directional derivatives so that when applied to any object it will produce another object of the same kind. All directional derivatives require a vector field to give the direction and scale factor.
@@ -634,7 +634,7 @@ Note that this is the same thing as $partial\/partial sans(y)$ applied to the fu
 
 In rectangular coordinates, where the Christoffel coefficients are zero, the covariant derivative $nabla_(sans(u)) sans(v)$ is the vector whose coefficients are obtained by applying $sans(u)$ to the coefficients of $sans(v)$. Here, only one coefficient of $partial\/partial theta$ depends on $x$, the coefficient of $partial\/partial sans(y)$, and it depends linearly on $x$. So $nabla_(partial\/partial sans(x)) partial\/partial theta = partial\/partial sans(y)$. (See figure 7.1.)
 
-#fdg-figure(image("../assets/figures/fig-7-1.pdf", width: 49.2%), [If $v$ and $v'$ are "arrow" representations of vectors in the circular field and we parallel-transport $v$ in the $partial slash partial x$ direction, then the difference between $v'$ and the parallel transport of $v$ is in the $partial slash partial y$ direction.])
+#fdg-figure(fdg-cetz-figure("fig-7-1"), [If $v$ and $v'$ are "arrow" representations of vectors in the circular field and we parallel-transport $v$ in the $partial slash partial x$ direction, then the difference between $v'$ and the parallel transport of $v$ is in the $partial slash partial y$ direction.])
 
 
 

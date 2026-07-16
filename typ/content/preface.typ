@@ -1,6 +1,6 @@
 // Generated from ../../fdg-book/scheme/org/preface.org.
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
-#import "../lib.typ": fdg-chapter, fdg-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
+#import "../lib.typ": fdg-chapter, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
 
 #fdg-chapter("Preface", numbered: false, eq-prefix: "0", ref-label: "")[
 Learning physics is hard. Part of the problem is that physics is naturally expressed in mathematical language. When we teach we use the language of mathematics in the same way that we use our natural language. We depend upon a vast amount of shared knowledge and culture, and we only sketch an idea using mathematical idioms. We are insufficiently precise to convey an idea to a person who does not share our culture. Our problem is that since we share the culture we find it difficult to notice that what we say is too imprecise to be clearly understood by a student new to the subject. A student must simultaneously learn the mathematical language and the content that is expressed in that language. This is like trying to read Les Misérables while struggling with French grammar.

@@ -1,6 +1,6 @@
 // Generated from ../../fdg-book/scheme/org/chapter001.org.
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
-#import "../lib.typ": fdg-chapter, fdg-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
+#import "../lib.typ": fdg-chapter, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
 
 #fdg-chapter("Introduction", numbered: true, eq-prefix: "1", ref-label: "chap-1")[
 #quote(block: true)[

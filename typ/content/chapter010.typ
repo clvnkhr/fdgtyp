@@ -1,6 +1,6 @@
 // Generated from ../../fdg-book/scheme/org/chapter010.org.
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
-#import "../lib.typ": fdg-chapter, fdg-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
+#import "../lib.typ": fdg-chapter, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
 
 #fdg-chapter("Hodge Star and Electrodynamics", numbered: true, eq-prefix: "10", ref-label: "chap-10")[
 The vector space of $p$-form fields on an $n$-dimensional manifold has dimension $n !\/((n - p)! p !)$. This is the same dimension as the space of $(n - p)$-form fields. So these vector spaces are isomorphic. If we have a metric there is a natural isomorphism: for each $p$-form field $bold(omega)$ on an $n$-dimensional manifold there is an $(n - p)$-form field $sans(g)^(*) bold(omega)$, called its #emph[Hodge dual].#footnote[The traditional notion is to just use an asterisk; we use $g^convolve$ to emphasize that this duality depends on the choice of metric $g$.] The Hodge dual should not be confused with the duality of vector bases and one-form bases, which is defined without reference to a metric. The Hodge dual is useful for the elegant formalization of electrodynamics.

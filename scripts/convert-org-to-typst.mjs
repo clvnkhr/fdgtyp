@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
 import { execFileSync } from "node:child_process";
-import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
+import { createHash } from "node:crypto";
+import { mkdirSync, mkdtempSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
 
@@ -9,6 +10,39 @@ const root = process.cwd();
 const orgDir = path.join(root, "fdg-book", "scheme", "org");
 const typDir = path.join(root, "typ");
 const contentDir = path.join(typDir, "content");
+const orgSourceChecksums = JSON.parse(
+  readFileSync(new URL("./org-source-checksums.json", import.meta.url), "utf8"),
+);
+
+function assertOrgSourcesUntouched() {
+  const actualFiles = readdirSync(orgDir)
+    .filter(file => file.endsWith(".org"))
+    .sort();
+  const expectedFiles = Object.keys(orgSourceChecksums).sort();
+  const added = actualFiles.filter(file => !expectedFiles.includes(file));
+  const removed = expectedFiles.filter(file => !actualFiles.includes(file));
+  const modified = actualFiles
+    .filter(file => expectedFiles.includes(file))
+    .filter(file => {
+      const source = readFileSync(path.join(orgDir, file));
+      const checksum = createHash("sha256").update(source).digest("hex");
+      return checksum !== orgSourceChecksums[file];
+    });
+
+  if (added.length === 0 && removed.length === 0 && modified.length === 0) return;
+
+  const details = [
+    ...added.map(file => `  added: ${file}`),
+    ...removed.map(file => `  removed: ${file}`),
+    ...modified.map(file => `  modified: ${file}`),
+  ].join("\n");
+  throw new Error(
+    `Vendored Org sources differ from the pinned upstream snapshot:\n${details}\n`
+      + "Keep source fixes in convert-org-to-typst.mjs and restore scheme/org from mentat-collective/fdg-book.",
+  );
+}
+
+assertOrgSourcesUntouched();
 
 const files = [
   "preface.org",
@@ -227,10 +261,24 @@ function wrapBareSchemeBlocks(source) {
 function applyPdfFidelitySourceRepairs(source, stem) {
   // These repairs are derived from the published PDF. Keep them here rather
   // than editing the vendored Org snapshot.
+  if (stem === "chapter001") {
+    return source.replace(
+      /(: \(up \(q\^0 t\) \(q\^1 t\)\)\n: \|#\n)(\n#\+begin_src scheme\n\(define coordinate-path)/,
+      "$1\nSo, to work with coordinates we write:\n\n$2",
+    );
+  }
+
   if (stem === "appendix_b") {
     return source
       .replaceAll("I_0(s) &= y \\\\", "I_0(s) &= t \\\\")
-      .replaceAll("AB = [AC_0, AC_1, AC_2].", "AC = [AC_0, AC_1, AC_2].");
+      .replaceAll("AB = [AC_0, AC_1, AC_2].", "AC = [AC_0, AC_1, AC_2].")
+      // Correct inconsistent phase-space tuples in displayed evaluator output
+      // while preserving the vendored Org source verbatim.
+      .replaceAll(
+        ";; (H (up t (up x y) (down p x p y)))",
+        ";; (H (up t (up x y) (down p_x p_y)))",
+      )
+      .replaceAll("(up_x y)", "(up x y)");
   }
 
   if (stem === "appendix_c") {
@@ -819,7 +867,8 @@ const figureCaptions = {
 function figurePdf(file, width = "49.2%") {
   const caption = figureCaptions[file];
   if (!caption) throw new Error(`Missing caption for figure asset ${file}`);
-  return `#fdg-figure(image("../assets/figures/${file}", width: ${width}), [${caption}])\n\n`;
+  const figureName = file.replace(/\.pdf$/, "");
+  return `#fdg-figure(fdg-cetz-figure(${JSON.stringify(figureName)}), [${caption}])\n\n`;
 }
 
 function normalizeTypstSubsupBraces(body) {
@@ -1857,7 +1906,7 @@ function convert(file) {
   const content = [
     `// Generated from ../../fdg-book/scheme/org/${file}.`,
     `// Re-run scripts/convert-org-to-typst.mjs to refresh.`,
-    `#import "../lib.typ": fdg-chapter, fdg-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX`,
+    `#import "../lib.typ": fdg-chapter, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX`,
     "",
     `#fdg-chapter(${JSON.stringify(typstEscape(displayTitle))}, numbered: ${numbered}, eq-prefix: ${JSON.stringify(equationLabelPrefix(stem) ?? "0")}, ref-label: ${JSON.stringify(chapterLabel(stem) ?? "")})[`,
     bodyWithNormalizedDisplays.trimEnd(),

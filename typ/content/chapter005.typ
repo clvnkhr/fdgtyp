@@ -1,6 +1,6 @@
 // Generated from ../../fdg-book/scheme/org/chapter005.org.
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
-#import "../lib.typ": fdg-chapter, fdg-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
+#import "../lib.typ": fdg-chapter, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
 
 #fdg-chapter("Integration", numbered: true, eq-prefix: "5", ref-label: "chap-5")[
 We know how to integrate real-valued functions of a real variable. We want to extend this idea to manifolds, in such a way that the integral is independent of the coordinate system used to compute it.
@@ -102,7 +102,7 @@ $ integral_(sans(U)) sans(d) sans(x) and sans(d) sans(y) and dots.c = upright("V
 
 where $upright("Volume") (sans(U))$ is the ordinary volume of the region corresponding to $sans(U)$ in the Euclidean space of $sans(R)^n$ with the orthonormal coordinate system $(x\,y\,dots.c)$.#footnote[By using the word \"orthonormal\" here we are assuming that the range of the coordinate chart is an ordinary Euclidean space with the usual Euclidean metric. The coordinate basis in that chart is orthonormal. Under these conditions we can usefully use words like \"length,\" \"area,\" and \"volume\" in the coordinate space.]
 
-#fdg-figure(image("../assets/figures/fig-5-1.pdf", width: 49.2%), [The area of the parallelogram in the $(x, y)$ coordinate plane is given by $A(u, v)(m)$.])
+#fdg-figure(fdg-cetz-figure("fig-5-1"), [The area of the parallelogram in the $(x, y)$ coordinate plane is given by $A(u, v)(m)$.])
 
 
 

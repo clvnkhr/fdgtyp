@@ -1,6 +1,6 @@
 // Generated from ../../fdg-book/scheme/org/appendix_b.org.
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
-#import "../lib.typ": fdg-chapter, fdg-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
+#import "../lib.typ": fdg-chapter, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
 
 #fdg-chapter("Our Notation", numbered: true, eq-prefix: "B", ref-label: "chap-appendix-b")[
 #quote(block: true)[
@@ -355,15 +355,15 @@ In Scheme we must make explicit choices. We usually assume that phase-space stat
                         Real)))
 
 (H s)
-;; (H (up t (up x y) (down p x p y)))
+;; (H (up t (up x y) (down p_x p_y)))
 
 ((D H) s)
 ;; (down
-;;  (((partial 0) H) (up t (up_x y) (down p_x p_y)))
-;;  (down (((partial 1 0) H) (up t (up_x y) (down p_x p_y)))
-;;        (((partial 1 1) H) (up t (up_x y) (down p_x p_y))))
-;;  (up (((partial 2 0) H) (up t (up_x y) (down p_x p_y)))
-;;      (((partial 2 1) H) (up t (up_x y) (down p_x p_y)))))
+;;  (((partial 0) H) (up t (up x y) (down p_x p_y)))
+;;  (down (((partial 1 0) H) (up t (up x y) (down p_x p_y)))
+;;        (((partial 1 1) H) (up t (up x y) (down p_x p_y))))
+;;  (up (((partial 2 0) H) (up t (up x y) (down p_x p_y)))
+;;      (((partial 2 1) H) (up t (up x y) (down p_x p_y)))))
 ```
 
 == Structured Results <sec-B.6>

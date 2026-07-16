@@ -1,6 +1,6 @@
 // Generated from ../../fdg-book/scheme/org/chapter008.org.
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
-#import "../lib.typ": fdg-chapter, fdg-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
+#import "../lib.typ": fdg-chapter, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
 
 #fdg-chapter("Curvature", numbered: true, eq-prefix: "8", ref-label: "chap-8")[
 If the intrinsic curvature of a manifold is not zero, a vector parallel-transported around a small loop will end up different from the vector that started. We saw the consequence of this before, on #fdg-page-ref(<intro-parallel-transport>) and #fdg-page-ref(<sec-7.16>). The Riemann tensor encapsulates this idea.
