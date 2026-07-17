@@ -1,0 +1,5117 @@
+[
+  {
+    "id": "prologue-001",
+    "chapter": "prologue",
+    "ordinal": 1,
+    "heading": "Prologue",
+    "orgLine": 7,
+    "sourceHash": "5dd155fa13bb8aff9b7c040a36afb6803210f0294a08ea7505801d8bb6a09536",
+    "backgroundSetup": true,
+    "definitions": [],
+    "capturesResult": false,
+    "codePath": "generated/prologue/001.cljs",
+    "sourcePath": "fdg-book/scheme/org/prologue.org"
+  },
+  {
+    "id": "prologue-002",
+    "chapter": "prologue",
+    "ordinal": 2,
+    "heading": "Functional Abstraction",
+    "orgLine": 151,
+    "sourceHash": "50a37b840f7abf8ec077552bbad9819869a47cf3525a545eb581f9aff2b4e575",
+    "backgroundSetup": false,
+    "definitions": [
+      "Lagrange-equations"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/prologue/002.cljs",
+    "sourcePath": "fdg-book/scheme/org/prologue.org"
+  },
+  {
+    "id": "prologue-003",
+    "chapter": "prologue",
+    "ordinal": 3,
+    "heading": "Functional Abstraction",
+    "orgLine": 166,
+    "sourceHash": "d39745fc5ca8dfca0e7c67aa34380f1d2450c9deac7b9f3aca613438bfa084f9",
+    "backgroundSetup": false,
+    "definitions": [
+      "Gamma"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/prologue/003.cljs",
+    "sourcePath": "fdg-book/scheme/org/prologue.org"
+  },
+  {
+    "id": "prologue-004",
+    "chapter": "prologue",
+    "ordinal": 4,
+    "heading": "Functional Abstraction",
+    "orgLine": 188,
+    "sourceHash": "2c5523545abcac26d5c4344f5b8bde8e76ba486dab21a1ccddaea2570a3bbbfd",
+    "backgroundSetup": false,
+    "definitions": [
+      "L-harmonic"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/prologue/004.cljs",
+    "sourcePath": "fdg-book/scheme/org/prologue.org"
+  },
+  {
+    "id": "prologue-005",
+    "chapter": "prologue",
+    "ordinal": 5,
+    "heading": "Functional Abstraction",
+    "orgLine": 208,
+    "sourceHash": "f598c6fb4281d08d685a9f295dda8cf685135925550e245eb447528c95512007",
+    "backgroundSetup": false,
+    "definitions": [
+      "proposed-solution"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/prologue/005.cljs",
+    "sourcePath": "fdg-book/scheme/org/prologue.org"
+  },
+  {
+    "id": "prologue-006",
+    "chapter": "prologue",
+    "ordinal": 6,
+    "heading": "Functional Abstraction",
+    "orgLine": 216,
+    "sourceHash": "7ee55e4429e524c19618055130d735842485658c8117e479fac8f6d1ccb20e6f",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/prologue/006.cljs",
+    "sourcePath": "fdg-book/scheme/org/prologue.org"
+  },
+  {
+    "id": "prologue-007",
+    "chapter": "prologue",
+    "ordinal": 7,
+    "heading": "Functional Abstraction",
+    "orgLine": 233,
+    "sourceHash": "37ba70d3a15e46338b906fd44dc5cffc2c1e469055a449ca1c96b23aed791ddb",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/prologue/007.cljs",
+    "sourcePath": "fdg-book/scheme/org/prologue.org"
+  },
+  {
+    "id": "chapter001-001",
+    "chapter": "chapter001",
+    "ordinal": 1,
+    "heading": "Chapter 1: Introduction",
+    "orgLine": 7,
+    "sourceHash": "34aa0745269c3cbc112e4ea1619ae4372bf0101ebdf2b643ceff68aa81e5ef53",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": false,
+    "codePath": "generated/chapter001/001.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter001.org"
+  },
+  {
+    "id": "chapter001-002",
+    "chapter": "chapter001",
+    "ordinal": 2,
+    "heading": "Lagrange Equations",
+    "orgLine": 111,
+    "sourceHash": "fcd852fad19e438a6d3be3c396ff4ad1e07d4b8748dc77e104cec9a3c38b0490",
+    "backgroundSetup": false,
+    "definitions": [
+      "Lfree"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter001/002.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter001.org"
+  },
+  {
+    "id": "chapter001-003",
+    "chapter": "chapter001",
+    "ordinal": 3,
+    "heading": "Lagrange Equations",
+    "orgLine": 136,
+    "sourceHash": "a17c92325ff5745abded49dd71cc84867d90cf9aeca0b6a8f22d39eed118618e",
+    "backgroundSetup": false,
+    "definitions": [
+      "sphere->R3"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter001/003.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter001.org"
+  },
+  {
+    "id": "chapter001-004",
+    "chapter": "chapter001",
+    "ordinal": 4,
+    "heading": "Lagrange Equations",
+    "orgLine": 154,
+    "sourceHash": "bc8d025169bd8427c3db780361a5ddc755dc009e9c0537fbe65cd206ee37a1e7",
+    "backgroundSetup": false,
+    "definitions": [
+      "F->C"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter001/004.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter001.org"
+  },
+  {
+    "id": "chapter001-005",
+    "chapter": "chapter001",
+    "ordinal": 5,
+    "heading": "Lagrange Equations",
+    "orgLine": 169,
+    "sourceHash": "eca40760ac83150b4b7c81f94f6f124deb23b23c9e6d035c2fd66fddb48759b9",
+    "backgroundSetup": false,
+    "definitions": [
+      "Lsphere"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter001/005.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter001.org"
+  },
+  {
+    "id": "chapter001-006",
+    "chapter": "chapter001",
+    "ordinal": 6,
+    "heading": "Lagrange Equations",
+    "orgLine": 182,
+    "sourceHash": "1e7ff612eab70e0a30f6c2ebc9f5f60e86e8c93230869a6636fe775e4e6a68e0",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter001/006.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter001.org"
+  },
+  {
+    "id": "chapter001-007",
+    "chapter": "chapter001",
+    "ordinal": 7,
+    "heading": "Lagrange Equations",
+    "orgLine": 195,
+    "sourceHash": "78ce68da3532496d57d3847583fd69cadeb97774a235d7b928a8779e3d1fcccc",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter001/007.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter001.org"
+  },
+  {
+    "id": "chapter001-008",
+    "chapter": "chapter001",
+    "ordinal": 8,
+    "heading": "The Metric",
+    "orgLine": 255,
+    "sourceHash": "6863e189b18c8e748b63ae1b5be1c3f27c5c4dd1bbc26a79e115df7c7e1ffb2d",
+    "backgroundSetup": false,
+    "definitions": [
+      "L2"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter001/008.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter001.org"
+  },
+  {
+    "id": "chapter001-009",
+    "chapter": "chapter001",
+    "ordinal": 9,
+    "heading": "The Metric",
+    "orgLine": 273,
+    "sourceHash": "99605c1e9f2455d004c8e19fca49cf7b4c23b0df95f3ee35530a9c86305faab3",
+    "backgroundSetup": false,
+    "definitions": [
+      "Lc"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter001/009.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter001.org"
+  },
+  {
+    "id": "chapter001-010",
+    "chapter": "chapter001",
+    "ordinal": 10,
+    "heading": "The Metric",
+    "orgLine": 295,
+    "sourceHash": "a16b567ed7dafe7b6edf6b5c6c24358b751f2cf0980af514beaa9ece7163d8d8",
+    "backgroundSetup": false,
+    "definitions": [
+      "the-metric"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter001/010.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter001.org"
+  },
+  {
+    "id": "chapter001-011",
+    "chapter": "chapter001",
+    "ordinal": 11,
+    "heading": "The Metric",
+    "orgLine": 307,
+    "sourceHash": "0f85e755c5214b7e9e7cc5d9342844a1dc9d1856cad8a834088c357ff7daa50b",
+    "backgroundSetup": false,
+    "definitions": [
+      "L"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter001/011.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter001.org"
+  },
+  {
+    "id": "chapter001-012",
+    "chapter": "chapter001",
+    "ordinal": 12,
+    "heading": "The Metric",
+    "orgLine": 316,
+    "sourceHash": "1801f593f7f6b825ca120e8709d6b99c3ed068f83c56f8a7cc945f5852eab2ce",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter001/012.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter001.org"
+  },
+  {
+    "id": "chapter001-013",
+    "chapter": "chapter001",
+    "ordinal": 13,
+    "heading": "Euler-Lagrange Residuals",
+    "orgLine": 336,
+    "sourceHash": "1b7c6e4ea5e615b50cbca391a330f74510b213400a96878bde0e7a8572d82822",
+    "backgroundSetup": false,
+    "definitions": [
+      "gamma"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter001/013.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter001.org"
+  },
+  {
+    "id": "chapter001-014",
+    "chapter": "chapter001",
+    "ordinal": 14,
+    "heading": "Euler-Lagrange Residuals",
+    "orgLine": 351,
+    "sourceHash": "897cb81694deefb6916356bc77e2d029cf49fb795f63b419d3fa24e7219c3873",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter001/014.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter001.org"
+  },
+  {
+    "id": "chapter001-015",
+    "chapter": "chapter001",
+    "ordinal": 15,
+    "heading": "Euler-Lagrange Residuals",
+    "orgLine": 360,
+    "sourceHash": "6ecd3cbcba1e007dcf4adf421bd343c0a3570bbe0b4469de909647509f7aeacf",
+    "backgroundSetup": false,
+    "definitions": [
+      "coordinate-path"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter001/015.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter001.org"
+  },
+  {
+    "id": "chapter001-016",
+    "chapter": "chapter001",
+    "ordinal": 16,
+    "heading": "Euler-Lagrange Residuals",
+    "orgLine": 368,
+    "sourceHash": "467da654c33a5d6b8d9094819c209ef00a2ff33e05a1bccc9e01db4085b34d5c",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter001/016.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter001.org"
+  },
+  {
+    "id": "chapter001-017",
+    "chapter": "chapter001",
+    "ordinal": 17,
+    "heading": "Euler-Lagrange Residuals",
+    "orgLine": 381,
+    "sourceHash": "6c35c02ad3a195bf9169f5846c90c224412a1c08071125e8eadc0901ffea1d42",
+    "backgroundSetup": false,
+    "definitions": [
+      "Lagrange-residuals"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter001/017.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter001.org"
+  },
+  {
+    "id": "chapter001-018",
+    "chapter": "chapter001",
+    "ordinal": 18,
+    "heading": "Geodesic Equations",
+    "orgLine": 433,
+    "sourceHash": "769588f39f7f8f143d742d926514909355a41822c07b71c45f3fd7575235017b",
+    "backgroundSetup": false,
+    "definitions": [
+      "Cartan"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter001/018.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter001.org"
+  },
+  {
+    "id": "chapter001-019",
+    "chapter": "chapter001",
+    "ordinal": 19,
+    "heading": "Geodesic Equations",
+    "orgLine": 444,
+    "sourceHash": "9b7edb953d3728451d919a9353f59721ed328bbb52d6034a025d27a624327272",
+    "backgroundSetup": false,
+    "definitions": [
+      "geodesic-equation-residuals"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter001/019.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter001.org"
+  },
+  {
+    "id": "chapter001-020",
+    "chapter": "chapter001",
+    "ordinal": 20,
+    "heading": "Geodesic Equations",
+    "orgLine": 459,
+    "sourceHash": "769588f39f7f8f143d742d926514909355a41822c07b71c45f3fd7575235017b",
+    "backgroundSetup": false,
+    "definitions": [
+      "Cartan"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter001/020.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter001.org"
+  },
+  {
+    "id": "chapter001-021",
+    "chapter": "chapter001",
+    "ordinal": 21,
+    "heading": "Geodesic Equations",
+    "orgLine": 474,
+    "sourceHash": "9651ac3afab53c9005d8f9129a0cefabb9b95384fb5ada94cc442033489ef504",
+    "backgroundSetup": false,
+    "definitions": [
+      "metric-components"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter001/021.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter001.org"
+  },
+  {
+    "id": "chapter001-022",
+    "chapter": "chapter001",
+    "ordinal": 22,
+    "heading": "Geodesic Equations",
+    "orgLine": 484,
+    "sourceHash": "add9052eb0bb782ea461f36df3546e9f8cae968f2935cbc3655109c241b060b3",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter001/022.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter001.org"
+  },
+  {
+    "id": "chapter002-001",
+    "chapter": "chapter002",
+    "ordinal": 1,
+    "heading": "Manifolds",
+    "orgLine": 42,
+    "sourceHash": "06c1dd8fb18955a72b3be79a903d3ce5b9a6c14c48228041e0c0573a7d49f489",
+    "backgroundSetup": false,
+    "definitions": [
+      "R2"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter002/001.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter002.org"
+  },
+  {
+    "id": "chapter002-002",
+    "chapter": "chapter002",
+    "ordinal": 2,
+    "heading": "Manifolds",
+    "orgLine": 49,
+    "sourceHash": "f2627c3732c3d8399d569ad749eac698e152c1544c1cceb184496a9ad6c132d6",
+    "backgroundSetup": false,
+    "definitions": [
+      "U"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter002/002.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter002.org"
+  },
+  {
+    "id": "chapter002-003",
+    "chapter": "chapter002",
+    "ordinal": 3,
+    "heading": "Coordinate Functions",
+    "orgLine": 84,
+    "sourceHash": "8e5d2403236b9e78be3387368efef8870b768b6feaa05d1b0fd3c2cbb1675401",
+    "backgroundSetup": false,
+    "definitions": [
+      "R2-rect",
+      "R2-polar"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter002/003.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter002.org"
+  },
+  {
+    "id": "chapter002-004",
+    "chapter": "chapter002",
+    "ordinal": 4,
+    "heading": "Coordinate Functions",
+    "orgLine": 93,
+    "sourceHash": "07920af6ae6a6566e3946c1da27856c5d4f529bb61f465f972195ab06a5d3471",
+    "backgroundSetup": false,
+    "definitions": [
+      "R2-rect-chi",
+      "R2-rect-chi-inverse",
+      "R2-polar-chi",
+      "R2-polar-chi-inverse"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter002/004.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter002.org"
+  },
+  {
+    "id": "chapter002-005",
+    "chapter": "chapter002",
+    "ordinal": 5,
+    "heading": "Coordinate Functions",
+    "orgLine": 102,
+    "sourceHash": "2a6abf1698c06c40590389445cba96560f23c224541fa77ca81a1387abc518c3",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter002/005.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter002.org"
+  },
+  {
+    "id": "chapter002-006",
+    "chapter": "chapter002",
+    "ordinal": 6,
+    "heading": "Coordinate Functions",
+    "orgLine": 110,
+    "sourceHash": "683f91c30191ee1446deadab6e32b2df471813672a3aeb19175d748cb82b3ada",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter002/006.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter002.org"
+  },
+  {
+    "id": "chapter002-007",
+    "chapter": "chapter002",
+    "ordinal": 7,
+    "heading": "Coordinate Functions",
+    "orgLine": 119,
+    "sourceHash": "5e957da39dbe4be562383690dad02cf9f265041c5cd04eec92b84d5eb5a63481",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter002/007.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter002.org"
+  },
+  {
+    "id": "chapter002-008",
+    "chapter": "chapter002",
+    "ordinal": 8,
+    "heading": "/Manifold Functions Are Coordinate Indepenedent/",
+    "orgLine": 170,
+    "sourceHash": "1671e793e45682d1a4370826cc51172f6fb3ee94312d6a3afaa71dda4a667b8f",
+    "backgroundSetup": false,
+    "definitions": [
+      "f"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter002/008.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter002.org"
+  },
+  {
+    "id": "chapter002-009",
+    "chapter": "chapter002",
+    "ordinal": 9,
+    "heading": "/Manifold Functions Are Coordinate Indepenedent/",
+    "orgLine": 176,
+    "sourceHash": "c10d75c9f6c29ce6333d9628aca1c140083e57b9572b050699735d87b1fe1e85",
+    "backgroundSetup": false,
+    "definitions": [
+      "R2->R"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter002/009.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter002.org"
+  },
+  {
+    "id": "chapter002-010",
+    "chapter": "chapter002",
+    "ordinal": 10,
+    "heading": "/Manifold Functions Are Coordinate Indepenedent/",
+    "orgLine": 180,
+    "sourceHash": "ef02ac3e5496fd1e1070d16d3a57012fdb3b69ad39d111db784f43bec69a815a",
+    "backgroundSetup": false,
+    "definitions": [
+      "R2-rect-point"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter002/010.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter002.org"
+  },
+  {
+    "id": "chapter002-011",
+    "chapter": "chapter002",
+    "ordinal": 11,
+    "heading": "/Manifold Functions Are Coordinate Indepenedent/",
+    "orgLine": 184,
+    "sourceHash": "e2f23ff189dcc11bc12ae713a14e69052d2dfdd88c0538ddcc51c2110dc22f0e",
+    "backgroundSetup": false,
+    "definitions": [
+      "corresponding-polar-point"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter002/011.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter002.org"
+  },
+  {
+    "id": "chapter002-012",
+    "chapter": "chapter002",
+    "ordinal": 12,
+    "heading": "/Manifold Functions Are Coordinate Indepenedent/",
+    "orgLine": 192,
+    "sourceHash": "88a5fb826d073252b3f4bc99d90ae88708a4ba084e90a628a7bb12a787f0fd63",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter002/012.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter002.org"
+  },
+  {
+    "id": "chapter002-013",
+    "chapter": "chapter002",
+    "ordinal": 13,
+    "heading": "/Manifold Functions Are Coordinate Indepenedent/",
+    "orgLine": 197,
+    "sourceHash": "9aa7f7e796186bab0af4e63f288b7172d1731a0b7053121322ef61a830742bcd",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter002/013.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter002.org"
+  },
+  {
+    "id": "chapter002-014",
+    "chapter": "chapter002",
+    "ordinal": 14,
+    "heading": "Naming Coordinate Functions",
+    "orgLine": 208,
+    "sourceHash": "daa0639cf2751dd807fe9ee8af757bc9d03e774c2d0735bdc176631293e098d9",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": false,
+    "codePath": "generated/chapter002/014.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter002.org"
+  },
+  {
+    "id": "chapter002-015",
+    "chapter": "chapter002",
+    "ordinal": 15,
+    "heading": "Naming Coordinate Functions",
+    "orgLine": 214,
+    "sourceHash": "8dfb7bf11ef18ce51b0910306733e000e0e2a78dc41c1b34c3b7e46caa54969a",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter002/015.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter002.org"
+  },
+  {
+    "id": "chapter002-016",
+    "chapter": "chapter002",
+    "ordinal": 16,
+    "heading": "Naming Coordinate Functions",
+    "orgLine": 219,
+    "sourceHash": "1b872dc9ab1c074bb41f75e9dfb97ed004c42f236c2a322e06ae9e4c5c12df23",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter002/016.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter002.org"
+  },
+  {
+    "id": "chapter002-017",
+    "chapter": "chapter002",
+    "ordinal": 17,
+    "heading": "Naming Coordinate Functions",
+    "orgLine": 224,
+    "sourceHash": "0474c8d9de4fddfa91aa695926618625383643f30ad447b8c37c1fccc97357da",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter002/017.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter002.org"
+  },
+  {
+    "id": "chapter002-018",
+    "chapter": "chapter002",
+    "ordinal": 18,
+    "heading": "Naming Coordinate Functions",
+    "orgLine": 229,
+    "sourceHash": "56c98a17a152db3fcaac71e16a6e0325408f8bce3e8b0c904ffae12b08b65264",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter002/018.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter002.org"
+  },
+  {
+    "id": "chapter002-019",
+    "chapter": "chapter002",
+    "ordinal": 19,
+    "heading": "Naming Coordinate Functions",
+    "orgLine": 234,
+    "sourceHash": "ef580d4ebcb3bf5599f018cc39861cc0766e683d5f5a2784efbb85deffd18693",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter002/019.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter002.org"
+  },
+  {
+    "id": "chapter002-020",
+    "chapter": "chapter002",
+    "ordinal": 20,
+    "heading": "Naming Coordinate Functions",
+    "orgLine": 241,
+    "sourceHash": "066bdd2f8d6bab9bc1c4324fcf01a17bd59ce5a4d9e5f141580fe23f0d3062e8",
+    "backgroundSetup": false,
+    "definitions": [
+      "h"
+    ],
+    "capturesResult": true,
+    "codePath": "generated/chapter002/020.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter002.org"
+  },
+  {
+    "id": "chapter002-021",
+    "chapter": "chapter002",
+    "ordinal": 21,
+    "heading": "Naming Coordinate Functions",
+    "orgLine": 249,
+    "sourceHash": "3d7b0190c6f3fb45f5bfd12a739b61e77e0bcbf4d92d737e4b3911ee17da6a5d",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter002/021.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter002.org"
+  },
+  {
+    "id": "chapter002-022",
+    "chapter": "chapter002",
+    "ordinal": 22,
+    "heading": "Exercise 2.1: Curves",
+    "orgLine": 265,
+    "sourceHash": "c8f6c04ea9bf0b5ae669ee7d6c5b6d0a8a34df18e5e6f6e408a194bca1631e2a",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter002/022.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter002.org"
+  },
+  {
+    "id": "chapter002-023",
+    "chapter": "chapter002",
+    "ordinal": 23,
+    "heading": "Exercise 2.2: Stereographic Projection",
+    "orgLine": 308,
+    "sourceHash": "5a6db0e2a69b9ed3e4a19343f826d11b52a5915ddf41c3b8b93c62e5018fae68",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter002/023.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter002.org"
+  },
+  {
+    "id": "chapter002-024",
+    "chapter": "chapter002",
+    "ordinal": 24,
+    "heading": "Footnotes",
+    "orgLine": 339,
+    "sourceHash": "b38aca9d52e110cf753ca278a0411c07b9e47ee9bbcad7d558eea7fc293d243a",
+    "backgroundSetup": false,
+    "definitions": [
+      "f"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter002/024.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter002.org"
+  },
+  {
+    "id": "chapter002-025",
+    "chapter": "chapter002",
+    "ordinal": 25,
+    "heading": "Footnotes",
+    "orgLine": 349,
+    "sourceHash": "3c3f37bdfe61901d01e09629db79dbefcceb4267ea34d38f3d26bad155803aa2",
+    "backgroundSetup": false,
+    "definitions": [
+      "R2-rect"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter002/025.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter002.org"
+  },
+  {
+    "id": "chapter003-001",
+    "chapter": "chapter003",
+    "ordinal": 1,
+    "heading": "Vector Fields",
+    "orgLine": 131,
+    "sourceHash": "a93dae031ee75ed7ee1c58103a43bf3854ec5d3377a95541c05c375085646ed0",
+    "backgroundSetup": false,
+    "definitions": [
+      "components->vector-field"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter003/001.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter003.org"
+  },
+  {
+    "id": "chapter003-002",
+    "chapter": "chapter003",
+    "ordinal": 2,
+    "heading": "Vector Fields",
+    "orgLine": 146,
+    "sourceHash": "381d9a5523b1c499c9e18c6354a78ffa33cf43580ac53be26b5d4318e2ca2fa2",
+    "backgroundSetup": false,
+    "definitions": [
+      "v"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter003/002.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter003.org"
+  },
+  {
+    "id": "chapter003-003",
+    "chapter": "chapter003",
+    "ordinal": 3,
+    "heading": "Vector Fields",
+    "orgLine": 160,
+    "sourceHash": "c3d69be417f5242c0293957267a3f1f66e24f361a093938d30197db1f5f20244",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter003/003.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter003.org"
+  },
+  {
+    "id": "chapter003-004",
+    "chapter": "chapter003",
+    "ordinal": 4,
+    "heading": "Vector Fields",
+    "orgLine": 169,
+    "sourceHash": "0e1d46938b941e6fb2961d974311610a1e01285dbe81dff3f9f4a19d6939a166",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter003/004.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter003.org"
+  },
+  {
+    "id": "chapter003-005",
+    "chapter": "chapter003",
+    "ordinal": 5,
+    "heading": "Coordinate Representation",
+    "orgLine": 192,
+    "sourceHash": "d303cd3276566273f6341587c3b89b8437c6b0fa5b9a757808ed24d24469d8f2",
+    "backgroundSetup": false,
+    "definitions": [
+      "coordinatize"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter003/005.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter003.org"
+  },
+  {
+    "id": "chapter003-006",
+    "chapter": "chapter003",
+    "ordinal": 6,
+    "heading": "Coordinate Representation",
+    "orgLine": 202,
+    "sourceHash": "75e119ba42f3ea783d5e45546933f846d540de2b5542389615cb60d42f06c204",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter003/006.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter003.org"
+  },
+  {
+    "id": "chapter003-007",
+    "chapter": "chapter003",
+    "ordinal": 7,
+    "heading": "Coordinate-Basis Vector Fields",
+    "orgLine": 292,
+    "sourceHash": "48b9492a21f11f88ab723f99fc64c0a1f8b103b396864617cc458eb0b1581ea7",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": false,
+    "codePath": "generated/chapter003/007.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter003.org"
+  },
+  {
+    "id": "chapter003-008",
+    "chapter": "chapter003",
+    "ordinal": 8,
+    "heading": "Coordinate-Basis Vector Fields",
+    "orgLine": 296,
+    "sourceHash": "5e2165170ad6b6d22879a6f390215754ab445a514ae4b9addf924aeda6f7ec71",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter003/008.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter003.org"
+  },
+  {
+    "id": "chapter003-009",
+    "chapter": "chapter003",
+    "ordinal": 9,
+    "heading": "Coordinate-Basis Vector Fields",
+    "orgLine": 302,
+    "sourceHash": "76d2324d74ebf4db14a68817a74428d2d964915886adffd6549e0bbbe1adc959",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter003/009.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter003.org"
+  },
+  {
+    "id": "chapter003-010",
+    "chapter": "chapter003",
+    "ordinal": 10,
+    "heading": "Integral Curves",
+    "orgLine": 439,
+    "sourceHash": "9f5607b54d0207a0e167fd479aa1f9e1f06d33502c2b3993736863d45be77fe9",
+    "backgroundSetup": false,
+    "definitions": [
+      "circular"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter003/010.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter003.org"
+  },
+  {
+    "id": "chapter003-011",
+    "chapter": "chapter003",
+    "ordinal": 11,
+    "heading": "Integral Curves",
+    "orgLine": 444,
+    "sourceHash": "2b84f32d32871179dc4e525b4c49a6dad388d3c33b7cca7e09cb2e910d65781b",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter003/011.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter003.org"
+  },
+  {
+    "id": "chapter003-012",
+    "chapter": "chapter003",
+    "ordinal": 12,
+    "heading": "Integral Curves",
+    "orgLine": 467,
+    "sourceHash": "b72253e23ae64cd7837f223d767dd34daf586f68c07d9789edf04817f29e0851",
+    "backgroundSetup": false,
+    "definitions": [
+      "evolution"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter003/012.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter003.org"
+  },
+  {
+    "id": "chapter003-013",
+    "chapter": "chapter003",
+    "ordinal": 13,
+    "heading": "Integral Curves",
+    "orgLine": 475,
+    "sourceHash": "21dab8893c419ea2b4cbcd22f2f6db4642b3fab0eb45dcac4f91cca246816ab7",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter003/013.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter003.org"
+  },
+  {
+    "id": "chapter003-014",
+    "chapter": "chapter003",
+    "ordinal": 14,
+    "heading": "Coordinate-Basis One-Form Fields",
+    "orgLine": 631,
+    "sourceHash": "2caa95fbc306310b7c99f22e7c56d6cfa90db66ae2fb0d0f26aa56660196e89a",
+    "backgroundSetup": false,
+    "definitions": [
+      "omega"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter003/014.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter003.org"
+  },
+  {
+    "id": "chapter003-015",
+    "chapter": "chapter003",
+    "ordinal": 15,
+    "heading": "Coordinate-Basis One-Form Fields",
+    "orgLine": 640,
+    "sourceHash": "cb2dad8e23c79b17468b16f2711068ed5755085e7360dbc1e4739b8f9ff8c348",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter003/015.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter003.org"
+  },
+  {
+    "id": "chapter003-016",
+    "chapter": "chapter003",
+    "ordinal": 16,
+    "heading": "Coordinate-Basis One-Form Fields",
+    "orgLine": 645,
+    "sourceHash": "f79642606612276f7515a5bcdab7c0cb3ea72c15b297bbce7f441f80fa86252b",
+    "backgroundSetup": false,
+    "definitions": [
+      "omega"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter003/016.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter003.org"
+  },
+  {
+    "id": "chapter003-017",
+    "chapter": "chapter003",
+    "ordinal": 17,
+    "heading": "Coordinate-Basis One-Form Fields",
+    "orgLine": 656,
+    "sourceHash": "52a8182a9a55e134ed61e2b384078dc2b1027c8bcce2e1c798a9d3ad0ffcb6dd",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter003/017.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter003.org"
+  },
+  {
+    "id": "chapter003-018",
+    "chapter": "chapter003",
+    "ordinal": 18,
+    "heading": "Coordinate-Basis One-Form Fields",
+    "orgLine": 667,
+    "sourceHash": "f5df8703785ed757f08a73a74b42681e65fd38bbe3f92f7fa712cb071826157f",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter003/018.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter003.org"
+  },
+  {
+    "id": "chapter003-019",
+    "chapter": "chapter003",
+    "ordinal": 19,
+    "heading": "Coordinate-Basis One-Form Fields",
+    "orgLine": 702,
+    "sourceHash": "18918a44a216826e7391f50e81e39628a5f1b4103a243efb8697b3a7f7670c97",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": false,
+    "codePath": "generated/chapter003/019.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter003.org"
+  },
+  {
+    "id": "chapter003-020",
+    "chapter": "chapter003",
+    "ordinal": 20,
+    "heading": "Coordinate-Basis One-Form Fields",
+    "orgLine": 705,
+    "sourceHash": "2b5d9ca15ff1e761874ef17051159802802406111f16489647689b2d3e838847",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter003/020.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter003.org"
+  },
+  {
+    "id": "chapter003-021",
+    "chapter": "chapter003",
+    "ordinal": 21,
+    "heading": "Coordinate-Basis One-Form Fields",
+    "orgLine": 709,
+    "sourceHash": "cf5b3b4f9f2e5846c285e1b9a10bca429a01c19d919fe4bcdba59e9593dc5aae",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter003/021.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter003.org"
+  },
+  {
+    "id": "chapter003-022",
+    "chapter": "chapter003",
+    "ordinal": 22,
+    "heading": "Coordinate-Basis One-Form Fields",
+    "orgLine": 717,
+    "sourceHash": "9d0f03080eaaa17ffa8d4af46931c25d90f27e5cc008beb3507b7db147382ddb",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter003/022.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter003.org"
+  },
+  {
+    "id": "chapter003-023",
+    "chapter": "chapter003",
+    "ordinal": 23,
+    "heading": "Coordinate-Basis One-Form Fields",
+    "orgLine": 721,
+    "sourceHash": "0b2bc221d682cb80fbe0f3b59b097799a42497cde981b834dc3472cc33c061e7",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter003/023.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter003.org"
+  },
+  {
+    "id": "chapter003-024",
+    "chapter": "chapter003",
+    "ordinal": 24,
+    "heading": "Coordinate-Basis One-Form Fields",
+    "orgLine": 726,
+    "sourceHash": "2b8d76a2ef71e30eeb053875f4dbe505a7896d374a7422dd33a7a00978e481a8",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter003/024.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter003.org"
+  },
+  {
+    "id": "chapter003-025",
+    "chapter": "chapter003",
+    "ordinal": 25,
+    "heading": "Coordinate-Basis One-Form Fields",
+    "orgLine": 730,
+    "sourceHash": "54d962c9bd1a71adde4d263702eff97ce90f3e7dcf8ac9c7690f95d027e53a3d",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter003/025.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter003.org"
+  },
+  {
+    "id": "chapter003-026",
+    "chapter": "chapter003",
+    "ordinal": 26,
+    "heading": "Coordinate-Basis One-Form Fields",
+    "orgLine": 736,
+    "sourceHash": "99b47cb777c1da968290963ac69d31c31332cf43b2e21f4ae39b5f46565ae15f",
+    "backgroundSetup": false,
+    "definitions": [
+      "f"
+    ],
+    "capturesResult": true,
+    "codePath": "generated/chapter003/026.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter003.org"
+  },
+  {
+    "id": "chapter003-027",
+    "chapter": "chapter003",
+    "ordinal": 27,
+    "heading": "Coordinate Transformations",
+    "orgLine": 802,
+    "sourceHash": "f79642606612276f7515a5bcdab7c0cb3ea72c15b297bbce7f441f80fa86252b",
+    "backgroundSetup": false,
+    "definitions": [
+      "omega"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter003/027.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter003.org"
+  },
+  {
+    "id": "chapter003-028",
+    "chapter": "chapter003",
+    "ordinal": 28,
+    "heading": "Coordinate Transformations",
+    "orgLine": 805,
+    "sourceHash": "7d2162b5f81a563c1ee071d26070d0758daa0f9e67641a35cdaaee5f2dacfa31",
+    "backgroundSetup": false,
+    "definitions": [
+      "v"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter003/028.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter003.org"
+  },
+  {
+    "id": "chapter003-029",
+    "chapter": "chapter003",
+    "ordinal": 29,
+    "heading": "Coordinate Transformations",
+    "orgLine": 808,
+    "sourceHash": "6f15efee8df4e910b4c05c8657da84ba9cf051f8492a6f517fec398f485ec3bb",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter003/029.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter003.org"
+  },
+  {
+    "id": "chapter004-001",
+    "chapter": "chapter004",
+    "ordinal": 1,
+    "heading": "Front matter",
+    "orgLine": 114,
+    "sourceHash": "994cfe6be1c5999f7f1ff5745e18d616e5543b181d66394ec9662b74c1529dd6",
+    "backgroundSetup": false,
+    "definitions": [
+      "e0",
+      "e1"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter004/001.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter004.org"
+  },
+  {
+    "id": "chapter004-002",
+    "chapter": "chapter004",
+    "ordinal": 2,
+    "heading": "Front matter",
+    "orgLine": 126,
+    "sourceHash": "3bf1323f0a1375750883b7b12c3f737bc79f281f6f15586c120848fc752e5c83",
+    "backgroundSetup": false,
+    "definitions": [
+      "e-vector-basis",
+      "e-dual-basis"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter004/002.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter004.org"
+  },
+  {
+    "id": "chapter004-003",
+    "chapter": "chapter004",
+    "ordinal": 3,
+    "heading": "Front matter",
+    "orgLine": 139,
+    "sourceHash": "0611ae571d72b96f65eafb6b9e702b296b0c83547a9677a1122f57277aeb90fe",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter004/003.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter004.org"
+  },
+  {
+    "id": "chapter004-004",
+    "chapter": "chapter004",
+    "ordinal": 4,
+    "heading": "Front matter",
+    "orgLine": 151,
+    "sourceHash": "d2aa2c60a3d1c463461339cb462ed6a64afeecaa4a2f44371cbe87b32152c14d",
+    "backgroundSetup": false,
+    "definitions": [
+      "v"
+    ],
+    "capturesResult": true,
+    "codePath": "generated/chapter004/004.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter004.org"
+  },
+  {
+    "id": "chapter004-005",
+    "chapter": "chapter004",
+    "ordinal": 5,
+    "heading": "Change of Basis",
+    "orgLine": 211,
+    "sourceHash": "4e58c1cf357d9dc58bf1c4cb87596332cc2e78e53b9d5ed79506e48512f01550",
+    "backgroundSetup": false,
+    "definitions": [
+      "Jacobian"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter004/005.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter004.org"
+  },
+  {
+    "id": "chapter004-006",
+    "chapter": "chapter004",
+    "ordinal": 6,
+    "heading": "Change of Basis",
+    "orgLine": 219,
+    "sourceHash": "c123903f44409300dafb37967aa77cf89b1d7e6fb193934d84d764bd22019b1b",
+    "backgroundSetup": false,
+    "definitions": [
+      "b-polar"
+    ],
+    "capturesResult": true,
+    "codePath": "generated/chapter004/006.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter004.org"
+  },
+  {
+    "id": "chapter004-007",
+    "chapter": "chapter004",
+    "ordinal": 7,
+    "heading": "Change of Basis",
+    "orgLine": 235,
+    "sourceHash": "006b2d0ad10dee657295bf1eaab72c1a038bb2d872c924fa997f06fc419183ca",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter004/007.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter004.org"
+  },
+  {
+    "id": "chapter004-008",
+    "chapter": "chapter004",
+    "ordinal": 8,
+    "heading": "Commutators",
+    "orgLine": 426,
+    "sourceHash": "c8f16986c96e26c0ebd7ec994a0e4abd87b7fe31439190213d3714da4ab50660",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter004/008.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter004.org"
+  },
+  {
+    "id": "chapter004-009",
+    "chapter": "chapter004",
+    "ordinal": 9,
+    "heading": "Commutators",
+    "orgLine": 465,
+    "sourceHash": "973d7f798cf3542bfc55a3d71240d504a42254b1984ecb5e1743330f4208c4e6",
+    "backgroundSetup": false,
+    "definitions": [
+      "Jz",
+      "Jx",
+      "Jy"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter004/009.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter004.org"
+  },
+  {
+    "id": "chapter004-010",
+    "chapter": "chapter004",
+    "ordinal": 10,
+    "heading": "Commutators",
+    "orgLine": 472,
+    "sourceHash": "d4ae909f01e9a822dbeeec1e641109bbb0d7aeec89bdd8a87a7e6f431b7232b9",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter004/010.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter004.org"
+  },
+  {
+    "id": "chapter004-011",
+    "chapter": "chapter004",
+    "ordinal": 11,
+    "heading": "Commutators",
+    "orgLine": 477,
+    "sourceHash": "69402257af93fa524a7a2fa9c217f0b49fa31f7a0a0b496515f783840c7ed8b0",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter004/011.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter004.org"
+  },
+  {
+    "id": "chapter004-012",
+    "chapter": "chapter004",
+    "ordinal": 12,
+    "heading": "Commutators",
+    "orgLine": 482,
+    "sourceHash": "5e339b1d6ab7f348de2a4b571fd66b05ab4ca948df2f21626842f0bfbe5530a0",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter004/012.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter004.org"
+  },
+  {
+    "id": "chapter004-013",
+    "chapter": "chapter004",
+    "ordinal": 13,
+    "heading": "Commutators",
+    "orgLine": 502,
+    "sourceHash": "fd59d74f95c556b6ce87c11babf03deadb38d619ade9496b21955f9acd744171",
+    "backgroundSetup": false,
+    "definitions": [
+      "Euler-angles",
+      "SO3-point",
+      "f",
+      "e_x",
+      "e_y",
+      "e_z"
+    ],
+    "capturesResult": true,
+    "codePath": "generated/chapter004/013.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter004.org"
+  },
+  {
+    "id": "chapter004-014",
+    "chapter": "chapter004",
+    "ordinal": 14,
+    "heading": "Commutators",
+    "orgLine": 522,
+    "sourceHash": "c64f8f7133acc5f4598e9ee729a3d4c6c44ad52307ecec3b51950589ce3d26a1",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter004/014.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter004.org"
+  },
+  {
+    "id": "chapter004-015",
+    "chapter": "chapter004",
+    "ordinal": 15,
+    "heading": "Commutators",
+    "orgLine": 527,
+    "sourceHash": "183570339583d33f2412fbee05fd68d38728b1eba7019f3df6e5860e014a16d5",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter004/015.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter004.org"
+  },
+  {
+    "id": "chapter004-016",
+    "chapter": "chapter004",
+    "ordinal": 16,
+    "heading": "Footnotes",
+    "orgLine": 635,
+    "sourceHash": "d0b6cd5a8c6c9ea0d0f6d93e4055e804a7760d546420f6a90e2c0081ec8768ea",
+    "backgroundSetup": false,
+    "definitions": [
+      "Euler-angles",
+      "Euler-angles-chi-inverse",
+      "SO3-point",
+      "f"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter004/016.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter004.org"
+  },
+  {
+    "id": "chapter004-017",
+    "chapter": "chapter004",
+    "ordinal": 17,
+    "heading": "Footnotes",
+    "orgLine": 645,
+    "sourceHash": "cd0fb3ff932e8e2ef410fd1b2b86b84b8ea3385e4df9a6ed149587cc6686f379",
+    "backgroundSetup": false,
+    "definitions": [
+      "R3-rect",
+      "R3-rect-point",
+      "g"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter004/017.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter004.org"
+  },
+  {
+    "id": "chapter005-001",
+    "chapter": "chapter005",
+    "ordinal": 1,
+    "heading": "3-Dimensional Euclidean Space",
+    "orgLine": 226,
+    "sourceHash": "592e2d4657fad0399e8ed8283e558b8429ef9b89dd6e7428307a777d4d793893",
+    "backgroundSetup": false,
+    "definitions": [
+      "u",
+      "v"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter005/001.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter005.org"
+  },
+  {
+    "id": "chapter005-002",
+    "chapter": "chapter005",
+    "ordinal": 2,
+    "heading": "3-Dimensional Euclidean Space",
+    "orgLine": 233,
+    "sourceHash": "22547b2e2abdc39c5bd0b42f346512407f16c534dea47abd798559f10fcad046",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter005/002.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter005.org"
+  },
+  {
+    "id": "chapter005-003",
+    "chapter": "chapter005",
+    "ordinal": 3,
+    "heading": "3-Dimensional Euclidean Space",
+    "orgLine": 241,
+    "sourceHash": "5da052567df0af7df41a1f64e3b2ddab6ad84de04bb860b7ce7c16688b61a01d",
+    "backgroundSetup": false,
+    "definitions": [
+      "a",
+      "b"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter005/003.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter005.org"
+  },
+  {
+    "id": "chapter005-004",
+    "chapter": "chapter005",
+    "ordinal": 4,
+    "heading": "3-Dimensional Euclidean Space",
+    "orgLine": 248,
+    "sourceHash": "7ff51f29076920a7639746e3d67fb2e9b372ed161affe0ad40223b9091a49ea1",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter005/004.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter005.org"
+  },
+  {
+    "id": "chapter005-005",
+    "chapter": "chapter005",
+    "ordinal": 5,
+    "heading": "3-Dimensional Euclidean Space",
+    "orgLine": 260,
+    "sourceHash": "25daeeb95040a980b77cf2fd45932641bcdba8f518c147ecea816ccd904de203",
+    "backgroundSetup": false,
+    "definitions": [
+      "u",
+      "v",
+      "w"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter005/005.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter005.org"
+  },
+  {
+    "id": "chapter005-006",
+    "chapter": "chapter005",
+    "ordinal": 6,
+    "heading": "3-Dimensional Euclidean Space",
+    "orgLine": 266,
+    "sourceHash": "40688a73329d873d4d98d94b4dfcd1be81a5b705bfd442912ca24032dc862bce",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter005/006.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter005.org"
+  },
+  {
+    "id": "chapter005-007",
+    "chapter": "chapter005",
+    "ordinal": 7,
+    "heading": "3-Dimensional Euclidean Space",
+    "orgLine": 278,
+    "sourceHash": "445c03e559e07fadfae26fe658d4190be136a220980cde86babb63ccaf354c4a",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter005/007.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter005.org"
+  },
+  {
+    "id": "chapter005-008",
+    "chapter": "chapter005",
+    "ordinal": 8,
+    "heading": "Computing Exterior Derivatives",
+    "orgLine": 375,
+    "sourceHash": "784c8bc3e98427bb17852ca67638658508ef4036a59387d0c89478df23a79a28",
+    "backgroundSetup": false,
+    "definitions": [
+      "a",
+      "b",
+      "c",
+      "theta"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter005/008.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter005.org"
+  },
+  {
+    "id": "chapter005-009",
+    "chapter": "chapter005",
+    "ordinal": 9,
+    "heading": "Computing Exterior Derivatives",
+    "orgLine": 385,
+    "sourceHash": "13339be9673c6c6361c2668f5fe9dbc14079c65c27fffa35f78c666065a31ce8",
+    "backgroundSetup": false,
+    "definitions": [
+      "X",
+      "Y"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter005/009.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter005.org"
+  },
+  {
+    "id": "chapter005-010",
+    "chapter": "chapter005",
+    "ordinal": 10,
+    "heading": "Computing Exterior Derivatives",
+    "orgLine": 390,
+    "sourceHash": "92f15e5b1b2da40cc85de50bcc1a7921f597715b3046f095083237359f3247d8",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter005/010.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter005.org"
+  },
+  {
+    "id": "chapter005-011",
+    "chapter": "chapter005",
+    "ordinal": 11,
+    "heading": "Computing Exterior Derivatives",
+    "orgLine": 411,
+    "sourceHash": "6c4f59ca066ca4cdd079021a1921d023b3a725906e6589c383d232226a99195c",
+    "backgroundSetup": false,
+    "definitions": [
+      "omega"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter005/011.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter005.org"
+  },
+  {
+    "id": "chapter005-012",
+    "chapter": "chapter005",
+    "ordinal": 12,
+    "heading": "Computing Exterior Derivatives",
+    "orgLine": 420,
+    "sourceHash": "c13b40e0e40bf71ab901e6419a503402acf11837ef51313e9c585a9726add7f8",
+    "backgroundSetup": false,
+    "definitions": [
+      "Z"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter005/012.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter005.org"
+  },
+  {
+    "id": "chapter005-013",
+    "chapter": "chapter005",
+    "ordinal": 13,
+    "heading": "Computing Exterior Derivatives",
+    "orgLine": 424,
+    "sourceHash": "171261b3cdac1ba4f84b97c6cd954061e98698626387acb0de39e35ca614cd90",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter005/013.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter005.org"
+  },
+  {
+    "id": "chapter005-014",
+    "chapter": "chapter005",
+    "ordinal": 14,
+    "heading": "Vector Integral Theorems",
+    "orgLine": 562,
+    "sourceHash": "719edddefd007b68c3c6a44be168e42f85e847c3d5fc67745335a01b5fc65146",
+    "backgroundSetup": false,
+    "definitions": [
+      "v",
+      "w"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter005/014.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter005.org"
+  },
+  {
+    "id": "chapter005-015",
+    "chapter": "chapter005",
+    "ordinal": 15,
+    "heading": "Vector Integral Theorems",
+    "orgLine": 569,
+    "sourceHash": "b164247e94181a9796b82d848eba4b35a3920e00df6acfeca2de4594114df78e",
+    "backgroundSetup": false,
+    "definitions": [
+      "alpha",
+      "beta"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter005/015.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter005.org"
+  },
+  {
+    "id": "chapter005-016",
+    "chapter": "chapter005",
+    "ordinal": 16,
+    "heading": "Vector Integral Theorems",
+    "orgLine": 574,
+    "sourceHash": "c3a101d51803088c07a2f356d18a269a1cedbec08730338fdf6a1ab828d8c154",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter005/016.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter005.org"
+  },
+  {
+    "id": "chapter005-017",
+    "chapter": "chapter005",
+    "ordinal": 17,
+    "heading": "Vector Integral Theorems",
+    "orgLine": 622,
+    "sourceHash": "d783ee5cdf90fad9a94a942f3748b2000b7a742379b751742ffc897c240d7ce6",
+    "backgroundSetup": false,
+    "definitions": [
+      "a",
+      "b",
+      "c",
+      "flux-through-boundary-element"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter005/017.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter005.org"
+  },
+  {
+    "id": "chapter005-018",
+    "chapter": "chapter005",
+    "ordinal": 18,
+    "heading": "Vector Integral Theorems",
+    "orgLine": 642,
+    "sourceHash": "52da87aff5b91b61b88d3abdf02e1a43b1e5b87c85400cc24cac9b4b186fd3e9",
+    "backgroundSetup": false,
+    "definitions": [
+      "production-in-volume-element"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter005/018.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter005.org"
+  },
+  {
+    "id": "chapter005-019",
+    "chapter": "chapter005",
+    "ordinal": 19,
+    "heading": "Vector Integral Theorems",
+    "orgLine": 653,
+    "sourceHash": "ec5caab233ad6ee4712c1c3d9a9844004728334526c8a1b5034489865386767e",
+    "backgroundSetup": false,
+    "definitions": [
+      "X",
+      "Y",
+      "Z"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter005/019.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter005.org"
+  },
+  {
+    "id": "chapter005-020",
+    "chapter": "chapter005",
+    "ordinal": 20,
+    "heading": "Vector Integral Theorems",
+    "orgLine": 659,
+    "sourceHash": "7f4a74cc7d8a6f3573d03faa653007698a2231b4f95ae53892a41dc4c2a11d38",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter005/020.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter005.org"
+  },
+  {
+    "id": "chapter006-001",
+    "chapter": "chapter006",
+    "ordinal": 1,
+    "heading": "Restricted Vector Fields",
+    "orgLine": 48,
+    "sourceHash": "39daacc63700b01f0878d3ea1d1f596e95ce491827dde77cf11c980587efe654",
+    "backgroundSetup": false,
+    "definitions": [
+      "vector-field->vector-field-over-map"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter006/001.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter006.org"
+  },
+  {
+    "id": "chapter006-002",
+    "chapter": "chapter006",
+    "ordinal": 2,
+    "heading": "One-Form Fields Over a Map",
+    "orgLine": 118,
+    "sourceHash": "a5dfe514852297651f3430ad006643e250dcbbfc43166259dd600a908d5a1055",
+    "backgroundSetup": false,
+    "definitions": [
+      "form-field->form-field-over-map"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter006/002.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter006.org"
+  },
+  {
+    "id": "chapter006-003",
+    "chapter": "chapter006",
+    "ordinal": 3,
+    "heading": "Walking on a Sphere",
+    "orgLine": 169,
+    "sourceHash": "08211b25685695874f08578567eccc47dfb3fde7cecc9da890b7bd4b3fbae093",
+    "backgroundSetup": false,
+    "definitions": [
+      "S2",
+      "S2-spherical",
+      "S2-basis"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter006/003.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter006.org"
+  },
+  {
+    "id": "chapter006-004",
+    "chapter": "chapter006",
+    "ordinal": 4,
+    "heading": "Walking on a Sphere",
+    "orgLine": 179,
+    "sourceHash": "4936e9f1405c0090520af1d6d1746883fe80f96dfe628e485c61381e978e553c",
+    "backgroundSetup": false,
+    "definitions": [
+      "mu"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter006/004.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter006.org"
+  },
+  {
+    "id": "chapter006-005",
+    "chapter": "chapter006",
+    "ordinal": 5,
+    "heading": "Walking on a Sphere",
+    "orgLine": 189,
+    "sourceHash": "4b6c8052e34b4eff82e024ca6dcd7b451cfa80e9332f102a246b96861f6891b4",
+    "backgroundSetup": false,
+    "definitions": [
+      "S2-basis-over-mu",
+      "h"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter006/005.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter006.org"
+  },
+  {
+    "id": "chapter006-006",
+    "chapter": "chapter006",
+    "ordinal": 6,
+    "heading": "Walking on a Sphere",
+    "orgLine": 197,
+    "sourceHash": "13e9879b3eee42aca30626530843be175778e06cdd8a2a6d9459acb4e9838024",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter006/006.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter006.org"
+  },
+  {
+    "id": "chapter006-007",
+    "chapter": "chapter006",
+    "ordinal": 7,
+    "heading": "Walking on a Sphere",
+    "orgLine": 210,
+    "sourceHash": "055dc3213baeed49d09b45d34d66b4d51aff82bcc0d0304e1c37824fdc428a28",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter006/007.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter006.org"
+  },
+  {
+    "id": "chapter006-008",
+    "chapter": "chapter006",
+    "ordinal": 8,
+    "heading": "Components of the Velocity",
+    "orgLine": 234,
+    "sourceHash": "94c93fbfcbec9c83283d7298d3612fd80f98fc161ab36e20d21ad18044516632",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter006/008.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter006.org"
+  },
+  {
+    "id": "chapter006-009",
+    "chapter": "chapter006",
+    "ordinal": 9,
+    "heading": "Pushforward Along Integral Curves",
+    "orgLine": 344,
+    "sourceHash": "b8c1bedfb6bf2b98c240c573ad8bb36ac06230750b68e1e4916b0344b13f80c7",
+    "backgroundSetup": false,
+    "definitions": [
+      "pushforward-vector"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter006/009.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter006.org"
+  },
+  {
+    "id": "chapter006-010",
+    "chapter": "chapter006",
+    "ordinal": 10,
+    "heading": "Pullback of a Vector Field",
+    "orgLine": 371,
+    "sourceHash": "ac76e957f5c48b967000f11c84bf8408e059a8b30730354b35faabc7fe1328e7",
+    "backgroundSetup": false,
+    "definitions": [
+      "pullback-vector-field"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter006/010.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter006.org"
+  },
+  {
+    "id": "chapter006-011",
+    "chapter": "chapter006",
+    "ordinal": 11,
+    "heading": "Pullback of a Form Field",
+    "orgLine": 427,
+    "sourceHash": "f1ee375ca1a98d1cb85d27f42164d932d95b1fcbb9040c2878a78dfd79073da1",
+    "backgroundSetup": false,
+    "definitions": [
+      "pullback-form"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter006/011.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter006.org"
+  },
+  {
+    "id": "chapter006-012",
+    "chapter": "chapter006",
+    "ordinal": 12,
+    "heading": "Properties of Pullback",
+    "orgLine": 464,
+    "sourceHash": "29cc46eef53870ae0d1f9258f3599b6dfc3faa791df8779a3c70e5f0f7500676",
+    "backgroundSetup": false,
+    "definitions": [
+      "mu"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter006/012.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter006.org"
+  },
+  {
+    "id": "chapter006-013",
+    "chapter": "chapter006",
+    "ordinal": 13,
+    "heading": "Properties of Pullback",
+    "orgLine": 471,
+    "sourceHash": "10b89f86606be4851368b30cfa93b13651dc8d44e4c88ff180edaa385b4bbc45",
+    "backgroundSetup": false,
+    "definitions": [
+      "f",
+      "X"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter006/013.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter006.org"
+  },
+  {
+    "id": "chapter006-014",
+    "chapter": "chapter006",
+    "ordinal": 14,
+    "heading": "Properties of Pullback",
+    "orgLine": 476,
+    "sourceHash": "c885fd5a1b57b63cf47085e43e1d87485b4b9397adddd9986291a580bff64463",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter006/014.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter006.org"
+  },
+  {
+    "id": "chapter006-015",
+    "chapter": "chapter006",
+    "ordinal": 15,
+    "heading": "Properties of Pullback",
+    "orgLine": 485,
+    "sourceHash": "8d9be28e71537466da7e9aa341d20e5fed2a425cc4612ab1c2c89c77cf95294e",
+    "backgroundSetup": false,
+    "definitions": [
+      "theta",
+      "Y"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter006/015.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter006.org"
+  },
+  {
+    "id": "chapter006-016",
+    "chapter": "chapter006",
+    "ordinal": 16,
+    "heading": "Properties of Pullback",
+    "orgLine": 490,
+    "sourceHash": "ae910a4bd2bb043a0cf34de356125c1538d817093fb32b07e2c36889bfb21dd8",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter006/016.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter006.org"
+  },
+  {
+    "id": "chapter006-017",
+    "chapter": "chapter006",
+    "ordinal": 17,
+    "heading": "Footnotes",
+    "orgLine": 545,
+    "sourceHash": "2d058eddfde2a95fe8dd7e26f6150e650697088c5154843c338e07577017355a",
+    "backgroundSetup": false,
+    "definitions": [
+      "mu"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter006/017.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter006.org"
+  },
+  {
+    "id": "chapter008-001",
+    "chapter": "chapter008",
+    "ordinal": 1,
+    "heading": "Front matter",
+    "orgLine": 31,
+    "sourceHash": "8a74e3e6766b5cec93ea38871d5f692a57645b739d836a3ceb75e0cb4316b842",
+    "backgroundSetup": false,
+    "definitions": [
+      "Riemann-curvature"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter008/001.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter008.org"
+  },
+  {
+    "id": "chapter008-002",
+    "chapter": "chapter008",
+    "ordinal": 2,
+    "heading": "Front matter",
+    "orgLine": 46,
+    "sourceHash": "a352c84d1b9b08d262e475ffeb69982633d352289ace9f977ecd411611bcd624",
+    "backgroundSetup": false,
+    "definitions": [
+      "Riemann"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter008/002.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter008.org"
+  },
+  {
+    "id": "chapter008-003",
+    "chapter": "chapter008",
+    "ordinal": 3,
+    "heading": "Front matter",
+    "orgLine": 53,
+    "sourceHash": "e50b57f74ca4801f02ac4c38fb93b164c444c1486b7b99f175c0d617e809fe74",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter008/003.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter008.org"
+  },
+  {
+    "id": "chapter008-004",
+    "chapter": "chapter008",
+    "ordinal": 4,
+    "heading": "Verification in Two Dimensions",
+    "orgLine": 183,
+    "sourceHash": "e122a296be9cdf0d8a71ebaf839a788ca856b676cba539d45f55cb5781573d43",
+    "backgroundSetup": false,
+    "definitions": [
+      "make-state",
+      "Sigma",
+      "U-select"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter008/004.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter008.org"
+  },
+  {
+    "id": "chapter008-005",
+    "chapter": "chapter008",
+    "ordinal": 5,
+    "heading": "Verification in Two Dimensions",
+    "orgLine": 195,
+    "sourceHash": "f06d372714c75cde4e309f4a130a863eeb9f407f1783c27bb368698229691c38",
+    "backgroundSetup": false,
+    "definitions": [
+      "Du"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter008/005.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter008.org"
+  },
+  {
+    "id": "chapter008-006",
+    "chapter": "chapter008",
+    "ordinal": 6,
+    "heading": "Verification in Two Dimensions",
+    "orgLine": 206,
+    "sourceHash": "127140a341984c125b5e089b3a84130463cf4550af6ee65f3bd4c01bad18725f",
+    "backgroundSetup": false,
+    "definitions": [
+      "Dsigma"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter008/006.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter008.org"
+  },
+  {
+    "id": "chapter008-007",
+    "chapter": "chapter008",
+    "ordinal": 7,
+    "heading": "Verification in Two Dimensions",
+    "orgLine": 213,
+    "sourceHash": "786da3c296f7b28184a6ec8b5f1bafe54bfe34e186f7f015caba721494aa5dbb",
+    "backgroundSetup": false,
+    "definitions": [
+      "g"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter008/007.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter008.org"
+  },
+  {
+    "id": "chapter008-008",
+    "chapter": "chapter008",
+    "ordinal": 8,
+    "heading": "Verification in Two Dimensions",
+    "orgLine": 221,
+    "sourceHash": "4eda9a1cbdf2b59f690c2f3f163357e3a4bdcdf3ab980556f7ed489cddda5ca7",
+    "backgroundSetup": false,
+    "definitions": [
+      "L"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter008/008.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter008.org"
+  },
+  {
+    "id": "chapter008-009",
+    "chapter": "chapter008",
+    "ordinal": 9,
+    "heading": "Verification in Two Dimensions",
+    "orgLine": 232,
+    "sourceHash": "2612647053ee65e61e60454a67d329d058ca046a7463d83eed88fbd549bfb554",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter008/009.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter008.org"
+  },
+  {
+    "id": "chapter008-010",
+    "chapter": "chapter008",
+    "ordinal": 10,
+    "heading": "Geometrically",
+    "orgLine": 265,
+    "sourceHash": "4cdfc5ad648e0cf6255d6f10f82353c79852dc0c6af59bf53e9757dda4663dd4",
+    "backgroundSetup": false,
+    "definitions": [
+      "curvature-from-transport"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter008/010.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter008.org"
+  },
+  {
+    "id": "chapter008-011",
+    "chapter": "chapter008",
+    "ordinal": 11,
+    "heading": "Geometrically",
+    "orgLine": 282,
+    "sourceHash": "1d098a182b90436944ff9e368cdae218e123655f434a99b7610e68c25ee9d3ac",
+    "backgroundSetup": false,
+    "definitions": [
+      "test"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter008/011.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter008.org"
+  },
+  {
+    "id": "chapter008-012",
+    "chapter": "chapter008",
+    "ordinal": 12,
+    "heading": "Geometrically",
+    "orgLine": 294,
+    "sourceHash": "db747c22eb45b744d925261a983db88935fe6a545fbd966b85b3442f7974ed43",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter008/012.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter008.org"
+  },
+  {
+    "id": "chapter008-013",
+    "chapter": "chapter008",
+    "ordinal": 13,
+    "heading": "Geometrically",
+    "orgLine": 299,
+    "sourceHash": "2e233a436dc012d1d171c81e6882e05d64f544142bca28d2a7b9fce4e5d35457",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter008/013.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter008.org"
+  },
+  {
+    "id": "chapter008-014",
+    "chapter": "chapter008",
+    "ordinal": 14,
+    "heading": "Terms of the Riemann Curvature",
+    "orgLine": 320,
+    "sourceHash": "e9ca790bd4c653b269859ac97e007ae48104686409c58c0ca1bcc8b736419cf1",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter008/014.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter008.org"
+  },
+  {
+    "id": "chapter008-015",
+    "chapter": "chapter008",
+    "ordinal": 15,
+    "heading": "Terms of the Riemann Curvature",
+    "orgLine": 336,
+    "sourceHash": "2cef1b5bde5a66a738a9b389a0c3f0cc893e080fd0cb6761d2a9bdc3c82c776e",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter008/015.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter008.org"
+  },
+  {
+    "id": "chapter008-016",
+    "chapter": "chapter008",
+    "ordinal": 16,
+    "heading": "Ricci Curvature",
+    "orgLine": 400,
+    "sourceHash": "bca0f3c3bed2f258f46ab87076f955efdd6598847de5b43f9d9644d8a119b9e7",
+    "backgroundSetup": false,
+    "definitions": [
+      "Ricci"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter008/016.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter008.org"
+  },
+  {
+    "id": "chapter008-017",
+    "chapter": "chapter008",
+    "ordinal": 17,
+    "heading": "Exercise 8.2: Pseudosphere",
+    "orgLine": 421,
+    "sourceHash": "2920ffb3ed9f520d2ae85711aac0635dc043d823fcc289ad7430fe9ad11b4e49",
+    "backgroundSetup": false,
+    "definitions": [
+      "pseudosphere"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter008/017.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter008.org"
+  },
+  {
+    "id": "chapter008-018",
+    "chapter": "chapter008",
+    "ordinal": 18,
+    "heading": "Exercise 8.2: Pseudosphere",
+    "orgLine": 431,
+    "sourceHash": "f4ff66472cc75a995972f227bc5c8d9c3a90f5f4d0200ec1588ec73548f7aa24",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter008/018.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter008.org"
+  },
+  {
+    "id": "chapter008-019",
+    "chapter": "chapter008",
+    "ordinal": 19,
+    "heading": "Torsion",
+    "orgLine": 467,
+    "sourceHash": "710490ac71cdb2423d5aafb052e85337603d8cfce31975cbb29f23404b53e75b",
+    "backgroundSetup": false,
+    "definitions": [
+      "torsion-vector",
+      "torsion"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter008/019.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter008.org"
+  },
+  {
+    "id": "chapter008-020",
+    "chapter": "chapter008",
+    "ordinal": 20,
+    "heading": "Torsion",
+    "orgLine": 480,
+    "sourceHash": "ef5eb28643919ad29775565144a9d41f537ce6a3bc63361011369b31eb6fafd4",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter008/020.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter008.org"
+  },
+  {
+    "id": "chapter008-021",
+    "chapter": "chapter008",
+    "ordinal": 21,
+    "heading": "Longitude Lines on a Sphere",
+    "orgLine": 621,
+    "sourceHash": "ab4ae7a2c8abcf63bdb769448756a609f18b759fb430eea4804de566839448fb",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter008/021.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter008.org"
+  },
+  {
+    "id": "chapter008-022",
+    "chapter": "chapter008",
+    "ordinal": 22,
+    "heading": "Longitude Lines on a Sphere",
+    "orgLine": 630,
+    "sourceHash": "a03ce4dbf5fe5150ba2a3e845de95648b089d64c3ce51e5105566697547056ef",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter008/022.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter008.org"
+  },
+  {
+    "id": "chapter008-023",
+    "chapter": "chapter008",
+    "ordinal": 23,
+    "heading": "Longitude Lines on a Sphere",
+    "orgLine": 637,
+    "sourceHash": "2e92dea556106662877c936c35193a1a034647e0f3637a349bce02dc38dd0918",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter008/023.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter008.org"
+  },
+  {
+    "id": "chapter008-024",
+    "chapter": "chapter008",
+    "ordinal": 24,
+    "heading": "Longitude Lines on a Sphere",
+    "orgLine": 646,
+    "sourceHash": "8921e456ef0222a0d36ae8ec9f4a29d77254d41c23b4f678c8fc830d2ac81544",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter008/024.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter008.org"
+  },
+  {
+    "id": "chapter008-025",
+    "chapter": "chapter008",
+    "ordinal": 25,
+    "heading": "Longitude Lines on a Sphere",
+    "orgLine": 663,
+    "sourceHash": "d1c67383a64306a39455a8b7ff5d53f0da686e7899b794de040a57fb436bb46b",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter008/025.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter008.org"
+  },
+  {
+    "id": "chapter008-026",
+    "chapter": "chapter008",
+    "ordinal": 26,
+    "heading": "Longitude Lines on a Sphere",
+    "orgLine": 668,
+    "sourceHash": "2cea62f8f31a1165274f7c2692d7d40ec9980e16af199e376e2da1872fc57a76",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter008/026.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter008.org"
+  },
+  {
+    "id": "chapter008-027",
+    "chapter": "chapter008",
+    "ordinal": 27,
+    "heading": "Longitude Lines on a Sphere",
+    "orgLine": 679,
+    "sourceHash": "58689846c41fb11a881bb01b037f3d2c3685621b3ac701b7acbe949f8be359fa",
+    "backgroundSetup": false,
+    "definitions": [
+      "delta"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter008/027.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter008.org"
+  },
+  {
+    "id": "chapter008-028",
+    "chapter": "chapter008",
+    "ordinal": 28,
+    "heading": "Longitude Lines on a Sphere",
+    "orgLine": 684,
+    "sourceHash": "dd8bfbb7ccf7fcd0c94dbd6e29e26da6d4776a47b02d378b5a9f5774317e60a5",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter008/028.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter008.org"
+  },
+  {
+    "id": "chapter008-029",
+    "chapter": "chapter008",
+    "ordinal": 29,
+    "heading": "Longitude Lines on a Sphere",
+    "orgLine": 691,
+    "sourceHash": "792cd46adffb0c0bac14e265f50b6baf2ac48703ed66e31c3f33c7d19221aeec",
+    "backgroundSetup": false,
+    "definitions": [
+      "phi-hat"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter008/029.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter008.org"
+  },
+  {
+    "id": "chapter008-030",
+    "chapter": "chapter008",
+    "ordinal": 30,
+    "heading": "Longitude Lines on a Sphere",
+    "orgLine": 702,
+    "sourceHash": "9a2cbefd810d02cffabfaef3d4c85234617fe8519d923933e923a021ecd33a6c",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter008/030.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter008.org"
+  },
+  {
+    "id": "chapter008-031",
+    "chapter": "chapter008",
+    "ordinal": 31,
+    "heading": "Longitude Lines on a Sphere",
+    "orgLine": 716,
+    "sourceHash": "8eee47d619c7221de56028ef76330951db134bb3fe8d3122b6d492607a281d0d",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter008/031.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter008.org"
+  },
+  {
+    "id": "chapter008-032",
+    "chapter": "chapter008",
+    "ordinal": 32,
+    "heading": "Longitude Lines on a Sphere",
+    "orgLine": 725,
+    "sourceHash": "2579e54631b1b3bda40b1a5b9590b88bb601fd866908448294c24155a38dedcc",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter008/032.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter008.org"
+  },
+  {
+    "id": "chapter008-033",
+    "chapter": "chapter008",
+    "ordinal": 33,
+    "heading": "Bianchi Identities",
+    "orgLine": 747,
+    "sourceHash": "916e28ce5c588c9e87509a0b5cbf4d7c67e332e4f489063b889d79a13805a10f",
+    "backgroundSetup": false,
+    "definitions": [
+      "nabla"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter008/033.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter008.org"
+  },
+  {
+    "id": "chapter008-034",
+    "chapter": "chapter008",
+    "ordinal": 34,
+    "heading": "Bianchi Identities",
+    "orgLine": 755,
+    "sourceHash": "91045e424e17e323238403cc49f597ac5c34e7a0d3bdb8e4e262358b164189f6",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter008/034.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter008.org"
+  },
+  {
+    "id": "chapter008-035",
+    "chapter": "chapter008",
+    "ordinal": 35,
+    "heading": "Bianchi Identities",
+    "orgLine": 764,
+    "sourceHash": "1e55c2dd2b09a5d5df2e121c59d6ee7c9e44c2d434146dfd326008a72aa4ade7",
+    "backgroundSetup": false,
+    "definitions": [
+      "cyclic-sum"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter008/035.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter008.org"
+  },
+  {
+    "id": "chapter008-036",
+    "chapter": "chapter008",
+    "ordinal": 36,
+    "heading": "Bianchi Identities",
+    "orgLine": 781,
+    "sourceHash": "37404b7357acbd4f705ab32adf38023e7da49698f56f721e90979953d0f9cc95",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter008/036.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter008.org"
+  },
+  {
+    "id": "chapter008-037",
+    "chapter": "chapter008",
+    "ordinal": 37,
+    "heading": "Bianchi Identities",
+    "orgLine": 800,
+    "sourceHash": "e0758e775247aea607bbd37aa34a0073f159109facc3cf68f95dd8b08b57bf32",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter008/037.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter008.org"
+  },
+  {
+    "id": "chapter008-038",
+    "chapter": "chapter008",
+    "ordinal": 38,
+    "heading": "Bianchi Identities",
+    "orgLine": 813,
+    "sourceHash": "74c69db787dfa122157a6fc866a4de7db5da9af2c7bcf8417b76c880375de413",
+    "backgroundSetup": false,
+    "definitions": [
+      "nabla",
+      "R",
+      "T",
+      "TT"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter008/038.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter008.org"
+  },
+  {
+    "id": "chapter008-039",
+    "chapter": "chapter008",
+    "ordinal": 39,
+    "heading": "Bianchi Identities",
+    "orgLine": 828,
+    "sourceHash": "fc950b037adff2d1e97f418e1a94f5e9fb61d4fd2782287da18a906acf955fc3",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter008/039.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter008.org"
+  },
+  {
+    "id": "chapter008-040",
+    "chapter": "chapter008",
+    "ordinal": 40,
+    "heading": "Bianchi Identities",
+    "orgLine": 841,
+    "sourceHash": "340f79774ed9fef9773d350de0171fdbab5ea5b1762405c5e7992bf11d7d348d",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter008/040.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter008.org"
+  },
+  {
+    "id": "chapter008-041",
+    "chapter": "chapter008",
+    "ordinal": 41,
+    "heading": "Footnotes",
+    "orgLine": 858,
+    "sourceHash": "99729cc5c495fc7ab9adcaac43c66f8270deeb48b0255c75f461527222f53799",
+    "backgroundSetup": false,
+    "definitions": [
+      "omega",
+      "X",
+      "Y",
+      "Z",
+      "V"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter008/041.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter008.org"
+  },
+  {
+    "id": "chapter008-042",
+    "chapter": "chapter008",
+    "ordinal": 42,
+    "heading": "Footnotes",
+    "orgLine": 868,
+    "sourceHash": "2844e171957be1b139ccf337c9e1a34aabc7b4605ba61ef44a5cf3a3c1291819",
+    "backgroundSetup": false,
+    "definitions": [
+      "T",
+      "U",
+      "m",
+      "Cartan",
+      "nabla"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter008/042.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter008.org"
+  },
+  {
+    "id": "chapter008-043",
+    "chapter": "chapter008",
+    "ordinal": 43,
+    "heading": "Footnotes",
+    "orgLine": 883,
+    "sourceHash": "f1cb42108a2cc504d45932e4a6494f4ad0515997ca2467b328b55101cf25b282",
+    "backgroundSetup": false,
+    "definitions": [
+      "Chi-inverse",
+      "Chi"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter008/043.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter008.org"
+  },
+  {
+    "id": "chapter008-044",
+    "chapter": "chapter008",
+    "ordinal": 44,
+    "heading": "Footnotes",
+    "orgLine": 891,
+    "sourceHash": "f87b2c64166f996076bd7d1cc4da9c9c21e115955c46fcae11d2b9d0f6cb0f5d",
+    "backgroundSetup": false,
+    "definitions": [
+      "general-Cartan-2"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter008/044.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter008.org"
+  },
+  {
+    "id": "chapter009-001",
+    "chapter": "chapter009",
+    "ordinal": 1,
+    "heading": "Metric Music",
+    "orgLine": 99,
+    "sourceHash": "b0da6805874113fd44e4e168c99665cef876c33820637f865d841eefde288d49",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter009/001.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter009.org"
+  },
+  {
+    "id": "chapter009-002",
+    "chapter": "chapter009",
+    "ordinal": 2,
+    "heading": "Metric Music",
+    "orgLine": 108,
+    "sourceHash": "3331e15a71a9b9a78d580fe0b5626dbc1a1e8260af2ccca5320301ab298ed7a4",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter009/002.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter009.org"
+  },
+  {
+    "id": "chapter009-003",
+    "chapter": "chapter009",
+    "ordinal": 3,
+    "heading": "Metric Music",
+    "orgLine": 120,
+    "sourceHash": "f080e8b259eaccd0db91c1f6c22cfdc46ee265274916a316f15585032ef52428",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter009/003.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter009.org"
+  },
+  {
+    "id": "chapter009-004",
+    "chapter": "chapter009",
+    "ordinal": 4,
+    "heading": "Metric Compatibility",
+    "orgLine": 185,
+    "sourceHash": "74436869c541223eec1ca50e2f141b974ac7b19f50548527d3b26dc7d45cd60e",
+    "backgroundSetup": false,
+    "definitions": [
+      "g-sphere"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter009/004.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter009.org"
+  },
+  {
+    "id": "chapter009-005",
+    "chapter": "chapter009",
+    "ordinal": 5,
+    "heading": "Metric Compatibility",
+    "orgLine": 197,
+    "sourceHash": "ce1cf54783c16170848b067e5dd73f8182ecc22d675ac25f88ce6fc0ad691232",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter009/005.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter009.org"
+  },
+  {
+    "id": "chapter009-006",
+    "chapter": "chapter009",
+    "ordinal": 6,
+    "heading": "Metric Compatibility",
+    "orgLine": 212,
+    "sourceHash": "6e6481b751599ee71695e6e3ad20c1210c952e363d3edd6981984d7e8f7e7acf",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter009/006.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter009.org"
+  },
+  {
+    "id": "chapter009-007",
+    "chapter": "chapter009",
+    "ordinal": 7,
+    "heading": "Metrics and Lagrange Equations",
+    "orgLine": 260,
+    "sourceHash": "e1549a2fb80d7f90093a3e5078aaa3ba184278b85c886b126ce37b944bf73c62",
+    "backgroundSetup": false,
+    "definitions": [
+      "metric->Lagrangian",
+      "v"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter009/007.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter009.org"
+  },
+  {
+    "id": "chapter009-008",
+    "chapter": "chapter009",
+    "ordinal": 8,
+    "heading": "Metrics and Lagrange Equations",
+    "orgLine": 277,
+    "sourceHash": "417023d23508c920b72f73fda371811138c62891c0eb422cb4b3ee9ab7c5b83a",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter009/008.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter009.org"
+  },
+  {
+    "id": "chapter009-009",
+    "chapter": "chapter009",
+    "ordinal": 9,
+    "heading": "For Two Dimensions",
+    "orgLine": 365,
+    "sourceHash": "a6d6f06dea773e54af81ca7035f035d735ea28e6c05ff8282cdc66d6a1e83b47",
+    "backgroundSetup": false,
+    "definitions": [
+      "L2",
+      "L1"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter009/009.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter009.org"
+  },
+  {
+    "id": "chapter009-010",
+    "chapter": "chapter009",
+    "ordinal": 10,
+    "heading": "For Two Dimensions",
+    "orgLine": 376,
+    "sourceHash": "505eb12496965b8b1b52eb33864c762726cf74b8d026fd0771279a57a55de3cd",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter009/010.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter009.org"
+  },
+  {
+    "id": "chapter009-011",
+    "chapter": "chapter009",
+    "ordinal": 11,
+    "heading": "For Two Dimensions",
+    "orgLine": 386,
+    "sourceHash": "ba77449a2f4acb1817c18b8bf90bc8080b13f71b14a2b2aca7d85a9d8008a21f",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter009/011.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter009.org"
+  },
+  {
+    "id": "chapter009-012",
+    "chapter": "chapter009",
+    "ordinal": 12,
+    "heading": "For Two Dimensions",
+    "orgLine": 398,
+    "sourceHash": "adb93dad41812c18fa866e1d0d084b7151a510c5cd687876849fc3043e3d0d91",
+    "backgroundSetup": false,
+    "definitions": [
+      "L1"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter009/012.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter009.org"
+  },
+  {
+    "id": "chapter009-013",
+    "chapter": "chapter009",
+    "ordinal": 13,
+    "heading": "For Two Dimensions",
+    "orgLine": 403,
+    "sourceHash": "7785dc19e6ce286a46a858287568fd3aa12aee25eaa98a21eaaec5a987160e52",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter009/013.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter009.org"
+  },
+  {
+    "id": "chapter009-014",
+    "chapter": "chapter009",
+    "ordinal": 14,
+    "heading": "Reparametrization",
+    "orgLine": 472,
+    "sourceHash": "1b9f2f628295a82741f2da1b63ff0bba85a3f55d7fed93f5940ecd7b533aa04b",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter009/014.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter009.org"
+  },
+  {
+    "id": "chapter009-015",
+    "chapter": "chapter009",
+    "ordinal": 15,
+    "heading": "Reparametrization",
+    "orgLine": 506,
+    "sourceHash": "401816f1190a49042c8a63538654b0886c4f684f6b7b7fe1c322212a1dd63742",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter009/015.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter009.org"
+  },
+  {
+    "id": "chapter009-016",
+    "chapter": "chapter009",
+    "ordinal": 16,
+    "heading": "Exercise 9.2: SO(3) Geodesics",
+    "orgLine": 534,
+    "sourceHash": "47b4341ec603d560ab4462f3e60c896bc35f18cb056a8275801843ee11a94b98",
+    "backgroundSetup": false,
+    "definitions": [
+      "SO3-metric"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter009/016.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter009.org"
+  },
+  {
+    "id": "chapter009-017",
+    "chapter": "chapter009",
+    "ordinal": 17,
+    "heading": "Exercise 9.3: Curvature of a Spherical Surface",
+    "orgLine": 549,
+    "sourceHash": "b2597e0297ddf0bbb63adba66bbc3bf7b146d302f05f4386bdb0127b8ee91127",
+    "backgroundSetup": false,
+    "definitions": [
+      "M",
+      "spherical",
+      "spherical-basis",
+      "spherical-metric"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter009/017.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter009.org"
+  },
+  {
+    "id": "chapter009-018",
+    "chapter": "chapter009",
+    "ordinal": 18,
+    "heading": "Exercise 9.3: Curvature of a Spherical Surface",
+    "orgLine": 577,
+    "sourceHash": "992bde67830cfa29450c5d6148db4704d8c12207942df3bdd81cde1510544bb0",
+    "backgroundSetup": false,
+    "definitions": [
+      "trace2down"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter009/018.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter009.org"
+  },
+  {
+    "id": "chapter009-019",
+    "chapter": "chapter009",
+    "ordinal": 19,
+    "heading": "Exercise 9.5: Newton's Equations",
+    "orgLine": 661,
+    "sourceHash": "659c5052f39ce63be885a4f6f1aba2d676e73a6a6f90eec2205efeb1288d2e42",
+    "backgroundSetup": false,
+    "definitions": [
+      "spacetime-rect-basis",
+      "Newton-metric",
+      "Newton-connection",
+      "V",
+      "nabla"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter009/019.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter009.org"
+  },
+  {
+    "id": "chapter009-020",
+    "chapter": "chapter009",
+    "ordinal": 20,
+    "heading": "Exercise 9.5: Newton's Equations",
+    "orgLine": 689,
+    "sourceHash": "ab8703cf33f7b1fc1c669f58155b4a47b18bddd76f581aa0fd70917bac3ce6af",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter009/020.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter009.org"
+  },
+  {
+    "id": "chapter009-021",
+    "chapter": "chapter009",
+    "ordinal": 21,
+    "heading": "Exercise 9.5: Newton's Equations",
+    "orgLine": 698,
+    "sourceHash": "3872bf3f583c17e4aa42f1bb4bfa58a651aa7789d85e51e5a29f9fae25f0230c",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter009/021.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter009.org"
+  },
+  {
+    "id": "chapter009-022",
+    "chapter": "chapter009",
+    "ordinal": 22,
+    "heading": "Exercise 9.5: Newton's Equations",
+    "orgLine": 711,
+    "sourceHash": "2b4d07dbf4ef4f282590632371212ba161a3bc9d8f9e812d6ab9a270d83c6563",
+    "backgroundSetup": false,
+    "definitions": [
+      "Tdust"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter009/022.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter009.org"
+  },
+  {
+    "id": "chapter009-023",
+    "chapter": "chapter009",
+    "ordinal": 23,
+    "heading": "Exercise 9.5: Newton's Equations",
+    "orgLine": 720,
+    "sourceHash": "e09c04347809d6af37c792f7f9ad5a0920022f8f0fade54f5dba1e7f13d0d1dc",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter009/023.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter009.org"
+  },
+  {
+    "id": "chapter009-024",
+    "chapter": "chapter009",
+    "ordinal": 24,
+    "heading": "Exercise 9.6: Curvature of Schwarzschild Spacetime",
+    "orgLine": 742,
+    "sourceHash": "b3681700f411de33d4f090aeb39b8af3b1f3667453678478c16cc1cdbe99da51",
+    "backgroundSetup": false,
+    "definitions": [
+      "Schwarzschild-metric"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter009/024.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter009.org"
+  },
+  {
+    "id": "chapter009-025",
+    "chapter": "chapter009",
+    "ordinal": 25,
+    "heading": "Exercise 9.7: Circular Orbits in Schwarzschild Spacetime",
+    "orgLine": 768,
+    "sourceHash": "01d4009c366208cee1b26d8a071d022977da0f4cc079c616949cbc45f21d796f",
+    "backgroundSetup": false,
+    "definitions": [
+      "prime-meridian"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter009/025.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter009.org"
+  },
+  {
+    "id": "chapter009-026",
+    "chapter": "chapter009",
+    "ordinal": 26,
+    "heading": "Exercise 9.8: Stability of Circular Orbits",
+    "orgLine": 793,
+    "sourceHash": "6a0bcf7b1d9ad10ffac001383e3a54c127c607573fa9490cca603cf1d2cb8005",
+    "backgroundSetup": false,
+    "definitions": [
+      "prime-meridian+X"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter009/026.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter009.org"
+  },
+  {
+    "id": "chapter009-027",
+    "chapter": "chapter009",
+    "ordinal": 27,
+    "heading": "Exercise 9.8: Stability of Circular Orbits",
+    "orgLine": 808,
+    "sourceHash": "ab2a1bfc2e81f579a8b6fd7f5fe3b75cb5c3773313782b7048660875cb52ee96",
+    "backgroundSetup": false,
+    "definitions": [
+      "Cartan",
+      "geodesic-equation+X-residuals"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter009/027.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter009.org"
+  },
+  {
+    "id": "chapter009-028",
+    "chapter": "chapter009",
+    "ordinal": 28,
+    "heading": "Exercise 9.8: Stability of Circular Orbits",
+    "orgLine": 826,
+    "sourceHash": "26b9a0275bcb6637426a3b58a64c6663e9e47a40d3fb8efccc347be095bbe34a",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter009/028.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter009.org"
+  },
+  {
+    "id": "chapter009-029",
+    "chapter": "chapter009",
+    "ordinal": 29,
+    "heading": "Exercise 9.9: Friedmann-Lemaître-Robertson-Walker",
+    "orgLine": 842,
+    "sourceHash": "be17856270cd4708504df619c245d88eb36e56844e2e71eb2477eed54bf5100b",
+    "backgroundSetup": false,
+    "definitions": [
+      "Einstein",
+      "Einstein-field-equation"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter009/029.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter009.org"
+  },
+  {
+    "id": "chapter009-030",
+    "chapter": "chapter009",
+    "ordinal": 30,
+    "heading": "Exercise 9.9: Friedmann-Lemaître-Robertson-Walker",
+    "orgLine": 876,
+    "sourceHash": "78a6d7d6da8949768a6b00d9763f939b0ea27cd473d80d9b28f04fbc98dada3f",
+    "backgroundSetup": false,
+    "definitions": [
+      "FLRW-metric"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter009/030.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter009.org"
+  },
+  {
+    "id": "chapter009-031",
+    "chapter": "chapter009",
+    "ordinal": 31,
+    "heading": "Exercise 9.9: Friedmann-Lemaître-Robertson-Walker",
+    "orgLine": 895,
+    "sourceHash": "f75cad5d82292e4c1dddd53aa5d1b32dbcb917646f896baf25581b1d5d2c770f",
+    "backgroundSetup": false,
+    "definitions": [
+      "Tperfect-fluid"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter009/031.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter009.org"
+  },
+  {
+    "id": "chapter009-032",
+    "chapter": "chapter009",
+    "ordinal": 32,
+    "heading": "Footnotes",
+    "orgLine": 952,
+    "sourceHash": "53a0eb275025cb9cb615fb145795ed9e56e8f7582a1424bf0c529947ba02a070",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter009/032.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter009.org"
+  },
+  {
+    "id": "chapter009-033",
+    "chapter": "chapter009",
+    "ordinal": 33,
+    "heading": "Footnotes",
+    "orgLine": 964,
+    "sourceHash": "facebb69452a6912ee6e52ba7dbd7da8c62246926126bf90babd883bf604f1b4",
+    "backgroundSetup": false,
+    "definitions": [
+      "drop2"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter009/033.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter009.org"
+  },
+  {
+    "id": "chapter009-034",
+    "chapter": "chapter009",
+    "ordinal": 34,
+    "heading": "Footnotes",
+    "orgLine": 1003,
+    "sourceHash": "f3d4f434946992c32e2d8d73cd0fa28207efa3078a28d43e1b197bd06d642176",
+    "backgroundSetup": false,
+    "definitions": [
+      "Lagrange-explicit"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter009/034.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter009.org"
+  },
+  {
+    "id": "chapter010-001",
+    "chapter": "chapter010",
+    "ordinal": 1,
+    "heading": "Relationship to Vector Calculus",
+    "orgLine": 89,
+    "sourceHash": "01d97c76c717db545ad3853f649ae538d210e40a21153f315dbd9866d8de98af",
+    "backgroundSetup": false,
+    "definitions": [
+      "gradient"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter010/001.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter010.org"
+  },
+  {
+    "id": "chapter010-002",
+    "chapter": "chapter010",
+    "ordinal": 2,
+    "heading": "Relationship to Vector Calculus",
+    "orgLine": 136,
+    "sourceHash": "844b28d45de24ff3744399cf4575c4c8f7a7b657ab50d53869193c16541b8a6f",
+    "backgroundSetup": false,
+    "definitions": [
+      "curl"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter010/002.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter010.org"
+  },
+  {
+    "id": "chapter010-003",
+    "chapter": "chapter010",
+    "ordinal": 3,
+    "heading": "Relationship to Vector Calculus",
+    "orgLine": 173,
+    "sourceHash": "66a8f877f7fe8f3b4682fd3a193c9fc51de5a08717c52f1a180c20a515412dde",
+    "backgroundSetup": false,
+    "definitions": [
+      "divergence"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter010/003.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter010.org"
+  },
+  {
+    "id": "chapter010-004",
+    "chapter": "chapter010",
+    "ordinal": 4,
+    "heading": "Relationship to Vector Calculus",
+    "orgLine": 183,
+    "sourceHash": "9778deceea4a305f57ba965979ada8c78251311c97c5683e0f564e9357d40090",
+    "backgroundSetup": false,
+    "definitions": [
+      "divergence-via-hodge-star",
+      "divergence"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter010/004.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter010.org"
+  },
+  {
+    "id": "chapter010-005",
+    "chapter": "chapter010",
+    "ordinal": 5,
+    "heading": "Relationship to Vector Calculus",
+    "orgLine": 200,
+    "sourceHash": "21332d77d560aa1cc9b968a259b650d8d5b2405f6813355b243f1f6194239f43",
+    "backgroundSetup": false,
+    "definitions": [
+      "Laplacian"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter010/005.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter010.org"
+  },
+  {
+    "id": "chapter010-006",
+    "chapter": "chapter010",
+    "ordinal": 6,
+    "heading": "Spherical Coordinates",
+    "orgLine": 212,
+    "sourceHash": "14c14e90ac57c098ad20d17d9abfa92bea8591fbad2058d7a0ce40eb7af768af",
+    "backgroundSetup": false,
+    "definitions": [
+      "spherical",
+      "R3-spherical-point"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter010/006.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter010.org"
+  },
+  {
+    "id": "chapter010-007",
+    "chapter": "chapter010",
+    "ordinal": 7,
+    "heading": "Spherical Coordinates",
+    "orgLine": 223,
+    "sourceHash": "e206a3a8912d25ebdb28b1a1ddcc9bc592c89ebe72bd254f52e3ec10b25a33b2",
+    "backgroundSetup": false,
+    "definitions": [
+      "spherical-metric"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter010/007.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter010.org"
+  },
+  {
+    "id": "chapter010-008",
+    "chapter": "chapter010",
+    "ordinal": 8,
+    "heading": "Spherical Coordinates",
+    "orgLine": 235,
+    "sourceHash": "2da1df74aaf0334ca1152c4abc8dc44156686c4858806f873caf2225117d86cc",
+    "backgroundSetup": false,
+    "definitions": [
+      "e_0",
+      "e_1",
+      "e_2",
+      "orthonormal-spherical-vector-basis",
+      "orthonormal-spherical-oneform-basis",
+      "orthonormal-spherical-basis"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter010/008.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter010.org"
+  },
+  {
+    "id": "chapter010-009",
+    "chapter": "chapter010",
+    "ordinal": 9,
+    "heading": "Spherical Coordinates",
+    "orgLine": 257,
+    "sourceHash": "af81de1e3299af0116cc3382964427493b752d5d70a94de6f0f0ce96ab6972a9",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter010/009.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter010.org"
+  },
+  {
+    "id": "chapter010-010",
+    "chapter": "chapter010",
+    "ordinal": 10,
+    "heading": "Spherical Coordinates",
+    "orgLine": 272,
+    "sourceHash": "fb7e08cbfc5cd627696ef6b62c142473ce9e519ab8d71eb543344ffaf6226f8f",
+    "backgroundSetup": false,
+    "definitions": [
+      "v"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter010/010.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter010.org"
+  },
+  {
+    "id": "chapter010-011",
+    "chapter": "chapter010",
+    "ordinal": 11,
+    "heading": "Spherical Coordinates",
+    "orgLine": 281,
+    "sourceHash": "4363d38a68fb49b83c24b9292b12beb3d036e7d15b715a437a42af61c0e5d9ab",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter010/011.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter010.org"
+  },
+  {
+    "id": "chapter010-012",
+    "chapter": "chapter010",
+    "ordinal": 12,
+    "heading": "Spherical Coordinates",
+    "orgLine": 304,
+    "sourceHash": "a9f59cbd89b0b759a677ce911e666ef52e8f612816b02488b4fb5ace533b56d7",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter010/012.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter010.org"
+  },
+  {
+    "id": "chapter010-013",
+    "chapter": "chapter010",
+    "ordinal": 13,
+    "heading": "Spherical Coordinates",
+    "orgLine": 316,
+    "sourceHash": "f87dca183fc47a3336ec2767b36531b41f2f0e3fbb1d4fd0747ba9da74fbe36a",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter010/013.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter010.org"
+  },
+  {
+    "id": "chapter010-014",
+    "chapter": "chapter010",
+    "ordinal": 14,
+    "heading": "The Wave Equation",
+    "orgLine": 336,
+    "sourceHash": "c1d69ab98515a3affa2e3ae34cea5bc841f7fc2c4b3a992cfe646efad166be73",
+    "backgroundSetup": false,
+    "definitions": [
+      "SR",
+      "an-event",
+      "a-vector"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter010/014.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter010.org"
+  },
+  {
+    "id": "chapter010-015",
+    "chapter": "chapter010",
+    "ordinal": 15,
+    "heading": "The Wave Equation",
+    "orgLine": 362,
+    "sourceHash": "561fe676e982e453565b36b41f93f39a483419fd3a7c516be8db616aad6656c8",
+    "backgroundSetup": false,
+    "definitions": [
+      "g-Minkowski"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter010/015.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter010.org"
+  },
+  {
+    "id": "chapter010-016",
+    "chapter": "chapter010",
+    "ordinal": 16,
+    "heading": "The Wave Equation",
+    "orgLine": 381,
+    "sourceHash": "4ec29c942384280cefb348db42db5a4583b77f921dadd43894a5cbb7c2dc126b",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter010/016.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter010.org"
+  },
+  {
+    "id": "chapter010-017",
+    "chapter": "chapter010",
+    "ordinal": 17,
+    "heading": "The Wave Equation",
+    "orgLine": 394,
+    "sourceHash": "2958679a64f2f481c97384bb8efe41576acfe586159b88b0bdad83f41dcdba9b",
+    "backgroundSetup": false,
+    "definitions": [
+      "SR-vector-basis",
+      "SR-basis"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter010/017.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter010.org"
+  },
+  {
+    "id": "chapter010-018",
+    "chapter": "chapter010",
+    "ordinal": 18,
+    "heading": "The Wave Equation",
+    "orgLine": 401,
+    "sourceHash": "3c3e80f85452354b633b7b03a06234ca08995e280edc4a61de6bd8ca0118ce35",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter010/018.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter010.org"
+  },
+  {
+    "id": "chapter010-019",
+    "chapter": "chapter010",
+    "ordinal": 19,
+    "heading": "The Wave Equation",
+    "orgLine": 411,
+    "sourceHash": "e4b921ae833000ae978f222c642121a995c95710f94db3855996353279ee8db5",
+    "backgroundSetup": false,
+    "definitions": [
+      "p"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter010/019.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter010.org"
+  },
+  {
+    "id": "chapter010-020",
+    "chapter": "chapter010",
+    "ordinal": 20,
+    "heading": "The Wave Equation",
+    "orgLine": 415,
+    "sourceHash": "4c9fa2d31d02d26e129f973e1333322cb9496d5cdd58b45230e1d8cc3a1ad070",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter010/020.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter010.org"
+  },
+  {
+    "id": "chapter010-021",
+    "chapter": "chapter010",
+    "ordinal": 21,
+    "heading": "Electrodynamics",
+    "orgLine": 435,
+    "sourceHash": "1abaf421cc1a539590ca30fccd7998be38f5b7b83a5ba443e9114533fc0ec5a6",
+    "backgroundSetup": false,
+    "definitions": [
+      "Faraday"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter010/021.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter010.org"
+  },
+  {
+    "id": "chapter010-022",
+    "chapter": "chapter010",
+    "ordinal": 22,
+    "heading": "Electrodynamics",
+    "orgLine": 449,
+    "sourceHash": "9488678443429baab0426d456c26fc2d8a394d780a98c5e7e55b2bcb36533025",
+    "backgroundSetup": false,
+    "definitions": [
+      "Maxwell"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter010/022.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter010.org"
+  },
+  {
+    "id": "chapter010-023",
+    "chapter": "chapter010",
+    "ordinal": 23,
+    "heading": "Electrodynamics",
+    "orgLine": 461,
+    "sourceHash": "7fb3d10cde41227f9482d3f6eb2b18e681c0a321486a53e01725179b446ef9e2",
+    "backgroundSetup": false,
+    "definitions": [
+      "SR-star"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter010/023.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter010.org"
+  },
+  {
+    "id": "chapter010-024",
+    "chapter": "chapter010",
+    "ordinal": 24,
+    "heading": "Electrodynamics",
+    "orgLine": 467,
+    "sourceHash": "a39ab005d556457e6dceaf8a256c17e0ad218b46bdac25a771a7db794cbd2d06",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter010/024.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter010.org"
+  },
+  {
+    "id": "chapter010-025",
+    "chapter": "chapter010",
+    "ordinal": 25,
+    "heading": "Electrodynamics",
+    "orgLine": 480,
+    "sourceHash": "33274f2dc509428725584de7c82a46eabd2665d1b1139fa658348bf036cc8c18",
+    "backgroundSetup": false,
+    "definitions": [
+      "J"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter010/025.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter010.org"
+  },
+  {
+    "id": "chapter010-026",
+    "chapter": "chapter010",
+    "ordinal": 26,
+    "heading": "Electrodynamics",
+    "orgLine": 492,
+    "sourceHash": "02b9244601c0474dea7c10b6fb68a589528a56496702b281ba2e0512a0be5ba5",
+    "backgroundSetup": false,
+    "definitions": [
+      "F",
+      "four-current"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter010/026.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter010.org"
+  },
+  {
+    "id": "chapter010-027",
+    "chapter": "chapter010",
+    "ordinal": 27,
+    "heading": "Maxwell's Equations",
+    "orgLine": 549,
+    "sourceHash": "ecd74df697ee1f69e4aa74b597cec9d9e3067ebb3f4e72d391500e47b3dab9c1",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter010/027.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter010.org"
+  },
+  {
+    "id": "chapter010-028",
+    "chapter": "chapter010",
+    "ordinal": 28,
+    "heading": "Maxwell's Equations",
+    "orgLine": 565,
+    "sourceHash": "d9f4825cbca1e7dbed37e30242078a09b76cab23d3188b812bf3aba54f9784b1",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter010/028.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter010.org"
+  },
+  {
+    "id": "chapter010-029",
+    "chapter": "chapter010",
+    "ordinal": 29,
+    "heading": "Maxwell's Equations",
+    "orgLine": 578,
+    "sourceHash": "5bd4fef99516cb9eca101cc4936d9e05b8dec2406d840eaf05bdc51c3ea37d5d",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter010/029.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter010.org"
+  },
+  {
+    "id": "chapter010-030",
+    "chapter": "chapter010",
+    "ordinal": 30,
+    "heading": "Maxwell's Equations",
+    "orgLine": 591,
+    "sourceHash": "4d4b2c85051f74687e5d74f073bfeff88338316eeb546c14ca9e84f515f71f5c",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter010/030.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter010.org"
+  },
+  {
+    "id": "chapter010-031",
+    "chapter": "chapter010",
+    "ordinal": 31,
+    "heading": "Maxwell's Equations",
+    "orgLine": 606,
+    "sourceHash": "9ee2b21477dd4f0283f79af7cd7a678a982052b8fd4adb09bc77437158dd9d0d",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter010/031.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter010.org"
+  },
+  {
+    "id": "chapter010-032",
+    "chapter": "chapter010",
+    "ordinal": 32,
+    "heading": "Maxwell's Equations",
+    "orgLine": 625,
+    "sourceHash": "ed4ea8395572c6a1e2b92346cc06b21c50ee2d3ce1f9758e2f2f0999eb1b64ad",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter010/032.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter010.org"
+  },
+  {
+    "id": "chapter010-033",
+    "chapter": "chapter010",
+    "ordinal": 33,
+    "heading": "Maxwell's Equations",
+    "orgLine": 641,
+    "sourceHash": "1892d5f54152fb689a4c7352d461da97554e2bd2c81b62cf2d1e1129dc70990b",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter010/033.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter010.org"
+  },
+  {
+    "id": "chapter010-034",
+    "chapter": "chapter010",
+    "ordinal": 34,
+    "heading": "Maxwell's Equations",
+    "orgLine": 657,
+    "sourceHash": "22959105d42817f26f4ca871aabf645a52edd605db4f00a72b947be0735a513c",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter010/034.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter010.org"
+  },
+  {
+    "id": "chapter010-035",
+    "chapter": "chapter010",
+    "ordinal": 35,
+    "heading": "Lorentz Force",
+    "orgLine": 685,
+    "sourceHash": "5e843c6f7c2cd44cf82cfa13459a36dac5b03dfaecdb9c96336235921e487197",
+    "backgroundSetup": false,
+    "definitions": [
+      "E",
+      "B",
+      "V"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter010/035.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter010.org"
+  },
+  {
+    "id": "chapter010-036",
+    "chapter": "chapter010",
+    "ordinal": 36,
+    "heading": "Lorentz Force",
+    "orgLine": 701,
+    "sourceHash": "f8a1d250fca29b0cd8251cf36d57a9d826801db7c4dbe67c693b90ad0906ecb4",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter010/036.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter010.org"
+  },
+  {
+    "id": "chapter010-037",
+    "chapter": "chapter010",
+    "ordinal": 37,
+    "heading": "Lorentz Force",
+    "orgLine": 726,
+    "sourceHash": "547f8f74f99b440ff413660e54b9b8fd11a17774b0168481f758869f40178564",
+    "backgroundSetup": false,
+    "definitions": [
+      "eta-inverse",
+      "Force"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter010/037.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter010.org"
+  },
+  {
+    "id": "chapter010-038",
+    "chapter": "chapter010",
+    "ordinal": 38,
+    "heading": "Lorentz Force",
+    "orgLine": 743,
+    "sourceHash": "77b1aa50a5eee268e59de01144c0e136cdf3b9d887a53a19b1b58db45c65a112",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter010/038.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter010.org"
+  },
+  {
+    "id": "chapter010-039",
+    "chapter": "chapter010",
+    "ordinal": 39,
+    "heading": "Lorentz Force",
+    "orgLine": 755,
+    "sourceHash": "36ce3c8bd50d41ca5a2886a1c94725264cc65bef260dcb25df6c04d0ebcdc2bd",
+    "backgroundSetup": false,
+    "definitions": [
+      "Ux"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter010/039.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter010.org"
+  },
+  {
+    "id": "chapter010-040",
+    "chapter": "chapter010",
+    "ordinal": 40,
+    "heading": "Lorentz Force",
+    "orgLine": 761,
+    "sourceHash": "1d235d4e5e1aad54a90c06d30ca810dd695fdb990fa8f2776580317949efb838",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter010/040.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter010.org"
+  },
+  {
+    "id": "chapter010-041",
+    "chapter": "chapter010",
+    "ordinal": 41,
+    "heading": "Exercise 10.1: Relativistic Lorentz Force",
+    "orgLine": 777,
+    "sourceHash": "502d13208a3a77748aa9c7ba540b68ef16d6caef641321f47d3dd4c43f70b0a3",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter010/041.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter010.org"
+  },
+  {
+    "id": "chapter011-001",
+    "chapter": "chapter011",
+    "ordinal": 1,
+    "heading": "Implementation",
+    "orgLine": 423,
+    "sourceHash": "77d225fba17a84e04d687928212555eb33b2103be36dc945d19ed699ac90ce14",
+    "backgroundSetup": false,
+    "definitions": [
+      "make-four-tuple",
+      "four-tuple->ct",
+      "four-tuple->space"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter011/001.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter011.org"
+  },
+  {
+    "id": "chapter011-002",
+    "chapter": "chapter011",
+    "ordinal": 2,
+    "heading": "Implementation",
+    "orgLine": 434,
+    "sourceHash": "e4d4492c0f0ac9aab68a4e65098b20fd5cdcb46869d6eab9f4bc3dbf313bcfe5",
+    "backgroundSetup": false,
+    "definitions": [
+      "proper-space-interval"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter011/002.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter011.org"
+  },
+  {
+    "id": "chapter011-003",
+    "chapter": "chapter011",
+    "ordinal": 3,
+    "heading": "Implementation",
+    "orgLine": 447,
+    "sourceHash": "b92030bcebe2baaea6d443e37b9b6027ddbf6aa18b6ffe64cb5dea7e2c79144c",
+    "backgroundSetup": false,
+    "definitions": [
+      "proper-time-interval"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter011/003.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter011.org"
+  },
+  {
+    "id": "chapter011-004",
+    "chapter": "chapter011",
+    "ordinal": 4,
+    "heading": "Implementation",
+    "orgLine": 455,
+    "sourceHash": "68cecfc1c693da6a378331e8054f3cdc7e950c23ab81de603965eb389e7dd35f",
+    "backgroundSetup": false,
+    "definitions": [
+      "general-boost"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter011/004.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter011.org"
+  },
+  {
+    "id": "chapter011-005",
+    "chapter": "chapter011",
+    "ordinal": 5,
+    "heading": "Implementation",
+    "orgLine": 471,
+    "sourceHash": "f812940857e795374b6381811ce7336fdccd9dd3a6f5ba906556e7de5f0e1375",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter011/005.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter011.org"
+  },
+  {
+    "id": "chapter011-006",
+    "chapter": "chapter011",
+    "ordinal": 6,
+    "heading": "Implementation",
+    "orgLine": 484,
+    "sourceHash": "89277579f0f1975e0ec201ad8d2f797f8a65b1c82cbcd9908fae3e9bfd7c1ba5",
+    "backgroundSetup": false,
+    "definitions": [
+      "general-boost2"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter011/006.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter011.org"
+  },
+  {
+    "id": "chapter011-007",
+    "chapter": "chapter011",
+    "ordinal": 7,
+    "heading": "Rotations",
+    "orgLine": 533,
+    "sourceHash": "8e8bae14e1d887ea1329df87695fe29951e22a272e102f4b54e94d026982fd87",
+    "backgroundSetup": false,
+    "definitions": [
+      "extended-rotation"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter011/007.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter011.org"
+  },
+  {
+    "id": "chapter011-008",
+    "chapter": "chapter011",
+    "ordinal": 8,
+    "heading": "Rotations",
+    "orgLine": 542,
+    "sourceHash": "a9675de0d9f19bb98763472a01e743b1d51159ffe7d7c4a136d7ff1440722600",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter011/008.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter011.org"
+  },
+  {
+    "id": "chapter011-009",
+    "chapter": "chapter011",
+    "ordinal": 9,
+    "heading": "Special Relativity Frames",
+    "orgLine": 614,
+    "sourceHash": "d85915d69d8041b6d85ffe769afe8702c8a8d91929d00a5b222e441263a377a5",
+    "backgroundSetup": false,
+    "definitions": [
+      "coordinates->event",
+      "event->coordinates"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter011/009.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter011.org"
+  },
+  {
+    "id": "chapter011-010",
+    "chapter": "chapter011",
+    "ordinal": 10,
+    "heading": "Special Relativity Frames",
+    "orgLine": 634,
+    "sourceHash": "2cda792410ed6ece1a65517b8d88955a0f28721b2b9611789a411aff79cb9263",
+    "backgroundSetup": false,
+    "definitions": [
+      "make-SR-frame"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter011/010.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter011.org"
+  },
+  {
+    "id": "chapter011-011",
+    "chapter": "chapter011",
+    "ordinal": 11,
+    "heading": "Velocity Addition Formula",
+    "orgLine": 648,
+    "sourceHash": "d17fc90275365e0e6d64fc37c82a919e0640d0525d6d3e995b7ec70a7b450179",
+    "backgroundSetup": false,
+    "definitions": [
+      "A"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter011/011.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter011.org"
+  },
+  {
+    "id": "chapter011-012",
+    "chapter": "chapter011",
+    "ordinal": 12,
+    "heading": "Velocity Addition Formula",
+    "orgLine": 658,
+    "sourceHash": "a1ee5f616aafb9e2873ac9eabe57be004d4a7f6fa14d218a00743c19ee062085",
+    "backgroundSetup": false,
+    "definitions": [
+      "B"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter011/012.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter011.org"
+  },
+  {
+    "id": "chapter011-013",
+    "chapter": "chapter011",
+    "ordinal": 13,
+    "heading": "Velocity Addition Formula",
+    "orgLine": 670,
+    "sourceHash": "767a6bc7611717e54ed289b159b866f0514470a02b2617571897a96bf52657f8",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter011/013.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter011.org"
+  },
+  {
+    "id": "chapter011-014",
+    "chapter": "chapter011",
+    "ordinal": 14,
+    "heading": "Velocity Addition Formula",
+    "orgLine": 684,
+    "sourceHash": "c2adc99f1ec7f04d520560d35ab3e0d46bed30f1a140f0fe1d4f95129f032d1a",
+    "backgroundSetup": false,
+    "definitions": [
+      "add-v:cs"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter011/014.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter011.org"
+  },
+  {
+    "id": "chapter011-015",
+    "chapter": "chapter011",
+    "ordinal": 15,
+    "heading": "Twin Paradox",
+    "orgLine": 700,
+    "sourceHash": "f1153851812f25529e892b730ea096aa331cf9213b6698cab441a1ef78e8385b",
+    "backgroundSetup": false,
+    "definitions": [
+      "start-event"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter011/015.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter011.org"
+  },
+  {
+    "id": "chapter011-016",
+    "chapter": "chapter011",
+    "ordinal": 16,
+    "heading": "Twin Paradox",
+    "orgLine": 710,
+    "sourceHash": "0b15d4e4297fdef9b262d60f2a2d84ce63053c3b88781f7e8742a93a642860a2",
+    "backgroundSetup": false,
+    "definitions": [
+      "outgoing"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter011/016.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter011.org"
+  },
+  {
+    "id": "chapter011-017",
+    "chapter": "chapter011",
+    "ordinal": 17,
+    "heading": "Twin Paradox",
+    "orgLine": 728,
+    "sourceHash": "6d12bd8f7c11518c87a5ce3a92671aa42695087b26a58f037dd5a32c2063a3d1",
+    "backgroundSetup": false,
+    "definitions": [
+      "traveller-at-turning-point-event"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter011/017.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter011.org"
+  },
+  {
+    "id": "chapter011-018",
+    "chapter": "chapter011",
+    "ordinal": 18,
+    "heading": "Twin Paradox",
+    "orgLine": 743,
+    "sourceHash": "fd9d41f33b8b65cfb506d69f35fc6b0eb6b0c268701847baecb6ee863c20febe",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter011/018.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter011.org"
+  },
+  {
+    "id": "chapter011-019",
+    "chapter": "chapter011",
+    "ordinal": 19,
+    "heading": "Twin Paradox",
+    "orgLine": 752,
+    "sourceHash": "cf5c839312251a4f43b3555f30ed74b7bfe4e190c03a796996f6487773f82335",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter011/019.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter011.org"
+  },
+  {
+    "id": "chapter011-020",
+    "chapter": "chapter011",
+    "ordinal": 20,
+    "heading": "Twin Paradox",
+    "orgLine": 761,
+    "sourceHash": "51e639e2b29d3b875d97f3e76a08cce9ac47bbbcbf54d99745d33280c9215820",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter011/020.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter011.org"
+  },
+  {
+    "id": "chapter011-021",
+    "chapter": "chapter011",
+    "ordinal": 21,
+    "heading": "Twin Paradox",
+    "orgLine": 768,
+    "sourceHash": "cc01e9b55bf0b6db86d0994f6cfff5c570cb4c5fdcf786396df5e08752986313",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter011/021.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter011.org"
+  },
+  {
+    "id": "chapter011-022",
+    "chapter": "chapter011",
+    "ordinal": 22,
+    "heading": "Twin Paradox",
+    "orgLine": 777,
+    "sourceHash": "d47aec70e16c6e569580338d3ef188d862e8fb04fd45fbb0531965da4fe86479",
+    "backgroundSetup": false,
+    "definitions": [
+      "halfway-at-home-event"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter011/022.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter011.org"
+  },
+  {
+    "id": "chapter011-023",
+    "chapter": "chapter011",
+    "ordinal": 23,
+    "heading": "Twin Paradox",
+    "orgLine": 785,
+    "sourceHash": "f2a40e2001c109e479c8331258c35e94d1d7ce416efef2fb24d22e15386944cb",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter011/023.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter011.org"
+  },
+  {
+    "id": "chapter011-024",
+    "chapter": "chapter011",
+    "ordinal": 24,
+    "heading": "Twin Paradox",
+    "orgLine": 792,
+    "sourceHash": "c52c5a93d11013778c5f41c2b1d59012852c7b8cceeb4187e6f9e7c9f484173f",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter011/024.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter011.org"
+  },
+  {
+    "id": "chapter011-025",
+    "chapter": "chapter011",
+    "ordinal": 25,
+    "heading": "Twin Paradox",
+    "orgLine": 805,
+    "sourceHash": "dee1c5566128447ee8332a038148317b2ae96a264364bebcca491aec1e4d93be",
+    "backgroundSetup": false,
+    "definitions": [
+      "home-at-outgoing-turning-point-event"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter011/025.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter011.org"
+  },
+  {
+    "id": "chapter011-026",
+    "chapter": "chapter011",
+    "ordinal": 26,
+    "heading": "Twin Paradox",
+    "orgLine": 816,
+    "sourceHash": "0f0fd44e33c67c920cf1d4170139d76edd068ed8d0f3e0448943ed17dbb65708",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter011/026.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter011.org"
+  },
+  {
+    "id": "chapter011-027",
+    "chapter": "chapter011",
+    "ordinal": 27,
+    "heading": "Twin Paradox",
+    "orgLine": 827,
+    "sourceHash": "faae205f4e6cb4607741e2098fd064ac408a125c329421a385c335dcaf3c826f",
+    "backgroundSetup": false,
+    "definitions": [
+      "incoming"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter011/027.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter011.org"
+  },
+  {
+    "id": "chapter011-028",
+    "chapter": "chapter011",
+    "ordinal": 28,
+    "heading": "Twin Paradox",
+    "orgLine": 837,
+    "sourceHash": "191979bd2bfdc96c7f2c0cf51ca613289c2879f4160c6b6acc16579289c44b0f",
+    "backgroundSetup": false,
+    "definitions": [
+      "end-event"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter011/028.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter011.org"
+  },
+  {
+    "id": "chapter011-029",
+    "chapter": "chapter011",
+    "ordinal": 29,
+    "heading": "Twin Paradox",
+    "orgLine": 845,
+    "sourceHash": "716d2ce2ac34a686dafbef1379d55260c6845cf10e31ac7bf12bef8ef464da01",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter011/029.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter011.org"
+  },
+  {
+    "id": "chapter011-030",
+    "chapter": "chapter011",
+    "ordinal": 30,
+    "heading": "Twin Paradox",
+    "orgLine": 852,
+    "sourceHash": "036ef989da5f3260262754de5123c3bf21508c0b5d59e3ab581d197f60297e2d",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter011/030.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter011.org"
+  },
+  {
+    "id": "chapter011-031",
+    "chapter": "chapter011",
+    "ordinal": 31,
+    "heading": "Twin Paradox",
+    "orgLine": 864,
+    "sourceHash": "ec9e177f55119670f2941b9645f70ebe726d052482f38f50f770b1caa6c780bf",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter011/031.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter011.org"
+  },
+  {
+    "id": "chapter011-032",
+    "chapter": "chapter011",
+    "ordinal": 32,
+    "heading": "Twin Paradox",
+    "orgLine": 876,
+    "sourceHash": "0c5bc67d403f4b87703c28b045559cec460d3521b6a8f9a78a211968a0017374",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter011/032.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter011.org"
+  },
+  {
+    "id": "chapter011-033",
+    "chapter": "chapter011",
+    "ordinal": 33,
+    "heading": "Twin Paradox",
+    "orgLine": 885,
+    "sourceHash": "76ceadcdf264120447d0dfbef88ea9d231aad461f8b682a70409ebcf1fa84059",
+    "backgroundSetup": false,
+    "definitions": [
+      "home-at-incoming-turning-point-event"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/chapter011/033.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter011.org"
+  },
+  {
+    "id": "chapter011-034",
+    "chapter": "chapter011",
+    "ordinal": 34,
+    "heading": "Twin Paradox",
+    "orgLine": 895,
+    "sourceHash": "289742d73497d12d25521a558a11ba8caea072396e1ef7b017b3737d41768ffb",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/chapter011/034.cljs",
+    "sourcePath": "fdg-book/scheme/org/chapter011.org"
+  },
+  {
+    "id": "appendix_a-001",
+    "chapter": "appendix_a",
+    "ordinal": 1,
+    "heading": "Procedure Calls",
+    "orgLine": 34,
+    "sourceHash": "062c369cbe914ccae2afe34cc0e45843263031193fce1c12f2d85ec73d42038c",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/appendix_a/001.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_a.org"
+  },
+  {
+    "id": "appendix_a-002",
+    "chapter": "appendix_a",
+    "ordinal": 2,
+    "heading": "Procedure Calls",
+    "orgLine": 39,
+    "sourceHash": "dcd71b32a5473fcb2b3491090ee40eaf160e30c731d5bc0f7111448f6cb5faf0",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/appendix_a/002.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_a.org"
+  },
+  {
+    "id": "appendix_a-003",
+    "chapter": "appendix_a",
+    "ordinal": 3,
+    "heading": "Lambda Expressions",
+    "orgLine": 63,
+    "sourceHash": "50c684c8b5a4d12adb16af8e050b4eee41a984e1f19bbf03418bd7805c219329",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/appendix_a/003.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_a.org"
+  },
+  {
+    "id": "appendix_a-004",
+    "chapter": "appendix_a",
+    "ordinal": 4,
+    "heading": "Lambda Expressions",
+    "orgLine": 71,
+    "sourceHash": "1e7167bfd1ad77ea1c367f5adfec24cfd8bfb2fe9edc9d914f324fb8de4bc6f5",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/appendix_a/004.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_a.org"
+  },
+  {
+    "id": "appendix_a-005",
+    "chapter": "appendix_a",
+    "ordinal": 5,
+    "heading": "Definitions",
+    "orgLine": 92,
+    "sourceHash": "f8ec58c90fad39ca74c71d94af6333ccd57b989adda8cbbbbf87065f6e6ba55f",
+    "backgroundSetup": false,
+    "definitions": [
+      "pi",
+      "square"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/appendix_a/005.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_a.org"
+  },
+  {
+    "id": "appendix_a-006",
+    "chapter": "appendix_a",
+    "ordinal": 6,
+    "heading": "Definitions",
+    "orgLine": 102,
+    "sourceHash": "60ca4022d4515ecd8c530c3fe09f308635e16bd5eac3c071030be05f2b0c81ff",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/appendix_a/006.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_a.org"
+  },
+  {
+    "id": "appendix_a-007",
+    "chapter": "appendix_a",
+    "ordinal": 7,
+    "heading": "Definitions",
+    "orgLine": 110,
+    "sourceHash": "f64052b69f567c382d37bc59fd45af57ef0b0775891cc7beb83bb231e50b1e4d",
+    "backgroundSetup": false,
+    "definitions": [
+      "square"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/appendix_a/007.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_a.org"
+  },
+  {
+    "id": "appendix_a-008",
+    "chapter": "appendix_a",
+    "ordinal": 8,
+    "heading": "Definitions",
+    "orgLine": 120,
+    "sourceHash": "fc7fb6e53e4d20f9463f088ba1aaf1e993da239e21d9b7ff310eb3ec1ebce2bd",
+    "backgroundSetup": false,
+    "definitions": [
+      "compose"
+    ],
+    "capturesResult": true,
+    "codePath": "generated/appendix_a/008.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_a.org"
+  },
+  {
+    "id": "appendix_a-009",
+    "chapter": "appendix_a",
+    "ordinal": 9,
+    "heading": "Definitions",
+    "orgLine": 130,
+    "sourceHash": "2bca88bc3f5b7b21212ccea4457517f96729cc4fc9c4dc69538dae902b8d4009",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/appendix_a/009.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_a.org"
+  },
+  {
+    "id": "appendix_a-010",
+    "chapter": "appendix_a",
+    "ordinal": 10,
+    "heading": "Definitions",
+    "orgLine": 138,
+    "sourceHash": "f8e425d0cfc5310cc3df39675fc21b3d447b19e0fa13f6bacd883adf476fb8f7",
+    "backgroundSetup": false,
+    "definitions": [
+      "compose"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/appendix_a/010.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_a.org"
+  },
+  {
+    "id": "appendix_a-011",
+    "chapter": "appendix_a",
+    "ordinal": 11,
+    "heading": "Conditionals",
+    "orgLine": 153,
+    "sourceHash": "1586187d13b7dec2f45935fc97f8fe0cb428cd392600da66dacbad3089b91b7c",
+    "backgroundSetup": false,
+    "definitions": [
+      "abs"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/appendix_a/011.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_a.org"
+  },
+  {
+    "id": "appendix_a-012",
+    "chapter": "appendix_a",
+    "ordinal": 12,
+    "heading": "Conditionals",
+    "orgLine": 178,
+    "sourceHash": "736ad73e7a7e588d3ab1e3db385970bd4bfaa470ee21d907ff019ea17f76117b",
+    "backgroundSetup": false,
+    "definitions": [
+      "abs"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/appendix_a/012.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_a.org"
+  },
+  {
+    "id": "appendix_a-013",
+    "chapter": "appendix_a",
+    "ordinal": 13,
+    "heading": "Recursive Procedures",
+    "orgLine": 199,
+    "sourceHash": "071b4f1dacc06797d13ff51c4511e7280a7ebb6bb4b14ea9aa1c282896cb5692",
+    "backgroundSetup": false,
+    "definitions": [
+      "factorial"
+    ],
+    "capturesResult": true,
+    "codePath": "generated/appendix_a/013.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_a.org"
+  },
+  {
+    "id": "appendix_a-014",
+    "chapter": "appendix_a",
+    "ordinal": 14,
+    "heading": "Recursive Procedures",
+    "orgLine": 209,
+    "sourceHash": "8b136f9df10ab466a79537a6d81010a355c835363a0f7ade995c1b3982e18364",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/appendix_a/014.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_a.org"
+  },
+  {
+    "id": "appendix_a-015",
+    "chapter": "appendix_a",
+    "ordinal": 15,
+    "heading": "Local Names",
+    "orgLine": 219,
+    "sourceHash": "7106b26ddcab5969b44b4a7205951942d140b0774c58594e68f23d1201f42cad",
+    "backgroundSetup": false,
+    "definitions": [
+      "f"
+    ],
+    "capturesResult": true,
+    "codePath": "generated/appendix_a/015.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_a.org"
+  },
+  {
+    "id": "appendix_a-016",
+    "chapter": "appendix_a",
+    "ordinal": 16,
+    "heading": "Local Names",
+    "orgLine": 247,
+    "sourceHash": "86ddc1ba26b4515ac7478a64b37c482b674c33fd5b59a65304c28dc9ce12f92c",
+    "backgroundSetup": false,
+    "definitions": [
+      "factorial"
+    ],
+    "capturesResult": true,
+    "codePath": "generated/appendix_a/016.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_a.org"
+  },
+  {
+    "id": "appendix_a-017",
+    "chapter": "appendix_a",
+    "ordinal": 17,
+    "heading": "Compound Data --- Lists and Vectors",
+    "orgLine": 280,
+    "sourceHash": "fe981fd9c00985a2376e505a367b1ee10e7c175920ab296da55b5f267367f45f",
+    "backgroundSetup": false,
+    "definitions": [
+      "a-list"
+    ],
+    "capturesResult": true,
+    "codePath": "generated/appendix_a/017.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_a.org"
+  },
+  {
+    "id": "appendix_a-018",
+    "chapter": "appendix_a",
+    "ordinal": 18,
+    "heading": "Compound Data --- Lists and Vectors",
+    "orgLine": 287,
+    "sourceHash": "7870054d5a146b62bb0ed514caf8071391a0f1cb4806048a1138076e80e562a7",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/appendix_a/018.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_a.org"
+  },
+  {
+    "id": "appendix_a-019",
+    "chapter": "appendix_a",
+    "ordinal": 19,
+    "heading": "Compound Data --- Lists and Vectors",
+    "orgLine": 292,
+    "sourceHash": "88ba027f25753600daab20ff01b706240e50d430d1dd72c3895087297c33ee24",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/appendix_a/019.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_a.org"
+  },
+  {
+    "id": "appendix_a-020",
+    "chapter": "appendix_a",
+    "ordinal": 20,
+    "heading": "Compound Data --- Lists and Vectors",
+    "orgLine": 304,
+    "sourceHash": "1cbc44a6fb5d9a12cd54579acceaa429a236225af3bee7516a35b80393dfc9c9",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/appendix_a/020.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_a.org"
+  },
+  {
+    "id": "appendix_a-021",
+    "chapter": "appendix_a",
+    "ordinal": 21,
+    "heading": "Compound Data --- Lists and Vectors",
+    "orgLine": 309,
+    "sourceHash": "0ebb9a12983cff5f8e6b91010683841982c522d70bb4d3f31e3d3b9672cc169c",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/appendix_a/021.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_a.org"
+  },
+  {
+    "id": "appendix_a-022",
+    "chapter": "appendix_a",
+    "ordinal": 22,
+    "heading": "Compound Data --- Lists and Vectors",
+    "orgLine": 314,
+    "sourceHash": "9ab8ed8d3a5109799ceb342cd50436acfa1e49f4cc48dd9b7a627136fbdbb378",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/appendix_a/022.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_a.org"
+  },
+  {
+    "id": "appendix_a-023",
+    "chapter": "appendix_a",
+    "ordinal": 23,
+    "heading": "Compound Data --- Lists and Vectors",
+    "orgLine": 319,
+    "sourceHash": "29c1cfae175274e78c7dd3f0f6e7a25ff4bc687e2545639944d5339b47d0ec26",
+    "backgroundSetup": false,
+    "definitions": [
+      "another-list"
+    ],
+    "capturesResult": true,
+    "codePath": "generated/appendix_a/023.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_a.org"
+  },
+  {
+    "id": "appendix_a-024",
+    "chapter": "appendix_a",
+    "ordinal": 24,
+    "heading": "Compound Data --- Lists and Vectors",
+    "orgLine": 327,
+    "sourceHash": "0725406dddb5c204f342e17747f314babd3b7773382d33ccf348d83f37edcbb8",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/appendix_a/024.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_a.org"
+  },
+  {
+    "id": "appendix_a-025",
+    "chapter": "appendix_a",
+    "ordinal": 25,
+    "heading": "Compound Data --- Lists and Vectors",
+    "orgLine": 341,
+    "sourceHash": "6cf7dcbaafcea47d00969f830866779edf4b978f05a31f8734b27a07d0c1c168",
+    "backgroundSetup": false,
+    "definitions": [
+      "a-vector"
+    ],
+    "capturesResult": true,
+    "codePath": "generated/appendix_a/025.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_a.org"
+  },
+  {
+    "id": "appendix_a-026",
+    "chapter": "appendix_a",
+    "ordinal": 26,
+    "heading": "Compound Data --- Lists and Vectors",
+    "orgLine": 349,
+    "sourceHash": "9f7a3b1d9fb7152457678d6b54f83b62e06dd413ee8353b2a55faa831ed714ef",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/appendix_a/026.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_a.org"
+  },
+  {
+    "id": "appendix_a-027",
+    "chapter": "appendix_a",
+    "ordinal": 27,
+    "heading": "Compound Data --- Lists and Vectors",
+    "orgLine": 354,
+    "sourceHash": "c2232011d27ddb3b32a356d8c0ba2902797ca10312532743ef5a05da720b8494",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/appendix_a/027.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_a.org"
+  },
+  {
+    "id": "appendix_a-028",
+    "chapter": "appendix_a",
+    "ordinal": 28,
+    "heading": "Symbols",
+    "orgLine": 386,
+    "sourceHash": "582d45304eb7ae69bcc14cc914d5503b2040f1f7356dc51848d563ab300dcf96",
+    "backgroundSetup": false,
+    "definitions": [
+      "sum?"
+    ],
+    "capturesResult": true,
+    "codePath": "generated/appendix_a/028.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_a.org"
+  },
+  {
+    "id": "appendix_a-029",
+    "chapter": "appendix_a",
+    "ordinal": 29,
+    "heading": "Symbols",
+    "orgLine": 394,
+    "sourceHash": "754ea774acec2f27fa0cee97a4fd233c507b9b3513e0172f172b9bd028b42546",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/appendix_a/029.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_a.org"
+  },
+  {
+    "id": "appendix_b-001",
+    "chapter": "appendix_b",
+    "ordinal": 1,
+    "heading": "Functions",
+    "orgLine": 61,
+    "sourceHash": "2014c116aa4a999194fe562d2e0173ae832a5e5d42889a79ebea16b7b43a1f7b",
+    "backgroundSetup": false,
+    "definitions": [
+      "d"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/appendix_b/001.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_b.org"
+  },
+  {
+    "id": "appendix_b-002",
+    "chapter": "appendix_b",
+    "ordinal": 2,
+    "heading": "Functions",
+    "orgLine": 78,
+    "sourceHash": "62adab4182bd1e4b1f6c71c290916af2addbeb6a4c02666db4b3488e12d14b17",
+    "backgroundSetup": false,
+    "definitions": [
+      "h"
+    ],
+    "capturesResult": true,
+    "codePath": "generated/appendix_b/002.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_b.org"
+  },
+  {
+    "id": "appendix_b-003",
+    "chapter": "appendix_b",
+    "ordinal": 3,
+    "heading": "Functions",
+    "orgLine": 87,
+    "sourceHash": "7fa3a78c6f98e657cac112391c04b21552d88d4b070929072272fdab6868dfdc",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/appendix_b/003.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_b.org"
+  },
+  {
+    "id": "appendix_b-004",
+    "chapter": "appendix_b",
+    "ordinal": 4,
+    "heading": "Functions",
+    "orgLine": 107,
+    "sourceHash": "b4df3eb60cafb82de5cc31ba0e8fc4939f6f59d4762d5c9369b73638409fd2ca",
+    "backgroundSetup": false,
+    "definitions": [
+      "g"
+    ],
+    "capturesResult": true,
+    "codePath": "generated/appendix_b/004.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_b.org"
+  },
+  {
+    "id": "appendix_b-005",
+    "chapter": "appendix_b",
+    "ordinal": 5,
+    "heading": "Functions",
+    "orgLine": 114,
+    "sourceHash": "0ebc1e2de53873836bd57d85a64ba99b51c034d27723b97978fb1044050797e8",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/appendix_b/005.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_b.org"
+  },
+  {
+    "id": "appendix_b-006",
+    "chapter": "appendix_b",
+    "ordinal": 6,
+    "heading": "Symbolic Values",
+    "orgLine": 128,
+    "sourceHash": "b53056b2681f937016f68f6540f91b78f413f9b350cb235baa6d3e07c4bfcd97",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/appendix_b/006.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_b.org"
+  },
+  {
+    "id": "appendix_b-007",
+    "chapter": "appendix_b",
+    "ordinal": 7,
+    "heading": "Symbolic Values",
+    "orgLine": 136,
+    "sourceHash": "babee4cbd43dc585fbc6457042803b31943559c3881cb489cf2acb101232c9a1",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/appendix_b/007.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_b.org"
+  },
+  {
+    "id": "appendix_b-008",
+    "chapter": "appendix_b",
+    "ordinal": 8,
+    "heading": "Symbolic Values",
+    "orgLine": 148,
+    "sourceHash": "cc4f7c7366b7a738c760459bf181483d37b6542e054991d4d89007c3f0f12bcf",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/appendix_b/008.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_b.org"
+  },
+  {
+    "id": "appendix_b-009",
+    "chapter": "appendix_b",
+    "ordinal": 9,
+    "heading": "Symbolic Values",
+    "orgLine": 153,
+    "sourceHash": "90f9ff5b5a4b6f769c5178a3b70c51bea1d658dc3c6d78c0807f1a1c6969726f",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/appendix_b/009.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_b.org"
+  },
+  {
+    "id": "appendix_b-010",
+    "chapter": "appendix_b",
+    "ordinal": 10,
+    "heading": "Symbolic Values",
+    "orgLine": 163,
+    "sourceHash": "57d26e8ad06a5de5476329a95d7a4dfe4cab8584eda418662db462915bb6c5c7",
+    "backgroundSetup": false,
+    "definitions": [
+      "g"
+    ],
+    "capturesResult": true,
+    "codePath": "generated/appendix_b/010.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_b.org"
+  },
+  {
+    "id": "appendix_b-011",
+    "chapter": "appendix_b",
+    "ordinal": 11,
+    "heading": "Tuples",
+    "orgLine": 205,
+    "sourceHash": "b9c7f3328a2334f227aed9cc2d24ddac342b6f19fb839fd71e6721ee97760730",
+    "backgroundSetup": false,
+    "definitions": [
+      "v"
+    ],
+    "capturesResult": true,
+    "codePath": "generated/appendix_b/011.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_b.org"
+  },
+  {
+    "id": "appendix_b-012",
+    "chapter": "appendix_b",
+    "ordinal": 12,
+    "heading": "Tuples",
+    "orgLine": 211,
+    "sourceHash": "f59cb91add6701a785bd827d3857816e12f5858c19b2cefdbcec108161f19099",
+    "backgroundSetup": false,
+    "definitions": [
+      "p"
+    ],
+    "capturesResult": true,
+    "codePath": "generated/appendix_b/012.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_b.org"
+  },
+  {
+    "id": "appendix_b-013",
+    "chapter": "appendix_b",
+    "ordinal": 13,
+    "heading": "Tuples",
+    "orgLine": 238,
+    "sourceHash": "b0b8057baa00269f26e077d43a8375adce09dab295ebbda6c813dd7a70108d71",
+    "backgroundSetup": false,
+    "definitions": [
+      "s"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/appendix_b/013.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_b.org"
+  },
+  {
+    "id": "appendix_b-014",
+    "chapter": "appendix_b",
+    "ordinal": 14,
+    "heading": "Tuples",
+    "orgLine": 263,
+    "sourceHash": "3322df03c6e623ff50479b46edeca092b38b1234533316929c09a4986b335c9f",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/appendix_b/014.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_b.org"
+  },
+  {
+    "id": "appendix_b-015",
+    "chapter": "appendix_b",
+    "ordinal": 15,
+    "heading": "Tuples",
+    "orgLine": 272,
+    "sourceHash": "c0c3a48b09a857738a86ef526948dcad8945991ce9ffcf324c682724e46f7e23",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/appendix_b/015.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_b.org"
+  },
+  {
+    "id": "appendix_b-016",
+    "chapter": "appendix_b",
+    "ordinal": 16,
+    "heading": "Tuples",
+    "orgLine": 280,
+    "sourceHash": "fcc4451adca491444ae0415b97a272d623bca3fdd8469abf7bdd69f4d42e9249",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/appendix_b/016.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_b.org"
+  },
+  {
+    "id": "appendix_b-017",
+    "chapter": "appendix_b",
+    "ordinal": 17,
+    "heading": "Tuples",
+    "orgLine": 316,
+    "sourceHash": "795a1ca024afd24254731794f31bc0feba688641d5ecf5e61213d5668a2cd64a",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/appendix_b/017.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_b.org"
+  },
+  {
+    "id": "appendix_b-018",
+    "chapter": "appendix_b",
+    "ordinal": 18,
+    "heading": "Derivatives",
+    "orgLine": 434,
+    "sourceHash": "a1984397bc1d43528810e94af4aa2eecba4a971f8da1e8313d34143fdfa15d7f",
+    "backgroundSetup": false,
+    "definitions": [
+      "derivative-of-sine"
+    ],
+    "capturesResult": true,
+    "codePath": "generated/appendix_b/018.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_b.org"
+  },
+  {
+    "id": "appendix_b-019",
+    "chapter": "appendix_b",
+    "ordinal": 19,
+    "heading": "Derivatives",
+    "orgLine": 489,
+    "sourceHash": "a585ba5e800d4ecd68280a6b64e4179ab7f39ff7ee059e15325133a6a0c869a7",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/appendix_b/019.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_b.org"
+  },
+  {
+    "id": "appendix_b-020",
+    "chapter": "appendix_b",
+    "ordinal": 20,
+    "heading": "Derivatives",
+    "orgLine": 499,
+    "sourceHash": "16fc2ddb140668a234c53c61964a1ebeeecaab85e6ab167ce1b7ac0a312e9c3f",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/appendix_b/020.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_b.org"
+  },
+  {
+    "id": "appendix_b-021",
+    "chapter": "appendix_b",
+    "ordinal": 21,
+    "heading": "Derivatives of Functions of Multiple Arguments",
+    "orgLine": 531,
+    "sourceHash": "0e0abaf5ede13b8ba8b7cc5bfbea3e0097da66b9fe3d49a48ca31dd76d23e5cf",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/appendix_b/021.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_b.org"
+  },
+  {
+    "id": "appendix_b-022",
+    "chapter": "appendix_b",
+    "ordinal": 22,
+    "heading": "Derivatives of Functions of Multiple Arguments",
+    "orgLine": 591,
+    "sourceHash": "bf516ddaf3b456240cb35dc7b3186b3e4684b17631b461232a10e679288247e8",
+    "backgroundSetup": false,
+    "definitions": [
+      "h"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/appendix_b/022.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_b.org"
+  },
+  {
+    "id": "appendix_b-023",
+    "chapter": "appendix_b",
+    "ordinal": 23,
+    "heading": "Derivatives of Functions of Multiple Arguments",
+    "orgLine": 596,
+    "sourceHash": "4f35771eb3bc098bbb5c9e1ab93293cf0e208afe780dc045e60d61c361c6fc57",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/appendix_b/023.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_b.org"
+  },
+  {
+    "id": "appendix_b-024",
+    "chapter": "appendix_b",
+    "ordinal": 24,
+    "heading": "Derivatives of Functions of Multiple Arguments",
+    "orgLine": 601,
+    "sourceHash": "0e0abaf5ede13b8ba8b7cc5bfbea3e0097da66b9fe3d49a48ca31dd76d23e5cf",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/appendix_b/024.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_b.org"
+  },
+  {
+    "id": "appendix_b-025",
+    "chapter": "appendix_b",
+    "ordinal": 25,
+    "heading": "Derivatives of Functions of Multiple Arguments",
+    "orgLine": 606,
+    "sourceHash": "bbddc8c4cc17138c29c42b9e505edffdd9126d284124fd24d1e7d5c9b831ee0b",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/appendix_b/025.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_b.org"
+  },
+  {
+    "id": "appendix_b-026",
+    "chapter": "appendix_b",
+    "ordinal": 26,
+    "heading": "Derivatives of Functions of Multiple Arguments",
+    "orgLine": 673,
+    "sourceHash": "88b4e3ba18dbac1ca1b53ce38f8c597d39e8a45215de7a2583878c47ea3bb6d4",
+    "backgroundSetup": false,
+    "definitions": [
+      "H"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/appendix_b/026.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_b.org"
+  },
+  {
+    "id": "appendix_b-027",
+    "chapter": "appendix_b",
+    "ordinal": 27,
+    "heading": "Derivatives of Functions of Multiple Arguments",
+    "orgLine": 680,
+    "sourceHash": "accacf0fc70738afcfac9155af51c0392411ab9097b349bf46b8c38eb5d35ab0",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/appendix_b/027.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_b.org"
+  },
+  {
+    "id": "appendix_b-028",
+    "chapter": "appendix_b",
+    "ordinal": 28,
+    "heading": "Derivatives of Functions of Multiple Arguments",
+    "orgLine": 685,
+    "sourceHash": "f3ac94308f2ca182136c9fe6a973a6f2101949b6b3fde9c0998761b2d9b788a7",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/appendix_b/028.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_b.org"
+  },
+  {
+    "id": "appendix_b-029",
+    "chapter": "appendix_b",
+    "ordinal": 29,
+    "heading": "Structured Results",
+    "orgLine": 719,
+    "sourceHash": "01b90fdf6170868e3abd3b4e1a2a415d23e833c1b65b56e23c8dfedef9176783",
+    "backgroundSetup": false,
+    "definitions": [
+      "helix"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/appendix_b/029.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_b.org"
+  },
+  {
+    "id": "appendix_b-030",
+    "chapter": "appendix_b",
+    "ordinal": 30,
+    "heading": "Structured Results",
+    "orgLine": 726,
+    "sourceHash": "bed6db140c84ed6f29a41e112fae6be82c5965b213c0adb6d43f1eda742fbde8",
+    "backgroundSetup": false,
+    "definitions": [
+      "helix"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/appendix_b/030.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_b.org"
+  },
+  {
+    "id": "appendix_b-031",
+    "chapter": "appendix_b",
+    "ordinal": 31,
+    "heading": "Structured Results",
+    "orgLine": 733,
+    "sourceHash": "42270503b8430aa678f1fc72af431c0ff9731b50fea63cd4f80c8345de667118",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/appendix_b/031.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_b.org"
+  },
+  {
+    "id": "appendix_b-032",
+    "chapter": "appendix_b",
+    "ordinal": 32,
+    "heading": "Structured Results",
+    "orgLine": 764,
+    "sourceHash": "1cb4da652a1dbe771f05ac5892e10b9146c342f8a1764d97b4414d788350efcc",
+    "backgroundSetup": false,
+    "definitions": [
+      "g"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/appendix_b/032.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_b.org"
+  },
+  {
+    "id": "appendix_b-033",
+    "chapter": "appendix_b",
+    "ordinal": 33,
+    "heading": "Structured Results",
+    "orgLine": 769,
+    "sourceHash": "aa57e4786170e07291bcbc863af50363470d7f0cce337ae608d9fac3bd7e26de",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/appendix_b/033.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_b.org"
+  },
+  {
+    "id": "appendix_b-034",
+    "chapter": "appendix_b",
+    "ordinal": 34,
+    "heading": "Exercise B.2: Computing Derivatives",
+    "orgLine": 798,
+    "sourceHash": "9edefc5f37baf40bb4871d975c6f93b63c9e91f7075b741b73075e33ec20d1d2",
+    "backgroundSetup": false,
+    "definitions": [
+      "f",
+      "g",
+      "h"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/appendix_b/034.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_b.org"
+  },
+  {
+    "id": "appendix_b-035",
+    "chapter": "appendix_b",
+    "ordinal": 35,
+    "heading": "Exercise B.2: Computing Derivatives",
+    "orgLine": 819,
+    "sourceHash": "6cf227407ea94973010f14dcd815a01df4e8efcb904f63647d583444b07038f2",
+    "backgroundSetup": false,
+    "definitions": [
+      "f",
+      "g",
+      "h"
+    ],
+    "capturesResult": false,
+    "codePath": "generated/appendix_b/035.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_b.org"
+  },
+  {
+    "id": "appendix_c-001",
+    "chapter": "appendix_c",
+    "ordinal": 1,
+    "heading": "Front matter",
+    "orgLine": 92,
+    "sourceHash": "e10ca95c9a852c21c63a12083d947d7e2668e959bd9f96ccbf33db372a7a80bd",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/appendix_c/001.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_c.org"
+  },
+  {
+    "id": "appendix_c-002",
+    "chapter": "appendix_c",
+    "ordinal": 2,
+    "heading": "Front matter",
+    "orgLine": 144,
+    "sourceHash": "edddc5d519d4c94174943e6b8fd609ce3a35f423f6fef4c52f661822ed4e5339",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/appendix_c/002.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_c.org"
+  },
+  {
+    "id": "appendix_c-003",
+    "chapter": "appendix_c",
+    "ordinal": 3,
+    "heading": "Front matter",
+    "orgLine": 154,
+    "sourceHash": "d0744aabeee0d6aa42cc698bb63411214dad963bcb11f7c40d6b7ebfeccd9a9c",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/appendix_c/003.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_c.org"
+  },
+  {
+    "id": "appendix_c-004",
+    "chapter": "appendix_c",
+    "ordinal": 4,
+    "heading": "Front matter",
+    "orgLine": 173,
+    "sourceHash": "109c1ca9b64d729f91471dd6c973118993dafb2ea8b96b6b75f9b9389ef457b5",
+    "backgroundSetup": false,
+    "definitions": [
+      "F"
+    ],
+    "capturesResult": true,
+    "codePath": "generated/appendix_c/004.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_c.org"
+  },
+  {
+    "id": "appendix_c-005",
+    "chapter": "appendix_c",
+    "ordinal": 5,
+    "heading": "Front matter",
+    "orgLine": 195,
+    "sourceHash": "7a6c314eba0bc69763c49384f10917a6fe3e70bfe058e6d8ed0823bed4fd3403",
+    "backgroundSetup": false,
+    "definitions": [],
+    "capturesResult": true,
+    "codePath": "generated/appendix_c/005.cljs",
+    "sourcePath": "fdg-book/scheme/org/appendix_c.org"
+  }
+]

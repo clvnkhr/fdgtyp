@@ -1,0 +1,7 @@
+((D g) 'x 'y)
+;; (down (up (+ (* 2 x) (* 2 y))
+;;           (+ (* -3 (expt x 2)) (* 6 x y) (* -3 (expt y 2)))
+;;           (* (exp y) (exp x)))
+;;       (up (+ (* 2 x) (* 2 y))
+;;           (+ (* 3 (expt x 2)) (* -6 x y) (* 3 (expt y 2)))
+;;           (* (exp y) (exp x))))

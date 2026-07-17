@@ -78,6 +78,12 @@ function readContentFile(file) {
   return readFileSync(path.join(contentDir, file), "utf8");
 }
 
+const chapter6Content = readContentFile("chapter006.typ");
+if (chapter6Content.includes("(make fake-vector-field")
+    || !chapter6Content.includes("(make-fake-vector-field V-over-mu n)")) {
+  throw new Error("Chapter 6 must repair make-fake-vector-field in the Org normalization layer");
+}
+
 function readTyp(file) {
   return normalize(readContentFile(file));
 }

@@ -5,6 +5,7 @@ import { createHash } from "node:crypto";
 import { mkdirSync, mkdtempSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
+import { normalizeImportedOrgSource } from "./normalize-org-source.mjs";
 
 const root = process.cwd();
 const orgDir = path.join(root, "fdg-book", "scheme", "org");
@@ -323,7 +324,7 @@ function applyPdfFidelitySourceRepairs(source, stem) {
 }
 
 function normalizeOrgSource(source, stem) {
-  const repairedSource = applyPdfFidelitySourceRepairs(source, stem);
+  const repairedSource = applyPdfFidelitySourceRepairs(normalizeImportedOrgSource(source), stem);
   return wrapBareSchemeBlocks(normalizeDollarMath(normalizeLatexDisplaysWithFootnotes(repairedSource, stem)))
     // Pandoc emits Org headings below level three as plain paragraphs in
     // Typst. Mark them here so the cleanup pass can preserve them as visible
@@ -349,7 +350,6 @@ function normalizeOrgSource(source, stem) {
     .replaceAll("com- ponents", "components")
     .replaceAll("deriva-\ntives", "derivatives")
     .replaceAll("com-\n   ponents", "components")
-    .replaceAll("(make fake-vector-field V-over-mu n)", "(make-fake-vector-field V-over-mu n)")
     .replaceAll("(coordinate-system at 'spherical 'north-pole S2)", "(coordinate-system-at 'spherical 'north-pole S2)")
     // Repair recurring whitespace/transcription damage in Scheme identifiers.
     .replace(/\(pull\s+back(?=\s)/g, "(pullback")
@@ -362,8 +362,6 @@ function normalizeOrgSource(source, stem) {
     .replaceAll("However , if", "However, if")
     .replaceAll("\\Gamma_{jk}^i = \\Gamma_{jk}^i", "\\Gamma_{jk}^i = \\Gamma_{kj}^i")
     .replaceAll("functions hat map", "functions that map")
-    .replaceAll("(compose (literal-function 'f-rect R2->R) R2-rect-chi)", "(compose (literal-function 'f-rect R2->R) R2-rect-chi))")
-    .replaceAll("(define R2-rect-point (R2-rect-chi-inverse (up 'x0 'y0))))", "(define R2-rect-point (R2-rect-chi-inverse (up 'x0 'y0)))")
     .replaceAll("\n. We can work with the coordinate functions", "\nWe can work with the coordinate functions")
     .replaceAll("function$\\mathsf{f}$at", "function $\\mathsf{f}$ at")
     .replaceAll("$\\mathsf{m} = \\mu(\\mathsf{n}). The", "$\\mathsf{m} = \\mu(\\mathsf{n})$. The")

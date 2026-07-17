@@ -1,0 +1,10 @@
+(series:for-each print-expression
+                      (((exp (* 't circular)) (chart R2-rect))
+                       ((point R2-rect) (up 1 0)))
+                      6)
+     ;; (up 1 0)
+     ;; (up 0 t)
+     ;; (up (* -1/2 (expt t 2)) 0)
+     ;; (up 0 (* -1/6 (expt t 3)))
+     ;; (up (* 1/24 (expt t 4)) 0)
+     ;; (up 0 (* 1/120 (expt t 5)))

@@ -1,0 +1,13 @@
+(down
+ (down (up (/ (+ (* 2 (expt (cosh t) 2) (expt (sinh t) 2))
+                 (* -2 (expt (sinh t) 4)) (expt (cosh t) 2)
+                 (* -2 (expt (sinh t) 2)))
+              (+ (* (cosh t) (expt (sinh t) 3))
+                 (* (cosh t) (sinh t))))
+           0)
+       (up 0
+           (/ (* -1 (sinh t)) (cosh t))))
+ (down (up 0
+           (/ (* -1 (sinh t)) (cosh t)))
+       (up (/ (cosh t) (+ (expt (sinh t) 3) (sinh t)))
+           0)))

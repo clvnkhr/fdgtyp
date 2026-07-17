@@ -1,0 +1,16 @@
+(let ((beta (up 'bx 'by 'bz))
+      (xi (make-4tuple 'ct (up 'x 'y 'z)))
+      (R (compose
+          (rotate-x 'theta)
+          (rotate-y 'phi)
+          (rotate-z 'psi)))
+      (R-inverse (compose
+                  (rotate-z (- 'psi))
+                  (rotate-y (- 'phi))
+                  (rotate-x (- 'theta)))))
+  (- ((general-boost beta) xi)
+     ((compose (extended-rotation R-inverse)
+               (general-boost (R beta))
+               (extended-rotation R))
+      xi)))
+;; (up 0 0 0 0)

@@ -1,0 +1,6 @@
+(define-coordinates (up theta phi) S2-spherical)
+(define T d/dtheta)
+(define U d/dphi)
+(define m ((point S2-spherical) (up 'theta0 'phi0)))
+(define Cartan (Christoffel->Cartan S2-Christoffel))
+(define nabla (covariant-derivative Cartan))

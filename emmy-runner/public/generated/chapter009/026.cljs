@@ -1,0 +1,9 @@
+(defn prime-meridian+X
+  [r epsilon X]
+  (compose (point spacetime-sphere)
+           (fn [t]
+             (up (+ t (* epsilon (* (ref X 0) (exp (* 'lambda t)))))
+                 (+ r (* epsilon (* (ref X 1) (exp (* 'lambda t)))))
+                 (+ (* (sqrt (/ (* 'G 'M) (expt r 3))) t) (* epsilon (* (ref X 2) (exp (* 'lambda t)))))
+                 0))
+           (chart R1-rect)))

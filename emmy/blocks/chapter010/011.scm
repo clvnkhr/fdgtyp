@@ -1,0 +1,18 @@
+((orthonormal-spherical-1form-basis
+  ((curl spherical-metric orthonormal-spherical-basis) v))
+ R3-spherical-point)
+;; (up
+;;  (/ (+ (* (sin theta0)
+;;           (((partial 1) vˆ2) (up r0 theta0 phi0)))
+;;        (* (cos theta0) (vˆ2 (up r0 theta0 phi0)))
+;;        (* -1 (((partial 2) vˆ1) (up r0 theta0 phi0))))
+;;     (* r0 (sin theta0)))
+;;  (/ (+ (* -1 r0 (sin theta0)
+;;           (((partial 0) vˆ2) (up r0 theta0 phi0)))
+;;        (* -1 (sin theta0) (vˆ2 (up r0 theta0 phi0)))
+;;        (((partial 2) vˆ0) (up r0 theta0 phi0)))
+;;     (* r0 (sin theta0)))
+;;  (/ (+ (* r0 (((partial 0) vˆ1) (up r0 theta0 phi0)))
+;;        (vˆ1 (up r0 theta0 phi0))
+;;        (* -1 (((partial 1) vˆ0) (up r0 theta0 phi0))))
+;;     r0))

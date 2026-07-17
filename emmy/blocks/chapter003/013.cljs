@@ -1,0 +1,2 @@
+((((evolution 6) 'delta-t circular) (chart R2-rect)) ((point R2-rect) (up 1 0)))
+;; => (up (+ 1 (* #emmy/ratio "1/2" delta-t delta-t -1) (* #emmy/ratio "1/24" delta-t delta-t -1 delta-t delta-t -1) (* #emmy/ratio "1/720" delta-t delta-t -1 delta-t delta-t -1 delta-t delta-t -1)) (+ delta-t (* #emmy/ratio "1/6" delta-t delta-t -1 delta-t) (* #emmy/ratio "1/120" delta-t delta-t -1 delta-t delta-t -1 delta-t)))

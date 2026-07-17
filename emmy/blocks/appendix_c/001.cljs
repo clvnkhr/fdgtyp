@@ -1,0 +1,18 @@
+(let [cs R3-rect]
+  (let [u (literal-vector-field 'u-coord cs)
+        v (literal-vector-field 'v-coord cs)
+        w (literal-vector-field 'w-coord cs)
+        x (literal-vector-field 'x-coord cs)
+        omega (literal-oneform-field 'omega-coord cs)
+        nu (literal-oneform-field 'nu-coord cs)
+        f (literal-manifold-function 'f-coord cs)
+        g (literal-manifold-function 'g-coord cs)
+        nabla (covariant-derivative (literal-Cartan 'G cs))
+        m (typical-point cs)]
+    (let [F (Riemann nabla)]
+      ((up (- (F (+ (* f omega) (* g nu)) u v w) (+ (* f (F omega u v w)) (* g (F nu u v w))))
+           (- (F omega (+ (* f u) (* g x)) v w) (+ (* f (F omega u v w)) (* g (F omega x v w))))
+           (- (F omega v (+ (* f u) (* g x)) w) (+ (* f (F omega v u w)) (* g (F omega v x w))))
+           (- (F omega v w (+ (* f u) (* g x))) (+ (* f (F omega v w u)) (* g (F omega v w x)))))
+        m))))
+;; => (up 0 (- (+ (* (omega-coord_0 (up x0657526 x1657527 x2657528)) (- (- (+ (* (+ (* (+ (* (G_02↑0 (up x0657526 x1657527 x2657528)) (w-coord↑0 (up x0657526 x1657527 x2657528))) (* (G_12↑0 (up x0657526 x16... <result truncated: 1890381 characters total; inspect in the web runner>

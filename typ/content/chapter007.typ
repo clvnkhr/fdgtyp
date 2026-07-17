@@ -270,6 +270,7 @@ $ e^(t cal(L)_(sans(v))) sans(y) = sans(y) + t cal(L)_(sans(v)) sans(y) + t^2 / 
 Consider a simple case. We advanced the coordinate-basis vector field $partial\/partial sans(y)$ by an angle $a$ around the circle. Let $sans(J)_z = x partial\/partial sans(y) - y partial\/partial sans(x)$, the circular vector field. We recall
 
 ```scheme
+(define-coordinates (up x y z) R3-rect)
 (define Jz (- (* x d/dy) (* y d/dx)))
 ```
 

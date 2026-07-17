@@ -1,0 +1,6 @@
+(define (components->vector-field components coordsys)
+       (define (v f)
+         (compose (* (D (compose f (point coordsys)))
+                     components)
+                  (chart coordsys)))
+       (procedure->vector-field v))

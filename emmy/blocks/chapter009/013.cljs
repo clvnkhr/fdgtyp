@@ -1,0 +1,3 @@
+;; scmutils simplified this result automatically; Emmy requires an explicit call.
+(simplify (((Lagrange-equations L1) (up (literal-function 'x) (literal-function 'y))) 't))
+;; => (down (/ (+ (* (((expt D 2) x) t) (expt ((D y) t) 2)) (* -1 ((D x) t) ((D y) t) (((expt D 2) y) t))) (+ (* (expt ((D x) t) 2) (sqrt (+ (expt ((D x) t) 2) (expt ((D y) t) 2)))) (* (expt ((D y) t) 2) (sqrt (+ (expt ((D x) t) 2) (expt ((D y) t) 2)))))) (/ (+ (* -1 (((expt D 2) x) t) ((D x) t) ((D y) t)) (* (expt ((D x) t) 2) (((expt D 2) y) t))) (+ (* (expt ((D x) t) 2) (sqrt (+ (expt ((D x) t) 2) (expt ((D y) t) 2)))) (* (expt ((D y) t) 2) (sqrt (+ (expt ((D x) t) 2) (expt ((D y) t) 2)))))))

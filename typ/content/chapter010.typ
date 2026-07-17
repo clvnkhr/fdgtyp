@@ -263,6 +263,7 @@ We need an orthonormal basis for the spacetime:
 
 ```scheme
 (define SR-vector-basis (coordinate-system->vector-basis SR))
+(define SR-basis (coordinate-system->basis SR))
 ```
 
 We check that it is orthonormal with respect to the metric:
@@ -509,6 +510,8 @@ $ f^nu = - sum_(alpha\,mu) q U^mu F_(mu alpha) eta^(alpha nu)\, $ <10.28>
 where $U$ is the 4-velocity of the charged particle, $F$ is the Faraday tensor, and $eta^(alpha nu)$ are the components of the inverse of the Minkowski metric. Here is a program that computes a component of the force in terms of the Faraday tensor. The desired component is specified by a one-form.
 
 ```scheme
+(define eta-inverse (invert g-Minkowski SR-basis))
+
 (define (Force charge F 4velocity component)
   (* -1
      charge

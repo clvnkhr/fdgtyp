@@ -133,7 +133,7 @@ If we use cylindrical coordinates and define cylindrical vector fields we get th
 (define a (+ (* 'a^0 d/dr) (* 'a^1 d/dtheta)))
 (define b (+ (* 'b^0 d/dr) (* 'b^1 d/dtheta)))
 
-(((wedge dr dtheta) ab) ((point R3-cyl) (up 'r0 'theta0 'z0)))
+(((wedge dr dtheta) a b) ((point R3-cyl) (up 'r0 'theta0 'z0)))
 ;; (+ (* a^0 b^1 ) (* -1 a^1 b^0))
 ```
 
@@ -348,7 +348,7 @@ Here we extract $sans(d) sans(x)$ and $sans(d) sans(y)$ from #raw(lang:"scheme",
 (define beta (literal-function 'beta R2->R))
 
 (let ((dx (ref (basis->1form-basis R2-rect-basis) 0))
-      (dy (ref (basis-1>form-basis R2-rect-basis) 1)))
+      (dy (ref (basis->1form-basis R2-rect-basis) 1)))
   (((- (d (+ (* (compose alpha (chart R2-rect)) dx)
              (* (compose beta (chart R2-rect)) dy)))
        (* (compose (- ((partial 0) beta) ((partial 1) alpha))

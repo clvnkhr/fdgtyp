@@ -1,0 +1,4 @@
+;; scmutils simplified this result automatically; Emmy requires an explicit call.
+(simplify (((Ricci nabla (coordinate-system->basis spacetime-rect)) d:dt d:dt)
+            ((point spacetime-rect) (up 't 'x 'y 'z))))
+;; => (/ (+ (* (expt c 2) (((expt (partial 0) 2) V) (up x y z))) (* (expt c 2) (((expt (partial 1) 2) V) (up x y z))) (* (expt c 2) (((expt (partial 2) 2) V) (up x y z))) (* #emmy/bigint 2 (V (up x y z)) (((expt (partial 0) 2) V) (up x y z))) (* #emmy/bigint 2 (V (up x y z)) (((expt (partial 1) 2) V) (up x y z))) (* #emmy/bigint 2 (V (up x y z)) (((expt (partial 2) 2) V) (up x y z))) (* #emmy/bigint -1 (expt (((partial 0) V) (up x y z)) 2)) (* #emmy/bigint -1 (expt (((partial 1) V) (up x y z)) 2)) (* #emmy/bigint -1 (expt (((partial 2) V) (up x y z)) 2))) (+ (expt c 2) (* #emmy/bigint 2 (V (up x y z)))))

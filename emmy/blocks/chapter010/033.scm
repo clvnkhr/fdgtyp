@@ -1,0 +1,7 @@
+(((- (d (SR-star F)) (* 4 :pi (SR-star 4-current)))
+  d/dct d/dz d/dx)
+ an-event)
+;; (+ (((partial 0) Ey) (up ct0 x0 y0 z0))
+;;    (* -1 (((partial 3) Bx) (up ct0 x0 y0 z0)))
+;;    (((partial 1) Bz) (up ct0 x0 y0 z0))
+;;    (/ (* 4 :pi (Iy (up ct0 x0 y0 z0))) :c))

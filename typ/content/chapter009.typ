@@ -366,7 +366,7 @@ The #raw(lang:"scheme", "trace2down") procedure converts a tensor that takes two
 
 ```scheme
 (define ((trace2down metric basis) tensor)
-  (let ((inverse-metric-tensor (metric:invert metric-tensor basis)))
+  (let ((inverse-metric-tensor (metric:invert metric basis)))
     (contract (lambda (v1 w1)
                 (contract (lambda (v w)
                             (* (inverse-metric-tensor w1 w)
@@ -415,6 +415,9 @@ where $V$ is the gravitational potential field at a point, $rho$ is the mass den
 The time-time component of the Ricci tensor derived from the metric #ref(<9.24>) is the Laplacian of the potential, to lowest order.
 
 ```scheme
+(define-coordinates (up t x y z) spacetime-rect)
+(define spacetime-rect-basis (coordinate-system->basis spacetime-rect))
+
 (define (Newton-metric M G c V)
   (let ((a (+ 1 (* (/ 2 (square c)) (compose V (up x y z))))))
     (define (g v1 v2)
@@ -428,13 +431,9 @@ The time-time component of the Ricci tensor derived from the metric #ref(<9.24>)
   (Christoffel->Cartan (metric->Christoffel-2 (Newton-metric M G c V)
                                               spacetime-rect-basis)))
 
-(define nabla
-  (covariant-derivative
-   (Newton-connection
-    'M
-    'G
-    ':c
-    (literal-function 'V (-> (UP Real Real Real) Real)))))
+(define V (literal-function 'V (-> (UP Real Real Real) Real)))
+
+(define nabla (covariant-derivative (Newton-connection 'M 'G ':c V)))
 
 (((Ricci nabla (coordinate-system->basis spacetime-rect)) d/dt d/dt)
  ((point spacetime-rect) (up 't 'x 'y 'z)))
@@ -476,11 +475,9 @@ If we evaluate the right-hand side expression we obtain#footnote[The procedure #
 
 ```scheme
 (let ((g (Newton-metric 'M 'G ':c V)))
-  (let ((T
-         ij
-         ((drop2 g spacetime-rect-basis) (Tdust 'rho))))
-    (let ((T ((trace2down g spacetime-rect-basis) T ij)))
-      ((- (T ij d/dt d/dt) (* 1/2 T (g d/dt d/dt)))
+  (let ((T_ij ((drop2 g spacetime-rect-basis) (Tdust 'rho))))
+    (let ((T ((trace2down g spacetime-rect-basis) T_ij)))
+      ((- (T_ij d/dt d/dt) (* 1/2 T (g d/dt d/dt)))
        ((point spacetime-rect) (up 't 'x 'y 'z))))))
 ;; (* 1/2 (expt :c 4) rho)
 ```
@@ -551,6 +548,11 @@ For example, we can consider a perturbation of the orbit of constant longitude. 
 Plugging this into the geodesic equation yields a structure of residuals:
 
 ```scheme
+(define Cartan
+  (Christoffel->Cartan (metric->Christoffel-2
+                        (Schwarzschild-metric 'M 'G ':c)
+                        (coordinate-system->basis spacetime-sphere))))
+
 (define (geodesic-equation+X-residuals eps X)
   (let ((gamma (prime-meridian+X 'r eps X)))
     (((((covariant-derivative Cartan gamma) d/dtau)
