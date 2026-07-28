@@ -196,7 +196,7 @@ Consider abstracting equations @7.16, #ref(<7.25>), and @7.27. The Lie derivativ
 
 $ (cal(L)_(sans(v)) sans(a)) (sans(b))= sans(v) (sans(a) (sans(b)))- sans(a) (cal(L)_(sans(v)) sans(b)). $ <7.27>
 
-The first term in this expression computes the rate of change of the compound object $sans(a) (sans(b))$ along integral curves of $sans(v)$, while the second subtracts the change in $sans(a)$ due to the change in $sans(b)$ along the curves. The result is a measure of the \"intrinsic\" change in $sans(a)$ along integral curves of $sans(v)$, with $sans(b)$ held \"fixed.\"
+The first term in this expression computes the rate of change of the compound object $sans(a) (sans(b))$ along integral curves of $sans(v)$, while the second subtracts the change in $sans(a)$ due to the change in $sans(b)$ along the curves. The result is a measure of the "intrinsic" change in $sans(a)$ along integral curves of $sans(v)$, with $sans(b)$ held "fixed."
 
 == Properties of the Lie Derivative <sec-7.7>
 As required by properties 7.7-7.5, the Lie derivative is linear in its arguments:
@@ -351,10 +351,10 @@ fdg-code-source-end */
 Note that $i_(sans(v)) compose i_(sans(u)) + i_(sans(u)) compose i_(sans(v)) = 0$. One consequence of this is that $i_(sans(v)) compose i_(sans(v)) = 0$.
 
 == Covariant Derivative <sec-7.10>
-The covariant derivative is another kind of directional derivative operator. We write the covariant derivative operator with respect to a vector field $sans(v)$ as $nabla_(sans(v))$. This is pronounced \"covariant derivative with respect to $sans(v)$\" or \"nabla $sans(v)$\.\"
+The covariant derivative is another kind of directional derivative operator. We write the covariant derivative operator with respect to a vector field $sans(v)$ as $nabla_(sans(v))$. This is pronounced "covariant derivative with respect to $sans(v)$" or "nabla $sans(v)$\."
 
 == Covariant Derivative of Vector Fields <sec-7.11>
-We may also choose our $F_delta^(sans(v)) sans(u)$ to define what we mean by \"parallel\" transport of the vector field $sans(u)$ along an integral curve of the vector field $sans(v)$. This may correspond to our usual understanding of parallel in situations where we have intuitive insight.
+We may also choose our $F_delta^(sans(v)) sans(u)$ to define what we mean by "parallel" transport of the vector field $sans(u)$ along an integral curve of the vector field $sans(v)$. This may correspond to our usual understanding of parallel in situations where we have intuitive insight.
 
 The notion of parallel transport is path dependent. Remember our example from the Introduction, #fdg-page-ref(<intro-parallel-transport>): Start at the North Pole carrying a stick along a line of longitude to the Equator, always pointing it south, parallel to the surface of the Earth. Then proceed eastward for some distance, still pointing the stick south. Finally, return to the North Pole along this new line of longitude, keeping the stick pointing south all the time. At the pole the stick will not point in the same direction as it did at the beginning of the trip, and the discrepancy will depend on the amount of eastward motion.#footnote[In the introduction the stick was always kept east-west rather than pointing south, but the phenomenon is the same!]
 

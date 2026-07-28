@@ -1851,6 +1851,23 @@ function replaceCitationsAndEquationRefs(body) {
     );
 }
 
+// Pandoc escapes prose quotation marks as `\"`. In Typst markup that
+// backslash is printed, while ordinary `"` characters are paired
+// typographically. Remove the prose-only escape without changing quoted
+// strings in math, source code, or generated raw-code calls.
+function unescapeTypstProseQuotes(body) {
+  const protectedSpan = /(```[\s\S]*?```|`[^`\n]*`|\$[\s\S]*?\$|\/\*[\s\S]*?\*\/|#raw\(\s*(?:lang:"(?:\\.|[^"\\])*"\s*,\s*)?"(?:\\.|[^"\\])*"\s*\))/g;
+  return body
+    .split(protectedSpan)
+    .map(part => {
+      protectedSpan.lastIndex = 0;
+      if (!part || protectedSpan.test(part)) return part;
+      protectedSpan.lastIndex = 0;
+      return part.replaceAll(String.raw`\"`, '"');
+    })
+    .join("");
+}
+
 function wrapEmbeddedSchemeBlocks(body, stem) {
   let ordinal = 0;
   return body.replace(/```scheme\n[\s\S]*?\n```/g, source => {
@@ -1915,9 +1932,12 @@ function convert(file) {
   const bodyWithPostMathRepairs = stem === "chapter010"
     ? compactChapter10AuditedDisplays(repairChapter10(bodyWithTypstMathRepairs))
     : bodyWithTypstMathRepairs;
-  const bodyWithNormalizedDisplays = wrapEmbeddedSchemeBlocks(removeRedundantScaledDelimiters(
-    normalizeMultilineMath(bodyWithPostMathRepairs),
-  ), stem);
+  const bodyWithNormalizedDisplays = wrapEmbeddedSchemeBlocks(
+    unescapeTypstProseQuotes(removeRedundantScaledDelimiters(
+      normalizeMultilineMath(bodyWithPostMathRepairs),
+    )),
+    stem,
+  );
 
   let content = [
     `// Generated from ../../fdg-book/scheme/org/${file}.`,
@@ -2057,41 +2077,53 @@ The following correspondences cover the language forms used most often in this b
     [#raw(lang:"clojure", "(let ((x a) (y b)) body)")],
     [#raw(lang:"clojure", "(let [x a y b] body)")],
     [Sequential local values],
-    [#raw(lang:"clojure", "let*")],
-    [Later bindings in one #raw(lang:"clojure", "let") vector can refer to earlier bindings.],
+    [#raw(lang:"clojure", "(let* ((x 2) (y (+ x 1))) y)")],
+    [#raw(lang:"clojure", "(let [x 2 y (+ x 1)] y)")],
     [Local functions],
-    [Internal #raw(lang:"clojure", "define")],
-    [#raw(lang:"clojure", "letfn"), especially for recursive or mutually dependent functions],
+    [#raw(lang:"clojure", "(let () (define (f x) ...) (f 3))")],
+    [#raw(lang:"clojure", "(letfn [(f [x] ...)] (f 3))")],
     [Named local loop],
-    [Named #raw(lang:"clojure", "let")],
-    [#raw(lang:"clojure", "loop") with #raw(lang:"clojure", "recur"), or #raw(lang:"clojure", "letfn")],
+    [#raw(lang:"clojure", "(let loop ((x 3)) ... (loop ...))")],
+    [#raw(lang:"clojure", "(loop [x 3] ... (recur ...))")],
     [Expression sequence],
-    [#raw(lang:"clojure", "begin")],
-    [#raw(lang:"clojure", "do"); function and binding bodies already allow several expressions],
+    [#raw(lang:"clojure", "(begin (display x) x)")],
+    [#raw(lang:"clojure", "(do (println x) x)")],
     [Conditional],
-    [#raw(lang:"clojure", "if"); #raw(lang:"clojure", "cond") with #raw(lang:"clojure", "else")],
-    [#raw(lang:"clojure", "if"); #raw(lang:"clojure", "cond") with #raw(lang:"clojure", ":else")],
-    [Boolean values],
+    [#raw(lang:"clojure", "(if p a b)"); #raw(lang:"clojure", "(cond (p a) (else b))")],
+    [#raw(lang:"clojure", "(if p a b)"); #raw(lang:"clojure", "(cond p a :else b)")],
+    [Boolean literals],
     [#raw(lang:"clojure", "#t") and #raw(lang:"clojure", "#f")],
     [#raw(lang:"clojure", "true") and #raw(lang:"clojure", "false")],
+    [Falsey values],
+    [Only #raw(lang:"clojure", "#f"), as in #raw(lang:"clojure", "(if '() 'yes 'no)") → #raw(lang:"clojure", "yes")],
+    [#raw(lang:"clojure", "false") and #raw(lang:"clojure", "nil"), as in #raw(lang:"clojure", "(if nil :yes :no)") → #raw(lang:"clojure", ":no")],
+    [Exact ratio],
+    [#raw(lang:"clojure", "1/2")],
+    [#raw(lang:"clojure", "(/ 1 2)"); do not replace exact arithmetic with #raw(lang:"clojure", "0.5")],
+    [Vector literal],
+    [#raw(lang:"clojure", "#(a b c)")],
+    [#raw(lang:"clojure", "[a b c]")],
+    [Empty list],
+    [#raw(lang:"clojure", "'()")],
+    [#raw(lang:"clojure", "'()") or #raw(lang:"clojure", "(list)")],
     [Equality in these examples],
-    [#raw(lang:"clojure", "eq?")],
-    [#raw(lang:"clojure", "=")],
+    [#raw(lang:"clojure", "(eq? a b)")],
+    [#raw(lang:"clojure", "(= a b)")],
     [Indexed selection],
-    [#raw(lang:"clojure", "list-ref") and #raw(lang:"clojure", "vector-ref")],
-    [#raw(lang:"clojure", "nth"); Emmy structures also support #raw(lang:"clojure", "ref")],
+    [#raw(lang:"clojure", "(list-ref xs 1)") or #raw(lang:"clojure", "(vector-ref xs 1)")],
+    [#raw(lang:"clojure", "(nth xs 1)"); use #raw(lang:"clojure", "(ref s 1)") for Emmy structures],
     [Sequence selectors],
-    [#raw(lang:"clojure", "car") and #raw(lang:"clojure", "cdr")],
-    [#raw(lang:"clojure", "first") and #raw(lang:"clojure", "rest")],
+    [#raw(lang:"clojure", "(car xs)") and #raw(lang:"clojure", "(cdr xs)")],
+    [#raw(lang:"clojure", "(first xs)") and #raw(lang:"clojure", "(rest xs)")],
     [Variadic parameters],
     [#raw(lang:"clojure", "(lambda args body)") or a dotted parameter list],
-    [#raw(lang:"clojure", "&") in the parameter vector, as in #raw(lang:"clojure", "(fn [& args] body)")],
+    [#raw(lang:"clojure", "(fn [& args] body)")],
     [Quotation],
-    [Reader abbreviation #raw(lang:"clojure", "'expression")],
-    [The same abbreviation; keywords such as #raw(lang:"clojure", ":else") evaluate to themselves],
+    [#raw(lang:"clojure", "'(a b)")],
+    [#raw(lang:"clojure", "'(a b)"); keywords such as #raw(lang:"clojure", ":else") evaluate to themselves],
     [Function application],
-    [Parenthesized: #raw(lang:"clojure", "(f x y)")],
-    [Parenthesized: #raw(lang:"clojure", "(f x y)"); parameters and bindings use vectors],
+    [#raw(lang:"clojure", "(f x y)")],
+    [#raw(lang:"clojure", "(f x y)"); parameter and binding lists use vectors],
   )
 ]
 `;

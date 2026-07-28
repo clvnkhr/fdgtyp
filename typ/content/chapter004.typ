@@ -399,7 +399,7 @@ $ sans(m) = phi.alt_1^(x sans(e)) (sans(0))= chi^(-1) (x)\, $ <4.44>
 where $chi$ is the coordinate function being defined. Because the elements of $sans(e)$ commute, we can translate separately along the integral curves in any order and reach the same point; the terms in the exponential can be factored into separate exponentials if needed.
 
 == Exercise 4.1: Alternate Angles <sec-4.4>
-Note that the Euler angles are singular at $theta = 0$ (where $phi.alt$ and $psi$ become degenerate), so the representations of $sans(e)_x$, $sans(e)_y$, and $sans(e)_z$ (defined in equations @4.29 -- @4.31) have problems there. An alternate coordinate system avoids this problem, while introducing a similar problem elsewhere in the manifold. Consider the \"alternate angles\" $(theta_a\,phi.alt_a\,psi_a)$ which define a rotation matrix via $M (theta_a\,phi.alt_a\,psi_a)= R_z (phi.alt_a)R_x (theta_a)R_y (psi_a)$.
+Note that the Euler angles are singular at $theta = 0$ (where $phi.alt$ and $psi$ become degenerate), so the representations of $sans(e)_x$, $sans(e)_y$, and $sans(e)_z$ (defined in equations @4.29 -- @4.31) have problems there. An alternate coordinate system avoids this problem, while introducing a similar problem elsewhere in the manifold. Consider the "alternate angles" $(theta_a\,phi.alt_a\,psi_a)$ which define a rotation matrix via $M (theta_a\,phi.alt_a\,psi_a)= R_z (phi.alt_a)R_x (theta_a)R_y (psi_a)$.
 
 #strong[a.] Where does the singularity appear in these alternate coordinates? Do you think you could define a coordinate system for rotations that has no singularities?
 

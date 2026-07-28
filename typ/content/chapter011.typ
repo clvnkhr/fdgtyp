@@ -9,7 +9,7 @@ Maxwell was preceded by Faraday, Ampere, Oersted, Coulomb, Gauss, and Franklin. 
 
 Maxwell\'s great insight was noticing and resolving the contradiction between the empirically-derived laws of electromagnetism and conservation of charge. He did this by introducing the then experimentally undetectable displacement-current term into one of the empirical equations. The modified equations implied a wave equation and the propagation speed of the wave predicted by the new equation turned out to be the speed of light, as measured by the eclipses of the Galilean satellites of Jupiter. The experimental confirmation by Hertz of the existence of electromagnetic radiation that obeyed Maxwell\'s equations capped the discovery.
 
-By analogy, Einstein noticed that Maxwell\'s equations were inconsistent with Galilean relativity. In free space, where electromagnetic waves propagate, Maxwell\'s equations say that the vector source of electric fields is the time rate of change of the magnetic field and the vector source of magnetic field is the time rate of change of the electric field. The combination of these ideas yields the wave equation. The wave equation itself is not invariant under the Galilean transformation: As Einstein noted, if you run with the propagation speed of the wave there is no time variation in the field you observe, so there is no space variation either, contradicting the wave equation. But the Maxwell theory is beautiful, and it can be verified to a high degree of accuracy, so there must be something wrong with Galilean relativity. Einstein resolved the contradiction by generalizing the meaning of the Lorentz transformation, which was invented to explain the failure of the Michelson-Morley experiment. Lorentz and his colleagues decided that the problem with the Michelson-Morley experiment was that matter interacting with the luminiferous ether contracts in the direction of motion. To make this consistent he had to invent a \"local time\" which had no clear interpretation. Einstein took the Lorentz transformation to be a fundamental replacement for the Galilean transformation in all of mechanics.
+By analogy, Einstein noticed that Maxwell\'s equations were inconsistent with Galilean relativity. In free space, where electromagnetic waves propagate, Maxwell\'s equations say that the vector source of electric fields is the time rate of change of the magnetic field and the vector source of magnetic field is the time rate of change of the electric field. The combination of these ideas yields the wave equation. The wave equation itself is not invariant under the Galilean transformation: As Einstein noted, if you run with the propagation speed of the wave there is no time variation in the field you observe, so there is no space variation either, contradicting the wave equation. But the Maxwell theory is beautiful, and it can be verified to a high degree of accuracy, so there must be something wrong with Galilean relativity. Einstein resolved the contradiction by generalizing the meaning of the Lorentz transformation, which was invented to explain the failure of the Michelson-Morley experiment. Lorentz and his colleagues decided that the problem with the Michelson-Morley experiment was that matter interacting with the luminiferous ether contracts in the direction of motion. To make this consistent he had to invent a "local time" which had no clear interpretation. Einstein took the Lorentz transformation to be a fundamental replacement for the Galilean transformation in all of mechanics.
 
 Now to the details. Before Maxwell the empirical laws of electromagnetism were as follows. Electric fields arise from charges, with the inverse square law of Coulomb. This is Carl Friedrich Gauss\'s law for electrostatics:
 
@@ -61,7 +61,7 @@ Lorentz, whom Einstein also greatly respected, developed a general formula to de
 
 $ arrow(F) = q arrow(E) + frac(q, c) arrow(v) times arrow(B). $ <11.11>
 
-A crucial point in Einstein\'s inspiration for relativity is, quoting Einstein (in English translation), \"During that year \[1895--1896\] in Aarau the question came to me: If one runs after a light wave with light velocity, then one would encounter a time-independent wavefield. However, something like that does not seem to exist!\"#footnote[The quote is from Pais @pais1982subtle, p. 131.] This was the observation of the inconsistency.
+A crucial point in Einstein\'s inspiration for relativity is, quoting Einstein (in English translation), "During that year \[1895--1896\] in Aarau the question came to me: If one runs after a light wave with light velocity, then one would encounter a time-independent wavefield. However, something like that does not seem to exist!"#footnote[The quote is from Pais @pais1982subtle, p. 131.] This was the observation of the inconsistency.
 
 Let\'s be more precise about this. Consider a plane sinusoidal wave moving in the $hat(x)$ direction with velocity $c$ in free space ($rho = 0$ and $arrow(I) = 0$). This is a perfectly good solution of the wave equation. Now suppose that an observer is moving with the wave in the $hat(x)$ direction with velocity $c$. Such an observer will see no time variation of the field. So the wave equation reduces to Laplace\'s equation. But a sinusoidal variation in space is not a solution of Laplace\'s equation.
 
@@ -72,7 +72,7 @@ Let $u =(t\,x\,y\,z)$ be a tuple of time and space coordinates that specify a po
 
 $ frac(partial^2 phi.alt (u), partial x^2) + frac(partial^2 phi.alt (u), partial y^2) + frac(partial^2 phi.alt (u), partial z^2) - frac(1, c^2) frac(partial^2 phi.alt (u), partial t^2) = 0. $ <11.12>
 
-The characteristics for this equation are the \"light cones.\" If we define a function of spacetime points and increments, length, such that for an incremental tuple in position and time $xi =(Delta t\,Delta x\,Delta y\,Delta z)$ we have#footnote[Here the length is independent of the spacetime point specified by $u$. In General Relativity we find that the metric, and thus the length function needs to vary with the point in spacetime.]
+The characteristics for this equation are the "light cones." If we define a function of spacetime points and increments, length, such that for an incremental tuple in position and time $xi =(Delta t\,Delta x\,Delta y\,Delta z)$ we have#footnote[Here the length is independent of the spacetime point specified by $u$. In General Relativity we find that the metric, and thus the length function needs to vary with the point in spacetime.]
 
 $ length_u (xi) = sqrt((Delta x)^2 + (Delta y)^2 + (Delta z)^2 - (c Delta t)^2), $ <11.13>
 
@@ -80,7 +80,7 @@ then the light cones are the hypersurfaces, for which
 
 $ length_u (Delta t, Delta x, Delta y, Delta z) = 0. $ <11.14>
 
-This \"length\" is called the #emph[interval].
+This "length" is called the #emph[interval].
 
 What is the class of transformations of time and space coordinates that leave the Maxwell-Lorentz theory invariant? The transformations that preserve the wave equation are exactly those that leave its characteristics invariant. We consider a transformation $u = A (u^p')$ of time and space coordinates:
 
@@ -150,7 +150,7 @@ and also $p = s$ and $q = r = beta p$. This defines $gamma$. Written out, the tr
 
 $ xi^0 = gamma (beta) ((xi')^0 + beta (xi')^1) xi^1 = gamma (beta) (beta (xi')^0 + (xi')^1) . $ <11.29>
 
-Simple physical arguments#footnote[See, for instance, Mermin, \"Space and Time in Special Relativity.\"] show that this mathematical result relates the time and space coordinates for two systems in uniform relative motion. The parameter $beta$ is related to the relative velocity.
+Simple physical arguments#footnote[See, for instance, Mermin, "Space and Time in Special Relativity."] show that this mathematical result relates the time and space coordinates for two systems in uniform relative motion. The parameter $beta$ is related to the relative velocity.
 
 Consider incremental vectors as spacetime vectors relative to an origin in a global inertial frame. So, for example, $xi =(c t\,x)$, ignoring $y$ and $z$ for a moment. The unprimed coordinate origin $x = 0$ corresponds, in primed coordinates, to (using equations @11.29)
 
@@ -160,7 +160,7 @@ so
 
 $ beta = - frac(x', c t') = - v' / c\, $ <11.31>
 
-with the definition $v' = x'\/t'$. We see that $beta$ is minus $1\/c$ times the velocity ($v'$) of the unprimed system (which moves with its origin) as \"seen\" in the primed coordinates
+with the definition $v' = x'\/t'$. We see that $beta$ is minus $1\/c$ times the velocity ($v'$) of the unprimed system (which moves with its origin) as "seen" in the primed coordinates
 
 $ beta = frac(x, c t) = v / c . $ <11.32>
 

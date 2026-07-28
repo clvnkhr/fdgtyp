@@ -100,7 +100,7 @@ Equation @5.17 gives us
 
 $ integral_(sans(U)) sans(d) sans(x) and sans(d) sans(y) and dots.c = upright("Volume") (sans(U)) $ <5.18>
 
-where $upright("Volume") (sans(U))$ is the ordinary volume of the region corresponding to $sans(U)$ in the Euclidean space of $sans(R)^n$ with the orthonormal coordinate system $(x\,y\,dots.c)$.#footnote[By using the word \"orthonormal\" here we are assuming that the range of the coordinate chart is an ordinary Euclidean space with the usual Euclidean metric. The coordinate basis in that chart is orthonormal. Under these conditions we can usefully use words like \"length,\" \"area,\" and \"volume\" in the coordinate space.]
+where $upright("Volume") (sans(U))$ is the ordinary volume of the region corresponding to $sans(U)$ in the Euclidean space of $sans(R)^n$ with the orthonormal coordinate system $(x\,y\,dots.c)$.#footnote[By using the word "orthonormal" here we are assuming that the range of the coordinate chart is an ordinary Euclidean space with the usual Euclidean metric. The coordinate basis in that chart is orthonormal. Under these conditions we can usefully use words like "length," "area," and "volume" in the coordinate space.]
 
 #fdg-figure(fdg-cetz-figure("fig-5-1"), [The area of the parallelogram in the $(x, y)$ coordinate plane is given by $A(u, v)(m)$.])
 
@@ -188,7 +188,7 @@ Pick a coordinate system and use the computer to verify that
 #enum(numbering: "a.")[the wedge product is associative for forms in your coordinate system][formula #ref(<5.17>) is true in your coordinate system.]
 
 == Exterior Derivative <sec-5.5>
-The intention of introducing the exterior derivative is to capture all of the classical theorems of \"vector analysis\" into one unified Stokes\'s Theorem, which asserts that the integral of a form on the boundary of a manifold is the integral of the exterior derivative of the form on the interior of the manifold:#footnote[This is a generalization of the Fundamental Theorem of Calculus.]
+The intention of introducing the exterior derivative is to capture all of the classical theorems of "vector analysis" into one unified Stokes\'s Theorem, which asserts that the integral of a form on the boundary of a manifold is the integral of the exterior derivative of the form on the interior of the manifold:#footnote[This is a generalization of the Fundamental Theorem of Calculus.]
 
 $ integral_(partial sans(M)) omega = integral_(sans(M)) sans(d) omega . $ <5.22>
 
@@ -382,7 +382,7 @@ $ integral_M upright(div) (sans(w))d V = integral_(partial M) sans(w) dot.op san
 
 where $sans(n)$ is the outward-pointing normal to the surface $partial M$. Again, the integrands should be related by an exterior derivative, if this is an instance of Stokes\'s Theorem.
 
-Note that even the statement of this theorem cannot be made with the machinery we have developed at this point. The concepts \"outward-pointing normal,\" area $A$, and volume $V$ on the manifold are not definable without using a metric
+Note that even the statement of this theorem cannot be made with the machinery we have developed at this point. The concepts "outward-pointing normal," area $A$, and volume $V$ on the manifold are not definable without using a metric
 
 (see Chapter 9). However, for orthonormal rectangular coordinates in $upright(R)^3$ we can interpret the integrands in terms of forms.
 

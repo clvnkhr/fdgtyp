@@ -35,14 +35,14 @@ fdg-code-source-end */
 where #emph[operator] names a procedure and #emph[operand-i] names the $i$th argument.#footnote[In Scheme every parenthesis is essential: you cannot add extra parentheses or remove any.]
 
 == Lambda Expressions <sec-A.2>
-Just as we use numerals to name numbers, we use $lambda$-expressions to name procedures.#footnote[The logician Alonzo Church @church1941calculi invented $lambda$-notation to allow the specification of an anonymous function of a named parameter: $bold(lambda) x[upright("expression in ") x]$. This is read, \"That function of one argument that is obtained by substituting the argument for x in the indicated expression.\"] For example, the procedure that squares its input can be written:
+Just as we use numerals to name numbers, we use $lambda$-expressions to name procedures.#footnote[The logician Alonzo Church @church1941calculi invented $lambda$-notation to allow the specification of an anonymous function of a named parameter: $bold(lambda) x[upright("expression in ") x]$. This is read, "That function of one argument that is obtained by substituting the argument for x in the indicated expression."] For example, the procedure that squares its input can be written:
 
 /* fdg-code-source: appendix_a/003
 (lambda (x) (* x x))
 fdg-code-source-end */
 #fdg-scheme-code-block("appendix_a/003")
 
-This expression can be read: \"The procedure of one argument, $x$, that multiplies $x$ by $x$\.\" Of course, we can use this expression in any context where a procedure is needed. For example,
+This expression can be read: "The procedure of one argument, $x$, that multiplies $x$ by $x$\." Of course, we can use this expression in any context where a procedure is needed. For example,
 
 /* fdg-code-source: appendix_a/004
 ((lambda (x) (* x x)) 4)
@@ -77,14 +77,14 @@ we can then use the symbols #raw(lang:"scheme", "pi") and #raw(lang:"scheme", "s
 fdg-code-source-end */
 #fdg-scheme-code-block("appendix_a/007")
 
-Procedure definitions may be expressed more conveniently using \"syntactic sugar.\" The squaring procedure may be defined
+Procedure definitions may be expressed more conveniently using "syntactic sugar." The squaring procedure may be defined
 
 /* fdg-code-source: appendix_a/008
 (define (square x) (* x x))
 fdg-code-source-end */
 #fdg-scheme-code-block("appendix_a/008")
 
-which we may read: \"To square #emph[x] multiply #emph[x] by #emph[x]\.\"
+which we may read: "To square #emph[x] multiply #emph[x] by #emph[x]\."
 
 In Scheme, procedures may be passed as arguments and returned as values. For example, it is possible to make a procedure that implements the mathematical notion of the composition of two functions:#footnote[The examples are indented to help with readability. Scheme does not care about extra white space, so we may add as much as we please to make things easier to read.]
 
@@ -231,7 +231,7 @@ a-list
 fdg-code-source-end */
 #fdg-scheme-code-block("appendix_a/019")
 
-Lists are built from pairs. A pair is made using the constructor #raw(lang:"scheme", "cons"). The selectors for the two components of the pair are #raw(lang:"scheme", "car") and #raw(lang:"scheme", "cdr") (pronounced \"could-er\").#footnote[These names are accidents of history. They stand for \"Contents of the Address part of Register\" and \"Contents of the Decrement part of Register\" of the IBM 704 computer, which was used for the first implementation of Lisp in the late 1950s. Scheme is a dialect of Lisp.] A list is a chain of pairs, such that the #raw(lang:"scheme", "car") of each pair is the list element and the #raw(lang:"scheme", "cdr") of each pair is the next pair, except for the last #raw(lang:"scheme", "cdr"), which is a distinguishable value called the empty list and is written #raw(lang:"scheme", "()"). Thus,
+Lists are built from pairs. A pair is made using the constructor #raw(lang:"scheme", "cons"). The selectors for the two components of the pair are #raw(lang:"scheme", "car") and #raw(lang:"scheme", "cdr") (pronounced "could-er").#footnote[These names are accidents of history. They stand for "Contents of the Address part of Register" and "Contents of the Decrement part of Register" of the IBM 704 computer, which was used for the first implementation of Lisp in the late 1950s. Scheme is a dialect of Lisp.] A list is a chain of pairs, such that the #raw(lang:"scheme", "car") of each pair is the list element and the #raw(lang:"scheme", "cdr") of each pair is the next pair, except for the last #raw(lang:"scheme", "cdr"), which is a distinguishable value called the empty list and is written #raw(lang:"scheme", "()"). Thus,
 
 /* fdg-code-source: appendix_a/020
 (car a-list)

@@ -241,7 +241,7 @@ Since the Riemann curvature is defined as in equation @8.1,
 
 $ cal(R) (sans(w)\,sans(v))=[nabla_(sans(w))\,nabla_(sans(v))]- nabla_([sans(w)\,sans(v)])\, $ <8.14>
 
-it is natural#footnote[People often say \"Geodesic evolution is exponentiation of the covariant derivative.\" But this is wrong. The evolution is by exponentiation of $L_g$.] to identify these terms with the corresponding terms in
+it is natural#footnote[People often say "Geodesic evolution is exponentiation of the covariant derivative." But this is wrong. The evolution is by exponentiation of $L_g$.] to identify these terms with the corresponding terms in
 
 $ (([L_(g_w) \, L_(g_v)] - L_(g_([w\,v]))) U) (s_0). $ <8.15>
 

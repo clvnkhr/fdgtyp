@@ -24,7 +24,7 @@ The metric can be used to construct a one-form field $bold(omega)_(sans(u))$ fro
 
 $ omega_(sans(u)) (sans(v))= sans(g (v\,u)) . $ <9.3>
 
-The operation of constructing a one-form field from a vector field using a metric is called \"lowering\" the vector field. It is sometimes notated as
+The operation of constructing a one-form field from a vector field using a metric is called "lowering" the vector field. It is sometimes notated as
 
 $ bold(omega)_(sans(u)) = g^flat (sans(u)). $ <9.4>
 
@@ -42,7 +42,7 @@ This definition is implicit, but the vector field can be explicitly computed fro
 
 $ sans(v)_omega = sum_i g^(-1) (bold(omega) \, tilde(sans(e))^i) sans(e)_i . $ <9.7>
 
-The operation of constructing a vector field from a one-form field using a metric is called \"raising\" the one-form field. It is sometimes notated
+The operation of constructing a vector field from a one-form field using a metric is called "raising" the one-form field. It is sometimes notated
 
 $ sans(v)_omega = sans(g)^sharp (bold(omega)). $ <9.8>
 
@@ -82,7 +82,7 @@ fdg-code-source-end */
 #fdg-code-block("chapter009/003")
 
 == Metric Compatibility <sec-9.1>
-A connection is said to be compatible with a metric $sans(g)$ if the covariant derivative for that connection obeys the \"product rule\":
+A connection is said to be compatible with a metric $sans(g)$ if the covariant derivative for that connection obeys the "product rule":
 
 $ Delta_(sans(X)) (g (sans(Y) \, sans(Z))) = g (Delta_(sans(X)) (sans(Y)) \, sans(Z)) + g (sans(Y) \, Delta_(sans(X)) (sans(Z))) . $ <9.9>
 
@@ -90,7 +90,7 @@ For a metric there is a unique torsion-free connection that is compatible with i
 
 $ macron(Gamma)_(i j k) = 1 / 2 (sans(e)_k (sans(g) (sans(e)_i \, sans(e)_j)) + sans(e)_j (sans(g) (sans(e)_i \, sans(e)_k)) - sans(e)_i (sans(g) (sans(e)_j \, sans(e)_k))) $ <9.10>
 
-for the coordinate basis $sans(e)$. We can then construct the Christoffel coefficients of the second kind (the ones used previously to define a connection) by \"raising the first index.\" To do this we define a function of three vectors, with a weird currying:
+for the coordinate basis $sans(e)$. We can then construct the Christoffel coefficients of the second kind (the ones used previously to define a connection) by "raising the first index." To do this we define a function of three vectors, with a weird currying:
 
 $ sum_(i j k) macron(Gamma)_(i j k) tilde(sans(e))^i (sans(u))tilde(sans(e))^j (sans(v))tilde(sans(e))^k (sans(w)) . $ <9.11>
 
@@ -147,7 +147,7 @@ fdg-code-source-end */
 #fdg-code-block("chapter009/006")
 
 === Exercise 9.1: Metric Compatibility <sec-9.1.1>
-The connections constructed from a metric by equation @9.13 are \"metric compatible,\" as described in equation @9.9. Demonstrate that this is true for a literal metric, as described in Section #fdg-ref-page(<sec-1.2>), in $upright(bold(R))^4$. Your program should produce a zero.
+The connections constructed from a metric by equation @9.13 are "metric compatible," as described in equation @9.9. Demonstrate that this is true for a literal metric, as described in Section #fdg-ref-page(<sec-1.2>), in $upright(bold(R))^4$. Your program should produce a zero.
 
 == Metrics and Lagrange Equations <sec-9.2>
 In the Introduction (Chapter 1) we showed that the Lagrange equations for a free particle constrained to a 2-dimensional surface are equivalent to the geodesic equations for motion on that surface. We illustrated that in detail in Section @sec-7.4 for motion on a sphere.
@@ -427,7 +427,7 @@ Evaluate the Ricci scalar for a sphere of radius $r$ to obtain a measure of its 
 Compute the scalar curvature of the pseudosphere (see exercise 8.2). You should obtain the value −2.
 
 == General Relativity <sec-9.4>
-By analogy to Newtonian mechanics, relativistic mechanics has two parts. There are equations of motion that describe how particles move under the influence of \"forces\" and there are field equations that describe how the forces arise. In general relativity the only force considered is gravity. However, gravity is not treated as a force. Instead, gravity arises from curvature in the spacetime, and the equations of motion are motion along geodesics of that space.
+By analogy to Newtonian mechanics, relativistic mechanics has two parts. There are equations of motion that describe how particles move under the influence of "forces" and there are field equations that describe how the forces arise. In general relativity the only force considered is gravity. However, gravity is not treated as a force. Instead, gravity arises from curvature in the spacetime, and the equations of motion are motion along geodesics of that space.
 
 The geodesic equations for a spacetime with the metric
 
@@ -727,5 +727,5 @@ a. Show that for the perfect fluid stress-energy tensor and the FLRW metric this
 
 $ D (c^2 rho R^3) + p D (R^3) = 0 . $ <9.32>
 
-b. Assume that in a \"matter-dominated universe\" radiation pressure is negligible, so $p = 0$. Using the Robertson-Walker equations @9.30 and the energy conservation equation @9.32 show that the observation of an expanding universe is compatible with a negative curvature universe, a flat universe, or a positive curvature universe: $k in {- 1 \, 0 \, + 1}$.
+b. Assume that in a "matter-dominated universe" radiation pressure is negligible, so $p = 0$. Using the Robertson-Walker equations @9.30 and the energy conservation equation @9.32 show that the observation of an expanding universe is compatible with a negative curvature universe, a flat universe, or a positive curvature universe: $k in {- 1 \, 0 \, + 1}$.
 ]

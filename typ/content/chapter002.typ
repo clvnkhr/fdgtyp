@@ -30,7 +30,7 @@ A coordinate function $chi$ maps points in a coordinate patch of a manifold to a
 
 $ x = chi (m)\, $ <2.1>
 
-where $x$ may have a convenient tuple structure. Usually, the coordinates are arranged as an \"up structure\"; the coordinates are selected with superscripts:
+where $x$ may have a convenient tuple structure. Usually, the coordinates are arranged as an "up structure"; the coordinates are selected with superscripts:
 
 $ x^i = chi^i (m). $ <2.2> The number of independent components of $x$ is the dimension of the manifold.
 

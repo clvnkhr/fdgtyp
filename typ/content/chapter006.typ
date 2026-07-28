@@ -46,7 +46,7 @@ which takes its argument in the source manifold $sans(N)$. The differential of a
 fdg-code-source-end */
 #fdg-code-block("chapter006/002")
 
-The nomenclature of this subject is confused. The \"differential of a map between manifolds,\" $d mu$, takes one more argument than the \"differential of a real-valued function on a manifold,\" $sans(d) sans(f)$, but when the target manifold of $μ$ is the reals and $I$ is the identity function on the reals,
+The nomenclature of this subject is confused. The "differential of a map between manifolds," $d mu$, takes one more argument than the "differential of a real-valued function on a manifold," $sans(d) sans(f)$, but when the target manifold of $μ$ is the reals and $I$ is the identity function on the reals,
 
 $ d mu (sans(v)) (I) (sans(n))=(sans(v) (I compose mu)) (sans(n))=(sans(v) (mu)) (sans(n))= sans(d) mu (sans(v)) (sans(n)). $ <6.4>
 

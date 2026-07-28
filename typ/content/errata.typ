@@ -125,7 +125,7 @@ Page 116: The code beginning here requires the #raw(lang:"scheme", "S2-spherical
 fdg-code-source-end */
 #fdg-code-block("errata/013")
 
-Page 127 states \"Where #raw(lang:"scheme", "omega") is an arbitrary one-form field.\" It would be nice to add this definition to the setup in footnote 8:
+Page 127 states "Where #raw(lang:"scheme", "omega") is an arbitrary one-form field." It would be nice to add this definition to the setup in footnote 8:
 
 /* fdg-code-source: errata/014
 (define omega (literal-oneform-field 'omega S2-spherical))
@@ -176,7 +176,7 @@ Page 147: #raw(lang:"scheme", "V") is passed as an argument to #raw(lang:"scheme
 fdg-code-source-end */
 #fdg-code-block("errata/019")
 
-Page 147: the expression after \"If we evaluate the right-hand side expression we obtain\" actually returns
+Page 147: the expression after "If we evaluate the right-hand side expression we obtain" actually returns
 
 /* fdg-code-source: errata/020
 (+ (* 1/2 (expt :c 4) rho)
@@ -270,9 +270,9 @@ fdg-code-source-end */
 Page 165: In the definition of #raw(lang:"scheme", "Force"), #raw(lang:"scheme", "eta-inverse") is not defined, so the following two code examples (and, presumably, exercise 10.1b) will not run!
 
 == Chapter 11
-Page 178: This is not necessarily a \"bug\", but simplifying the expression produced by the form at the top of the page is extremely slow on my machine, in both #raw(lang:"scheme", "scmutils") and the Clojure port. Could be a regression? I have not been able to get the computation to complete, and GCD times out.
+Page 178: This is not necessarily a "bug", but simplifying the expression produced by the form at the top of the page is extremely slow on my machine, in both #raw(lang:"scheme", "scmutils") and the Clojure port. Could be a regression? I have not been able to get the computation to complete, and GCD times out.
 
-Page 180 states \"Assume that we have a base frame called #raw(lang:"scheme", "home")\.\" The base frame defined in the library is #raw(lang:"scheme", "the-ether")\; I would recommend including one of the the following definitions as setup:
+Page 180 states "Assume that we have a base frame called #raw(lang:"scheme", "home")\." The base frame defined in the library is #raw(lang:"scheme", "the-ether")\; I would recommend including one of the the following definitions as setup:
 
 /* fdg-code-source: errata/025
 (define home

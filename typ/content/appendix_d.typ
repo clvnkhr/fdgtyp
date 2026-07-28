@@ -32,14 +32,14 @@ fdg-code-source-end */
 where #emph[operator] names a function and #emph[operand-i] names the $i$th argument.#footnote[In ClojureScript every parenthesis is essential: you cannot add extra parentheses or remove any.]
 
 == Function Expressions <sec-D.2>
-Just as we use numerals to name numbers, we use #raw(lang:"clojure", "fn") expressions to name functions.#footnote[The logician Alonzo Church @church1941calculi invented $lambda$-notation to allow the specification of an anonymous function of a named parameter: $bold(lambda) x[upright("expression in ") x]$. This is read, \"That function of one argument that is obtained by substituting the argument for x in the indicated expression.\"] For example, the function that squares its input can be written:
+Just as we use numerals to name numbers, we use #raw(lang:"clojure", "fn") expressions to name functions.#footnote[The logician Alonzo Church @church1941calculi invented $lambda$-notation to allow the specification of an anonymous function of a named parameter: $bold(lambda) x[upright("expression in ") x]$. This is read, "That function of one argument that is obtained by substituting the argument for x in the indicated expression."] For example, the function that squares its input can be written:
 
 /* fdg-code-source: appendix_a/003
 (lambda (x) (* x x))
 fdg-code-source-end */
 #fdg-cljs-code-block("appendix_a/003")
 
-This expression can be read: \"The function of one argument, $x$, that multiplies $x$ by $x$\.\" Of course, we can use this expression in any context where a function is needed. For example,
+This expression can be read: "The function of one argument, $x$, that multiplies $x$ by $x$\." Of course, we can use this expression in any context where a function is needed. For example,
 
 /* fdg-code-source: appendix_a/004
 ((lambda (x) (* x x)) 4)
@@ -74,26 +74,14 @@ we can then use the symbols #raw(lang:"clojure", "pi") and #raw(lang:"clojure", 
 fdg-code-source-end */
 #fdg-cljs-code-block("appendix_a/007")
 
-=== Names, functions, and local bindings
-
-ClojureScript uses several related forms where Scheme uses #raw(lang:"clojure", "define"), #raw(lang:"clojure", "lambda"), and local definitions. Their different scopes are important:
-
-- #raw(lang:"clojure", "def") gives a name to a value in the current namespace. The value may be a number, a function, or any other object. Thus #raw(lang:"clojure", "(def pi 3.14159)") defines a global name.
-- #raw(lang:"clojure", "fn") constructs a function value. Its parameters are written in a vector: #raw(lang:"clojure", "(fn [x] (* x x))"). An #raw(lang:"clojure", "fn") may be anonymous, or it may be stored in a name using #raw(lang:"clojure", "def").
-- #raw(lang:"clojure", "defn") is convenient syntax for a #raw(lang:"clojure", "def") whose value is an #raw(lang:"clojure", "fn"). For example, #raw(lang:"clojure", "(defn square [x] (* x x))") is essentially #raw(lang:"clojure", "(def square (fn [x] (* x x)))"). Use #raw(lang:"clojure", "defn") for a named, namespace-level function and #raw(lang:"clojure", "def") for other namespace-level values.
-- #raw(lang:"clojure", "let") introduces local names and values. Its binding vector alternates names and expressions: #raw(lang:"clojure", "(let [x 3 y 4] (sqrt (+ (square x) (square y))))"). These names exist only in the body of the #raw(lang:"clojure", "let").
-- #raw(lang:"clojure", "letfn") introduces local function names. Unlike ordinary #raw(lang:"clojure", "let") bindings, the functions may refer to themselves and to one another, so #raw(lang:"clojure", "letfn") is the direct translation for recursive or mutually dependent internal Scheme function definitions.
-
-The names introduced by #raw(lang:"clojure", "def") and #raw(lang:"clojure", "defn") persist in the namespace. The names introduced by #raw(lang:"clojure", "let"), #raw(lang:"clojure", "letfn"), and function parameter vectors are lexical and disappear outside their bodies.
-
-Function definitions may be expressed more conveniently using \"syntactic sugar.\" The squaring function may be defined
+Function definitions may be expressed more conveniently using "syntactic sugar." The squaring function may be defined
 
 /* fdg-code-source: appendix_a/008
 (define (square x) (* x x))
 fdg-code-source-end */
 #fdg-cljs-code-block("appendix_a/008")
 
-which we may read: \"To square #emph[x] multiply #emph[x] by #emph[x]\.\"
+which we may read: "To square #emph[x] multiply #emph[x] by #emph[x]\."
 
 In ClojureScript, functions may be passed as arguments and returned as values. For example, it is possible to make a function that implements the mathematical notion of the composition of two functions:#footnote[The examples are indented to help with readability. ClojureScript does not care about extra white space, so we may add as much as we please to make things easier to read.]
 
@@ -345,41 +333,53 @@ The following correspondences cover the language forms used most often in this b
     [#raw(lang:"clojure", "(let ((x a) (y b)) body)")],
     [#raw(lang:"clojure", "(let [x a y b] body)")],
     [Sequential local values],
-    [#raw(lang:"clojure", "let*")],
-    [Later bindings in one #raw(lang:"clojure", "let") vector can refer to earlier bindings.],
+    [#raw(lang:"clojure", "(let* ((x 2) (y (+ x 1))) y)")],
+    [#raw(lang:"clojure", "(let [x 2 y (+ x 1)] y)")],
     [Local functions],
-    [Internal #raw(lang:"clojure", "define")],
-    [#raw(lang:"clojure", "letfn"), especially for recursive or mutually dependent functions],
+    [#raw(lang:"clojure", "(let () (define (f x) ...) (f 3))")],
+    [#raw(lang:"clojure", "(letfn [(f [x] ...)] (f 3))")],
     [Named local loop],
-    [Named #raw(lang:"clojure", "let")],
-    [#raw(lang:"clojure", "loop") with #raw(lang:"clojure", "recur"), or #raw(lang:"clojure", "letfn")],
+    [#raw(lang:"clojure", "(let loop ((x 3)) ... (loop ...))")],
+    [#raw(lang:"clojure", "(loop [x 3] ... (recur ...))")],
     [Expression sequence],
-    [#raw(lang:"clojure", "begin")],
-    [#raw(lang:"clojure", "do"); function and binding bodies already allow several expressions],
+    [#raw(lang:"clojure", "(begin (display x) x)")],
+    [#raw(lang:"clojure", "(do (println x) x)")],
     [Conditional],
-    [#raw(lang:"clojure", "if"); #raw(lang:"clojure", "cond") with #raw(lang:"clojure", "else")],
-    [#raw(lang:"clojure", "if"); #raw(lang:"clojure", "cond") with #raw(lang:"clojure", ":else")],
-    [Boolean values],
+    [#raw(lang:"clojure", "(if p a b)"); #raw(lang:"clojure", "(cond (p a) (else b))")],
+    [#raw(lang:"clojure", "(if p a b)"); #raw(lang:"clojure", "(cond p a :else b)")],
+    [Boolean literals],
     [#raw(lang:"clojure", "#t") and #raw(lang:"clojure", "#f")],
     [#raw(lang:"clojure", "true") and #raw(lang:"clojure", "false")],
+    [Falsey values],
+    [Only #raw(lang:"clojure", "#f"), as in #raw(lang:"clojure", "(if '() 'yes 'no)") → #raw(lang:"clojure", "yes")],
+    [#raw(lang:"clojure", "false") and #raw(lang:"clojure", "nil"), as in #raw(lang:"clojure", "(if nil :yes :no)") → #raw(lang:"clojure", ":no")],
+    [Exact ratio],
+    [#raw(lang:"clojure", "1/2")],
+    [#raw(lang:"clojure", "(/ 1 2)"); do not replace exact arithmetic with #raw(lang:"clojure", "0.5")],
+    [Vector literal],
+    [#raw(lang:"clojure", "#(a b c)")],
+    [#raw(lang:"clojure", "[a b c]")],
+    [Empty list],
+    [#raw(lang:"clojure", "'()")],
+    [#raw(lang:"clojure", "'()") or #raw(lang:"clojure", "(list)")],
     [Equality in these examples],
-    [#raw(lang:"clojure", "eq?")],
-    [#raw(lang:"clojure", "=")],
+    [#raw(lang:"clojure", "(eq? a b)")],
+    [#raw(lang:"clojure", "(= a b)")],
     [Indexed selection],
-    [#raw(lang:"clojure", "list-ref") and #raw(lang:"clojure", "vector-ref")],
-    [#raw(lang:"clojure", "nth"); Emmy structures also support #raw(lang:"clojure", "ref")],
+    [#raw(lang:"clojure", "(list-ref xs 1)") or #raw(lang:"clojure", "(vector-ref xs 1)")],
+    [#raw(lang:"clojure", "(nth xs 1)"); use #raw(lang:"clojure", "(ref s 1)") for Emmy structures],
     [Sequence selectors],
-    [#raw(lang:"clojure", "car") and #raw(lang:"clojure", "cdr")],
-    [#raw(lang:"clojure", "first") and #raw(lang:"clojure", "rest")],
+    [#raw(lang:"clojure", "(car xs)") and #raw(lang:"clojure", "(cdr xs)")],
+    [#raw(lang:"clojure", "(first xs)") and #raw(lang:"clojure", "(rest xs)")],
     [Variadic parameters],
     [#raw(lang:"clojure", "(lambda args body)") or a dotted parameter list],
-    [#raw(lang:"clojure", "&") in the parameter vector, as in #raw(lang:"clojure", "(fn [& args] body)")],
+    [#raw(lang:"clojure", "(fn [& args] body)")],
     [Quotation],
-    [Reader abbreviation #raw(lang:"clojure", "'expression")],
-    [The same abbreviation; keywords such as #raw(lang:"clojure", ":else") evaluate to themselves],
+    [#raw(lang:"clojure", "'(a b)")],
+    [#raw(lang:"clojure", "'(a b)"); keywords such as #raw(lang:"clojure", ":else") evaluate to themselves],
     [Function application],
-    [Parenthesized: #raw(lang:"clojure", "(f x y)")],
-    [Parenthesized: #raw(lang:"clojure", "(f x y)"); parameters and bindings use vectors],
+    [#raw(lang:"clojure", "(f x y)")],
+    [#raw(lang:"clojure", "(f x y)"); parameter and binding lists use vectors],
   )
 ]
 
