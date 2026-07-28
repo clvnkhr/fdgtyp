@@ -2078,10 +2078,12 @@ const indexedIncludes = chapters
     if (stem === "appendix_c") {
       return [
         `    #include "content/${stem}.typ"`,
-        '    #include "content/appendix_d.typ"',
-        '    #include "content/appendix_e.typ"',
-        '    #include "content/appendix_f.typ"',
-        '    #include "content/appendix_g.typ"',
+        '    #if code-edition in ("clojure", "both") [',
+        '      #include "content/appendix_d.typ"',
+        '      #include "content/appendix_e.typ"',
+        '      #include "content/appendix_f.typ"',
+        '      #include "content/appendix_g.typ"',
+        "    ]",
         "  ]",
       ].join("\n");
     }

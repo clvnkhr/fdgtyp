@@ -100,6 +100,17 @@ function readTypFile(file) {
   return readFileSync(path.join(root, "typ", file), "utf8");
 }
 
+const mainSource = readTypFile("main.typ");
+const cljsAppendixGate = `    #if code-edition in ("clojure", "both") [
+      #include "content/appendix_d.typ"
+      #include "content/appendix_e.typ"
+      #include "content/appendix_f.typ"
+      #include "content/appendix_g.typ"
+    ]`;
+if (!mainSource.includes(cljsAppendixGate)) {
+  throw new Error("Appendices D-G must be gated by the top-level ClojureScript/both edition selection");
+}
+
 function stripTypstProtected(text) {
   return text.replace(/```[\s\S]*?```|`[^`\n]*`|\$[^$\n]*\$/g, "");
 }

@@ -37,10 +37,12 @@
     #include "content/appendix_a.typ"
     #include "content/appendix_b.typ"
     #include "content/appendix_c.typ"
-    #include "content/appendix_d.typ"
-    #include "content/appendix_e.typ"
-    #include "content/appendix_f.typ"
-    #include "content/appendix_g.typ"
+    #if code-edition in ("clojure", "both") [
+      #include "content/appendix_d.typ"
+      #include "content/appendix_e.typ"
+      #include "content/appendix_f.typ"
+      #include "content/appendix_g.typ"
+    ]
   ]
   #include "content/references.typ"
 ]
