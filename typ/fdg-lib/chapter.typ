@@ -2,7 +2,11 @@
 
 #let fdg-chapter(title, body, numbered: true, eq-prefix: none, ref-label: "") = {
   pagebreak(weak: true)
-  if numbered or title not in ("Preface", "Prologue") {
+  if numbered or title not in (
+    "Preface",
+    "Preface to the ClojureScript Edition",
+    "Prologue",
+  ) {
     set page(numbering: "1")
   }
   if ref-label == "chap-1" {

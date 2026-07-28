@@ -1,13 +1,19 @@
 #import "basics.typ": LaTeX, fdg-draft-mode
 #import "cover.typ": fdg-cover-page
+#import "edition.typ": fdg-edition-subtitle
 
-#let fdg-title-page(seed: none) = {
+#let fdg-title-page(seed: none, code-edition: "scheme") = {
+  let edition-subtitle = fdg-edition-subtitle(code-edition)
   set page(numbering: none)
   if fdg-draft-mode {
     align(center)[
       #place(top + left, seed)
       #v(32%)
       #text(size: 25pt, weight: "semibold")[Functional Differential Geometry]
+      #if edition-subtitle != none [
+        #v(0.65em)
+        #text(size: 13pt, fill: rgb("#47745f"))[#edition-subtitle]
+      ]
 
       #v(1.2em)
       #text(size: 12pt, fill: rgb("#777"))[Draft mode]
@@ -16,13 +22,17 @@
   } else {
     page(margin: 0pt, header: none, footer: none)[
       #place(top + left, seed)
-      #fdg-cover-page()
+      #fdg-cover-page(code-edition: code-edition)
     ]
   }
 
   align(center)[
     #v(18%)
     #text(size: 25pt, weight: "semibold")[Functional Differential Geometry]
+    #if edition-subtitle != none [
+      #v(0.65em)
+      #text(size: 13pt)[#edition-subtitle]
+    ]
 
     #v(2em)
     #text(size: 13pt)[Gerald Jay Sussman and Jack Wisdom]

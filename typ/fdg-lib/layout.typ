@@ -2,13 +2,13 @@
 #import "@preview/hydra:0.6.3": hydra
 #import "basics.typ": fdg-equation-prefix, fdg-iridis-palette, fdg-link-color, fdg-raw-fill, fdg-raw-stroke, fdg-raw-text
 
-// The edition is set once around the whole book. Keeping it in contextual
-// state lets generated chapters select code (and, later, edition-specific
-// prose) without receiving an edition argument themselves.
-#let fdg-code-edition = sys.inputs.at("code", default: "scheme")
+// main.typ passes the edition to fdg-book, which publishes it as contextual
+// state for generated chapters. This keeps main.typ as the single place where
+// an edition is chosen without threading an argument through every chapter.
+#let fdg-code-edition = state("fdg-code-edition", "scheme")
 
-#let fdg-edition-select(scheme: none, clojure: none, both: none) = {
-  let edition = fdg-code-edition
+#let fdg-edition-select(scheme: none, clojure: none, both: none) = context {
+  let edition = fdg-code-edition.get()
   if edition == "scheme" { scheme }
   else if edition == "clojure" { clojure }
   else if edition == "both" { if both == none { (scheme, clojure) } else { both } }
@@ -31,8 +31,8 @@
 #let fdg-scheme-code-block(id) = fdg-render-code-block(id, "scm", "scheme")
 #let fdg-cljs-code-block(id) = fdg-render-code-block(id, "cljs", "clojure")
 
-#let fdg-code-block(id) = {
-  let edition = fdg-code-edition
+#let fdg-code-block(id) = context {
+  let edition = fdg-code-edition.get()
   let render(extension, language) = fdg-render-code-block(id, extension, language)
   if edition == "scheme" { render("scm", "scheme") }
   else if edition == "clojure" { render("cljs", "clojure") }
@@ -63,8 +63,8 @@
 }
 
 #let fdg-book(body, code-edition: "scheme") = {
-  if code-edition != fdg-code-edition {
-    panic("fdg-book code-edition must match the global code input")
+  if code-edition not in ("scheme", "clojure", "both") {
+    panic("unknown FDG code edition: " + repr(code-edition))
   }
   set document(
     title: "Functional Differential Geometry",
@@ -162,5 +162,6 @@
       text(style: "italic", it),
     )
   }
+  fdg-code-edition.update(code-edition)
   body
 }

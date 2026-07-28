@@ -4,10 +4,15 @@
 #import "lib.typ": *
 #import "index.typ": fdg-indexed-body, fdg-index-page
 
-#let code-edition = sys.inputs.at("code", default: "scheme")
+// For a manual test, replace this line with:
+#let code-edition = "clojure" // "scheme", "clojure", or "both"
+// #let code-edition = sys.inputs.at("code", default: "scheme")
 #show: fdg-book.with(code-edition: code-edition)
 
-#fdg-title-page(seed: fdg-seed-bibliography-order())
+#fdg-title-page(
+  seed: fdg-seed-bibliography-order(),
+  code-edition: code-edition,
+)
 
 #set page(numbering: "i")
 
@@ -15,6 +20,9 @@
 #pagebreak()
 
 #fdg-indexed-body[
+  #if code-edition in ("clojure", "both") [
+    #include "content/preface_cljs.typ"
+  ]
   #include "content/preface.typ"
   #include "content/prologue.typ"
   #pagebreak()

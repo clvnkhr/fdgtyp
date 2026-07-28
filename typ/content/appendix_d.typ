@@ -311,26 +311,76 @@ Here #raw(lang:"clojure", "true") and #raw(lang:"clojure", "false") are the prin
 
 Consider what would happen if we were to leave out the quote in the expression #raw(lang:"clojure", "(sum? '(+ 3 a))"). If the variable #raw(lang:"clojure", "a") had the value 4 we would be asking if 7 is a sum. But what we wanted to know was whether the expression #raw(lang:"clojure", "(+ 3 a)") is a sum. That is why we need the quote.
 
+#pagebreak()
 == Scheme–ClojureScript Cheat Sheet <sec-D.9>
 
 The following correspondences cover the language forms used most often in this book. They describe syntax; Emmy supplies the mathematical operations used by the examples.
 
-- Global value: Scheme #raw(lang:"clojure", "(define x value)"); ClojureScript #raw(lang:"clojure", "(def x value)").
-- Global function: Scheme #raw(lang:"clojure", "(define (f x) body)"); ClojureScript #raw(lang:"clojure", "(defn f [x] body)").
-- Anonymous function: Scheme #raw(lang:"clojure", "(lambda (x) body)"); ClojureScript #raw(lang:"clojure", "(fn [x] body)").
-- Function stored as a value: Scheme #raw(lang:"clojure", "(define f (lambda (x) body))"); ClojureScript #raw(lang:"clojure", "(def f (fn [x] body))").
-- Local values: Scheme #raw(lang:"clojure", "(let ((x a) (y b)) body)"); ClojureScript #raw(lang:"clojure", "(let [x a y b] body)").
-- Sequential local values: Scheme #raw(lang:"clojure", "let*"); later ClojureScript bindings in one #raw(lang:"clojure", "let") vector can refer to earlier bindings.
-- Local functions and internal #raw(lang:"clojure", "define"): use ClojureScript #raw(lang:"clojure", "letfn"), especially when the functions are recursive or mutually dependent.
-- Named Scheme #raw(lang:"clojure", "let") loops: usually use ClojureScript #raw(lang:"clojure", "loop") with #raw(lang:"clojure", "recur"), or #raw(lang:"clojure", "letfn") when a local function communicates the algorithm more clearly.
-- Several expressions in sequence: Scheme #raw(lang:"clojure", "begin"); ClojureScript #raw(lang:"clojure", "do"). Function and binding bodies already allow several expressions without an explicit #raw(lang:"clojure", "do").
-- Conditional: #raw(lang:"clojure", "if") has the same role in both languages. In #raw(lang:"clojure", "cond"), Scheme #raw(lang:"clojure", "else") becomes ClojureScript #raw(lang:"clojure", ":else").
-- Boolean values: Scheme #raw(lang:"clojure", "#t") and #raw(lang:"clojure", "#f"); ClojureScript #raw(lang:"clojure", "true") and #raw(lang:"clojure", "false").
-- Equality used by these examples: Scheme #raw(lang:"clojure", "eq?"); ClojureScript #raw(lang:"clojure", "=").
-- Indexed selection: Scheme #raw(lang:"clojure", "list-ref") and #raw(lang:"clojure", "vector-ref"); ClojureScript #raw(lang:"clojure", "nth"). Emmy's structured mathematical values also support #raw(lang:"clojure", "ref").
-- Sequence selectors: Scheme #raw(lang:"clojure", "car") and #raw(lang:"clojure", "cdr"); ClojureScript #raw(lang:"clojure", "first") and #raw(lang:"clojure", "rest").
-- Variadic parameters: Scheme #raw(lang:"clojure", "(lambda args body)") or a dotted parameter list; ClojureScript uses #raw(lang:"clojure", "&") in its parameter vector, as in #raw(lang:"clojure", "(fn [& args] body)").
-- Quotation: the reader abbreviation #raw(lang:"clojure", "'expression") works in both languages. ClojureScript also has keywords such as #raw(lang:"clojure", ":else"), which evaluate to themselves and are not quoted symbols.
-- Function application remains a parenthesized form in both languages: #raw(lang:"clojure", "(f x y)"). ClojureScript parameter and binding lists use square-bracket vectors, while calls still use parentheses.
+#text(size: 8.6pt)[
+  #table(
+    columns: (1.05fr, 1.55fr, 1.75fr),
+    inset: (x: 5pt, y: 4pt),
+    align: left + top,
+    stroke: (x, y) => (bottom: 0.35pt + rgb("#aaa")),
+    fill: (x, y) => if y == 0 { rgb("#e8eceb") },
+    table.header(
+      repeat: true,
+      [*Form*],
+      [*Scheme*],
+      [*ClojureScript*],
+    ),
+    [Global value],
+    [#raw(lang:"clojure", "(define x value)")],
+    [#raw(lang:"clojure", "(def x value)")],
+    [Global function],
+    [#raw(lang:"clojure", "(define (f x) body)")],
+    [#raw(lang:"clojure", "(defn f [x] body)")],
+    [Anonymous function],
+    [#raw(lang:"clojure", "(lambda (x) body)")],
+    [#raw(lang:"clojure", "(fn [x] body)")],
+    [Function stored as a value],
+    [#raw(lang:"clojure", "(define f (lambda (x) body))")],
+    [#raw(lang:"clojure", "(def f (fn [x] body))")],
+    [Local values],
+    [#raw(lang:"clojure", "(let ((x a) (y b)) body)")],
+    [#raw(lang:"clojure", "(let [x a y b] body)")],
+    [Sequential local values],
+    [#raw(lang:"clojure", "let*")],
+    [Later bindings in one #raw(lang:"clojure", "let") vector can refer to earlier bindings.],
+    [Local functions],
+    [Internal #raw(lang:"clojure", "define")],
+    [#raw(lang:"clojure", "letfn"), especially for recursive or mutually dependent functions],
+    [Named local loop],
+    [Named #raw(lang:"clojure", "let")],
+    [#raw(lang:"clojure", "loop") with #raw(lang:"clojure", "recur"), or #raw(lang:"clojure", "letfn")],
+    [Expression sequence],
+    [#raw(lang:"clojure", "begin")],
+    [#raw(lang:"clojure", "do"); function and binding bodies already allow several expressions],
+    [Conditional],
+    [#raw(lang:"clojure", "if"); #raw(lang:"clojure", "cond") with #raw(lang:"clojure", "else")],
+    [#raw(lang:"clojure", "if"); #raw(lang:"clojure", "cond") with #raw(lang:"clojure", ":else")],
+    [Boolean values],
+    [#raw(lang:"clojure", "#t") and #raw(lang:"clojure", "#f")],
+    [#raw(lang:"clojure", "true") and #raw(lang:"clojure", "false")],
+    [Equality in these examples],
+    [#raw(lang:"clojure", "eq?")],
+    [#raw(lang:"clojure", "=")],
+    [Indexed selection],
+    [#raw(lang:"clojure", "list-ref") and #raw(lang:"clojure", "vector-ref")],
+    [#raw(lang:"clojure", "nth"); Emmy structures also support #raw(lang:"clojure", "ref")],
+    [Sequence selectors],
+    [#raw(lang:"clojure", "car") and #raw(lang:"clojure", "cdr")],
+    [#raw(lang:"clojure", "first") and #raw(lang:"clojure", "rest")],
+    [Variadic parameters],
+    [#raw(lang:"clojure", "(lambda args body)") or a dotted parameter list],
+    [#raw(lang:"clojure", "&") in the parameter vector, as in #raw(lang:"clojure", "(fn [& args] body)")],
+    [Quotation],
+    [Reader abbreviation #raw(lang:"clojure", "'expression")],
+    [The same abbreviation; keywords such as #raw(lang:"clojure", ":else") evaluate to themselves],
+    [Function application],
+    [Parenthesized: #raw(lang:"clojure", "(f x y)")],
+    [Parenthesized: #raw(lang:"clojure", "(f x y)"); parameters and bindings use vectors],
+  )
+]
 
 ]
