@@ -1,1 +1,1 @@
-(def mu (literal-manifold-map 'MU R2-rect R3-rect))
+(defn pullback-vector-field [mu:N->M mu-inverse:M->N] (pushforward-vector mu-inverse:M->N mu:N->M))

@@ -32,6 +32,7 @@ const convertedOrgFiles = [
 
 const expectedContentFiles = convertedOrgFiles
   .map(file => file.replace(/\.org$/, ".typ"))
+  .concat(["appendix_d.typ", "appendix_e.typ", "appendix_f.typ", "appendix_g.typ"])
   .sort();
 
 const expectedFigures = [
@@ -62,6 +63,10 @@ const expectedFootnoteCounts = {
   "appendix_a.typ": 8,
   "appendix_b.typ": 3,
   "appendix_c.typ": 0,
+  "appendix_d.typ": 6,
+  "appendix_e.typ": 3,
+  "appendix_f.typ": 0,
+  "appendix_g.typ": 0,
   "references.typ": 0,
   "errata.typ": 0,
 };
@@ -75,7 +80,10 @@ function normalize(text) {
 }
 
 function readContentFile(file) {
-  return readFileSync(path.join(contentDir, file), "utf8");
+  return readFileSync(path.join(contentDir, file), "utf8").replace(
+    /\/\* fdg-code-source: ([^\n]+)\n([\s\S]*?)\nfdg-code-source-end \*\//g,
+    (_match, _id, code) => `\`\`\`scheme\n${code}\n\`\`\``,
+  );
 }
 
 const chapter6Content = readContentFile("chapter006.typ");
@@ -146,6 +154,8 @@ const expectedEquationLabelCounts = {
   "chapter011.typ": { prefix: "11", count: 43 },
   "appendix_b.typ": { prefix: "B", count: 35 },
   "appendix_c.typ": { prefix: "C", count: 11 },
+  "appendix_e.typ": { prefix: "E", count: 35 },
+  "appendix_f.typ": { prefix: "F", count: 11 },
 };
 
 const assertions = [
@@ -265,6 +275,8 @@ const assertions = [
       "particular direction in the configuration space",
       "directional derivatives of manifold functions",
       "corresponding components",
+      "We can illustrate the duality",
+      "((dx d/dx) R2-rect-point)\n;; 1",
     ],
     excludes: [
       "manifold Rh",
@@ -276,6 +288,8 @@ const assertions = [
       "di- rection",
       "deriva- tives",
       "com- ponents",
+      "illlustrate",
+      "((dx d/dx) R2-rect-point)\n;; 0",
     ],
   },
   {
@@ -441,6 +455,7 @@ const assertions = [
       "$ bold(E)[L_2]= D_t partial_2 L_2 - partial_1 L_2\\, $",
       "Section @sec-7.4",
       "```scheme\n(determinant\n (submatrix (((* (partial 1) (partial 0))\n              geodesic-equation+X-residuals)\n             0\n             (up 0 0 0))\n            0 3 0 3))\n```",
+      ";; (+ (* 1/2 (expt :c 4) rho)\n;;    (* 2 (expt :c 2) rho (V (up x y z)))\n;;    (* 2 rho (expt (V (up x y z)) 2)))",
     ],
     excludes: [
       "$upright(bold(E))$[L]",
@@ -627,7 +642,7 @@ const typFileAssertions = [
     file: "fdg-lib/title.typ",
     contains: [
       '#image("../assets/cc-by-nc-sa.svg", width: 114pt)',
-      'This Typst edition was converted from the source material published by #link("https://github.com/mentat-collective/fdg-book")[mentat-collective/fdg-book].',
+      'This Typst edition was based on the source material published by #link("https://github.com/mentat-collective/fdg-book")[mentat-collective/fdg-book].',
       '#raw("special_sales@mitpress.mit.edu")',
       "#v(1.2em)",
       "#h(1.2em)p. cm.",
@@ -940,6 +955,44 @@ for (const file of expectedContentFiles) {
 for (const file of contentFiles) {
   if (!expectedSet.has(file)) fail("Unexpected generated content file:", file);
 }
+
+for (const [derived, source] of [["appendix_d.typ", "A"], ["appendix_e.typ", "B"], ["appendix_f.typ", "C"]]) {
+  const text = contentByFile.get(derived);
+  if (matchAll(/Editorial note:/g, text).length !== 1
+      || !text.includes(`This appendix is derived from Appendix ${source}`)) {
+    fail(`Expected exactly one derivation note in ${derived}`);
+  }
+  if (text.includes("#fdg-scheme-code-block(")) {
+    fail(`Derived ClojureScript appendix uses the Scheme block renderer: ${derived}`);
+  }
+}
+for (const required of [
+  "=== Names, functions, and local bindings",
+  '"defn") is convenient syntax for a #raw(lang:"clojure", "def") whose value is an #raw(lang:"clojure", "fn")',
+  '"letfn") introduces local function names',
+  "== Scheme–ClojureScript Cheat Sheet <sec-D.9>",
+]) {
+  if (!contentByFile.get("appendix_d.typ").includes(required)) {
+    fail("Appendix D is missing required ClojureScript guidance:", required);
+  }
+}
+for (const original of ["appendix_a.typ", "appendix_b.typ", "appendix_c.typ"]) {
+  if (contentByFile.get(original).includes("#fdg-cljs-code-block(")) {
+    fail(`Original Scheme appendix uses the ClojureScript block renderer: ${original}`);
+  }
+}
+for (const required of [
+  '#fdg-chapter("Running the Emmy Examples"',
+  "*Run through this block*",
+  "node target/smoke.js --capture-results",
+  'io.github.mentat-collective/emmy',
+  '(:require [emmy.env :refer [* D freeze simplify]])',
+  "clojure -M:shadow-cljs compile app",
+]) {
+  if (!contentByFile.get("appendix_g.typ").includes(required)) {
+    fail("Appendix G is missing required runner guidance:", required);
+  }
+}
 for (const file of convertedOrgFiles) {
   if (!existsSync(path.join(orgDir, file))) {
     fail("Configured Org input does not exist:", file);
@@ -974,15 +1027,17 @@ for (const file of contentFiles) {
     }
   }
   const stem = file.replace(/\.typ$/, "");
-  const expectedSource = `// Generated from ../../fdg-book/scheme/org/${stem}.org.`;
-  if (!text.startsWith(expectedSource)) {
-    fail(`Generated source header mismatch in ${file}:`, expectedSource);
+  if (!/^appendix_[defg]\.typ$/.test(file)) {
+    const expectedSource = `// Generated from ../../fdg-book/scheme/org/${stem}.org.`;
+    if (!text.startsWith(expectedSource)) {
+      fail(`Generated source header mismatch in ${file}:`, expectedSource);
+    }
+    if (!text.includes("// Re-run scripts/convert-org-to-typst.mjs to refresh.")) {
+      fail(`Missing regeneration header in ${file}`);
+    }
   }
-  if (!text.includes("// Re-run scripts/convert-org-to-typst.mjs to refresh.")) {
-    fail(`Missing regeneration header in ${file}`);
-  }
-  const importLine = '#import "../lib.typ": fdg-chapter, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX';
-  if (!text.includes(importLine)) {
+  if (!text.includes('#import "../lib.typ": fdg-chapter')
+      || (file !== "appendix_g.typ" && (!text.includes("fdg-figure") || !text.includes("fdg-ref-page")))) {
     fail(`Missing standard content import in ${file}`);
   }
   const chapterCalls = matchAll(/#fdg-chapter\(/g, text);
@@ -1013,7 +1068,11 @@ for (const file of contentFiles) {
   lines.forEach((line, index) => {
     const lineNo = index + 1;
     if (!inBlock) {
-      if (line.startsWith("```scheme")) {
+      if (file === "appendix_g.typ" && /^```(?:text|sh|clojure|json)$/.test(line)) {
+        inBlock = true;
+        startLine = lineNo;
+        block = [];
+      } else if (line.startsWith("```scheme")) {
         if (line !== "```scheme") {
           fail(`Scheme block opener has trailing content in ${file}:${lineNo}`, line);
         }
@@ -1052,8 +1111,9 @@ for (const file of contentFiles) {
   if (dollars.length % 2 !== 0) {
     fail(`Unbalanced Typst math dollars in ${file}:`, String(dollars.length));
   }
-  for (const match of matchAll(/#raw\((?!lang:"scheme")/g, text)) {
-    fail("Raw span missing Scheme language:", describeMatch(file, text, match));
+  const expectedRawLanguage = /^appendix_[defg]\.typ$/.test(file) ? "clojure" : "scheme";
+  for (const match of matchAll(new RegExp(`#raw\\((?!lang:"${expectedRawLanguage}")`, "g"), text)) {
+    fail(`Raw span missing ${expectedRawLanguage} language:`, describeMatch(file, text, match));
   }
   for (const match of matchAll(/\$[^\n&$]*\\\n\s*&=/g, text)) {
     fail("Math display breaks immediately before its first aligned equals:", describeMatch(file, text, match));
@@ -1112,7 +1172,7 @@ function labelledDisplays(text) {
 }
 
 function equationLabels(text) {
-  return matchAll(/\$\s*<((?:\d+|[BC])\.\d+)>/g, text).map(match => match[1]);
+  return matchAll(/\$\s*<((?:\d+|[BCEF])\.\d+)>/g, text).map(match => match[1]);
 }
 
 for (const file of contentFiles) {
@@ -1198,7 +1258,7 @@ for (const { file, label } of expectedSingleLineDisplays) {
   }
 
   const checkedFiles = Object.keys(expectedEquationLabelCounts).length;
-  if (checkedFiles !== 13) {
+  if (checkedFiles !== 15) {
     fail(
       "Unexpected number of equation-label sections checked:",
       `${checkedFiles} found, expected 13`,

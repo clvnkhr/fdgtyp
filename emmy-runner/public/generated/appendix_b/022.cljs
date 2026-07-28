@@ -1,1 +1,1 @@
-(defn h [s] (g (ref s 0) (ref s 1)))
+(def helix (up cos sin identity))

@@ -1,2 +1,1 @@
-(((basis->vector-basis S2-basis-over-mu) h) ((point R1-rect) 't0))
-;; => (down (((partial 0) h-spherical) (up (theta t0) (phi t0))) (((partial 1) h-spherical) (up (theta t0) (phi t0))))
+(def mu (compose (point S2-spherical) (up (literal-function 'theta) (literal-function 'phi)) (chart R1-rect)))

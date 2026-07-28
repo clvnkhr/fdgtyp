@@ -1,6 +1,6 @@
 // Generated from ../../fdg-book/scheme/org/prologue.org.
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
-#import "../lib.typ": fdg-chapter, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
+#import "../lib.typ": fdg-chapter, fdg-code-block, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
 
 #fdg-chapter("Prologue", numbered: false, eq-prefix: "0", ref-label: "")[
 == Programming and Understanding
@@ -61,18 +61,20 @@ The functions $partial_1 L$ and $partial_2 L$ are partial derivatives of the fun
 
 This expression is equivalent to a computer program:#footnote[The programs in this book are written in Scheme, a dialect of Lisp. The details of the language are not germane to the points being made. What is important is that it is mechanically interpretable, and thus unambiguous. In this book we require that the mathematical expressions be explicit enough that they can be expressed as computer programs. Scheme is chosen because it is easy to write programs that manipulate representations of mathematical functions. An informal description of Scheme can be found in Appendix @chap-appendix-a. The use of Scheme to represent mathematical objects can be found in Appendix @chap-appendix-b. A formal description of Scheme can be obtained in @ieee1991scheme. You can get the software from @fdg-software.]
 
-```scheme
+/* fdg-code-source: prologue/001
 (define ((Lagrange-equations Lagrangian) w)
   (- (D (compose ((partial 2) Lagrangian) (Gamma w)))
      (compose ((partial 1) Lagrangian) (Gamma w))))
-```
+fdg-code-source-end */
+#fdg-code-block("prologue/001")
 
 In the Lagrange equations procedure the parameter #raw(lang:"scheme", "Lagrangian") is a procedure that implements the Lagrangian. The derivatives of the Lagrangian, for example #raw(lang:"scheme", "((partial 2) Lagrangian)"), are also procedures. The state-space path procedure #raw(lang:"scheme", "(Gamma w)") is constructed from the configuration-space path procedure #raw(lang:"scheme", "w") by the procedure #raw(lang:"scheme", "Gamma"):
 
-```scheme
+/* fdg-code-source: prologue/002
 (define ((Gamma w) t)
   (up t (w t) ((D w) t)))
-```
+fdg-code-source-end */
+#fdg-code-block("prologue/002")
 
 where #raw(lang:"scheme", "up") is a constructor for a data structure that represents a state of the dynamical system (time, coordinates, velocities).
 
@@ -84,12 +86,14 @@ $ L (t\,q\,v)= 1 / 2 m v^2 - 1 / 2 k q^2\, $
 
 for mass $m$ and spring constant $k$. This Lagrangian is implemented by
 
-```scheme
+/* fdg-code-source: prologue/003
 (define ((L-harmonic m k) local)
   (let ((q (coordinate local))
         (v (velocity local)))
-    (- (* 1/2 m (square v)) (* 1/2 k (square q)))))
-```
+    (- (* 1/2 m (square v))
+       (* 1/2 k (square q)))))
+fdg-code-source-end */
+#fdg-code-block("prologue/003")
 
 We know that the motion of a harmonic oscillator is a sinusoid with a given amplitude $a$, frequency $omega$, and phase $phi$:
 
@@ -97,22 +101,29 @@ $ x (t)= a cos(omega t + phi). $
 
 Suppose we have forgotten how the constants in the solution relate to the physical parameters of the oscillator. Let's plug in the proposed solution and look at the residual:
 
-```scheme
+/* fdg-code-source: prologue/004
 (define (proposed-solution t)
   (* 'a (cos (+ (* 'omega t) 'phi))))
 
-(->tex (((Lagrange-equations (L-harmonic 'm 'k)) proposed-solution) 't))
-```
+(->tex
+ (((Lagrange-equations (L-harmonic 'm 'k))
+   proposed-solution)
+  't))
+fdg-code-source-end */
+#fdg-code-block("prologue/004")
 
 $ - a m omega^2 cos (omega t + phi.alt) + a k cos (omega t + phi.alt) $
 The residual here shows that for nonzero amplitude, the only solutions allowed are ones where $(k - m omega^2)= 0$ or $omega = sqrt(k\/m)$.
 
 But, suppose we had no idea what the solution looks like. We could propose a literal function for the path:
 
-```scheme
-(->tex (((Lagrange-equations (L-harmonic 'm 'k)) (literal-function 'x))
-        't))
-```
+/* fdg-code-source: prologue/005
+(->tex
+ (((Lagrange-equations (L-harmonic 'm 'k))
+   (literal-function 'x))
+  't))
+fdg-code-source-end */
+#fdg-code-block("prologue/005")
 
 $ k x (t) + m D^2 x (t) $
 

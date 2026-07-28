@@ -1,6 +1,6 @@
 // Generated from ../../fdg-book/scheme/org/chapter006.org.
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
-#import "../lib.typ": fdg-chapter, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
+#import "../lib.typ": fdg-chapter, fdg-code-block, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
 
 #fdg-chapter("Over a Map", numbered: true, eq-prefix: "6", ref-label: "chap-6")[
 To deal with motion on manifolds we need to think about paths on manifolds and vectors along these paths. Tangent vectors along paths are not vector fields on the manifold because they are defined only on the path. And the path may even cross itself, which would give more than one vector at a point. Here we introduce the concept of a #emph[vector field over a map].#footnote[See Bishop and Goldberg, #emph[Tensor Analysis on Manifolds] @bishop1968tensor.] A vector field over a map assigns a vector to each image point of the map. In general the map may be a function from one manifold to another. If the domain of the map is the manifold of the real line, the range of the map is a 1-dimensional path on the target manifold. One possible way to define a vector field over a map is to assign a tangent vector to each image point of a path, allowing us to work with tangent vectors to paths. A #emph[one-form field over the map] allows us to extract the components of a vector field over the map.
@@ -25,11 +25,13 @@ $ sans(v)_mu (sans(f)) (sans(n))= sans(v) (sans(f)) (mu (sans(n))). $ <6.2>
 
 We can implement this definition as:
 
-```scheme
+/* fdg-code-source: chapter006/001
 (define ((vector-field->vector-field-over-map mu:N->M) v-on-m)
-  (procedure->vector-field (lambda (f-on-M)
-                             (compose (v-on-M f-on-M) mu:N->M))))
-```
+  (procedure->vector-field
+   (lambda (f-on-M)
+     (compose (v-on-M f-on-M) mu:N->M))))
+fdg-code-source-end */
+#fdg-code-block("chapter006/001")
 
 == Differential of a Map <sec-6.3>
 Another way to construct a vector field over a map $μ$ is to transport a vector field from the source manifold $sans(N)$ to the target manifold $sans(M)$ with the #emph[differential] of the map
@@ -38,10 +40,11 @@ $ d mu (sans(v)) (sans(f)) (sans(n))= sans(v) (sans(f) compose mu) (sans(n))\, $
 
 which takes its argument in the source manifold $sans(N)$. The differential of a map $μ$ applied to a vector field $sans(v)$ on $sans(N)$ is a vector field over the map. A procedure to compute the differential is:
 
-```scheme
+/* fdg-code-source: chapter006/002
 (define (((differential mu) v) f)
-  (v (compose f mu)))
-```
+(v (compose f mu)))
+fdg-code-source-end */
+#fdg-code-block("chapter006/002")
 
 The nomenclature of this subject is confused. The \"differential of a map between manifolds,\" $d mu$, takes one more argument than the \"differential of a real-valued function on a manifold,\" $sans(d) sans(f)$, but when the target manifold of $μ$ is the reals and $I$ is the identity function on the reals,
 
@@ -61,7 +64,7 @@ The object $sans(u)$ is not really a vector field on $sans(M)$ even though we ha
 
 The procedure that constructs a $k$-form over the map from a $k$-form is:
 
-```scheme
+/* fdg-code-source: chapter006/003
 (define ((form-field->form-field-over-map mu:N->M) w-on-M)
   (define (make-fake-vector-field V-over-mu n)
     (define ((u f) m)
@@ -76,7 +79,8 @@ The procedure that constructs a $k$-form over the map from a $k$-form is:
                     vectors-over-map))
         (mu:N->M n))))
    (get-rank w-on-M)))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter006/003")
 
 The internal procedure #raw(lang:"scheme", "make-fake-vector-field") counterfeits a vector field $sans(u)$ on $sans(M)$ from the vector field over the map $mu : sans(N) arrow.r sans(M)$. This works here because the only value that is ever passed as `m` is `(mu:N->M n)`.
 
@@ -96,49 +100,59 @@ $ tilde(sans(e))_mu^i (sans(e)_j^mu) (sans(n))= delta_j^i . $ <6.8>
 == Walking on a Sphere <sec-6.7>
 For example, let $mu$ map the time line to the unit sphere.#footnote[We execute #raw(lang:"scheme", "(define-coordinates t R1-rect)") to make #raw(lang:"scheme", "t") the coordinate function of the real line.] We use colatitude $theta$ and longitude $phi.alt$ as coordinates on the sphere:
 
-```scheme
+/* fdg-code-source: chapter006/004
 (define S2 (make-manifold S^2 2 3))
-(define S2-spherical (coordinate-system-at 'spherical 'north-pole S2))
+(define S2-spherical
+  (coordinate-system-at 'spherical 'north-pole S2))
 (define-coordinates (up theta phi) S2-spherical)
 (define S2-basis (coordinate-system->basis S2-spherical))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter006/004")
 
 A general path on the sphere is:#footnote[We provide a shortcut to make literal manifold maps:
 
-```scheme
+/* fdg-code-source: chapter006/005
 (define mu (literal-manifold-map 'mu R1-rect S2-spherical))
-```]
+fdg-code-source-end */
+#fdg-code-block("chapter006/005")]
 
-```scheme
+/* fdg-code-source: chapter006/006
 (define mu
   (compose (point S2-spherical)
-           (up (literal-function 'theta) (literal-function 'phi))
+           (up (literal-function 'theta)
+               (literal-function 'phi))
            (chart R1-rect)))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter006/006")
 
 The basis over the map is constructed from the basis on the sphere:
 
-```scheme
-(define S2-basis-over-mu (basis->basis-over-map mu S2-basis))
+/* fdg-code-source: chapter006/007
+(define S2-basis-over-mu
+  (basis->basis-over-map mu S2-basis))
 
-(define h (literal-manifold-function 'h-spherical S2-spherical))
+(define h
+  (literal-manifold-function 'h-spherical S2-spherical))
 
-(((basis->vector-basis S2-basis-over-mu) h) ((point R1-rect) 't0))
+(((basis->vector-basis S2-basis-over-mu) h)
+ ((point R1-rect) 't0))
 ;; (down
 ;;  (((partial 0) h-spherical) (up (theta t0) (phi t0)))
 ;;  (((partial 1) h-spherical) (up (theta t0) (phi t0))))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter006/007")
 
 The basis vectors over the map compute derivatives of the function $h$ evaluated on the path at the given time.
 
 We can check that the dual basis over the map does the correct thing:
 
-```scheme
+/* fdg-code-source: chapter006/008
 (((basis->1form-basis S2-basis-over-mu)
   (basis->vector-basis S2-basis-over-mu))
  ((point R1-rect) 't0))
 ;; (up (down 1 0) (down 0 1))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter006/008")
 
 == Components of the Velocity <sec-6.8>
 Let $χ$ be a tuple of coordinates on $sans(M)$, with associated basis vectors $sans(X)_i$, and dual basis elements $sans(d) sans(x)^i$. The vector basis and dual basis over the map $μ$ are $sans(X)_i^mu$ and $sans(d) sans(x)_mu^i$. The components of the velocity (rates of change of coordinates along the path $μ$) are obtained by applying the dual basis over the map to the velocity
@@ -149,11 +163,13 @@ where $t$ is the coordinate for the point $sans(t)$.
 
 For example, the coordinate velocities on a sphere are
 
-```scheme
-(((basis->1form-basis S2-basis-over-mu) ((differential mu) d/dt))
+/* fdg-code-source: chapter006/009
+(((basis->1form-basis S2-basis-over-mu)
+  ((differential mu) d/dt))
  ((point R1-rect) 't0))
 ;; (up ((D theta) t0) ((D phi) t0)))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter006/009")
 
 as expected.
 
@@ -173,10 +189,11 @@ $ (sans(E)_(t\,sans(v)) sans(f)) (sans(m))= sans(f) (phi.alt_t^(sans(v)) (sans(m
 
 This is implemented as:
 
-```scheme
+/* fdg-code-source: chapter006/010
 (define ((pullback-function mu:N->M) f-on-M)
-  (compose f-on-M mu:N->M))
-```
+(compose f-on-M mu:N->M))
+fdg-code-source-end */
+#fdg-code-block("chapter006/010")
 
 A vector field over the map that was constructed by restriction (equation @6.1) can be seen as the pullback of the function constructed by application of the vector field to a function:
 
@@ -210,11 +227,13 @@ $ ((phi.alt_t^(sans(w)))_(*)sans(v)) (sans(f)) (sans(m))= sans(v) ((phi.alt_t^(s
 
 This is implemented as:
 
-```scheme
+/* fdg-code-source: chapter006/011
 (define ((pushforward-vector mu:N->M mu^-1:M->N) v-on-N)
   (procedure->vector-field
-   (lambda (f) (compose (v-on-N (compose f mu:N->M)) mu^-1:M->N))))
-```
+   (lambda (f)
+     (compose (v-on-N (compose f mu:N->M)) mu^-1:M->N))))
+fdg-code-source-end */
+#fdg-code-block("chapter006/011")
 
 == Pullback of a Vector Field <sec-6.13>
 Given a vector field $sans(v)$ on a manifold $sans(M)$ we can pull the vector field back through the map $mu : sans(N) arrow.r sans(M)$ as follows:
@@ -229,10 +248,11 @@ This may be useful when the map is invertible, as in the flow generated by a vec
 
 This is implemented as:
 
-```scheme
+/* fdg-code-source: chapter006/012
 (define (pullback-vector-field mu:N->M mu^-1:M->N)
   (pushforward-vector mu^-1:M->N mu:N->M))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter006/012")
 
 == Pullback of a Form Field <sec-6.14>
 We can also pull back a one-form field $ω$ defined on $sans(M)$, but an honest definition is rarely written. The pullback of a one-form field applied to a vector field is intended to be the same as the one-form field applied to the pushforward of the vector field.
@@ -263,17 +283,19 @@ $ mu^(*) omega (sans(u)\,sans(v)\,dots.c) (sans(n))= omega (mu_(*)\,sans(u)\,mu_
 
 This is implemented as follows:#footnote[There is a generic pullback procedure that operates on any kind of manifold object. However, to pull a vector field back requires providing the inverse map.]
 
-```scheme
+/* fdg-code-source: chapter006/013
 (define ((pullback-form mu:N->M) omega-on-M)
   (let ((k (get-rank omega-on-M)))
     (if (= k 0)
         ((pullback function mu:N->M) omega-on-M)
         (procedure->nform-field
          (lambda vectors-on-N
-           (apply ((form-field->form-field-over-map mu:N->M) omega-on-M)
+           (apply ((form-field->form-field-over-map mu:N->M)
+                   omega-on-M)
                   (map (differential mu:N->M) vectors-on-N)))
          k))))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter006/013")
 
 == Properties of Pullback <sec-6.15>
 The pullback through a map has many nice properties: it distributes through addition and through wedge product:
@@ -290,31 +312,34 @@ for $theta$ a function or $k$-form field.
 
 We can verify this by computing an example. Let $mu$ map the rectangular plane to rectangular 3-space:
 
-```scheme
+/* fdg-code-source: chapter006/014
 (define mu (literal-manifold-map 'MU R2-rect R3-rect))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter006/014")
 
 First, let\'s compare the pullback of the exterior derivative of a function with the exterior derivative of the pullback of the function:
 
-```scheme
+/* fdg-code-source: chapter006/015
 (define f (literal-manifold-function 'f-rect R3-rect))
 (define X (literal-vector-field 'X-rect R2-rect))
 
 (((- ((pullback mu) (d f)) (d ((pullback mu) f))) X)
  ((point R2-rect) (up 'x0 'y0)))
 ;; 0
-```
+fdg-code-source-end */
+#fdg-code-block("chapter006/015")
 
 More generally, we can consider what happens to a form field. For a one-form field the result is as expected:
 
-```scheme
+/* fdg-code-source: chapter006/016
 (define theta (literal-1form-field 'THETA R3-rect))
 (define Y (literal-vector-field 'Y-rect R2-rect))
 
 (((- ((pullback mu) (d theta)) (d ((pullback mu) theta))) X Y)
  ((point R2-rect) (up 'x0 'y0)))
 ;; 0
-```
+fdg-code-source-end */
+#fdg-code-block("chapter006/016")
 
 == Pushforward of a Form Field <sec-6.16>
 By symmetry, it is possible to define the pushforward of a one-form field as

@@ -1,6 +1,6 @@
 // Generated from ../../fdg-book/scheme/org/appendix_b.org.
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
-#import "../lib.typ": fdg-chapter, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
+#import "../lib.typ": fdg-chapter, fdg-code-block, fdg-scheme-code-block, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
 
 #fdg-chapter("Our Notation", numbered: true, eq-prefix: "B", ref-label: "chap-appendix-b")[
 #quote(block: true)[
@@ -24,10 +24,11 @@ $ d (x_1\,y_1\,x_2\,y_2)= sqrt((x_2 - x_1)^2+(y_2 - y_1)^2) . $ <B.1>
 
 In Scheme we can write this as:
 
-```scheme
+/* fdg-code-source: appendix_b/001
 (define (d x1 y1 x2 y2)
   (sqrt (+ (square (- x2 x1)) (square (- y2 y1)))))
-```
+fdg-code-source-end */
+#fdg-scheme-code-block("appendix_b/001")
 
 Functions may be composed if the range of one overlaps the domain of the other. The composition of functions is constructed by passing the output of one to the input of the other. We write the composition of two functions using the $compose$ operator:
 
@@ -35,19 +36,21 @@ $ (f compose g): x mapsto (f compose g) (x)= f (g (x)). $ <B.2>
 
 A procedure #raw(lang:"scheme", "h") that computes the cube of the sine of its argument may be defined by composing the procedures #raw(lang:"scheme", "cube") and #raw(lang:"scheme", "sin"):
 
-```scheme
+/* fdg-code-source: appendix_b/002
 (define h (compose cube sin))
 
 (h 2)
 ;; .7518269446689928
-```
+fdg-code-source-end */
+#fdg-scheme-code-block("appendix_b/002")
 
 Which is the same as
 
-```scheme
+/* fdg-code-source: appendix_b/003
 (cube (sin 2))
 ;; .7518269446689928
-```
+fdg-code-source-end */
+#fdg-scheme-code-block("appendix_b/003")
 
 Arithmetic is extended to the manipulation of functions: the usual mathematical operations may be applied to functions. Examples are addition and multiplication; we may add or multiply two functions if they take the same kinds of arguments and if their values can be added or multiplied:
 
@@ -55,7 +58,7 @@ $ (f + g) (x)= f (x)+ g (x)\, (f g) (x)= f (x)g (x). $ <B.3>
 
 A procedure #raw(lang:"scheme", "g") that multiplies the cube of its argument by the sine of its argument is
 
-```scheme
+/* fdg-code-source: appendix_b/004
 (define g (* cube sin))
 
 (g 2)
@@ -63,41 +66,46 @@ A procedure #raw(lang:"scheme", "g") that multiplies the cube of its argument by
 
 (* (cube 2) (sin 2))
 ;; 7.274379414605454
-```
+fdg-code-source-end */
+#fdg-scheme-code-block("appendix_b/004")
 
 == Symbolic Values <sec-B.2>
 As in usual mathematical notation, arithmetic is extended to allow the use of symbols that represent unknown or incompletely specified mathematical objects. These symbols are manipulated as if they had values of a known type. By default, a Scheme symbol is assumed to represent a real number. So the expression #raw(lang:"scheme", "'a") is a literal Scheme symbol that represents an unspecified real number:
 
-```scheme
+/* fdg-code-source: appendix_b/005
 ((compose cube sin) 'a)
 ;; (expt (sin a) 3)
-```
+fdg-code-source-end */
+#fdg-scheme-code-block("appendix_b/005")
 
 The default printer simplifies the expression,#footnote[The procedure #raw(lang:"scheme", "print-expression") can be used in a program to print a simplified version of an expression. The default printer in the user interface incorporates the simplifier.] and displays it in a readable form. We can use the simplifier to verify a trigonometric identity:
 
-```scheme
+/* fdg-code-source: appendix_b/006
 ((- (+ (square sin) (square cos)) 1) 'a)
 ;; 0
-```
+fdg-code-source-end */
+#fdg-scheme-code-block("appendix_b/006")
 
 Just as it is useful to be able to manipulate symbolic numbers, it is useful to be able to manipulate symbolic functions. The procedure #raw(lang:"scheme", "literal-function") makes a procedure that acts as a function having no properties other than its name. By default, a literal function is defined to take one real argument and produce one real value. For example, we may want to work with a function $f : upright(bold(R)) arrow.r upright(bold(R))$:
 
-```scheme
+/* fdg-code-source: appendix_b/007
 ((literal-function 'f) 'x)
 ;; (f x)
 
 ((compose (literal-function 'f) (literal-function 'g)) 'x)
 ;; (f (g x))
-```
+fdg-code-source-end */
+#fdg-scheme-code-block("appendix_b/007")
 
 We can also make literal functions of multiple, possibly structured arguments that return structured values. For example, to denote a literal function named #raw(lang:"scheme", "g") that takes two real arguments and returns a real value ($g : upright(bold(R)) times upright(bold(R)) arrow.r upright(bold(R))$) we may write:
 
-```scheme
+/* fdg-code-source: appendix_b/008
 (define g (literal-function 'g (-> (X Real Real) Real)))
 
 (g 'x 'y)
 ;; (g x y)
-```
+fdg-code-source-end */
+#fdg-scheme-code-block("appendix_b/008")
 
 We may use such a literal function anywhere that an explicit function of the same type may be used.
 
@@ -116,7 +124,7 @@ A component of an up tuple is usually identified by a superscript. A component o
 
 We make tuples with the constructors #raw(lang:"scheme", "up") and #raw(lang:"scheme", "down"):
 
-```scheme
+/* fdg-code-source: appendix_b/009
 (define v (up 'v^0 'v^1 'v^2))
 v
 ;; (up vˆ0 vˆ1 vˆ2)
@@ -124,7 +132,9 @@ v
 (define p (down 'p_0 'p_1 'p_2))
 p
 ;; (down p_0 p_1 p_2)
-```
+
+fdg-code-source-end */
+#fdg-scheme-code-block("appendix_b/009")
 
 Note that #raw(lang:"scheme", "v^0") and #raw(lang:"scheme", "p_2") are just symbols. The caret and underline characters are symbol constituents, so there is no meaning other than mnemonic to the structure of these symbols. However, our software can also display expressions using #TeX, and then these decorations turn into superscripts and subscripts.
 
@@ -134,9 +144,10 @@ $ s = (t \, (x \, y) \, [p_x \, p_y]) . $ <B.6>
 
 It is an up tuple of the time, the coordinates, and the momenta. The time $t$ has no substructure. The coordinates are an up tuple of the coordinate components $x$ and $y$. The momentum is a down tuple of the momentum components $p_x$ and $p_y$. In Scheme this is written:
 
-```scheme
+/* fdg-code-source: appendix_b/010
 (define s (up 't (up 'x 'y) (down 'p_x 'p_y)))
-```
+fdg-code-source-end */
+#fdg-scheme-code-block("appendix_b/010")
 
 In order to reference components of tuple structures there are selector functions, for example:
 
@@ -152,24 +163,27 @@ The sequence of integer subscripts on the selector describes the access chain to
 
 The procedure #raw(lang:"scheme", "component") is the general selector procedure that implements the selector function $I_z$:
 
-```scheme
+/* fdg-code-source: appendix_b/011
 ((component 0 1) (up (up 'a 'b) (up 'c 'd)))
 ;; b
-```
+fdg-code-source-end */
+#fdg-scheme-code-block("appendix_b/011")
 
 To access a component of a tuple we may also use the selector procedure #raw(lang:"scheme", "ref"), which takes a tuple and an index and returns the indicated element of the tuple:
 
-```scheme
+/* fdg-code-source: appendix_b/012
 (ref (up 'a 'b 'c) 1)
 ;; b
-```
+fdg-code-source-end */
+#fdg-scheme-code-block("appendix_b/012")
 
 We use zero-based indexing everywhere. The procedure #raw(lang:"scheme", "ref") can be used to access any substructure of a tree of tuples:
 
-```scheme
+/* fdg-code-source: appendix_b/013
 (ref (up (up 'a 'b) (up 'c 'd)) 0 1)
 ;; b
-```
+fdg-code-source-end */
+#fdg-scheme-code-block("appendix_b/013")
 
 Two up tuples of the same length may be added or subtracted, elementwise, to produce an up tuple, if the components are compatible for addition. Similarly, two down tuples of the same length may be added or subtracted, elementwise, to produce a down tuple, if the components are compatible for addition.
 
@@ -183,10 +197,11 @@ $ p v = p_0 v^0 + p_1 v^1 + p_2 v^2 . $ <B.8>
 
 So the product of tuples that are compatible for contraction is an inner product. Using the tuples #raw(lang:"scheme", "p") and #raw(lang:"scheme", "v") defined above gives us
 
-```scheme
+/* fdg-code-source: appendix_b/014
 (* p v)
 ;; (+ (* p 0 vˆ0) (* p 1 vˆ1) (* p 2 vˆ2))
-```
+fdg-code-source-end */
+#fdg-scheme-code-block("appendix_b/014")
 
 Contraction of tuples is commutative: $p v = v p$. Caution: Multiplication of tuples that are compatible for contraction is, in general, not associative. For example, let $u =(5\,2)$, $v =(11\,13)$, and $g = [[3 \, 5] \, [7 \, 9]]$. Then $u (g v)= 964$, but $(u g)v = 878$. The expression $u g v$ is ambiguous. An expression that has this ambiguity does not occur in this book.
 
@@ -221,12 +236,13 @@ The derivative of a function $f$ is a function, denoted by $D f$. Our notational
 
 The Scheme procedure for producing the derivative of a function is named #raw(lang:"scheme", "D"). The derivative of the #raw(lang:"scheme", "sin") procedure is a procedure that computes #raw(lang:"scheme", "cos"):
 
-```scheme
+/* fdg-code-source: appendix_b/015
 (define derivative-of-sine (D sin))
 
 (derivative-of-sine 'x)
 ;; (cos x)
-```
+fdg-code-source-end */
+#fdg-scheme-code-block("appendix_b/015")
 
 The derivative of a function $f$ is the function $D f$ whose value for a particular argument is something that can be multiplied by an increment $Delta x$ in the argument to get a linear approximation to the increment in the value of $f$:
 
@@ -252,17 +268,19 @@ $ (D (f compose g)) (x)= D f (g (x))dot.op D g (x). $ <B.19>
 
 #raw(lang:"scheme", "D") is an example of an operator. An operator is like a function except that multiplication of operators is interpreted as composition, whereas multiplication of functions is multiplication of the values (see equation @B.3). If $D$ were an ordinary function, then the rule for multiplication would imply that $D^2 f$ would just be the product of $D f$ with itself, which is not what is intended. A product of a number and an operator scales the operator. So, for example
 
-```scheme
+/* fdg-code-source: appendix_b/016
 (((* 5 D) cos) 'x)
 ;; (* -5 (sin x))
-```
+fdg-code-source-end */
+#fdg-scheme-code-block("appendix_b/016")
 
 Arithmetic is extended to allow manipulation of operators. A typical operator is $(D + I) (D - I)= D^2 - I$, where $I$ is the identity operator, subtracts a function from its second derivative. Such an operator can be constructed and used in Scheme as follows:
 
-```scheme
+/* fdg-code-source: appendix_b/017
 (((* (+ D I) (- D I)) (literal-function 'f)) 'x)
 ;; (+ (((expt D 2) f) x) (* -1 (f x)))
-```
+fdg-code-source-end */
+#fdg-scheme-code-block("appendix_b/017")
 
 == Derivatives of Functions of Multiple Arguments <sec-B.5>
 The derivative generalizes to functions that take multiple arguments. The derivative of a real-valued function of multiple arguments is an object whose contraction with the tuple of increments in the arguments gives a linear approximation to the increment in the function\'s value.
@@ -275,10 +293,11 @@ $ D g (x\,y)dot.op (Delta x\,Delta y)= [partial_0 g (x \, y) + partial_1 g (x \,
 
 Using the two-argument literal function #raw(lang:"scheme", "g") defined in Section #fdg-ref-page(<sec-B.2>), we have:
 
-```scheme
+/* fdg-code-source: appendix_b/018
 ((D g) 'x 'y)
 ;; (down (((partial 0) g) x y) (((partial 1) g) x y))
-```
+fdg-code-source-end */
+#fdg-scheme-code-block("appendix_b/018")
 
 In general, partial derivatives are just the components of the derivative of a function that takes multiple arguments (or structured arguments or both; see below). So a partial derivative of a function is a composition of a component selector and the derivative of that function.#footnote[Partial derivative operators such as #raw(lang:"scheme", "(partial 2)") are operators, so #raw(lang:"scheme", "(expt (partial 1) 2)") is a second partial derivative.] Indeed:
 
@@ -308,7 +327,7 @@ $ (partial_i (f compose g)) (x)= D f (g (x))dot.op partial_i g (x). $ <B.27>
 
 Mathematical notation usually does not distinguish functions of multiple arguments and functions of the tuple of arguments. Let $h((x\,y))= g (x\,y)$. The function $h$, which takes a tuple of arguments $x$ and $y$, is not distinguished from the function $g$ that takes arguments $x$ and $y$. We use both ways of defining functions of multiple arguments. The derivatives of both kinds of functions are compatible for contraction with a tuple of increments to the arguments. Scheme comes in handy here:
 
-```scheme
+/* fdg-code-source: appendix_b/019
 (define (h s)
   (g (ref s 0) (ref s 1)))
 
@@ -320,7 +339,8 @@ Mathematical notation usually does not distinguish functions of multiple argumen
 
 ((D h) (up 'x 'y))
 (down (((partial 0) g) x y) (((partial 1) g) x y))
-```
+fdg-code-source-end */
+#fdg-scheme-code-block("appendix_b/019")
 
 A phase-space state function is a function of time, coordinates, and momenta. Let $H$ be such a function. The value of $H$ is $H (t \, (x \, y) \, [p_x \, p_y])$ for time $t$, coordinates $(x\,y)$, and momenta $[p_x\,p_y]$. Let $s$ be the phase-space state tuple as in #ref(<B.6>):
 
@@ -348,11 +368,11 @@ Caution: Partial derivative operators with respect to different structured argum
 
 In Scheme we must make explicit choices. We usually assume that phase-space state functions are functions of the tuple. For example,
 
-```scheme
+/* fdg-code-source: appendix_b/020
 (define H
-  (literal-function 'H
-                    (-> (UP Real (UP Real Real) (DOWN Real Real))
-                        Real)))
+  (literal-function
+   'H
+   (-> (UP Real (UP Real Real) (DOWN Real Real)) Real)))
 
 (H s)
 ;; (H (up t (up x y) (down p_x p_y)))
@@ -364,7 +384,8 @@ In Scheme we must make explicit choices. We usually assume that phase-space stat
 ;;        (((partial 1 1) H) (up t (up x y) (down p_x p_y))))
 ;;  (up (((partial 2 0) H) (up t (up x y) (down p_x p_y)))
 ;;      (((partial 2 1) H) (up t (up x y) (down p_x p_y)))))
-```
+fdg-code-source-end */
+#fdg-scheme-code-block("appendix_b/020")
 
 == Structured Results <sec-B.6>
 Some functions produce structured outputs. A function whose output is a tuple is equivalent to a tuple of component functions each of which produces one component of the output tuple.
@@ -379,23 +400,26 @@ $ D h(t)=(- sin t\,cos t\,1). $ <B.33>
 
 In Scheme we can write
 
-```scheme
+/* fdg-code-source: appendix_b/021
 (define (helix t)
   (up (cos t) (sin t) t))
-```
+fdg-code-source-end */
+#fdg-scheme-code-block("appendix_b/021")
 
 or just
 
-```scheme
+/* fdg-code-source: appendix_b/022
 (define helix (up cos sin identity))
-```
+fdg-code-source-end */
+#fdg-scheme-code-block("appendix_b/022")
 
 Its derivative is just the up tuple of the derivatives of each component of the function:
 
-```scheme
+/* fdg-code-source: appendix_b/023
 ((D helix) 't)
 (up (* -1 (sin t)) (cos t) 1)
-```
+fdg-code-source-end */
+#fdg-scheme-code-block("appendix_b/023")
 
 In general, a function that produces structured outputs is just treated as a structure of functions, one for each of the components. The derivative of a function of structured inputs that produces structured outputs is an object that when contracted with an incremental input structure produces a linear approximation to the incremental output. Thus, if we define function $g$ by
 
@@ -407,7 +431,7 @@ $ D g (x\,y)= [vec(2(x + y), - 3(y - x)^2, e^(x + y)) \, vec(2(x + y), 3(y - x)^
 
 In Scheme:
 
-```scheme
+/* fdg-code-source: appendix_b/024
 (define (g x y)
   (up (square (+ x y)) (cube (- y x)) (exp (+ x y))))
 
@@ -418,7 +442,8 @@ In Scheme:
 ;;       (up (+ (* 2 x) (* 2 y))
 ;;           (+ (* 3 (expt x 2)) (* -6 x y) (* 3 (expt y 2)))
 ;;           (* (exp y) (exp x))))
-```
+fdg-code-source-end */
+#fdg-scheme-code-block("appendix_b/024")
 
 === Exercise B.1: Chain Rule <sec-B.6.1>
 Let $F (x\,y)= x^2 y^3$, $G (x\,y)=(F (x\,y)\,y)$, and $H (x\,y)= F (F (x\,y)\,y)$, so that $H = F compose G$.
@@ -430,7 +455,7 @@ We can represent functions of multiple arguments as procedures in several ways, 
 
 For example, we could write implementations of the functions that occur in exercise B.1 as follows:
 
-```scheme
+/* fdg-code-source: appendix_b/025
 (define (f x y)
   (* (square x) (cube y)))
 
@@ -439,17 +464,20 @@ For example, we could write implementations of the functions that occur in exerc
 
 (define (h x y)
   (f (f x y) y))
-```
+fdg-code-source-end */
+#fdg-scheme-code-block("appendix_b/025")
 
 With this choice it is awkward to compose a function that takes multiple arguments, such as $f$, with a function that produces a tuple of those arguments, such as $g$. Alternatively, we can represent the function arguments as slots of a tuple data structure, and then composition with a function that produces such a data structure is easy. However, this choice requires the procedures to build and take apart structures.
 
 For example, we may define procedures that implement the functions above as follows:
 
-```scheme
+/* fdg-code-source: appendix_b/026
 (define (f v)
   (let ((x (ref v 0))
         (y (ref v 1)))
     (* (square x) (cube y))))
+
+
 
 (define (g v)
   (let ((x (ref v 0))
@@ -457,7 +485,8 @@ For example, we may define procedures that implement the functions above as foll
     (up (f v) y)))
 
 (define h (compose f g))
-```
+fdg-code-source-end */
+#fdg-scheme-code-block("appendix_b/026")
 
 Repeat exercise B.1 using the computer. Explore both implementations of multiple-argument functions.
 ]

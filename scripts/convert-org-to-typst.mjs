@@ -1851,6 +1851,24 @@ function replaceCitationsAndEquationRefs(body) {
     );
 }
 
+function wrapEmbeddedSchemeBlocks(body, stem) {
+  let ordinal = 0;
+  return body.replace(/```scheme\n[\s\S]*?\n```/g, source => {
+    ordinal += 1;
+    let executableOrdinal = ordinal;
+    const code = source.slice("```scheme\n".length, -"\n```".length);
+    // The printed discussion introduces the geodesic residual immediately
+    // before showing how Cartan is computed. Execute those two blocks in the
+    // dependency order while leaving their printed positions untouched.
+    if (stem === "chapter001" && code.includes("(define geodesic-equation-residuals")) executableOrdinal = 16;
+    if (stem === "chapter001" && code.includes("(define Cartan")) executableOrdinal = 15;
+    const number = String(executableOrdinal).padStart(3, "0");
+    const id = `${stem}/${number}`;
+    if (code.includes("*/")) throw new Error(`Scheme block ${id} cannot be embedded in a Typst comment`);
+    return `/* fdg-code-source: ${id}\n${code}\nfdg-code-source-end */\n#fdg-code-block("${id}")`;
+  });
+}
+
 function convert(file) {
   const input = path.join(orgDir, file);
   const stem = file.replace(/\.org$/, "");
@@ -1897,14 +1915,14 @@ function convert(file) {
   const bodyWithPostMathRepairs = stem === "chapter010"
     ? compactChapter10AuditedDisplays(repairChapter10(bodyWithTypstMathRepairs))
     : bodyWithTypstMathRepairs;
-  const bodyWithNormalizedDisplays = removeRedundantScaledDelimiters(
+  const bodyWithNormalizedDisplays = wrapEmbeddedSchemeBlocks(removeRedundantScaledDelimiters(
     normalizeMultilineMath(bodyWithPostMathRepairs),
-  );
+  ), stem);
 
-  const content = [
+  let content = [
     `// Generated from ../../fdg-book/scheme/org/${file}.`,
     `// Re-run scripts/convert-org-to-typst.mjs to refresh.`,
-    `#import "../lib.typ": fdg-chapter, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX`,
+    `#import "../lib.typ": fdg-chapter, fdg-code-block, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX`,
     "",
     `#fdg-chapter(${JSON.stringify(typstEscape(displayTitle))}, numbered: ${numbered}, eq-prefix: ${JSON.stringify(equationLabelPrefix(stem) ?? "0")}, ref-label: ${JSON.stringify(chapterLabel(stem) ?? "")})[`,
     bodyWithNormalizedDisplays.trimEnd(),
@@ -1912,12 +1930,137 @@ function convert(file) {
     "",
   ].join("\n");
 
+  if (["appendix_a", "appendix_b", "appendix_c"].includes(stem)) {
+    content = content
+      .replace("fdg-code-block,", "fdg-code-block, fdg-scheme-code-block,")
+      .replaceAll("#fdg-code-block(", "#fdg-scheme-code-block(");
+  }
+
   writeFileSync(path.join(contentDir, `${stem}.typ`), content);
   return { stem, title };
 }
 
 mkdirSync(contentDir, { recursive: true });
 const chapters = files.map(convert);
+
+function cljsAppendix(sourceStem, targetStem, sourceLetter, targetLetter, title) {
+  let source = readFileSync(path.join(contentDir, `${sourceStem}.typ`), "utf8");
+  source = source
+    .replace(/^\/\/ Generated[^\n]*\n\/\/ Re-run[^\n]*\n/, "")
+    .replaceAll("fdg-scheme-code-block", "fdg-cljs-code-block")
+    .replace(/fdg-code-block/g, "fdg-cljs-code-block")
+    .replace(
+      /#fdg-chapter\("[^"]+", numbered: true, eq-prefix: "[A-C]", ref-label: "chap-appendix-[a-c]"\)\[/,
+      `#fdg-chapter(${JSON.stringify(title)}, numbered: true, eq-prefix: ${JSON.stringify(targetLetter)}, ref-label: ${JSON.stringify(`chap-appendix-${targetLetter.toLowerCase()}`)})[\n#block(inset: (left: 1em), stroke: (left: 2pt + gray))[#emph[Editorial note: This appendix is derived from Appendix ${sourceLetter}; its examples have been translated to ClojureScript using Emmy, while the original wording has been retained wherever possible.]]`,
+    )
+    .replaceAll(`sec-${sourceLetter}.`, `sec-${targetLetter}.`)
+    .replaceAll(`<${sourceLetter}.`, `<${targetLetter}.`)
+    .replaceAll(`@${sourceLetter}.`, `@${targetLetter}.`)
+    .replaceAll('lang:"scheme"', 'lang:"clojure"')
+    .replaceAll("Scmutils", "Emmy")
+    .replaceAll("scmutils", "Emmy")
+    .replaceAll("Scheme procedures", "ClojureScript functions")
+    .replaceAll("Scheme procedure", "ClojureScript function")
+    .replaceAll("Scheme programs", "ClojureScript programs")
+    .replaceAll("Scheme program", "ClojureScript program")
+    .replaceAll("Scheme system", "ClojureScript system")
+    .replaceAll("Scheme symbols", "ClojureScript symbols")
+    .replaceAll("Scheme symbol", "ClojureScript symbol")
+    .replaceAll("Scheme vectors", "ClojureScript vectors")
+    .replaceAll("Scheme vector", "ClojureScript vector")
+    .replaceAll("In Scheme", "In ClojureScript")
+    .replaceAll("in Scheme", "in ClojureScript")
+    .replaceAll("the computer language #emph[Scheme] @ieee1991scheme", "ClojureScript with the Emmy computer algebra library")
+    .replaceAll("Scheme is based on", "ClojureScript is a Lisp and is based on")
+    .replaceAll("Scheme online documentation", "ClojureScript documentation")
+    .replaceAll("Scheme does not care", "ClojureScript does not care")
+    .replaceAll("All selectors in Scheme", "All selectors in ClojureScript")
+    .replaceAll("Scheme is a dialect of Lisp", "ClojureScript is a dialect of Clojure and a member of the Lisp family");
+
+  if (sourceStem === "appendix_a") {
+    source = source
+      .replace('Programming languages should be designed not by piling feature on top of feature, but by removing the weaknesses and restrictions that make additional features appear necessary. Scheme demonstrates that a very small number of rules for forming expressions, with no restrictions on how they are composed, suffice to form a practical and efficient programming language that is flexible enough to support most of the major programming paradigms in use today.\n\nIEEE Standard for the Scheme Programming Language @ieee1991scheme, p. 3',
+        'ClojureScript is a dialect of Clojure that compiles to JavaScript and retains Clojure’s emphasis on immutable data and functional programming. Emmy supplies the generic arithmetic and symbolic mathematics used by the examples in this edition.')
+      .replace(/Here we give an elementary introduction to Scheme\.[\s\S]*?@abelson1996sicp\./,
+        "Here we give an elementary introduction to the ClojureScript forms used in this book. For a fuller introduction, see the ClojureScript language documentation.")
+      .replace("Scheme is a simple programming language", "ClojureScript is a programming language")
+      .replaceAll("Procedure Calls", "Function Calls")
+      .replaceAll("procedure call", "function call")
+      .replaceAll("Procedure definitions", "Function definitions")
+      .replaceAll("procedures", "functions")
+      .replaceAll("procedure", "function")
+      .replaceAll("Lambda Expressions", "Function Expressions")
+      .replaceAll("$lambda$-expressions", "#raw(lang:\"clojure\", \"fn\") expressions")
+      .replaceAll("$lambda$-expression", "#raw(lang:\"clojure\", \"fn\") expression")
+      .replaceAll("the define construct", "the #raw(lang:\"clojure\", \"def\") construct")
+      .replaceAll("Recursive Procedures", "Recursive Functions")
+      .replaceAll("Lists are built from pairs.", "ClojureScript lists are persistent sequential collections.")
+      .replace(/A pair is made using the constructor[\s\S]*?Thus,\n/, "The functions #raw(lang:\"clojure\", \"first\") and #raw(lang:\"clojure\", \"rest\") select the first element and the remaining sequence. Thus,\n")
+      .replaceAll('#raw(lang:"clojure", "list-ref")', '#raw(lang:"clojure", "nth")')
+      .replaceAll('#raw(lang:"clojure", "vector-ref")', '#raw(lang:"clojure", "nth")')
+      .replaceAll('#raw(lang:"clojure", "car")', '#raw(lang:"clojure", "first")')
+      .replaceAll('#raw(lang:"clojure", "cdr")', '#raw(lang:"clojure", "rest")')
+      .replaceAll('#raw(lang:"clojure", "eq?")', '#raw(lang:"clojure", "=")')
+      .replaceAll('#raw(lang:"clojure", "#t")', '#raw(lang:"clojure", "true")')
+      .replaceAll('#raw(lang:"clojure", "#f")', '#raw(lang:"clojure", "false")');
+
+    source = source.replace(
+      'Function definitions may be expressed more conveniently using \\"syntactic sugar.\\"',
+      `=== Names, functions, and local bindings
+
+ClojureScript uses several related forms where Scheme uses #raw(lang:"clojure", "define"), #raw(lang:"clojure", "lambda"), and local definitions. Their different scopes are important:
+
+- #raw(lang:"clojure", "def") gives a name to a value in the current namespace. The value may be a number, a function, or any other object. Thus #raw(lang:"clojure", "(def pi 3.14159)") defines a global name.
+- #raw(lang:"clojure", "fn") constructs a function value. Its parameters are written in a vector: #raw(lang:"clojure", "(fn [x] (* x x))"). An #raw(lang:"clojure", "fn") may be anonymous, or it may be stored in a name using #raw(lang:"clojure", "def").
+- #raw(lang:"clojure", "defn") is convenient syntax for a #raw(lang:"clojure", "def") whose value is an #raw(lang:"clojure", "fn"). For example, #raw(lang:"clojure", "(defn square [x] (* x x))") is essentially #raw(lang:"clojure", "(def square (fn [x] (* x x)))"). Use #raw(lang:"clojure", "defn") for a named, namespace-level function and #raw(lang:"clojure", "def") for other namespace-level values.
+- #raw(lang:"clojure", "let") introduces local names and values. Its binding vector alternates names and expressions: #raw(lang:"clojure", "(let [x 3 y 4] (sqrt (+ (square x) (square y))))"). These names exist only in the body of the #raw(lang:"clojure", "let").
+- #raw(lang:"clojure", "letfn") introduces local function names. Unlike ordinary #raw(lang:"clojure", "let") bindings, the functions may refer to themselves and to one another, so #raw(lang:"clojure", "letfn") is the direct translation for recursive or mutually dependent internal Scheme function definitions.
+
+The names introduced by #raw(lang:"clojure", "def") and #raw(lang:"clojure", "defn") persist in the namespace. The names introduced by #raw(lang:"clojure", "let"), #raw(lang:"clojure", "letfn"), and function parameter vectors are lexical and disappear outside their bodies.
+
+Function definitions may be expressed more conveniently using \\"syntactic sugar.\\"`,
+    );
+
+    const cheatSheet = `
+
+== Scheme–ClojureScript Cheat Sheet <sec-D.9>
+
+The following correspondences cover the language forms used most often in this book. They describe syntax; Emmy supplies the mathematical operations used by the examples.
+
+- Global value: Scheme #raw(lang:"clojure", "(define x value)"); ClojureScript #raw(lang:"clojure", "(def x value)").
+- Global function: Scheme #raw(lang:"clojure", "(define (f x) body)"); ClojureScript #raw(lang:"clojure", "(defn f [x] body)").
+- Anonymous function: Scheme #raw(lang:"clojure", "(lambda (x) body)"); ClojureScript #raw(lang:"clojure", "(fn [x] body)").
+- Function stored as a value: Scheme #raw(lang:"clojure", "(define f (lambda (x) body))"); ClojureScript #raw(lang:"clojure", "(def f (fn [x] body))").
+- Local values: Scheme #raw(lang:"clojure", "(let ((x a) (y b)) body)"); ClojureScript #raw(lang:"clojure", "(let [x a y b] body)").
+- Sequential local values: Scheme #raw(lang:"clojure", "let*"); later ClojureScript bindings in one #raw(lang:"clojure", "let") vector can refer to earlier bindings.
+- Local functions and internal #raw(lang:"clojure", "define"): use ClojureScript #raw(lang:"clojure", "letfn"), especially when the functions are recursive or mutually dependent.
+- Named Scheme #raw(lang:"clojure", "let") loops: usually use ClojureScript #raw(lang:"clojure", "loop") with #raw(lang:"clojure", "recur"), or #raw(lang:"clojure", "letfn") when a local function communicates the algorithm more clearly.
+- Several expressions in sequence: Scheme #raw(lang:"clojure", "begin"); ClojureScript #raw(lang:"clojure", "do"). Function and binding bodies already allow several expressions without an explicit #raw(lang:"clojure", "do").
+- Conditional: #raw(lang:"clojure", "if") has the same role in both languages. In #raw(lang:"clojure", "cond"), Scheme #raw(lang:"clojure", "else") becomes ClojureScript #raw(lang:"clojure", ":else").
+- Boolean values: Scheme #raw(lang:"clojure", "#t") and #raw(lang:"clojure", "#f"); ClojureScript #raw(lang:"clojure", "true") and #raw(lang:"clojure", "false").
+- Equality used by these examples: Scheme #raw(lang:"clojure", "eq?"); ClojureScript #raw(lang:"clojure", "=").
+- Indexed selection: Scheme #raw(lang:"clojure", "list-ref") and #raw(lang:"clojure", "vector-ref"); ClojureScript #raw(lang:"clojure", "nth"). Emmy's structured mathematical values also support #raw(lang:"clojure", "ref").
+- Sequence selectors: Scheme #raw(lang:"clojure", "car") and #raw(lang:"clojure", "cdr"); ClojureScript #raw(lang:"clojure", "first") and #raw(lang:"clojure", "rest").
+- Variadic parameters: Scheme #raw(lang:"clojure", "(lambda args body)") or a dotted parameter list; ClojureScript uses #raw(lang:"clojure", "&") in its parameter vector, as in #raw(lang:"clojure", "(fn [& args] body)").
+- Quotation: the reader abbreviation #raw(lang:"clojure", "'expression") works in both languages. ClojureScript also has keywords such as #raw(lang:"clojure", ":else"), which evaluate to themselves and are not quoted symbols.
+- Function application remains a parenthesized form in both languages: #raw(lang:"clojure", "(f x y)"). ClojureScript parameter and binding lists use square-bracket vectors, while calls still use parentheses.
+`;
+    source = source.replace(/\n\]\s*$/, `${cheatSheet}\n]`);
+  }
+  writeFileSync(path.join(contentDir, `${targetStem}.typ`), source);
+  return { stem: targetStem, title: `Appendix ${targetLetter}: ${title}` };
+}
+
+const cljsAppendices = [
+  cljsAppendix("appendix_a", "appendix_d", "A", "D", "ClojureScript"),
+  cljsAppendix("appendix_b", "appendix_e", "B", "E", "Our Notation in Emmy"),
+  cljsAppendix("appendix_c", "appendix_f", "C", "F", "Tensors in Emmy"),
+];
+const appendixG = { stem: "appendix_g", title: "Appendix G: Running the Emmy Examples" };
+writeFileSync(
+  path.join(contentDir, "appendix_g.typ"),
+  readFileSync(path.join(typDir, "templates", "appendix_g.typ"), "utf8"),
+);
 
 const indexedIncludes = chapters
   .filter(({ stem }) => stem !== "errata")
@@ -1935,6 +2078,10 @@ const indexedIncludes = chapters
     if (stem === "appendix_c") {
       return [
         `    #include "content/${stem}.typ"`,
+        '    #include "content/appendix_d.typ"',
+        '    #include "content/appendix_e.typ"',
+        '    #include "content/appendix_f.typ"',
+        '    #include "content/appendix_g.typ"',
         "  ]",
       ].join("\n");
     }
@@ -1955,7 +2102,8 @@ writeFileSync(
     + `// Edit typ/lib.typ for presentation; edit the converter for structural changes.\n\n`
     + `#import "lib.typ": *\n`
     + `#import "index.typ": fdg-indexed-body, fdg-index-page\n\n`
-    + `#show: fdg-book\n\n`
+    + `#let code-edition = sys.inputs.at("code", default: "scheme")\n`
+    + `#show: fdg-book.with(code-edition: code-edition)\n\n`
     + `#fdg-title-page(seed: fdg-seed-bibliography-order())\n\n`
     + `#set page(numbering: "i")\n`
     + `\n`
@@ -1975,7 +2123,7 @@ writeFileSync(
   path.join(typDir, "manifest.typ"),
   `// Generated input manifest for the Scheme Org source files.\n`
     + `#let fdg-source-files = (\n`
-    + chapters
+    + [...chapters, ...cljsAppendices, appendixG]
       .map(({ stem, title }) => `  (file: "content/${stem}.typ", title: ${JSON.stringify(typstEscape(title))}),`)
       .join("\n")
     + `\n)\n`,

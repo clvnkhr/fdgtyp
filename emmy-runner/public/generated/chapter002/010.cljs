@@ -1,1 +1,1 @@
-(def R2-rect-point (R2-rect-chi-inverse (up 'x0 'y0)))
+(def f (compose (literal-function 'f-rect R2->R) R2-rect-chi))

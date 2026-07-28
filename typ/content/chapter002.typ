@@ -1,6 +1,6 @@
 // Generated from ../../fdg-book/scheme/org/chapter002.org.
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
-#import "../lib.typ": fdg-chapter, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
+#import "../lib.typ": fdg-chapter, fdg-code-block, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
 
 #fdg-chapter("Manifolds", numbered: true, eq-prefix: "2", ref-label: "chap-2")[
 A #emph[manifold] is a generalization of our idea of a smooth surface embedded in Euclidean space. For an #emph[n]-dimensional manifold, around every point there is a simply-connected open set, the #emph[coordinate patch], and a one-to-one continuous function, the #emph[coordinate function] or #emph[chart], mapping every point in that open set to a tuple of #emph[n] real numbers, the #emph[coordinates]. In general, several charts are needed to label all points on a manifold. It is required that if a region is in more than one coordinate patch then the coordinates are consistent in that the function mapping one set of coordinates to another is continuous (and perhaps differentiable to some degree). A consistent system of coordinate patches and coordinate functions that covers the entire manifold is called an #emph[atlas].
@@ -13,15 +13,17 @@ Two angles specify the configuration of the planar double pendulum. The manifold
 
 There are computational objects that we can use to model manifolds. For example, we can make an object that represents the plane#footnote[The expression `R^n` gives only one kind of manifold. We also have spheres `S^n` and `SO3`.]
 
-```scheme
+/* fdg-code-source: chapter002/001
 (define R2 (make-manifold R^n 2))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter002/001")
 
 and give it the name `R2`. One useful patch of the plane is the one that contains the origin and covers the entire plane#footnote[The word `origin` is an arbitrary symbol here. It labels a predefined patch in `R^n` manifolds.].
 
-```scheme
+/* fdg-code-source: chapter002/002
 (define U (patch 'origin R2))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter002/002")
 
 == Coordinate Functions <sec-2.1>
 A coordinate function $chi$ maps points in a coordinate patch of a manifold to a coordinate tuple#footnote[In the text that follows we will use sans-serif names, such as $sans(f)$, $sans(v)$, $sans(m)$, to refer to objects defined on the manifold. Objects that are defined on coordinates (tuples of real numbers) will be named with symbols like $f$, $v$, $x$.]:
@@ -42,46 +44,55 @@ Given a coordinate system `coordsys` for a patch on a manifold the procedure tha
 
 We can have both rectangular and polar coordinates on a patch of the plane identified by the origin:#footnote[The rectangular coordinates are good for the entire plane, but the polar coordinates are singular at the origin because the angle is not defined. Also, the patch for polar coordinates must exclude one ray from the origin, because of the angle variable.]#footnote[We can avoid explicitly naming the patch:
 
-```scheme
+/* fdg-code-source: chapter002/003
 (define R2-rect (coordinate-system-at 'rectangular 'origin R2))
-```]
+fdg-code-source-end */
+#fdg-code-block("chapter002/003")]
 
-```scheme
+/* fdg-code-source: chapter002/004
 ;; Some charts on the patch U
 (define R2-rect (coordinate-system 'rectangular U))
 (define R2-polar (coordinate-system 'polar/cylindrical U))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter002/004")
 
 For each of the coordinate systems above we obtain the coordinate functions and their inverses:
 
-```scheme
+/* fdg-code-source: chapter002/005
 (define R2-rect-chi (chart R2-rect))
 (define R2-rect-chi-inverse (point R2-rect))
 (define R2-polar-chi (chart R2-polar))
 (define R2-polar-chi-inverse (point R2-polar))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter002/005")
 
 The coordinate transformations are then just compositions. The polar coordinates of a rectangular point are:
 
-```scheme
-((compose R2-polar-chi R2-rect-chi-inverse) (up 'x0 'y0))
+/* fdg-code-source: chapter002/006
+((compose R2-polar-chi R2-rect-chi-inverse)
+ (up 'x0 'y0))
 ;;(up (sqrt (+ (expt x0 2) (expt y0 2))) (atan y0 x0))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter002/006")
 
 And the rectangular coordinates of a polar point are:
 
-```scheme
-((compose R2-rect-chi R2-polar-chi-inverse) (up 'r0 'theta0))
+/* fdg-code-source: chapter002/007
+((compose R2-rect-chi R2-polar-chi-inverse)
+ (up 'r0 'theta0))
 ;;(up (* r0 (cos theta0)) (* r0 (sin theta0)))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter002/007")
 
 And we can obtain the Jacobian of the polar-to-rectangular transformation by taking its derivative#footnote[See Appendix @chap-appendix-b for an introduction to tuple arithmetic and a discussion of derivatives of functions with structured input or output.]:
 
-```scheme
-((D (compose R2-rect-chi R2-polar-chi-inverse)) (up 'r0 'theta0))
+/* fdg-code-source: chapter002/008
+((D (compose R2-rect-chi R2-polar-chi-inverse))
+ (up 'r0 'theta0))
 ;;(down (up (cos theta0) (sin theta0))
 ;;      (up (* -1 r0 (sin theta0)) (* r0 (cos theta0))))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter002/008")
 
 == Manifold functions <sec-2.2>
 Let $sans(f)$ be a real-valued function on a manifold $sans(M)$: this function maps points $sans(m)$ on the manifold to real numbers.
@@ -99,55 +110,64 @@ We can illustrate the coordinate independence with a program. We will show that 
 
 We define a manifold function by specifying its behavior in rectangular coordinates#footnote[Alternatively, we can define the same function in a shorthand
 
-```scheme
+/* fdg-code-source: chapter002/009
 (define f (literal-manifold-function 'f-rect R2-rect))
-```]:
+fdg-code-source-end */
+#fdg-code-block("chapter002/009")]:
 
-```scheme
-(define f (compose (literal-function 'f-rect R2->R) R2-rect-chi))
-```
+/* fdg-code-source: chapter002/010
+(define f
+  (compose (literal-function 'f-rect R2->R) R2-rect-chi))
+fdg-code-source-end */
+#fdg-code-block("chapter002/010")
 
 where `R2->R` is a signature for functions that map an up structure of two reals to a real:
 
-```scheme
+/* fdg-code-source: chapter002/011
 (define R2->R (-> (UP Real Real) Real))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter002/011")
 
 We can specify a typical manifold point using its rectangular coordinates:
 
-```scheme
+/* fdg-code-source: chapter002/012
 (define R2-rect-point (R2-rect-chi-inverse (up 'x0 'y0)))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter002/012")
 
 We can describe the #emph[same point] using its polar coordinates:
 
-```scheme
+/* fdg-code-source: chapter002/013
 (define corresponding-polar-point
-  (R2-polar-chi-inverse (up (sqrt (+ (square 'x0) (square 'y0)))
-                            (atan 'y0 'x0))))
-```
+  (R2-polar-chi-inverse
+   (up (sqrt (+ (square 'x0) (square 'y0)))
+       (atan 'y0 'x0))))
+fdg-code-source-end */
+#fdg-code-block("chapter002/013")
 
 `(f R2-rect-point)` and `(f corresponding-polar-point)` agree, even though the point has been specified in two different coordinate systems:
 
-```scheme
+/* fdg-code-source: chapter002/014
 (f R2-rect-point)
 ;;(f-rect (up x0 y0))
 
 (f corresponding-polar-point)
 ;;(f-rect (up x0 y0))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter002/014")
 
 == Naming Coordinate Functions <sec-2.4>
 To make things a bit easier, we can give names to the individual coordinate functions associated with a coordinate system. Here we name the coordinate functions for the `R2-rect` coordinate system `x` and `y` and for the `R2-polar` coordinate system `r` and `theta`.
 
-```scheme
+/* fdg-code-source: chapter002/015
 (define-coordinates (up x y) R2-rect)
 (define-coordinates (up r theta) R2-polar)
-```
+fdg-code-source-end */
+#fdg-code-block("chapter002/015")
 
 This allows us to extract the coordinates from a point, independent of the coordinate system used to specify the point.
 
-```scheme
+/* fdg-code-source: chapter002/016
 (x (R2-rect-chi-inverse (up 'x0 'y0)))
 ;;x0
 
@@ -162,39 +182,44 @@ This allows us to extract the coordinates from a point, independent of the coord
 
 (theta (R2-rect-chi-inverse (up 'x0 'y0)))
 ;;(atan y0 x0)
-```
+fdg-code-source-end */
+#fdg-code-block("chapter002/016")
 
 We can work with the coordinate functions in a natural manner, defining new manifold functions in terms of them#footnote[This is actually a nasty, but traditional, abuse of notation. An expression like $cos(r)$ can either mean the cosine of the angle $r$ (if $r$ is a number), or the composition $cos compose r$ (if $r$ is a function). In our system `(cos r)` behaves in this way---either computing the cosine of `r` or being treated as `(compose cos r)` depending on what `r` is.]:
 
-```scheme
+/* fdg-code-source: chapter002/017
 (define h (+ (* x (square r)) (cube y)))
 
 (h R2-rect-point)
 ;;(+ (expt x0 3) (* x0 (expt y0 2))
 ;;   (expt y0 3))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter002/017")
 
 We can also apply `h` to a point defined in terms of its polar coordinates:
 
-```scheme
+/* fdg-code-source: chapter002/018
 (h (R2-polar-chi-inverse (up 'r0 'theta0)))
 ;;(+ (* (expt r0 3) (expt (sin theta0) 3))
 ;;   (* (expt r0 3) (cos theta0)))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter002/018")
 
 == Exercise 2.1: Curves <sec-2.5>
 A curve may be specified in different coordinate systems. For example, a cardioid constructed by rolling a circle of radius a around another circle of the same radius is described in polar coordinates by the equation $ r = 2 a (1 + cos(theta)). $
 
 We can convert this to rectangular coordinates by evaluating the residual in rectangular coordinates.
 
-```scheme
+/* fdg-code-source: chapter002/019
 (define-coordinates (up r theta) R2-polar)
-((- r (* 2 'a (+ 1 (cos theta)))) ((point R2-rect) (up 'x 'y)))
+((- r (* 2 'a (+ 1 (cos theta))))
+ ((point R2-rect) (up 'x 'y)))
 ;;(/ (+ (* -2 a x)
 ;;      (* -2 a (sqrt (+ (expt x 2) (expt y 2))))
 ;;      (expt x 2) (expt y 2))
 ;;   (sqrt (+ (expt x 2) (expt y 2))))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter002/019")
 
 The numerator of this expression is the equivalent residual in rectangular coordinates. If we rearrange terms and square it we get the traditional formula for the cardioid $ (x^2 + y^2 - 2 a x)^2= 4 a^2 (x^2 + y^2). $
 
@@ -215,16 +240,18 @@ The coordinate system for points on the sphere in terms of rectangular coordinat
 
 We can compute the colatitude and longitude of a point on the sphere corresponding to a point on the plane with the following incantation:
 
-```scheme
-((compose (chart S2-spherical)
-          (point S2-Riemann)
-          (chart R2-rect)
-          (point R2-polar))
+/* fdg-code-source: chapter002/020
+((compose
+  (chart S2-spherical)
+  (point S2-Riemann)
+  (chart R2-rect)
+  (point R2-polar))
  (up 'rho 'theta))
 ;;(up (acos (/ (+ -1 (expt rho 2))
 ;;             (+ +1 (expt rho 2))))
 ;;    theta)
-```
+fdg-code-source-end */
+#fdg-code-block("chapter002/020")
 
 Perform an analogous computation to get the polar coordinates of the point on the plane corresponding to a point on the sphere given by its colatitude and longitude.
 ]

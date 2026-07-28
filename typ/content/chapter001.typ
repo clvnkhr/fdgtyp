@@ -1,6 +1,6 @@
 // Generated from ../../fdg-book/scheme/org/chapter001.org.
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
-#import "../lib.typ": fdg-chapter, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
+#import "../lib.typ": fdg-chapter, fdg-code-block, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
 
 #fdg-chapter("Introduction", numbered: true, eq-prefix: "1", ref-label: "chap-1")[
 #quote(block: true)[
@@ -30,10 +30,11 @@ In SICM @sussman2001sicm, Section 1.6.3, we showed that a Lagrangian describing 
 
 A Lagrangian for a free particle of mass m and velocity v is just its kinetic energy, $m v^2\/2$. The procedure #raw(lang:"scheme", "Lfree") implements the free Lagrangian:#footnote[An informal description of the Scheme programming language can be found in Appendix @chap-appendix-a.]
 
-```scheme
+/* fdg-code-source: chapter001/001
 (define ((Lfree mass) state)
   (* 1/2 mass (square (velocity state))))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter001/001")
 
 For us the dynamical state of a system of particles is a tuple of time, coordinates, and velocities. The free-particle Lagrangian depends only on the velocity part of the state.
 
@@ -41,43 +42,48 @@ For motion of a point constrained to move on the surface of a sphere the configu
 
 For a sphere of radius R the procedure #raw(lang:"scheme", "sphere->R3") implements the transformation of coordinates from colatitude $theta$ and longitude $phi.alt$ on the surface of the sphere to rectangular coordinates in the embedding space. (The $hat(z)$ axis goes through the North Pole, and the Equator is in the plane $z = 0$.)
 
-```scheme
+/* fdg-code-source: chapter001/002
 (define ((sphere->R3 R) state)
   (let ((q (coordinate state)))
-    (let ((theta (ref q 0))
-          (phi (ref q 1)))
+    (let ((theta (ref q 0)) (phi (ref q 1)))
       (up (* R (sin theta) (cos phi)) ; x
           (* R (sin theta) (sin phi)) ; y
-          (* R (cos theta)))))) ; z
-```
+          (* R (cos theta))))))       ; z
+fdg-code-source-end */
+#fdg-code-block("chapter001/002")
 
 The coordinate transformation maps the generalized coordinates on the sphere to the 3-dimensional rectangular coordinates. Given this coordinate transformation we construct a corresponding transformation of velocities; these make up the state transformation. The procedure #raw(lang:"scheme", "F->C") implements the derivation of a transformation of states from a coordinate transformation:
 
-```scheme
+/* fdg-code-source: chapter001/003
 (define ((F->C F) state)
   (up (time state)
       (F state)
       (+ (((partial 0) F) state)
-         (* (((partial 1) F) state) (velocity state)))))
-```
+         (* (((partial 1) F) state)
+            (velocity state)))))
+fdg-code-source-end */
+#fdg-code-block("chapter001/003")
 
 A Lagrangian governing free motion on a sphere of radius $R$ is then the composition of the free Lagrangian with the transformation of states.
 
-```scheme
+/* fdg-code-source: chapter001/004
 (define (Lsphere m R)
   (compose (Lfree m) (F->C (sphere->R3 R))))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter001/004")
 
 So the value of the Lagrangian at an arbitrary dynamical state is:
 
-```scheme
-((Lsphere 'm 'R) (up 't (up 'theta 'phi) (up 'thetadot 'phidot)))
+/* fdg-code-source: chapter001/005
+((Lsphere 'm 'R)
+ (up 't (up 'theta 'phi) (up 'thetadot 'phidot)))
 
 #|
 (+ (* 1/2 (expt R 2) m (expt phidot 2) (expt (sin theta) 2))
    (* 1/2 (expt R 2) m (expt thetadot 2)))
 |#
-```
+fdg-code-source-end */
+#fdg-code-block("chapter001/005")
 
 or, in infix notation:
 
@@ -103,40 +109,44 @@ This is written using indexed variables to indicate components of the geometric 
 
 We can capture this geometric statement as a program:
 
-```scheme
+/* fdg-code-source: chapter001/006
 (define ((L2 mass metric) place velocity)
   (* 1/2 mass ((metric velocity velocity) place)))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter001/006")
 
 This program gives the Lagrangian in a coordinate-independent, geometric way. It is entirely in terms of geometric objects, such as a place on the configuration manifold, the velocity at that place, and the metric that describes the local shape of the manifold. But to compute we need a coordinate system. We express the dynamical state in terms of coordinates and velocity components in the coordinate system. For each coordinate system there is a natural vector basis and the geometric velocity vectors can be constructed by contracting the basis with the components of the velocity. Thus, we can form a coordinate representation of the Lagrangian.
 
-```scheme
+/* fdg-code-source: chapter001/007
 (define ((Lc mass metric coordsys) state)
   (let ((x (coordinates state))
         (v (velocities state))
         (e (coordinate-system->vector-basis coordsys)))
     ((L2 mass metric) ((point coordsys) x) (* e v))))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter001/007")
 
 The manifold point $sans(m)$ represented by the coordinates $x$ is given by #raw(lang:"scheme", "(define m ((point coordsys) x))"). The coordinates of $sans(m)$ in a different coordinate system are given by #raw(lang:"scheme", "((chart coordsys2) m)"). The manifold point $sans(m)$ is a geometric object that is the same point independent of how it is specified. Similarly, the velocity vector $sans(e) v$ is a geometric object, even though it is specified using components $v$ with respect to the basis $sans(e)$. Both $v$ and $sans(e)$ have as many components as the dimension of the space so their product is interpreted as a contraction.
 
 Let\'s make a general metric on a 2-dimensional real manifold:#footnote[The procedure #raw(lang:"scheme", "literal-metric") provides a metric. It is a general symmetric function of two vector fields, with literal functions of the coordinates of the manifold points for its coefficients in the given coordinate system. The quoted symbol #raw(lang:"scheme", "'g") is used to make the names of the literal coefficient functions. Literal functions are discussed in Appendix @chap-appendix-b.]
 
-```scheme
+/* fdg-code-source: chapter001/008
 (define the-metric (literal-metric 'g R2-rect))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter001/008")
 
 The metric is expressed in rectangular coordinates, so the coordinate system is #raw(lang:"scheme", "R2-rect").#footnote[#raw(lang:"scheme", "R2-rect") is the usual rectangular coordinate system on the 2-dimensional real manifold. (See Section #fdg-ref-page(<sec-2.1>).) We supply common coordinate systems for n-dimensional real manifolds. For example, #raw(lang:"scheme", "R2-polar") is a polar coordinate system on the same manifold.] The component functions will be labeled as subscripted #raw(lang:"scheme", "g")s.
 
 We can now make the Lagrangian for the system:
 
-```scheme
+/* fdg-code-source: chapter001/009
 (define L (Lc 'm the-metric R2-rect))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter001/009")
 
 And we can apply our Lagrangian to an arbitrary state:
 
-```scheme
+/* fdg-code-source: chapter001/010
 (L (up 't (up 'x 'y) (up 'vx 'vy)))
 
 #|
@@ -144,45 +154,51 @@ And we can apply our Lagrangian to an arbitrary state:
    (* m vx vy (g_01 (up x y)))
    (* 1/2 m (expt vy 2) (g_11 (up x y))))
 |#
-```
+fdg-code-source-end */
+#fdg-code-block("chapter001/010")
 
 Compare this result with equation @1.3.
 
 == Euler-Lagrange Residuals <sec-1.3>
 The Euler-Lagrange equations are satisfied on realizable paths. Let $gamma$ be a path on the manifold of configurations. (A path is a map from the 1-dimensional real line to the configuration manifold. We introduce maps between manifolds in Chapter 6.) Consider an arbitrary path:#footnote[The procedure #raw(lang:"scheme", "literal-manifold-map") makes a map from the manifold implied by its second argument to the manifold implied by the third argument. These arguments must be coordinate systems. The quoted symbol that is the first argument is used to name the literal coordinate functions that define the map.]
 
-```scheme
+/* fdg-code-source: chapter001/011
 (define gamma (literal-manifold-map 'q R1-rect R2-rect))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter001/011")
 
 The values of $gamma$ are points on the manifold, not a coordinate representation of the points. We may evaluate #raw(lang:"scheme", "gamma") only on points of the real-line manifold; #raw(lang:"scheme", "gamma") produces points on the $bb(R)^2$ manifold. So to go from the literal real-number coordinate #raw(lang:"scheme", "'t") to a point on the real line we use #raw(lang:"scheme", "((point R1-rect) 't)") and to go from a point #raw(lang:"scheme", "m") in $bb(R)^2$ to its coordinate representation we use #raw(lang:"scheme", "((chart R2-rect) m)"). (The procedures point and chart are introduced in Chapter 2.) Thus
 
-```scheme
+/* fdg-code-source: chapter001/012
 ((chart R2-rect) (gamma ((point R1-rect) 't)))
 
 #|
 (up (q^0 t) (q^1 t))
 |#
-```
+fdg-code-source-end */
+#fdg-code-block("chapter001/012")
 
 So, to work with coordinates we write:
 
-```scheme
-(define coordinate-path (compose (chart R2-rect) gamma (point R1-rect)))
+/* fdg-code-source: chapter001/013
+(define coordinate-path
+  (compose (chart R2-rect) gamma (point R1-rect)))
 
 (coordinate-path 't)
 
 #|
 (up (q^0 t) (q^1 t))
 |#
-```
+fdg-code-source-end */
+#fdg-code-block("chapter001/013")
 
 Now we can compute the residuals of the Euler-Lagrange equations, but we get a large messy expression that we will not show.#footnote[For an explanation of equation residuals see #fdg-page-ref(<prologue-residuals>).] However, we will save it to compare with the residuals of the geodesic equations.
 
-```scheme
+/* fdg-code-source: chapter001/014
 (define Lagrange-residuals
   (((Lagrange-equations L) coordinate-path) 't))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter001/014")
 
 == Geodesic Equations <sec-1.4>
 Now we get deeper into the geometry. The traditional way to write the geodesic equations is $ nabla_(sans(v)) sans(v) = 0 $ <1.4> where $nabla$ is a covariant derivative operator. Roughly, $nabla_(sans(v)) sans(w)$ is a directional derivative. It gives a measure of the variation of the vector field $sans(w)$ as you walk along the manifold in the direction of $sans(v)$. (We will explain this in depth in Section #fdg-ref-page(<sec-7.10>).) $nabla_(sans(v)) sans(v) = 0$ is intended to convey that the velocity vector is parallel-transported by itself. When you walked East on the Equator you had to hold the stick so that it was parallel to the Equator. But the stick is constrained to the surface of the Earth, so moving it along the Equator required turning it in three dimensions. The $nabla$ thus must incorporate the 3-dimensional shape of the Earth to provide a notion of \"parallel\" appropriate for the denizens of the surface of the Earth. This information will appear as the \"Christoffel coefficients\" in the coordinate representation of the geodesic equations.
@@ -194,13 +210,14 @@ In coordinates, the geodesic equations are expressed $ D^2 q^i (t)+ sum_(j k) Ga
 We can get and save the geodesic equation residuals by:
 
 
-```scheme
+/* fdg-code-source: chapter001/016
 (define geodesic-equation-residuals
   (((((covariant-derivative Cartan gamma) d/dt)
      ((differential gamma) d/dt))
     (chart R2-rect))
    ((point R1-rect) 't)))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter001/016")
 
 where #raw(lang:"scheme", "d/dt") is a vector field on the real line#footnote[We established #raw(lang:"scheme", "t") as a coordinate function on the rectangular coordinates of the real line by
 
@@ -208,25 +225,29 @@ where #raw(lang:"scheme", "d/dt") is a vector field on the real line#footnote[We
 
 This had the effect of also defining #raw(lang:"scheme", "d/dt") as a coordinate vector field and #raw(lang:"scheme", "dt") as a one-form field on the real line.] and #raw(lang:"scheme", "Cartan") is a way of encapsulating the geometry, as specified by the Christoffel coefficients. The Christoffel coefficients are computed from the metric:
 
-```scheme
+/* fdg-code-source: chapter001/015
 (define Cartan
-  (Christoffel->Cartan (metric->Christoffel-2 the-metric
-                                              (coordinate-system->basis
-                                               R2-rect))))
-```
+  (Christoffel->Cartan
+   (metric->Christoffel-2 the-metric
+         (coordinate-system->basis R2-rect))))
+fdg-code-source-end */
+#fdg-code-block("chapter001/015")
 
 The two messy residual results that we did not show are related by the metric. If we change the representation of the geodesic equations by \"lowering\" them using the mass and the metric, we see that the residuals are equal:
 
-```scheme
+/* fdg-code-source: chapter001/017
 (define metric-components
-  (metric->components the-metric (coordinate-system->basis R2-rect)))
+  (metric->components
+   the-metric
+   (coordinate-system->basis R2-rect)))
 
 (- Lagrange-residuals
    (* (* 'm (metric-components (gamma ((point R1-rect) 't))))
       geodesic-equation-residuals))
 
 (down 0 0)
-```
+fdg-code-source-end */
+#fdg-code-block("chapter001/017")
 
 This establishes that for a 2-dimensional space the Euler-Lagrange equations are equivalent to the geodesic equations. The Christoffel coefficients that appear in the geodesic equation correspond to coefficients of terms in the Euler-Lagrange equations. This analysis will work for any number of dimensions (but will take your computer longer in higher dimensions, because the complexity increases).
 

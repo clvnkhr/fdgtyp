@@ -1,3 +1,1 @@
-(defn Lagrange-equations
-  [Lagrangian]
-  (fn [w] (- (D (compose ((partial 2) Lagrangian) (Gamma w))) (compose ((partial 1) Lagrangian) (Gamma w)))))
+(defn Gamma [w] (fn [t] (up t (w t) ((D w) t))))

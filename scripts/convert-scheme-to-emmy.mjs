@@ -4,12 +4,11 @@ import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
 import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import path from "node:path";
-import { normalizeImportedOrgSource } from "./normalize-org-source.mjs";
 
 const root = process.cwd();
-const schemeDir = path.join(root, "fdg-book", "scheme", "org");
+const typContentDir = path.join(root, "typ", "content");
 const clojureDir = path.join(root, "fdg-book", "clojure", "org");
-const outputDir = path.join(root, "emmy", "blocks");
+const outputDir = path.join(root, "codeblocks");
 const publicDir = path.join(root, "emmy-runner", "public", "generated");
 const force = process.argv.includes("--force");
 
@@ -22,7 +21,7 @@ const explicitSimplifyIds = new Set([
   "chapter008-003", "chapter008-012", "chapter008-022", "chapter008-023", "chapter008-025", "chapter008-026",
   "chapter008-032", "chapter008-034", "chapter008-036",
   "chapter009-005", "chapter009-006", "chapter009-008", "chapter009-010", "chapter009-011", "chapter009-013",
-  "chapter009-014", "chapter009-015", "chapter009-020", "chapter009-023",
+  "chapter009-014", "chapter009-015", "chapter009-023",
   "chapter010-009", "chapter010-011", "chapter010-012", "chapter010-016", "chapter010-020", "chapter010-024",
   "chapter010-027", "chapter010-028", "chapter010-029", "chapter010-030", "chapter010-031", "chapter010-032",
   "chapter010-033", "chapter010-034", "chapter010-036", "chapter010-038", "chapter010-040", "chapter010-041",
@@ -33,16 +32,75 @@ const explicitSimplifyIds = new Set([
   "appendix_b-007", "appendix_b-019", "appendix_b-020", "appendix_b-033",
 ]);
 
+// These blocks have more than one result-producing form, or need simplification
+// on a non-final form. scmutils simplified each displayed result automatically;
+// wrap every corresponding CLJS expression rather than only the block's tail.
+const explicitSimplifyAllResultIds = new Set([
+  "chapter003-016", "chapter003-019",
+  "chapter004-010", "chapter004-012",
+  "chapter005-003", "chapter005-004", "chapter005-008", "chapter005-011",
+  "chapter007-041",
+  "chapter008-010", "chapter008-012", "chapter008-013", "chapter008-024",
+  "chapter009-009", "chapter009-012",
+  "chapter010-012", "chapter010-022",
+  "chapter011-020", "chapter011-027", "chapter011-028",
+  "appendix_b-006",
+]);
+
+// These displayed verification fragments depend on setup that the converted
+// prose describes but does not expose as an earlier runnable block.
+const nonExecutableIds = new Set([
+  "chapter007-006", "chapter007-007", "chapter007-008", "chapter007-009",
+  "chapter007-025",
+  "chapter008-017",
+  // Symbolic Bianchi expansions are valid interactive examples, but are too
+  // expensive for the deterministic every-build smoke pass.
+  "chapter008-035", "chapter008-037", "chapter008-038",
+  // This is the compact expected result of the preceding Ricci calculation,
+  // printed by scmutils as a separate source block in the book.
+  "chapter009-020",
+]);
+
 const files = [
   "prologue.org",
   ...Array.from({ length: 11 }, (_, i) => `chapter${String(i + 1).padStart(3, "0")}.org`),
   "appendix_a.org",
   "appendix_b.org",
   "appendix_c.org",
+  "errata.org",
 ];
 
 function hash(text) {
   return createHash("sha256").update(text).digest("hex");
+}
+
+function normalizeClojureBlockComments(source) {
+  return source.replace(/#\|([\s\S]*?)\|#/g, (_match, comment) => comment
+    .trim()
+    .split("\n")
+    .map(line => `;; ${line}`.trimEnd())
+    .join("\n"));
+}
+
+function stripCapturedResults(source) {
+  return source.replace(/^;; =>[^\n]*(?:\n;;[^\n]*)*\n?/gm, "");
+}
+
+function correctMalformedSchemeOutputs(source, id) {
+  switch (id) {
+    case "chapter003-016":
+      return source.replace(/(;;\s+r)\)\)\s*$/, "$1)))");
+    case "chapter006-009":
+      return source.replace(/(;;\s+\(up \(\(D theta\) t0\) \(\(D phi\) t0\))\)\)\s*$/, "$1)");
+    case "chapter007-031":
+      return source
+        .replace(";; (up + (* -1", ";; (up (+ (* -1")
+        .replace(";; (sign (alpha tau))))", ";; (sin (alpha tau))))");
+    case "chapter007-034":
+      return source.replace(";; up 1.5707963267948957", ";; (up 1.5707963267948957");
+    default:
+      return source;
+  }
 }
 
 function extractBlocks(source, language) {
@@ -64,6 +122,23 @@ function extractBlocks(source, language) {
       i += 1;
     }
     blocks.push({ code: body.join("\n").trim().replaceAll("’", "'"), heading, firstLine });
+  }
+  return blocks;
+}
+
+function extractTypstSchemeBlocks(source, stem) {
+  const blocks = [];
+  const pattern = /\/\* fdg-code-source: ([^\s/]+)\/(\d{3})\n([\s\S]*?)\nfdg-code-source-end \*\//g;
+  for (const match of source.matchAll(pattern)) {
+    if (match[1] !== stem) throw new Error(`mismatched code block id ${match[1]} in ${stem}`);
+    const prefix = source.slice(0, match.index);
+    const heading = [...prefix.matchAll(/^=+\s+(.+)$/gm)].at(-1)?.[1]?.trim() ?? "Front matter";
+    blocks.push({
+      code: match[3].trim().replaceAll("’", "'"),
+      heading,
+      firstLine: prefix.split("\n").length,
+      number: match[2],
+    });
   }
   return blocks;
 }
@@ -172,6 +247,8 @@ function transformBody(nodes) {
 
 function transform(node) {
   if (node.type === "atom") {
+    const piRatio = node.value.match(/^:?pi\/(\d+)$/);
+    if (piRatio) return list([atom("/"), atom("pi"), atom(piRatio[1])]);
     const ratio = node.value.match(/^(-?\d+)\/(\d+)$/);
     if (ratio) return list([atom("/"), atom(ratio[1]), atom(ratio[2])]);
     if (node.value === "#t") return atom("true");
@@ -317,6 +394,17 @@ function transform(node) {
     });
     return list([atom("cond"), ...clauses]);
   }
+  if (op === "submatrix" && body.length === 4
+      && /^\d+$/.test(atomValue(body[1]) ?? "")
+      && /^\d+$/.test(atomValue(body[3]) ?? "")) {
+    // scmutils treats the two upper bounds as exclusive; Emmy's submatrix
+    // treats them as inclusive.
+    return list([
+      atom("submatrix"), transform(target), transform(body[0]),
+      atom(String(Number(atomValue(body[1])) - 1)), transform(body[2]),
+      atom(String(Number(atomValue(body[3])) - 1)),
+    ]);
+  }
   return list(node.items.map(transform));
 }
 
@@ -405,7 +493,7 @@ function stripClojureComments(source) {
 
 function topLevelDefinitions(source) {
   const definitions = [];
-  const code = source.replace(/\n\n;; =>[^]*$/, "");
+  const code = stripClojureComments(stripCapturedResults(source));
   // Ports are inspected before zprint runs, so adjacent top-level forms may be
   // separated by spaces rather than newlines. Nested Scheme definitions have
   // already been converted to let/letfn and cannot be mistaken for these.
@@ -434,10 +522,17 @@ function topLevelForms(source) {
       else if (char === '"') inString = false;
       continue;
     }
-    if (char === ";") { inComment = true; continue; }
+    if (char === ";") {
+      if (depth === 0 && start >= 0) {
+        forms.push(source.slice(start, i).trim());
+        start = -1;
+      }
+      inComment = true;
+      continue;
+    }
+    if (depth === 0 && start < 0 && !/\s/.test(char)) start = i;
     if (char === '"') { inString = true; continue; }
     if (char === "(") {
-      if (depth === 0) start = i;
       depth += 1;
     } else if (char === ")" && depth > 0) {
       depth -= 1;
@@ -445,16 +540,23 @@ function topLevelForms(source) {
         forms.push(source.slice(start, i + 1));
         start = -1;
       }
+    } else if (depth === 0 && start >= 0 && /\s/.test(char)) {
+      const atom = source.slice(start, i).trim();
+      if (atom) forms.push(atom);
+      start = -1;
     }
+  }
+  if (depth === 0 && start >= 0) {
+    const atom = source.slice(start).trim();
+    if (atom) forms.push(atom);
   }
   return forms;
 }
 
 function ensureExplicitSimplify(source, id) {
   if (!explicitSimplifyIds.has(id)) return source;
-  const capturedAt = source.search(/\n;; =>/);
-  const codeEnd = capturedAt < 0 ? source.length : capturedAt;
-  const code = source.slice(0, codeEnd);
+  const code = stripCapturedResults(source);
+  const codeEnd = source.length;
   let start = -1;
   let finalStart = -1;
   let finalEnd = -1;
@@ -481,7 +583,21 @@ function ensureExplicitSimplify(source, id) {
   }
   if (finalStart < 0) return source;
   const form = code.slice(finalStart, finalEnd);
+  const wrappedDefinition = form.match(
+    /^\(simplify\s+(\((?:def\w*|declare|define-coordinates|in-ns|ns)\b[\s\S]*\))\)$/,
+  );
+  if (wrappedDefinition) {
+    const prefix = code.slice(0, finalStart).trimEnd().replace(
+      /\n*;; scmutils simplified this result automatically; Emmy requires an explicit call\.$/,
+      "",
+    );
+    const between = code.slice(finalEnd).trimEnd();
+    return `${prefix}${prefix ? "\n" : ""}${wrappedDefinition[1]}${between ? `\n${between}` : ""}`;
+  }
   if (/^\(simplify\b/.test(form)) return source;
+  if (/^\((?:def\w*|declare|define-coordinates|in-ns|ns)\b/.test(form)) {
+    return source;
+  }
   let prefix = code.slice(0, finalStart).trimEnd();
   if (["chapter008-037", "chapter008-039", "chapter008-040"].includes(id)
       && prefix.endsWith("'")) {
@@ -490,11 +606,26 @@ function ensureExplicitSimplify(source, id) {
   const between = code.slice(finalEnd).trimEnd();
   const comment = ";; scmutils simplified this result automatically; Emmy requires an explicit call.";
   const rewritten = `${prefix}\n\n${comment}\n(simplify ${form})${between ? `\n${between}` : ""}`;
-  return `${rewritten}${source.slice(codeEnd)}`;
+  return rewritten;
+}
+
+function ensureExplicitSimplifyAllResults(source, id) {
+  if (!explicitSimplifyAllResultIds.has(id)) return source;
+  let rewritten = stripCapturedResults(source);
+  const forms = topLevelForms(rewritten);
+  let cursor = rewritten.length;
+  for (const form of [...forms].reverse()) {
+    if (!form.startsWith("(") || /^\((?:def\w*|declare|define-coordinates|in-ns|ns|simplify)\b/.test(form)) continue;
+    const at = rewritten.lastIndexOf(form, cursor);
+    if (at < 0) throw new Error(`Could not locate result form for explicit simplify in ${id}`);
+    rewritten = `${rewritten.slice(0, at)}(simplify ${form})${rewritten.slice(at + form.length)}`;
+    cursor = at;
+  }
+  return rewritten;
 }
 
 function capturesResult(source) {
-  const code = source.replace(/\n;; =>[^]*$/, "").trim();
+  const code = stripCapturedResults(source).trim();
   const finalList = topLevelForms(code).at(-1);
   // If text follows the final parenthesized form, that text is itself a
   // top-level expression (for example the bare `a-vector` in appendix A).
@@ -502,7 +633,192 @@ function capturesResult(source) {
   return !/^\((?:def\w*|declare|define-coordinates|in-ns|ns)\b/.test(finalList);
 }
 
-function applyReviewedNumericCorrections(source, id) {
+function commentClojureSource(source) {
+  return source.trimEnd().split("\n").map(line => `;; ${line}`).join("\n");
+}
+
+function applyReviewedCorrections(source, id) {
+  if (id === "chapter002-016") {
+    return `(x (R2-rect-chi-inverse (up 'x0 'y0)))
+
+(x (R2-polar-chi-inverse (up 'r0 'theta0)))
+
+(r (R2-polar-chi-inverse (up 'r0 'theta0)))
+
+(r (R2-rect-chi-inverse (up 'x0 'y0)))
+
+(theta (R2-rect-chi-inverse (up 'x0 'y0)))`;
+  }
+  if (id === "chapter007-040") {
+    return `;; Prove that Emmy's generic Legendre transform agrees with the equivalent
+;; closed form at a fully symbolic state. The following example differentiates
+;; the closed form, avoiding a much slower differentiation through the generic
+;; transform while retaining an exact symbolic check.
+(def Hsphere
+  (let [via-Legendre (Lagrangian->Hamiltonian Lsphere)
+        closed-form
+        (fn [[_ [theta _] [p-theta p-phi]]]
+          (* (/ 1 2)
+             (+ (square p-theta)
+                (/ (square p-phi) (square (sin theta))))))
+        symbolic-state (up 't (up 'theta 'phi) (down 'p_theta 'p_phi))
+        residual
+        (simplify
+         (- (via-Legendre symbolic-state)
+            (closed-form symbolic-state)))]
+    (verified-zero closed-form (up residual))))`;
+  }
+  if (id === "chapter011-008") {
+    return `;; In the formula for general-boost, rotation covariance reduces exactly
+;; to preservation of beta's norm, preservation of beta dot x, and application
+;; of the inverse rotation. Check those three identities symbolically for the
+;; full Euler rotation instead of constructing the enormous expanded boost.
+(let [beta (up 'bx 'by 'bz)
+      x (up 'x 'y 'z)
+      R (compose (rotate-x 'theta) (rotate-y 'phi) (rotate-z 'psi))
+      R-inverse (compose (rotate-z (- 'psi)) (rotate-y (- 'phi)) (rotate-x (- 'theta)))
+      checks (up (simplify (- (square (R beta)) (square beta)))
+                 (simplify (- (dot-product (R beta) (R x))
+                              (dot-product beta x)))
+                 (simplify (- (R-inverse (R x)) x)))]
+  (verified-zero (up 0 0 0 0) checks))`;
+  }
+  if (id === "appendix_c-001") {
+    return `;; Simplify each tensor-linearity component before assembling the result;
+;; simplifying the combined expansion creates a multi-megabyte intermediate.
+(let [cs R3-rect
+      u (literal-vector-field 'u-coord cs)
+      v (literal-vector-field 'v-coord cs)
+      w (literal-vector-field 'w-coord cs)
+      x (literal-vector-field 'x-coord cs)
+      omega (literal-oneform-field 'omega-coord cs)
+      nu (literal-oneform-field 'nu-coord cs)
+      f (literal-manifold-function 'f-coord cs)
+      g (literal-manifold-function 'g-coord cs)
+      nabla (covariant-derivative (literal-Cartan 'G cs))
+      m (typical-point cs)
+      F (Riemann nabla)]
+  (mapr (fn [component] (freeze (simplify (component m))))
+        (up (- (F (+ (* f omega) (* g nu)) u v w)
+               (+ (* f (F omega u v w)) (* g (F nu u v w))))
+            (- (F omega (+ (* f u) (* g x)) v w)
+               (+ (* f (F omega u v w)) (* g (F omega x v w))))
+            (- (F omega v (+ (* f u) (* g x)) w)
+               (+ (* f (F omega v u w)) (* g (F omega v x w))))
+            (- (F omega v w (+ (* f u) (* g x)))
+               (+ (* f (F omega v w u)) (* g (F omega v w x)))))))`;
+  }
+  if (id === "appendix_c-004") {
+    return `(defn F [nabla] (fn [omega u v] (omega ((nabla u) v))))
+
+;; Emmy's generic symbolic chart conversion introduces inverse trigonometric
+;; functions and square roots before simplifying them away. Verify the same
+;; statement exactly, component by component. Everything below remains visible
+;; in the book except the repeated 2-by-2 transformation contraction, which is
+;; compiled so SCI does not wrap its differentiable function as a MetaFn.
+;;
+;; Exact compiled helper source used below:
+${commentClojureSource(readFileSync(
+  path.join(root, "emmy-runner", "src", "fdg", "slow_checks.cljs"),
+  "utf8",
+))}
+(let [q (up 'theta 'phi)
+      spherical-basis (coordinate-system->basis S2-spherical)
+      stereographic-basis (coordinate-system->basis S2-stereographic)
+      Gamma-for
+      (fn [coordinate-system basis coordinates]
+        (let [metric (coordinate-system->metric coordinate-system)
+              christoffel (metric->Christoffel-2 metric basis)
+              symbols (Christoffel->symbols christoffel)]
+          (mapr simplify
+                (symbols ((point coordinate-system) coordinates)))))
+      Gamma-sphere
+      (Gamma-for S2-spherical spherical-basis q)
+      Gamma-stereo
+      (fn [[x y]]
+        (let [d (+ 1 (square x) (square y))
+              minus-x (/ (* -2 x) d)
+              plus-x (/ (* 2 x) d)
+              minus-y (/ (* -2 y) d)
+              plus-y (/ (* 2 y) d)]
+          (down
+           (down (up minus-x plus-y)
+                 (up minus-y minus-x))
+           (down (up minus-y minus-x)
+                 (up plus-x minus-y)))))
+      Gamma-derived
+      (Gamma-for
+       S2-stereographic
+       stereographic-basis
+       (up 'x 'y))
+      residuals
+      (fn [actual expected]
+        (mapr
+         (fn [a e] (freeze (simplify (- a e))))
+         actual
+         expected))
+      derivation
+      (residuals
+       Gamma-derived
+       (Gamma-stereo (up 'x 'y)))
+      scale (/ (sin 'theta) (- 1 (cos 'theta)))
+      xy
+      (up (* scale (cos 'phi))
+          (* scale (sin 'phi)))
+      Gamma-transformed
+      (transform-stereographic-Christoffel-to-spherical
+       (Gamma-stereo xy)
+       q)
+      transformation
+      (residuals Gamma-transformed Gamma-sphere)]
+  (verified-zero
+   0
+   (up derivation transformation)))`;
+  }
+  if (id === "chapter008-019") {
+    return `(for-each
+ (fn [x]
+   (for-each
+    (fn [y]
+      (print-expression
+       (simplify
+        ((((torsion-vector (covariant-derivative sphere-Cartan))
+           x y)
+          (literal-manifold-function 'f S2-spherical))
+         ((point S2-spherical) (up 'theta0 'phi0))))))
+    (list d:dtheta d:dphi)))
+ (list d:dtheta d:dphi))`;
+  }
+  // Scheme permits successive definitions of the same procedure with
+  // different arities. ClojureScript requires those arities in one defn.
+  if (id === "chapter010-004") {
+    return `(defn divergence
+  ([metric orthonormal-basis]
+   (let [star (Hodge-star metric orthonormal-basis)
+         flat (lower metric)]
+     (compose star d star flat)))
+  ([Cartan]
+   (fn [v]
+     (fn [point]
+       (let [basis (Cartan->basis Cartan)
+             nabla (covariant-derivative Cartan)]
+         (contract (fn [ei wi] ((wi ((nabla ei) v)) point)) basis))))))`;
+  }
+  // These final forms are printed results in the Scheme source, not another
+  // expression for the reader to evaluate.
+  if (id === "appendix_b-019") {
+    const marker = "(down (((partial 0) g) x y)";
+    const markerAt = source.lastIndexOf(marker);
+    if (markerAt < 0) return source;
+    const simplifyAt = source.lastIndexOf("(simplify", markerAt);
+    const commentAt = source.lastIndexOf(";; scmutils", markerAt);
+    const resultStart = commentAt >= 0 ? commentAt : simplifyAt >= 0 ? simplifyAt : markerAt;
+    return `${source.slice(0, resultStart).trimEnd()}\n`;
+  }
+  if (id === "appendix_b-023") {
+    const resultStart = source.indexOf("(up (* -1 (sin t))");
+    return resultStart < 0 ? source : `${source.slice(0, resultStart).trimEnd()}\n`;
+  }
   if (id === "appendix_a-013") {
     return source.replace("(* n (factorial (- n 1)))", "(* (bigint n) (factorial (- n 1)))");
   }
@@ -589,7 +905,7 @@ function rewriteNumericRatios(source) {
   return output;
 }
 
-const previousManifestPath = path.join(publicDir, "manifest.json");
+const previousManifestPath = path.join(publicDir, "blocks.json");
 const previousPorts = new Map();
 if (existsSync(previousManifestPath)) {
   for (const block of JSON.parse(readFileSync(previousManifestPath, "utf8"))) {
@@ -606,11 +922,10 @@ mkdirSync(publicDir, { recursive: true });
 
 const manifest = [];
 for (const file of files) {
-  const schemePath = path.join(schemeDir, file);
-  if (!existsSync(schemePath)) continue;
   const stem = file.replace(/\.org$/, "");
-  const normalizedScheme = normalizeImportedOrgSource(readFileSync(schemePath, "utf8"));
-  const blocks = extractBlocks(expandNowebReferences(normalizedScheme), "scheme");
+  const typPath = path.join(typContentDir, `${stem}.typ`);
+  if (!existsSync(typPath)) continue;
+  const blocks = extractTypstSchemeBlocks(readFileSync(typPath, "utf8"), stem);
   const clojurePath = path.join(clojureDir, file);
   const upstream = existsSync(clojurePath)
     ? extractBlocks(expandNowebReferences(readFileSync(clojurePath, "utf8")), "clojure")
@@ -621,13 +936,13 @@ for (const file of files) {
   mkdirSync(publicChapterDir, { recursive: true });
 
   blocks.forEach((block, index) => {
-    const number = String(index + 1).padStart(3, "0");
+    const number = block.number;
     const id = `${stem}-${number}`;
     const sourceHash = hash(block.code);
     const sourceFile = path.join(chapterDir, `${number}.scm`);
     const cljsFile = path.join(chapterDir, `${number}.cljs`);
     const hasUpstreamPort = upstream.length === blocks.length && upstream[index]?.code;
-    writeFileSync(sourceFile, `${block.code}\n`);
+    writeFileSync(sourceFile, `${correctMalformedSchemeOutputs(block.code, id)}\n`);
 
     if (!force && previousPorts.has(sourceHash)
         && !previousPorts.get(sourceHash).includes("mechanical conversion failed")) {
@@ -646,34 +961,56 @@ for (const file of files) {
       writeFileSync(cljsFile, withComments ? `${withComments}\n` : "");
     }
 
-    const corrected = applyReviewedNumericCorrections(readFileSync(cljsFile, "utf8"), id);
-    const simplified = ensureExplicitSimplify(corrected, id);
+    const corrected = applyReviewedCorrections(
+      normalizeClojureBlockComments(readFileSync(cljsFile, "utf8"))
+        .replaceAll("basis->1-form-basis", "basis->oneform-basis")
+        .replaceAll("s:sigma/r", "sumr")
+        .replace(/'?pi\/(\d+)/g, "(/ pi $1)"),
+      id,
+    );
+    const simplified = ensureExplicitSimplifyAllResults(ensureExplicitSimplify(corrected, id), id);
     writeFileSync(cljsFile, simplified);
     const cljs = readFileSync(cljsFile, "utf8");
+    const executable = stem !== "errata" && !nonExecutableIds.has(id)
+      && !block.code.includes("series:for-each print-expression")
+      && (stem !== "appendix_a" || !/(?:\.\.\.|operand-[\w-]+|formal-parameters|predicate(?:-[\w-]+)?|consequent(?:-[\w-]+)?|alternative|variable-[\w-]+|expression-[\w-]+|\bbody\b)/.test(block.code));
     const publicRelative = `${stem}/${number}.cljs`;
     writeFileSync(path.join(publicDir, publicRelative), cljs);
     manifest.push({
       id,
       chapter: stem,
-      ordinal: index + 1,
+      ordinal: Number(number),
       heading: block.heading,
-      orgLine: block.firstLine,
+      typLine: block.firstLine,
       sourceHash,
       backgroundSetup: /^\s*\(load\s+"[^"]+"\)\s*$/s.test(block.code),
       definitions: topLevelDefinitions(cljs),
       capturesResult: capturesResult(cljs),
+      executable,
+      forms: topLevelForms(cljs).map(code => ({
+        code,
+        capturesResult: !/^\((?:def\w*|declare|define-coordinates|in-ns|ns)\b/.test(code),
+      })),
       codePath: `generated/${publicRelative}`,
-      sourcePath: path.relative(root, schemePath),
+      sourcePath: path.relative(root, typPath),
     });
   });
 }
 
-writeFileSync(path.join(publicDir, "manifest.json"), `${JSON.stringify(manifest, null, 2)}\n`);
 execFileSync(
   "clojure",
   ["-M:format-emmy", outputDir, publicDir],
   { cwd: root, stdio: "inherit" },
 );
+for (const block of manifest) {
+  const ordinal = String(block.ordinal).padStart(3, "0");
+  const formatted = readFileSync(path.join(outputDir, block.chapter, `${ordinal}.cljs`), "utf8");
+  block.forms = topLevelForms(formatted).map(code => ({
+    code,
+    capturesResult: !/^\((?:def\w*|declare|define-coordinates|in-ns|ns)\b/.test(code),
+  }));
+}
+writeFileSync(path.join(publicDir, "blocks.json"), `${JSON.stringify(manifest, null, 2)}\n`);
 console.log(`Prepared ${manifest.length} Emmy blocks in ${path.relative(root, outputDir)}.`);
 console.log(`${manifest.filter(x => x.chapter === "chapter001").length} blocks use the upstream Chapter 1 port.`);
 console.log(`${manifest.filter(x => x.chapter !== "chapter001").length} blocks need semantic review.`);

@@ -1,1 +1,1 @@
-(def nabla (covariant-derivative (Christoffel->Cartan (symmetrize-Christoffel (literal-Christoffel-2 'C R4-rect)))))
+(defn cyclic-sum [f] (fn [x y z] (+ (f x y z) (f y z x) (f z x y))))

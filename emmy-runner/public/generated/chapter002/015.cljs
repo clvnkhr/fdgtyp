@@ -1,2 +1,3 @@
-(x (R2-rect-chi-inverse (up 'x0 'y0)))
-;; => x0
+(define-coordinates (up x y) R2-rect)
+
+(define-coordinates (up r theta) R2-polar)

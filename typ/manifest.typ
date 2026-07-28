@@ -18,4 +18,8 @@
   (file: "content/appendix_c.typ", title: "Appendix C: Tensors"),
   (file: "content/references.typ", title: "References"),
   (file: "content/errata.typ", title: "Errata for FDG"),
+  (file: "content/appendix_d.typ", title: "Appendix D: ClojureScript"),
+  (file: "content/appendix_e.typ", title: "Appendix E: Our Notation in Emmy"),
+  (file: "content/appendix_f.typ", title: "Appendix F: Tensors in Emmy"),
+  (file: "content/appendix_g.typ", title: "Appendix G: Running the Emmy Examples"),
 )

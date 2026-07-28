@@ -1,2 +1,2 @@
-((compose R2-rect-chi R2-polar-chi-inverse) (up 'r0 'theta0))
-;; => (up (* r0 (cos theta0)) (* r0 (sin theta0)))
+((compose R2-polar-chi R2-rect-chi-inverse) (up 'x0 'y0))
+;; => (up (sqrt (+ (expt x0 2) (expt y0 2))) (atan y0 x0))

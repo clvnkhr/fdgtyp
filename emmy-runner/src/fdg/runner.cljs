@@ -3,6 +3,7 @@
             [clojure.string :as str]
             [emmy.sci :as emmy-sci]
             [fdg.compat]
+            [fdg.output :as output]
             [sci.core :as sci]))
 
 (defonce state (atom {:manifest [] :chapter nil :selected nil :code "" :output "Ready."}))
@@ -16,7 +17,9 @@
   (doseq [definition (:definitions block)]
     (when-not (contains? @session-definitions definition)
       (eval-session! ctx (str "(ns-unmap 'fdg.session '" definition ")")))
-    (swap! session-definitions conj definition)))
+    (swap! session-definitions conj definition))
+  (when (seq (:definitions block))
+    (eval-session! ctx (str "(declare " (str/join " " (:definitions block)) ")"))))
 
 (defn book-definitions []
   (into #{} (mapcat :definitions (filter #(= (:chapter @state) (:chapter %))
@@ -85,7 +88,7 @@
                 (render!)))))
 
 (defn format-result [value]
-  (if (nil? value) "nil" (pr-str value)))
+  (if (nil? value) "nil" (output/pr-str-native value)))
 
 (defn friendly-error [error]
   (let [message (-> (or (.-message error) (str error))
@@ -200,7 +203,7 @@
 
 (defn ^:export init! []
   (try
-    (-> (js/fetch "generated/manifest.json")
+    (-> (js/fetch "generated/blocks.json")
         (.then #(.json %))
         (.then (fn [data]
                  (let [manifest (js->clj data :keywordize-keys true)

@@ -1,2 +1,2 @@
-(* (cube 2) (sin 2))
-;; => 7.274379414605454
+((compose cube sin) 'a)
+;; => (expt (sin a) 3)

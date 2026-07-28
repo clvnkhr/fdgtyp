@@ -1,2 +1,1 @@
-(def home-at-outgoing-turning-point-event
-  ((point outgoing) (make-SR-coordinates outgoing (up (* 7 'c) (* 7 (/ -24 25) 'c) 0 0))))
+(def incoming (make-SR-frame 'incoming home (up -1 0 0) (/ 24 25) ((chart home) traveller-at-turning-point-event)))

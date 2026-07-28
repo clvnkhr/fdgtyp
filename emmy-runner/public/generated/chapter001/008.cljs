@@ -1,1 +1,1 @@
-(defn L2 [mass metric] (fn [place velocity] (* (/ 1 2) mass ((metric velocity velocity) place))))
+(def the-metric (literal-metric 'g R2-rect))

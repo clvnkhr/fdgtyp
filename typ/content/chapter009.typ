@@ -1,6 +1,6 @@
 // Generated from ../../fdg-book/scheme/org/chapter009.org.
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
-#import "../lib.typ": fdg-chapter, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
+#import "../lib.typ": fdg-chapter, fdg-code-block, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
 
 #fdg-chapter("Metrics", numbered: true, eq-prefix: "9", ref-label: "chap-9")[
 We often want to impose further structure on a manifold to allow us to define lengths and angles. This is done by generalizing the idea of the Euclidean dot product, which allows us to compute lengths of vectors and angles between vectors in traditional vector algebra.
@@ -50,30 +50,36 @@ The raising and lowering operations allow one to interchange the vector fields a
 
 Lowering a vector field with respect to a metric is a simple program:
 
-```scheme
+/* fdg-code-source: chapter009/001
 (define ((lower metric) u)
-  (define (omega v)
-    (metric v u))
+  (define (omega v) (metric v u))
   (procedure->1form-field omega))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter009/001")
 
 But raising a one-form field to make a vector field is a bit more complicated:
 
-```scheme
+/* fdg-code-source: chapter009/002
 (define (raise metric basis)
   (let ((gi (metric:invert metric basis)))
     (lambda (omega)
-      (contract (lambda (e i w^i) (* (gi omega w^i) e i)) basis))))
-```
+      (contract (lambda (e i w^i)
+                  (* (gi omega w^i) e i))
+                basis))))
+fdg-code-source-end */
+#fdg-code-block("chapter009/002")
 
 where #raw(lang:"scheme", "contract") is the trace over a basis of a two-argument function that takes a vector field and a one-form field as its arguments.#footnote[Notice that #raw(lang:"scheme", "raise") and #raw(lang:"scheme", "lower") are not symmetrical. This is because vector fields and form fields are not symmetrical: a vector field takes a manifold function as its argument, whereas a form field takes a vector field as its argument. This asymmetry is not apparent in traditional treatments based on index notation.]
 
-```scheme
+/* fdg-code-source: chapter009/003
 (define (contract proc basis)
   (let ((vector-basis (basis->vector-basis basis))
         (1form-basis (basis->1form-basis basis)))
-    (s:sigma/r proc vector-basis 1form-basis)))
-```
+    (s:sigma/r proc
+               vector-basis
+               1form-basis)))
+fdg-code-source-end */
+#fdg-code-block("chapter009/003")
 
 == Metric Compatibility <sec-9.1>
 A connection is said to be compatible with a metric $sans(g)$ if the covariant derivative for that connection obeys the \"product rule\":
@@ -102,17 +108,21 @@ $ pi.alt_j^i &= sum_k Gamma_(j k)^i tilde(upright(e))^k = sum_k tilde(upright(e)
 
 So, for example, we can compute the Christoffel coefficients for the sphere from the metric for the sphere. First, we need the metric:
 
-```scheme
+/* fdg-code-source: chapter009/004
 (define ((g-sphere R) u v)
   (* (square R)
      (+ (* (dtheta u) (dtheta v))
-        (* (compose (square sin) theta) (dphi u) (dphi v)))))
-```
+        (* (compose (square sin) theta)
+           (dphi u)
+           (dphi v)))))
+fdg-code-source-end */
+#fdg-code-block("chapter009/004")
 
 The Christoffel coefficients of the first kind are a complex structure with all three indices down:
 
-```scheme
-((Christoffel->symbols (metric->Christoffel-1 (g-sphere 'R) S2-basis))
+/* fdg-code-source: chapter009/005
+((Christoffel->symbols
+  (metric->Christoffel-1 (g-sphere 'R) S2-basis))
  ((point S2-spherical) (up 'theta0 'phi0)))
 ;; (down
 ;;  (down (down 0 0)
@@ -120,18 +130,21 @@ The Christoffel coefficients of the first kind are a complex structure with all 
 ;;  (down (down 0 (* (* (cos theta0) (sin theta0)) (expt R 2)))
 ;;        (down (* (* -1 (cos theta0) (sin theta0)) (expt R 2))
 ;;              0)))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter009/005")
 
 And the Christoffel coefficients of the second kind have the innermost index up:
 
-```scheme
-((Christoffel->symbols (metric->Christoffel-2 (g-sphere 'R) S2-basis))
+/* fdg-code-source: chapter009/006
+((Christoffel->symbols
+  (metric->Christoffel-2 (g-sphere 'R) S2-basis))
  ((point S2-spherical) (up 'theta0 'phi0)))
 ;; (down (down (up 0 0)
 ;;             (up 0 (/ (cos theta0) (sin theta0))))
 ;;       (down (up 0 (/ (cos theta0) (sin theta0)))
 ;;             (up (* -1 (cos theta0) (sin theta0)) 0)))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter009/006")
 
 === Exercise 9.1: Metric Compatibility <sec-9.1.1>
 The connections constructed from a metric by equation @9.13 are \"metric compatible,\" as described in equation @9.9. Demonstrate that this is true for a literal metric, as described in Section #fdg-ref-page(<sec-1.2>), in $upright(bold(R))^4$. Your program should produce a zero.
@@ -151,41 +164,44 @@ $ D^2 q^i + sum_(j k) (Gamma_(j k)^i compose chi^(-1) compose q) D q^j D q^k = 0
 
 We can verify this computationally. Given a metric, we can construct a Lagrangian where the kinetic energy is the metric applied to the velocity twice: The kinetic energy is proportional to the squared length of the velocity vector.
 
-```scheme
+/* fdg-code-source: chapter009/007
 (define (metric->Lagrangian metric coordsys)
   (define (L state)
-    (let ((q (ref state 1))
-          (qd (ref state 2)))
-      (define v (components->vector-field (lambda (m) qd) coordsys))
+    (let ((q (ref state 1)) (qd (ref state 2)))
+      (define v
+        (components->vector-field (lambda (m) qd) coordsys))
       ((* 1/2 (metric v v)) ((point coordsys) q))))
   L)
-```
+fdg-code-source-end */
+#fdg-code-block("chapter009/007")
 
 The following code compares the Christoffel symbols with the coefficients of the terms of second order in velocity appearing in the accelerations, determined by solving the Lagrange equations for the highest-order derivative.#footnote[The procedure #raw(lang:"scheme", "Lagrange-explicit") produces the accelerations of the coordinates. In this code the division operator (#raw(lang:"scheme", "/")) multiplies its first argument on the left by the inverse of its second argument.
 
-```scheme
+/* fdg-code-source: chapter009/008
 (define (Lagrange-explicit L)
   (let ((P ((partial 2) L))
         (F ((partial 1) L)))
     (/ (- F (+ ((partial 0) P) (* ((partial 1) P) velocity)))
        ((partial 2) P))))
-```] We extract these terms by taking two partials with respect to the structure of velocities. Because the elementary partials commute we get two copies of each coefficient, requiring a factor of 1/2.
+fdg-code-source-end */
+#fdg-code-block("chapter009/008")] We extract these terms by taking two partials with respect to the structure of velocities. Because the elementary partials commute we get two copies of each coefficient, requiring a factor of 1/2.
 
-```scheme
+/* fdg-code-source: chapter009/009
 (let* ((metric (literal-metric 'g R3-rect))
        (q (typical-coords R3-rect))
        (L2 (metric->Lagrangian metric R3-rect)))
   (+ (* 1/2
         (((expt (partial 2) 2) (Lagrange-explicit L2))
          (up 't q (corresponding-velocities q))))
-     ((Christoffel->symbols (metric->Christoffel-2
-                             metric
-                             (coordinate-system->basis R3-rect)))
+     ((Christoffel->symbols
+       (metric->Christoffel-2 metric
+                              (coordinate-system->basis R3-rect)))
       ((point R3-rect) q))))
 ;; (down (down (up 0 0 0) (up 0 0 0) (up 0 0 0))
 ;;       (down (up 0 0 0) (up 0 0 0) (up 0 0 0))
 ;;       (down (up 0 0 0) (up 0 0 0) (up 0 0 0)))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter009/009")
 
 We get a structure of zeros, demonstrating the correspondence between Christoffel symbols and coefficients of the Lagrange equations.
 
@@ -223,40 +239,47 @@ On the other hand, we can solve for the highest-order derivative in $bold(E)[L_2
 === For Two Dimensions <sec-9.3.1>
 We can show this is true for a 2-dimensional system with a general metric. We define the Lagrangians in terms of this metric:
 
-```scheme
-(define L2 (metric->Lagrangian (literal-metric 'm R2-rect) R2-rect))
+/* fdg-code-source: chapter009/010
+(define L2
+  (metric->Lagrangian (literal-metric 'm R2-rect)
+                      R2-rect))
 
 (define (L1 state)
   (sqrt (* 2 (L2 state))))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter009/010")
 
 Although the mass matrix of $L_2$ is nonsingular
 
-```scheme
-(determinant (((partial 2) ((partial 2) L2))
-              (up 't (up 'x 'y) (up 'vx 'vy))))
+/* fdg-code-source: chapter009/011
+(determinant
+ (((partial 2) ((partial 2) L2))
+  (up 't (up 'x 'y) (up 'vx 'vy))))
 ;; (+ (* (m_00 (up x y)) (m_11 (up x y)))
 ;;    (* -1 (expt (m_01 (up x y)) 2)))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter009/011")
 
 the mass matrix of $L_1$ has determinant zero
 
-```scheme
-(determinant (((partial 2) ((partial 2) L1))
-              (up 't (up 'x 'y) (up 'vx 'vy))))
+/* fdg-code-source: chapter009/012
+(determinant
+ (((partial 2) ((partial 2) L1))
+  (up 't (up 'x 'y) (up 'vx 'vy))))
 ;; 0
-```
+fdg-code-source-end */
+#fdg-code-block("chapter009/012")
 
 showing that these Lagrange equations are dependent.
 
 We can show this dependence explicitly, for a simple system. Consider the simplest possible system, a geodesic (straight line) in a plane:
 
-```scheme
+/* fdg-code-source: chapter009/013
 (define (L1 state)
   (sqrt (square (velocity state))))
 
-(((Lagrange-equations L1) (up (literal-function 'x)
-                              (literal-function 'y)))
+(((Lagrange-equations L1)
+  (up (literal-function 'x) (literal-function 'y)))
  't)
 ;; (down
 ;;  (/ (+ (* (((expt D 2) x) t) (expt ((D y) t) 2))
@@ -265,7 +288,9 @@ We can show this dependence explicitly, for a simple system. Consider the simple
 ;;  (/ (+ (* -1 (((expt D 2) x) t) ((D x) t) ((D y) t))
 ;;        (* (expt ((D x) t) 2) (((expt D 2) y) t)))
 ;;     (expt (+ (expt ((D x) t) 2) (expt ((D y) t) 2)) 3/2)))
-```
+
+fdg-code-source-end */
+#fdg-code-block("chapter009/013")
 
 These residuals must be zero; so the numerators must be zero.#footnote[We cheated: We hand-simplified the denominator to make the result more obvious.] They are:
 
@@ -296,16 +321,23 @@ $ bold(E)[L_1]compose Gamma[q compose f] - (bold(E) [L_1] compose Gamma [q] comp
 
 We can check this in a simple case. For two dimensions $q =(x\,y)$, the condition under which a reparameterization $f$ of the geodesic paths with coordinates $q$ satisfies the Lagrange equations for $L_1$ is:
 
-```scheme
+/* fdg-code-source: chapter009/014
 (let ((x (literal-function 'x))
       (y (literal-function 'y))
       (f (literal-function 'f))
       (E1 (Euler-Lagrange-operator L1)))
-  ((- (compose E1 (Gamma (up (compose x f) (compose y f)) 4))
-      (* (compose E1 (Gamma (up x y) 4) f) (D f)))
+  ((- (compose E1
+               (Gamma (up (compose x f)
+                          (compose y f))
+                      4))
+      (* (compose E1
+                  (Gamma (up x y) 4)
+                  f)
+         (D f)))
    't))
 ;; (down 0 0)
-```
+fdg-code-source-end */
+#fdg-code-block("chapter009/014")
 
 This residual is identically satisfied, showing that the Lagrange equations for $L_1$ are independent of the parameterization of the independent variable.
 
@@ -315,11 +347,14 @@ $ bold(E)[L_2][q compose f]-(bold(E)[L_2][q]compose f) (D f)^2 &= (partial_2 L_2
 
 Although the Euler-Lagrange equations for $L_1$ are invariant under an arbitrary reparameterization $(D f != 0)$, the Euler-Lagrange equations for $L_2$ are invariant only for a restricted set of $f$. The conditions under which a reparameterization $f$ of geodesic paths with coordinates $q$ satisfies the Lagrange equations for $L_2$ are:
 
-```scheme
+/* fdg-code-source: chapter009/015
 (let ((q (up (literal-function 'x) (literal-function 'y)))
       (f (literal-function 'f)))
-  ((- (compose (Euler-Lagrange-operator L2) (Gamma (compose q f) 4))
-      (* (compose (Euler-Lagrange-operator L2) (Gamma q 4) f)
+  ((- (compose (Euler-Lagrange-operator L2)
+               (Gamma (compose q f) 4))
+      (* (compose (Euler-Lagrange-operator L2)
+                  (Gamma q 4)
+                  f)
          (expt (D f) 2)))
    't))
 ;; (down
@@ -329,34 +364,41 @@ Although the Euler-Lagrange equations for $L_1$ are invariant under an arbitrary
 ;;  (* (+ (* ((D x) (f t)) (m 01 (up (x (f t)) (y (f t)))))
 ;;        (* ((D y) (f t)) (m 11 (up (x (f t)) (y (f t))))))
 ;;     (((expt D 2) f) t)))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter009/015")
 
 We see that if these expressions must be zero, then $D^2 f = 0$. This tells us that $f$ is at most affine in $t : f (t)= a t + b$.
 
 === Exercise 9.2: SO(3) Geodesics <sec-9.3.3>
 We have derived a basis for SO(3) in terms of incremental rotations around the rectangular axes. See equations @4.29, @4.30, @4.31. We can use the dual basis to define a metric on SO(3).
 
-```scheme
+/* fdg-code-source: chapter009/016
 (define (SO3-metric v1 v2)
-  (+ (* (e^x v1) (e^x v2)) (* (e^y v1) (e^y v2)) (* (e^z v1) (e^z v2))))
-```
+  (+ (* (e^x v1) (e^x v2))
+     (* (e^y v1) (e^y v2))
+     (* (e^z v1) (e^z v2))))
+fdg-code-source-end */
+#fdg-code-block("chapter009/016")
 
 This metric determines a connection. Show that uniform rotation about an arbitrary axis traces a geodesic on SO(3).
 
 === Exercise 9.3: Curvature of a Spherical Surface <sec-9.3.4>
 The 2-dimensional surface of a 3-dimensional sphere can be embedded in three dimensions with a metric that depends on the radius:
 
-```scheme
+/* fdg-code-source: chapter009/017
 (define M (make-manifold S^2-type 2 3))
-(define spherical (coordinate-system-at 'spherical 'north-pole M))
+(define spherical
+  (coordinate-system-at 'spherical 'north-pole M))
 (define-coordinates (up theta phi) spherical)
 (define spherical-basis (coordinate-system->basis spherical))
 
 (define ((spherical-metric r) v1 v2)
   (* (square r)
      (+ (* (dtheta v1) (dtheta v2))
-        (* (square (sin theta)) (dphi v1) (dphi v2)))))
-```
+        (* (square (sin theta))
+           (dphi v1) (dphi v2)))))
+fdg-code-source-end */
+#fdg-code-block("chapter009/017")
 
 If we raise one index of the Ricci tensor (see equation @8.20) by contracting it with the inverse of the metric tensor we can further contract it to obtain a scalar manifold function:
 
@@ -364,16 +406,20 @@ $ R = sum_(i j) sans(g) (tilde(sans(e))^i \, tilde(sans(e))^j) r (sans(e)^i \, s
 
 The #raw(lang:"scheme", "trace2down") procedure converts a tensor that takes two vector fields into a tensor that takes a vector field and a one-form field, and then it contracts the result over a basis to make a trace. It is useful for getting the Ricci scalar from the Ricci tensor, given a metric and a basis.
 
-```scheme
+/* fdg-code-source: chapter009/018
 (define ((trace2down metric basis) tensor)
-  (let ((inverse-metric-tensor (metric:invert metric basis)))
-    (contract (lambda (v1 w1)
-                (contract (lambda (v w)
-                            (* (inverse-metric-tensor w1 w)
-                               (tensor v v1)))
-                          basis))
-              basis)))
-```
+  (let ((inverse-metric-tensor
+         (metric:invert metric basis)))
+    (contract
+     (lambda (v1 w1)
+       (contract
+        (lambda (v w)
+          (* (inverse-metric-tensor w1 w)
+             (tensor v v1)))
+        basis))
+     basis)))
+fdg-code-source-end */
+#fdg-code-block("chapter009/018")
 
 Evaluate the Ricci scalar for a sphere of radius $r$ to obtain a measure of its intrinsic curvature. You should obtain the answer $2\/r^2$.
 
@@ -414,12 +460,14 @@ where $V$ is the gravitational potential field at a point, $rho$ is the mass den
 
 The time-time component of the Ricci tensor derived from the metric #ref(<9.24>) is the Laplacian of the potential, to lowest order.
 
-```scheme
+/* fdg-code-source: chapter009/019
 (define-coordinates (up t x y z) spacetime-rect)
 (define spacetime-rect-basis (coordinate-system->basis spacetime-rect))
 
 (define (Newton-metric M G c V)
-  (let ((a (+ 1 (* (/ 2 (square c)) (compose V (up x y z))))))
+  (let ((a
+         (+ 1 (* (/ 2 (square c))
+                 (compose V (up x y z))))))
     (define (g v1 v2)
       (+ (* -1 (square c) a (dt v1) (dt v2))
          (* (dx v1) (dx v2))
@@ -428,59 +476,71 @@ The time-time component of the Ricci tensor derived from the metric #ref(<9.24>)
     g))
 
 (define (Newton-connection M G c V)
-  (Christoffel->Cartan (metric->Christoffel-2 (Newton-metric M G c V)
-                                              spacetime-rect-basis)))
+  (Christoffel->Cartan
+   (metric->Christoffel-2 (Newton-metric M G c V)
+                          spacetime-rect-basis)))
 
 (define V (literal-function 'V (-> (UP Real Real Real) Real)))
 
-(define nabla (covariant-derivative (Newton-connection 'M 'G ':c V)))
+(define nabla
+  (covariant-derivative
+   (Newton-connection 'M 'G ':c V)))
 
-(((Ricci nabla (coordinate-system->basis spacetime-rect)) d/dt d/dt)
+
+(((Ricci nabla (coordinate-system->basis spacetime-rect))
+  d/dt d/dt)
  ((point spacetime-rect) (up 't 'x 'y 'z)))
 ;; mess
-```
+fdg-code-source-end */
+#fdg-code-block("chapter009/019")
 
 The leading terms of the mess are
 
-```scheme
+/* fdg-code-source: chapter009/020
 (+ (((partial 0) ((partial 0) V)) (up x y z))
    (((partial 1) ((partial 1) V)) (up x y z))
    (((partial 2) ((partial 2) V)) (up x y z)))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter009/020")
 
 which is the Laplacian of V . The other terms are smaller by $V\/c^2$.
 
 Now consider the right-hand side of equation @9.27. In the Poisson equation the source of the gravitational potential is the density of matter. Let the time-time component of the stress-energy tensor $T_00$ be the matter density $rho$. Here is a program for the stress-energy tensor:
 
-```scheme
+/* fdg-code-source: chapter009/021
 (define (Tdust rho)
   (define (T w1 w2)
     (* rho (w1 d/dt) (w2 d/dt)))
   T)
-```
+fdg-code-source-end */
+#fdg-code-block("chapter009/021")
 
 If we evaluate the right-hand side expression we obtain#footnote[The procedure #raw(lang:"scheme", "trace2down") is defined in Section #fdg-ref-page(<sec-9.3.4>). This expression also uses #raw(lang:"scheme", "drop2"), which converts a tensor field that takes two one-form fields into a tensor field that takes two vector fields. Its definition is
 
-```scheme
+/* fdg-code-source: chapter009/022
 (define ((drop2 metric-tensor basis) tensor)
   (lambda (v1 v2)
-    (contract (lambda (e1 w1)
-                (contract (lambda (e2 w2)
-                            (* (metric-tensor v1 e1)
-                               (tensor w1 w2)
-                               (metric-tensor e2 v2)))
-                          basis))
-              basis)))
-```]
+    (contract
+     (lambda (e1 w1)
+       (contract
+        (lambda (e2 w2)
+          (* (metric-tensor v1 e1) (tensor w1 w2) (metric-tensor e2 v2)))
+        basis))
+     basis)))
+fdg-code-source-end */
+#fdg-code-block("chapter009/022")]
 
-```scheme
+/* fdg-code-source: chapter009/023
 (let ((g (Newton-metric 'M 'G ':c V)))
   (let ((T_ij ((drop2 g spacetime-rect-basis) (Tdust 'rho))))
     (let ((T ((trace2down g spacetime-rect-basis) T_ij)))
       ((- (T_ij d/dt d/dt) (* 1/2 T (g d/dt d/dt)))
        ((point spacetime-rect) (up 't 'x 'y 'z))))))
-;; (* 1/2 (expt :c 4) rho)
-```
+;; (+ (* 1/2 (expt :c 4) rho)
+;;    (* 2 (expt :c 2) rho (V (up x y z)))
+;;    (* 2 rho (expt (V (up x y z)) 2)))
+fdg-code-source-end */
+#fdg-code-block("chapter009/023")
 
 So, to make the Poisson analogy we get
 
@@ -491,15 +551,16 @@ as required.
 === Exercise 9.6: Curvature of Schwarzschild Spacetime <sec-9.4.2>
 In spherical coordinates around a nonrotating gravitating body the metric of Schwarzschild spacetime is given as:#footnote[The spacetime manifold is built from $upright(bold(R))^4$ with the addition of appropriate coordinate systems:
 
-```scheme
+/* fdg-code-source: chapter009/024
 (define spacetime (make-manifold R^n 4))
 (define spacetime-rect
   (coordinate-system-at 'rectangular 'origin spacetime))
 (define spacetime-sphere
   (coordinate-system-at 'spacetime-spherical 'origin spacetime))
-```]
+fdg-code-source-end */
+#fdg-code-block("chapter009/024")]
 
-```scheme
+/* fdg-code-source: chapter009/025
 (define-coordinates (up t r theta phi) spacetime-sphere)
 
 (define (Schwarzschild-metric M G c)
@@ -509,20 +570,23 @@ In spherical coordinates around a nonrotating gravitating body the metric of Sch
          (* (/ 1 a) (dr v1) (dr v2))
          (* (square r)
             (+ (* (dtheta v1) (dtheta v2))
-               (* (square (sin theta)) (dphi v1) (dphi v2))))))))
-```
+               (* (square (sin theta))
+                  (dphi v1) (dphi v2))))))))
+fdg-code-source-end */
+#fdg-code-block("chapter009/025")
 
 Show that the Ricci curvature of the Schwarzschild spacetime is zero. Use the definition of the Ricci tensor in equation @8.20.
 
 === Exercise 9.7: Circular Orbits in Schwarzschild Spacetime <sec-9.4.3>
 Test particles move along geodesics in spacetime. Now that we have a metric for Schwarzschild spacetime (Section #fdg-ref-page(<sec-9.4.2>)) we can use it to construct the geodesic equations and determine how test particles move. Consider circular orbits. For example, the circular orbit along a line of constant longitude is a geodesic, so it should satisfy the geodesic equations. Here is the equation of a circular path along the zero longitude line.
 
-```scheme
+/* fdg-code-source: chapter009/026
 (define (prime-meridian r omega)
   (compose (point spacetime-sphere)
            (lambda (t) (up t r (* omega t) 0))
            (chart R1-rect)))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter009/026")
 
 This equation will satisfy the geodesic equations for compatible values of the radius #raw(lang:"scheme", "r") and the angular velocity #raw(lang:"scheme", "omega"). If you substitute this into the geodesic equation and set the residual to zero you will obtain a constraint relating #raw(lang:"scheme", "r") and #raw(lang:"scheme", "omega"). Do it.
 
@@ -533,25 +597,28 @@ In Schwarzschild spacetime there are stable circular orbits if the coordinate $r
 
 For example, we can consider a perturbation of the orbit of constant longitude. Here is the result of adding an exponential variation of size #raw(lang:"scheme", "epsilon"):
 
-```scheme
+/* fdg-code-source: chapter009/027
 (define (prime-meridian+X r epsilon X)
-  (compose (point spacetime-sphere)
-           (lambda (t)
-             (up (+ t (* epsilon (* (ref X 0) (exp (* 'lambda t)))))
-                 (+ r (* epsilon (* (ref X 1) (exp (* 'lambda t)))))
-                 (+ (* (sqrt (/ (* 'G 'M) (expt r 3))) t)
-                    (* epsilon (* (ref X 2) (exp (* 'lambda t)))))
-                 0))
-           (chart R1-rect)))
-```
+  (compose
+   (point spacetime-sphere)
+   (lambda (t)
+     (up (+ t (* epsilon (* (ref X 0) (exp (* 'lambda t)))))
+         (+ r (* epsilon (* (ref X 1) (exp (* 'lambda t)))))
+         (+ (* (sqrt (/ (* 'G 'M) (expt r 3))) t)
+            (* epsilon (* (ref X 2) (exp (* 'lambda t)))))
+         0))
+   (chart R1-rect)))
+fdg-code-source-end */
+#fdg-code-block("chapter009/027")
 
 Plugging this into the geodesic equation yields a structure of residuals:
 
-```scheme
+/* fdg-code-source: chapter009/028
 (define Cartan
-  (Christoffel->Cartan (metric->Christoffel-2
-                        (Schwarzschild-metric 'M 'G ':c)
-                        (coordinate-system->basis spacetime-sphere))))
+  (Christoffel->Cartan
+   (metric->Christoffel-2
+    (Schwarzschild-metric 'M 'G ':c)
+    (coordinate-system->basis spacetime-sphere))))
 
 (define (geodesic-equation+X-residuals eps X)
   (let ((gamma (prime-meridian+X 'r eps X)))
@@ -559,51 +626,56 @@ Plugging this into the geodesic equation yields a structure of residuals:
        ((differential gamma) d/dtau))
       (chart spacetime-sphere))
      ((point R1-rect) 't))))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter009/028")
 
 The characteristic equation in the eigenvalue #raw(lang:"scheme", "lambda") can be obtained as the numerator of the expression:
 
-```scheme
+/* fdg-code-source: chapter009/029
 (determinant
  (submatrix (((* (partial 1) (partial 0))
               geodesic-equation+X-residuals)
              0
              (up 0 0 0))
             0 3 0 3))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter009/029")
 
 Show that the orbits are unstable if $r < 6 G M\/c^2$.
 
 === Exercise 9.9: Friedmann-Lemaître-Robertson-Walker <sec-9.4.5>
 The Einstein tensor $G_(mu nu)$ (see footnote 5) can be expressed as a program:
 
-```scheme
+/* fdg-code-source: chapter009/030
 (define (Einstein coordinate-system metric-tensor)
   (let* ((basis (coordinate-system->basis coordinate-system))
-         (connection (Christoffel->Cartan
-                      (metric->Christoffel-2 metric-tensor basis)))
+         (connection
+          (Christoffel->Cartan
+           (metric->Christoffel-2 metric-tensor basis)))
          (nabla (covariant-derivative connection))
          (Ricci-tensor (Ricci nabla basis))
-         (Ricci-scalar ((trace2down metric-tensor basis) Ricci-tensor)))
+         (Ricci-scalar
+          ((trace2down metric-tensor basis) Ricci-tensor)))
     (define (Einstein-tensor v1 v2)
       (- (Ricci-tensor v1 v2)
          (* 1/2 Ricci-scalar (metric-tensor v1 v2))))
     Einstein-tensor))
 
-(define (Einstein-field-equation coordinate-system
-                                 metric-tensor
-                                 Lambda
-                                 stress-energy-tensor)
-  (let ((Einstein-tensor (Einstein coordinate-system metric-tensor)))
+(define (Einstein-field-equation
+         coordinate-system metric-tensor Lambda stress-energy-tensor)
+  (let ((Einstein-tensor
+         (Einstein coordinate-system metric-tensor)))
     (define EFE-residuals
       (- (+ Einstein-tensor (* Lambda metric-tensor))
-         (* (/ (* 8 :pi :G) (expt :c 4)) stress-energy-tensor)))
+         (* (/ (* 8 :pi :G) (expt :c 4))
+            stress-energy-tensor)))
     EFE-residuals))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter009/030")
 
 One exact solution to the Einstein equations was found by Alexander Friedmann in 1922. He showed that a metric for an isotropic and homogeneous spacetime was consistent with a similarly isotropic and homogeneous stress-energy tensor in Einstein\'s equations. In this case the residuals of the Einstein equations gave ordinary differential equations for the time-dependent scale of the universe. These are called the Robertson-Walker equations. Friedmann\'s metric is:
 
-```scheme
+/* fdg-code-source: chapter009/031
 (define (FLRW-metric c k R)
   (define-coordinates (up t r theta phi) spacetime-sphere)
   (let ((a (/ (square (compose R t)) (- 1 (* k (square r)))))
@@ -611,28 +683,30 @@ One exact solution to the Einstein equations was found by Alexander Friedmann in
     (define (g v1 v2)
       (+ (* -1 (square c) (dt v1) (dt v2))
          (* a (dr v1) (dr v2))
-         (* b
-            (+ (* (dtheta v1) (dtheta v2))
-               (* (square (sin theta)) (dphi v1) (dphi v2))))))
+         (* b (+ (* (dtheta v1) (dtheta v2))
+                 (* (square (sin theta))
+                    (dphi v1) (dphi v2))))))
     g))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter009/031")
 
 Here #raw(lang:"scheme", "c") is the speed of light, #raw(lang:"scheme", "k") is the intrinsic curvature, and #raw(lang:"scheme", "R") is a length scale that is a function of time.
 
 The associated stress-energy tensor is
 
-```scheme
+/* fdg-code-source: chapter009/032
 (define (Tperfect-fluid rho p c metric)
   (define-coordinates (up t r theta phi) spacetime-sphere)
   (let* ((basis (coordinate-system->basis spacetime-sphere))
          (inverse-metric (metric:invert metric basis)))
     (define (T w1 w2)
-      (+ (* (+ (compose rho t) (/ (compose p t) (square c)))
-            (w1 d/dt)
-            (w2 d/dt))
+      (+ (* (+ (compose rho t)
+               (/ (compose p t) (square c)))
+            (w1 d/dt) (w2 d/dt))
          (* (compose p t) (inverse-metric w1 w2))))
     T))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter009/032")
 
 where #raw(lang:"scheme", "rho") is the energy density, and #raw(lang:"scheme", "p") is the pressure in an ideal fluid model.
 

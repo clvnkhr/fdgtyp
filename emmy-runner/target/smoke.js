@@ -1776,8 +1776,10 @@ SHADOW_IMPORT("emmy.sr.frames.js");
 SHADOW_IMPORT("emmy.env.js");
 SHADOW_IMPORT("sci.ctx_store.js");
 SHADOW_IMPORT("emmy.sci.js");
+SHADOW_IMPORT("fdg.slow_checks.js");
 SHADOW_IMPORT("fdg.compat.js");
 SHADOW_IMPORT("fdg.fdg_oracle.js");
+SHADOW_IMPORT("fdg.output.js");
 SHADOW_IMPORT("fdg.smoke.js");
 SHADOW_IMPORT("shadow.module.main.append.js");
 

@@ -1,2 +1,1 @@
-((D g) 'x 'y)
-;; => (down (((partial 0) g) x y) (((partial 1) g) x y))
+(defn helix [t] (up (cos t) (sin t) t))

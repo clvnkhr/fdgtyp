@@ -1,1 +1,1 @@
-(defn delta [R] (fn [phi theta Delta-phi] (* R (sin theta) Delta-phi)))
+(def phi-hat (* (/ 1 (sin theta)) d:dphi))

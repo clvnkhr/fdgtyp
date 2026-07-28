@@ -1,3 +1,7 @@
-;; scmutils simplified this result automatically; Emmy requires an explicit call.
-(simplify (((cyclic-sum (fn [x y z] ((Riemann nabla) omega x y z))) X Y Z) (typical-point R4-rect)))
-;; => 0
+(def nabla (covariant-derivative (Christoffel->Cartan (literal-Christoffel-2 'C R4-rect))))
+
+(def R (Riemann nabla))
+
+(def T (torsion-vector nabla))
+
+(defn TT [omega x y] (omega (T x y)))

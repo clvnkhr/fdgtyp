@@ -1,3 +1,3 @@
-(defn Du
-  [v]
-  (fn [state] (let [CF (Cartan->forms general-Cartan-2)] (* -1 ((CF v) (Chi-inverse (Sigma state))) (U-select state)))))
+(def Chi-inverse (point R2-rect))
+
+(def Chi (chart R2-rect))

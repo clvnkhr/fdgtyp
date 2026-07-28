@@ -1,4 +1,5 @@
-((D h) (up 'x 'y))
+(defn f [x y] (* (square x) (cube y)))
 
-(down (((partial 0) g) 'x 'y) (((partial 1) g) 'x 'y))
-;; => (down (((partial 0) g) x y) (((partial 1) g) x y))
+(defn g [x y] (up (f x y) y))
+
+(defn h [x y] (f (f x y) y))

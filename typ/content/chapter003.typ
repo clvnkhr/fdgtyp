@@ -1,6 +1,6 @@
 // Generated from ../../fdg-book/scheme/org/chapter003.org.
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
-#import "../lib.typ": fdg-chapter, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
+#import "../lib.typ": fdg-chapter, fdg-code-block, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
 
 #fdg-chapter("Vector Fields and One-Form Fields", numbered: true, eq-prefix: "3", ref-label: "chap-3")[
 We want a way to think about how a function varies on a manifold. Suppose we have some complex linkage, such as a multiple pendulum. The potential energy is an important function on the multi-dimensional configuration manifold of the linkage. To understand the dynamics of the linkage we need to know how the potential energy changes as the configuration changes. The change in potential energy for a step of a certain size in a particular direction in the configuration space is a real physical quantity; it does not depend on how we measure the direction or the step size. What exactly this means is to be determined: What is a step size? What is a direction? We cannot subtract two configurations to determine the distance between them. It is our job here to make sense of this idea.
@@ -42,41 +42,47 @@ The coefficient tuple $b_(chi\,sans(v)) (x)$ is an up structure compatible for a
 
 We implement the definition of a vector field #ref(<3.4>) as:
 
-```scheme
+/* fdg-code-source: chapter003/001
 (define (components->vector-field components coordsys)
   (define (v f)
-    (compose (* (D (compose f (point coordsys))) components)
+    (compose (* (D (compose f (point coordsys)))
+                components)
              (chart coordsys)))
   (procedure->vector-field v))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter003/001")
 
 The vector field is an operator, like derivative.#footnote[An operator is just like a procedure except that multiplication is interpreted as composition. For example, the derivative procedure is made into an operator `D` so that we can say `(expt D 2)` and expect it to compute the second derivative. The procedure `procedure->vector-field` makes a vector-field operator.]
 
 Given a coordinate system and coefficient functions that map coordinates to real values, we can make a vector field. For example, a general vector field can be defined by giving components relative to the coordinate system `R2-rect` by
 
-```scheme
+/* fdg-code-source: chapter003/002
 (define v
-  (components->vector-field (up (literal-function 'b^0 R2->R)
-                                (literal-function 'b^1 R2->R))
-                            R2-rect))
-```
+  (components->vector-field
+   (up (literal-function 'b^0 R2->R)
+       (literal-function 'b^1 R2->R))
+   R2-rect))
+fdg-code-source-end */
+#fdg-code-block("chapter003/002")
 
 To make it convenient to define literal vector fields we provide a shorthand: `(define v (literal-vector-field 'b R2-rect))` This makes a vector field with component functions named `b^0` and `b^1` and names the result `v`. When this vector field is applied to an arbitrary manifold function it gives the directional derivative of that manifold function in the direction specified by the components `b^0` and `b^1`:
 
-```scheme
+/* fdg-code-source: chapter003/003
 ((v (literal-manifold-function 'f-rect R2-rect)) R2-rect-point)
 ;; (+ (* (((partial 0) f-rect) (up x0 y0)) (b?0 (up x0 y0)))
 ;;    (* (((partial 1) f-rect) (up x0 y0)) (b?1 (up x0 y0))))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter003/003")
 
 This result is what we expect from equation @3.6.
 
 We can recover the coordinate components of the vector field by applying the vector field to the coordinate chart:
 
-```scheme
+/* fdg-code-source: chapter003/004
 ((v (chart R2-rect)) R2-rect-point)
 ;; (up (b?0 (up x y)) (b?1 (up x y)))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter003/004")
 
 === Coordinate Representation <sec-3.1.1>
 
@@ -86,22 +92,25 @@ The vector field $sans(v)$ has a coordinate representation $v$: $ sans(v) (sans(
 
 Given a vector field `v` and a coordinate system coordsys we can construct the coordinate representation of the vector field.#footnote[The `make-operator` procedure takes a procedure and returns an operator.]
 
-```scheme
+/* fdg-code-source: chapter003/005
 (define (coordinatize v coordsys)
   (define ((coordinatized-v f) x)
-    (let ((b (compose (v (chart coordsys)) (point coordsys))))
+    (let ((b (compose (v (chart coordsys))
+                      (point coordsys))))
       (* ((D f) x) (b x))))
   (make-operator coordinatized-v))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter003/005")
 
 We can apply a coordinatized vector field to a function of coordinates to get the same answer as before.
 
-```scheme
-(((coordinatize v R2-rect) (literal-function 'f-rect R2->R)) (up 'x0
-                                                                 'y0))
+/* fdg-code-source: chapter003/006
+(((coordinatize v R2-rect) (literal-function 'f-rect R2->R))
+ (up 'x0 'y0))
 ;; (+ (* (((partial 0) f-rect) (up x0 y0)) (b?0 (up x0 y0)))
 ;;    (* (((partial 1) f-rect) (up x0 y0)) (b?1 (up x0 y0))))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter003/006")
 
 === Vector Field Properties <sec-3.1.2>
 
@@ -120,20 +129,22 @@ The basis vector field is often written $ frac(partial, partial x^i) = sans(X)_i
 
 In addition to making the coordinate functions, the procedure `define-coordinates` also makes the traditional named basis vectors. Using these we can examine the application of a rectangular basis vector to a polar coordinate function:
 
-```scheme
+/* fdg-code-source: chapter003/007
 (define-coordinates (up x y) R2-rect)
 (define-coordinates (up r theta) R2-polar)
 
 ((d/dx (square r)) R2-rect-point)
 ;; (* 2 x0)
-```
+fdg-code-source-end */
+#fdg-code-block("chapter003/007")
 
 More general functions and vectors can be made as combinations of these simple pieces:
 
-```scheme
+/* fdg-code-source: chapter003/008
 (((+ d/dx (* 2 d/dy)) (+ (square r) (* 3 x))) R2-rect-point)
 ;; (+ 3 (* 2 x0) (* 4 y0))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter003/008")
 
 === Coordinate Transformations <sec-3.2.1>
 
@@ -177,37 +188,42 @@ For example, a vector field circular that generates a rotation about the origin 
 
 Note that circular is an operator---a property inherited from `d/dx` and `d/dy`.]
 
-```scheme
+/* fdg-code-source: chapter003/009
 (define circular (- (* x d/dy) (* y d/dx)))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter003/009")
 
 We can exponentiate the circular vector field, to generate an evolution in a circle around the origin starting at `(1, 0)`:
 
-```scheme
-(series:for-each
- print-expression
- (((exp (* 't circular)) (chart R2-rect)) ((point R2-rect) (up 1 0)))
- 6)
+/* fdg-code-source: chapter003/010
+(series:for-each print-expression
+                 (((exp (* 't circular)) (chart R2-rect))
+                  ((point R2-rect) (up 1 0)))
+                 6)
 ;; (up 1 0)
 ;; (up 0 t)
 ;; (up (* -1/2 (expt t 2)) 0)
 ;; (up 0 (* -1/6 (expt t 3)))
 ;; (up (* 1/24 (expt t 4)) 0)
 ;; (up 0 (* 1/120 (expt t 5)))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter003/010")
 
 These are the first six terms of the series expansion of the coordinates of the position for parameter `t`.
 
 We can define an evolution operator $sans(E)_(Delta t\,sans(v))$ using equation @3.31 $ (E_(Delta t\,sans(v)) sans(f)) (sans(m))=(e^(Delta t sans(v)) sans(f)) (sans(m))=(sans(f) compose phi.alt_(Delta t)^(sans(v)) (sans(m)). $ <3.29> We can approximate the evolution operator by summing the series up to a given order:
 
-```scheme
+/* fdg-code-source: chapter003/011
 (define ((((evolution order) delta-t v) f) m)
-  (series:sum (((exp (* delta-t v)) f) m) order))
-```
+  (series:sum
+   (((exp (* delta-t v)) f) m)
+   order))
+fdg-code-source-end */
+#fdg-code-block("chapter003/011")
 
 We can evolve circular from the initial point up to the parameter `t`, and accumulate the first six terms as follows:
 
-```scheme
+/* fdg-code-source: chapter003/012
 ((((evolution 6) 'delta-t circular) (chart R2-rect))
  ((point R2-rect) (up 1 0)))
 ;; (up (+ (* -1/720 (expt delta-t 6))
@@ -217,7 +233,8 @@ We can evolve circular from the initial point up to the parameter `t`, and accum
 ;;     (+ (* 1/120 (expt delta-t 5))
 ;;        (* -1/6 (expt delta-t 3))
 ;;        delta-t))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter003/012")
 
 Note that these are just the series for $cos Delta t$ and $sin Delta t$, so the coordinate tuple of the evolved point is $(cos Delta t\,sin Delta t)$.
 
@@ -260,35 +277,41 @@ The general one-form field $omega$ is a linear combination of coordinate-basis o
 
 The coefficient tuple can be recovered from the one-form field:#footnote[The analogous recovery of coefficient tuples from vector fields is equation @3.3: $b^i_(chi, sans(v)) = sans(v)(chi^i) compose chi^(-1)$.] $ a_i (x)= omega (tilde(X)_i) (chi^(-1) (x)). $ <3.43> This follows from the dual relationship #ref(<3.41>). We can see this as a program:#footnote[The procedure `components->1form-field` is analogous to the procedure `components->vector-field` introduced earlier.]
 
-```scheme
+/* fdg-code-source: chapter003/013
 (define omega
-  (components->1form-field (down (literal-function 'a 0 R2->R)
-                                 (literal-function 'a 1 R2->R))
-                           R2-rect))
+  (components->1form-field
+   (down (literal-function 'a
+                             0 R2->R)
+         (literal-function 'a
+                             1 R2->R))
+   R2-rect))
 
-((omega (down d/dx d/dy)) R2-rect-point)
+       ((omega (down d/dx d/dy)) R2-rect-point)
 ;;       (down (a_0 (up x0 y0)) (a_1 (up x0 y0)))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter003/013")
 
 We provide a shortcut for this construction:
 
-```scheme
+/* fdg-code-source: chapter003/014
 (define omega (literal-1form-field 'a R2-rect))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter003/014")
 
 A differential can be expanded in a coordinate basis: $ sans(d f) (sans(v))= sum_i sans(c)_i tilde(sans(X))^i (sans(v)). $ <3.44> The coefficients $sans(c)_i = sans(d f) (sans(X)_i)= sans(X)_i (sans(f))= partial_i (sans(f) compose chi^(-1))compose chi$ are the partial derivatives of the coordinate representation of $sans(f)$ in the coordinate system of the basis:
 
-```scheme
+/* fdg-code-source: chapter003/015
 (((d (literal-manifold-function 'f-rect R2-rect))
   (coordinate-system->vector-basis R2-rect))
  R2-rect-point)
 ;;(down (((partial 0) f-rect) (up x0 y0))
 ;;      (((partial 1) f-rect) (up x0 y0)))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter003/015")
 
 However, if the coordinate system of the basis differs from the coordinates of the representation of the function, the result is complicated by the chain rule:
 
-```scheme
+/* fdg-code-source: chapter003/016
 (((d (literal-manifold-function 'f-polar R2-polar))
   (coordinate-system->vector-basis R2-rect))
  ((point R2-polar) (up 'r 'theta)))
@@ -300,51 +323,56 @@ However, if the coordinate system of the basis differs from the coordinates of t
 ;;         (/ (* (((partial 1) f-polar) (up r theta))
 ;;               (cos theta))
 ;;            r))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter003/016")
 
 ) The coordinate-basis one-form fields can be used to find the coefficients of vector fields in the corresponding coordinate vector-field basis: $ tilde(sans(X))^i (sans(v))= sans(v) (chi^i)= b^i compose chi $ <3.45> or collectively, $ tilde(sans(X)) (sans(v))= sans(v) (chi)= b compose chi . $ <3.46>
 
 A coordinate-basis one-form field is often written $sans(d x)^i$. This traditional notation for the coordinate-basis one-form fields is justified by the relation: $ sans(d x)^i = tilde(sans(X))^i = sans(d) (chi^i). $ <3.47> The `define-coordinates` procedure also makes the basis one-form fields with these traditional names inherited from the coordinates.
 
-We can illlustrate the duality of the coordinate-basis vector fields and the coordinate-basis one-form fields:
+We can illustrate the duality of the coordinate-basis vector fields and the coordinate-basis one-form fields:
 
-```scheme
+/* fdg-code-source: chapter003/017
 (define-coordinates (up x y) R2-rect)
 
 ((dx d/dy) R2-rect-point)
 ;; 0
 
 ((dx d/dx) R2-rect-point)
-;; 0
-```
+;; 1
+fdg-code-source-end */
+#fdg-code-block("chapter003/017")
 
 We can use the coordinate-basis one-form fields to extract the coefficients of `circular` on the rectangular vector basis:
 
-```scheme
+/* fdg-code-source: chapter003/018
 ((dx circular) R2-rect-point)
 ;; (* -1 y0)
 
 ((dy circular) R2-rect-point)
 ;; x0
-```
+fdg-code-source-end */
+#fdg-code-block("chapter003/018")
 
 But we can also find the coefficients on the polar vector basis:
 
-```scheme
+/* fdg-code-source: chapter003/019
 ((dr circular) R2-rect-point)
 ;; 0
 
 ((dtheta circular) R2-rect-point)
 ;; 1
-```
+fdg-code-source-end */
+#fdg-code-block("chapter003/019")
 
 So `circular` is the same as `d/dtheta`, as we can see by applying them both to the general function `f`:
 
-```scheme
+/* fdg-code-source: chapter003/020
 (define f (literal-manifold-function 'f-rect R2-rect))
 (((- circular d/dtheta) f) R2-rect-point)
 0
-```
+fdg-code-source-end */
+#fdg-code-block("chapter003/020")
 
 === Not All One-Form Fields Are Differentials <sec-3.4.4>
 
@@ -363,7 +391,7 @@ One-form fields are independent of coordinates. So, $ omega (v)=(a compose chi)t
 
 The coefficient tuple $a (x)$ is a down structure compatible for contraction with $b (x)$. Let $sans(v)$ be the vector with coefficient tuple $b (x)$, and $omega$ be the one-form with coefficient tuple $a (x)$. Then, by equation @3.43, $ omega (sans(v))=(a compose chi) (b compose chi). $ <3.56> As a program:
 
-```scheme
+/* fdg-code-source: chapter003/021
 (define omega (literal-1form-field 'a R2-rect))
 
 (define v (literal-vector-field 'b R2-rect))
@@ -371,7 +399,8 @@ The coefficient tuple $a (x)$ is a down structure compatible for contraction wit
 ((omega v) R2-rect-point)
 ;; (+ (* (b^0 (up x y)) (a_0 (up x0 y0)))
 ;;    (* (b^1 (up x y)) (a_1 (up x0 y0))))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter003/021")
 
 Comparing equation @3.56 with equation @3.23 we see that one-form components and vector components transform oppositely, so that $ a (x)b (x)= a'(x')b'(x')\, $ <3.57> as expected because $omega (sans(v)) (sans(m))$ is independent of coordinates.
 

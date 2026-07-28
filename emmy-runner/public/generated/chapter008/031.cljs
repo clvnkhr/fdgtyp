@@ -1,2 +1,9 @@
-(((partial 1) ((partial 1) (delta 'R))) 'phi0 'theta0 'Delta-phi)
-;; => (* Delta-phi R (- (sin theta0)))
+(def omega (literal-oneform-field 'omega-rect R4-rect))
+
+(def X (literal-vector-field 'X-rect R4-rect))
+
+(def Y (literal-vector-field 'Y-rect R4-rect))
+
+(def Z (literal-vector-field 'Z-rect R4-rect))
+
+(def V (literal-vector-field 'V-rect R4-rect))

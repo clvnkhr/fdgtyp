@@ -1,1 +1,1 @@
-(def coordinate-path (compose (chart R2-rect) gamma (point R1-rect)))
+(def Cartan (Christoffel->Cartan (metric->Christoffel-2 the-metric (coordinate-system->basis R2-rect))))

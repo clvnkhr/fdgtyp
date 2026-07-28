@@ -38,13 +38,17 @@
   pagebreak()
 
   [
+    #align(center, box(stroke: red, inset: 1em)[
+      This Typst edition was based on the source material published by #link("https://github.com/mentat-collective/fdg-book")[mentat-collective/fdg-book]. This version is licensed under CC BY NC SA 4.0. The text below is a reproduction of the published version of this book and does not represent the version you are looking at.
+    ])
+
     #sym.copyright 2013 Massachusetts Institute of Technology
 
     #image("../assets/cc-by-nc-sa.svg", width: 114pt)
 
     This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License. To view a copy of this license, visit creativecommons.org.
 
-    This Typst edition was converted from the source material published by #link("https://github.com/mentat-collective/fdg-book")[mentat-collective/fdg-book].
+
 
     Other than as provided by this license, no part of this book may be reproduced, transmitted, or displayed by any electronic or mechanical means without permission from the MIT Press or as permitted by law.
 

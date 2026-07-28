@@ -1,3 +1,2 @@
-;; scmutils simplified this result automatically; Emmy requires an explicit call.
-(simplify (proper-time-interval (- ((chart home) halfway-at-home-event) ((chart home) start-event))))
-;; => (* 25 c)
+(def home-at-outgoing-turning-point-event
+  ((point outgoing) (make-SR-coordinates outgoing (up (* 7 'c) (* 7 (/ -24 25) 'c) 0 0))))

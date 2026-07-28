@@ -1,4 +1,2 @@
-(def derivative-of-sine (D sin))
-
-(derivative-of-sine 'x)
-;; => (cos x)
+((D g) 'x 'y)
+;; => (down (((partial 0) g) x y) (((partial 1) g) x y))

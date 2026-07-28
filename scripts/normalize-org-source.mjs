@@ -1,5 +1,6 @@
 export function normalizeImportedOrgSource(source) {
   return source
+    .replace(/\(\/(\d)/g, "(/ $1")
     .replaceAll(
       "(make fake-vector-field V-over-mu n)",
       "(make-fake-vector-field V-over-mu n)",
@@ -18,12 +19,30 @@ export function normalizeImportedOrgSource(source) {
         + "(define SR-basis (coordinate-system->basis SR))",
     )
     .replaceAll(
+      "(define S2-basis\n(coordinate-system->basis S2-spherical))",
+      "(define S2-basis\n(coordinate-system->basis S2-spherical))\n"
+        + "(define-coordinates (up theta phi) S2-spherical)",
+    )
+    .replaceAll(
+      "(define T d/dtheta)\n(define U d/dphi)\n"
+        + "(define m ((point S2-spherical) (up 'theta0 'phi0)))\n"
+        + "(define Cartan (Christoffel->Cartan S2-Christoffel))\n"
+        + "(define nabla (covariant-derivative Cartan))",
+      "(define T d/dtheta)\n(define U d/dphi)\n"
+        + "(define m ((point S2-spherical) (up 'theta0 'phi0)))\n"
+        + "(define Cartan (Christoffel->Cartan S2-Christoffel))\n"
+        + "(define nabla (covariant-derivative Cartan))\n"
+        + "(define omega (literal-1form-field 'omega-sphere S2-spherical))",
+    )
+    .replaceAll(
       "(define (Force charge F 4velocity component)",
       "(define eta-inverse (invert g-Minkowski SR-basis))\n\n"
         + "(define (Force charge F 4velocity component)",
     )
     .replaceAll("((wedge dr dtheta) ab)", "((wedge dr dtheta) a b)")
     .replaceAll("basis-1>form-basis", "basis->1form-basis")
+    .replaceAll("(define circular (- (* x d/dy) (* y d/x)))",
+                "(define circular (- (* x d/dy) (* y d/dx)))")
     .replaceAll("literal-manifold function", "literal-manifold-function")
     .replaceAll(
       "             (* ((D f) x) (b x)))))\n       (make-operator coordinatized-v))",
@@ -55,12 +74,28 @@ export function normalizeImportedOrgSource(source) {
                 "(((+ (commutator e_y e_z) e_x) f) SO3-point)")
     .replaceAll("(((+ (commutator e z e x) e y) f) SO3-point)",
                 "(((+ (commutator e_z e_x) e_y) f) SO3-point)")
+    // A coordinate one-form and its matching coordinate vector are dual.
+    // The historical output comment incorrectly reports dx(d/dx) as zero.
+    .replaceAll(
+      "((dx d/dx) R2-rect-point)\n       ;; 0",
+      "((dx d/dx) R2-rect-point)\n       ;; 1",
+    )
+    .replaceAll("illlustrate", "illustrate")
     .replaceAll("(metric:invert metric-tensor basis)", "(metric:invert metric basis)")
     .replaceAll("(let ((T ij ((drop2 g spacetime-rect-basis) (Tdust 'rho))))",
                 "(let ((T_ij ((drop2 g spacetime-rect-basis) (Tdust 'rho))))")
     .replaceAll("(trace2down g spacetime-rect-basis) T ij",
                 "(trace2down g spacetime-rect-basis) T_ij")
     .replaceAll("(T ij d/dt d/dt)", "(T_ij d/dt d/dt)")
+    // The book's errata records the terms omitted from this historical
+    // evaluator result. Repair the temporary imported source so both emitted
+    // language editions show the actual value.
+    .replaceAll(
+      ";; (* 1/2 (expt :c 4) rho)",
+      ";; (+ (* 1/2 (expt :c 4) rho)\n"
+        + ";;    (* 2 (expt :c 2) rho (V (up x y z)))\n"
+        + ";;    (* 2 rho (expt (V (up x y z)) 2)))",
+    )
     .replaceAll(
       "(define (Newton-metric M G c V)",
       "(define-coordinates (up t x y z) spacetime-rect)\n"

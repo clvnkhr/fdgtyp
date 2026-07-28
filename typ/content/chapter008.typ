@@ -1,6 +1,6 @@
 // Generated from ../../fdg-book/scheme/org/chapter008.org.
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
-#import "../lib.typ": fdg-chapter, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
+#import "../lib.typ": fdg-chapter, fdg-code-block, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
 
 #fdg-chapter("Curvature", numbered: true, eq-prefix: "8", ref-label: "chap-8")[
 If the intrinsic curvature of a manifold is not zero, a vector parallel-transported around a small loop will end up different from the vector that started. We saw the consequence of this before, on #fdg-page-ref(<intro-parallel-transport>) and #fdg-page-ref(<sec-7.16>). The Riemann tensor encapsulates this idea.
@@ -17,28 +17,30 @@ where $bold(omega)$ is a one-form field that measures the incremental change in 
 
 The Riemann curvature is computed by
 
-```scheme
+/* fdg-code-source: chapter008/001
 (define ((Riemann-curvature nabla) w v)
-  (- (commutator (nabla w) (nabla v)) (nabla (commutator w v))))
-```
+  (- (commutator (nabla w) (nabla v))
+     (nabla (commutator w v))))
+fdg-code-source-end */
+#fdg-code-block("chapter008/001")
 
 The #raw(lang:"scheme", "Riemann-curvature") procedure is parameterized by the relevant #raw(lang:"scheme", "covariant-derivative") operator #raw(lang:"scheme", "nabla"), which implements $nabla$. The #raw(lang:"scheme", "nabla") is itself dependent on the connection, which provides the details of the local geometry. The same #raw(lang:"scheme", "Riemann-curvature") procedure works for ordinary covariant derivatives and for covariant derivatives over a map. Given two vector fields, the result of #raw(lang:"scheme", "((Riemann-curvature nabla) w v)") is a procedure that takes a vector field and produces a vector field so we can implement the Riemann tensor as
 
-```scheme
+/* fdg-code-source: chapter008/002
 (define ((Riemann nabla) omega u w v)
   (omega (((Riemann-curvature nabla) w v) u)))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter008/002")
 
 So, for example,#footnote[The connection specified by #raw(lang:"scheme", "sphere-Cartan") is defined in Section #fdg-ref-page(<sec-7.16>).]
 
-```scheme
-(((Riemann (covariant-derivative sphere-Cartan)) dphi
-                                                 d/dtheta
-                                                 d/dphi
-                                                 d/dtheta)
+/* fdg-code-source: chapter008/003
+(((Riemann (covariant-derivative sphere-Cartan))
+  dphi d/dtheta d/dphi d/dtheta)
  ((point S2-spherical) (up 'theta0 'phi0)))
 ;; 1
-```
+fdg-code-source-end */
+#fdg-code-block("chapter008/003")
 
 Here we have computed the $φ$ component of the result of carrying a $partial\/partial theta$ basis vector around the parallelogram defined by $partial\/partial phi.alt$ and $partial\/partial theta$. The result shows a net rotation in the $phi.alt$ direction.
 
@@ -118,56 +120,61 @@ This is what the Riemann tensor computation gives, scaled by $epsilon.alt^2$.
 === Verification in Two Dimensions <sec-8.1.1>
 We can verify this in two dimensions. We need to make the structure representing a state:
 
-```scheme
-(define (make-state sigma u)
-  (vector sigma u))
+/* fdg-code-source: chapter008/004
+(define (make-state sigma u) (vector sigma u))
 
-(define (Sigma state)
-  (ref state 0))
+(define (Sigma state) (ref state 0))
 
-(define (U-select state)
-  (ref state 1))
-```
+(define (U-select state) (ref state 1))
+fdg-code-source-end */
+#fdg-code-block("chapter008/004")
 
 And now we get to the meat of the matter: First we find the rate of change of the components of the vector $sans(u)$ as we carry it along the vector field $sans(v)$.#footnote[The setup for this experiment is a bit complicated. We need to make a manifold with a general connection.
 
-```scheme
+/* fdg-code-source: chapter008/005
 (define Chi-inverse (point R2-rect))
 (define Chi (chart R2-rect))
-```]
+fdg-code-source-end */
+#fdg-code-block("chapter008/005")]
 
-```scheme
+/* fdg-code-source: chapter008/006
 (define ((Du v) state)
   (let ((CF (Cartan->forms general-Cartan-2)))
-    (* -1 ((CF v) (Chi-inverse (Sigma state))) (U-select state))))
-```
+    (* -1
+       ((CF v) (Chi-inverse (Sigma state)))
+       (U-select state))))
+fdg-code-source-end */
+#fdg-code-block("chapter008/006")
 
 We also need to determine the rate of change of the coordinates of the integral curve of $sans(v)$.
 
-```scheme
+/* fdg-code-source: chapter008/007
 (define ((Dsigma v) state)
   ((v Chi) (Chi-inverse (Sigma state))))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter008/007")
 
 Putting these together to make the derivative of the state vector
 
-```scheme
+/* fdg-code-source: chapter008/008
 (define ((g v) state)
   (make-state ((Dsigma v) state) ((Du v) state)))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter008/008")
 
 gives us just what we need to construct the differential operator for evolution of the combined state:
 
-```scheme
+/* fdg-code-source: chapter008/009
 (define (L v)
   (define ((l h) state)
     (* ((D h) state) ((g v) state)))
   (make-operator l))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter008/009")
 
 So now we can demonstrate that the lowest-order change resulting from explicit parallel transport of a vector around an infinitesimal loop is what is computed by the Riemann curvature.
 
-```scheme
+/* fdg-code-source: chapter008/010
 (let ((U (literal-vector-field 'U-rect R2-rect))
       (W (literal-vector-field 'W-rect R2-rect))
       (V (literal-vector-field 'V-rect R2-rect))
@@ -175,11 +182,14 @@ So now we can demonstrate that the lowest-order change resulting from explicit p
   (let ((nabla (covariant-derivative general-Cartan-2))
         (m (Chi-inverse sigma)))
     (let ((s (make-state sigma ((U Chi) m))))
-      (-
-       (((- (commutator (L V) (L W)) (L (commutator V W))) U-select) s)
-       (((((Riemann-curvature nabla) W V) U) Chi) m)))))
+      (- (((- (commutator (L V) (L W))
+              (L (commutator V W)))
+           U-select)
+          s)
+         (((((Riemann-curvature nabla) W V) U) Chi) m)))))
 ;; (up 0 0)
-```
+fdg-code-source-end */
+#fdg-code-block("chapter008/010")
 
 === Geometrically <sec-8.1.2>
 The explicit transport above was done with differential equations operating on a state consisting of coordinates and components of the vector being transported. We can simplify this so that it is entirely built on manifold objects, eliminating the state. After a long algebraic story we find that
@@ -190,21 +200,24 @@ $ ((cal(R) (sans(w)\,sans(v))) (sans(u))) (sans(f))\
 
 or as a program:
 
-```scheme
+/* fdg-code-source: chapter008/011
 (define ((((curvature-from-transport Cartan) w v) u) f)
   (let* ((CF (Cartan->forms Cartan))
          (basis (Cartan->basis Cartan))
          (fi (basis->1form-basis basis))
          (ei (basis->vector-basis basis)))
     (* (ei f)
-       (+ (* (- (- (w (CF v)) (v (CF w))) (CF (commutator w v))) (fi u))
+       (+ (* (- (- (w (CF v)) (v (CF w)))
+                (CF (commutator w v)))
+             (fi u))
           (- (* (CF w) (* (CF v) (fi u)))
              (* (CF v) (* (CF w) (fi u))))))))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter008/011")
 
 This computes the same operator as the traditional Riemann curvature operator:
 
-```scheme
+/* fdg-code-source: chapter008/012
 (define (test coordsys Cartan)
   (let ((m (typical-point coordsys))
         (u (literal-vector-field 'u-coord coordsys))
@@ -220,7 +233,8 @@ This computes the same operator as the traditional Riemann curvature operator:
 
 (test R2-polar general-Cartan-2)
 ;; 0
-```
+fdg-code-source-end */
+#fdg-code-block("chapter008/012")
 
 === Terms of the Riemann Curvature <sec-8.1.3>
 Since the Riemann curvature is defined as in equation @8.1,
@@ -233,7 +247,7 @@ $ (([L_(g_w) \, L_(g_v)] - L_(g_([w\,v]))) U) (s_0). $ <8.15>
 
 Unfortunately, this does not work, as demonstrated below:
 
-```scheme
+/* fdg-code-source: chapter008/013
 (let ((U (literal-vector-field 'U-rect R2-rect))
       (V (literal-vector-field 'V-rect R2-rect))
       (W (literal-vector-field 'W-rect R2-rect))
@@ -242,13 +256,15 @@ Unfortunately, this does not work, as demonstrated below:
   (let ((m (Chi-inverse sigma)))
     (let ((s (make-state sigma ((U Chi) m))))
       (- (((commutator (L W) (L V)) U-select) s)
-         ((((commutator (nabla W) (nabla V)) U) Chi) m)))))
+         ((((commutator (nabla W) (nabla V)) U) Chi)
+          m)))))
 ;; a nonzero mess
-```
+fdg-code-source-end */
+#fdg-code-block("chapter008/013")
 
 The obvious identification does not work, but neither does the other one!
 
-```scheme
+/* fdg-code-source: chapter008/014
 (let ((U (literal-vector-field 'U-rect R2-rect))
       (V (literal-vector-field 'V-rect R2-rect))
       (W (literal-vector-field 'W-rect R2-rect))
@@ -257,9 +273,11 @@ The obvious identification does not work, but neither does the other one!
   (let ((m (Chi-inverse sigma)))
     (let ((s (make-state sigma ((U Chi) m))))
       (- (((commutator (L W) (L V)) U-select) s)
-         ((((nabla (commutator W V)) U) Chi) m)))))
+         ((((nabla (commutator W V)) U) Chi)
+          m)))))
 ;; a nonzero mess
-```
+fdg-code-source-end */
+#fdg-code-block("chapter008/014")
 
 Let\'s compute the two parts of the Riemann curvature operator and see how this works out. First, recall
 
@@ -292,10 +310,12 @@ $ R (sans(u)\,sans(v))= sum_i sans(R) (tilde(sans(e))^i \, sans(u) \, sans(e)_i 
 
 Expressed as a program:
 
-```scheme
+/* fdg-code-source: chapter008/015
 (define ((Ricci nabla basis) u v)
-  (contract (lambda (ei wi) ((Riemann nabla) wi u ei v)) basis))
-```
+  (contract (lambda (ei wi) ((Riemann nabla) wi u ei v))
+            basis))
+fdg-code-source-end */
+#fdg-code-block("chapter008/015")
 
 Einstein\'s field equation @9.27 for gravity, which we will encounter later, is expressed in terms of the Ricci tensor.
 
@@ -305,29 +325,33 @@ Compute the components of the Ricci tensor of the surface of a sphere.
 === Exercise 8.2: Pseudosphere <sec-8.1.6>
 A pseudosphere is a surface in 3-dimensional space. It is a surface of revolution of a tractrix about its asymptote (along the $hat(z)$-axis). We can make coordinates for the surface $(t\,theta)$ where $t$ is the coordinate along the asymptote and $theta$ is the angle of revolution. We embed the pseudosphere in rectangular 3-dimensional space with
 
-```scheme
+/* fdg-code-source: chapter008/016
 (define (pseudosphere q)
-  (let ((t (ref q 0))
-        (theta (ref q 1)))
+  (let ((t (ref q 0)) (theta (ref q 1)))
     (up (* (sech t) (cos theta))
         (* (sech t) (sin theta))
         (- t (tanh t)))))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter008/016")
 
 The structure of Christoffel coefficients for the pseudosphere is
 
-```scheme
-(down (down (up (/ (+ (* 2 (expt (cosh t) 2) (expt (sinh t) 2))
-                      (* -2 (expt (sinh t) 4))
-                      (expt (cosh t) 2)
-                      (* -2 (expt (sinh t) 2)))
-                   (+ (* (cosh t) (expt (sinh t) 3))
-                      (* (cosh t) (sinh t))))
-                0)
-            (up 0 (/ (* -1 (sinh t)) (cosh t))))
-      (down (up 0 (/ (* -1 (sinh t)) (cosh t)))
-            (up (/ (cosh t) (+ (expt (sinh t) 3) (sinh t))) 0)))
-```
+/* fdg-code-source: chapter008/017
+(down
+ (down (up (/ (+ (* 2 (expt (cosh t) 2) (expt (sinh t) 2))
+                 (* -2 (expt (sinh t) 4)) (expt (cosh t) 2)
+                 (* -2 (expt (sinh t) 2)))
+              (+ (* (cosh t) (expt (sinh t) 3))
+                 (* (cosh t) (sinh t))))
+           0)
+       (up 0
+           (/ (* -1 (sinh t)) (cosh t))))
+ (down (up 0
+           (/ (* -1 (sinh t)) (cosh t)))
+       (up (/ (cosh t) (+ (expt (sinh t) 3) (sinh t)))
+           0)))
+fdg-code-source-end */
+#fdg-code-block("chapter008/017")
 
 Note that this is independent of $theta$.
 
@@ -342,23 +366,26 @@ The torsion takes two vector fields and produces a vector field. The torsion dep
 
 We account for this dependency by parameterizing the program by #raw(lang:"scheme", "nabla").
 
-```scheme
+/* fdg-code-source: chapter008/018
 (define ((torsion-vector nabla) u v)
-  (- (- ((nabla u) v) ((nabla v) u)) (commutator u v)))
+  (- (- ((nabla u) v) ((nabla v) u))
+     (commutator u v)))
 
 (define ((torsion nabla) omega u v)
   (omega ((torsion-vector nabla) u v)))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter008/018")
 
 The torsion for the connection for the 2-sphere specified by the Christoffel coefficients #raw(lang:"scheme", "S2-Christoffel") above is zero. We demonstrate this by applying the torsion to the basis vector fields:
 
-```scheme
+/* fdg-code-source: chapter008/019
 (for-each
  (lambda (x)
    (for-each
     (lambda (y)
       (print-expression
-       ((((torsion-vector (covariant-derivative sphere-Cartan)) x y)
+       ((((torsion-vector (covariant-derivative sphere-Cartan))
+          x y)
          (literal-manifold-function 'f S2-spherical))
         ((point S2-spherical) (up 'theta0 'phi0)))))
     (list d/dtheta d/dphi)))
@@ -367,7 +394,8 @@ The torsion for the connection for the 2-sphere specified by the Christoffel coe
 ;; 0
 ;; 0
 ;; 0
-```
+fdg-code-source-end */
+#fdg-code-block("chapter008/019")
 
 === Torsion Doesn\'t Affect Geodesics <sec-8.2.1>
 There are multiple connections that give the same geodesic curves. Among these connections there is always one with zero torsion. Thus, if you care about only geodesics, it is appropriate to use a torsion-free connection.
@@ -429,46 +457,54 @@ $ nabla sans(T) (nabla_(sans(T)) sans(U))= partial_1 partial_1 delta (s\,t\,Delt
 === Longitude Lines on a Sphere <sec-8.3.1>
 Consider longitude lines on the unit sphere.#footnote[The setup for this example is:
 
-```scheme
+/* fdg-code-source: chapter008/020
 (define-coordinates (up theta phi) S2-spherical)
 (define T d/dtheta)
 (define U d/dphi)
 (define m ((point S2-spherical) (up 'theta0 'phi0)))
 (define Cartan (Christoffel->Cartan S2-Christoffel))
 (define nabla (covariant-derivative Cartan))
-```] Let #raw(lang:"scheme", "theta") be colatitude and #raw(lang:"scheme", "phi") be longitude. These are the parameters $s$ and $t$, respectively. Then let #raw(lang:"scheme", "T") be the vector field #raw(lang:"scheme", "d/dtheta") that is tangent to the longitude lines.
+(define omega (literal-1form-field 'omega-sphere S2-spherical))
+fdg-code-source-end */
+#fdg-code-block("chapter008/020")] Let #raw(lang:"scheme", "theta") be colatitude and #raw(lang:"scheme", "phi") be longitude. These are the parameters $s$ and $t$, respectively. Then let #raw(lang:"scheme", "T") be the vector field #raw(lang:"scheme", "d/dtheta") that is tangent to the longitude lines.
 
 We can verify that every longitude line is a geodesic:
 
-```scheme
+/* fdg-code-source: chapter008/021
 ((omega (((covariant-derivative Cartan) T) T)) m)
 ;; 0
-```
+fdg-code-source-end */
+#fdg-code-block("chapter008/021")
 
 where #raw(lang:"scheme", "omega") is an arbitrary one-form field.
 
 Now let #raw(lang:"scheme", "U") be #raw(lang:"scheme", "d/dphi"), then #raw(lang:"scheme", "U") commutes with #raw(lang:"scheme", "T"):
 
-```scheme
+/* fdg-code-source: chapter008/022
 (((commutator U T) f) m)
 ;; 0
-```
+fdg-code-source-end */
+#fdg-code-block("chapter008/022")
 
 The torsion for the usual connection for the sphere is zero:
 
-```scheme
+/* fdg-code-source: chapter008/023
 (let ((X (literal-vector-field 'X-sphere S2-spherical))
       (Y (literal-vector-field 'Y-sphere S2-spherical)))
   ((((torsion-vector nabla) X Y) f) m))
 ;; 0
-```
+fdg-code-source-end */
+#fdg-code-block("chapter008/023")
 
 So we can compute the geodesic deviation using #raw(lang:"scheme", "Riemann")
 
-```scheme
-((+ (omega ((nabla T) ((nabla T) U))) ((Riemann nabla) omega T U T)) m)
+/* fdg-code-source: chapter008/024
+((+ (omega ((nabla T) ((nabla T) U)))
+    ((Riemann nabla) omega T U T))
+ m)
 ;; 0
-```
+fdg-code-source-end */
+#fdg-code-block("chapter008/024")
 
 confirming equation @8.29.
 
@@ -476,58 +512,68 @@ Lines of longitude are geodesics. How do the lines of longitude behave? As we pr
 
 Let\'s compute $nabla_(sans(T)) sans(U)$ and $nabla_(sans(T)) (nabla_(sans(T)) sans(U))$. We know that the distance is purely in the $phi.alt$ direction, so
 
-```scheme
+/* fdg-code-source: chapter008/025
 ((dphi ((nabla T) U)) m)
 ;; (/ (cos theta0) (sin theta0))
 
 ((dphi ((nabla T) ((nabla T) U))) m)
 ;; -1
-```
+fdg-code-source-end */
+#fdg-code-block("chapter008/025")
 
 Let\'s interpret these results. On a sphere of radius $R$ the distance at colatitude $theta$ between two geodesics separated by $Delta phi.alt$ is $d (phi.alt\,theta\,Delta phi.alt)= R sin(theta)Delta phi.alt$. Assuming that $theta$ is uniformly increasing with time, the magnitude of the velocity is just the $theta$-derivative of this distance:
 
-```scheme
+/* fdg-code-source: chapter008/026
 (define ((delta R) phi theta Delta-phi)
   (* R (sin theta) Delta-phi))
 
 (((partial 1) (delta 'R)) 'phi0 'theta0 'Delta-phi)
 ;; (* Delta-phi R (cos theta0))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter008/026")
 
 The direction of the velocity is the unit vector in the $phi.alt$ direction:
 
-```scheme
-(define phi-hat (* (/ 1 (sin theta)) d/dphi))
-```
+/* fdg-code-source: chapter008/027
+(define phi-hat
+  (* (/ 1 (sin theta)) d/dphi))
+fdg-code-source-end */
+#fdg-code-block("chapter008/027")
 
 This comes from the fact that the separation of lines of longitude is proportional to the sine of the colatitude. So the velocity vector field is the product.
 
 We can measure the $phi.alt$ component with $d phi.alt$:
 
-```scheme
-((dphi (* (((partial 1) (delta 'R)) 'phi0 'theta0 'Delta-phi) phi-hat))
+/* fdg-code-source: chapter008/028
+((dphi (* (((partial 1) (delta 'R))
+           'phi0 'theta0 'Delta-phi)
+          phi-hat))
  m)
 ;; (/ (* Delta-phi R (cos theta0)) (sin theta0))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter008/028")
 
 This agrees with $nabla_(sans(T)) sans(U) Delta phi.alt$ for the unit sphere. Indeed, the lines of longitude diverge until they reach the Equator and then they converge.
 
 Similarly, the magnitude of the acceleration is
 
-```scheme
-(((partial 1) ((partial 1) (delta 'R))) 'phi0 'theta0 'Delta-phi)
+/* fdg-code-source: chapter008/029
+(((partial 1) ((partial 1) (delta 'R)))
+ 'phi0 'theta0 'Delta-phi)
 ;; (* -1 Delta-phi R (sin theta0))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter008/029")
 
 and the acceleration vector is the product of this result with $hat(phi.alt)$. Measuring this with $d phi.alt$ we get:
 
-```scheme
-((dphi
-  (* (((partial 1) ((partial 1) (delta 'R))) 'phi0 'theta0 'Delta-phi)
-     phi-hat))
+/* fdg-code-source: chapter008/030
+((dphi (* (((partial 1) ((partial 1) (delta 'R)))
+           'phi0 'theta0 'Delta-phi)
+          phi-hat))
  m)
 ;; (* -1 Delta-phi R)
-```
+fdg-code-source-end */
+#fdg-code-block("chapter008/030")
 
 And this agrees with the calculation of $nabla_(sans(T)) nabla_(sans(T)) sans(U) Delta phi.alt$ for the unit sphere. We see that the separation of the lines of longitude are uniformly decelerated as they progress from pole to pole.
 
@@ -536,30 +582,37 @@ There are some important mathematical properties of the Riemann curvature. These
 
 A system with a symmetric connection, $Gamma_(j k)^i = Gamma_(k j)^i$, is torsion free.#footnote[Setup for this section:
 
-```scheme
+/* fdg-code-source: chapter008/031
 (define omega (literal-1form-field 'omega-rect R4-rect))
 (define X (literal-vector-field 'X-rect R4-rect))
 (define Y (literal-vector-field 'Y-rect R4-rect))
 (define Z (literal-vector-field 'Z-rect R4-rect))
 (define V (literal-vector-field 'V-rect R4-rect))
-```]
+fdg-code-source-end */
+#fdg-code-block("chapter008/031")]
 
-```scheme
+/* fdg-code-source: chapter008/032
 (define nabla
   (covariant-derivative
-   (Christoffel->Cartan (symmetrize-Christoffel
-                         (literal-Christoffel-2 'C R4-rect)))))
+   (Christoffel->Cartan
+    (symmetrize-Christoffel
+     (literal-Christoffel-2 'C R4-rect)))))
 
-(((torsion nabla) omega X Y) (typical-point R4-rect))
+(((torsion nabla) omega X Y)
+ (typical-point R4-rect))
 ;; 0
-```
+fdg-code-source-end */
+#fdg-code-block("chapter008/032")
 
 The Bianchi identities are defined in terms of a cyclic-summation operator, which is most easily described as a Scheme procedure:
 
-```scheme
+/* fdg-code-source: chapter008/033
 (define ((cyclic-sum f) x y z)
-  (+ (f x y z) (f y z x) (f z x y)))
-```
+  (+ (f x y z)
+     (f y z x)
+     (f z x y)))
+fdg-code-source-end */
+#fdg-code-block("chapter008/033")
 
 The first Bianchi identity is
 
@@ -567,11 +620,15 @@ $ sans(R) (omega\,sans(x)\,sans(y)\,sans(z)) + sans(R) (omega\,sans(y)\,sans(z)\
 
 or, as a program:
 
-```scheme
-(((cyclic-sum (lambda (x y z) ((Riemann nabla) omega x y z))) X Y Z)
+/* fdg-code-source: chapter008/034
+(((cyclic-sum
+   (lambda (x y z)
+     ((Riemann nabla) omega x y z)))
+  X Y Z)
  (typical-point R4-rect))
 ;; 0
-```
+fdg-code-source-end */
+#fdg-code-block("chapter008/034")
 
 The second Bianchi identity is
 
@@ -579,62 +636,68 @@ $ nabla_(sans(x)) sans(R) (omega\,sans(v)\,sans(y)\,sans(z)) + nabla_(sans(y)) s
 
 or, as a program:
 
-```scheme
-(((cyclic-sum (lambda (x y z)
-                (((nabla x) (Riemann nabla)) omega V y z)))
-  X
-  Y
-  Z)
+/* fdg-code-source: chapter008/035
+(((cyclic-sum
+   (lambda (x y z)
+     (((nabla x) (Riemann nabla))
+      omega V y z)))
+  X Y Z)
  (typical-point R4-rect))
 ;; 0
-```
+fdg-code-source-end */
+#fdg-code-block("chapter008/035")
 
 Things get more complicated when there is torsion. We can make a general connection, which has torsion:
 
-```scheme
+/* fdg-code-source: chapter008/036
 (define nabla
   (covariant-derivative
-   (Christoffel->Cartan (literal-Christoffel-2 'C R4-rect))))
+   (Christoffel->Cartan
+    (literal-Christoffel-2 'C R4-rect))))
 
 (define R (Riemann nabla))
 (define T (torsion-vector nabla))
 
 (define (TT omega x y)
   (omega (T x y)))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter008/036")
 
 The first Bianchi identity is now:#footnote[The Bianchi identities are much nastier to write in traditional mathematical notation than as Scheme programs.]
 
-```scheme
-(((cyclic-sum (lambda (x y z)
-                (- (R omega x y z)
-                   (+ (omega (T (T x y) z))
-                      (((nabla x) TT) omega y z)))))
-  X
-  Y
-  Z)
+/* fdg-code-source: chapter008/037
+(((cyclic-sum
+   (lambda (x y z)
+     (- (R omega x y z)
+        (+ (omega (T (T x y) z))
+           (((nabla x) TT) omega y z)))))
+  X Y Z)
  (typical-point R4-rect))
 ;; 0
-```
+fdg-code-source-end */
+#fdg-code-block("chapter008/037")
 
 and the second Bianchi identity for a general connection is
 
-```scheme
-(((cyclic-sum (lambda (x y z)
-                (+ (((nabla x) R) omega V y z) (R omega V (T x y) z))))
-  X
-  Y
-  Z)
+/* fdg-code-source: chapter008/038
+(((cyclic-sum
+   (lambda (x y z)
+     (+ (((nabla x) R) omega V y z)
+        (R omega V (T x y) z))))
+  X Y Z)
  (typical-point R4-rect))
 ;; 0
-```
+fdg-code-source-end */
+#fdg-code-block("chapter008/038")
 
 We now make the Cartan forms from the most general 2-dimensional Christoffel coefficient structure:
 
-```scheme
+/* fdg-code-source: chapter008/039
 (define general-Cartan-2
-  (Christoffel->Cartan (literal-Christoffel-2 'Gamma R2-rect)))
-```
+  (Christoffel->Cartan
+   (literal-Christoffel-2 'Gamma R2-rect)))
+fdg-code-source-end */
+#fdg-code-block("chapter008/039")
 
  @misner1973gravitation, @carroll2003spacetime, and @schutz1985first use our definition. @wald1984general uses a different convention for the order of arguments and a different sign. See Appendix @chap-appendix-c for a definition of tensors.
 ]

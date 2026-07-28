@@ -1,2 +1,2 @@
-((omega (down d:dx d:dy)) R2-rect-point)
-;; => (down (a_0 (up x0 y0)) (a_1 (up x0 y0)))
+(((d (literal-manifold-function 'f-rect R2-rect)) (coordinate-system->vector-basis R2-rect)) R2-rect-point)
+;; => (down (((partial 0) f-rect) (up x0 y0)) (((partial 1) f-rect) (up x0 y0)))

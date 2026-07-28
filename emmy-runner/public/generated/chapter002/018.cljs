@@ -1,2 +1,2 @@
-(r (R2-rect-chi-inverse (up 'x0 'y0)))
-;; => (sqrt (+ (expt x0 2) (expt y0 2)))
+(h (R2-polar-chi-inverse (up 'r0 'theta0)))
+;; => (+ (* r0 (cos theta0) (expt r0 2)) (expt (* r0 (sin theta0)) 3))

@@ -1,1 +1,2 @@
-(def s (up 't (up 'x 'y) (down 'p_x 'p_y)))
+(ref (up (up 'a 'b) (up 'c 'd)) 0 1)
+;; => b

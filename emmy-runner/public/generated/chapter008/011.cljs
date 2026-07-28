@@ -1,9 +1,12 @@
-(defn test
-  [coordsys Cartan]
-  (let [m (typical-point coordsys)
-        u (literal-vector-field 'u-coord coordsys)
-        w (literal-vector-field 'w-coord coordsys)
-        v (literal-vector-field 'v-coord coordsys)
-        f (literal-manifold-function 'f-coord coordsys)]
-    (let [nabla (covariant-derivative Cartan)]
-      (- (((((curvature-from-transport Cartan) w v) u) f) m) (((((Riemann-curvature nabla) w v) u) f) m)))))
+(defn curvature-from-transport
+  [Cartan]
+  (fn [w v]
+    (fn [u]
+      (fn [f]
+        (let [CF (Cartan->forms Cartan)
+              basis (Cartan->basis Cartan)
+              fi (basis->oneform-basis basis)
+              ei (basis->vector-basis basis)]
+          (* (ei f)
+             (+ (* (- (- (w (CF v)) (v (CF w))) (CF (commutator w v))) (fi u))
+                (- (* (CF w) (* (CF v) (fi u))) (* (CF v) (* (CF w) (fi u)))))))))))

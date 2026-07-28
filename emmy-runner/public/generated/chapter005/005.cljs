@@ -1,5 +1,7 @@
-(def u (+ (* 'u↑0 d:dx) (* 'u↑1 d:dy) (* 'u↑2 d:dz)))
+(def a (literal-manifold-function 'alpha R3-rect))
 
-(def v (+ (* 'v↑0 d:dx) (* 'v↑1 d:dy) (* 'v↑2 d:dz)))
+(def b (literal-manifold-function 'beta R3-rect))
 
-(def w (+ (* 'w↑0 d:dx) (* 'w↑1 d:dy) (* 'w↑2 d:dz)))
+(def c (literal-manifold-function 'gamma R3-rect))
+
+(def theta (+ (* a dx) (* b dy) (* c dz)))

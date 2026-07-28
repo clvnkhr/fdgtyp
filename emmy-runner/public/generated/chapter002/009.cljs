@@ -1,1 +1,1 @@
-(def R2->R '(-> (UP Real Real) Real))
+(def f (literal-manifold-function 'f-rect R2-rect))

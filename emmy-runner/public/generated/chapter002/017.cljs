@@ -1,2 +1,4 @@
-(r (R2-polar-chi-inverse (up 'r0 'theta0)))
-;; => r0
+(def h (+ (* x (square r)) (cube y)))
+
+(h R2-rect-point)
+;; => (+ (* x0 (+ (expt x0 2) (expt y0 2))) (expt y0 3))

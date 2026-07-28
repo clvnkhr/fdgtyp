@@ -2,6 +2,45 @@
 #import "@preview/hydra:0.6.3": hydra
 #import "basics.typ": fdg-equation-prefix, fdg-iridis-palette, fdg-link-color, fdg-raw-fill, fdg-raw-stroke, fdg-raw-text
 
+// The edition is set once around the whole book. Keeping it in contextual
+// state lets generated chapters select code (and, later, edition-specific
+// prose) without receiving an edition argument themselves.
+#let fdg-code-edition = sys.inputs.at("code", default: "scheme")
+
+#let fdg-edition-select(scheme: none, clojure: none, both: none) = {
+  let edition = fdg-code-edition
+  if edition == "scheme" { scheme }
+  else if edition == "clojure" { clojure }
+  else if edition == "both" { if both == none { (scheme, clojure) } else { both } }
+  else { panic("unknown FDG code edition: " + repr(edition)) }
+}
+
+#let fdg-render-code-block(id, extension, language) = {
+    let code = read("../../codeblocks/" + id + "." + extension)
+    let result-parts = code.split("\n;; => ")
+    if code.len() > 5000 and result-parts.len() > 1 {
+      code = (
+        result-parts.first() + "\n;; => "
+        + result-parts.at(1).clusters().slice(0, 200).join()
+        + "…\n;; [full result retained in " + id + "." + extension + "]"
+      )
+    }
+    raw(code, block: true, lang: language)
+}
+
+#let fdg-scheme-code-block(id) = fdg-render-code-block(id, "scm", "scheme")
+#let fdg-cljs-code-block(id) = fdg-render-code-block(id, "cljs", "clojure")
+
+#let fdg-code-block(id) = {
+  let edition = fdg-code-edition
+  let render(extension, language) = fdg-render-code-block(id, extension, language)
+  if edition == "scheme" { render("scm", "scheme") }
+  else if edition == "clojure" { render("cljs", "clojure") }
+  else if edition == "both" {
+    stack(dir: ttb, spacing: 0.7em, render("scm", "scheme"), render("cljs", "clojure"))
+  } else { panic("unknown FDG code edition: " + repr(edition)) }
+}
+
 #let fdg-running-header = context {
   let page-numbering = here().page-numbering()
   if page-numbering == none {
@@ -23,7 +62,10 @@
   }
 }
 
-#let fdg-book(body) = {
+#let fdg-book(body, code-edition: "scheme") = {
+  if code-edition != fdg-code-edition {
+    panic("fdg-book code-edition must match the global code input")
+  }
   set document(
     title: "Functional Differential Geometry",
     author: ("Gerald Jay Sussman", "Jack Wisdom", "Will Farr"),

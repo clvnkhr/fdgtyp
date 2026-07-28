@@ -1,1 +1,1 @@
-(defn g [v] (fn [state] (make-state ((Dsigma v) state) ((Du v) state))))
+(defn Dsigma [v] (fn [state] ((v Chi) (Chi-inverse (Sigma state)))))

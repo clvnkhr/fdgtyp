@@ -1,6 +1,6 @@
 // Generated from ../../fdg-book/scheme/org/chapter004.org.
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
-#import "../lib.typ": fdg-chapter, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
+#import "../lib.typ": fdg-chapter, fdg-code-block, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
 
 #fdg-chapter("Basis Fields", numbered: true, eq-prefix: "4", ref-label: "chap-4")[
 A vector field may be written as a linear combination of basis vector fields. If #raw(lang:"scheme", "n") is the dimension, then any set of #raw(lang:"scheme", "n") linearly independent vector fields may be used as a basis. The coordinate basis $sans(X)$ is an example of a basis.#footnote[We cannot say if the basis vectors are orthogonal or normalized until we introduce a metric.] We will see later that not every basis is a coordinate basis: in order to be a coordinate basis, there must be a coordinate system such that each basis element is the directional derivative operator in a corresponding coordinate direction.
@@ -55,7 +55,7 @@ $ tilde(sans(e))^j (sans(v))= sans(b)^j . $ <4.8>
 
 Define two general vector fields:
 
-```scheme
+/* fdg-code-source: chapter004/001
 (define e0
   (+ (* (literal-manifold-function 'e0x R2-rect) d/dx)
      (* (literal-manifold-function 'e0y R2-rect) d/dy)))
@@ -63,27 +63,31 @@ Define two general vector fields:
 (define e1
   (+ (* (literal-manifold-function 'e1x R2-rect) d/dx)
      (* (literal-manifold-function 'e1y R2-rect) d/dy)))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter004/001")
 
 We use these as a vector basis and compute the dual:
 
-```scheme
+/* fdg-code-source: chapter004/002
 (define e-vector-basis (down e0 e1))
-(define e-dual-basis (vector-basis->dual e-vector-basis R2-polar))
-```
+(define e-dual-basis
+  (vector-basis->dual e-vector-basis R2-polar))
+fdg-code-source-end */
+#fdg-code-block("chapter004/002")
 
 The procedure #raw(lang:"scheme", "vector-basis->dual") requires an auxiliary coordinate system (here #raw(lang:"scheme", "R2-polar")) to get the $sans(c)_j^k$ coefficient functions from which we compute the $sans(d)_i^k$ coefficient functions. However, the final result is independent of this coordinate system. Then we can verify that the bases $sans(e)$ and $tilde(sans(e))$ satisfy the dual relationship (equation @3.41) by applying the dual basis to the vector basis:
 
-```scheme
+/* fdg-code-source: chapter004/003
 ((e-dual-basis e-vector-basis) R2-rect-point)
 ;; (up (down 1 0) (down 0 1))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter004/003")
 
 Note that the dual basis was computed relative to the polar coordinate system: the resulting objects are independent of the coordinates in which they were expressed!
 
 Or we can make a general vector field with this basis and then pick out the coefficients by applying the dual basis:
 
-```scheme
+/* fdg-code-source: chapter004/004
 (define v
   (* (up (literal-manifold-function 'b^0 R2-rect)
          (literal-manifold-function 'b^1 R2-rect))
@@ -91,7 +95,8 @@ Or we can make a general vector field with this basis and then pick out the coef
 
 ((e-dual-basis v) R2-rect-point)
 ;; (up (bˆ0 (up x0 y0)) (bˆ1 (up x0 y0)))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter004/004")
 
 == Change of Basis <sec-4.1>
 Suppose that we have a vector field v expressed in terms of one basis $sans(e)$ and we want to reexpress it in terms of another basis $sans(e')$. We have
@@ -124,15 +129,16 @@ $ sans(e) (sans(f))= sans(e') (sans(f))sans(J) . $ <4.15>
 
 We can write
 
-```scheme
+/* fdg-code-source: chapter004/005
 (define (Jacobian to-basis from-basis)
   (s:map/r (basis->1form-basis to-basis)
            (basis->vector-basis from-basis)))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter004/005")
 
 The polar components are:
 
-```scheme
+/* fdg-code-source: chapter004/006
 (define b-polar
   (* (Jacobian (coordinate-system->basis R2-polar)
                (coordinate-system->basis R2-rect))
@@ -144,11 +150,12 @@ The polar components are:
 ;;     (sqrt (+ (expt x0 2) (expt y0 2))))
 ;;  (/ (+ (* x0 (bˆ1 (up x0 y0))) (* -1 y0 (bˆ0 (up x0 y0))))
 ;;     (+ (expt x0 2) (expt y0 2))))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter004/006")
 
 We can also get the polar components directly:
 
-```scheme
+/* fdg-code-source: chapter004/007
 (((coordinate-system->1form-basis R2-polar)
   (literal-vector-field 'b R2-rect))
  ((point R2-rect) (up 'x0 'y0)))
@@ -158,7 +165,8 @@ We can also get the polar components directly:
 ;;     (sqrt (+ (expt x0 2) (expt y0 2))))
 ;;  (/ (+ (* x0 (bˆ1 (up x0 y0))) (* -1 y0 (bˆ0 (up x0 y0))))
 ;;     (+ (expt x0 2) (expt y0 2))))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter004/007")
 
 We see that they are the same.
 
@@ -257,17 +265,19 @@ We used the fact, shown above, that the commutator of two coordinate basis field
 
 We can check this formula for the commutator for the general vector fields #raw(lang:"scheme", "e0") and #raw(lang:"scheme", "e1") in polar coordinates:
 
-```scheme
+/* fdg-code-source: chapter004/008
 (let* ((polar-basis (coordinate-system->basis R2-polar))
        (polar-vector-basis (basis->vector-basis polar-basis))
        (polar-dual-basis (basis->1form-basis polar-basis))
        (f (literal-manifold-function 'f-rect R2-rect)))
   ((- ((commutator e0 e1) f)
-      (* (- (e0 (polar-dual-basis e1)) (e1 (polar-dual-basis e0)))
+      (* (- (e0 (polar-dual-basis e1))
+            (e1 (polar-dual-basis e0)))
          (polar-vector-basis f)))
    R2-rect-point))
 ;; 0
-```
+fdg-code-source-end */
+#fdg-code-block("chapter004/008")
 
 Let $sans(e)$ be a tuple of basis vector fields. The commutator of two basis fields can be expressed in terms of the basis vector fields:
 
@@ -283,14 +293,15 @@ $ [sans(u)\,sans(v)] (sans(f))= sum_k sans(e)_k (sans(f)) (sans(u) (sans(c)^k) -
 
 Define the vector fields #raw(lang:"scheme", "Jx"), #raw(lang:"scheme", "Jy"), and #raw(lang:"scheme", "Jz") that generate rotations about the three rectangular axes in three dimensions:#footnote[Using
 
-```scheme
+/* fdg-code-source: chapter004/009
 (define R3-rect (coordinate-system-at 'rectangular 'origin R3))
 (define-coordinates (up x y z) R3-rect)
 (define R3-rect-point ((point R3-rect) (up 'x0 'y0 'z0)))
 (define g (literal-manifold-function 'g-rect R3-rect))
-```]
+fdg-code-source-end */
+#fdg-code-block("chapter004/009")]
 
-```scheme
+/* fdg-code-source: chapter004/010
 (define-coordinates (up x y z) R3-rect)
 (define Jz (- (* x d/dy) (* y d/dx)))
 (define Jx (- (* y d/dz) (* z d/dy)))
@@ -304,7 +315,8 @@ Define the vector fields #raw(lang:"scheme", "Jx"), #raw(lang:"scheme", "Jy"), a
 
 (((+ (commutator Jz Jx) Jy) g) R3-rect-point)
 ;; 0
-```
+fdg-code-source-end */
+#fdg-code-block("chapter004/010")
 
 We see that
 
@@ -314,15 +326,16 @@ $ [sans(J)_x \, sans(J)_y] &= - sans(J)_z \
 
 We can also compute the commutators for the basis vector fields $sans(e)_x$, $sans(e)_y$, and $sans(e)_z$ in the SO(3) manifold (see equations @4.29 -- @4.31) that correspond to rotations about the $x$, $y$, and $z$ axes, respectively:#footnote[Using
 
-```scheme
+/* fdg-code-source: chapter004/011
 (define Euler-angles (coordinate-system-at 'Euler 'Euler-patch SO3))
 (define Euler-angles-chi-inverse (point Euler-angles))
 (define-coordinates (up theta phi psi) Euler-angles)
 (define SO3-point ((point Euler-angles) (up 'theta 'phi 'psi)))
 (define f (literal-manifold-function 'f-Euler Euler-angles))
-```]
+fdg-code-source-end */
+#fdg-code-block("chapter004/011")]
 
-```scheme
+/* fdg-code-source: chapter004/012
 (define Euler-angles (coordinate-system-at 'Euler 'Euler-patch SO3))
 (define-coordinates (up theta phi psi) Euler-angles)
 (define SO3-point ((point Euler-angles) (up 'theta 'phi 'psi)))
@@ -346,7 +359,8 @@ We can also compute the commutators for the basis vector fields $sans(e)_x$, $sa
 
 (((+ (commutator e_z e_x) e_y) f) SO3-point)
 ;; 0
-```
+fdg-code-source-end */
+#fdg-code-block("chapter004/012")
 
 You can tell if a set of basis vector fields is a coordinate basis by calculating the commutators. If they are nonzero, then the basis is not a coordinate basis. If they are zero then the basis vector fields can be integrated to give the coordinate system.
 

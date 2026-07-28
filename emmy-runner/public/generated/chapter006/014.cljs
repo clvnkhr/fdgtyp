@@ -1,2 +1,1 @@
-(((- ((pullback mu) (d f)) (d ((pullback mu) f))) X) ((point R2-rect) (up 'x0 'y0)))
-;; => 0
+(def mu (literal-manifold-map 'MU R2-rect R3-rect))

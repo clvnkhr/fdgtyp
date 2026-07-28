@@ -1,6 +1,6 @@
 // Generated from ../../fdg-book/scheme/org/chapter005.org.
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
-#import "../lib.typ": fdg-chapter, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
+#import "../lib.typ": fdg-chapter, fdg-code-block, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
 
 #fdg-chapter("Integration", numbered: true, eq-prefix: "5", ref-label: "chap-5")[
 We know how to integrate real-valued functions of a real variable. We want to extend this idea to manifolds, in such a way that the integral is independent of the coordinate system used to compute it.
@@ -115,7 +115,7 @@ Note that this is the area of the parallelogram in the coordinate plane, which i
 == 3-Dimensional Euclidean Space <sec-5.3>
 Let\'s specialize to 3-dimensional Euclidean space. Following equation @5.18 we can write the coordinate-area two-form in another way: $sans(A) = sans(d) sans(x) "∧" sans(d) sans(y).$ As code:
 
-```scheme
+/* fdg-code-source: chapter005/001
 (define-coordinates (up x y z) R3-rect)
 
 (define u (+ (* 'u^0 d/dx) (* 'u^1 d/dy)))
@@ -123,11 +123,12 @@ Let\'s specialize to 3-dimensional Euclidean space. Following equation @5.18 we 
 
 (((wedge dx dy) u v) R3-rect-point)
 ;; (+ (* u^0 v^1) (* -1 u^1 v^0))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter005/001")
 
 If we use cylindrical coordinates and define cylindrical vector fields we get the analogous answer in cylindrical coordinates:
 
-```scheme
+/* fdg-code-source: chapter005/002
 (define-coordinates (up r theta z) R3-cyl)
 
 (define a (+ (* 'a^0 d/dr) (* 'a^1 d/dtheta)))
@@ -135,13 +136,14 @@ If we use cylindrical coordinates and define cylindrical vector fields we get th
 
 (((wedge dr dtheta) a b) ((point R3-cyl) (up 'r0 'theta0 'z0)))
 ;; (+ (* a^0 b^1 ) (* -1 a^1 b^0))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter005/002")
 
 The moral of this story is that this is the area of the parallelogram in the coordinate plane. It is not the area of the manifold!
 
 There is a similar story with volumes. The wedge product of the elements of the coordinate basis is a three-form that measures our usual idea of coordinate volumes in $sans(R)^3$ with a Euclidean metric:
 
-```scheme
+/* fdg-code-source: chapter005/003
 (define u (+ (* 'u^0 d/dx) (* 'u^1 d/dy) (* 'u^2 d/dz)))
 (define v (+ (* 'v^0 d/dx) (* 'v^1 d/dy) (* 'v^2 d/dz)))
 (define w (+ (* 'w^0 d/dx) (* 'w^1 d/dy) (* 'w^2 d/dz)))
@@ -153,17 +155,20 @@ There is a similar story with volumes. The wedge product of the elements of the 
 ;;    (* u^1 v^2 w^0)
 ;;    (* u^2 v^0 w^1)
 ;;    (* -1 u^2 v^1 w^0))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter005/003")
 
 This last expression is the determinant of a $3 times 3$ matrix:
 
-```scheme
+/* fdg-code-source: chapter005/004
 (- (((wedge dx dy dz) u v w) R3-rect-point)
-   (determinant (matrix-by-rows (list 'u^0 'u^1 'u^2)
-                                (list 'v^0 'v^1 'v^2)
-                                (list 'w^0 'w^1 'w^2))))
+   (determinant
+    (matrix-by-rows (list 'u^0 'u^1 'u^2)
+                    (list 'v^0 'v^1 'v^2)
+                    (list 'w^0 'w^1 'w^2))))
 ;; 0
-```
+fdg-code-source-end */
+#fdg-code-block("chapter005/004")
 
 If we did the same operations in cylindrical coordinates we would get the analogous formula, showing that what we are computing is volume in the coordinate space, not volume on the manifold.
 
@@ -216,26 +221,30 @@ Though this formula is expressed in terms of a coordinate basis, the result is i
 == Computing Exterior Derivatives <sec-5.6>
 We can test that the computation indicated by equation @5.24 is equivalent to the computation indicated by equation @5.26 in three dimensions with a general one-form field:
 
-```scheme
+/* fdg-code-source: chapter005/005
 (define a (literal-manifold-function 'alpha R3-rect))
 (define b (literal-manifold-function 'beta R3-rect))
 (define c (literal-manifold-function 'gamma R3-rect))
 
 (define theta (+ (* a dx) (* b dy) (* c dz)))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter005/005")
 
 The test will require two arbitrary vector fields
 
-```scheme
+/* fdg-code-source: chapter005/006
 (define X (literal-vector-field 'X-rect R3-rect))
 (define Y (literal-vector-field 'Y-rect R3-rect))
 
-(((- (d theta) (+ (wedge (d a) dx) (wedge (d b) dy) (wedge (d c) dz)))
-  X
-  Y)
+(((- (d theta)
+     (+ (wedge (d a) dx)
+        (wedge (d b) dy)
+        (wedge (d c) dz)))
+  X Y)
  R3-rect-point)
 ;; 0
-```
+fdg-code-source-end */
+#fdg-code-block("chapter005/006")
 
 We can also try a general two-form field in 3-dimensional space:
 
@@ -245,24 +254,28 @@ $ omega = a sans(d) sans(y) and sans(d) sans(z) + b sans(d) sans(z) and sans(d) 
 
 where $a = α ˆ χ,$ $b = β ˆ χ,$ $c = γ ˆ χ,$ and $α$, $β$, and $γ$ are real-valued functions of three real arguments. As a program,
 
-```scheme
+/* fdg-code-source: chapter005/007
 (define omega
-  (+ (* a (wedge dy dz)) (* b (wedge dz dx)) (* c (wedge dx dy))))
-```
+  (+ (* a (wedge dy dz))
+     (* b (wedge dz dx))
+     (* c (wedge dx dy))))
+fdg-code-source-end */
+#fdg-code-block("chapter005/007")
 
 Here we need another vector field because our result will be a three-form field.
 
-```scheme
+/* fdg-code-source: chapter005/008
 (define Z (literal-vector-field 'Z-rect R3-rect))
 
 (((- (d omega)
-     (+ (wedge (d a) dy dz) (wedge (d b) dz dx) (wedge (d c) dx dy)))
-  X
-  Y
-  Z)
+     (+ (wedge (d a) dy dz)
+        (wedge (d b) dz dx)
+        (wedge (d c) dx dy)))
+  X Y Z)
  R3-rect-point)
 ;; 0
-```
+fdg-code-source-end */
+#fdg-code-block("chapter005/008")
 
 == Properties of Exterior Derivatives <sec-5.7>
 The exterior derivative of the wedge of two form fields obeys the graded Leibniz rule. It can be written in terms of the exterior derivatives of the component form fields:
@@ -288,10 +301,11 @@ $ sans(d)^2 sans(f) (sans(u)\,sans(v)) &= sans(d) (sans(d) sans(f)) (sans(u)\,sa
 
 Consider the general one-form field $theta$ defined on 3-dimensional rectangular space. Taking two exterior derivatives of $theta$ yields a three-form field. It is zero:
 
-```scheme
+/* fdg-code-source: chapter005/009
 (((d (d theta)) X Y Z) R3-rect-point)
 0
-```
+fdg-code-source-end */
+#fdg-code-block("chapter005/009")
 
 Not every closed form field is an exact form field. Whether a closed form field is exact depends on the topology of a manifold.
 
@@ -334,16 +348,17 @@ $ integral_(partial M) ((alpha compose chi)sans(d) sans(x) +(beta compose chi)sa
 
 We can test this. By Stokes\'s Theorem, the integrands are related by an exterior derivative. We need some vectors to test our forms:
 
-```scheme
+/* fdg-code-source: chapter005/010
 (define v (literal-vector-field 'v-rect R2-rect))
 (define w (literal-vector-field 'w-rect R2-rect))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter005/010")
 
 We can now test our integrands:#footnote[Using #raw(lang:"scheme", "(define R2-rect-basis (coordinate-system->basis R2-rect))").
 
 Here we extract $sans(d) sans(x)$ and $sans(d) sans(y)$ from #raw(lang:"scheme", "R2-rect-basis") to avoid globally installing coordinates.]
 
-```scheme
+/* fdg-code-source: chapter005/011
 (define alpha (literal-function 'alpha R2->R))
 (define beta (literal-function 'beta R2->R))
 
@@ -351,14 +366,15 @@ Here we extract $sans(d) sans(x)$ and $sans(d) sans(y)$ from #raw(lang:"scheme",
       (dy (ref (basis->1form-basis R2-rect-basis) 1)))
   (((- (d (+ (* (compose alpha (chart R2-rect)) dx)
              (* (compose beta (chart R2-rect)) dy)))
-       (* (compose (- ((partial 0) beta) ((partial 1) alpha))
+       (* (compose (- ((partial 0) beta)
+                      ((partial 1) alpha))
                    (chart R2-rect))
           (wedge dx dy)))
-    v
-    w)
+    v w)
    R2-rect-point))
 ;; 0
-```
+fdg-code-source-end */
+#fdg-code-block("chapter005/011")
 
 We can also compute the integrands for the Divergence Theorem: For an arbitrary compact set $M subset upright(R)^3$ and a vector field $sans(w)$
 
@@ -380,14 +396,17 @@ $ sans(a) thin sans(d) sans(y) and sans(d) sans(z) + sans(b) thin sans(d) sans(z
 
 because any part of the boundary will have $y upright("-") z$, $z upright("-") x$, and $x upright("-") y$ components, and each such component will pick up contributions from the normal component of the flux $w$. Formalizing this as code we have
 
-```scheme
+/* fdg-code-source: chapter005/012
 (define a (literal-manifold-function 'a-rect R3-rect))
 (define b (literal-manifold-function 'b-rect R3-rect))
 (define c (literal-manifold-function 'c-rect R3-rect))
 
 (define flux-through-boundary-element
-  (+ (* a (wedge dy dz)) (* b (wedge dz dx)) (* c (wedge dx dy))))
-```
+  (+ (* a (wedge dy dz))
+     (* b (wedge dz dx))
+     (* c (wedge dx dy))))
+fdg-code-source-end */
+#fdg-code-block("chapter005/012")
 
 The rate of production of stuff in each element of volume is $upright(div) (sans(w))d V$. We interpret this as the three-form
 
@@ -395,24 +414,27 @@ $ (frac(partial, partial sans(x)) sans(a) + frac(partial, partial sans(y)) sans(
 
 or:
 
-```scheme
+/* fdg-code-source: chapter005/013
 (define production-in-volume-element
-  (* (+ (d/dx a) (d/dy b) (d/dz c)) (wedge dx dy dz)))
-```
+  (* (+ (d/dx a) (d/dy b) (d/dz c))
+     (wedge dx dy dz)))
+fdg-code-source-end */
+#fdg-code-block("chapter005/013")
 
 Assuming Stokes\'s Theorem, the exterior derivative of the leakage of stuff per unit area through the boundary must be the rate of production of stuff per unit volume in the interior. We check this by applying the difference to arbitrary vector fields at an arbitrary point:
 
-```scheme
+/* fdg-code-source: chapter005/014
 (define X (literal-vector-field 'X-rect R3-rect))
 (define Y (literal-vector-field 'Y-rect R3-rect))
 (define Z (literal-vector-field 'Z-rect R3-rect))
 
-(((- production-in-volume-element (d flux-through-boundary-element)) X
-                                                                     Y
-                                                                     Z)
+(((- production-in-volume-element
+     (d flux-through-boundary-element))
+  X Y Z)
  R3-rect-point)
 0
-```
+fdg-code-source-end */
+#fdg-code-block("chapter005/014")
 
 as expected.
 

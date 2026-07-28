@@ -26,18 +26,18 @@ own. Captured `;; =>` comments are deliberately excluded from reformatting. To
 format or check files directly, run:
 
 ```sh
-clojure -M:format-emmy emmy/blocks emmy-runner/public/generated
-clojure -M:format-emmy --check emmy/blocks emmy-runner/public/generated
+clojure -M:format-emmy codeblocks emmy-runner/public/generated
+clojure -M:format-emmy --check codeblocks emmy-runner/public/generated
 ```
 
 The second command extracts the Scheme blocks into stable, chapter-scoped pairs:
 
 ```text
-emmy/blocks/chapter003/012.scm   immutable comparison snapshot
-emmy/blocks/chapter003/012.cljs  editable Emmy port
+codeblocks/chapter003/012.scm   immutable comparison snapshot
+codeblocks/chapter003/012.cljs  editable Emmy port
 ```
 
-It also creates `emmy-runner/public/generated/manifest.json`, which records the
+It also creates `emmy-runner/public/generated/blocks.json`, which records the
 chapter, section, original Org line, source hash, and browser URL for each
 block. Existing `.cljs` files are preserved. `--force` deliberately
 regenerates them and should only be used when discarding manual work is intended.
@@ -64,7 +64,17 @@ keeps its common `pi` factor symbolic and explicitly simplifies the result, so
 the factor cancels before Emmy's numerical value of pi introduces rounding.
 
 The files themselves are the conversion state. A `.scm` file is the clean
-upstream snapshot and its neighboring `.cljs` file is the clean working port.
+generated-Typst snapshot and its neighboring `.cljs` file is the clean working port.
+
+The generated Typst files are now the immediate source of the `.scm` files:
+the Org converter retains each repaired Scheme block in a non-rendered Typst
+source comment, and `convert-scheme-to-emmy.mjs` extracts `codeblocks/` from
+those comments. The rendered book reads the neighboring files rather than an
+embedded copy. Scheme is the default edition; build the ClojureScript edition
+with `make cljs-draft` or `make cljs-book`; `make draft` and `make book`
+produce both language editions. The centralized
+Typst edition selector also accepts `code=both` for future combined-edition
+work, though that layout is not yet a publication target.
 Do not add generated headers, status comments, or bookkeeping comments. Comments
 that introduce the source code are preserved from Scheme. Trailing `;; =>`
 comments are reserved for output produced by running that exact ClojureScript
@@ -136,7 +146,7 @@ node target/smoke.js --capture-results --chapter=chapter008
 
 Capture mode runs each chapter from a fresh context and stages every updated
 comment in memory. Only after the entire requested run succeeds does it replace
-the previous `;; =>` comments in `emmy/blocks/` and the browser's served copies;
+the previous `;; =>` comments in `codeblocks/` and the browser's served copies;
 a failure leaves all files unchanged. Results longer than 20,000 characters retain their first 200
 characters followed by an explicit truncation marker and total size, instead of
 making a source block megabytes long; inspect those values in the web runner

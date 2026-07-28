@@ -1,6 +1,6 @@
 // Generated from ../../fdg-book/scheme/org/chapter011.org.
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
-#import "../lib.typ": fdg-chapter, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
+#import "../lib.typ": fdg-chapter, fdg-code-block, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
 
 #fdg-chapter("Special Relativity", numbered: true, eq-prefix: "11", ref-label: "chap-11")[
 Although the usual treatments of special relativity begin with the Michelson-Morley experiment, this is not how Einstein began. In fact, Einstein was impressed with Maxwell\'s work and he was emulating Maxwell\'s breakthrough.
@@ -211,61 +211,68 @@ $ xi = B (bold(beta)) (xi'). $ <11.39>
 == Implementation <sec-11.5>
 We represent a 4-tuple as a flat up-tuple of components.
 
-```scheme
+/* fdg-code-source: chapter011/001
 (define (make-4tuple ct space)
   (up ct (ref space 0) (ref space 1) (ref space 2)))
 
-(define (4tuple->ct v)
-  (ref v 0))
+(define (4tuple->ct v) (ref v 0))
 (define (4tuple->space v)
   (up (ref v 1) (ref v 2) (ref v 3)))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter011/001")
 
 The invariant interval is then
 
-```scheme
+/* fdg-code-source: chapter011/002
 (define (proper-space-interval 4tuple)
   (sqrt (- (square (4tuple->space 4tuple))
            (square (4tuple->ct 4tuple)))))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter011/002")
 
 This is a real number for space-like intervals. A space-like interval is one where spatial distance is larger than can be traversed by light in the time interval.
 
 It is often convenient for the interval to be real for time-like intervals, where light can traverse the spatial distance in less than the time interval.
 
-```scheme
+/* fdg-code-source: chapter011/003
 (define (proper-time-interval 4tuple)
   (sqrt (- (square (4tuple->ct 4tuple))
            (square (4tuple->space 4tuple)))))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter011/003")
 
 The general boost $B$ is
 
-```scheme
+/* fdg-code-source: chapter011/004
 (define ((general-boost beta) xi-p)
   (let ((gamma (expt (- 1 (square beta)) -1/2)))
     (let ((factor (/ (- gamma 1) (square beta))))
       (let ((xi-p-time (4tuple->ct xi-p))
             (xi-p-space (4tuple->space xi-p)))
         (let ((beta-dot-xi-p (dot-product beta xi-p-space)))
-          (make-4tuple (* gamma (+ xi-p-time beta-dot-xi-p))
-                       (+ (* gamma beta xi-p-time)
-                          xi-p-space
-                          (* factor beta beta-dot-xi-p))))))))
-```
+          (make-4tuple
+           (* gamma (+ xi-p-time beta-dot-xi-p))
+           (+ (* gamma beta xi-p-time)
+              xi-p-space
+              (* factor beta beta-dot-xi-p))))))))
+fdg-code-source-end */
+#fdg-code-block("chapter011/004")
 
 We can check that the interval is invariant:
 
-```scheme
-(- (proper-space-interval ((general-boost (up 'vx 'vy 'vz))
-                           (make-4tuple 'ct (up 'x 'y 'z))))
-   (proper-space-interval (make-4tuple 'ct (up 'x 'y 'z))))
+/* fdg-code-source: chapter011/005
+(- (proper-space-interval
+    ((general-boost (up 'vx 'vy 'vz))
+     (make-4tuple 'ct (up 'x 'y 'z))))
+   (proper-space-interval
+    (make-4tuple 'ct (up 'x 'y 'z))))
 ;; 0
-```
+fdg-code-source-end */
+#fdg-code-block("chapter011/005")
 
 It is inconvenient that the general boost as just defined does not work if $bold(beta)$ is zero. An alternate way to specify a boost is through the magnitude of $v\/c$ and a direction:
 
-```scheme
+/* fdg-code-source: chapter011/006
 (define ((general-boost2 direction v/c) 4tuple-prime)
   (let ((delta-ct-prime (4tuple->ct 4tuple-prime))
         (delta-x-prime (4tuple->space 4tuple-prime)))
@@ -273,12 +280,15 @@ It is inconvenient that the general boost as just defined does not work if $bold
       (let ((bx (dot-product direction delta-x-prime))
             (gamma (/ 1 (sqrt (- 1 betasq)))))
         (let ((alpha (- gamma 1)))
-          (let ((delta-ct (* gamma (+ delta-ct-prime (* bx v/c))))
-                (delta-x (+ (* gamma v/c direction delta-ct-prime)
-                            delta-x-prime
-                            (* alpha direction bx))))
+          (let ((delta-ct
+                 (* gamma (+ delta-ct-prime (* bx v/c))))
+                (delta-x
+                 (+ (* gamma v/c direction delta-ct-prime)
+                    delta-x-prime
+                    (* alpha direction bx))))
             (make-4tuple delta-ct delta-x)))))))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter011/006")
 
 This is well behaved as $v\/c$ goes to zero.
 
@@ -295,27 +305,35 @@ Note that $(cal(R) (R))^(-1) = cal(R) (R^(-1))$. The functional inverse of the e
 
 The extended rotation can be implemented:
 
-```scheme
+/* fdg-code-source: chapter011/007
 (define ((extended-rotation R) xi)
-  (make-4tuple (4tuple->ct xi) (R (4tuple->space xi))))
-```
+  (make-4tuple
+   (4tuple->ct xi)
+   (R (4tuple->space xi))))
+fdg-code-source-end */
+#fdg-code-block("chapter011/007")
 
 In terms of this we can check the relation between boosts and rotations:
 
-```scheme
+/* fdg-code-source: chapter011/008
 (let ((beta (up 'bx 'by 'bz))
       (xi (make-4tuple 'ct (up 'x 'y 'z)))
-      (R (compose (rotate-x 'theta) (rotate-y 'phi) (rotate-z 'psi)))
-      (R-inverse (compose (rotate-z (- 'psi))
-                          (rotate-y (- 'phi))
-                          (rotate-x (- 'theta)))))
+      (R (compose
+          (rotate-x 'theta)
+          (rotate-y 'phi)
+          (rotate-z 'psi)))
+      (R-inverse (compose
+                  (rotate-z (- 'psi))
+                  (rotate-y (- 'phi))
+                  (rotate-x (- 'theta)))))
   (- ((general-boost beta) xi)
      ((compose (extended-rotation R-inverse)
                (general-boost (R beta))
                (extended-rotation R))
       xi)))
 ;; (up 0 0 0 0)
-```
+fdg-code-source-end */
+#fdg-code-block("chapter011/008")
 
 == General Lorentz Transformations <sec-11.7>
 A Lorentz transformation carries an incremental 4-tuple to another 4-tuple. A general linear transformation on 4-tuples has sixteen free parameters. The interval is a symmetric quadratic form, so the requirement that the interval be preserved places only ten constraints on these parameters. Evidently there are six free parameters to the general Lorentz transformation. We already have three parameters that specify boosts (the three components of the boost velocity). And we have three more parameters in the extended rotations. The general Lorentz transformation can be constructed by combining generalized rotations and boosts.
@@ -338,208 +356,233 @@ Points in spacetime are called events. It must be possible to compare two events
 
 When one frame is built upon another, to determine the event from frame-specific coordinates or to determine the frame-specific coordinates for an event requires composition of the boosts that relate the frames to each other. The two procedures that are required to implement this strategy are#footnote[The procedure #raw(lang:"scheme", "make-SR-coordinates") labels the given coordinates with the given frame. The procedures that manipulate coordinates, such as #raw(lang:"scheme", "(point ancestor-frame)"), check that the coordinates they are given are in the appropriate frame. This error checking makes it easier to debug relativity procedures.]
 
-```scheme
-(define ((coordinates->event ancestor-frame
-                             this-frame
-                             boost-direction
-                             v/c
-                             origin)
+/* fdg-code-source: chapter011/009
+(define ((coordinates->event ancestor-frame this-frame
+                             boost-direction v/c origin)
          coords)
   ((point ancestor-frame)
    (make-SR-coordinates ancestor-frame
                         (+ ((general-boost2 boost-direction v/c) coords)
                            origin))))
 
-(define ((event->coordinates ancestor-frame
-                             this-frame
-                             boost-direction
-                             v/c
-                             origin)
+(define ((event->coordinates ancestor-frame this-frame
+                             boost-direction v/c origin)
          event)
   (make-SR-coordinates this-frame
                        ((general-boost2 (- boost-direction) v/c)
                         (- ((chart ancestor-frame) event) origin))))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter011/009")
 
 With these two procedures, the procedure #raw(lang:"scheme", "make-SR-frame") constructs a new relativistic frame by a Poincaré transformation from a given frame.
 
-```scheme
+/* fdg-code-source: chapter011/010
 (define make-SR-frame
   (frame-maker coordinates->event event->coordinates))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter011/010")
 
 === Velocity Addition Formula <sec-11.8.1>
 For example, we can derive the traditional velocity addition formula. Assume that we have a base frame called #raw(lang:"scheme", "home"). We can make a frame #raw(lang:"scheme", "A") by a boost from home in the $hat(x)$ direction, with components $(1\,0\,0)$, and with a dimensionless measure of the speed $v_a\/c$. We also specify that the 4-tuple origin of this new frame coincides with the origin of #raw(lang:"scheme", "home").
 
-```scheme
+/* fdg-code-source: chapter011/011
 (define A
-  (make-SR-frame 'A
-                 home
+  (make-SR-frame 'A home
                  (up 1 0 0)
                  'va/c
                  (make-SR-coordinates home (up 0 0 0 0))))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter011/011")
 
 Frame #raw(lang:"scheme", "B") is built on frame #raw(lang:"scheme", "A") similarly, boosted by $v_b\/c$.
 
-```scheme
+/* fdg-code-source: chapter011/012
 (define B
-  (make-SR-frame 'B
-                 A
+  (make-SR-frame 'B A
                  (up 1 0 0)
                  'vb/c
                  (make-SR-coordinates A (up 0 0 0 0))))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter011/012")
 
 So any point at rest in frame #raw(lang:"scheme", "B") will have a speed relative to home. For the spatial origin of frame #raw(lang:"scheme", "B"), with #raw(lang:"scheme", "B") coordinates #raw(lang:"scheme", "(up 'ct 0 0 0)"), we have
 
-```scheme
+/* fdg-code-source: chapter011/013
 (let ((B-origin-home-coords
-       ((chart home) ((point B) (make-SR-coordinates B
-                                                     (up 'ct 0 0 0))))))
-  (/ (ref B-origin-home-coords 1) (ref B-origin-home-coords 0)))
+       ((chart home)
+        ((point B)
+         (make-SR-coordinates B (up 'ct 0 0 0))))))
+  (/ (ref B-origin-home-coords 1)
+     (ref B-origin-home-coords 0)))
 ;; (/ (+ va/c vb/c) (+ 1 (* va/c vb/c)))
-```
+fdg-code-source-end */
+#fdg-code-block("chapter011/013")
 
 obtaining the traditional velocity-addition formula. (Note that the resulting velocity is represented as a fraction of the speed of light.) This is a useful result, so:
 
-```scheme
+/* fdg-code-source: chapter011/014
 (define (add-v/cs va/c vb/c)
-  (/ (+ va/c vb/c) (+ 1 (* va/c vb/c))))
-```
+  (/ (+ va/c vb/c)
+     (+ 1 (* va/c vb/c))))
+fdg-code-source-end */
+#fdg-code-block("chapter011/014")
 
 == Twin Paradox <sec-11.9>
 Special relativity engenders a traditional conundrum: consider two twins, one of whom travels and the other stays at home. When the traveller returns it is discovered that the traveller has aged less than the twin who stayed at home. How is this possible?
 
 The experiment begins at the start event, which we arbitrarily place at the origin of the home frame.
 
-```scheme
+/* fdg-code-source: chapter011/015
 (define start-event
-  ((point home) (make-SR-coordinates home (up 0 0 0 0))))
-```
+  ((point home)
+   (make-SR-coordinates home (up 0 0 0 0))))
+fdg-code-source-end */
+#fdg-code-block("chapter011/015")
 
 There is a homebody and a traveller. The traveller leaves home at the start event and proceeds at 24/25 of the speed of light in the $hat(x)$ direction. We define a frame for the traveller, by boosting from the home frame.
 
-```scheme
+/* fdg-code-source: chapter011/016
 (define outgoing
-  (make-SR-frame 'outgoing ; for debugging
-                 home ; base frame
-                 (up 1 0 0) ; x direction
-                 24/25 ; velocity as fraction of c
-                 ((chart home) start-event)))
-```
+  (make-SR-frame 'outgoing       ; for debugging
+                 home            ; base frame
+                 (up 1 0 0)      ; x direction
+                 24/25           ; velocity as fraction of c
+                 ((chart home)
+                  start-event)))
+fdg-code-source-end */
+#fdg-code-block("chapter011/016")
 
 After 25 years of home time the traveller is 24 light-years out. We define that event using the coordinates in the home frame. Here we scale the time coordinate by the speed of light so that the units of $c t$ slot in the 4-vector are the same as the units in the spatial slots. Since $v\/c$ = 24/25 we must multiply that by the speed of light to get the velocity. This is multiplied by 25 years to get the $hat(x)$ coordinate of the traveller in the home frame at the turning point.
 
-```scheme
+/* fdg-code-source: chapter011/017
 (define traveller-at-turning-point-event
   ((point home)
-   (make-SR-coordinates home (up (* :c 25) (* 25 24/25 :c) 0 0))))
-```
+   (make-SR-coordinates home
+                        (up (* :c 25) (* 25 24/25 :c) 0 0))))
+fdg-code-source-end */
+#fdg-code-block("chapter011/017")
 
 Note that the first component of the coordinates of an event is the speed of light multiplied by time. The other components are distances. For example, the second component (the $hat(x)$ component) is the distance travelled in 25 years at 24/25 the speed of light. This is 24 light-years.
 
 If we examine the displacement of the traveller in his own frame we see that the traveller has aged 7 years and he has not moved from his spatial origin.
 
-```scheme
+/* fdg-code-source: chapter011/018
 (- ((chart outgoing) traveller-at-turning-point-event)
    ((chart outgoing) start-event))
 ;; (up (* 7 :c) 0 0 0)
-```
+fdg-code-source-end */
+#fdg-code-block("chapter011/018")
 
 But in the frame of the homebody we see that the time has advanced by 25 years.
 
-```scheme
+/* fdg-code-source: chapter011/019
 (- ((chart home) traveller-at-turning-point-event)
    ((chart home) start-event))
 ;; (up (* 25 :c) (* 24 :c) 0 0)
-```
+fdg-code-source-end */
+#fdg-code-block("chapter011/019")
 
 The proper time interval is 7 years, as seen in any frame, because it measures the aging of the traveller:
 
-```scheme
+/* fdg-code-source: chapter011/020
 (proper-time-interval
  (- ((chart outgoing) traveller-at-turning-point-event)
     ((chart outgoing) start-event)))
 ;; (* 7 :c)
 
-(proper-time-interval (- ((chart home) traveller-at-turning-point-event)
-                         ((chart home) start-event)))
+(proper-time-interval
+ (- ((chart home) traveller-at-turning-point-event)
+    ((chart home) start-event)))
 ;; (* 7 :c)
-```
+fdg-code-source-end */
+#fdg-code-block("chapter011/020")
 
 When the traveller is at the turning point, the event of the homebody is:
 
-```scheme
+/* fdg-code-source: chapter011/021
 (define halfway-at-home-event
-  ((point home) (make-SR-coordinates home (up (* :c 25) 0 0 0))))
-```
+  ((point home)
+   (make-SR-coordinates home (up (* :c 25) 0 0 0))))
+fdg-code-source-end */
+#fdg-code-block("chapter011/021")
 
 and the homebody has aged
 
-```scheme
-(proper-time-interval (- ((chart home) halfway-at-home-event)
-                         ((chart home) start-event)))
+/* fdg-code-source: chapter011/022
+(proper-time-interval
+ (- ((chart home) halfway-at-home-event)
+    ((chart home) start-event)))
 ;; (* 25 :c)
 
-(proper-time-interval (- ((chart outgoing) halfway-at-home-event)
-                         ((chart outgoing) start-event)))
+(proper-time-interval
+ (- ((chart outgoing) halfway-at-home-event)
+    ((chart outgoing) start-event)))
 ;; (* 25 :c)
-```
+fdg-code-source-end */
+#fdg-code-block("chapter011/022")
 
 as seen from either frame.
 
 As seen by the traveller, home is moving in the $- hat(x)$ direction at 24/25 of the velocity of light. At the turning point (7 years by his time) home is at:
 
-```scheme
+/* fdg-code-source: chapter011/023
 (define home-at-outgoing-turning-point-event
   ((point outgoing)
-   (make-SR-coordinates outgoing (up (* 7 :c) (* 7 -24/25 :c) 0 0))))
-```
+   (make-SR-coordinates outgoing
+                        (up (* 7 :c) (* 7 -24/25 :c) 0 0))))
+fdg-code-source-end */
+#fdg-code-block("chapter011/023")
 
 Since home is speeding away from the traveller, the twin at home has aged less than the traveller. This may seem weird, but it is OK because this event is different from the halfway event in the home frame.
 
-```scheme
+/* fdg-code-source: chapter011/024
 (proper-time-interval
  (- ((chart home) home-at-outgoing-turning-point-event)
     ((chart home) start-event)))
 ;; (* 49/25 :c)
-```
+fdg-code-source-end */
+#fdg-code-block("chapter011/024")
 
 The traveller turns around abruptly at this point (painful!) and begins the return trip. The incoming trip is the reverse of the outgoing trip, with origin at the turning-point event:
 
-```scheme
+/* fdg-code-source: chapter011/025
 (define incoming
-  (make-SR-frame 'incoming
-                 home
-                 (up -1 0 0)
-                 24/25
-                 ((chart home) traveller-at-turning-point-event)))
-```
+  (make-SR-frame 'incoming home
+                 (up -1 0 0) 24/25
+                 ((chart home)
+                  traveller-at-turning-point-event)))
+fdg-code-source-end */
+#fdg-code-block("chapter011/025")
 
 After 50 years of home time the traveller reunites with the homebody:
 
-```scheme
+/* fdg-code-source: chapter011/026
 (define end-event
-  ((point home) (make-SR-coordinates home (up (* :c 50) 0 0 0))))
-```
+  ((point home)
+   (make-SR-coordinates home (up (* :c 50) 0 0 0))))
+fdg-code-source-end */
+#fdg-code-block("chapter011/026")
 
 Indeed, the traveller comes home after 7 more years in the incoming frame:
 
-```scheme
+/* fdg-code-source: chapter011/027
 (- ((chart incoming) end-event)
-   (make-SR-coordinates incoming (up (* :c 7) 0 0 0)))
+   (make-SR-coordinates incoming
+                        (up (* :c 7) 0 0 0)))
 ;; (up 0 0 0 0)
 
 (- ((chart home) end-event)
-   ((chart home) ((point incoming)
-                  (make-SR-coordinates incoming (up (* :c 7) 0 0 0)))))
+   ((chart home)
+    ((point incoming)
+     (make-SR-coordinates incoming
+                          (up (* :c 7) 0 0 0)))))
 ;; (up 0 0 0 0)
-```
+fdg-code-source-end */
+#fdg-code-block("chapter011/027")
 
 The traveller ages only 7 years on the return segment, so his total aging is 14 years:
 
-```scheme
+/* fdg-code-source: chapter011/028
 (+ (proper-time-interval
     (- ((chart outgoing) traveller-at-turning-point-event)
        ((chart outgoing) start-event)))
@@ -547,32 +590,38 @@ The traveller ages only 7 years on the return segment, so his total aging is 14 
     (- ((chart incoming) end-event)
        ((chart incoming) traveller-at-turning-point-event))))
 ;; (* 14 :c)
-```
+fdg-code-source-end */
+#fdg-code-block("chapter011/028")
 
 But the homebody ages 50 years:
 
-```scheme
-(proper-time-interval (- ((chart home) end-event)
-                         ((chart home) start-event)))
+/* fdg-code-source: chapter011/029
+(proper-time-interval
+ (- ((chart home) end-event)
+    ((chart home) start-event)))
 ;; (* 50 :c)
-```
+fdg-code-source-end */
+#fdg-code-block("chapter011/029")
 
 At the turning point of the traveller the homebody is at
 
-```scheme
+/* fdg-code-source: chapter011/030
 (define home-at-incoming-turning-point-event
-  ((point incoming) (make-SR-coordinates incoming
-                                         (up 0 (* 7 -24/25 :c) 0 0))))
-```
+  ((point incoming)
+   (make-SR-coordinates incoming
+                        (up 0 (* 7 -24/25 :c) 0 0))))
+fdg-code-source-end */
+#fdg-code-block("chapter011/030")
 
 The time elapsed for the homebody between the reunion and the turning point of the homebody, as viewed by the incoming traveller, is about 2 years.
 
-```scheme
+/* fdg-code-source: chapter011/031
 (proper-time-interval
  (- ((chart home) end-event)
     ((chart home) home-at-incoming-turning-point-event)))
 ;; (* 49/25 :c)
-```
+fdg-code-source-end */
+#fdg-code-block("chapter011/031")
 
 Thus the aging of the homebody occurs at the turnaround, from the point of view of the traveller.
 ]

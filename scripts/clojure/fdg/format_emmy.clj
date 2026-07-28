@@ -7,13 +7,70 @@
   {:width 120
    :parse {:interpose "\n\n"}})
 
-(def captured-result-pattern #"(?s)(.*?)(\n;; =>.*)$")
+(def result-options
+  {:width 82
+   :parse {:interpose "\n"}})
+
+(defn wrap-words [text width]
+  (reduce (fn [lines word]
+            (let [line (peek lines)
+                  extended (if (str/blank? line) word (str line " " word))]
+              (if (<= (count extended) width)
+                (conj (pop lines) extended)
+                (conj lines word))))
+          [""]
+          (str/split (str/replace text #"\s+" " ") #" ")))
+
+(defn comment-result [lines]
+  (map-indexed #(str (if (zero? %1) ";; => " ";;    ") %2) lines))
+
+(defn captured-result-lines [lines]
+  (loop [remaining lines
+         output []]
+    (if-let [line (first remaining)]
+      (if (str/starts-with? line ";; =>")
+        (let [[captured tail] (split-with #(str/starts-with? % ";;") remaining)
+              result (->> captured
+                          (map-indexed
+                           (fn [index text]
+                             (if (zero? index)
+                               (str/replace-first text #"^;; =>\s?" "")
+                               (str/replace-first text #"^;;\s*" ""))))
+                          (str/join "\n"))
+              formatted (if (or (str/includes? result "<result truncated:")
+                                (> (count result) 8000))
+                          (comment-result (wrap-words result 76))
+                          (try
+                            (->> (zprint/zprint-file-str result "result.cljs" result-options)
+                                 str/trimr
+                                 str/split-lines
+                                 comment-result)
+                            (catch Exception _ captured)))]
+          (recur tail (into output formatted)))
+        (recur (rest remaining) (conj output line)))
+      output)))
+
+(defn format-captured-results [source]
+  (->> (str/split-lines source)
+       captured-result-lines
+       (str/join "\n")))
+
+(defn format-source-once [source]
+  (-> (zprint/zprint-file-str source "emmy.cljs" options)
+      str/trimr
+      (str/replace "\n\n;; =>" "\n;; =>")
+      format-captured-results
+      (str "\n")))
 
 (defn format-source [source]
-  (let [[_ code captured] (re-matches captured-result-pattern source)
-        code (or code source)
-        formatted (str/trimr (zprint/zprint-file-str code "emmy.cljs" options))]
-    (str formatted (some-> captured str/trimr) "\n")))
+  (loop [current source
+         pass 0]
+    (let [formatted (format-source-once current)]
+      (cond
+        (= formatted current) current
+        (= pass 7) (throw (ex-info "Emmy formatting did not converge"
+                                   {:passes (inc pass)}))
+        :else (recur formatted (inc pass))))))
 
 (defn cljs-files [paths]
   (->> paths
@@ -26,14 +83,19 @@
 (defn -main [& args]
   (let [check? (= "--check" (first args))
         paths (if check? (rest args) args)
-        paths (if (seq paths) paths ["emmy/blocks"])
+        paths (if (seq paths) paths ["codeblocks"])
         changed (atom [])]
     (doseq [file (cljs-files paths)]
-      (let [source (slurp file)
-            formatted (format-source source)]
-        (when (not= source formatted)
-          (swap! changed conj (.getPath file))
-          (when-not check? (spit file formatted)))))
+      (try
+        (let [source (slurp file)
+              formatted (format-source source)]
+          (when (not= source formatted)
+            (swap! changed conj (.getPath file))
+            (when-not check? (spit file formatted))))
+        (catch Exception error
+          (binding [*out* *err*]
+            (println "Could not format" (.getPath file)))
+          (throw (ex-info (str "Could not format " (.getPath file)) {} error)))))
     (when (and check? (seq @changed))
       (binding [*out* *err*]
         (println "Unformatted Emmy ClojureScript files:")

@@ -4,7 +4,8 @@
 #import "lib.typ": *
 #import "index.typ": fdg-indexed-body, fdg-index-page
 
-#show: fdg-book
+#let code-edition = sys.inputs.at("code", default: "scheme")
+#show: fdg-book.with(code-edition: code-edition)
 
 #fdg-title-page(seed: fdg-seed-bibliography-order())
 
@@ -36,6 +37,10 @@
     #include "content/appendix_a.typ"
     #include "content/appendix_b.typ"
     #include "content/appendix_c.typ"
+    #include "content/appendix_d.typ"
+    #include "content/appendix_e.typ"
+    #include "content/appendix_f.typ"
+    #include "content/appendix_g.typ"
   ]
   #include "content/references.typ"
 ]

@@ -1,3 +1,2 @@
-(def SR-vector-basis (coordinate-system->vector-basis SR))
-
-(def SR-basis (coordinate-system->basis SR))
+((g-Minkowski SR-vector-basis SR-vector-basis) an-event)
+;; => (down (down -1 0 0 0) (down 0 1 0 0) (down 0 0 1 0) (down 0 0 0 1))

@@ -1,9 +1,9 @@
-(def Cartan
-  (Christoffel->Cartan (metric->Christoffel-2 (Schwarzschild-metric 'M 'G 'c)
-                                              (coordinate-system->basis spacetime-sphere))))
-
-(defn geodesic-equation+X-residuals
-  [eps X]
-  (let [gamma (prime-meridian+X 'r eps X)]
-    (((((covariant-derivative Cartan gamma) d:dtau) ((differential gamma) d:dtau)) (chart spacetime-sphere))
-      ((point R1-rect) 't))))
+(defn prime-meridian+X
+  [r epsilon X]
+  (compose (point spacetime-sphere)
+           (fn [t]
+             (up (+ t (* epsilon (* (ref X 0) (exp (* 'lambda t)))))
+                 (+ r (* epsilon (* (ref X 1) (exp (* 'lambda t)))))
+                 (+ (* (sqrt (/ (* 'G 'M) (expt r 3))) t) (* epsilon (* (ref X 2) (exp (* 'lambda t)))))
+                 0))
+           (chart R1-rect)))

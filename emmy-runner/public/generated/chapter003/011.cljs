@@ -1,2 +1,1 @@
-(series:for-each print-expression (((exp (* 't circular)) (chart R2-rect)) ((point R2-rect) (up 1 0))) 6)
-;; => nil
+(defn evolution [order] (fn [delta-t v] (fn [f] (fn [m] (series:sum (((exp (* delta-t v)) f) m) order)))))

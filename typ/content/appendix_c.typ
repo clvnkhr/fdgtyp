@@ -1,6 +1,6 @@
 // Generated from ../../fdg-book/scheme/org/appendix_c.org.
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
-#import "../lib.typ": fdg-chapter, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
+#import "../lib.typ": fdg-chapter, fdg-code-block, fdg-scheme-code-block, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
 
 #fdg-chapter("Tensors", numbered: true, eq-prefix: "C", ref-label: "chap-appendix-c")[
 There are a variety of objects that have meaning independent of any particular basis. Examples are form fields, vector fields, covariant derivative, and so on. We call objects that are independent of basis #emph[geometric objects]. Some of these are functions that take other geometric objects, such as vector fields and form fields, as arguments and produce further geometric objects. We refer to such functions as #emph[geometric functions]. We want the laws of physics to be independent of the coordinate systems. How we describe an experiment should not affect the result. If we use only geometric objects in our descriptions then this is automatic.
@@ -41,7 +41,7 @@ Tensors are a restricted set of mathematical objects that are geometric, so if w
 
 Let\'s test whether the geometric function $sans(R)$, which we have called the Riemann tensor (see equation @8.2), is indeed a tensor field. A real-valued geometric function is a tensor if it is linear (over the functions) in each of its arguments. We can try it for 3-dimensional rectangular coordinates:
 
-```scheme
+/* fdg-code-source: appendix_c/001
 (let ((cs R3-rect))
   (let ((u (literal-vector-field 'u-coord cs))
         (v (literal-vector-field 'v-coord cs))
@@ -64,7 +64,8 @@ Let\'s test whether the geometric function $sans(R)$, which we have called the R
               (+ (* f (F omega v w u)) (* g (F omega v w x)))))
        m))))
 ;; (up 0 0 0 0)
-```
+fdg-code-source-end */
+#fdg-scheme-code-block("appendix_c/001")
 
 Now that we are convinced that the Riemann tensor is indeed a tensor, we know how its components change under a change of basis. Let
 
@@ -82,23 +83,25 @@ Whew!
 
 It is easy to generalize these formulas to tensors with general arguments. We have formulated the general tensor test as a program #raw(lang:"scheme", "tensor-test") that takes the procedure #raw(lang:"scheme", "T") to be tested, a list of argument types, and a coordinate system to be used. It tests each argument for linearity (over functions). If the function passed as T is a tensor, the result will be a list of zeros.
 
-```scheme
-(tensor-test (Riemann (covariant-derivative (literal-Cartan 'G
-                                                            R3-rect)))
-             '(1form vector vector vector)
-             R3-rect)
+/* fdg-code-source: appendix_c/002
+(tensor-test
+ (Riemann (covariant-derivative (literal-Cartan 'G R3-rect)))
+ '(1form vector vector vector)
+ R3-rect)
 ;; (0 0 0 0)
-```
+fdg-code-source-end */
+#fdg-scheme-code-block("appendix_c/002")
 
 and so does the torsion (see equation @8.21):
 
-```scheme
-(tensor-test (torsion (covariant-derivative (literal-Cartan 'G
-                                                            R3-rect)))
-             '(1form vector vector)
-             R3-rect)
+/* fdg-code-source: appendix_c/003
+(tensor-test
+ (torsion (covariant-derivative (literal-Cartan 'G R3-rect)))
+ '(1form vector vector)
+ R3-rect)
 ;; (up 0 0 0)
-```
+fdg-code-source-end */
+#fdg-scheme-code-block("appendix_c/003")
 
 But not all geometric functions are tensors. The covariant derivative is an interesting and important case. The function $sans(F)$, defined by
 
@@ -106,34 +109,37 @@ $ sans(F) (bold(omega)\,sans(u)\,sans(v))= bold(omega) (nabla_(sans(u)) sans(v))
 
 is a geometric object, since the result is independent of the coordinate system used to represent the $nabla$. For example:
 
-```scheme
+/* fdg-code-source: appendix_c/004
 (define ((F nabla) omega u v)
   (omega ((nabla u) v)))
-(((-
-   (F (covariant-derivative
-       (Christoffel->Cartan (metric->Christoffel-2
-                             (coordinate-system->metric S2-spherical)
-                             (coordinate-system->basis S2-spherical)))))
-   (F (covariant-derivative
-       (Christoffel->Cartan
-        (metric->Christoffel-2
-         (coordinate-system->metric S2-stereographic)
-         (coordinate-system->basis S2-stereographic))))))
+(((- (F (covariant-derivative
+         (Christoffel->Cartan
+          (metric->Christoffel-2
+           (coordinate-system->metric S2-spherical)
+           (coordinate-system->basis S2-spherical)))))
+     (F (covariant-derivative
+         (Christoffel->Cartan
+          (metric->Christoffel-2
+           (coordinate-system->metric S2-stereographic)
+           (coordinate-system->basis S2-stereographic))))))
   (literal-1form-field 'omega S2-spherical)
   (literal-vector-field 'u S2-spherical)
   (literal-vector-field 'v S2-spherical))
  ((point S2-spherical) (up 'theta 'phi)))
 ;; 0
-```
+fdg-code-source-end */
+#fdg-scheme-code-block("appendix_c/004")
 
 But it is not a tensor field:
 
-```scheme
-(tensor-test (F (covariant-derivative (literal-Cartan 'G R3-rect)))
-             '(1form vector vector)
-             R3-rect)
+/* fdg-code-source: appendix_c/005
+(tensor-test
+ (F (covariant-derivative (literal-Cartan 'G R3-rect)))
+ '(1form vector vector)
+ R3-rect)
 ;; (0 0 MESS)
-```
+fdg-code-source-end */
+#fdg-scheme-code-block("appendix_c/005")
 
 This result tells us that the function $sans(F)$ is linear in its first two arguments but not in its third argument.
 

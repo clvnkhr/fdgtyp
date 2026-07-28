@@ -1,4 +1,2 @@
-(def v (up 'v↑0 'v↑1 'v↑2))
-
-v
-;; => (up v↑0 v↑1 v↑2)
+((component 0 1) (up (up 'a 'b) (up 'c 'd)))
+;; => b

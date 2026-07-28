@@ -1,4 +1,2 @@
-;; scmutils simplified this result automatically; Emmy requires an explicit call.
-(simplify (- ((chart home) end-event)
-             ((chart home) ((point incoming) (make-SR-coordinates incoming (up (* 'c 7) 0 0 0))))))
-;; => (up 0 0 0 0)
+(def home-at-incoming-turning-point-event
+  ((point incoming) (make-SR-coordinates incoming (up 0 (* 7 (/ -24 25) 'c) 0 0))))

@@ -1,4 +1,1 @@
-(defn L
-  [v]
-  (letfn [(l [h] (fn [state] (* ((D h) state) ((g v) state))))]
-    (make-operator l)))
+(defn g [v] (fn [state] (make-state ((Dsigma v) state) ((Du v) state))))

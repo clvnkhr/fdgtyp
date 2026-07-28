@@ -1,5 +1,8 @@
-(def E (up (literal-manifold-function 'Ex SR) (literal-manifold-function 'Ey SR) (literal-manifold-function 'Ez SR)))
+(def eta-inverse (invert g-Minkowski SR-basis))
 
-(def B (up (literal-manifold-function 'Bx SR) (literal-manifold-function 'By SR) (literal-manifold-function 'Bz SR)))
-
-(def V (up 'V_x 'V_y 'V_z))
+(defn Force
+  [charge F four-velocity component]
+  (* -1
+     charge
+     (contract (fn [a b] (contract (fn [e w] (* (w four-velocity) (F e a) (eta-inverse b component))) SR-basis))
+               SR-basis)))
