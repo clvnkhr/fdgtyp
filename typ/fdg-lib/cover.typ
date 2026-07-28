@@ -10,7 +10,7 @@
   escaped: (
     x: -2.40,
     y: 2.50,
-    vx: 0.67,
+    vx: 0.674,
     vy: -0.36,
     color: rgb("#82df58"),
   ),
@@ -28,10 +28,35 @@
   capture-radius: 0.18,  // captured path stops this far from the second hole
   depth-cap: 2.20,       // smooth potential depth limit; used by art and physics
 
+  // Surface depth-to-color gradient. Each stop is
+  //   (positive depth below zero, (red, green, blue)).
+  // Keep stops ordered from shallow to deep; colors interpolate linearly.
+  surface-gradient: (
+    (0.42, (18, 27, 37)),
+    (0.58, (34, 43, 85)),
+    (0.76, (51, 78, 154)),
+    (0.98, (112, 79, 194)),
+    (1.25, (200, 36, 135)),
+    (1.48, (228, 59, 50)),
+    (1.72, (255, 157, 40)),
+    (2.05, (255, 227, 90)),
+  ),
+
   dt: 0.004,             // lower = more accurate; change velocities before dt
   steps: 6000,
   sample-every: 10,      // lower = smoother paths, larger PDF
-  mesh: (x: 100, y: 100), // surface resolution
+  // Hybrid surface mesh: a coarse Cartesian background plus a curvilinear
+  // polar O-grid around each hole. radial-power > 1 concentrates rings near
+  // the hole while keeping the outer join relatively inexpensive.
+  mesh: (x: 90, y: 90),
+  polar-mesh: (
+    outer-radius: 1.80,
+    transition-width: 0.45,
+    transition-power: 1.0,
+    radial-divisions: 70,
+    angular-divisions: 20,
+    radial-power: 2.0,
+  ),
 
   // 3D camera and framing:
   // x changes elevation/tilt; y turns the view left/right. CeTZ's ortho
@@ -52,7 +77,7 @@
 // potential. The surface height, force field, and trajectory height below all
 // use this same scalar potential.
 #let fdg-double-well-art() = {
-  import calc: max, min, pow, sqrt
+  import calc: cos, max, min, pi, pow, sin, sqrt
 
   let tuning = fdg-cover-tuning
   let h1 = tuning.first-hole
@@ -164,16 +189,7 @@
     rgb(channel(0), channel(1), channel(2))
   }
   let surface-color(depth) = {
-    let stops = (
-      (0.42, (18, 27, 37)),
-      (0.58, (34, 43, 85)),
-      (0.76, (51, 78, 154)),
-      (0.98, (112, 79, 194)),
-      (1.25, (200, 36, 135)),
-      (1.48, (228, 59, 50)),
-      (1.72, (255, 157, 40)),
-      (2.05, (255, 227, 90)),
-    )
+    let stops = tuning.surface-gradient
     if depth <= stops.first().first() {
       rgb(..stops.first().last())
     } else if depth >= stops.last().first() {
@@ -212,27 +228,102 @@
       let ymin = tuning.bounds.ymin
       let ymax = tuning.bounds.ymax
 
+      let draw-surface-quad(p00, p10, p11, p01, opacity: 1.0) = {
+        let (x00, y00) = p00
+        let (x10, y10) = p10
+        let (x11, y11) = p11
+        let (x01, y01) = p01
+        let z00 = surface-height(x00, y00)
+        let z10 = surface-height(x10, y10)
+        let z11 = surface-height(x11, y11)
+        let z01 = surface-height(x01, y01)
+        let depth = -(z00 + z10 + z11 + z01) / 4
+        let paint = surface-color(depth)
+        let paint = if opacity < 1 {
+          paint.transparentize(100% * (1 - opacity))
+        } else {
+          paint
+        }
+        line(
+          (x00, y00, z00),
+          (x10, y10, z10),
+          (x11, y11, z11),
+          (x01, y01, z01),
+          close: true,
+          fill: paint,
+          stroke: (paint: paint, thickness: 0.22pt),
+        )
+      }
+
+      // Low-resolution Cartesian field. The polar patches below are drawn
+      // over it, so their circular boundaries need no polygon clipping.
       for j in range(ny - 1) {
         for i in range(nx - 1) {
           let x0 = xmin + (xmax - xmin) * i / (nx - 1)
           let x1 = xmin + (xmax - xmin) * (i + 1) / (nx - 1)
           let y0 = ymax - (ymax - ymin) * j / (ny - 1)
           let y1 = ymax - (ymax - ymin) * (j + 1) / (ny - 1)
-          let z00 = surface-height(x0, y0)
-          let z10 = surface-height(x1, y0)
-          let z11 = surface-height(x1, y1)
-          let z01 = surface-height(x0, y1)
-          let depth = -(z00 + z10 + z11 + z01) / 4
-          let paint = surface-color(depth)
-          line(
-            (x0, y0, z00),
-            (x1, y0, z10),
-            (x1, y1, z11),
-            (x0, y1, z01),
-            close: true,
-            fill: paint,
-            stroke: (paint: paint, thickness: 0.22pt),
+          let cx = (x0 + x1) / 2
+          let cy = (y0 + y1) / 2
+          let half-diagonal = sqrt(
+            pow((x1 - x0) / 2, 2) + pow((y1 - y0) / 2, 2)
           )
+          let covered-by-polar = false
+          let solid-radius = (
+            tuning.polar-mesh.outer-radius
+            - tuning.polar-mesh.transition-width
+          )
+          for (hx, hy, _) in holes {
+            let center-distance = sqrt(pow(cx - hx, 2) + pow(cy - hy, 2))
+            if center-distance + half-diagonal < solid-radius {
+              covered-by-polar = true
+            }
+          }
+          if not covered-by-polar {
+            draw-surface-quad((x0, y0), (x1, y0), (x1, y1), (x0, y1))
+          }
+        }
+      }
+
+      // High-resolution curvilinear O-grids. Every cell is an annular sector
+      // in (r, theta), mapped back into the common Cartesian potential.
+      let polar = tuning.polar-mesh
+      for (hx, hy, _) in holes {
+        for ri in range(polar.radial-divisions) {
+          let r0 = polar.outer-radius * pow(
+            ri / polar.radial-divisions,
+            polar.radial-power,
+          )
+          let r1 = polar.outer-radius * pow(
+            (ri + 1) / polar.radial-divisions,
+            polar.radial-power,
+          )
+          let radial-midpoint = (r0 + r1) / 2
+          let transition-start = polar.outer-radius - polar.transition-width
+          let opacity = if radial-midpoint <= transition-start {
+            1.0
+          } else {
+            let linear-opacity = max(
+              0.0,
+              min(
+                1.0,
+                (polar.outer-radius - radial-midpoint)
+                  / polar.transition-width,
+              ),
+            )
+            pow(linear-opacity, polar.transition-power)
+          }
+          for ai in range(polar.angular-divisions) {
+            let theta0 = 2 * pi * ai / polar.angular-divisions
+            let theta1 = 2 * pi * (ai + 1) / polar.angular-divisions
+            draw-surface-quad(
+              (hx + r0 * cos(theta0), hy + r0 * sin(theta0)),
+              (hx + r1 * cos(theta0), hy + r1 * sin(theta0)),
+              (hx + r1 * cos(theta1), hy + r1 * sin(theta1)),
+              (hx + r0 * cos(theta1), hy + r0 * sin(theta1)),
+              opacity: opacity,
+            )
+          }
         }
       }
 
