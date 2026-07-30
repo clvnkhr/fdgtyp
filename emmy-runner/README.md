@@ -27,6 +27,8 @@ npm run build
 
 The `Deploy Emmy runner to GitHub Pages` workflow builds and deploys the runner
 after each push to `master`. It can also be run manually from the Actions tab.
+The workflow uses the checked-in files under `public/generated/`; it does not
+regenerate or recapture the book's Emmy blocks during deployment.
 
 Before the first deployment, open **Settings → Pages → Build and deployment**
 in the GitHub repository and set **Source** to **GitHub Actions**.

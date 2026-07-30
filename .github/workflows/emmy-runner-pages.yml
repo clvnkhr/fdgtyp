@@ -56,9 +56,6 @@ jobs:
         working-directory: emmy-runner
         run: npm ci
 
-      - name: Refresh generated runner blocks
-        run: node scripts/convert-scheme-to-emmy.mjs
-
       - name: Build optimized runner
         working-directory: emmy-runner
         run: npm run build
