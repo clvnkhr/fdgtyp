@@ -1,4 +1,4 @@
-#import "../lib.typ": fdg-chapter, fdg-cljs-code-block, fdg-cljs-code-block, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
+#import "../lib.typ": fdg-chapter, fdg-cljs-code-block, fdg-cljs-code-block, fdg-edition-select, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
 
 #fdg-chapter("Tensors in Emmy", numbered: true, eq-prefix: "F", ref-label: "chap-appendix-f")[
 #block(inset: (left: 1em), stroke: (left: 2pt + gray))[#emph[Editorial note: This appendix is derived from Appendix C; its examples have been translated to ClojureScript using Emmy, while the original wording has been retained wherever possible.]]
@@ -80,7 +80,7 @@ $ sans(R)_(j k l)^(' i) = sum_(m n p q) sans(J)_m^i sans(R)_(n p q)^m sans(K)_j^
 
 Whew!
 
-It is easy to generalize these formulas to tensors with general arguments. We have formulated the general tensor test as a program #raw(lang:"clojure", "tensor-test") that takes the procedure #raw(lang:"clojure", "T") to be tested, a list of argument types, and a coordinate system to be used. It tests each argument for linearity (over functions). If the function passed as T is a tensor, the result will be a list of zeros.
+It is easy to generalize these formulas to tensors with general arguments. We have formulated the general tensor test as a program #raw(lang:"clojure", "tensor-test") that takes the Emmy/ClojureScript function #raw(lang:"clojure", "T") to be tested, a list of argument types, and a coordinate system to be used. It tests each argument for linearity (over functions). If the function passed as T is a tensor, the result will be a list of zeros.
 
 /* fdg-code-source: appendix_c/002
 (tensor-test

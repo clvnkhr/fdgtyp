@@ -1,6 +1,6 @@
 // Generated from ../../fdg-book/scheme/org/chapter006.org.
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
-#import "../lib.typ": fdg-chapter, fdg-code-block, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
+#import "../lib.typ": fdg-chapter, fdg-code-block, fdg-edition-select, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
 
 #fdg-chapter("Over a Map", numbered: true, eq-prefix: "6", ref-label: "chap-6")[
 To deal with motion on manifolds we need to think about paths on manifolds and vectors along these paths. Tangent vectors along paths are not vector fields on the manifold because they are defined only on the path. And the path may even cross itself, which would give more than one vector at a point. Here we introduce the concept of a #emph[vector field over a map].#footnote[See Bishop and Goldberg, #emph[Tensor Analysis on Manifolds] @bishop1968tensor.] A vector field over a map assigns a vector to each image point of the map. In general the map may be a function from one manifold to another. If the domain of the map is the manifold of the real line, the range of the map is a 1-dimensional path on the target manifold. One possible way to define a vector field over a map is to assign a tangent vector to each image point of a path, allowing us to work with tangent vectors to paths. A #emph[one-form field over the map] allows us to extract the components of a vector field over the map.
@@ -98,10 +98,14 @@ And the elements of the #emph[dual basis over the map], $tilde(sans(e))_mu$, are
 $ tilde(sans(e))_mu^i (sans(e)_j^mu) (sans(n))= delta_j^i . $ <6.8>
 
 == Walking on a Sphere <sec-6.7>
-For example, let $mu$ map the time line to the unit sphere.#footnote[We execute #raw(lang:"scheme", "(define-coordinates t R1-rect)") to make #raw(lang:"scheme", "t") the coordinate function of the real line.] We use colatitude $theta$ and longitude $phi.alt$ as coordinates on the sphere:
+For example, let $mu$ map the time line to the unit sphere.#footnote[#metadata("chapter006: real-line coordinate footnote")#label("cljs-text-edit-chapter006-real-line-coordinate-footnote")#fdg-edition-select(
+  scheme: [We execute #raw(lang:"scheme", "(define-coordinates t R1-rect)") to make #raw(lang:"scheme", "t") the coordinate function of the real line.],
+  clojure: [We execute #raw(lang:"clojure", "(define-coordinates t R1-rect)") to establish the real-line coordinate objects; the translated code names its coordinate vector field #raw(lang:"clojure", "d:dt").],
+  both: [We execute #raw(lang:"scheme", "(define-coordinates t R1-rect)") to establish the real-line coordinate objects. Scheme names the coordinate vector field #raw(lang:"scheme", "d/dt"), while the translated ClojureScript names it #raw(lang:"clojure", "d:dt").],
+)] We use colatitude $theta$ and longitude $phi.alt$ as coordinates on the sphere:
 
 /* fdg-code-source: chapter006/004
-(define S2 (make-manifold S^2 2 3))
+(define S2 (make-manifold S^2-type 2 3))
 (define S2-spherical
   (coordinate-system-at 'spherical 'north-pole S2))
 (define-coordinates (up theta phi) S2-spherical)

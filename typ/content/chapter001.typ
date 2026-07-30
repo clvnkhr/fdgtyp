@@ -1,6 +1,6 @@
 // Generated from ../../fdg-book/scheme/org/chapter001.org.
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
-#import "../lib.typ": fdg-chapter, fdg-code-block, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
+#import "../lib.typ": fdg-chapter, fdg-code-block, fdg-edition-select, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
 
 #fdg-chapter("Introduction", numbered: true, eq-prefix: "1", ref-label: "chap-1")[
 #quote(block: true)[
@@ -22,13 +22,21 @@ Denizens of the surface may play ball games. The balls are constrained to the su
 So there are deep connections between the dynamics of particles and the geometry of the space that the particles move in. If we understand this connection we can learn about dynamics by studying geometry and we can learn about geometry by studying dynamics. We enter dynamics with a Lagrangian and the associated Lagrange equations. Although this formulation exposes many important features of the system, such as how symmetries relate to conserved quantities, the geometry is not apparent. But when we express the Lagrangian and the Lagrange equations in differential geometry language, geometric properties become apparent. In the case of systems with no potential energy the Euler-Lagrange equations are equivalent to the geodesic equations on the configuration manifold. In fact, the coefficients of terms in the Lagrange equations are Christoffel coefficients, which define parallel transport on the manifold. Let\'s look into this a bit.
 
 == Lagrange Equations <sec-1.1>
-We write the Lagrange equations in functional notation#footnote[A short introduction to our functional notation, and why we have chosen it, is given in the prologue: Programming and Understanding. More details can be found in Appendix @chap-appendix-b] as follows:
+We write the Lagrange equations in functional notation#footnote[A short introduction to our functional notation, and why we have chosen it, is given in the prologue: Programming and Understanding. #metadata("chapter001: functional-notation appendix reference")#label("cljs-text-edit-chapter001-functional-notation-appendix-reference")#fdg-edition-select(
+  scheme: [More details can be found in Appendix @chap-appendix-b],
+  clojure: [More details can be found in Appendix @chap-appendix-e],
+  both: [More details can be found in Appendix @chap-appendix-b for Scheme and Appendix @chap-appendix-e for ClojureScript/Emmy],
+)] as follows:
 
 $ D (partial_2 L compose Gamma [q]) - partial_1 L compose Gamma[q]= 0 . $
 
 In SICM @sussman2001sicm, Section 1.6.3, we showed that a Lagrangian describing the free motion of a particle subject to a coordinate-dependent constraint can be obtained by composing a free-particle Lagrangian with a function that describes how dynamical states transform given the coordinate transformation that describes the constraints.
 
-A Lagrangian for a free particle of mass m and velocity v is just its kinetic energy, $m v^2\/2$. The procedure #raw(lang:"scheme", "Lfree") implements the free Lagrangian:#footnote[An informal description of the Scheme programming language can be found in Appendix @chap-appendix-a.]
+A Lagrangian for a free particle of mass m and velocity v is just its kinetic energy, $m v^2\/2$. #metadata("chapter001: Lfree language and appendix footnote")#label("cljs-text-edit-chapter001-lfree-language-and-appendix-footnote")#fdg-edition-select(
+  scheme: [The procedure #raw(lang:"scheme", "Lfree") implements the free Lagrangian:#footnote[An informal description of the Scheme programming language can be found in Appendix @chap-appendix-a.]],
+  clojure: [The function #raw(lang:"clojure", "Lfree") implements the free Lagrangian:#footnote[The ClojureScript forms used in this edition are introduced in Appendix @chap-appendix-d.]],
+  both: [The function #raw(lang:"scheme", "Lfree") / #raw(lang:"clojure", "Lfree") implements the free Lagrangian:#footnote[See Appendix @chap-appendix-a for Scheme and Appendix @chap-appendix-d for ClojureScript.]],
+)
 
 /* fdg-code-source: chapter001/001
 (define ((Lfree mass) state)
@@ -40,7 +48,11 @@ For us the dynamical state of a system of particles is a tuple of time, coordina
 
 For motion of a point constrained to move on the surface of a sphere the configuration space has two dimensions. We can describe the position of the point with the generalized coordinates colatitude and longitude. If the sphere is embedded in 3-dimensional space the position of the point in that space can be given by a coordinate transformation from colatitude and longitude to three rectangular coordinates.
 
-For a sphere of radius R the procedure #raw(lang:"scheme", "sphere->R3") implements the transformation of coordinates from colatitude $theta$ and longitude $phi.alt$ on the surface of the sphere to rectangular coordinates in the embedding space. (The $hat(z)$ axis goes through the North Pole, and the Equator is in the plane $z = 0$.)
+#metadata("chapter001: sphere->R3 terminology")#label("cljs-text-edit-chapter001-sphere-r3-terminology")For a sphere of radius R #fdg-edition-select(
+  scheme: [the procedure #raw(lang:"scheme", "sphere->R3")],
+  clojure: [the function #raw(lang:"clojure", "sphere->R3")],
+  both: [the function #raw(lang:"scheme", "sphere->R3") / #raw(lang:"clojure", "sphere->R3")],
+) implements the transformation of coordinates from colatitude $theta$ and longitude $phi.alt$ on the surface of the sphere to rectangular coordinates in the embedding space. (The $hat(z)$ axis goes through the North Pole, and the Equator is in the plane $z = 0$.)
 
 /* fdg-code-source: chapter001/002
 (define ((sphere->R3 R) state)
@@ -52,7 +64,11 @@ For a sphere of radius R the procedure #raw(lang:"scheme", "sphere->R3") impleme
 fdg-code-source-end */
 #fdg-code-block("chapter001/002")
 
-The coordinate transformation maps the generalized coordinates on the sphere to the 3-dimensional rectangular coordinates. Given this coordinate transformation we construct a corresponding transformation of velocities; these make up the state transformation. The procedure #raw(lang:"scheme", "F->C") implements the derivation of a transformation of states from a coordinate transformation:
+The coordinate transformation maps the generalized coordinates on the sphere to the 3-dimensional rectangular coordinates. Given this coordinate transformation we construct a corresponding transformation of velocities; these make up the state transformation. #metadata("chapter001: F->C terminology")#label("cljs-text-edit-chapter001-f-c-terminology")#fdg-edition-select(
+  scheme: [The procedure #raw(lang:"scheme", "F->C") implements the derivation of a transformation of states from a coordinate transformation:],
+  clojure: [The function #raw(lang:"clojure", "F->C") implements the derivation of a transformation of states from a coordinate transformation:],
+  both: [The #raw(lang:"scheme", "F->C") / #raw(lang:"clojure", "F->C") function implements the derivation of a transformation of states from a coordinate transformation:],
+)
 
 /* fdg-code-source: chapter001/003
 (define ((F->C F) state)
@@ -128,7 +144,11 @@ fdg-code-source-end */
 
 The manifold point $sans(m)$ represented by the coordinates $x$ is given by #raw(lang:"scheme", "(define m ((point coordsys) x))"). The coordinates of $sans(m)$ in a different coordinate system are given by #raw(lang:"scheme", "((chart coordsys2) m)"). The manifold point $sans(m)$ is a geometric object that is the same point independent of how it is specified. Similarly, the velocity vector $sans(e) v$ is a geometric object, even though it is specified using components $v$ with respect to the basis $sans(e)$. Both $v$ and $sans(e)$ have as many components as the dimension of the space so their product is interpreted as a contraction.
 
-Let\'s make a general metric on a 2-dimensional real manifold:#footnote[The procedure #raw(lang:"scheme", "literal-metric") provides a metric. It is a general symmetric function of two vector fields, with literal functions of the coordinates of the manifold points for its coefficients in the given coordinate system. The quoted symbol #raw(lang:"scheme", "'g") is used to make the names of the literal coefficient functions. Literal functions are discussed in Appendix @chap-appendix-b.]
+#metadata("chapter001: literal metric footnote")#label("cljs-text-edit-chapter001-literal-metric-footnote")Let's make a general metric on a 2-dimensional real manifold:#footnote[#fdg-edition-select(
+  scheme: [The procedure #raw(lang:"scheme", "literal-metric") provides a metric. It is a general symmetric function of two vector fields, with literal functions of the coordinates of the manifold points for its coefficients in the given coordinate system. The quoted symbol #raw(lang:"scheme", "'g") is used to make the names of the literal coefficient functions. Literal functions are discussed in Appendix @chap-appendix-b.],
+  clojure: [The function #raw(lang:"clojure", "literal-metric") provides a metric. It is a general symmetric function of two vector fields, with literal functions of the coordinates of the manifold points for its coefficients in the given coordinate system. The quoted symbol #raw(lang:"clojure", "'g") names the literal coefficient functions. Literal functions are discussed in Appendix @chap-appendix-e.],
+  both: [The function #raw(lang:"scheme", "literal-metric") / #raw(lang:"clojure", "literal-metric") provides a metric. The quoted symbol #raw(lang:"scheme", "'g") names its literal coefficient functions. See Appendix @chap-appendix-b for Scheme notation and Appendix @chap-appendix-e for Emmy notation.],
+)]
 
 /* fdg-code-source: chapter001/008
 (define the-metric (literal-metric 'g R2-rect))
@@ -219,11 +239,11 @@ We can get and save the geodesic equation residuals by:
 fdg-code-source-end */
 #fdg-code-block("chapter001/016")
 
-where #raw(lang:"scheme", "d/dt") is a vector field on the real line#footnote[We established #raw(lang:"scheme", "t") as a coordinate function on the rectangular coordinates of the real line by
-
-`(define-coordinates t R1-rect)`
-
-This had the effect of also defining #raw(lang:"scheme", "d/dt") as a coordinate vector field and #raw(lang:"scheme", "dt") as a one-form field on the real line.] and #raw(lang:"scheme", "Cartan") is a way of encapsulating the geometry, as specified by the Christoffel coefficients. The Christoffel coefficients are computed from the metric:
+where #raw(lang:"scheme", "d/dt") is a vector field on the real line#footnote[#metadata("chapter001: real-line coordinate setup")#label("cljs-text-edit-chapter001-real-line-coordinate-setup")#fdg-edition-select(
+  scheme: [We established #raw(lang:"scheme", "t") as a coordinate function on the rectangular coordinates of the real line by #raw(lang:"scheme", "(define-coordinates t R1-rect)"). This also defined #raw(lang:"scheme", "d/dt") as a coordinate vector field and #raw(lang:"scheme", "dt") as a one-form field on the real line.],
+  clojure: [The Emmy setup establishes the real-line coordinate objects with #raw(lang:"clojure", "(define-coordinates t R1-rect)"). The translated code uses #raw(lang:"clojure", "d:dt") for the coordinate vector field and #raw(lang:"clojure", "dt") for the one-form field.],
+  both: [The setup #raw(lang:"scheme", "(define-coordinates t R1-rect)") establishes the real-line coordinate objects. Scheme names the coordinate vector field #raw(lang:"scheme", "d/dt"); the translated ClojureScript uses #raw(lang:"clojure", "d:dt"). Both use #raw(lang:"scheme", "dt") for the one-form field.],
+)] and #raw(lang:"scheme", "Cartan") is a way of encapsulating the geometry, as specified by the Christoffel coefficients. The Christoffel coefficients are computed from the metric:
 
 /* fdg-code-source: chapter001/015
 (define Cartan

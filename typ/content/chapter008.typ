@@ -1,6 +1,6 @@
 // Generated from ../../fdg-book/scheme/org/chapter008.org.
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
-#import "../lib.typ": fdg-chapter, fdg-code-block, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
+#import "../lib.typ": fdg-chapter, fdg-code-block, fdg-edition-select, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
 
 #fdg-chapter("Curvature", numbered: true, eq-prefix: "8", ref-label: "chap-8")[
 If the intrinsic curvature of a manifold is not zero, a vector parallel-transported around a small loop will end up different from the vector that started. We saw the consequence of this before, on #fdg-page-ref(<intro-parallel-transport>) and #fdg-page-ref(<sec-7.16>). The Riemann tensor encapsulates this idea.
@@ -465,6 +465,7 @@ Consider longitude lines on the unit sphere.#footnote[The setup for this example
 (define Cartan (Christoffel->Cartan S2-Christoffel))
 (define nabla (covariant-derivative Cartan))
 (define omega (literal-1form-field 'omega-sphere S2-spherical))
+(define f (literal-manifold-function 'f S2-spherical))
 fdg-code-source-end */
 #fdg-code-block("chapter008/020")] Let #raw(lang:"scheme", "theta") be colatitude and #raw(lang:"scheme", "phi") be longitude. These are the parameters $s$ and $t$, respectively. Then let #raw(lang:"scheme", "T") be the vector field #raw(lang:"scheme", "d/dtheta") that is tangent to the longitude lines.
 
@@ -604,7 +605,11 @@ fdg-code-source-end */
 fdg-code-source-end */
 #fdg-code-block("chapter008/032")
 
-The Bianchi identities are defined in terms of a cyclic-summation operator, which is most easily described as a Scheme procedure:
+#metadata("chapter008: cyclic-sum terminology")#label("cljs-text-edit-chapter008-cyclic-sum-terminology")#fdg-edition-select(
+  scheme: [The Bianchi identities are defined in terms of a cyclic-summation operator, which is most easily described as a Scheme procedure:],
+  clojure: [The Bianchi identities are defined in terms of a cyclic-summation operator, which is most easily described as a ClojureScript function:],
+  both: [The Bianchi identities are defined in terms of a cyclic-summation operator, which is most easily described as a function:],
+)
 
 /* fdg-code-source: chapter008/033
 (define ((cyclic-sum f) x y z)
@@ -663,7 +668,11 @@ Things get more complicated when there is torsion. We can make a general connect
 fdg-code-source-end */
 #fdg-code-block("chapter008/036")
 
-The first Bianchi identity is now:#footnote[The Bianchi identities are much nastier to write in traditional mathematical notation than as Scheme programs.]
+The first Bianchi identity is now:#footnote[#metadata("chapter008: Bianchi footnote terminology")#label("cljs-text-edit-chapter008-bianchi-footnote-terminology")#fdg-edition-select(
+  scheme: [The Bianchi identities are much nastier to write in traditional mathematical notation than as Scheme programs.],
+  clojure: [The Bianchi identities are much nastier to write in traditional mathematical notation than as ClojureScript programs.],
+  both: [The Bianchi identities are much nastier to write in traditional mathematical notation than as executable programs.],
+)]
 
 /* fdg-code-source: chapter008/037
 (((cyclic-sum
@@ -699,5 +708,9 @@ We now make the Cartan forms from the most general 2-dimensional Christoffel coe
 fdg-code-source-end */
 #fdg-code-block("chapter008/039")
 
- @misner1973gravitation, @carroll2003spacetime, and @schutz1985first use our definition. @wald1984general uses a different convention for the order of arguments and a different sign. See Appendix @chap-appendix-c for a definition of tensors.
+ @misner1973gravitation, @carroll2003spacetime, and @schutz1985first use our definition. @wald1984general uses a different convention for the order of arguments and a different sign. #metadata("chapter008: tensor definition appendix reference")#label("cljs-text-edit-chapter008-tensor-definition-appendix-reference")#fdg-edition-select(
+  scheme: [See Appendix @chap-appendix-c for a definition of tensors.],
+  clojure: [See Appendix @chap-appendix-f for a definition of tensors in Emmy.],
+  both: [See Appendix @chap-appendix-c for the Scheme account of tensors and Appendix @chap-appendix-f for the Emmy account.],
+)
 ]

@@ -32,7 +32,7 @@ const convertedOrgFiles = [
 
 const expectedContentFiles = convertedOrgFiles
   .map(file => file.replace(/\.org$/, ".typ"))
-  .concat(["appendix_d.typ", "appendix_e.typ", "appendix_f.typ", "appendix_g.typ"])
+  .concat(["appendix_d.typ", "appendix_e.typ", "appendix_f.typ", "appendix_g.typ", "appendix_h.typ", "preface_cljs.typ"])
   .sort();
 
 const expectedFigures = [
@@ -49,7 +49,10 @@ const expectedFigures = [
 const expectedFootnoteCounts = {
   "preface.typ": 0,
   "prologue.typ": 6,
-  "chapter001.typ": 8,
+  // Two edition branches contain their own replacement footnotes. At render
+  // time fdg-edition-select emits only one branch, so every edition still has
+  // the original eight visible footnotes.
+  "chapter001.typ": 10,
   "chapter002.typ": 10,
   "chapter003.typ": 12,
   "chapter004.typ": 8,
@@ -67,8 +70,10 @@ const expectedFootnoteCounts = {
   "appendix_e.typ": 3,
   "appendix_f.typ": 0,
   "appendix_g.typ": 0,
+  "appendix_h.typ": 0,
   "references.typ": 0,
   "errata.typ": 0,
+  "preface_cljs.typ": 0,
 };
 
 const expectedGeneratedDoubleBackslashCounts = {};
@@ -106,9 +111,57 @@ const cljsAppendixGate = `    #if code-edition in ("clojure", "both") [
       #include "content/appendix_e.typ"
       #include "content/appendix_f.typ"
       #include "content/appendix_g.typ"
+      #include "content/appendix_h.typ"
     ]`;
 if (!mainSource.includes(cljsAppendixGate)) {
-  throw new Error("Appendices D-G must be gated by the top-level ClojureScript/both edition selection");
+  throw new Error("Appendices D-H must be gated by the top-level ClojureScript/both edition selection");
+}
+
+const errataPosition = mainSource.indexOf('#include "content/errata.typ"');
+const referencesPosition = mainSource.indexOf('#include "content/references.typ"');
+const indexPosition = mainSource.indexOf("#fdg-index-page()");
+if (!(errataPosition >= 0
+    && referencesPosition > errataPosition
+    && indexPosition > referencesPosition)) {
+  throw new Error("End matter must be ordered as errata, references, then index");
+}
+
+const correctedChapter6 = readContentFile("chapter006.typ");
+if (correctedChapter6.includes("(make-manifold S^2 2 3)")
+    || !correctedChapter6.includes("(make-manifold S^2-type 2 3)")) {
+  throw new Error("Chapter 6 must use the S^2-type manifold family");
+}
+
+const correctedChapter7 = readContentFile("chapter007.typ");
+if (correctedChapter7.includes("R2-polar-Cartan) d/dx) J)")
+    || !correctedChapter7.includes("R2-polar-Cartan) d/dx) circular)")) {
+  throw new Error("Chapter 7 must use circular in the polar-Cartan example");
+}
+if (correctedChapter7.includes("(define sphere (make-manifold S^2 2 3))")
+    || !correctedChapter7.includes("(define sphere (make-manifold S^2-type 2 3))")) {
+  throw new Error("Chapter 7 must use the S^2-type manifold family");
+}
+
+const correctedChapter8 = readContentFile("chapter008.typ");
+if (!correctedChapter8.includes("(define f (literal-manifold-function 'f S2-spherical))")) {
+  throw new Error("Chapter 8 longitude setup must define f");
+}
+
+const correctedChapter11 = readContentFile("chapter011.typ");
+if (!correctedChapter11.includes("(define home")
+    || !correctedChapter11.includes("(frame-maker base-frame-point base-frame-chart)")) {
+  throw new Error("Chapter 11 velocity-addition setup must define home");
+}
+
+const annotatedErrata = readContentFile("errata.typ");
+if (!annotatedErrata.includes("annotated version of the errata maintained by")
+    || !annotatedErrata.includes("mentat-collective/fdg-book")
+    || (annotatedErrata.match(/Status: Corrected in this edition\./g) ?? []).length !== 14) {
+  throw new Error("Errata must include its provenance and all 14 correction annotations");
+}
+if (!annotatedErrata.includes("R2-polar-Cartan) d/dx) J)")
+    || !annotatedErrata.includes("(define S2 (make-manifold S^2 2 3))")) {
+  throw new Error("Annotated errata must preserve the original incorrect examples");
 }
 
 function stripTypstProtected(text) {
@@ -188,7 +241,7 @@ const assertions = [
     contains: [
       "A mechanical system is described by a Lagrangian function of the system state (time, coordinates, and velocities).",
       "its derivative (also a function of time) into the coordinate and velocity arguments",
-      "Note that we can flexibly manipulate representations of mathematical functions. (See Appendices @chap-appendix-a and @chap-appendix-b.)",
+      "scheme: [(See Appendices @chap-appendix-a and @chap-appendix-b.)]",
       "$ frac(d, d t) (lr(frac(partial L (t\\,q\\,dot(q)), partial dot(q))|)_(q=w (t) \\\n dot(q) = frac(d w (t), d t))) - lr(frac(partial L (t\\,q\\,dot(q)), partial q)|)_(q=w (t) \\\n dot(q) = frac(d w (t), d t)) = 0 . $",
       "$ (D f) (t)= frac(d, d x) f (x)|_(x=t) . $",
       "A formal description of Scheme can be obtained in @ieee1991scheme. You can get the software from @fdg-software.",
@@ -987,6 +1040,47 @@ for (const required of [
     fail("Appendix D is missing required ClojureScript guidance:", required);
   }
 }
+for (const [file, required] of [
+  ["prologue.typ", [
+    "clojure: [An explanation of functional derivatives is in Appendix #fdg-ref-page(<chap-appendix-e>, page-target: <sec-E.4>).]",
+    "Appendix @chap-appendix-g explains how the examples are run and checked",
+    "clojure: [(See Appendices @chap-appendix-d and @chap-appendix-e.)]",
+  ]],
+  ["chapter001.typ", [
+    "clojure: [More details can be found in Appendix @chap-appendix-e]",
+    "The ClojureScript forms used in this edition are introduced in Appendix @chap-appendix-d.",
+    'The translated code uses #raw(lang:"clojure", "d:dt")',
+  ]],
+  ["chapter007.typ", [
+    "clojure: [See Appendix @chap-appendix-f.]",
+    `Emmy's #raw(lang:"clojure", "mapr") function`,
+  ]],
+  ["chapter008.typ", [
+    "most easily described as a ClojureScript function",
+    "than as ClojureScript programs",
+  ]],
+  ["appendix_e.typ", [
+    "Appendix @chap-appendix-g explains result capture, cached output, and explicit checks.",
+    "ClojureScript and Emmy make the distinction explicit:",
+    "Exercise E.1",
+  ]],
+  ["appendix_f.typ", [
+    'takes the Emmy/ClojureScript function #raw(lang:"clojure", "T")',
+  ]],
+]) {
+  const text = contentByFile.get(file);
+  for (const fragment of required) {
+    if (!text.includes(fragment)) fail(`Missing edition-aware prose in ${file}:`, fragment);
+  }
+}
+
+for (const file of ["prologue.typ", ...contentFiles.filter(name => /^chapter\d+\.typ$/.test(name))]) {
+  const text = contentByFile.get(file);
+  for (const match of matchAll(/clojure:\s*\[[^\]]*Appendix @chap-appendix-[abc]\b/g, text)) {
+    fail("ClojureScript instructional branch points to a Scheme-only appendix:", describeMatch(file, text, match));
+  }
+}
+
 for (const original of ["appendix_a.typ", "appendix_b.typ", "appendix_c.typ"]) {
   if (contentByFile.get(original).includes("#fdg-cljs-code-block(")) {
     fail(`Original Scheme appendix uses the ClojureScript block renderer: ${original}`);
@@ -1038,7 +1132,7 @@ for (const file of contentFiles) {
     }
   }
   const stem = file.replace(/\.typ$/, "");
-  if (!/^appendix_[defg]\.typ$/.test(file)) {
+  if (!/^appendix_[defgh]\.typ$/.test(file) && file !== "preface_cljs.typ") {
     const expectedSource = `// Generated from ../../fdg-book/scheme/org/${stem}.org.`;
     if (!text.startsWith(expectedSource)) {
       fail(`Generated source header mismatch in ${file}:`, expectedSource);
@@ -1048,7 +1142,8 @@ for (const file of contentFiles) {
     }
   }
   if (!text.includes('#import "../lib.typ": fdg-chapter')
-      || (file !== "appendix_g.typ" && (!text.includes("fdg-figure") || !text.includes("fdg-ref-page")))) {
+      || (!["appendix_g.typ", "appendix_h.typ", "preface_cljs.typ"].includes(file)
+        && (!text.includes("fdg-figure") || !text.includes("fdg-ref-page")))) {
     fail(`Missing standard content import in ${file}`);
   }
   const chapterCalls = matchAll(/#fdg-chapter\(/g, text);
@@ -1122,9 +1217,8 @@ for (const file of contentFiles) {
   if (dollars.length % 2 !== 0) {
     fail(`Unbalanced Typst math dollars in ${file}:`, String(dollars.length));
   }
-  const expectedRawLanguage = /^appendix_[defg]\.typ$/.test(file) ? "clojure" : "scheme";
-  for (const match of matchAll(new RegExp(`#raw\\((?!lang:"${expectedRawLanguage}")`, "g"), text)) {
-    fail(`Raw span missing ${expectedRawLanguage} language:`, describeMatch(file, text, match));
+  for (const match of matchAll(/#raw\((?!lang:"(?:scheme|clojure)")/g, text)) {
+    fail("Raw span missing an explicit Scheme or Clojure language:", describeMatch(file, text, match));
   }
   for (const match of matchAll(/\$[^\n&$]*\\\n\s*&=/g, text)) {
     fail("Math display breaks immediately before its first aligned equals:", describeMatch(file, text, match));
@@ -1403,6 +1497,17 @@ for (const file of contentFiles) {
       fail("Typst reference/citation has no matching label or bibliography key:", describeMatch(file, text, match));
     }
   }
+}
+
+const layoutSource = readFileSync(path.join(root, "typ", "fdg-lib", "layout.typ"), "utf8");
+const codeAnchorSource = layoutSource.match(
+  /#let fdg-code-anchor\(id, prefix: "code"\) = \{([\s\S]*?)\n\}/,
+)?.[1] ?? "";
+if (!codeAnchorSource.includes("[#metadata(id)#label(")) {
+  fail("Code anchors must retain their metadata and reference label.");
+}
+if (/\bblock\s*\(/.test(codeAnchorSource)) {
+  fail("Code anchors must not insert a block that can alter listing whitespace.");
 }
 
 if (failures > 0) {

@@ -1,6 +1,6 @@
 // Generated from ../../fdg-book/scheme/org/chapter007.org.
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
-#import "../lib.typ": fdg-chapter, fdg-code-block, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
+#import "../lib.typ": fdg-chapter, fdg-code-block, fdg-edition-select, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
 
 #fdg-chapter("Directional Derivatives", numbered: true, eq-prefix: "7", ref-label: "chap-7")[
 The vector field was a generalization of the directional derivative to functions on a manifold. When we want to generalize the directional derivative idea to operate on other manifold objects, such as directional derivatives of vector fields or of form fields, there are several useful choices. In the same way that a vector field applies to a function to produce a function, we will build directional derivatives so that when applied to any object it will produce another object of the same kind. All directional derivatives require a vector field to give the direction and scale factor.
@@ -61,7 +61,11 @@ The Leibniz rule is extended to applications of one-form fields to vector fields
 
 $ cal(D)_(sans(v)) (omega (sans(y)))= omega (cal(D)_(sans(v)) sans(y))+(cal(D)_(sans(v)) omega) (sans(y)). $ <7.10>
 
-The extension of the Leibniz rule, combined with the choice of transport of a vector field, determines the action of the directional derivative on form fields.#footnote[The action on functions, vector fields, and one-form fields suffices to define the action on all tensor fields. See Appendix @chap-appendix-c.]
+The extension of the Leibniz rule, combined with the choice of transport of a vector field, determines the action of the directional derivative on form fields.#footnote[#metadata("chapter007: tensor footnote appendix reference")#label("cljs-text-edit-chapter007-tensor-footnote-appendix-reference")The action on functions, vector fields, and one-form fields suffices to define the action on all tensor fields. #fdg-edition-select(
+  scheme: [See Appendix @chap-appendix-c.],
+  clojure: [See Appendix @chap-appendix-f.],
+  both: [See Appendix @chap-appendix-c for Scheme and Appendix @chap-appendix-f for Emmy.],
+)]
 
 == Lie Derivative <sec-7.1>
 The Lie derivative is one kind of directional derivative operator. We write the Lie derivative operator with respect to a vector field $sans(v)$ as $cal(L)_(sans(v))$.
@@ -566,7 +570,11 @@ The last line of equation @7.62 gives the formula for the covariant derivative w
 
 $ pi.alt' (sans(v))= sans(J v) (sans(J)^(-1))+ sans(J) pi.alt (sans(v))sans(J)^(-1) . $ <7.63>
 
-This transformation rule is weird. It is not a linear transformation of $pi.alt$ because the first term is an offset that depends on $sans(v)$. So it is not required that $pi.alt' = 0$ when $pi.alt = 0$. Thus $pi.alt$ is not a tensor field. See Appendix @chap-appendix-c.
+This transformation rule is weird. It is not a linear transformation of $pi.alt$ because the first term is an offset that depends on $sans(v)$. So it is not required that $pi.alt' = 0$ when $pi.alt = 0$. #metadata("chapter007: tensor transformation appendix reference")#label("cljs-text-edit-chapter007-tensor-transformation-appendix-reference")Thus $pi.alt$ is not a tensor field. #fdg-edition-select(
+  scheme: [See Appendix @chap-appendix-c.],
+  clojure: [See Appendix @chap-appendix-f.],
+  both: [See Appendix @chap-appendix-c for Scheme and Appendix @chap-appendix-f for Emmy.],
+)
 
 We can write equation @7.61 in terms of components
 
@@ -597,7 +605,11 @@ The transformation rule for $pi.alt$ is implemented in the following program:
 fdg-code-source-end */
 #fdg-code-block("chapter007/017")
 
-The #raw(lang:"scheme", "s:map/r") procedure constructs a tuple of the same shape as its second argument whose elements are the result of applying the first argument to the corresponding elements of the second argument.
+#metadata("chapter007: recursive map description")#label("cljs-text-edit-chapter007-recursive-map-description")#fdg-edition-select(
+  scheme: [The #raw(lang:"scheme", "s:map/r") procedure constructs a tuple of the same shape as its second argument whose elements are the result of applying the first argument to the corresponding elements of the second argument.],
+  clojure: [Emmy's #raw(lang:"clojure", "mapr") function recursively maps its first argument over the Emmy structure supplied as its second argument, preserving that structure's shape.],
+  both: [Scheme's #raw(lang:"scheme", "s:map/r") and Emmy's #raw(lang:"clojure", "mapr") recursively apply the first argument across the second argument while preserving its structure.],
+)
 
 We can illustrate that the covariant derivative is independent of the coordinate system in a simple case, using rectangular and polar coordinates in the plane.#footnote[We will need a few definitions:
 
@@ -680,7 +692,7 @@ In rectangular coordinates, where the Christoffel coefficients are zero, the cov
 Note that we get the same answer if we use polar coordinates to compute the covariant derivative:
 
 /* fdg-code-source: chapter007/025
-(((((covariant-derivative R2-polar-Cartan) d/dx) J) f)
+(((((covariant-derivative R2-polar-Cartan) d/dx) circular) f)
 R2-rect-point)
 ;; (((partial 1) f-rect) (up x0 y0))
 fdg-code-source-end */
@@ -759,7 +771,7 @@ where $sigma = chi_(sans(M)) compose gamma compose chi_(sans(R))^(-1)$ are the c
 Let\'s figure out what the equations of parallel transport of $sans(u)_gamma$, an arbitrary vector over the map $γ$, along an arbitrary path $γ$ on a sphere are. We start by constructing the necessary manifold.
 
 /* fdg-code-source: chapter007/027
-(define sphere (make-manifold S^2 2 3))
+(define sphere (make-manifold S^2-type 2 3))
 (define S2-spherical
 (coordinate-system-at 'spherical 'north-pole sphere))
 (define S2-basis
@@ -956,7 +968,11 @@ fdg-code-source-end */
 
 $ vec(- cos(alpha (t 0))sin(alpha (t 0)) (D beta (t 0))^2+ D^2 alpha (t 0), frac(2 D beta (t 0)cos(alpha (t 0))D alpha (t 0), sin(alpha (t))) + D^2 beta (t 0)) $
 
-The geodesic equation is the same as the Lagrange equation for free motion constrained to the surface of the unit sphere. The Lagrangian for motion on the sphere is the composition of the free-particle Lagrangian and the state transformation induced by the coordinate constraint:#footnote[The method of formulating a system with constraints by composing a free system with the state-space coordinate transformation that represents the constraints can be found in @sussman2001sicm, section 1.6.3. The procedure #raw(lang:"scheme", "F->C") takes a coordinate transformation and produces a corresponding transformation of Lagrangian state.]
+The geodesic equation is the same as the Lagrange equation for free motion constrained to the surface of the unit sphere. The Lagrangian for motion on the sphere is the composition of the free-particle Lagrangian and the state transformation induced by the coordinate constraint:#footnote[The method of formulating a system with constraints by composing a free system with the state-space coordinate transformation that represents the constraints can be found in @sussman2001sicm, section 1.6.3. #metadata("chapter007: F->C footnote")#label("cljs-text-edit-chapter007-f-c-footnote")#fdg-edition-select(
+  scheme: [The procedure #raw(lang:"scheme", "F->C") takes a coordinate transformation and produces a corresponding transformation of Lagrangian state.],
+  clojure: [The function #raw(lang:"clojure", "F->C") takes a coordinate transformation and produces a corresponding transformation of Lagrangian state.],
+  both: [The #raw(lang:"scheme", "F->C") / #raw(lang:"clojure", "F->C") function takes a coordinate transformation and produces a corresponding transformation of Lagrangian state.],
+)]
 
 /* fdg-code-source: chapter007/038
 (define (Lfree s)

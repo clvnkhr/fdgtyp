@@ -1,4 +1,4 @@
-#import "../lib.typ": fdg-chapter, fdg-cljs-code-block, fdg-cljs-code-block, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
+#import "../lib.typ": fdg-chapter, fdg-cljs-code-block, fdg-cljs-code-block, fdg-edition-select, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
 
 #fdg-chapter("ClojureScript", numbered: true, eq-prefix: "D", ref-label: "chap-appendix-d")[
 #block(inset: (left: 1em), stroke: (left: 2pt + gray))[#emph[Editorial note: This appendix is derived from Appendix A; its examples have been translated to ClojureScript using Emmy, while the original wording has been retained wherever possible.]]
@@ -54,7 +54,7 @@ The general form of a #raw(lang:"clojure", "fn") expression is
 fdg-code-source-end */
 #fdg-cljs-code-block("appendix_a/005")
 
-where #emph[formal-parameters] is a list of symbols that will be the names of the arguments to the function and #emph[body] is an expression that may refer to the formal parameters. The value of a function call is the value of the body of the function with the arguments substituted for the formal parameters.
+where #emph[formal-parameters] is a vector of symbols naming the function arguments and #emph[body] is an expression that may refer to them. For a variadic function the parameter vector contains #raw(lang:"clojure", "&") before the name that receives the remaining arguments. The value of a function call is the value of the body of the function with the arguments substituted for the formal parameters.
 
 == Definitions <sec-D.3>
 We can use the #raw(lang:"clojure", "def") construct to give a name to any object. For example, if we make the definitions#footnote[The definition of #raw(lang:"clojure", "square") given here is not the definition of #raw(lang:"clojure", "square") in the Emmy system. In Emmy, #raw(lang:"clojure", "square") is extended for tuples to mean the sum of the squares of the components of the tuple. However, for arguments that are not tuples the Emmy square does multiply the argument by itself.]
@@ -73,6 +73,18 @@ we can then use the symbols #raw(lang:"clojure", "pi") and #raw(lang:"clojure", 
 ;; 314.1592653589793
 fdg-code-source-end */
 #fdg-cljs-code-block("appendix_a/007")
+
+=== Names, functions, and local bindings
+
+ClojureScript uses several related forms where Scheme uses #raw(lang:"clojure", "define"), #raw(lang:"clojure", "lambda"), and local definitions. Their different scopes are important:
+
+- #raw(lang:"clojure", "def") gives a name to a value in the current namespace. The value may be a number, a function, or any other object. Thus #raw(lang:"clojure", "(def pi 3.14159)") defines a global name.
+- #raw(lang:"clojure", "fn") constructs a function value. Its parameters are written in a vector: #raw(lang:"clojure", "(fn [x] (* x x))"). An #raw(lang:"clojure", "fn") may be anonymous, or it may be stored in a name using #raw(lang:"clojure", "def").
+- #raw(lang:"clojure", "defn") is convenient syntax for a #raw(lang:"clojure", "def") whose value is an #raw(lang:"clojure", "fn"). For example, #raw(lang:"clojure", "(defn square [x] (* x x))") is essentially #raw(lang:"clojure", "(def square (fn [x] (* x x)))"). Use #raw(lang:"clojure", "defn") for a named, namespace-level function and #raw(lang:"clojure", "def") for other namespace-level values.
+- #raw(lang:"clojure", "let") introduces local names and values. Its binding vector alternates names and expressions: #raw(lang:"clojure", "(let [x 3 y 4] (sqrt (+ (square x) (square y))))"). These names exist only in the body of the #raw(lang:"clojure", "let").
+- #raw(lang:"clojure", "letfn") introduces local function names. Unlike ordinary #raw(lang:"clojure", "let") bindings, the functions may refer to themselves and to one another, so #raw(lang:"clojure", "letfn") is the direct translation for recursive or mutually dependent internal Scheme function definitions.
+
+The names introduced by #raw(lang:"clojure", "def") and #raw(lang:"clojure", "defn") persist in the namespace. The names introduced by #raw(lang:"clojure", "let"), #raw(lang:"clojure", "letfn"), and function parameter vectors are lexical and disappear outside their bodies.
 
 Function definitions may be expressed more conveniently using "syntactic sugar." The squaring function may be defined
 
@@ -131,7 +143,7 @@ The conditional #raw(lang:"clojure", "cond") takes a number of clauses. Each cla
 fdg-code-source-end */
 #fdg-cljs-code-block("appendix_a/012")
 
-For convenience there is a special predicate expression #raw(lang:"clojure", "else") that can be used as the predicate in the last clause of a #raw(lang:"clojure", "cond"). The #raw(lang:"clojure", "if") construct provides another way to make a conditional when there is only a binary choice to be made. For example, because we have to do something special only when the argument is negative, we could have defined #raw(lang:"clojure", "abs") as:
+For convenience the keyword #raw(lang:"clojure", ":else") can be used as the predicate in the last clause of a #raw(lang:"clojure", "cond"). ClojureScript clauses are written as alternating predicate and consequent expressions, without an extra pair of parentheses around each clause. The #raw(lang:"clojure", "if") construct provides another way to make a conditional when there is only a binary choice to be made. For example, because we have to do something special only when the argument is negative, we could have defined #raw(lang:"clojure", "abs") as:
 
 /* fdg-code-source: appendix_a/013
 (define (abs x)
@@ -210,7 +222,7 @@ fdg-code-source-end */
 Here, the symbol #raw(lang:"clojure", "factlp") following the #raw(lang:"clojure", "let") is locally defined to be a function that has the variables #raw(lang:"clojure", "count") and #raw(lang:"clojure", "answer") as its formal parameters. It is called the first time with the expressions 1 and 1, initializing the loop. Whenever the function named #raw(lang:"clojure", "factlp") is called later, these variables get new values that are the values of the operand expressions #raw(lang:"clojure", "(+ count 1)") and #raw(lang:"clojure", "(* count answer)").
 
 == Compound Data --- Lists and Vectors <sec-D.7>
-Data can be glued together to form compound data structures. A list is a data structure in which the elements are linked sequentially. A ClojureScript vector is a data structure in which the elements are packed in a linear array. New elements can be added to lists, but to access the $n$th element of a list takes computing time proportional to $n$. By contrast a ClojureScript vector is of fixed length, and its elements can be accessed in constant time. All data structures in this book are implemented as combinations of lists and ClojureScript vectors. Compound data objects are constructed from components by functions called constructors and the components are accessed by selectors.
+Data can be glued together to form persistent compound values. ClojureScript lists and other sequences support sequential traversal; vectors support efficient indexed lookup with #raw(lang:"clojure", "nth"). Both are immutable values, and operations that add or replace elements produce new collections. The mathematical #raw(lang:"clojure", "up") and #raw(lang:"clojure", "down") values used throughout this book are Emmy structures, not ordinary ClojureScript vectors: use Emmy's generic arithmetic and #raw(lang:"clojure", "ref") when working with their components.
 
 The function #raw(lang:"clojure", "list") is the constructor for lists. The selector #raw(lang:"clojure", "nth") gets an element of the list. All selectors in ClojureScript are zero-based. For example,
 
@@ -255,7 +267,7 @@ Both #raw(lang:"clojure", "a-list") and #raw(lang:"clojure", "another-list") sha
 
 There is a predicate #raw(lang:"clojure", "pair?") that is true of pairs and false on all other types of data.
 
-Vectors are simpler than lists. There is a constructor #raw(lang:"clojure", "vector") that can be used to make vectors and a selector #raw(lang:"clojure", "nth") for accessing the elements of a vector:
+Vectors provide convenient literals and indexed access. There is a constructor #raw(lang:"clojure", "vector") that can be used to make vectors and a selector #raw(lang:"clojure", "nth") for accessing the elements of a vector:
 
 /* fdg-code-source: appendix_a/021
 (define a-vector

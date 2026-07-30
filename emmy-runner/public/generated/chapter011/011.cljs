@@ -1,1 +1,3 @@
+(def home ((legacy-frame-maker base-frame-point base-frame-chart) 'home 'home))
+
 (def A (make-SR-frame 'A home (up 1 0 0) 'va:c (make-SR-coordinates home (up 0 0 0 0))))

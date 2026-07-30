@@ -5,8 +5,8 @@
 #import "index.typ": fdg-indexed-body, fdg-index-page
 
 // For a manual test, replace this line with:
-#let code-edition = "clojure" // "scheme", "clojure", or "both"
-// #let code-edition = sys.inputs.at("code", default: "scheme")
+// #let code-edition = "clojure" // "scheme", "clojure", or "both"
+#let code-edition = sys.inputs.at("code", default: "scheme")
 #show: fdg-book.with(code-edition: code-edition)
 
 #fdg-title-page(
@@ -50,12 +50,12 @@
       #include "content/appendix_e.typ"
       #include "content/appendix_f.typ"
       #include "content/appendix_g.typ"
+      #include "content/appendix_h.typ"
     ]
   ]
+  #include "content/errata.typ"
   #include "content/references.typ"
 ]
 
 #set page(numbering: "1")
 #fdg-index-page()
-
-#include "content/errata.typ"

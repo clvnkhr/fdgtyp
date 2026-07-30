@@ -28,12 +28,27 @@
     raw(code, block: true, lang: language)
 }
 
-#let fdg-scheme-code-block(id) = fdg-render-code-block(id, "scm", "scheme")
-#let fdg-cljs-code-block(id) = fdg-render-code-block(id, "cljs", "clojure")
+#let fdg-code-anchor(id, prefix: "code") = {
+  // Metadata and labels have no layout of their own. Emitting them directly
+  // avoids inserting a block between the preceding paragraph and the listing,
+  // and places the reference target at the listing's actual vertical position.
+  [#metadata(id)#label(prefix + "-" + id.replace("/", "-"))]
+}
+
+#let fdg-scheme-code-block(id) = {
+  fdg-code-anchor(id, prefix: "scheme-code")
+  fdg-render-code-block(id, "scm", "scheme")
+}
+
+#let fdg-cljs-code-block(id) = {
+  fdg-code-anchor(id, prefix: "cljs-code")
+  fdg-render-code-block(id, "cljs", "clojure")
+}
 
 #let fdg-code-block(id) = context {
   let edition = fdg-code-edition.get()
   let render(extension, language) = fdg-render-code-block(id, extension, language)
+  fdg-code-anchor(id)
   if edition == "scheme" { render("scm", "scheme") }
   else if edition == "clojure" { render("cljs", "clojure") }
   else if edition == "both" {

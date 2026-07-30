@@ -1,5 +1,5 @@
-export function normalizeImportedOrgSource(source) {
-  return source
+export function normalizeImportedOrgSource(source, stem = "") {
+  const normalized = source
     .replace(/\(\/(\d)/g, "(/ $1")
     .replaceAll(
       "(make fake-vector-field V-over-mu n)",
@@ -32,7 +32,8 @@ export function normalizeImportedOrgSource(source) {
         + "(define m ((point S2-spherical) (up 'theta0 'phi0)))\n"
         + "(define Cartan (Christoffel->Cartan S2-Christoffel))\n"
         + "(define nabla (covariant-derivative Cartan))\n"
-        + "(define omega (literal-1form-field 'omega-sphere S2-spherical))",
+        + "(define omega (literal-1form-field 'omega-sphere S2-spherical))\n"
+        + "(define f (literal-manifold-function 'f S2-spherical))",
     )
     .replaceAll(
       "(define (Force charge F 4velocity component)",
@@ -44,6 +45,12 @@ export function normalizeImportedOrgSource(source) {
     .replaceAll("(define circular (- (* x d/dy) (* y d/x)))",
                 "(define circular (- (* x d/dy) (* y d/dx)))")
     .replaceAll("literal-manifold function", "literal-manifold-function")
+    .replaceAll("literal-oneform-field", "literal-1form-field")
+    .replaceAll(
+      "(literal-manifold-function f S2-spherical)",
+      "(literal-manifold-function 'f S2-spherical)",
+    )
+    .replaceAll("of the the following definitions", "of the following definitions")
     .replaceAll(
       "             (* ((D f) x) (b x)))))\n       (make-operator coordinatized-v))",
       "             (* ((D f) x) (b x))))\n         (make-operator coordinatized-v))",
@@ -115,5 +122,22 @@ export function normalizeImportedOrgSource(source) {
       "(define nabla\n  (covariant-derivative\n   (Newton-connection 'M 'G ':c\n                      (literal-function 'V (-> (UP Real Real Real) Real)))))",
       "(define V (literal-function 'V (-> (UP Real Real Real) Real)))\n\n"
         + "(define nabla\n  (covariant-derivative\n   (Newton-connection 'M 'G ':c V)))",
+    )
+    .replaceAll(
+      "    #+begin_src scheme\n(define A\n  (make-SR-frame 'A home",
+      "    #+begin_src scheme\n"
+        + "(define home\n"
+        + "  ((frame-maker base-frame-point base-frame-chart)\n"
+        + "   'home 'home))\n\n"
+        + "(define A\n"
+        + "  (make-SR-frame 'A home",
+    );
+
+  if (stem === "errata") return normalized;
+  return normalized
+    .replaceAll("(make-manifold S^2 2 3)", "(make-manifold S^2-type 2 3)")
+    .replaceAll(
+      "(((((covariant-derivative R2-polar-Cartan) d/dx) J) f)",
+      "(((((covariant-derivative R2-polar-Cartan) d/dx) circular) f)",
     );
 }

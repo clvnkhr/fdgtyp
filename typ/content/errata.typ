@@ -1,10 +1,12 @@
 // Generated from ../../fdg-book/scheme/org/errata.org.
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
-#import "../lib.typ": fdg-chapter, fdg-code-block, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
+#import "../lib.typ": fdg-chapter, fdg-code-block, fdg-edition-select, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
 
 #fdg-chapter("Errata for FDG", numbered: false, eq-prefix: "0", ref-label: "")[
+This section is an annotated version of the errata maintained by #link("https://github.com/mentat-collective/fdg-book")[#raw(lang:"scheme", "mentat-collective/fdg-book")]. Notes marked “Corrected in this edition” identify issues already repaired in the generated text or code.
+
 == Chapter 1
-Page 9: #raw(lang:"scheme", "Cartan") is used in #raw(lang:"scheme", "geodesic-equation-residuals") before it is defined just after. Be careful to flip evaluation order of these two listings.
+Page 9: #raw(lang:"scheme", "Cartan") is used in #raw(lang:"scheme", "geodesic-equation-residuals") before it is defined just after. Be careful to flip evaluation order of these two listings. #emph[Status: Corrected in this edition.]
 
 == Chapter 3
 Page 24: the definition of #raw(lang:"scheme", "v") assumes that #raw(lang:"scheme", "R2->R") from page 16 is still defined. This might be nice to add to the #raw(lang:"scheme", "scmutils") library so that this code will work if users attempt chapter 3 independently.
@@ -62,7 +64,7 @@ fdg-code-source-end */
 #fdg-code-block("errata/006")
 
 == Chapter 6
-Page 75: the definition of #raw(lang:"scheme", "S2") references the nonexistent manifold family #raw(lang:"scheme", "S^2") instead of #raw(lang:"scheme", "S^2-type"):
+Page 75: the definition of #raw(lang:"scheme", "S2") references the nonexistent manifold family #raw(lang:"scheme", "S^2") instead of #raw(lang:"scheme", "S^2-type"): #emph[Status: Corrected in this edition.]
 
 /* fdg-code-source: errata/007
 (define S2 (make-manifold S^2 2 3))
@@ -94,7 +96,7 @@ fdg-code-source-end */
 
 The #raw(lang:"scheme", "(partial 0)") and #raw(lang:"scheme", "(partial 1)") are switched, the point is in R2 vs R3 and the negative signs are distributed differently. Strange!
 
-Page 103: I believe the code listing at the end of the page subs in #raw(lang:"scheme", "J") where #raw(lang:"scheme", "circular") belongs. The code shown is:
+Page 103: I believe the code listing at the end of the page subs in #raw(lang:"scheme", "J") where #raw(lang:"scheme", "circular") belongs. #emph[Status: Corrected in this edition.] The code shown is:
 
 /* fdg-code-source: errata/010
 (((((covariant-derivative R2-polar-Cartan) d/dx) J) f) R2-rect-point)
@@ -108,27 +110,27 @@ The correct version is:
 fdg-code-source-end */
 #fdg-code-block("errata/011")
 
-Page 107: the definition of #raw(lang:"scheme", "S2-Christoffel") will not work without #raw(lang:"scheme", "S2-spherical") coordinates installed:
+Page 107: the definition of #raw(lang:"scheme", "S2-Christoffel") will not work without #raw(lang:"scheme", "S2-spherical") coordinates installed: #emph[Status: Corrected in this edition.]
 
 /* fdg-code-source: errata/012
 (define-coordinates (up theta phi) S2-spherical)
 fdg-code-source-end */
 #fdg-code-block("errata/012")
 
-Page 107: The definition of #raw(lang:"scheme", "sphere") references the nonexistent #raw(lang:"scheme", "S^2") manifold family instead of the correct #raw(lang:"scheme", "S^2-type").
+Page 107: The definition of #raw(lang:"scheme", "sphere") references the nonexistent #raw(lang:"scheme", "S^2") manifold family instead of the correct #raw(lang:"scheme", "S^2-type"). #emph[Status: Corrected in this edition.]
 
 == Chapter 8
-Page 116: The code beginning here requires the #raw(lang:"scheme", "S2-spherical") coordinate system:
+Page 116: The code beginning here requires the #raw(lang:"scheme", "S2-spherical") coordinate system: #emph[Status: Corrected in this edition.]
 
 /* fdg-code-source: errata/013
 (define-coordinates (up theta phi) S2-spherical)
 fdg-code-source-end */
 #fdg-code-block("errata/013")
 
-Page 127 states "Where #raw(lang:"scheme", "omega") is an arbitrary one-form field." It would be nice to add this definition to the setup in footnote 8:
+Page 127 states "Where #raw(lang:"scheme", "omega") is an arbitrary one-form field." It would be nice to add this definition to the setup in footnote 8: #emph[Status: Corrected in this edition.]
 
 /* fdg-code-source: errata/014
-(define omega (literal-oneform-field 'omega S2-spherical))
+(define omega (literal-1form-field 'omega S2-spherical))
 fdg-code-source-end */
 #fdg-code-block("errata/014")
 
@@ -141,10 +143,10 @@ The torsion example on page 127 uses an #raw(lang:"scheme", "f") that has not ye
 fdg-code-source-end */
 #fdg-code-block("errata/015")
 
-This can be fixed by adding the following to footnote 8\'s setup instructions:
+This can be fixed by adding the following to footnote 8\'s setup instructions: #emph[Status: Corrected in this edition.]
 
 /* fdg-code-source: errata/016
-(define f (literal-manifold-function f S2-spherical))
+(define f (literal-manifold-function 'f S2-spherical))
 fdg-code-source-end */
 #fdg-code-block("errata/016")
 
@@ -159,9 +161,13 @@ Page 136: The code beginning here requires the #raw(lang:"scheme", "S2-spherical
 fdg-code-source-end */
 #fdg-code-block("errata/017")
 
-Page 141: The simplifier in the current build of #raw(lang:"scheme", "scmutils") can\'t simplify the denominators to the book\'s terms with the #raw(lang:"scheme", "3/2") power. If this was hand-simplified, great! Otherwise, maybe this is a regression in the simplifier. I can\'t see a setting in #raw(lang:"scheme", "rules.scm") that would allow this, but I haven\'t looked at the full set of rules in a while…
+Page 141: The simplifier in the current build of #raw(lang:"scheme", "scmutils") can\'t simplify the denominators to the book\'s terms with the #raw(lang:"scheme", "3/2") power. If this was hand-simplified, great! Otherwise, maybe this is a regression in the simplifier. #metadata("errata: rules.scm Emmy note")#label("cljs-text-edit-errata-rules-scm-emmy-note")I can't see a setting in #raw(lang:"scheme", "rules.scm") that would allow this, but I haven't looked at the full set of rules in a while… #fdg-edition-select(
+  scheme: none,
+  clojure: [Emmy has no corresponding #raw(lang:"scheme", "rules.scm") file; translated examples use Emmy's simplifier and explicit cached checks as described in Appendix @chap-appendix-g.],
+  both: [For the translated examples, Emmy has no corresponding #raw(lang:"scheme", "rules.scm") file; they use Emmy's simplifier and explicit cached checks as described in Appendix @chap-appendix-g.],
+)
 
-Page 146: The code in section @sec-9.3 requires the #raw(lang:"scheme", "spacetime-rect") coordinate system to be installed. #raw(lang:"scheme", "spacetime-rect-basis") is also used in the first code block on this page without definition:
+Page 146: The code in section @sec-9.3 requires the #raw(lang:"scheme", "spacetime-rect") coordinate system to be installed. #raw(lang:"scheme", "spacetime-rect-basis") is also used in the first code block on this page without definition: #emph[Status: Corrected in this edition.]
 
 /* fdg-code-source: errata/018
 (define-coordinates (up t x y z) spacetime-rect)
@@ -169,7 +175,7 @@ Page 146: The code in section @sec-9.3 requires the #raw(lang:"scheme", "spaceti
 fdg-code-source-end */
 #fdg-code-block("errata/018")
 
-Page 147: #raw(lang:"scheme", "V") is passed as an argument to #raw(lang:"scheme", "Newton-metric") without first being defined. #raw(lang:"scheme", "V") was declared inline above in the definition of #raw(lang:"scheme", "nabla"), and should be explicitly defined like so:
+Page 147: #raw(lang:"scheme", "V") is passed as an argument to #raw(lang:"scheme", "Newton-metric") without first being defined. #raw(lang:"scheme", "V") was declared inline above in the definition of #raw(lang:"scheme", "nabla"), and should be explicitly defined like so: #emph[Status: Corrected in this edition.]
 
 /* fdg-code-source: errata/019
 (define V (literal-function 'V (-> (UP Real Real Real) Real)))
@@ -192,10 +198,10 @@ instead of the stated return value:
 fdg-code-source-end */
 #fdg-code-block("errata/021")
 
-Maybe the shown value is meant to be just the leading term, but this is worth explaining.
+Maybe the shown value is meant to be just the leading term, but this is worth explaining. #emph[Status: Corrected in this edition.]
 
 == Chapter 10
-Page 159: the setup block should define #raw(lang:"scheme", "SR-basis"), as it is used in the last example of the section, on page 160:
+Page 159: the setup block should define #raw(lang:"scheme", "SR-basis"), as it is used in the last example of the section, on page 160: #emph[Status: Corrected in this edition.]
 
 /* fdg-code-source: errata/022
 (define SR-basis (coordinate-system->basis SR))
@@ -267,12 +273,16 @@ Including the #raw(lang:"scheme", "c^2") term explicitly would require, I believ
 fdg-code-source-end */
 #fdg-code-block("errata/024")
 
-Page 165: In the definition of #raw(lang:"scheme", "Force"), #raw(lang:"scheme", "eta-inverse") is not defined, so the following two code examples (and, presumably, exercise 10.1b) will not run!
+Page 165: In the definition of #raw(lang:"scheme", "Force"), #raw(lang:"scheme", "eta-inverse") is not defined, so the following two code examples (and, presumably, exercise 10.1b) will not run! #emph[Status: Corrected in this edition.]
 
 == Chapter 11
-Page 178: This is not necessarily a "bug", but simplifying the expression produced by the form at the top of the page is extremely slow on my machine, in both #raw(lang:"scheme", "scmutils") and the Clojure port. Could be a regression? I have not been able to get the computation to complete, and GCD times out.
+#metadata("errata: expensive simplification Emmy wording")#label("cljs-text-edit-errata-expensive-simplification-emmy-wording")#fdg-edition-select(
+  scheme: [Page 178: This is not necessarily a "bug", but simplifying the expression produced by the form at the top of the page is extremely slow on my machine in #raw(lang:"scheme", "scmutils"). Could be a regression? I have not been able to get the computation to complete, and GCD times out.],
+  clojure: [Page 178: This symbolic simplification is also an expensive check in Emmy. Appendix @chap-appendix-g identifies the cached check and its result.],
+  both: [Page 178: This symbolic simplification is expensive in both #raw(lang:"scheme", "scmutils") and Emmy. Appendix @chap-appendix-g identifies the translated cached check and its result.],
+)
 
-Page 180 states "Assume that we have a base frame called #raw(lang:"scheme", "home")\." The base frame defined in the library is #raw(lang:"scheme", "the-ether")\; I would recommend including one of the the following definitions as setup:
+Page 180 states "Assume that we have a base frame called #raw(lang:"scheme", "home")\." The base frame defined in the library is #raw(lang:"scheme", "the-ether")\; I would recommend including one of the following definitions as setup: #emph[Status: Corrected in this edition.]
 
 /* fdg-code-source: errata/025
 (define home

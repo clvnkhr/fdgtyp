@@ -18,7 +18,7 @@
     x: -2.40,
     y: 2.50,
     vx: 1.0,
-    vy: -0.5,
+    vy: -0.4,
   ),
 
   first-hole: (x: -1.45, y: 0.35, mass: 1.00),
@@ -97,7 +97,7 @@
   view-shift: (4.55, 6.20),
   // These bounds deliberately extend beyond the crop. This keeps the
   // rectangular edge of the sampled surface out of the finished artwork.
-  bounds: (xmin: -6.30, xmax: 6.30, ymin: -8.00, ymax: 7.00),
+  bounds: (xmin: -6.30, xmax: 6.30, ymin: -93.00, ymax: 7.00),
   // Let escaping paths continue beyond the surface mesh; the fixed artwork
   // box performs the final visual clipping at the cover edge.
   trajectory-bounds: (xmin: -9.0, xmax: 9.0, ymin: -14.0, ymax: 8.0),

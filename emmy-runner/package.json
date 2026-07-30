@@ -1,4 +1,9 @@
 {
+  "private": true,
+  "scripts": {
+    "build": "clojure -M:shadow-cljs release app",
+    "dev": "clojure -M:shadow-cljs watch app"
+  },
   "dependencies": {
     "fraction.js": "4.2.1",
     "odex": "3.0.0-rc.4"

@@ -1,4 +1,4 @@
-#import "../lib.typ": fdg-chapter, fdg-cljs-code-block, fdg-cljs-code-block, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
+#import "../lib.typ": fdg-chapter, fdg-cljs-code-block, fdg-cljs-code-block, fdg-edition-select, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
 
 #fdg-chapter("Our Notation in Emmy", numbered: true, eq-prefix: "E", ref-label: "chap-appendix-e")[
 #block(inset: (left: 1em), stroke: (left: 2pt + gray))[#emph[Editorial note: This appendix is derived from Appendix B; its examples have been translated to ClojureScript using Emmy, while the original wording has been retained wherever possible.]]
@@ -33,7 +33,7 @@ Functions may be composed if the range of one overlaps the domain of the other. 
 
 $ (f compose g): x mapsto (f compose g) (x)= f (g (x)). $ <E.2>
 
-A procedure #raw(lang:"clojure", "h") that computes the cube of the sine of its argument may be defined by composing the procedures #raw(lang:"clojure", "cube") and #raw(lang:"clojure", "sin"):
+A function #raw(lang:"clojure", "h") that computes the cube of the sine of its argument may be defined by composing the functions #raw(lang:"clojure", "cube") and #raw(lang:"clojure", "sin"):
 
 /* fdg-code-source: appendix_b/002
 (define h (compose cube sin))
@@ -55,7 +55,7 @@ Arithmetic is extended to the manipulation of functions: the usual mathematical 
 
 $ (f + g) (x)= f (x)+ g (x)\, (f g) (x)= f (x)g (x). $ <E.3>
 
-A procedure #raw(lang:"clojure", "g") that multiplies the cube of its argument by the sine of its argument is
+A function #raw(lang:"clojure", "g") that multiplies the cube of its argument by the sine of its argument is
 
 /* fdg-code-source: appendix_b/004
 (define g (* cube sin))
@@ -77,7 +77,7 @@ As in usual mathematical notation, arithmetic is extended to allow the use of sy
 fdg-code-source-end */
 #fdg-cljs-code-block("appendix_b/005")
 
-The default printer simplifies the expression,#footnote[The procedure #raw(lang:"clojure", "print-expression") can be used in a program to print a simplified version of an expression. The default printer in the user interface incorporates the simplifier.] and displays it in a readable form. We can use the simplifier to verify a trigonometric identity:
+The cached runner output records the value returned by each example. Emmy simplifies many symbolic results during generic arithmetic, and examples may call #raw(lang:"clojure", "simplify") explicitly when normalization is required.#footnote[Appendix @chap-appendix-g explains result capture, cached output, and explicit checks. The runner does not rely on scmutils' interactive #raw(lang:"scheme", "print-expression") printer.] We can use the simplifier to verify a trigonometric identity:
 
 /* fdg-code-source: appendix_b/006
 ((- (+ (square sin) (square cos)) 1) 'a)
@@ -85,7 +85,7 @@ The default printer simplifies the expression,#footnote[The procedure #raw(lang:
 fdg-code-source-end */
 #fdg-cljs-code-block("appendix_b/006")
 
-Just as it is useful to be able to manipulate symbolic numbers, it is useful to be able to manipulate symbolic functions. The procedure #raw(lang:"clojure", "literal-function") makes a procedure that acts as a function having no properties other than its name. By default, a literal function is defined to take one real argument and produce one real value. For example, we may want to work with a function $f : upright(bold(R)) arrow.r upright(bold(R))$:
+Just as it is useful to be able to manipulate symbolic numbers, it is useful to be able to manipulate symbolic functions. The function #raw(lang:"clojure", "literal-function") constructs a symbolic function having no properties other than its name and declared signature. By default, a literal function is defined to take one real argument and produce one real value. For example, we may want to work with a function $f : upright(bold(R)) arrow.r upright(bold(R))$:
 
 /* fdg-code-source: appendix_b/007
 ((literal-function 'f) 'x)
@@ -160,7 +160,7 @@ $ I (s) &= s \
 
 The sequence of integer subscripts on the selector describes the access chain to the desired component.
 
-The procedure #raw(lang:"clojure", "component") is the general selector procedure that implements the selector function $I_z$:
+The function #raw(lang:"clojure", "component") is the general selector that implements the selector function $I_z$:
 
 /* fdg-code-source: appendix_b/011
 ((component 0 1) (up (up 'a 'b) (up 'c 'd)))
@@ -168,7 +168,7 @@ The procedure #raw(lang:"clojure", "component") is the general selector procedur
 fdg-code-source-end */
 #fdg-cljs-code-block("appendix_b/011")
 
-To access a component of a tuple we may also use the selector procedure #raw(lang:"clojure", "ref"), which takes a tuple and an index and returns the indicated element of the tuple:
+To access a component of a tuple we may also use the selector function #raw(lang:"clojure", "ref"), which takes a tuple and an index and returns the indicated element of the tuple:
 
 /* fdg-code-source: appendix_b/012
 (ref (up 'a 'b 'c) 1)
@@ -176,7 +176,7 @@ To access a component of a tuple we may also use the selector procedure #raw(lan
 fdg-code-source-end */
 #fdg-cljs-code-block("appendix_b/012")
 
-We use zero-based indexing everywhere. The procedure #raw(lang:"clojure", "ref") can be used to access any substructure of a tree of tuples:
+We use zero-based indexing everywhere. The function #raw(lang:"clojure", "ref") can be used to access any substructure of a tree of tuples:
 
 /* fdg-code-source: appendix_b/013
 (ref (up (up 'a 'b) (up 'c 'd)) 0 1)
@@ -233,7 +233,7 @@ Multiplication of tuples that represent linear transformations is associative bu
 == Derivatives <sec-E.4>
 The derivative of a function $f$ is a function, denoted by $D f$. Our notational convention is that $D$ is a high-precedence operator. Thus $D$ operates on the adjacent function before any other application occurs: $D f (x)$ is the same as $(D f) (x)$. Higher-order derivatives are described by exponentiating the derivative operator. Thus the $n$th derivative of a function $f$ is notated as $D^n f$.
 
-The ClojureScript function for producing the derivative of a function is named #raw(lang:"clojure", "D"). The derivative of the #raw(lang:"clojure", "sin") procedure is a procedure that computes #raw(lang:"clojure", "cos"):
+The ClojureScript function for producing the derivative of a function is named #raw(lang:"clojure", "D"). The derivative of the #raw(lang:"clojure", "sin") function is a function that computes #raw(lang:"clojure", "cos"):
 
 /* fdg-code-source: appendix_b/015
 (define derivative-of-sine (D sin))
@@ -324,7 +324,7 @@ So if $x$ is a tuple of arguments, then
 
 $ (partial_i (f compose g)) (x)= D f (g (x))dot.op partial_i g (x). $ <E.27>
 
-Mathematical notation usually does not distinguish functions of multiple arguments and functions of the tuple of arguments. Let $h((x\,y))= g (x\,y)$. The function $h$, which takes a tuple of arguments $x$ and $y$, is not distinguished from the function $g$ that takes arguments $x$ and $y$. We use both ways of defining functions of multiple arguments. The derivatives of both kinds of functions are compatible for contraction with a tuple of increments to the arguments. Scheme comes in handy here:
+Mathematical notation usually does not distinguish functions of multiple arguments and functions of the tuple of arguments. Let $h((x\,y))= g (x\,y)$. The function $h$, which takes a tuple of arguments $x$ and $y$, is not distinguished from the function $g$ that takes arguments $x$ and $y$. We use both ways of defining functions of multiple arguments. The derivatives of both kinds of functions are compatible for contraction with a tuple of increments to the arguments. ClojureScript and Emmy make the distinction explicit:
 
 /* fdg-code-source: appendix_b/019
 (define (h s)
@@ -444,15 +444,15 @@ In ClojureScript:
 fdg-code-source-end */
 #fdg-cljs-code-block("appendix_b/024")
 
-=== Exercise B.1: Chain Rule <sec-E.6.1>
+=== Exercise E.1: Chain Rule <sec-E.6.1>
 Let $F (x\,y)= x^2 y^3$, $G (x\,y)=(F (x\,y)\,y)$, and $H (x\,y)= F (F (x\,y)\,y)$, so that $H = F compose G$.
 
 a. Compute $partial_0 F (x\,y)$ and $partial_1 F (x\,y)$. b. Compute $partial_0 F (F (x\,y)\,y)$ and $partial_1 F (F (x\,y)\,y)$. c. Compute $partial_0 G (x\,y)$ and $partial_1 G (x\,y)$. d. Compute $D F (a\,b)$, $D G (3\,5)$ and $D H (3 a^2\,5 b^3)$.
 
-=== Exercise B.2: Computing Derivatives <sec-E.6.2>
-We can represent functions of multiple arguments as procedures in several ways, depending upon how we wish to use them. The simplest idea is to identify the procedure arguments with the function\'s arguments.
+=== Exercise E.2: Computing Derivatives <sec-E.6.2>
+We can represent functions of multiple arguments as ClojureScript functions in several ways, depending upon how we wish to use them. The simplest idea is to identify the ClojureScript function arguments with the function\'s arguments.
 
-For example, we could write implementations of the functions that occur in exercise B.1 as follows:
+For example, we could write implementations of the functions that occur in exercise E.1 as follows:
 
 /* fdg-code-source: appendix_b/025
 (define (f x y)
@@ -466,9 +466,9 @@ For example, we could write implementations of the functions that occur in exerc
 fdg-code-source-end */
 #fdg-cljs-code-block("appendix_b/025")
 
-With this choice it is awkward to compose a function that takes multiple arguments, such as $f$, with a function that produces a tuple of those arguments, such as $g$. Alternatively, we can represent the function arguments as slots of a tuple data structure, and then composition with a function that produces such a data structure is easy. However, this choice requires the procedures to build and take apart structures.
+With this choice it is awkward to compose a function that takes multiple arguments, such as $f$, with a function that produces a tuple of those arguments, such as $g$. Alternatively, we can represent the function arguments as slots of a tuple data structure, and then composition with a function that produces such a data structure is easy. However, this choice requires the functions to build and take apart structures.
 
-For example, we may define procedures that implement the functions above as follows:
+For example, we may define functions that implement the functions above as follows:
 
 /* fdg-code-source: appendix_b/026
 (define (f v)
@@ -487,5 +487,5 @@ For example, we may define procedures that implement the functions above as foll
 fdg-code-source-end */
 #fdg-cljs-code-block("appendix_b/026")
 
-Repeat exercise B.1 using the computer. Explore both implementations of multiple-argument functions.
+Repeat exercise E.1 using the computer. Explore both implementations of multiple-argument functions.
 ]

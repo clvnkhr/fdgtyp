@@ -1,6 +1,6 @@
 // Generated from ../../fdg-book/scheme/org/chapter009.org.
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
-#import "../lib.typ": fdg-chapter, fdg-code-block, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
+#import "../lib.typ": fdg-chapter, fdg-code-block, fdg-edition-select, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
 
 #fdg-chapter("Metrics", numbered: true, eq-prefix: "9", ref-label: "chap-9")[
 We often want to impose further structure on a manifold to allow us to define lengths and angles. This is done by generalizing the idea of the Euclidean dot product, which allows us to compute lengths of vectors and angles between vectors in traditional vector algebra.
@@ -444,7 +444,11 @@ Einstein\'s field equations tell how the local energy-momentum distribution dete
 
 $ R_(mu nu) - 1 / 2 R g_(mu nu) + Lambda g_(mu nu) = frac(8 pi G, c^4) T_(mu nu) $ <9.26>
 
-where $R_(mu nu)$ are the components of the Ricci tensor (equation @8.20), $R$ is the Ricci scalar (equation @9.23),#footnote[The tensor with components $G_(mu nu) = R_(mu nu) - 1 / 2 R g_(mu nu)$ is called the Einstein tensor. In his search for an appropriate field equation for gravity, Einstein demanded #emph[general covariance] (independence of coordinate system) and local Lorentz invariance (at each point transformations must preserve the line element). These considerations led Einstein to look for a tensor equation (see Appendix @chap-appendix-c).] and $Lambda$ is the cosmological constant.
+where $R_(mu nu)$ are the components of the Ricci tensor (equation @8.20), $R$ is the Ricci scalar (equation @9.23),#footnote[The tensor with components $G_(mu nu) = R_(mu nu) - 1 / 2 R g_(mu nu)$ is called the Einstein tensor. In his search for an appropriate field equation for gravity, Einstein demanded #emph[general covariance] (independence of coordinate system) and local Lorentz invariance (at each point transformations must preserve the line element). These considerations led Einstein to look for a tensor equation (#metadata("chapter009: Einstein tensor appendix reference")#label("cljs-text-edit-chapter009-einstein-tensor-appendix-reference")#fdg-edition-select(
+  scheme: [see Appendix @chap-appendix-c],
+  clojure: [see Appendix @chap-appendix-f],
+  both: [see Appendix @chap-appendix-c for Scheme and Appendix @chap-appendix-f for Emmy],
+)).] and $Lambda$ is the cosmological constant.
 
 $T_(mu nu)$ are the components of the stress-energy tensor describing the energy-momentum distribution. Equivalently, one can write
 

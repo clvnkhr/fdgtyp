@@ -89,6 +89,16 @@ function escapeRegex(text) {
   return text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
+function replaceExactlyOnce(source, search, replacement, description) {
+  const matches = typeof search === "string"
+    ? source.split(search).length - 1
+    : [...source.matchAll(new RegExp(search.source, search.flags.includes("g") ? search.flags : `${search.flags}g`))].length;
+  if (matches !== 1) {
+    throw new Error(`${description}: expected exactly one match, found ${matches}`);
+  }
+  return source.replace(search, replacement);
+}
+
 function chapterDisplayTitle(title) {
   return title
     .replace(/^Chapter\s+\d+:\s*/, "")
@@ -324,7 +334,7 @@ function applyPdfFidelitySourceRepairs(source, stem) {
 }
 
 function normalizeOrgSource(source, stem) {
-  const repairedSource = applyPdfFidelitySourceRepairs(normalizeImportedOrgSource(source), stem);
+  const repairedSource = applyPdfFidelitySourceRepairs(normalizeImportedOrgSource(source, stem), stem);
   return wrapBareSchemeBlocks(normalizeDollarMath(normalizeLatexDisplaysWithFootnotes(repairedSource, stem)))
     // Pandoc emits Org headings below level three as plain paragraphs in
     // Typst. Mark them here so the cleanup pass can preserve them as visible
@@ -1480,6 +1490,293 @@ function applyChapterRepairs(stem, body) {
   return body;
 }
 
+const editionAwareProseEdits = [];
+
+function applyEditionAwareProse(stem, body) {
+  let edited = body;
+  const replace = (search, replacement, description) => {
+    const label = `cljs-text-edit-${stem}-${description}`
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-|-$/g, "");
+    editionAwareProseEdits.push({ stem, description, label });
+    const anchor = `#metadata(${JSON.stringify(`${stem}: ${description}`)})#label(${JSON.stringify(label)})`;
+    edited = replaceExactlyOnce(
+      edited,
+      search,
+      `${anchor}${replacement}`,
+      `${stem}: ${description}`,
+    );
+  };
+
+  if (stem === "prologue") {
+    replace(
+      "An explanation of functional derivatives is in Appendix #fdg-ref-page(<chap-appendix-b>, page-target: <sec-B.4>).",
+      `#fdg-edition-select(
+  scheme: [An explanation of functional derivatives is in Appendix #fdg-ref-page(<chap-appendix-b>, page-target: <sec-B.4>).],
+  clojure: [An explanation of functional derivatives is in Appendix #fdg-ref-page(<chap-appendix-e>, page-target: <sec-E.4>).],
+  both: [Explanations of functional derivatives are in Appendix #fdg-ref-page(<chap-appendix-b>, page-target: <sec-B.4>) for Scheme and Appendix #fdg-ref-page(<chap-appendix-e>, page-target: <sec-E.4>) for ClojureScript/Emmy.],
+)`,
+      "functional-derivative appendix reference",
+    );
+    replace(
+      "The programs in this book are written in Scheme, a dialect of Lisp. The details of the language are not germane to the points being made. What is important is that it is mechanically interpretable, and thus unambiguous. In this book we require that the mathematical expressions be explicit enough that they can be expressed as computer programs. Scheme is chosen because it is easy to write programs that manipulate representations of mathematical functions. An informal description of Scheme can be found in Appendix @chap-appendix-a. The use of Scheme to represent mathematical objects can be found in Appendix @chap-appendix-b. A formal description of Scheme can be obtained in @ieee1991scheme. You can get the software from @fdg-software.",
+      `#fdg-edition-select(
+  scheme: [The programs in this book are written in Scheme, a dialect of Lisp. The details of the language are not germane to the points being made. What is important is that it is mechanically interpretable, and thus unambiguous. In this book we require that the mathematical expressions be explicit enough that they can be expressed as computer programs. Scheme is chosen because it is easy to write programs that manipulate representations of mathematical functions. An informal description of Scheme can be found in Appendix @chap-appendix-a. The use of Scheme to represent mathematical objects can be found in Appendix @chap-appendix-b. A formal description of Scheme can be obtained in @ieee1991scheme. You can get the software from @fdg-software.],
+  clojure: [The programs in this edition are written in ClojureScript and use Emmy for generic arithmetic and symbolic mathematics. The details of the language are not germane to the points being made; what matters is that the expressions are mechanically interpretable and therefore unambiguous. Appendix @chap-appendix-d introduces the ClojureScript forms used here, Appendix @chap-appendix-e explains the Emmy notation, and Appendix @chap-appendix-g explains how the examples are run and checked.],
+  both: [This edition prints the original Scheme programs together with their ClojureScript/Emmy translations. The details of either language are not germane to the points being made; what matters is that the expressions are mechanically interpretable and therefore unambiguous. Appendices @chap-appendix-a and @chap-appendix-b introduce Scheme and its mathematical notation; Appendices @chap-appendix-d and @chap-appendix-e give the ClojureScript/Emmy counterparts, and Appendix @chap-appendix-g explains how the translated examples are run and checked.],
+)`,
+      "language footnote",
+    );
+    replace(
+      "Note that we can flexibly manipulate representations of mathematical functions. (See Appendices @chap-appendix-a and @chap-appendix-b.)",
+      `Note that we can flexibly manipulate representations of mathematical functions. #fdg-edition-select(
+  scheme: [(See Appendices @chap-appendix-a and @chap-appendix-b.)],
+  clojure: [(See Appendices @chap-appendix-d and @chap-appendix-e.)],
+  both: [(See Appendices @chap-appendix-a and @chap-appendix-b for Scheme, and Appendices @chap-appendix-d and @chap-appendix-e for ClojureScript/Emmy.)],
+)`,
+      "closing appendix references",
+    );
+    replace(
+      `In the Lagrange equations procedure the parameter #raw(lang:"scheme", "Lagrangian") is a procedure that implements the Lagrangian. The derivatives of the Lagrangian, for example #raw(lang:"scheme", "((partial 2) Lagrangian)"), are also procedures. The state-space path procedure #raw(lang:"scheme", "(Gamma w)") is constructed from the configuration-space path procedure #raw(lang:"scheme", "w") by the procedure #raw(lang:"scheme", "Gamma"):`,
+      `#fdg-edition-select(
+  scheme: [In the Lagrange equations procedure the parameter #raw(lang:"scheme", "Lagrangian") is a procedure that implements the Lagrangian. The derivatives of the Lagrangian, for example #raw(lang:"scheme", "((partial 2) Lagrangian)"), are also procedures. The state-space path procedure #raw(lang:"scheme", "(Gamma w)") is constructed from the configuration-space path procedure #raw(lang:"scheme", "w") by the procedure #raw(lang:"scheme", "Gamma"):],
+  clojure: [In #raw(lang:"clojure", "Lagrange-equations"), the parameter #raw(lang:"clojure", "Lagrangian") is a function implementing the Lagrangian. Its derivatives, for example #raw(lang:"clojure", "((partial 2) Lagrangian)"), are also functions. The state-space path #raw(lang:"clojure", "(Gamma w)") is constructed from the configuration-space path #raw(lang:"clojure", "w") by #raw(lang:"clojure", "Gamma"):],
+  both: [In #raw(lang:"scheme", "Lagrange-equations") / #raw(lang:"clojure", "Lagrange-equations"), #raw(lang:"scheme", "Lagrangian") is a function implementing the Lagrangian. Its derivatives are functions too, and #raw(lang:"scheme", "Gamma") constructs the state-space path from #raw(lang:"scheme", "w"):],
+)`,
+      "Lagrange-equations function terminology",
+    );
+    replace(
+      `The result of applying the #raw(lang:"scheme", "Lagrange-equations") procedure to a procedure #raw(lang:"scheme", "Lagrangian") that implements a Lagrangian function is a procedure that takes a configuration-space path procedure #raw(lang:"scheme", "w") and returns a procedure that gives the residual of the Lagrange equations for that path at a time.`,
+      `#fdg-edition-select(
+  scheme: [The result of applying the #raw(lang:"scheme", "Lagrange-equations") procedure to a procedure #raw(lang:"scheme", "Lagrangian") that implements a Lagrangian function is a procedure that takes a configuration-space path procedure #raw(lang:"scheme", "w") and returns a procedure that gives the residual of the Lagrange equations for that path at a time.],
+  clojure: [Applying #raw(lang:"clojure", "Lagrange-equations") to a Lagrangian function produces a function that accepts a configuration-space path #raw(lang:"clojure", "w") and returns a function giving the residual of the Lagrange equations at a time.],
+  both: [Applying #raw(lang:"scheme", "Lagrange-equations") / #raw(lang:"clojure", "Lagrange-equations") to a Lagrangian function produces a function that accepts a configuration-space path and returns a function giving the residual of the Lagrange equations at a time.],
+)`,
+      "Lagrange-equations result terminology",
+    );
+  }
+
+  if (stem === "chapter001") {
+    replace(
+      "More details can be found in Appendix @chap-appendix-b",
+      `#fdg-edition-select(
+  scheme: [More details can be found in Appendix @chap-appendix-b],
+  clojure: [More details can be found in Appendix @chap-appendix-e],
+  both: [More details can be found in Appendix @chap-appendix-b for Scheme and Appendix @chap-appendix-e for ClojureScript/Emmy],
+)`,
+      "functional-notation appendix reference",
+    );
+    replace(
+      "The procedure #raw(lang:\"scheme\", \"Lfree\") implements the free Lagrangian:#footnote[An informal description of the Scheme programming language can be found in Appendix @chap-appendix-a.]",
+      `#fdg-edition-select(
+  scheme: [The procedure #raw(lang:"scheme", "Lfree") implements the free Lagrangian:#footnote[An informal description of the Scheme programming language can be found in Appendix @chap-appendix-a.]],
+  clojure: [The function #raw(lang:"clojure", "Lfree") implements the free Lagrangian:#footnote[The ClojureScript forms used in this edition are introduced in Appendix @chap-appendix-d.]],
+  both: [The function #raw(lang:"scheme", "Lfree") / #raw(lang:"clojure", "Lfree") implements the free Lagrangian:#footnote[See Appendix @chap-appendix-a for Scheme and Appendix @chap-appendix-d for ClojureScript.]],
+)`,
+      "Lfree language and appendix footnote",
+    );
+    replace(
+      `For a sphere of radius R the procedure #raw(lang:"scheme", "sphere->R3") implements the transformation of coordinates`,
+      `For a sphere of radius R #fdg-edition-select(
+  scheme: [the procedure #raw(lang:"scheme", "sphere->R3")],
+  clojure: [the function #raw(lang:"clojure", "sphere->R3")],
+  both: [the function #raw(lang:"scheme", "sphere->R3") / #raw(lang:"clojure", "sphere->R3")],
+) implements the transformation of coordinates`,
+      "sphere->R3 terminology",
+    );
+    replace(
+      `The procedure #raw(lang:"scheme", "F->C") implements the derivation of a transformation of states from a coordinate transformation:`,
+      `#fdg-edition-select(
+  scheme: [The procedure #raw(lang:"scheme", "F->C") implements the derivation of a transformation of states from a coordinate transformation:],
+  clojure: [The function #raw(lang:"clojure", "F->C") implements the derivation of a transformation of states from a coordinate transformation:],
+  both: [The #raw(lang:"scheme", "F->C") / #raw(lang:"clojure", "F->C") function implements the derivation of a transformation of states from a coordinate transformation:],
+)`,
+      "F->C terminology",
+    );
+    replace(
+      "Let\\'s make a general metric on a 2-dimensional real manifold:#footnote[The procedure #raw(lang:\"scheme\", \"literal-metric\") provides a metric. It is a general symmetric function of two vector fields, with literal functions of the coordinates of the manifold points for its coefficients in the given coordinate system. The quoted symbol #raw(lang:\"scheme\", \"'g\") is used to make the names of the literal coefficient functions. Literal functions are discussed in Appendix @chap-appendix-b.]",
+      `Let's make a general metric on a 2-dimensional real manifold:#footnote[#fdg-edition-select(
+  scheme: [The procedure #raw(lang:"scheme", "literal-metric") provides a metric. It is a general symmetric function of two vector fields, with literal functions of the coordinates of the manifold points for its coefficients in the given coordinate system. The quoted symbol #raw(lang:"scheme", "'g") is used to make the names of the literal coefficient functions. Literal functions are discussed in Appendix @chap-appendix-b.],
+  clojure: [The function #raw(lang:"clojure", "literal-metric") provides a metric. It is a general symmetric function of two vector fields, with literal functions of the coordinates of the manifold points for its coefficients in the given coordinate system. The quoted symbol #raw(lang:"clojure", "'g") names the literal coefficient functions. Literal functions are discussed in Appendix @chap-appendix-e.],
+  both: [The function #raw(lang:"scheme", "literal-metric") / #raw(lang:"clojure", "literal-metric") provides a metric. The quoted symbol #raw(lang:"scheme", "'g") names its literal coefficient functions. See Appendix @chap-appendix-b for Scheme notation and Appendix @chap-appendix-e for Emmy notation.],
+)]`,
+      "literal metric footnote",
+    );
+    replace(
+      `We established #raw(lang:"scheme", "t") as a coordinate function on the rectangular coordinates of the real line by
+
+\`(define-coordinates t R1-rect)\`
+
+This had the effect of also defining #raw(lang:"scheme", "d/dt") as a coordinate vector field and #raw(lang:"scheme", "dt") as a one-form field on the real line.`,
+      `#fdg-edition-select(
+  scheme: [We established #raw(lang:"scheme", "t") as a coordinate function on the rectangular coordinates of the real line by #raw(lang:"scheme", "(define-coordinates t R1-rect)"). This also defined #raw(lang:"scheme", "d/dt") as a coordinate vector field and #raw(lang:"scheme", "dt") as a one-form field on the real line.],
+  clojure: [The Emmy setup establishes the real-line coordinate objects with #raw(lang:"clojure", "(define-coordinates t R1-rect)"). The translated code uses #raw(lang:"clojure", "d:dt") for the coordinate vector field and #raw(lang:"clojure", "dt") for the one-form field.],
+  both: [The setup #raw(lang:"scheme", "(define-coordinates t R1-rect)") establishes the real-line coordinate objects. Scheme names the coordinate vector field #raw(lang:"scheme", "d/dt"); the translated ClojureScript uses #raw(lang:"clojure", "d:dt"). Both use #raw(lang:"scheme", "dt") for the one-form field.],
+)`,
+      "real-line coordinate setup",
+    );
+  }
+
+  if (stem === "chapter006") {
+    replace(
+      `We execute #raw(lang:"scheme", "(define-coordinates t R1-rect)") to make #raw(lang:"scheme", "t") the coordinate function of the real line.`,
+      `#fdg-edition-select(
+  scheme: [We execute #raw(lang:"scheme", "(define-coordinates t R1-rect)") to make #raw(lang:"scheme", "t") the coordinate function of the real line.],
+  clojure: [We execute #raw(lang:"clojure", "(define-coordinates t R1-rect)") to establish the real-line coordinate objects; the translated code names its coordinate vector field #raw(lang:"clojure", "d:dt").],
+  both: [We execute #raw(lang:"scheme", "(define-coordinates t R1-rect)") to establish the real-line coordinate objects. Scheme names the coordinate vector field #raw(lang:"scheme", "d/dt"), while the translated ClojureScript names it #raw(lang:"clojure", "d:dt").],
+)`,
+      "real-line coordinate footnote",
+    );
+  }
+
+  if (stem === "chapter002") {
+    replace(
+      "See Appendix @chap-appendix-b for an introduction to tuple arithmetic and a discussion of derivatives of functions with structured input or output.",
+      `#fdg-edition-select(
+  scheme: [See Appendix @chap-appendix-b for an introduction to tuple arithmetic and a discussion of derivatives of functions with structured input or output.],
+  clojure: [See Appendix @chap-appendix-e for an introduction to Emmy structures and a discussion of derivatives of functions with structured input or output.],
+  both: [See Appendix @chap-appendix-b for the Scheme account of tuple arithmetic and Appendix @chap-appendix-e for the corresponding Emmy account.],
+)`,
+      "structured derivative appendix reference",
+    );
+  }
+
+  if (stem === "chapter007") {
+    replace(
+      "The action on functions, vector fields, and one-form fields suffices to define the action on all tensor fields. See Appendix @chap-appendix-c.",
+      `The action on functions, vector fields, and one-form fields suffices to define the action on all tensor fields. #fdg-edition-select(
+  scheme: [See Appendix @chap-appendix-c.],
+  clojure: [See Appendix @chap-appendix-f.],
+  both: [See Appendix @chap-appendix-c for Scheme and Appendix @chap-appendix-f for Emmy.],
+)`,
+      "tensor footnote appendix reference",
+    );
+    replace(
+      "Thus $pi.alt$ is not a tensor field. See Appendix @chap-appendix-c.",
+      `Thus $pi.alt$ is not a tensor field. #fdg-edition-select(
+  scheme: [See Appendix @chap-appendix-c.],
+  clojure: [See Appendix @chap-appendix-f.],
+  both: [See Appendix @chap-appendix-c for Scheme and Appendix @chap-appendix-f for Emmy.],
+)`,
+      "tensor transformation appendix reference",
+    );
+    replace(
+      `The #raw(lang:"scheme", "s:map/r") procedure constructs a tuple of the same shape as its second argument whose elements are the result of applying the first argument to the corresponding elements of the second argument.`,
+      `#fdg-edition-select(
+  scheme: [The #raw(lang:"scheme", "s:map/r") procedure constructs a tuple of the same shape as its second argument whose elements are the result of applying the first argument to the corresponding elements of the second argument.],
+  clojure: [Emmy's #raw(lang:"clojure", "mapr") function recursively maps its first argument over the Emmy structure supplied as its second argument, preserving that structure's shape.],
+  both: [Scheme's #raw(lang:"scheme", "s:map/r") and Emmy's #raw(lang:"clojure", "mapr") recursively apply the first argument across the second argument while preserving its structure.],
+)`,
+      "recursive map description",
+    );
+    replace(
+      "The procedure #raw(lang:\"scheme\", \"F->C\") takes a coordinate transformation and produces a corresponding transformation of Lagrangian state.",
+      `#fdg-edition-select(
+  scheme: [The procedure #raw(lang:"scheme", "F->C") takes a coordinate transformation and produces a corresponding transformation of Lagrangian state.],
+  clojure: [The function #raw(lang:"clojure", "F->C") takes a coordinate transformation and produces a corresponding transformation of Lagrangian state.],
+  both: [The #raw(lang:"scheme", "F->C") / #raw(lang:"clojure", "F->C") function takes a coordinate transformation and produces a corresponding transformation of Lagrangian state.],
+)`,
+      "F->C footnote",
+    );
+  }
+
+  if (stem === "chapter008") {
+    replace(
+      "The Bianchi identities are defined in terms of a cyclic-summation operator, which is most easily described as a Scheme procedure:",
+      `#fdg-edition-select(
+  scheme: [The Bianchi identities are defined in terms of a cyclic-summation operator, which is most easily described as a Scheme procedure:],
+  clojure: [The Bianchi identities are defined in terms of a cyclic-summation operator, which is most easily described as a ClojureScript function:],
+  both: [The Bianchi identities are defined in terms of a cyclic-summation operator, which is most easily described as a function:],
+)`,
+      "cyclic-sum terminology",
+    );
+    replace(
+      "The Bianchi identities are much nastier to write in traditional mathematical notation than as Scheme programs.",
+      `#fdg-edition-select(
+  scheme: [The Bianchi identities are much nastier to write in traditional mathematical notation than as Scheme programs.],
+  clojure: [The Bianchi identities are much nastier to write in traditional mathematical notation than as ClojureScript programs.],
+  both: [The Bianchi identities are much nastier to write in traditional mathematical notation than as executable programs.],
+)`,
+      "Bianchi footnote terminology",
+    );
+    replace(
+      "See Appendix @chap-appendix-c for a definition of tensors.",
+      `#fdg-edition-select(
+  scheme: [See Appendix @chap-appendix-c for a definition of tensors.],
+  clojure: [See Appendix @chap-appendix-f for a definition of tensors in Emmy.],
+  both: [See Appendix @chap-appendix-c for the Scheme account of tensors and Appendix @chap-appendix-f for the Emmy account.],
+)`,
+      "tensor definition appendix reference",
+    );
+  }
+
+  if (stem === "chapter009") {
+    replace(
+      "see Appendix @chap-appendix-c",
+      `#fdg-edition-select(
+  scheme: [see Appendix @chap-appendix-c],
+  clojure: [see Appendix @chap-appendix-f],
+  both: [see Appendix @chap-appendix-c for Scheme and Appendix @chap-appendix-f for Emmy],
+)`,
+      "Einstein tensor appendix reference",
+    );
+  }
+
+  if (stem === "errata") {
+    replace(
+      "I can\\'t see a setting in #raw(lang:\"scheme\", \"rules.scm\") that would allow this, but I haven\\'t looked at the full set of rules in a while…",
+      `I can't see a setting in #raw(lang:"scheme", "rules.scm") that would allow this, but I haven't looked at the full set of rules in a while… #fdg-edition-select(
+  scheme: none,
+  clojure: [Emmy has no corresponding #raw(lang:"scheme", "rules.scm") file; translated examples use Emmy's simplifier and explicit cached checks as described in Appendix @chap-appendix-g.],
+  both: [For the translated examples, Emmy has no corresponding #raw(lang:"scheme", "rules.scm") file; they use Emmy's simplifier and explicit cached checks as described in Appendix @chap-appendix-g.],
+)`,
+      "rules.scm Emmy note",
+    );
+    replace(
+      /Page 178: This is not necessarily a \\"bug\\", but simplifying the expression produced by the form at the top of the page is extremely slow on my machine, in both #raw\(lang:"scheme", "scmutils"\) and the Clojure port\. Could be a regression\? I have not been able to get the computation to complete, and GCD times out\./,
+      `#fdg-edition-select(
+  scheme: [Page 178: This is not necessarily a "bug", but simplifying the expression produced by the form at the top of the page is extremely slow on my machine in #raw(lang:"scheme", "scmutils"). Could be a regression? I have not been able to get the computation to complete, and GCD times out.],
+  clojure: [Page 178: This symbolic simplification is also an expensive check in Emmy. Appendix @chap-appendix-g identifies the cached check and its result.],
+  both: [Page 178: This symbolic simplification is expensive in both #raw(lang:"scheme", "scmutils") and Emmy. Appendix @chap-appendix-g identifies the translated cached check and its result.],
+)`,
+      "expensive simplification Emmy wording",
+    );
+  }
+
+  return edited;
+}
+
+function annotateErrata(body) {
+  let annotated = `This section is an annotated version of the errata maintained by #link("https://github.com/mentat-collective/fdg-book")[#raw(lang:"scheme", "mentat-collective/fdg-book")]. Notes marked “Corrected in this edition” identify issues already repaired in the generated text or code.\n\n${body}`;
+  const corrected = " #emph[Status: Corrected in this edition.]";
+  const annotations = [
+    "Be careful to flip evaluation order of these two listings.",
+    "instead of #raw(lang:\"scheme\", \"S^2-type\"):",
+    "Page 103: I believe the code listing at the end of the page subs in #raw(lang:\"scheme\", \"J\") where #raw(lang:\"scheme\", \"circular\") belongs.",
+    "Page 107: the definition of #raw(lang:\"scheme\", \"S2-Christoffel\") will not work without #raw(lang:\"scheme\", \"S2-spherical\") coordinates installed:",
+    "Page 107: The definition of #raw(lang:\"scheme\", \"sphere\") references the nonexistent #raw(lang:\"scheme\", \"S^2\") manifold family instead of the correct #raw(lang:\"scheme\", \"S^2-type\").",
+    "Page 116: The code beginning here requires the #raw(lang:\"scheme\", \"S2-spherical\") coordinate system:",
+    "It would be nice to add this definition to the setup in footnote 8:",
+    "This can be fixed by adding the following to footnote 8\\'s setup instructions:",
+    "#raw(lang:\"scheme\", \"spacetime-rect-basis\") is also used in the first code block on this page without definition:",
+    "and should be explicitly defined like so:",
+    "Maybe the shown value is meant to be just the leading term, but this is worth explaining.",
+    "Page 159: the setup block should define #raw(lang:\"scheme\", \"SR-basis\"), as it is used in the last example of the section, on page 160:",
+    "Page 165: In the definition of #raw(lang:\"scheme\", \"Force\"), #raw(lang:\"scheme\", \"eta-inverse\") is not defined, so the following two code examples (and, presumably, exercise 10.1b) will not run!",
+    "I would recommend including one of the following definitions as setup:",
+  ];
+  for (const marker of annotations) {
+    annotated = replaceExactlyOnce(
+      annotated,
+      marker,
+      `${marker}${corrected}`,
+      `errata annotation: ${marker.slice(0, 48)}`,
+    );
+  }
+  return annotated;
+}
+
 function mergeConsecutiveRawBlocks(body) {
   let previous;
   let merged = body;
@@ -1932,9 +2229,13 @@ function convert(file) {
   const bodyWithPostMathRepairs = stem === "chapter010"
     ? compactChapter10AuditedDisplays(repairChapter10(bodyWithTypstMathRepairs))
     : bodyWithTypstMathRepairs;
+  const bodyWithEditionAwareProse = applyEditionAwareProse(stem, bodyWithPostMathRepairs);
+  const bodyWithErrataAnnotations = stem === "errata"
+    ? annotateErrata(bodyWithEditionAwareProse)
+    : bodyWithEditionAwareProse;
   const bodyWithNormalizedDisplays = wrapEmbeddedSchemeBlocks(
     unescapeTypstProseQuotes(removeRedundantScaledDelimiters(
-      normalizeMultilineMath(bodyWithPostMathRepairs),
+      normalizeMultilineMath(bodyWithErrataAnnotations),
     )),
     stem,
   );
@@ -1942,7 +2243,7 @@ function convert(file) {
   let content = [
     `// Generated from ../../fdg-book/scheme/org/${file}.`,
     `// Re-run scripts/convert-org-to-typst.mjs to refresh.`,
-    `#import "../lib.typ": fdg-chapter, fdg-code-block, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX`,
+    `#import "../lib.typ": fdg-chapter, fdg-code-block, fdg-edition-select, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX`,
     "",
     `#fdg-chapter(${JSON.stringify(typstEscape(displayTitle))}, numbered: ${numbered}, eq-prefix: ${JSON.stringify(equationLabelPrefix(stem) ?? "0")}, ref-label: ${JSON.stringify(chapterLabel(stem) ?? "")})[`,
     bodyWithNormalizedDisplays.trimEnd(),
@@ -2024,8 +2325,9 @@ function cljsAppendix(sourceStem, targetStem, sourceLetter, targetLetter, title)
       .replaceAll('#raw(lang:"clojure", "#t")', '#raw(lang:"clojure", "true")')
       .replaceAll('#raw(lang:"clojure", "#f")', '#raw(lang:"clojure", "false")');
 
-    source = source.replace(
-      'Function definitions may be expressed more conveniently using \\"syntactic sugar.\\"',
+    source = replaceExactlyOnce(
+      source,
+      'Function definitions may be expressed more conveniently using "syntactic sugar."',
       `=== Names, functions, and local bindings
 
 ClojureScript uses several related forms where Scheme uses #raw(lang:"clojure", "define"), #raw(lang:"clojure", "lambda"), and local definitions. Their different scopes are important:
@@ -2038,8 +2340,31 @@ ClojureScript uses several related forms where Scheme uses #raw(lang:"clojure", 
 
 The names introduced by #raw(lang:"clojure", "def") and #raw(lang:"clojure", "defn") persist in the namespace. The names introduced by #raw(lang:"clojure", "let"), #raw(lang:"clojure", "letfn"), and function parameter vectors are lexical and disappear outside their bodies.
 
-Function definitions may be expressed more conveniently using \\"syntactic sugar.\\"`,
+Function definitions may be expressed more conveniently using "syntactic sugar."`,
+      "appendix_d: names and bindings introduction",
     );
+
+    source = replaceExactlyOnce(
+      source,
+      "where #emph[formal-parameters] is a list of symbols that will be the names of the arguments to the function and #emph[body] is an expression that may refer to the formal parameters.",
+      "where #emph[formal-parameters] is a vector of symbols naming the function arguments and #emph[body] is an expression that may refer to them. For a variadic function the parameter vector contains #raw(lang:\"clojure\", \"&\") before the name that receives the remaining arguments.",
+      "appendix_d: fn parameter vectors",
+    );
+    source = replaceExactlyOnce(
+      source,
+      "For convenience there is a special predicate expression #raw(lang:\"clojure\", \"else\") that can be used as the predicate in the last clause of a #raw(lang:\"clojure\", \"cond\").",
+      "For convenience the keyword #raw(lang:\"clojure\", \":else\") can be used as the predicate in the last clause of a #raw(lang:\"clojure\", \"cond\"). ClojureScript clauses are written as alternating predicate and consequent expressions, without an extra pair of parentheses around each clause.",
+      "appendix_d: cond else",
+    );
+    source = replaceExactlyOnce(
+      source,
+      "Data can be glued together to form compound data structures. A list is a data structure in which the elements are linked sequentially. A ClojureScript vector is a data structure in which the elements are packed in a linear array. New elements can be added to lists, but to access the $n$th element of a list takes computing time proportional to $n$. By contrast a ClojureScript vector is of fixed length, and its elements can be accessed in constant time. All data structures in this book are implemented as combinations of lists and ClojureScript vectors. Compound data objects are constructed from components by functions called constructors and the components are accessed by selectors.",
+      "Data can be glued together to form persistent compound values. ClojureScript lists and other sequences support sequential traversal; vectors support efficient indexed lookup with #raw(lang:\"clojure\", \"nth\"). Both are immutable values, and operations that add or replace elements produce new collections. The mathematical #raw(lang:\"clojure\", \"up\") and #raw(lang:\"clojure\", \"down\") values used throughout this book are Emmy structures, not ordinary ClojureScript vectors: use Emmy's generic arithmetic and #raw(lang:\"clojure\", \"ref\") when working with their components.",
+      "appendix_d: collections and Emmy structures",
+    );
+    source = source
+      .replaceAll("Vectors are simpler than lists.", "Vectors provide convenient literals and indexed access.")
+      .replaceAll("== Scheme–ClojureScript Cheat Sheet", "== Scheme–ClojureScript Cheat Sheet");
 
     const cheatSheet = `
 
@@ -2129,6 +2454,60 @@ The following correspondences cover the language forms used most often in this b
 `;
     source = source.replace(/\n\]\s*$/, `${cheatSheet}\n]`);
   }
+
+  if (sourceStem === "appendix_b") {
+    source = replaceExactlyOnce(
+      source,
+      "A procedure #raw(lang:\"clojure\", \"h\") that computes the cube of the sine of its argument may be defined by composing the procedures #raw(lang:\"clojure\", \"cube\") and #raw(lang:\"clojure\", \"sin\"):",
+      "A function #raw(lang:\"clojure\", \"h\") that computes the cube of the sine of its argument may be defined by composing the functions #raw(lang:\"clojure\", \"cube\") and #raw(lang:\"clojure\", \"sin\"):",
+      "appendix_e: composition terminology",
+    );
+    source = replaceExactlyOnce(
+      source,
+      "A procedure #raw(lang:\"clojure\", \"g\") that multiplies the cube of its argument by the sine of its argument is",
+      "A function #raw(lang:\"clojure\", \"g\") that multiplies the cube of its argument by the sine of its argument is",
+      "appendix_e: arithmetic terminology",
+    );
+    source = replaceExactlyOnce(
+      source,
+      "The default printer simplifies the expression,#footnote[The procedure #raw(lang:\"clojure\", \"print-expression\") can be used in a program to print a simplified version of an expression. The default printer in the user interface incorporates the simplifier.] and displays it in a readable form.",
+      "The cached runner output records the value returned by each example. Emmy simplifies many symbolic results during generic arithmetic, and examples may call #raw(lang:\"clojure\", \"simplify\") explicitly when normalization is required.#footnote[Appendix @chap-appendix-g explains result capture, cached output, and explicit checks. The runner does not rely on scmutils' interactive #raw(lang:\"scheme\", \"print-expression\") printer.]",
+      "appendix_e: runner and simplification",
+    );
+    source = replaceExactlyOnce(
+      source,
+      "The procedure #raw(lang:\"clojure\", \"literal-function\") makes a procedure that acts as a function having no properties other than its name.",
+      "The function #raw(lang:\"clojure\", \"literal-function\") constructs a symbolic function having no properties other than its name and declared signature.",
+      "appendix_e: literal function terminology",
+    );
+    source = replaceExactlyOnce(
+      source,
+      "Scheme comes in handy here:",
+      "ClojureScript and Emmy make the distinction explicit:",
+      "appendix_e: multiple argument wording",
+    );
+    source = source
+      .replaceAll("The procedure #raw(lang:\"clojure\", \"component\") is the general selector procedure", "The function #raw(lang:\"clojure\", \"component\") is the general selector")
+      .replaceAll("the selector procedure #raw(lang:\"clojure\", \"ref\")", "the selector function #raw(lang:\"clojure\", \"ref\")")
+      .replaceAll("The procedure #raw(lang:\"clojure\", \"ref\")", "The function #raw(lang:\"clojure\", \"ref\")")
+      .replaceAll("The derivative of the #raw(lang:\"clojure\", \"sin\") procedure is a procedure", "The derivative of the #raw(lang:\"clojure\", \"sin\") function is a function")
+      .replaceAll("as procedures in several ways", "as ClojureScript functions in several ways")
+      .replaceAll("the procedure arguments", "the ClojureScript function arguments")
+      .replaceAll("requires the procedures to build", "requires the functions to build")
+      .replaceAll("we may define procedures that implement", "we may define functions that implement")
+      .replaceAll("Exercise B.1", "Exercise E.1")
+      .replaceAll("exercise B.1", "exercise E.1")
+      .replaceAll("Exercise B.2", "Exercise E.2");
+  }
+
+  if (sourceStem === "appendix_c") {
+    source = replaceExactlyOnce(
+      source,
+      "takes the procedure #raw(lang:\"clojure\", \"T\") to be tested",
+      "takes the Emmy/ClojureScript function #raw(lang:\"clojure\", \"T\") to be tested",
+      "appendix_f: tensor-test terminology",
+    );
+  }
   writeFileSync(path.join(contentDir, `${targetStem}.typ`), source);
   return { stem: targetStem, title: `Appendix ${targetLetter}: ${title}` };
 }
@@ -2139,13 +2518,53 @@ const cljsAppendices = [
   cljsAppendix("appendix_c", "appendix_f", "C", "F", "Tensors in Emmy"),
 ];
 const appendixG = { stem: "appendix_g", title: "Appendix G: Running the Emmy Examples" };
+const editionAwareLocationNames = {
+  prologue: "Prologue",
+  chapter001: "Chapter 1",
+  chapter002: "Chapter 2",
+  chapter006: "Chapter 6",
+  chapter007: "Chapter 7",
+  chapter008: "Chapter 8",
+  chapter009: "Chapter 9",
+  errata: "Errata",
+};
+const editionAwareProseRecord = `
+#import "../lib.typ": fdg-chapter, fdg-page-ref
+
+#fdg-chapter("Edition-specific Prose Record", numbered: true, eq-prefix: "H", ref-label: "chap-appendix-h")[
+This table is generated from the converter's edition-aware prose replacements. Each row identifies text for which the ClojureScript edition or the combined edition prints a variant of the Scheme wording. The page links are resolved from labels placed directly at the modified text, so they follow pagination changes automatically.
+
+#text(size: 8.6pt)[
+  #table(
+    columns: (0.85fr, 0.7fr, 2.45fr),
+    inset: (x: 5pt, y: 4pt),
+    align: left + top,
+    stroke: (x, y) => (bottom: 0.35pt + rgb("#aaa")),
+    fill: (x, y) => if y == 0 { rgb("#e8eceb") },
+    table.header(
+      repeat: true,
+      [*Location*],
+      [*Page*],
+      [*Edition-specific change*],
+    ),
+${editionAwareProseEdits.map(({ stem, description, label }) => [
+    `    [${editionAwareLocationNames[stem] ?? stem}],`,
+    `    [#fdg-page-ref(label(${JSON.stringify(label)}))],`,
+    `    [${description}],`,
+  ].join("\n")).join("\n")}
+  )
+]
+]
+`;
 writeFileSync(
   path.join(contentDir, "appendix_g.typ"),
   readFileSync(path.join(typDir, "templates", "appendix_g.typ"), "utf8"),
 );
+const appendixH = { stem: "appendix_h", title: "Appendix H: Edition-specific Prose Record" };
+writeFileSync(path.join(contentDir, "appendix_h.typ"), editionAwareProseRecord);
 
 const indexedIncludes = chapters
-  .filter(({ stem }) => stem !== "errata")
+  .filter(({ stem }) => !["errata", "references"].includes(stem))
   .map(({ stem }) => {
     const include = `  #include "content/${stem}.typ"`;
     if (stem === "preface") {
@@ -2173,6 +2592,7 @@ const indexedIncludes = chapters
         '      #include "content/appendix_e.typ"',
         '      #include "content/appendix_f.typ"',
         '      #include "content/appendix_g.typ"',
+        '      #include "content/appendix_h.typ"',
         "    ]",
         "  ]",
       ].join("\n");
@@ -2187,6 +2607,7 @@ const indexedIncludes = chapters
   })
   .join("\n");
 const errataInclude = '#include "content/errata.typ"';
+const referencesInclude = '#include "content/references.typ"';
 
 writeFileSync(
   path.join(typDir, "main.typ"),
@@ -2208,10 +2629,11 @@ writeFileSync(
     + `#pagebreak()\n\n`
     + `#fdg-indexed-body[\n`
     + `${indexedIncludes}\n`
+    + `  ${errataInclude}\n`
+    + `  ${referencesInclude}\n`
     + `]\n\n`
     + `#set page(numbering: "1")\n`
-    + `#fdg-index-page()\n\n`
-    + `${errataInclude}\n`,
+    + `#fdg-index-page()\n`,
 );
 
 writeFileSync(path.join(typDir, "references.bib"), renderBibtex(bibliographyEntries));
@@ -2220,7 +2642,7 @@ writeFileSync(
   path.join(typDir, "manifest.typ"),
   `// Generated input manifest for the Scheme Org source files.\n`
     + `#let fdg-source-files = (\n`
-    + [...chapters, ...cljsAppendices, appendixG]
+    + [...chapters, ...cljsAppendices, appendixG, appendixH]
       .map(({ stem, title }) => `  (file: "content/${stem}.typ", title: ${JSON.stringify(typstEscape(title))}),`)
       .join("\n")
     + `\n)\n`,

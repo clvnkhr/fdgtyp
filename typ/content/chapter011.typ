@@ -1,6 +1,6 @@
 // Generated from ../../fdg-book/scheme/org/chapter011.org.
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
-#import "../lib.typ": fdg-chapter, fdg-code-block, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
+#import "../lib.typ": fdg-chapter, fdg-code-block, fdg-edition-select, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
 
 #fdg-chapter("Special Relativity", numbered: true, eq-prefix: "11", ref-label: "chap-11")[
 Although the usual treatments of special relativity begin with the Michelson-Morley experiment, this is not how Einstein began. In fact, Einstein was impressed with Maxwell\'s work and he was emulating Maxwell\'s breakthrough.
@@ -386,6 +386,10 @@ fdg-code-source-end */
 For example, we can derive the traditional velocity addition formula. Assume that we have a base frame called #raw(lang:"scheme", "home"). We can make a frame #raw(lang:"scheme", "A") by a boost from home in the $hat(x)$ direction, with components $(1\,0\,0)$, and with a dimensionless measure of the speed $v_a\/c$. We also specify that the 4-tuple origin of this new frame coincides with the origin of #raw(lang:"scheme", "home").
 
 /* fdg-code-source: chapter011/011
+(define home
+  ((frame-maker base-frame-point base-frame-chart)
+   'home 'home))
+
 (define A
   (make-SR-frame 'A home
                  (up 1 0 0)

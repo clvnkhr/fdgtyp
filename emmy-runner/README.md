@@ -1,0 +1,36 @@
+# FDG Emmy runner
+
+The runner is a static ClojureScript application. Its deployable files are
+written to `public/`.
+
+## Local development
+
+From the repository root:
+
+```sh
+node scripts/convert-scheme-to-emmy.mjs
+cd emmy-runner
+npm ci
+npm run dev
+```
+
+Then open <http://localhost:8080/>.
+
+For the optimized build used by GitHub Pages:
+
+```sh
+cd emmy-runner
+npm run build
+```
+
+## GitHub Pages
+
+The `Deploy Emmy runner to GitHub Pages` workflow builds and deploys the runner
+after each push to `master`. It can also be run manually from the Actions tab.
+
+Before the first deployment, open **Settings → Pages → Build and deployment**
+in the GitHub repository and set **Source** to **GitHub Actions**.
+
+For this repository, the deployed project-page URL will be:
+
+<https://clvnkhr.github.io/fdgtyp/>

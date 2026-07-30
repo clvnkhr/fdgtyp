@@ -5,3 +5,4 @@
 (define Cartan (Christoffel->Cartan S2-Christoffel))
 (define nabla (covariant-derivative Cartan))
 (define omega (literal-1form-field 'omega-sphere S2-spherical))
+(define f (literal-manifold-function 'f S2-spherical))

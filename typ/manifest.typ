@@ -22,4 +22,5 @@
   (file: "content/appendix_e.typ", title: "Appendix E: Our Notation in Emmy"),
   (file: "content/appendix_f.typ", title: "Appendix F: Tensors in Emmy"),
   (file: "content/appendix_g.typ", title: "Appendix G: Running the Emmy Examples"),
+  (file: "content/appendix_h.typ", title: "Appendix H: Edition-specific Prose Record"),
 )

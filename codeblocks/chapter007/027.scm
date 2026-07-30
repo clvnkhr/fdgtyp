@@ -1,4 +1,4 @@
-(define sphere (make-manifold S^2 2 3))
+(define sphere (make-manifold S^2-type 2 3))
 (define S2-spherical
 (coordinate-system-at 'spherical 'north-pole sphere))
 (define S2-basis

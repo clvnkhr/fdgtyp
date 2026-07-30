@@ -1,1 +1,1 @@
-(define omega (literal-oneform-field 'omega S2-spherical))
+(define omega (literal-1form-field 'omega S2-spherical))

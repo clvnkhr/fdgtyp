@@ -2,8 +2,11 @@ TYPST ?= typst
 
 .DEFAULT_GOAL := from-raw
 
-.PHONY: from-raw from-raw-scheme from-raw-cljs raw prepare emmy-blocks compare-outputs emmy-runner \
-	draft book scheme cljs scheme-draft scheme-book cljs-draft cljs-book
+.PHONY: from-raw from-raw-scheme from-raw-cljs from-raw-both raw prepare \
+	emmy-blocks compare-outputs emmy-runner just-pdf draft book scheme cljs both \
+	scheme-draft scheme-book cljs-draft cljs-book both-draft both-book \
+	scheme-draft-pdf scheme-book-pdf cljs-draft-pdf cljs-book-pdf \
+	both-draft-pdf both-book-pdf
 
 from-raw: raw
 	$(MAKE) draft book
@@ -13,6 +16,9 @@ from-raw-scheme: raw
 
 from-raw-cljs: raw
 	$(MAKE) cljs
+
+from-raw-both: raw
+	$(MAKE) both
 
 raw:
 	node scripts/extract-figure-pdfs.mjs
@@ -37,22 +43,50 @@ compare-outputs: emmy-blocks
 emmy-runner: emmy-blocks
 	cd emmy-runner && clojure -M:shadow-cljs watch app
 
-draft: scheme-draft cljs-draft
+just-pdf: scheme-book-pdf cljs-book-pdf both-book-pdf
 
-book: scheme-book cljs-book
+draft: scheme-draft cljs-draft both-draft
+
+book: scheme-book cljs-book both-book
 
 scheme: scheme-draft scheme-book
 
 cljs: cljs-draft cljs-book
 
+both: both-draft both-book
+
 scheme-draft: prepare
-	$(TYPST) compile --root . --input code=scheme typ/main.typ typ/main.pdf
+	$(MAKE) scheme-draft-pdf
 
 scheme-book: prepare
-	$(TYPST) compile --root . --input draft=false --input code=scheme typ/main.typ fdg-book.pdf
+	$(MAKE) scheme-book-pdf
 
 cljs-draft: prepare
-	$(TYPST) compile --root . --input code=clojure typ/main.typ typ/main-cljs.pdf
+	$(MAKE) cljs-draft-pdf
 
 cljs-book: prepare
+	$(MAKE) cljs-book-pdf
+
+both-draft: prepare
+	$(MAKE) both-draft-pdf
+
+both-book: prepare
+	$(MAKE) both-book-pdf
+
+scheme-draft-pdf:
+	$(TYPST) compile --root . --input code=scheme typ/main.typ typ/main.pdf
+
+scheme-book-pdf:
+	$(TYPST) compile --root . --input draft=false --input code=scheme typ/main.typ fdg-book.pdf
+
+cljs-draft-pdf:
+	$(TYPST) compile --root . --input code=clojure typ/main.typ typ/main-cljs.pdf
+
+cljs-book-pdf:
 	$(TYPST) compile --root . --input draft=false --input code=clojure typ/main.typ fdg-book-cljs.pdf
+
+both-draft-pdf:
+	$(TYPST) compile --root . --input code=both typ/main.typ typ/main-both.pdf
+
+both-book-pdf:
+	$(TYPST) compile --root . --input draft=false --input code=both typ/main.typ fdg-book-both.pdf

@@ -1,6 +1,6 @@
 // Generated from ../../fdg-book/scheme/org/chapter002.org.
 // Re-run scripts/convert-org-to-typst.mjs to refresh.
-#import "../lib.typ": fdg-chapter, fdg-code-block, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
+#import "../lib.typ": fdg-chapter, fdg-code-block, fdg-edition-select, fdg-figure, fdg-cetz-figure, fdg-page-ref, fdg-ref-page, curl, grad, Lap, div, length, TeX, LaTeX
 
 #fdg-chapter("Manifolds", numbered: true, eq-prefix: "2", ref-label: "chap-2")[
 A #emph[manifold] is a generalization of our idea of a smooth surface embedded in Euclidean space. For an #emph[n]-dimensional manifold, around every point there is a simply-connected open set, the #emph[coordinate patch], and a one-to-one continuous function, the #emph[coordinate function] or #emph[chart], mapping every point in that open set to a tuple of #emph[n] real numbers, the #emph[coordinates]. In general, several charts are needed to label all points on a manifold. It is required that if a region is in more than one coordinate patch then the coordinates are consistent in that the function mapping one set of coordinates to another is continuous (and perhaps differentiable to some degree). A consistent system of coordinate patches and coordinate functions that covers the entire manifold is called an #emph[atlas].
@@ -84,7 +84,11 @@ And the rectangular coordinates of a polar point are:
 fdg-code-source-end */
 #fdg-code-block("chapter002/007")
 
-And we can obtain the Jacobian of the polar-to-rectangular transformation by taking its derivative#footnote[See Appendix @chap-appendix-b for an introduction to tuple arithmetic and a discussion of derivatives of functions with structured input or output.]:
+And we can obtain the Jacobian of the polar-to-rectangular transformation by taking its derivative#footnote[#metadata("chapter002: structured derivative appendix reference")#label("cljs-text-edit-chapter002-structured-derivative-appendix-reference")#fdg-edition-select(
+  scheme: [See Appendix @chap-appendix-b for an introduction to tuple arithmetic and a discussion of derivatives of functions with structured input or output.],
+  clojure: [See Appendix @chap-appendix-e for an introduction to Emmy structures and a discussion of derivatives of functions with structured input or output.],
+  both: [See Appendix @chap-appendix-b for the Scheme account of tuple arithmetic and Appendix @chap-appendix-e for the corresponding Emmy account.],
+)]:
 
 /* fdg-code-source: chapter002/008
 ((D (compose R2-rect-chi R2-polar-chi-inverse))

@@ -11,3 +11,5 @@
 (def nabla (covariant-derivative Cartan))
 
 (def omega (literal-oneform-field 'omega-sphere S2-spherical))
+
+(def f (literal-manifold-function 'f S2-spherical))

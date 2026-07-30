@@ -1,3 +1,7 @@
+(define home
+  ((frame-maker base-frame-point base-frame-chart)
+   'home 'home))
+
 (define A
   (make-SR-frame 'A home
                  (up 1 0 0)
