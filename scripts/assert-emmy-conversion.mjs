@@ -27,6 +27,10 @@ const smokeSource = readFileSync(
   path.join(root, "emmy-runner", "src", "fdg", "smoke.cljs"),
   "utf8",
 );
+const runnerSource = readFileSync(
+  path.join(root, "emmy-runner", "src", "fdg", "runner.cljs"),
+  "utf8",
+);
 if (!formatterSource.includes(':width 120')
     || !formatterSource.includes('zprint-file-str source "emmy.cljs" options')
     || !formatterSource.includes('(defn format-source-once [source]')
@@ -66,6 +70,9 @@ if (!smokeSource.includes("(defn locate-form")
     || !smokeSource.includes("(clojure.string/join \"\\\\s+\")")) {
   throw new Error("Captured results must tolerate formatter whitespace changes");
 }
+if (!runnerSource.includes("(or (:backgroundSetup block) (not (:executable block)))")) {
+  throw new Error("The web runner must not evaluate cached, non-executable Scheme output");
+}
 execFileSync(
   "clojure",
   ["-M:format-emmy", "--check", "codeblocks", "emmy-runner/public/generated"],
@@ -94,6 +101,22 @@ for (const expected of ["Lagrange-equations", "F->C"]) {
   if (!manifest.some(block => block.definitions.includes(expected))) {
     throw new Error(`Manifest did not record the book definition ${expected}`);
   }
+}
+
+for (const id of ["chapter007-006", "chapter008-017"]) {
+  const block = manifest.find(candidate => candidate.id === id);
+  if (!block || block.executable !== false) {
+    throw new Error(`${id} must remain marked as cached, non-executable Scheme output`);
+  }
+}
+const chapter11BaseFrame = readFileSync(
+  path.join(root, "codeblocks", "chapter011", "011.cljs"),
+  "utf8",
+);
+if (!chapter11BaseFrame.includes("(base-frame-maker 'home 'home)")
+    || chapter11BaseFrame.includes("base-frame-point")
+    || chapter11BaseFrame.includes("base-frame-chart")) {
+  throw new Error("Chapter 11 must construct its base frame with Emmy's public base-frame-maker");
 }
 
 const chapter1 = manifest.filter(block => block.chapter === "chapter001");
@@ -145,7 +168,6 @@ if (chapter6Source.includes("(make fake-vector-field")
     || !chapter6Port.includes("(make-fake-vector-field V-over-mu n)")) {
   throw new Error("Org normalization must repair the Chapter 6 make-fake-vector-field call before Emmy conversion");
 }
-const runnerSource = readFileSync(path.join(root, "emmy-runner", "src", "fdg", "runner.cljs"), "utf8");
 for (const message of ["No output was produced.", "Result:\\n"]) {
   if (!runnerSource.includes(message)) {
     throw new Error(`The web runner is missing its result-state message: ${message}`);

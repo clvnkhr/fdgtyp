@@ -853,6 +853,8 @@ ${commentClojureSource(readFileSync(
 
 function migratePort(source) {
   return rewriteNumericRatios(source)
+    .replace(/\(\(legacy-frame-maker\s+base-frame-point\s+base-frame-chart\)\s+'([^\s()]+)\s+'([^\s()]+)\)/g,
+             "(base-frame-maker '$1 '$2)")
     .replace(/\(pull\s+back\s+/g, "(pullback ")
     .replace(/\(pullback\s+function\s+/g, "(pullback-function ")
     .replace(/\(literal\s+function\s+/g, "(literal-function ")
@@ -872,8 +874,9 @@ function migratePort(source) {
     .replace(/\b4-current/g, "four-current")
     .replace(/\b(add-v|v|va|vb)\/c(s)?\b/g, "$1:c$2")
     .replace(/\bs:map\/r\b/g, "mapr")
+    .replace(/\bbase-legacy-frame-maker\b/g, "base-frame-maker")
     .replace(/\blegacy-legacy-frame-maker\b/g, "legacy-frame-maker")
-    .replace(/(?<!legacy-)\bframe-maker\b/g, "legacy-frame-maker")
+    .replace(/(?<!legacy-)(?<!base-)\bframe-maker\b/g, "legacy-frame-maker")
     .replace(/\bv-on-m\b/g, "v-on-M")
     .replace(/\blist-ref\b/g, "nth")
     .replace(/\bvector-ref\b/g, "nth")

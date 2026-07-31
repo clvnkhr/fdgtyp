@@ -368,7 +368,7 @@
 
 (defn evaluate-block-promise
   [promise block]
-  (if (:backgroundSetup block)
+  (if (or (:backgroundSetup block) (not (:executable block)))
     promise
     (.then promise
            (fn [_]
@@ -421,8 +421,15 @@
           (-> (reduce evaluate-block-promise (js/Promise.resolve nil) blocks)
               (.then (fn [{:keys [captured? value]}]
                        (swap! state assoc
-                         :output (if-not captured?
+                         :output (cond
+                                   (not (:executable selected))
+                                   (str "Successfully ran the executable blocks through " (:id selected)
+                                        ".\n\nThe selected block is cached Scheme output, not executable ClojureScript.")
+
+                                   (not captured?)
                                    (str "Successfully ran through " (:id selected) ".\n\nNo output was produced.")
+
+                                   :else
                                    (str "Successfully ran through " (:id selected)
                                         ".\n\nResult:\n" (format-result value)))
                          :error? false)

@@ -6861,7 +6861,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(def home ((legacy-frame-maker base-frame-point base-frame-chart) 'home 'home))",
+        "code": "(def home (base-frame-maker 'home 'home))",
         "capturesResult": false
       },
       {
@@ -8350,11 +8350,7 @@
         "capturesResult": false
       },
       {
-        "code": "(h (up 'x 'y))",
-        "capturesResult": true
-      },
-      {
-        "code": "(simplify ((D g) 'x 'y))",
+        "code": "(simplify (h (up 'x 'y)))",
         "capturesResult": true
       }
     ],
@@ -9267,7 +9263,7 @@
     "executable": false,
     "forms": [
       {
-        "code": "(def home ((legacy-frame-maker base-frame-point base-frame-chart) 'home 'home))",
+        "code": "(def home (base-frame-maker 'home 'home))",
         "capturesResult": false
       },
       {

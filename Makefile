@@ -3,7 +3,7 @@ TYPST ?= typst
 .DEFAULT_GOAL := from-raw
 
 .PHONY: from-raw from-raw-scheme from-raw-cljs from-raw-both raw figure-pdfs prepare \
-	emmy-blocks compare-outputs emmy-runner just-pdf draft book scheme cljs both \
+	emmy-blocks test-emmy compare-outputs emmy-runner just-pdf draft book scheme cljs both \
 	scheme-draft scheme-book cljs-draft cljs-book both-draft both-book \
 	scheme-draft-pdf scheme-book-pdf cljs-draft-pdf cljs-book-pdf \
 	both-draft-pdf both-book-pdf
@@ -32,11 +32,14 @@ prepare: emmy-blocks
 	node scripts/assert-typst-regressions.mjs
 
 emmy-blocks:
-	cd emmy-runner && clojure -M:shadow-cljs compile smoke
 	node scripts/convert-scheme-to-emmy.mjs
-	-node scripts/run-emmy-smoke.mjs
-	-clojure -M:format-emmy codeblocks emmy-runner/public/generated
-	-node scripts/assert-emmy-conversion.mjs
+	$(MAKE) test-emmy
+
+test-emmy:
+	cd emmy-runner && clojure -M:shadow-cljs compile smoke
+	node scripts/run-emmy-smoke.mjs
+	clojure -M:format-emmy codeblocks emmy-runner/public/generated
+	node scripts/assert-emmy-conversion.mjs
 	node scripts/compare-scm-cljs-outputs.mjs --check
 
 compare-outputs: emmy-blocks
