@@ -310,6 +310,13 @@ select:focus, input[type="search"]:focus {
   font-weight: 650;
   transition: transform .1s ease, background .12s ease, border-color .12s ease;
 }
+.actions button:disabled {
+  cursor: wait;
+  opacity: .55;
+}
+.result-state.running {
+  color: var(--accent);
+}
 .actions button:active, .icon-button:active { transform: translateY(1px); }
 .actions .primary { border-color: var(--accent); color: var(--accent-contrast); background: var(--accent); }
 .actions .primary:hover { border-color: var(--accent-hover); background: var(--accent-hover); }

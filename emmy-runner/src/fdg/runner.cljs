@@ -1,10 +1,5 @@
 (ns fdg.runner
   (:require [clojure.string :as str]
-            [emmy.sci :as emmy-sci]
-            [fdg.compat]
-            [fdg.output :as output]
-            [sci.core :as sci]
-            [sci.impl.vars :as sci-vars]
             ["@codemirror/autocomplete" :refer [autocompletion completionKeymap]]
             ["@codemirror/commands" :refer [defaultKeymap history historyKeymap indentWithTab]]
             ["@codemirror/language" :refer [HighlightStyle syntaxHighlighting]]
@@ -24,13 +19,57 @@
          :inspector-ns "fdg.session",
          :inspector-filter "",
          :show-unbound? false,
-         :inspected-symbol nil}))
-
-(defonce context (atom nil))
-
-(defonce session-definitions (atom #{}))
+         :inspected-symbol nil,
+         :namespace-names [],
+         :busy? false}))
 
 (defonce editor (atom nil))
+
+(defonce evaluator (atom nil))
+(defonce worker-ready? (atom false))
+(defonce next-request-id (atom 0))
+(defonce pending-requests (atom {}))
+
+(defn start-worker! []
+  (when-let [old-worker @evaluator] (.terminate old-worker))
+  (reset! worker-ready? false)
+  (let [worker (js/Worker. "worker/main.js" #js {:type "module"})
+        startup-timeout
+        (js/setTimeout
+          (fn []
+            (when-not @worker-ready?
+              (.terminate worker)
+              (doseq [[_ {:keys [reject]}] @pending-requests]
+                (reject (js/Error. "The evaluation worker did not start within 30 seconds.")))
+              (reset! pending-requests {})))
+          30000)]
+    (set! (.-onmessage worker)
+          (fn [event]
+            (when-not @worker-ready?
+              (reset! worker-ready? true)
+              (js/clearTimeout startup-timeout))
+            (let [{:keys [id ok result message blockId]}
+                  (js->clj (.-data event) :keywordize-keys true)]
+              (when-let [{:keys [resolve reject]} (get @pending-requests id)]
+                (swap! pending-requests dissoc id)
+                (if ok
+                  (resolve result)
+                  (let [error (js/Error. message)]
+                    (when blockId (aset error "fdgBlockId" blockId))
+                    (reject error)))))))
+    (set! (.-onerror worker)
+          (fn [event]
+            (doseq [[_ {:keys [reject]}] @pending-requests]
+              (reject (js/Error. (or (.-message event) "Evaluation worker failed."))))
+            (reset! pending-requests {})))
+    (reset! evaluator worker)))
+
+(defn worker-call [op payload]
+  (js/Promise.
+    (fn [resolve reject]
+      (let [id (swap! next-request-id inc)]
+        (swap! pending-requests assoc id {:resolve resolve :reject reject})
+        (.postMessage @evaluator (clj->js {:id id :op op :payload payload}))))))
 
 (def editor-highlight-style
   (.define
@@ -44,48 +83,6 @@
               :fontStyle "italic"}
          #js {:tag #js [(.-operator tags) (.-punctuation tags)], :color "var(--syntax-operator)"}
          #js {:tag (.-bracket tags), :color "var(--syntax-bracket)"}]))
-
-(defn eval-session! [ctx code] (sci/eval-string* ctx (str "(in-ns 'fdg.session)\n" code)))
-
-(defn prepare-block!
-  [ctx block]
-  (doseq [definition (:definitions block)]
-    (when-not (contains? @session-definitions definition)
-      (eval-session! ctx (str "(ns-unmap 'fdg.session '" definition ")")))
-    (swap! session-definitions conj definition))
-  (when (seq (:definitions block)) (eval-session! ctx (str "(declare " (str/join " " (:definitions block)) ")"))))
-
-(defn book-definitions
-  []
-  (into #{} (mapcat :definitions (filter #(= (:chapter @state) (:chapter %)) (:manifest @state)))))
-
-(defn new-context
-  []
-  (let [compat-ns (sci/copy-ns fdg.compat (sci/create-ns 'fdg.compat))
-        config (update emmy-sci/config :namespaces assoc 'fdg.compat compat-ns)
-        ctx (sci/init config)
-        definitions (book-definitions)
-        referred-names (into #{} (map (comp name key)) (concat (get emmy-sci/namespaces 'emmy.env) compat-ns))
-        local-definitions (remove #(contains? referred-names %) definitions)
-        emmy-symbols (->> (keys (get emmy-sci/namespaces 'emmy.env))
-                          (map name)
-                          sort
-                          (str/join " "))
-        setup (str "(ns fdg.session "
-                   "(:refer-clojure :exclude [+ - * / = compare zero? ref partial numerator denominator]) "
-                   "(:require [emmy.env :refer ["
-                   emmy-symbols
-                   "]] "
-                   "[fdg.compat :refer :all]))\n"
-                   "(declare "
-                   (str/join " " (sort local-definitions))
-                   ")")]
-    (sci/eval-string* ctx setup)
-    (when-not (= 9 (eval-session! ctx "(square 3)"))
-      (throw (js/Error. "The runner failed to install emmy.env into fdg.session")))
-    ctx))
-
-(defn reset-context! [] (reset! session-definitions #{}) (reset! context (new-context)))
 
 (defn el
   [tag attrs & children]
@@ -117,87 +114,13 @@
                 index))]
     (when (< start end) {:from start, :to end, :text (subs doc start end)})))
 
-(defn value-kind
-  [value]
-  (cond (nil? value) "nil"
-        (fn? value) "function"
-        (boolean? value) "boolean"
-        (number? value) "number"
-        (string? value) "string"
-        (keyword? value) "keyword"
-        (symbol? value) "symbol"
-        (map? value) "map"
-        (vector? value) "vector"
-        (set? value) "set"
-        (sequential? value) "sequence"
-        :else (let [constructor (some-> value
-                                        .-constructor
-                                        .-name)]
-                (if (seq constructor) constructor "object"))))
+(defn inspect-symbol [token]
+  (if (seq token) (worker-call "inspect" {:token token}) (js/Promise.resolve nil)))
 
-(defn collection-shape
-  [value]
-  (when (coll? value)
-    (let [bounded-size (if (sequential? value) (bounded-count 1001 value) (count value))
-          size (if (> bounded-size 1000) "1000+" bounded-size)
-          child (when (and (sequential? value) (seq value)) (collection-shape (first value)))]
-      (str size (when child (str " × " child))))))
+(defn namespace-names [] (:namespace-names @state))
 
-(defn safe-preview
-  [value]
-  (try (let [rendered (if (fn? value) "<function>" (output/pr-str-native value))]
-         (if (> (count rendered) 600) (str (subs rendered 0 600) "…") rendered))
-       (catch :default _ "<value cannot be printed safely>")))
-
-(defn deref-var
-  [sci-var]
-  (if (sci-vars/hasRoot sci-var)
-    (try {:bound? true, :value @sci-var} (catch :default _ {:bound? false}))
-    {:bound? false}))
-
-(defn describe-var
-  [sci-var]
-  (let [metadata (meta sci-var)
-        {:keys [bound? value]} (deref-var sci-var)
-        kind (if bound? (value-kind value) "unbound")
-        shape (when bound? (collection-shape value))]
-    {:name (str (:name metadata)),
-     :namespace (str (:ns metadata)),
-     :qualified-name (str (:ns metadata) "/" (:name metadata)),
-     :kind kind,
-     :shape shape,
-     :arglists (some-> (:arglists metadata)
-                       pr-str),
-     :doc (:doc metadata),
-     :macro? (true? (:macro metadata)),
-     :dynamic? (true? (:dynamic metadata)),
-     :preview (if bound? (safe-preview value) "<declared, but not defined yet>")}))
-
-(defn inspect-symbol
-  [token]
-  (when (and @context (seq token))
-    (try (when-let [resolved (sci/resolve @context (symbol token))] (describe-var resolved)) (catch :default _ nil))))
-
-(defn namespace-names
-  []
-  (if-not @context
-    []
-    (->> (sci/all-ns @context)
-         (keep #(some-> %
-                        meta
-                        :name
-                        str))
-         distinct
-         sort)))
-
-(defn namespace-entries
-  [namespace-name]
-  (try (let [entries (eval-session! @context (str "(ns-publics '" namespace-name ")"))]
-         (->> entries
-              vals
-              (map describe-var)
-              (sort-by :name)))
-       (catch :default _ [])))
+(defn namespace-entries [namespace-name]
+  (worker-call "namespace" {:namespace namespace-name}))
 
 (defn detail-node
   [info compact?]
@@ -226,61 +149,84 @@
     (set! (.-innerHTML target) "")
     (.append target (detail-node (:inspected-symbol @state) false))))
 
-(defn inspect-token! [token] (swap! state assoc :inspected-symbol (inspect-symbol token)) (render-symbol-detail!))
+(defn inspect-token! [token]
+  (-> (inspect-symbol token)
+      (.then (fn [info]
+               (swap! state assoc :inspected-symbol info)
+               (render-symbol-detail!)))
+      (.catch (fn [_] nil))))
 
 (defn render-namespace-vars!
   []
   (when-let [target (.getElementById js/document "namespace-vars")]
-    (let [filter-text (str/lower-case (:inspector-filter @state))
-          entries (->> (namespace-entries (:inspector-ns @state))
-                       (filter #(or (:show-unbound? @state) (not= "unbound" (:kind %))))
-                       (filter #(str/includes? (str/lower-case (:name %)) filter-text)))]
-      (set! (.-innerHTML target) "")
-      (if (seq entries)
-        (doseq [info entries]
-          (.append target
-                   (el "button"
-                       {:class (str "var-row kind-" (:kind info)),
-                        :onclick #(do (swap! state assoc :inspected-symbol info) (render-symbol-detail!))}
-                       (el "code" {} (:name info))
-                       (el "span" {} (str (:kind info) (when (:shape info) (str " · " (:shape info))))))))
-        (.append target (el "p" {:class "status"} "No matching public vars."))))))
+    (let [namespace-name (:inspector-ns @state)]
+      (set! (.-textContent target) "Loading…")
+      (-> (namespace-entries namespace-name)
+          (.then (fn [all-entries]
+                   (when (and (.-isConnected target) (= namespace-name (:inspector-ns @state)))
+                     (let [filter-text (str/lower-case (:inspector-filter @state))
+                           entries (->> all-entries
+                                        (filter #(or (:show-unbound? @state) (not= "unbound" (:kind %))))
+                                        (filter #(str/includes? (str/lower-case (:name %)) filter-text)))]
+                       (set! (.-innerHTML target) "")
+                       (if (seq entries)
+                         (doseq [info entries]
+                           (.append target
+                                    (el "button"
+                                        {:class (str "var-row kind-" (:kind info)),
+                                         :onclick #(do (swap! state assoc :inspected-symbol info)
+                                                       (render-symbol-detail!))}
+                                        (el "code" {} (:name info))
+                                        (el "span" {} (str (:kind info)
+                                                           (when (:shape info) (str " · " (:shape info))))))))
+                         (.append target (el "p" {:class "status"} "No matching public vars.")))))))
+          (.catch (fn [_] (when (.-isConnected target) (set! (.-textContent target) "Inspector unavailable."))))))))
 
 (defn clojure-completions
   [^js completion-context]
   (let [word (.matchBefore completion-context #"[A-Za-z0-9*+!_?.<>=/$%&:#'-]*")]
     (when (or (not= (.-from word) (.-to word)) (.-explicit completion-context))
-      #js {:from (.-from word),
-           :validFor #"[A-Za-z0-9*+!_?.<>=/$%&:#'-]*",
-           :options (into-array
-                      (for [info (->> ["fdg.session" "emmy.env" "fdg.compat"]
-                                      (mapcat namespace-entries)
+      (-> (js/Promise.all
+            (into-array (map namespace-entries ["fdg.session" "emmy.env" "fdg.compat"])))
+          (.then (fn [groups]
+                   (let [entries (->> (array-seq groups)
+                                      (mapcat identity)
                                       (reduce (fn [by-name entry]
                                                 (if (contains? by-name (:name entry))
                                                   by-name
-                                                  (assoc by-name (:name entry) entry)))
-                                        {})
+                                                  (assoc by-name (:name entry) entry))) {})
                                       vals
                                       (sort-by :name))]
-                        #js {:label (:name info),
-                             :type (if (= "function" (:kind info)) "function" "variable"),
-                             :detail (str (:namespace info) (when (:arglists info) (str " " (:arglists info)))),
-                             :info (or (:doc info)
-                                       (str (:kind info) (when (:shape info) (str " · shape " (:shape info)))))}))})))
+                     #js {:from (.-from word),
+                          :validFor #"[A-Za-z0-9*+!_?.<>=/$%&:#'-]*",
+                          :options (into-array
+                                     (for [info entries]
+                                       #js {:label (:name info),
+                                            :type (if (= "function" (:kind info)) "function" "variable"),
+                                            :detail (str (:namespace info)
+                                                         (when (:arglists info) (str " " (:arglists info)))),
+                                            :info (or (:doc info)
+                                                      (str (:kind info)
+                                                           (when (:shape info)
+                                                             (str " · shape " (:shape info)))))}))})))))))
 
 (def symbol-hover
   (hoverTooltip (fn [view position side]
                   (let [doc (.. view -state -doc toString)
-                        {:keys [from to text]} (symbol-range doc position)
-                        info (when text (inspect-symbol text))]
-                    (when (and info (not (or (and (= position from) (neg? side)) (and (= position to) (pos? side)))))
-                      #js {:pos from,
-                           :end to,
-                           :above true,
-                           :create (fn [_]
-                                     (let [dom (el "div" {:class "symbol-hover"})]
-                                       (.append dom (detail-node info true))
-                                       #js {:dom dom}))})))
+                        {:keys [from to text]} (symbol-range doc position)]
+                    (when (and text
+                               (not (or (and (= position from) (neg? side))
+                                        (and (= position to) (pos? side)))))
+                      (-> (inspect-symbol text)
+                          (.then (fn [info]
+                                   (when info
+                                     #js {:pos from,
+                                          :end to,
+                                          :above true,
+                                          :create (fn [_]
+                                                    (let [dom (el "div" {:class "symbol-hover"})]
+                                                      (.append dom (detail-node info true))
+                                                      #js {:dom dom}))})))))))
                 #js {:hoverTime 350}))
 
 (defn editor-extensions
@@ -330,8 +276,6 @@
                  (render! same-chapter?)))
         (.catch (fn [error] (swap! state assoc :output (str error)) (render!))))))
 
-(defn format-result [value] (if (nil? value) "nil" (output/pr-str-native value)))
-
 (defn friendly-error
   [error]
   (let
@@ -350,37 +294,29 @@
 
 (defn render-result!
   []
-  (when-let [target (.getElementById js/document "result")]
-    (set! (.-className target) (if (:error? @state) "error" ""))
-    (set! (.-textContent target) (:output @state)))
-  (when-let [status (.getElementById js/document "result-state")]
-    (set! (.-className status) (str "result-state " (if (:error? @state) "failed" "ready")))
-    (set! (.-textContent status) (if (:error? @state) "Error" "SCI output"))))
+  (let [{:keys [error? busy? output]} @state]
+    (when-let [target (.getElementById js/document "result")]
+      (set! (.-className target) (if error? "error" ""))
+      (set! (.-textContent target) output))
+    (when-let [status (.getElementById js/document "result-state")]
+      (set! (.-className status) (str "result-state " (cond error? "failed" busy? "running" :else "ready")))
+      (set! (.-textContent status) (cond error? "Error" busy? "Running" :else "SCI output")))
+    (doseq [button (array-seq (.querySelectorAll js/document ".actions button"))]
+      (set! (.-disabled button) busy?))))
 
 (defn evaluate!
   [code]
-  (try (prepare-block! @context (selected-block))
-       (let [value (eval-session! @context code)] (swap! state assoc :output (format-result value) :error? false))
-       (catch :default error (swap! state assoc :output (friendly-error error) :error? true)))
+  (swap! state assoc :busy? true :output "Running editor in the evaluation worker…" :error? false)
   (render-result!)
-  (render-symbol-detail!)
-  (render-namespace-vars!))
-
-(defn evaluate-block-promise
-  [promise block]
-  (if (or (:backgroundSetup block) (not (:executable block)))
-    promise
-    (.then promise
-           (fn [_]
-             (let [code-promise (if (= (:id block) (:selected @state))
-                                  (js/Promise.resolve (:code @state))
-                                  (fetch-text (:codePath block)))]
-               (.then code-promise
-                      (fn [code]
-                        (try (prepare-block! @context block)
-                             (let [value (eval-session! @context code)]
-                               {:block block, :captured? (:capturesResult block), :value value})
-                             (catch :default error (aset error "fdgBlockId" (:id block)) (throw error))))))))))
+  (-> (worker-call "eval" {:block (selected-block) :code code})
+      (.then (fn [{:keys [value namespaces]}]
+               (swap! state assoc :busy? false :output value :namespace-names namespaces :error? false)
+               (render-result!)
+               (render-symbol-detail!)
+               (render-namespace-vars!)))
+      (.catch (fn [error]
+                (swap! state assoc :busy? false :output (friendly-error error) :error? true)
+                (render-result!)))))
 
 (defn add-block-with-prerequisites
   [ordered seen blocks-by-id block]
@@ -417,10 +353,25 @@
             "This setup is installed by the runner before examples execute. It is shown as the ClojureScript replacement for scmutils's load block and is not evaluated as an example."
           :error? false)
         (render-result!))
-      (do (reset-context!)
-          (-> (reduce evaluate-block-promise (js/Promise.resolve nil) blocks)
-              (.then (fn [{:keys [captured? value]}]
+      (do (swap! state assoc :busy? true :output "Preparing blocks for the evaluation worker…" :error? false)
+          (render-result!)
+          (-> (js/Promise.all
+                (into-array
+                  (map (fn [block]
+                         (-> (if (= (:id block) (:selected @state))
+                               (js/Promise.resolve (:code @state))
+                               (fetch-text (:codePath block)))
+                             (.then (fn [code] {:block block :code code}))))
+                       blocks)))
+              (.then (fn [prepared]
+                       (swap! state assoc :output "Running in the evaluation worker…")
+                       (render-result!)
+                       (worker-call "run" {:chapter (:chapter selected)
+                                            :blocks (vec (array-seq prepared))})))
+              (.then (fn [{:keys [captured? value namespaces]}]
                        (swap! state assoc
+                         :busy? false
+                         :namespace-names namespaces
                          :output (cond
                                    (not (:executable selected))
                                    (str "Successfully ran the executable blocks through " (:id selected)
@@ -431,13 +382,13 @@
 
                                    :else
                                    (str "Successfully ran through " (:id selected)
-                                        ".\n\nResult:\n" (format-result value)))
+                                        ".\n\nResult:\n" value))
                          :error? false)
                        (render-result!)
                        (render-symbol-detail!)
                        (render-namespace-vars!)))
               (.catch (fn [error]
-                        (swap! state assoc :output (friendly-error error) :error? true)
+                        (swap! state assoc :busy? false :output (friendly-error error) :error? true)
                         (render-result!)
                         (render-symbol-detail!)
                         (render-namespace-vars!))))))))
@@ -456,7 +407,7 @@
          (.destroy active-editor)
          (reset! editor nil))
        (set! (.-innerHTML root) "")
-       (let [{:keys [manifest chapter selected code output error?]} @state
+       (let [{:keys [manifest chapter selected code output error? busy?]} @state
              chapters (distinct (map :chapter manifest))
              chapter-blocks (sort-by :ordinal (filter #(= chapter (:chapter %)) manifest))
              blocks-by-id (into {} (map (juxt :id identity) manifest))
@@ -537,24 +488,35 @@
                (el "div"
                    {:class "actions"}
                    (el "button"
-                       {:class "primary", :onclick run-through!}
+                       (cond-> {:class "primary", :onclick run-through!}
+                         busy? (assoc :disabled true))
                        (el "span" {:aria-hidden "true"} "▶")
                        "Run through this block")
-                   (el "button" {:class "secondary", :onclick #(evaluate! (:code @state))} "Run editor only")
                    (el "button"
-                       {:class "ghost",
-                        :onclick #(do (reset-context!)
-                                      (swap! state assoc :output "Context reset." :error? false :inspected-symbol nil)
-                                      (render-result!)
-                                      (render-symbol-detail!)
-                                      (render-namespace-vars!))}
+                       (cond-> {:class "secondary", :onclick #(evaluate! (:code @state))}
+                         busy? (assoc :disabled true))
+                       "Run editor only")
+                   (el "button"
+                       (cond-> {:class "ghost",
+                                :onclick #(-> (worker-call "reset" {:chapter (:chapter @state)})
+                                              (.then (fn [{:keys [namespaces]}]
+                                                       (swap! state assoc
+                                                              :namespace-names namespaces
+                                                              :output "Context reset."
+                                                              :error? false
+                                                              :inspected-symbol nil)
+                                                       (render-result!)
+                                                       (render-symbol-detail!)
+                                                       (render-namespace-vars!))))}
+                         busy? (assoc :disabled true))
                        "Reset context"))
                (el "div"
                    {:class "section-heading"}
                    (el "h3" {} "Result")
                    (el "span"
-                       {:id "result-state", :class (str "result-state " (if error? "failed" "ready"))}
-                       (if error? "Error" "SCI output")))
+                       {:id "result-state",
+                        :class (str "result-state " (cond error? "failed" busy? "running" :else "ready"))}
+                       (cond error? "Error" busy? "Running" :else "SCI output")))
                (el "pre" {:id "result", :class (when error? "error")} output))
            (el "aside"
                {:class "inspector"}
@@ -588,8 +550,15 @@
                     (let [manifest (js->clj data :keywordize-keys true)
                           first-block (first manifest)]
                       (swap! state assoc :manifest manifest :chapter (:chapter first-block))
-                      (reset-context!)
-                      (select-block! first-block))))
+                      (start-worker!)
+                      (let [initialization (worker-call "init" {:manifest manifest
+                                                                :chapter (:chapter first-block)})]
+                        ;; Render immediately while the larger evaluator bundle initializes off-thread.
+                        (select-block! first-block)
+                        (-> initialization
+                            (.then (fn [{:keys [namespaces]}]
+                                     (swap! state assoc :namespace-names namespaces)
+                                     (render-namespace-vars!))))))))
            (.catch (fn [error] (swap! state assoc :output (friendly-error error) :error? true) (render!))))
        (catch :default error
          (swap! state assoc :output (str "Emmy initialization failed.\n\n" (friendly-error error)) :error? true)

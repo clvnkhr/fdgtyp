@@ -31,6 +31,14 @@ const runnerSource = readFileSync(
   path.join(root, "emmy-runner", "src", "fdg", "runner.cljs"),
   "utf8",
 );
+const workerSource = readFileSync(
+  path.join(root, "emmy-runner", "src", "fdg", "worker.cljs"),
+  "utf8",
+);
+const shadowConfig = readFileSync(
+  path.join(root, "emmy-runner", "shadow-cljs.edn"),
+  "utf8",
+);
 if (!formatterSource.includes(':width 120')
     || !formatterSource.includes('zprint-file-str source "emmy.cljs" options')
     || !formatterSource.includes('(defn format-source-once [source]')
@@ -70,8 +78,19 @@ if (!smokeSource.includes("(defn locate-form")
     || !smokeSource.includes("(clojure.string/join \"\\\\s+\")")) {
   throw new Error("Captured results must tolerate formatter whitespace changes");
 }
-if (!runnerSource.includes("(or (:backgroundSetup block) (not (:executable block)))")) {
+if (!workerSource.includes("(or (:backgroundSetup block) (not (:executable block)))")) {
   throw new Error("The web runner must not evaluate cached, non-executable Scheme output");
+}
+if (!runnerSource.includes('(js/Worker. "worker/main.js"')
+    || !runnerSource.includes('#js {:type "module"}')
+    || runnerSource.includes("(eval-session! @context code)")) {
+  throw new Error("Browser evaluation must execute in the Web Worker, not on the UI thread");
+}
+if (!shadowConfig.includes(":worker\n  {:target :esm\n   :runtime :custom")) {
+  throw new Error("The evaluation worker must use Shadow's custom ESM runtime, not its document-dependent browser bootstrap");
+}
+if (runnerSource.includes("(.isConnected")) {
+  throw new Error("DOM isConnected is a boolean property and must not be invoked as a function");
 }
 execFileSync(
   "clojure",

@@ -1,8 +1,8 @@
 {
   "private": true,
   "scripts": {
-    "build": "clojure -M:shadow-cljs release app",
-    "dev": "clojure -M:shadow-cljs watch app"
+    "build": "clojure -M:shadow-cljs release app worker",
+    "dev": "clojure -M:shadow-cljs watch app worker"
   },
   "dependencies": {
     "@lezer/highlight": "^1.2.3",

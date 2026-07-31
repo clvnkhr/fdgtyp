@@ -36,7 +36,7 @@ emmy-blocks:
 	$(MAKE) test-emmy
 
 test-emmy:
-	cd emmy-runner && clojure -M:shadow-cljs compile smoke
+	cd emmy-runner && clojure -M:shadow-cljs compile smoke worker app
 	node scripts/run-emmy-smoke.mjs
 	clojure -M:format-emmy codeblocks emmy-runner/public/generated
 	node scripts/assert-emmy-conversion.mjs
@@ -46,7 +46,7 @@ compare-outputs: emmy-blocks
 	$(TYPST) compile --root . output-comparison.typ output-comparison.pdf
 
 emmy-runner: emmy-blocks
-	cd emmy-runner && clojure -M:shadow-cljs watch app
+	cd emmy-runner && clojure -M:shadow-cljs watch app worker
 
 just-pdf: scheme-book-pdf cljs-book-pdf both-book-pdf
 
