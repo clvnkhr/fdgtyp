@@ -5,7 +5,12 @@
     "dev": "clojure -M:shadow-cljs watch app"
   },
   "dependencies": {
+    "@lezer/highlight": "^1.2.3",
+    "@nextjournal/clojure-mode": "^0.3.3",
     "fraction.js": "4.2.1",
     "odex": "3.0.0-rc.4"
+  },
+  "devDependencies": {
+    "shadow-cljs": "^3.4.11"
   }
 }

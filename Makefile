@@ -2,7 +2,7 @@ TYPST ?= typst
 
 .DEFAULT_GOAL := from-raw
 
-.PHONY: from-raw from-raw-scheme from-raw-cljs from-raw-both raw prepare \
+.PHONY: from-raw from-raw-scheme from-raw-cljs from-raw-both raw figure-pdfs prepare \
 	emmy-blocks compare-outputs emmy-runner just-pdf draft book scheme cljs both \
 	scheme-draft scheme-book cljs-draft cljs-book both-draft both-book \
 	scheme-draft-pdf scheme-book-pdf cljs-draft-pdf cljs-book-pdf \
@@ -21,8 +21,10 @@ from-raw-both: raw
 	$(MAKE) both
 
 raw:
-	node scripts/extract-figure-pdfs.mjs
 	node scripts/convert-org-to-typst.mjs
+
+figure-pdfs:
+	node scripts/extract-figure-pdfs.mjs
 
 prepare: emmy-blocks
 	./scripts/install-racket-fmt.sh
@@ -35,7 +37,7 @@ emmy-blocks:
 	-node scripts/run-emmy-smoke.mjs
 	-clojure -M:format-emmy codeblocks emmy-runner/public/generated
 	-node scripts/assert-emmy-conversion.mjs
-	node scripts/compare-scm-cljs-outputs.mjs
+	node scripts/compare-scm-cljs-outputs.mjs --check
 
 compare-outputs: emmy-blocks
 	$(TYPST) compile --root . output-comparison.typ output-comparison.pdf

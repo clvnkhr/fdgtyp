@@ -111,6 +111,18 @@ var goog = goog || {};
 goog.global = global;
 goog.global.CLOSURE_UNCOMPILED_DEFINES;
 goog.global.CLOSURE_DEFINES;
+goog.isDef = function(val) {
+  return val !== void 0;
+};
+goog.isString = function(val) {
+  return typeof val == "string";
+};
+goog.isBoolean = function(val) {
+  return typeof val == "boolean";
+};
+goog.isNumber = function(val) {
+  return typeof val == "number";
+};
 goog.exportPath_ = function(name, object, overwriteImplicit, objectToExportTo) {
   var parts = name.split(".");
   var cur = objectToExportTo || goog.global;
@@ -151,9 +163,6 @@ goog.define = function(name, defaultValue) {
 goog.FEATURESET_YEAR = goog.define("goog.FEATURESET_YEAR", 2012);
 goog.DEBUG = goog.define("goog.DEBUG", true);
 goog.LOCALE = goog.define("goog.LOCALE", "en");
-goog.getLocale = function() {
-  return goog.LOCALE;
-};
 goog.TRUSTED_SITE = goog.define("goog.TRUSTED_SITE", true);
 goog.DISALLOW_TEST_ONLY_CODE = goog.define("goog.DISALLOW_TEST_ONLY_CODE", COMPILED && !goog.DEBUG);
 goog.ENABLE_CHROME_APP_SAFE_SCRIPT_LOADING = goog.define("goog.ENABLE_CHROME_APP_SAFE_SCRIPT_LOADING", false);
@@ -347,8 +356,6 @@ goog.basePath = "";
 goog.global.CLOSURE_BASE_PATH;
 goog.global.CLOSURE_NO_DEPS;
 goog.global.CLOSURE_IMPORT_SCRIPT;
-goog.nullFunction = function() {
-};
 goog.abstractMethod = function() {
   throw new Error("unimplemented abstract method");
 };
@@ -371,8 +378,6 @@ goog.loadedModules_ = {};
 goog.DEPENDENCIES_ENABLED = !COMPILED && goog.ENABLE_DEBUG_LOADER;
 goog.TRANSPILE = goog.define("goog.TRANSPILE", "detect");
 goog.ASSUME_ES_MODULES_TRANSPILED = goog.define("goog.ASSUME_ES_MODULES_TRANSPILED", false);
-goog.TRANSPILE_TO_LANGUAGE = goog.define("goog.TRANSPILE_TO_LANGUAGE", "");
-goog.TRANSPILER = goog.define("goog.TRANSPILER", "transpile.js");
 goog.TRUSTED_TYPES_POLICY_NAME = goog.define("goog.TRUSTED_TYPES_POLICY_NAME", "goog");
 goog.hasBadLetScoping = null;
 goog.loadModule = function(moduleDef) {
@@ -438,36 +443,6 @@ goog.loadFileSync_ = function(src) {
     }
   }
 };
-goog.transpile_ = function(code, path, target) {
-  var jscomp = goog.global["$jscomp"];
-  if (!jscomp) {
-    goog.global["$jscomp"] = jscomp = {};
-  }
-  var transpile = jscomp.transpile;
-  if (!transpile) {
-    var transpilerPath = goog.basePath + goog.TRANSPILER;
-    var transpilerCode = goog.loadFileSync_(transpilerPath);
-    if (transpilerCode) {
-      (function() {
-        (0,eval)(transpilerCode + "\n//# sourceURL\x3d" + transpilerPath);
-      }).call(goog.global);
-      if (goog.global["$gwtExport"] && goog.global["$gwtExport"]["$jscomp"] && !goog.global["$gwtExport"]["$jscomp"]["transpile"]) {
-        throw new Error('The transpiler did not properly export the "transpile" ' + "method. $gwtExport: " + JSON.stringify(goog.global["$gwtExport"]));
-      }
-      goog.global["$jscomp"].transpile = goog.global["$gwtExport"]["$jscomp"]["transpile"];
-      jscomp = goog.global["$jscomp"];
-      transpile = jscomp.transpile;
-    }
-  }
-  if (!transpile) {
-    var suffix = " requires transpilation but no transpiler was found.";
-    transpile = jscomp.transpile = function(code, path) {
-      goog.logToConsole_(path + suffix);
-      return code;
-    };
-  }
-  return transpile(code, path, target);
-};
 goog.typeOf = function(value) {
   var s = typeof value;
   if (s != "object") {
@@ -480,6 +455,15 @@ goog.typeOf = function(value) {
     return "array";
   }
   return s;
+};
+goog.isNull = function(val) {
+  return val === null;
+};
+goog.isDefAndNotNull = function(val) {
+  return val != null;
+};
+goog.isArray = function(val) {
+  return goog.typeOf(val) == "array";
 };
 goog.isArrayLike = function(val) {
   var type = goog.typeOf(val);
@@ -564,11 +548,6 @@ goog.partial = function(fn, var_args) {
     return fn.apply(this, newArgs);
   };
 };
-goog.mixin = function(target, source) {
-  for (var x in source) {
-    target[x] = source[x];
-  }
-};
 goog.now = function() {
   return Date.now();
 };
@@ -615,6 +594,12 @@ goog.global.CLOSURE_CSS_NAME_MAPPING;
 if (!COMPILED && goog.global.CLOSURE_CSS_NAME_MAPPING) {
   goog.cssNameMapping_ = goog.global.CLOSURE_CSS_NAME_MAPPING;
 }
+goog.GetMsgOptions = function() {
+};
+goog.GetMsgOptions.prototype.html;
+goog.GetMsgOptions.prototype.unescapeHtmlEntities;
+goog.GetMsgOptions.prototype.original_code;
+goog.GetMsgOptions.prototype.example;
 goog.getMsg = function(str, opt_values, opt_options) {
   if (opt_options && opt_options.html) {
     str = str.replace(/</g, "\x26lt;");
@@ -763,95 +748,13 @@ if (!COMPILED && goog.DEPENDENCIES_ENABLED) {
       var src = script.src;
       var qmark = src.lastIndexOf("?");
       var l = qmark == -1 ? src.length : qmark;
-      if (src.substr(l - 7, 7) == "base.js") {
-        goog.basePath = src.substr(0, l - 7);
+      if (src.slice(l - 7, l) == "base.js") {
+        goog.basePath = src.slice(0, l - 7);
         return;
       }
     }
   };
   goog.findBasePath_();
-  goog.Transpiler = function() {
-    this.requiresTranspilation_ = null;
-    this.transpilationTarget_ = goog.TRANSPILE_TO_LANGUAGE;
-  };
-  goog.Transpiler.prototype.createRequiresTranspilation_ = function() {
-    var transpilationTarget = "es3";
-    var requiresTranspilation = {"es3":false};
-    var transpilationRequiredForAllLaterModes = false;
-    function addNewerLanguageTranspilationCheck(modeName, isSupported) {
-      if (transpilationRequiredForAllLaterModes) {
-        requiresTranspilation[modeName] = true;
-      } else if (isSupported()) {
-        transpilationTarget = modeName;
-        requiresTranspilation[modeName] = false;
-      } else {
-        requiresTranspilation[modeName] = true;
-        transpilationRequiredForAllLaterModes = true;
-      }
-    }
-    function evalCheck(code) {
-      try {
-        return !!eval(goog.CLOSURE_EVAL_PREFILTER_.createScript(code));
-      } catch (ignored) {
-        return false;
-      }
-    }
-    addNewerLanguageTranspilationCheck("es5", function() {
-      return evalCheck("[1,].length\x3d\x3d1");
-    });
-    addNewerLanguageTranspilationCheck("es6", function() {
-      if (goog.isEdge_()) {
-        return false;
-      }
-      var es6fullTest = "class X{constructor(){if(new.target!\x3dString)throw 1;this.x\x3d42}}" + "let q\x3dReflect.construct(X,[],String);if(q.x!\x3d42||!(q instanceof " + "String))throw 1;for(const a of[2,3]){if(a\x3d\x3d2)continue;function " + "f(z\x3d{a}){let a\x3d0;return z.a}{function f(){return 0;}}return f()" + "\x3d\x3d3}";
-      return evalCheck('(()\x3d\x3e{"use strict";' + es6fullTest + "})()");
-    });
-    addNewerLanguageTranspilationCheck("es7", function() {
-      return evalCheck("2**3\x3d\x3d8");
-    });
-    addNewerLanguageTranspilationCheck("es8", function() {
-      return evalCheck("async()\x3d\x3e1,1");
-    });
-    addNewerLanguageTranspilationCheck("es9", function() {
-      return evalCheck("({...rest}\x3d{}),1");
-    });
-    addNewerLanguageTranspilationCheck("es_2019", function() {
-      return evalCheck('let r;try{r\x3d" "}catch{};r');
-    });
-    addNewerLanguageTranspilationCheck("es_2020", function() {
-      return evalCheck("null?.x??1");
-    });
-    addNewerLanguageTranspilationCheck("es_next", function() {
-      return false;
-    });
-    return {target:transpilationTarget, map:requiresTranspilation};
-  };
-  goog.Transpiler.prototype.needsTranspile = function(lang, module) {
-    if (goog.TRANSPILE == "always") {
-      return true;
-    } else if (goog.TRANSPILE == "never") {
-      return false;
-    } else if (!this.requiresTranspilation_) {
-      var obj = this.createRequiresTranspilation_();
-      this.requiresTranspilation_ = obj.map;
-      this.transpilationTarget_ = this.transpilationTarget_ || obj.target;
-    }
-    if (lang in this.requiresTranspilation_) {
-      if (this.requiresTranspilation_[lang]) {
-        return true;
-      } else if (goog.inHtmlDocument_() && module == "es6" && !("noModule" in goog.global.document.createElement("script"))) {
-        return true;
-      } else {
-        return false;
-      }
-    } else {
-      throw new Error("Unknown language mode: " + lang);
-    }
-  };
-  goog.Transpiler.prototype.transpile = function(code, path) {
-    return goog.transpile_(code, path, this.transpilationTarget_);
-  };
-  goog.transpiler_ = new goog.Transpiler();
   goog.protectScriptTag_ = function(str) {
     return str.replace(/<\/(SCRIPT)/ig, "\\x3c/$1");
   };
@@ -862,7 +765,7 @@ if (!COMPILED && goog.DEPENDENCIES_ENABLED) {
     this.loadingDeps_ = [];
     this.depsToLoad_ = [];
     this.paused_ = false;
-    this.factory_ = new goog.DependencyFactory(goog.transpiler_);
+    this.factory_ = new goog.DependencyFactory();
     this.deferredCallbacks_ = {};
     this.deferredQueue_ = [];
   };
@@ -899,7 +802,7 @@ if (!COMPILED && goog.DEPENDENCIES_ENABLED) {
   };
   goog.DebugLoader_.prototype.loadClosureDeps = function() {
     var relPath = "deps.js";
-    this.depsToLoad_.push(this.factory_.createDependency(goog.normalizePath_(goog.basePath + relPath), relPath, [], [], {}, false));
+    this.depsToLoad_.push(this.factory_.createDependency(goog.normalizePath_(goog.basePath + relPath), relPath, [], [], {}));
     this.loadDeps_();
   };
   goog.DebugLoader_.prototype.requested = function(absPathOrId, opt_force) {
@@ -1201,20 +1104,10 @@ if (!COMPILED && goog.DEPENDENCIES_ENABLED) {
       if (nonce) {
         scriptEl.nonce = nonce;
       }
-      if (goog.DebugLoader_.IS_OLD_IE_) {
-        controller.pause();
-        scriptEl.onreadystatechange = function() {
-          if (scriptEl.readyState == "loaded" || scriptEl.readyState == "complete") {
-            controller.loaded();
-            controller.resume();
-          }
-        };
-      } else {
-        scriptEl.onload = function() {
-          scriptEl.onload = null;
-          controller.loaded();
-        };
-      }
+      scriptEl.onload = function() {
+        scriptEl.onload = null;
+        controller.loaded();
+      };
       scriptEl.src = goog.TRUSTED_TYPES_POLICY_ ? goog.TRUSTED_TYPES_POLICY_.createScriptURL(this.path) : this.path;
       doc.head.appendChild(scriptEl);
     }
@@ -1368,9 +1261,8 @@ if (!COMPILED && goog.DEPENDENCIES_ENABLED) {
       doc.write(goog.TRUSTED_TYPES_POLICY_ ? goog.TRUSTED_TYPES_POLICY_.createHTML(script) : script);
     }
     var anythingElsePending = controller.pending().length > 1;
-    var useOldIeWorkAround = anythingElsePending && goog.DebugLoader_.IS_OLD_IE_;
     var needsAsyncLoading = goog.Dependency.defer_ && (anythingElsePending || goog.isDocumentLoading_());
-    if (useOldIeWorkAround || needsAsyncLoading) {
+    if (needsAsyncLoading) {
       controller.defer(function() {
         load();
       });
@@ -1393,7 +1285,7 @@ if (!COMPILED && goog.DEPENDENCIES_ENABLED) {
         }
       };
     } else {
-      if (goog.DebugLoader_.IS_OLD_IE_ || !goog.inHtmlDocument_() || !goog.isDocumentLoading_()) {
+      if (!goog.inHtmlDocument_() || !goog.isDocumentLoading_()) {
         load();
       } else {
         fetchInOwnScriptThenLoad();
@@ -1402,14 +1294,6 @@ if (!COMPILED && goog.DEPENDENCIES_ENABLED) {
   };
   goog.TransformedDependency.prototype.transform = function(contents) {
   };
-  goog.TranspiledDependency = function(path, relativePath, provides, requires, loadFlags, transpiler) {
-    goog.TranspiledDependency.base(this, "constructor", path, relativePath, provides, requires, loadFlags);
-    this.transpiler = transpiler;
-  };
-  goog.inherits(goog.TranspiledDependency, goog.TransformedDependency);
-  goog.TranspiledDependency.prototype.transform = function(contents) {
-    return this.transpiler.transpile(contents, this.getPathName());
-  };
   goog.PreTranspiledEs6ModuleDependency = function(path, relativePath, provides, requires, loadFlags) {
     goog.PreTranspiledEs6ModuleDependency.base(this, "constructor", path, relativePath, provides, requires, loadFlags);
   };
@@ -1417,23 +1301,17 @@ if (!COMPILED && goog.DEPENDENCIES_ENABLED) {
   goog.PreTranspiledEs6ModuleDependency.prototype.transform = function(contents) {
     return contents;
   };
-  goog.GoogModuleDependency = function(path, relativePath, provides, requires, loadFlags, needsTranspile, transpiler) {
+  goog.GoogModuleDependency = function(path, relativePath, provides, requires, loadFlags) {
     goog.GoogModuleDependency.base(this, "constructor", path, relativePath, provides, requires, loadFlags);
-    this.needsTranspile_ = needsTranspile;
-    this.transpiler_ = transpiler;
   };
   goog.inherits(goog.GoogModuleDependency, goog.TransformedDependency);
   goog.GoogModuleDependency.prototype.transform = function(contents) {
-    if (this.needsTranspile_) {
-      contents = this.transpiler_.transpile(contents, this.getPathName());
-    }
     if (!goog.LOAD_MODULE_USING_EVAL || goog.global.JSON === undefined) {
       return "" + "goog.loadModule(function(exports) {" + '"use strict";' + contents + "\n" + ";return exports" + "});" + "\n//# sourceURL\x3d" + this.path + "\n";
     } else {
       return "" + "goog.loadModule(" + goog.global.JSON.stringify(contents + "\n//# sourceURL\x3d" + this.path + "\n") + ");";
     }
   };
-  goog.DebugLoader_.IS_OLD_IE_ = !!(!goog.global.atob && goog.global.document && goog.global.document["all"]);
   goog.DebugLoader_.prototype.addDependency = function(relPath, provides, requires, opt_loadFlags) {
     provides = provides || [];
     relPath = relPath.replace(/\\/g, "/");
@@ -1441,24 +1319,21 @@ if (!COMPILED && goog.DEPENDENCIES_ENABLED) {
     if (!opt_loadFlags || typeof opt_loadFlags === "boolean") {
       opt_loadFlags = opt_loadFlags ? {"module":goog.ModuleType.GOOG} : {};
     }
-    var dep = this.factory_.createDependency(path, relPath, provides, requires, opt_loadFlags, goog.transpiler_.needsTranspile(opt_loadFlags["lang"] || "es3", opt_loadFlags["module"]));
+    var dep = this.factory_.createDependency(path, relPath, provides, requires, opt_loadFlags);
     this.dependencies_[path] = dep;
     for (var i = 0; i < provides.length; i++) {
       this.idToPath_[provides[i]] = path;
     }
     this.idToPath_[relPath] = path;
   };
-  goog.DependencyFactory = function(transpiler) {
-    this.transpiler = transpiler;
+  goog.DependencyFactory = function() {
   };
-  goog.DependencyFactory.prototype.createDependency = function(path, relativePath, provides, requires, loadFlags, needsTranspile) {
+  goog.DependencyFactory.prototype.createDependency = function(path, relativePath, provides, requires, loadFlags) {
     if (loadFlags["module"] == goog.ModuleType.GOOG) {
-      return new goog.GoogModuleDependency(path, relativePath, provides, requires, loadFlags, needsTranspile, this.transpiler);
-    } else if (needsTranspile) {
-      return new goog.TranspiledDependency(path, relativePath, provides, requires, loadFlags, this.transpiler);
+      return new goog.GoogModuleDependency(path, relativePath, provides, requires, loadFlags);
     } else {
       if (loadFlags["module"] == goog.ModuleType.ES6) {
-        if (goog.TRANSPILE == "never" && goog.ASSUME_ES_MODULES_TRANSPILED) {
+        if (goog.ASSUME_ES_MODULES_TRANSPILED) {
           return new goog.PreTranspiledEs6ModuleDependency(path, relativePath, provides, requires, loadFlags);
         } else {
           return new goog.Es6ModuleDependency(path, relativePath, provides, requires, loadFlags);
@@ -1500,11 +1375,14 @@ SHADOW_IMPORT("goog.asserts.asserts.js");
 SHADOW_IMPORT("goog.reflect.reflect.js");
 SHADOW_IMPORT("goog.math.long.js");
 SHADOW_IMPORT("goog.math.integer.js");
+SHADOW_IMPORT("goog.dom.htmlelement.js");
+SHADOW_IMPORT("goog.dom.tagname.js");
+SHADOW_IMPORT("goog.dom.element.js");
+SHADOW_IMPORT("goog.asserts.dom.js");
 SHADOW_IMPORT("goog.dom.asserts.js");
 SHADOW_IMPORT("goog.functions.functions.js");
 SHADOW_IMPORT("goog.string.typedstring.js");
 SHADOW_IMPORT("goog.string.const.js");
-SHADOW_IMPORT("goog.i18n.bidi.js");
 SHADOW_IMPORT("goog.html.trustedtypes.js");
 SHADOW_IMPORT("goog.html.safescript.js");
 SHADOW_IMPORT("goog.fs.url.js");
@@ -1515,12 +1393,14 @@ SHADOW_IMPORT("goog.html.safeurl.js");
 SHADOW_IMPORT("goog.html.safestyle.js");
 SHADOW_IMPORT("goog.object.object.js");
 SHADOW_IMPORT("goog.html.safestylesheet.js");
-SHADOW_IMPORT("goog.dom.htmlelement.js");
-SHADOW_IMPORT("goog.dom.tagname.js");
-SHADOW_IMPORT("goog.array.array.js");
+SHADOW_IMPORT("goog.flags.flags.js");
 SHADOW_IMPORT("goog.labs.useragent.useragent.js");
 SHADOW_IMPORT("goog.labs.useragent.util.js");
+SHADOW_IMPORT("goog.labs.useragent.highentropy.highentropyvalue.js");
+SHADOW_IMPORT("goog.labs.useragent.chromium_rebrands.js");
+SHADOW_IMPORT("goog.labs.useragent.highentropy.highentropydata.js");
 SHADOW_IMPORT("goog.labs.useragent.browser.js");
+SHADOW_IMPORT("goog.array.array.js");
 SHADOW_IMPORT("goog.dom.tags.js");
 SHADOW_IMPORT("goog.html.safehtml.js");
 SHADOW_IMPORT("goog.html.uncheckedconversions.js");
@@ -1540,6 +1420,7 @@ SHADOW_IMPORT("cljs.analyzer.impl.js");
 SHADOW_IMPORT("cljs.analyzer.impl.namespaces.js");
 SHADOW_IMPORT("cljs.analyzer.passes.js");
 SHADOW_IMPORT("cljs.analyzer.passes.and_or.js");
+SHADOW_IMPORT("cljs.analyzer.passes.lite.js");
 SHADOW_IMPORT("cljs.env.js");
 SHADOW_IMPORT("cljs.tools.reader.impl.utils.js");
 SHADOW_IMPORT("cljs.tools.reader.reader_types.js");
@@ -1580,21 +1461,18 @@ SHADOW_IMPORT("goog.events.browserfeature.js");
 SHADOW_IMPORT("goog.labs.useragent.engine.js");
 SHADOW_IMPORT("goog.labs.useragent.platform.js");
 SHADOW_IMPORT("goog.useragent.useragent.js");
+SHADOW_IMPORT("goog.events.eventtypehelpers.js");
 SHADOW_IMPORT("goog.events.eventtype.js");
 SHADOW_IMPORT("goog.events.browserevent.js");
-SHADOW_IMPORT("goog.events.eventlike.js");
-SHADOW_IMPORT("goog.events.listenablekey.js");
 SHADOW_IMPORT("goog.events.listenable.js");
+SHADOW_IMPORT("goog.events.listenablekey.js");
 SHADOW_IMPORT("goog.events.listener.js");
 SHADOW_IMPORT("goog.events.listenermap.js");
-SHADOW_IMPORT("goog.debug.errorhandler.js");
-SHADOW_IMPORT("goog.events.eventtarget.js");
-SHADOW_IMPORT("goog.events.eventhandler.js");
-SHADOW_IMPORT("goog.events.eventwrapper.js");
 SHADOW_IMPORT("goog.events.events.js");
 SHADOW_IMPORT("goog.promise.thenable.js");
 SHADOW_IMPORT("goog.async.freelist.js");
 SHADOW_IMPORT("goog.async.workqueue.js");
+SHADOW_IMPORT("goog.debug.asyncstacktag.js");
 SHADOW_IMPORT("goog.dom.browserfeature.js");
 SHADOW_IMPORT("goog.math.math.js");
 SHADOW_IMPORT("goog.math.coordinate.js");
@@ -1605,6 +1483,7 @@ SHADOW_IMPORT("goog.async.throwexception.js");
 SHADOW_IMPORT("goog.async.run.js");
 SHADOW_IMPORT("goog.promise.resolver.js");
 SHADOW_IMPORT("goog.promise.promise.js");
+SHADOW_IMPORT("goog.events.eventtarget.js");
 SHADOW_IMPORT("goog.timer.timer.js");
 SHADOW_IMPORT("goog.json.json.js");
 SHADOW_IMPORT("goog.json.hybrid.js");
@@ -1637,6 +1516,7 @@ SHADOW_IMPORT("taoensso.timbre.appenders.core.js");
 SHADOW_IMPORT("goog.i18n.datetimesymbols.js");
 SHADOW_IMPORT("goog.date.date.js");
 SHADOW_IMPORT("goog.date.utcdatetime.js");
+SHADOW_IMPORT("goog.i18n.dayperiodsymbols.js");
 SHADOW_IMPORT("goog.i18n.localefeature.js");
 SHADOW_IMPORT("goog.i18n.nativelocaledigits.js");
 SHADOW_IMPORT("goog.i18n.timezone.js");
@@ -1767,6 +1647,7 @@ SHADOW_IMPORT("emmy.mechanics.rigid.js");
 SHADOW_IMPORT("emmy.mechanics.routhian.js");
 SHADOW_IMPORT("emmy.mechanics.time_evolution.js");
 SHADOW_IMPORT("emmy.numerical.derivative.js");
+SHADOW_IMPORT("shadow.js.js");
 SHADOW_IMPORT("shadow.js.shim.module$odex.js");
 SHADOW_IMPORT("clojure.core.reducers.js");
 SHADOW_IMPORT("emmy.numerical.ode.js");

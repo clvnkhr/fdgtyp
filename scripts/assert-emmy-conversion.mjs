@@ -100,9 +100,35 @@ const chapter1 = manifest.filter(block => block.chapter === "chapter001");
 if (chapter1.length !== 17) {
   throw new Error("Expected all 17 displayed Chapter 1 blocks to be extracted from Typst");
 }
+if (chapter1.map(block => block.ordinal).join(",") !== Array.from(
+  { length: 17 },
+  (_, index) => index + 1,
+).join(",")) {
+  throw new Error("Chapter 1 blocks must remain in display order in the runner manifest");
+}
+const chapter1GeodesicResidual = chapter1.find(block => block.id === "chapter001-015");
+if (!chapter1GeodesicResidual?.definitions.includes("geodesic-equation-residuals")
+    || chapter1GeodesicResidual.prerequisiteIds.join(",") !== "chapter001-016") {
+  throw new Error("Chapter 1's geodesic residual must execute after its displayed Cartan prerequisite");
+}
+const chapter1Cartan = chapter1.find(block => block.id === "chapter001-016");
+if (!chapter1Cartan?.definitions.includes("Cartan") || chapter1Cartan.capturesResult) {
+  throw new Error("Chapter 1's Cartan block must remain a definition-only block");
+}
 const firstChapterBlock = readFileSync(path.join(root, "codeblocks", "chapter001", "001.cljs"), "utf8");
 if (firstChapterBlock.includes("(ns ") || !firstChapterBlock.includes("defn Lfree")) {
   throw new Error("The first displayed Chapter 1 example must be the portable Lfree definition");
+}
+const chapter1Residual = readFileSync(
+  path.join(root, "codeblocks", "chapter001", "017.cljs"),
+  "utf8",
+);
+if (!chapter1Residual.includes("(simplify (- Lagrange-residuals")
+    || chapter1Residual.includes("(simplify (down 0 0))")
+    || (chapter1Residual.match(/^\(down 0 0\)$/gm) ?? []).length > 0) {
+  throw new Error(
+    "Chapter 1's residual expression must be simplified; its cached (down 0 0) result must not be executed",
+  );
 }
 const chapter6Block = manifest.find(block => {
   const ordinal = String(block.ordinal).padStart(3, "0");

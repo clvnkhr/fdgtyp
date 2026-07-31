@@ -13,6 +13,7 @@ const publicDir = path.join(root, "emmy-runner", "public", "generated");
 const force = process.argv.includes("--force");
 
 const explicitSimplifyIds = new Set([
+  "chapter001-005", "chapter001-017",
   "chapter003-008", "chapter003-009", "chapter003-018", "chapter003-024", "chapter003-025",
   "chapter004-003", "chapter004-004", "chapter004-006", "chapter004-007", "chapter004-008",
   "chapter004-010", "chapter004-011", "chapter004-012", "chapter004-013", "chapter004-014", "chapter004-015",
@@ -20,7 +21,7 @@ const explicitSimplifyIds = new Set([
   "chapter006-016",
   "chapter008-003", "chapter008-012", "chapter008-022", "chapter008-023", "chapter008-025", "chapter008-026",
   "chapter008-032", "chapter008-034", "chapter008-036",
-  "chapter009-005", "chapter009-006", "chapter009-008", "chapter009-010", "chapter009-011", "chapter009-013",
+  "chapter009-005", "chapter009-006", "chapter009-008", "chapter009-010", "chapter009-011",
   "chapter009-014", "chapter009-015", "chapter009-023",
   "chapter010-009", "chapter010-011", "chapter010-012", "chapter010-016", "chapter010-020", "chapter010-024",
   "chapter010-027", "chapter010-028", "chapter010-029", "chapter010-030", "chapter010-031", "chapter010-032",
@@ -59,6 +60,12 @@ const nonExecutableIds = new Set([
   // This is the compact expected result of the preceding Ricci calculation,
   // printed by scmutils as a separate source block in the book.
   "chapter009-020",
+]);
+
+// Reading order and execution order differ here: the text displays the
+// geodesic residual before introducing the Cartan coefficients it uses.
+const prerequisiteIds = new Map([
+  ["chapter001-015", ["chapter001-016"]],
 ]);
 
 const files = [
@@ -649,6 +656,19 @@ function applyReviewedCorrections(source, id) {
 
 (theta (R2-rect-chi-inverse (up 'x0 'y0)))`;
   }
+  if (id === "chapter009-013") {
+    return `(defn L1 [state] (sqrt (square (velocity state))))
+
+;; Emmy expands speed²^(3/2) into speed² sqrt(speed²). Cancel that common
+;; denominator before simplifying the numerators, then put the compact common
+;; denominator back so the displayed result remains readable.
+(let [x (literal-function 'x)
+      y (literal-function 'y)
+      equations (((Lagrange-equations L1) (up x y)) 't)
+      speed2 (+ (square ((D x) 't)) (square ((D y) 't)))
+      denominator (* speed2 (sqrt speed2))]
+  (/ (simplify (* equations denominator)) denominator))`;
+  }
   if (id === "chapter007-040") {
     return `;; Prove that Emmy's generic Legendre transform agrees with the equivalent
 ;; closed form at a fully symbolic state. The following example differentiates
@@ -984,6 +1004,7 @@ for (const file of files) {
       typLine: block.firstLine,
       sourceHash,
       backgroundSetup: /^\s*\(load\s+"[^"]+"\)\s*$/s.test(block.code),
+      prerequisiteIds: prerequisiteIds.get(id) ?? [],
       definitions: topLevelDefinitions(cljs),
       capturesResult: capturesResult(cljs),
       executable,

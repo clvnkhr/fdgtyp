@@ -88,6 +88,31 @@
   (when (seq (:definitions block))
     (eval-session! context (str "(declare " (clojure.string/join " " (:definitions block)) ")"))))
 
+(defn add-block-with-prerequisites [ordered seen blocks-by-id block]
+  (if (contains? seen (:id block))
+    [ordered seen]
+    (let [[ordered seen]
+          (reduce
+           (fn [[items visited] prerequisite-id]
+             (if-let [prerequisite (get blocks-by-id prerequisite-id)]
+               (add-block-with-prerequisites items visited blocks-by-id prerequisite)
+               (throw (js/Error.
+                       (str "Missing prerequisite " prerequisite-id
+                            " for " (:id block))))))
+           [ordered seen]
+           (:prerequisiteIds block))]
+      [(conj ordered block) (conj seen (:id block))])))
+
+(defn execution-order [blocks]
+  (let [sorted-blocks (sort-by :ordinal blocks)
+        blocks-by-id (into {} (map (juxt :id identity) sorted-blocks))]
+    (first
+     (reduce
+      (fn [[ordered seen] block]
+        (add-block-with-prerequisites ordered seen blocks-by-id block))
+      [[] #{}]
+      sorted-blocks))))
+
 (defn make-context
   [book-definitions]
   (let [compat-ns (sci/copy-ns fdg.compat (sci/create-ns 'fdg.compat))
@@ -146,7 +171,7 @@
       (let [book-definitions (into #{} (mapcat :definitions blocks))
             context (make-context book-definitions)
             definitions (atom #{})]
-        (doseq [block (sort-by :ordinal blocks)
+        (doseq [block (execution-order blocks)
                 :when (and (not (:backgroundSetup block)) (:executable block))]
           (try (when verbose? (println (str "Running " (:id block))))
                (prepare-block! context definitions block)

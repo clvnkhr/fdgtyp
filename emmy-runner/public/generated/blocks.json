@@ -7,6 +7,7 @@
     "typLine": 72,
     "sourceHash": "50a37b840f7abf8ec077552bbad9819869a47cf3525a545eb581f9aff2b4e575",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "Lagrange-equations"
     ],
@@ -29,6 +30,7 @@
     "typLine": 85,
     "sourceHash": "d39745fc5ca8dfca0e7c67aa34380f1d2450c9deac7b9f3aca613438bfa084f9",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "Gamma"
     ],
@@ -51,6 +53,7 @@
     "typLine": 105,
     "sourceHash": "2c5523545abcac26d5c4344f5b8bde8e76ba486dab21a1ccddaea2570a3bbbfd",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "L-harmonic"
     ],
@@ -73,6 +76,7 @@
     "typLine": 120,
     "sourceHash": "9571dbb1d5c5f1458eaf01aa6e63a77ca7425ff642a80b75e4fab6dcc26b5d4b",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "proposed-solution"
     ],
@@ -99,6 +103,7 @@
     "typLine": 136,
     "sourceHash": "37ba70d3a15e46338b906fd44dc5cffc2c1e469055a449ca1c96b23aed791ddb",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -119,6 +124,7 @@
     "typLine": 41,
     "sourceHash": "fcd852fad19e438a6d3be3c396ff4ad1e07d4b8748dc77e104cec9a3c38b0490",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "Lfree"
     ],
@@ -141,6 +147,7 @@
     "typLine": 57,
     "sourceHash": "a17c92325ff5745abded49dd71cc84867d90cf9aeca0b6a8f22d39eed118618e",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "sphere->R3"
     ],
@@ -163,6 +170,7 @@
     "typLine": 73,
     "sourceHash": "bc8d025169bd8427c3db780361a5ddc755dc009e9c0537fbe65cd206ee37a1e7",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "F->C"
     ],
@@ -185,6 +193,7 @@
     "typLine": 85,
     "sourceHash": "eca40760ac83150b4b7c81f94f6f124deb23b23c9e6d035c2fd66fddb48759b9",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "Lsphere"
     ],
@@ -205,14 +214,15 @@
     "ordinal": 5,
     "heading": "Lagrange Equations <sec-1.1>",
     "typLine": 93,
-    "sourceHash": "9cfdefd0844893fb0de26b47692e3c5d8e7d1414a11d9b4a9e6338fdba7d77e9",
+    "sourceHash": "05c86766bbca71a186d212adcba521c5ff65e782a88e70c85be3aa5d5b965cf6",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
     "forms": [
       {
-        "code": "((Lsphere 'm 'R) (up 't (up 'theta 'phi) (up 'thetadot 'phidot)))",
+        "code": "(simplify ((Lsphere 'm 'R) (up 't (up 'theta 'phi) (up 'thetadot 'phidot))))",
         "capturesResult": true
       }
     ],
@@ -224,9 +234,10 @@
     "chapter": "chapter001",
     "ordinal": 6,
     "heading": "The Metric <sec-1.2>",
-    "typLine": 128,
+    "typLine": 125,
     "sourceHash": "6863e189b18c8e748b63ae1b5be1c3f27c5c4dd1bbc26a79e115df7c7e1ffb2d",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "L2"
     ],
@@ -246,9 +257,10 @@
     "chapter": "chapter001",
     "ordinal": 7,
     "heading": "The Metric <sec-1.2>",
-    "typLine": 136,
+    "typLine": 133,
     "sourceHash": "99605c1e9f2455d004c8e19fca49cf7b4c23b0df95f3ee35530a9c86305faab3",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "Lc"
     ],
@@ -268,9 +280,10 @@
     "chapter": "chapter001",
     "ordinal": 8,
     "heading": "The Metric <sec-1.2>",
-    "typLine": 153,
+    "typLine": 150,
     "sourceHash": "a16b567ed7dafe7b6edf6b5c6c24358b751f2cf0980af514beaa9ece7163d8d8",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "the-metric"
     ],
@@ -290,9 +303,10 @@
     "chapter": "chapter001",
     "ordinal": 9,
     "heading": "The Metric <sec-1.2>",
-    "typLine": 162,
+    "typLine": 159,
     "sourceHash": "0f85e755c5214b7e9e7cc5d9342844a1dc9d1856cad8a834088c357ff7daa50b",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "L"
     ],
@@ -312,9 +326,10 @@
     "chapter": "chapter001",
     "ordinal": 10,
     "heading": "The Metric <sec-1.2>",
-    "typLine": 169,
-    "sourceHash": "c0a2f041869051a19aca95fc78a728acf6af4aaf40cf6f6c31b7ceda058ee1d4",
+    "typLine": 166,
+    "sourceHash": "cd5e2e95901128cf0950102b033f6d8c100b8f5e51f483cfd07da46e7ab2ef59",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -332,9 +347,10 @@
     "chapter": "chapter001",
     "ordinal": 11,
     "heading": "Euler-Lagrange Residuals <sec-1.3>",
-    "typLine": 185,
+    "typLine": 179,
     "sourceHash": "1b7c6e4ea5e615b50cbca391a330f74510b213400a96878bde0e7a8572d82822",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "gamma"
     ],
@@ -354,9 +370,10 @@
     "chapter": "chapter001",
     "ordinal": 12,
     "heading": "Euler-Lagrange Residuals <sec-1.3>",
-    "typLine": 192,
-    "sourceHash": "24bbbe8a718f31c848f032434cc84d99c80acb80d19cb727809acc88c5515d36",
+    "typLine": 186,
+    "sourceHash": "b03fb3dbd25cb1831f064059c0f112e34c898a8b5efff31cba4eb2612fdf0d25",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -374,9 +391,10 @@
     "chapter": "chapter001",
     "ordinal": 13,
     "heading": "Euler-Lagrange Residuals <sec-1.3>",
-    "typLine": 203,
-    "sourceHash": "6e7333cafb88de251723f5147bc1b12e739ce2fcd2006e62a5298c63d7259d59",
+    "typLine": 194,
+    "sourceHash": "d1c1978830e7c0ecb6d11f8f87e4e9827ebbf81cf491502b43580ce9a9862917",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "coordinate-path"
     ],
@@ -400,9 +418,10 @@
     "chapter": "chapter001",
     "ordinal": 14,
     "heading": "Euler-Lagrange Residuals <sec-1.3>",
-    "typLine": 217,
+    "typLine": 205,
     "sourceHash": "6c35c02ad3a195bf9169f5846c90c224412a1c08071125e8eadc0901ffea1d42",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "Lagrange-residuals"
     ],
@@ -418,13 +437,16 @@
     "sourcePath": "typ/content/chapter001.typ"
   },
   {
-    "id": "chapter001-016",
+    "id": "chapter001-015",
     "chapter": "chapter001",
-    "ordinal": 16,
+    "ordinal": 15,
     "heading": "Geodesic Equations <sec-1.4>",
-    "typLine": 233,
+    "typLine": 221,
     "sourceHash": "9b7edb953d3728451d919a9353f59721ed328bbb52d6034a025d27a624327272",
     "backgroundSetup": false,
+    "prerequisiteIds": [
+      "chapter001-016"
+    ],
     "definitions": [
       "geodesic-equation-residuals"
     ],
@@ -436,17 +458,18 @@
         "capturesResult": false
       }
     ],
-    "codePath": "generated/chapter001/016.cljs",
+    "codePath": "generated/chapter001/015.cljs",
     "sourcePath": "typ/content/chapter001.typ"
   },
   {
-    "id": "chapter001-015",
+    "id": "chapter001-016",
     "chapter": "chapter001",
-    "ordinal": 15,
+    "ordinal": 16,
     "heading": "Geodesic Equations <sec-1.4>",
-    "typLine": 248,
+    "typLine": 236,
     "sourceHash": "3a1450a8d275cca54835db86d39590d493409e5c915b783468cec1d7876c3d2e",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "Cartan"
     ],
@@ -458,7 +481,7 @@
         "capturesResult": false
       }
     ],
-    "codePath": "generated/chapter001/015.cljs",
+    "codePath": "generated/chapter001/016.cljs",
     "sourcePath": "typ/content/chapter001.typ"
   },
   {
@@ -466,9 +489,10 @@
     "chapter": "chapter001",
     "ordinal": 17,
     "heading": "Geodesic Equations <sec-1.4>",
-    "typLine": 258,
-    "sourceHash": "9a1e2bd63ba096e83117b6edd59012e10ed3278227f06eb951a84d5d49e5ca1f",
+    "typLine": 246,
+    "sourceHash": "964827ef0bc2047bcddfaa685719c6d2490955a5d4464d4dd972ed521cb05925",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "metric-components"
     ],
@@ -480,11 +504,7 @@
         "capturesResult": false
       },
       {
-        "code": "(- Lagrange-residuals (* (* 'm (metric-components (gamma ((point R1-rect) 't)))) geodesic-equation-residuals))",
-        "capturesResult": true
-      },
-      {
-        "code": "(down 0 0)",
+        "code": "(simplify (- Lagrange-residuals\n             (* (* 'm (metric-components (gamma ((point R1-rect) 't)))) geodesic-equation-residuals)))",
         "capturesResult": true
       }
     ],
@@ -499,6 +519,7 @@
     "typLine": 16,
     "sourceHash": "06c1dd8fb18955a72b3be79a903d3ce5b9a6c14c48228041e0c0573a7d49f489",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "R2"
     ],
@@ -521,6 +542,7 @@
     "typLine": 23,
     "sourceHash": "f2627c3732c3d8399d569ad749eac698e152c1544c1cceb184496a9ad6c132d6",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "U"
     ],
@@ -543,6 +565,7 @@
     "typLine": 47,
     "sourceHash": "3c3f37bdfe61901d01e09629db79dbefcceb4267ea34d38f3d26bad155803aa2",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "R2-rect"
     ],
@@ -565,6 +588,7 @@
     "typLine": 52,
     "sourceHash": "8e5d2403236b9e78be3387368efef8870b768b6feaa05d1b0fd3c2cbb1675401",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "R2-rect",
       "R2-polar"
@@ -592,6 +616,7 @@
     "typLine": 61,
     "sourceHash": "07920af6ae6a6566e3946c1da27856c5d4f529bb61f465f972195ab06a5d3471",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "R2-rect-chi",
       "R2-rect-chi-inverse",
@@ -629,6 +654,7 @@
     "typLine": 71,
     "sourceHash": "2a6abf1698c06c40590389445cba96560f23c224541fa77ca81a1387abc518c3",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -649,6 +675,7 @@
     "typLine": 80,
     "sourceHash": "683f91c30191ee1446deadab6e32b2df471813672a3aeb19175d748cb82b3ada",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -669,6 +696,7 @@
     "typLine": 93,
     "sourceHash": "5e957da39dbe4be562383690dad02cf9f265041c5cd04eec92b84d5eb5a63481",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -689,6 +717,7 @@
     "typLine": 117,
     "sourceHash": "b38aca9d52e110cf753ca278a0411c07b9e47ee9bbcad7d558eea7fc293d243a",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "f"
     ],
@@ -711,6 +740,7 @@
     "typLine": 122,
     "sourceHash": "1671e793e45682d1a4370826cc51172f6fb3ee94312d6a3afaa71dda4a667b8f",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "f"
     ],
@@ -733,6 +763,7 @@
     "typLine": 130,
     "sourceHash": "c10d75c9f6c29ce6333d9628aca1c140083e57b9572b050699735d87b1fe1e85",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "R2->R"
     ],
@@ -755,6 +786,7 @@
     "typLine": 137,
     "sourceHash": "ef02ac3e5496fd1e1070d16d3a57012fdb3b69ad39d111db784f43bec69a815a",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "R2-rect-point"
     ],
@@ -777,6 +809,7 @@
     "typLine": 144,
     "sourceHash": "e2f23ff189dcc11bc12ae713a14e69052d2dfdd88c0538ddcc51c2110dc22f0e",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "corresponding-polar-point"
     ],
@@ -799,6 +832,7 @@
     "typLine": 154,
     "sourceHash": "227319cee54eff8cca8d91a98b306c504516b0a5b277b966c28304de6009d33b",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -823,6 +857,7 @@
     "typLine": 166,
     "sourceHash": "daa0639cf2751dd807fe9ee8af757bc9d03e774c2d0735bdc176631293e098d9",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": false,
     "executable": true,
@@ -847,6 +882,7 @@
     "typLine": 174,
     "sourceHash": "92bb1642849e63c121fd5e03864f5bc2ce5f1404b04e0decc3fdc5a9dc7c7925",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -883,6 +919,7 @@
     "typLine": 194,
     "sourceHash": "066bdd2f8d6bab9bc1c4324fcf01a17bd59ce5a4d9e5f141580fe23f0d3062e8",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "h"
     ],
@@ -909,6 +946,7 @@
     "typLine": 205,
     "sourceHash": "3d7b0190c6f3fb45f5bfd12a739b61e77e0bcbf4d92d737e4b3911ee17da6a5d",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -929,6 +967,7 @@
     "typLine": 217,
     "sourceHash": "c8f6c04ea9bf0b5ae669ee7d6c5b6d0a8a34df18e5e6f6e408a194bca1631e2a",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -953,6 +992,7 @@
     "typLine": 247,
     "sourceHash": "5a6db0e2a69b9ed3e4a19343f826d11b52a5915ddf41c3b8b93c62e5018fae68",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -973,6 +1013,7 @@
     "typLine": 45,
     "sourceHash": "a9c7fc9a922d07d43a75ed5a205456e1eae9f3b535a752ada582da3907e2802b",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "components->vector-field"
     ],
@@ -995,6 +1036,7 @@
     "typLine": 59,
     "sourceHash": "8bd3b3c95848a1cda3729f33a05adbae3a6e57e7dfa9a2411c21d7646f78d267",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "v"
     ],
@@ -1017,6 +1059,7 @@
     "typLine": 70,
     "sourceHash": "50067e86b295ea35c0aa0a90ae79f9693e20fac67fbfb9f61ac68d79e073fec6",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -1037,6 +1080,7 @@
     "typLine": 81,
     "sourceHash": "da014fb1d4ca042a2e54d415484328c843cd16f0ab62bcc86ba203b69c5ce73d",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -1057,6 +1101,7 @@
     "typLine": 95,
     "sourceHash": "9a38c057c4945d7af692d6ec3f11b211379f4b33a9292714a0c15ab88447ef66",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "coordinatize"
     ],
@@ -1079,6 +1124,7 @@
     "typLine": 107,
     "sourceHash": "555e5b7d6be48dd7fcc9cdbb989a8fc31184138a4a9ecc460dc6a1c87b47985d",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -1099,6 +1145,7 @@
     "typLine": 132,
     "sourceHash": "72d09f63927d2321f33c7767452c2fd47347146f2707889cbcf7781f4dc76914",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -1127,6 +1174,7 @@
     "typLine": 143,
     "sourceHash": "308b2ed560926dbc19fb2f3efa6e2fc5dff7e074d4e362be1ad09aead83cc835",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -1147,6 +1195,7 @@
     "typLine": 191,
     "sourceHash": "9f5607b54d0207a0e167fd479aa1f9e1f06d33502c2b3993736863d45be77fe9",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "circular"
     ],
@@ -1169,6 +1218,7 @@
     "typLine": 198,
     "sourceHash": "1b1a56994de86667b8e7105cf18dc1c36eba5797d4ef06785035695b3381c182",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": false,
@@ -1189,6 +1239,7 @@
     "typLine": 216,
     "sourceHash": "19d89ccb16c5f4b0cf57925d6a098546febe324bb1bf2f12df0358b617c62398",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "evolution"
     ],
@@ -1211,6 +1262,7 @@
     "typLine": 226,
     "sourceHash": "a56751c8c25c4eba4c59adaea77449bc6a4b14ad47aac516b1fa26a137d67f0d",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -1231,6 +1283,7 @@
     "typLine": 280,
     "sourceHash": "3136ef01414ca3511f62170588babd39abb54a480178602363ec33540815bc04",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "omega"
     ],
@@ -1257,6 +1310,7 @@
     "typLine": 296,
     "sourceHash": "f79642606612276f7515a5bcdab7c0cb3ea72c15b297bbce7f441f80fa86252b",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "omega"
     ],
@@ -1279,6 +1333,7 @@
     "typLine": 303,
     "sourceHash": "d369642bcbc9366be3eb52adb51ba5f1a96d76716171b5c89185402dcd992ac8",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -1299,6 +1354,7 @@
     "typLine": 314,
     "sourceHash": "8f8ecbfd687afe02781f56bea9518cd3d554e0f445f14397bb557f1117365f96",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -1319,6 +1375,7 @@
     "typLine": 335,
     "sourceHash": "34cbdb84f4779c1c19e2a54b0c2e0a67f803e3bbbf8e7f3337eb21f40d906909",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -1347,6 +1404,7 @@
     "typLine": 348,
     "sourceHash": "c4862fc6677b1a3ec0f5ea4e7be9295d985f53cf3346c38b00df058e52dd570f",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -1371,6 +1429,7 @@
     "typLine": 359,
     "sourceHash": "49aaf1322492936f216b78005fdd6b2c0620ac7b55b9a25d7968e3909a07af67",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -1395,6 +1454,7 @@
     "typLine": 370,
     "sourceHash": "9c6241ced68dd998a41e536e9b1d48c5ccf51217925327152e4a93a9a7f36ff9",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "f"
     ],
@@ -1425,6 +1485,7 @@
     "typLine": 394,
     "sourceHash": "a684d52b0c2bbbaee9cb6676e3c194bbf0e1b4d5a4c69a12de322fdf23cb7a0a",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "omega",
       "v"
@@ -1456,6 +1517,7 @@
     "typLine": 58,
     "sourceHash": "994cfe6be1c5999f7f1ff5745e18d616e5543b181d66394ec9662b74c1529dd6",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "e0",
       "e1"
@@ -1483,6 +1545,7 @@
     "typLine": 71,
     "sourceHash": "3bf1323f0a1375750883b7b12c3f737bc79f281f6f15586c120848fc752e5c83",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "e-vector-basis",
       "e-dual-basis"
@@ -1510,6 +1573,7 @@
     "typLine": 80,
     "sourceHash": "0611ae571d72b96f65eafb6b9e702b296b0c83547a9677a1122f57277aeb90fe",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -1530,6 +1594,7 @@
     "typLine": 90,
     "sourceHash": "d2aa2c60a3d1c463461339cb462ed6a64afeecaa4a2f44371cbe87b32152c14d",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "v"
     ],
@@ -1556,6 +1621,7 @@
     "typLine": 132,
     "sourceHash": "4e58c1cf357d9dc58bf1c4cb87596332cc2e78e53b9d5ed79506e48512f01550",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "Jacobian"
     ],
@@ -1578,6 +1644,7 @@
     "typLine": 141,
     "sourceHash": "c123903f44409300dafb37967aa77cf89b1d7e6fb193934d84d764bd22019b1b",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "b-polar"
     ],
@@ -1604,6 +1671,7 @@
     "typLine": 158,
     "sourceHash": "006b2d0ad10dee657295bf1eaab72c1a038bb2d872c924fa997f06fc419183ca",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -1624,6 +1692,7 @@
     "typLine": 268,
     "sourceHash": "c8f16986c96e26c0ebd7ec994a0e4abd87b7fe31439190213d3714da4ab50660",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -1644,6 +1713,7 @@
     "typLine": 296,
     "sourceHash": "cd0fb3ff932e8e2ef410fd1b2b86b84b8ea3385e4df9a6ed149587cc6686f379",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "R3-rect",
       "R3-rect-point",
@@ -1680,6 +1750,7 @@
     "typLine": 304,
     "sourceHash": "9af298d65076b2ece200f35830da6e2a2fa1109690a86d78e049898661ad5699",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "Jz",
       "Jx",
@@ -1728,6 +1799,7 @@
     "typLine": 329,
     "sourceHash": "d0b6cd5a8c6c9ea0d0f6d93e4055e804a7760d546420f6a90e2c0081ec8768ea",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "Euler-angles",
       "Euler-angles-chi-inverse",
@@ -1769,6 +1841,7 @@
     "typLine": 338,
     "sourceHash": "436bad28960e2ef537faca4eb7074b6eb9406e7ec7847a0c8f72b2c905efc5dc",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "Euler-angles",
       "SO3-point",
@@ -1832,6 +1905,7 @@
     "typLine": 118,
     "sourceHash": "1addef5d56b13f35a8c469b2200218533a575be2611e7db4e095a6c56084169d",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "u",
       "v"
@@ -1867,6 +1941,7 @@
     "typLine": 131,
     "sourceHash": "ea9525dd0d47e9a484e526be697c545e69cf253fa5c0870916fc345231e1cc88",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "a",
       "b"
@@ -1902,6 +1977,7 @@
     "typLine": 146,
     "sourceHash": "15f901b8836607ce3efa30296f14314efe28654b7e87657d648c6a962c2cf248",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "u",
       "v",
@@ -1938,6 +2014,7 @@
     "typLine": 163,
     "sourceHash": "445c03e559e07fadfae26fe658d4190be136a220980cde86babb63ccaf354c4a",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -1958,6 +2035,7 @@
     "typLine": 224,
     "sourceHash": "784c8bc3e98427bb17852ca67638658508ef4036a59387d0c89478df23a79a28",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "a",
       "b",
@@ -1995,6 +2073,7 @@
     "typLine": 235,
     "sourceHash": "f944a8263445349a43cf3a19ac03073c7f1d4ae5b30f2b140696ff42bdef29cf",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "X",
       "Y"
@@ -2026,6 +2105,7 @@
     "typLine": 257,
     "sourceHash": "6c4f59ca066ca4cdd079021a1921d023b3a725906e6589c383d232226a99195c",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "omega"
     ],
@@ -2048,6 +2128,7 @@
     "typLine": 267,
     "sourceHash": "f7981a0adcce84aed8522505c093165b7c5362312c193210c5ae3dedaf7f4ad9",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "Z"
     ],
@@ -2074,6 +2155,7 @@
     "typLine": 304,
     "sourceHash": "88dcc408abc9b0d5e2bc36fcf8d10a2a7773f1eaf50e02a60cdf6f81e8058188",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -2098,6 +2180,7 @@
     "typLine": 351,
     "sourceHash": "719edddefd007b68c3c6a44be168e42f85e847c3d5fc67745335a01b5fc65146",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "v",
       "w"
@@ -2125,6 +2208,7 @@
     "typLine": 361,
     "sourceHash": "c1935178ce004cf11f1a780158810a2ab08429dd517ac96794321d9fd7aa86bf",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "alpha",
       "beta"
@@ -2156,6 +2240,7 @@
     "typLine": 399,
     "sourceHash": "d783ee5cdf90fad9a94a942f3748b2000b7a742379b751742ffc897c240d7ce6",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "a",
       "b",
@@ -2193,6 +2278,7 @@
     "typLine": 417,
     "sourceHash": "52da87aff5b91b61b88d3abdf02e1a43b1e5b87c85400cc24cac9b4b186fd3e9",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "production-in-volume-element"
     ],
@@ -2215,6 +2301,7 @@
     "typLine": 426,
     "sourceHash": "7eebed6a73b38e8369c9477a1e1ea60d8e3f4a80be60b33c4c154e4283ad039e",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "X",
       "Y",
@@ -2255,6 +2342,7 @@
     "typLine": 28,
     "sourceHash": "39daacc63700b01f0878d3ea1d1f596e95ce491827dde77cf11c980587efe654",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "vector-field->vector-field-over-map"
     ],
@@ -2277,6 +2365,7 @@
     "typLine": 43,
     "sourceHash": "d99fb225f2f16061a50127e820d6c7f76092e5cc7e73373fcfe570f6ce71fea2",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "differential"
     ],
@@ -2299,6 +2388,7 @@
     "typLine": 67,
     "sourceHash": "a5dfe514852297651f3430ad006643e250dcbbfc43166259dd600a908d5a1055",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "form-field->form-field-over-map"
     ],
@@ -2321,6 +2411,7 @@
     "typLine": 107,
     "sourceHash": "05e8db84af119c1f538107f9b97fd5e78c81fd4cdb091d22ab6d9f1149896b1a",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "S2",
       "S2-spherical",
@@ -2357,6 +2448,7 @@
     "typLine": 118,
     "sourceHash": "2d058eddfde2a95fe8dd7e26f6150e650697088c5154843c338e07577017355a",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "mu"
     ],
@@ -2379,6 +2471,7 @@
     "typLine": 123,
     "sourceHash": "4936e9f1405c0090520af1d6d1746883fe80f96dfe628e485c61381e978e553c",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "mu"
     ],
@@ -2401,6 +2494,7 @@
     "typLine": 134,
     "sourceHash": "7aa19fdbf8b8f04d22a811746b009d870d97934f2f5214a36c5b5777605046e5",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "S2-basis-over-mu",
       "h"
@@ -2432,6 +2526,7 @@
     "typLine": 153,
     "sourceHash": "055dc3213baeed49d09b45d34d66b4d51aff82bcc0d0304e1c37824fdc428a28",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -2452,6 +2547,7 @@
     "typLine": 170,
     "sourceHash": "94c93fbfcbec9c83283d7298d3612fd80f98fc161ab36e20d21ad18044516632",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -2472,6 +2568,7 @@
     "typLine": 196,
     "sourceHash": "f377bf471ffcbde5332874fb44fbc6359f71353d1d211a724a5f3b0cbfd6083e",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "pullback-function"
     ],
@@ -2494,6 +2591,7 @@
     "typLine": 234,
     "sourceHash": "b8c1bedfb6bf2b98c240c573ad8bb36ac06230750b68e1e4916b0344b13f80c7",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "pushforward-vector"
     ],
@@ -2516,6 +2614,7 @@
     "typLine": 255,
     "sourceHash": "ac76e957f5c48b967000f11c84bf8408e059a8b30730354b35faabc7fe1328e7",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "pullback-vector-field"
     ],
@@ -2538,6 +2637,7 @@
     "typLine": 290,
     "sourceHash": "f1ee375ca1a98d1cb85d27f42164d932d95b1fcbb9040c2878a78dfd79073da1",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "pullback-form"
     ],
@@ -2560,6 +2660,7 @@
     "typLine": 319,
     "sourceHash": "29cc46eef53870ae0d1f9258f3599b6dfc3faa791df8779a3c70e5f0f7500676",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "mu"
     ],
@@ -2582,6 +2683,7 @@
     "typLine": 326,
     "sourceHash": "2cc147cb108f42acecdac0bf4932acdd63ab92d0f49590264eceb7e83f47ef2c",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "f",
       "X"
@@ -2613,6 +2715,7 @@
     "typLine": 338,
     "sourceHash": "8217a31b0a3601a5f2eaec369fa33fae32bb613ced3e75eb707a758cb494cb26",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "theta",
       "Y"
@@ -2644,6 +2747,7 @@
     "typLine": 30,
     "sourceHash": "32605db99ba878fe441b9ce3dab3d878d0107a899aa2f39fe971bda5d2a616ed",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "F->directional-derivative"
     ],
@@ -2666,6 +2770,7 @@
     "typLine": 91,
     "sourceHash": "d61abb69f448e50950aa56f4e469665afb10b96dea7d4101817aafdb9090501f",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "Lie-directional",
       "F-Lie",
@@ -2698,6 +2803,7 @@
     "typLine": 120,
     "sourceHash": "c1fc7057d63171936f6e0fcd3e8caedcf6cb0c8c349d6d6b4330ca9b50776c7b",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -2722,6 +2828,7 @@
     "typLine": 133,
     "sourceHash": "78328e9a0e53d748770ed35c4a25b74017e80f4366726dfb9fcc0fcbb62288c7",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "Lie-derivative-vector"
     ],
@@ -2744,6 +2851,7 @@
     "typLine": 224,
     "sourceHash": "f97473f8537b25e4aa5ad45fd994267284e4d2d487ac5d94c4c6b07851fa153c",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "a",
       "b",
@@ -2776,6 +2884,7 @@
     "typLine": 231,
     "sourceHash": "45bca5e3348f40c99fad79575898aec4f978b18a5c3f402e89bde997c1c745a5",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": false,
@@ -2800,6 +2909,7 @@
     "typLine": 242,
     "sourceHash": "2a78acc2aca17307941e7dd2457a19dfbc0e19c41bcee1db30673115bfb94e20",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": false,
@@ -2824,6 +2934,7 @@
     "typLine": 257,
     "sourceHash": "69bd5513713c83b199750b7f4f9026ca27442aa99dc6d6af491352a0f9200242",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": false,
@@ -2848,6 +2959,7 @@
     "typLine": 269,
     "sourceHash": "88fd166f9e14fa4fd16ef804e5380e811adf924697da35d470426aba8cbdbfda",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": false,
@@ -2872,6 +2984,7 @@
     "typLine": 288,
     "sourceHash": "db59803ae5be2313fb750ed0a2330407239753bbe2dae7907a1e7e1f10e4bbb6",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "Jz"
     ],
@@ -2898,6 +3011,7 @@
     "typLine": 296,
     "sourceHash": "895fa79de8a4acdc5f8a2ff1dbfadd821e658cca23f67a7626f149d4d11e255a",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": false,
@@ -2918,6 +3032,7 @@
     "typLine": 330,
     "sourceHash": "313f29d2344a0af2eef0d0944a47b4d568ff26c75e1d0597823718b7eb021d10",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "X",
       "Y",
@@ -2983,6 +3098,7 @@
     "typLine": 425,
     "sourceHash": "a712699858078ab6aa2c4ee6db9562e1f48d233a937ebe162259b71ff687a115",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "covariant-derivative-vector",
       "F-parallel"
@@ -3010,6 +3126,7 @@
     "typLine": 455,
     "sourceHash": "6299faf219412439e04541d4a6d480f6aea3c0f54ca8cd3dc904e0893e52acb3",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "covariant-derivative-vector"
     ],
@@ -3032,6 +3149,7 @@
     "typLine": 534,
     "sourceHash": "fe0209ffa64155cc217ec2c3126669b8678d6a72a5e10b98079e420b013b724d",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "covariant-derivative-oneform"
     ],
@@ -3054,6 +3172,7 @@
     "typLine": 543,
     "sourceHash": "31a7920a485c3174631a305b2dc68d510b432c02e5c9b2aa6f91128d13631016",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "covariant-derivative-form"
     ],
@@ -3076,6 +3195,7 @@
     "typLine": 589,
     "sourceHash": "25306c729254b43f4cf43f715520b6a15ca0b9afea815cb66ba43676abe7f0a6",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "Cartan-transform"
     ],
@@ -3098,6 +3218,7 @@
     "typLine": 616,
     "sourceHash": "dc7461d81b8cc3e11bb452fa81df542659d683803dee6550e55333996ef089a9",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "R2-rect-basis",
       "R2-polar-basis"
@@ -3133,6 +3254,7 @@
     "typLine": 624,
     "sourceHash": "744f3a128a4425bd1a0a02106694e1c518a728658da8081af2e9be02370c3f67",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "R2-rect-Christoffel"
     ],
@@ -3155,6 +3277,7 @@
     "typLine": 638,
     "sourceHash": "4fca7abfffe65a4fbaa796dcd2e2213ee631dbef7eeeed9ccd21a00ef715719b",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "Christoffel->Cartan"
     ],
@@ -3177,6 +3300,7 @@
     "typLine": 648,
     "sourceHash": "08a0e7b07968a7f9e06adfcb1bee3b114ec3e5e0df6541c1784c8fbf5ce9cee9",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "R2-rect-Cartan"
     ],
@@ -3199,6 +3323,7 @@
     "typLine": 656,
     "sourceHash": "9c9872fcd1b2c82f1d3a9028e970b136fc989fa66942d2b4698325222f49d760",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "R2-polar-Cartan"
     ],
@@ -3221,6 +3346,7 @@
     "typLine": 664,
     "sourceHash": "6bf8995e7da08d2a7b043cf41c9562b398e0c584c21a2e15f18069459c9a7056",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "circular",
       "f",
@@ -3257,6 +3383,7 @@
     "typLine": 680,
     "sourceHash": "4479a460ebbde62cf17eb636708cd7513354df776093071371e18642a3f6b3a2",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -3277,6 +3404,7 @@
     "typLine": 694,
     "sourceHash": "91bfc6d87f3e59866392811e9d244f1c1e1ed696de1e3cbf9b3c657fa8a2a16c",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": false,
@@ -3297,6 +3425,7 @@
     "typLine": 705,
     "sourceHash": "8669fd02ab341ceea916a74d3b2f1b35d9d49431dc64bbe3dedfbb51fad79774",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "V",
       "W"
@@ -3332,6 +3461,7 @@
     "typLine": 773,
     "sourceHash": "3db43015ca97f0355ff9ea79ccb9e164beddf85ed050362fd0c1102ba9e627b4",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "sphere",
       "S2-spherical",
@@ -3368,6 +3498,7 @@
     "typLine": 785,
     "sourceHash": "62372dd668e6b5be0b9f295ca2a8bf3f9346fc8cc87278dfcfe728569783bf1a",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "gamma"
     ],
@@ -3390,6 +3521,7 @@
     "typLine": 798,
     "sourceHash": "0c5dbfc21f638836954eadde1cb0fc213943d1d0701a28c7bebd78efa0434813",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "basis-over-gamma",
       "u_gamma"
@@ -3417,6 +3549,7 @@
     "typLine": 813,
     "sourceHash": "5c540603a09c17d49d226ac322e81a166f87f859b802bbec06b0978098aaf494",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "S2-Christoffel",
       "sphere-Cartan"
@@ -3444,6 +3577,7 @@
     "typLine": 829,
     "sourceHash": "cca8b2b4af454cca058b317df47c1f24ab6cfe5ae4b12e4f9da0d2f20ae321e3",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -3468,6 +3602,7 @@
     "typLine": 874,
     "sourceHash": "a3b696abaa3fde1f8b4bcbfeae556d8307ed5911fe3ffbb2c2a37432f524e9c7",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "g"
     ],
@@ -3490,6 +3625,7 @@
     "typLine": 890,
     "sourceHash": "dc0f86bacfd06225457c89e75768023557fd7a7219b39b069fea4ac2ae73a578",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "transform",
       "tilted-path"
@@ -3517,6 +3653,7 @@
     "typLine": 913,
     "sourceHash": "b948cb38121b3efc35cb6758641fdd84fa49561572e422fe09a520f5bf2d47bd",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -3537,6 +3674,7 @@
     "typLine": 924,
     "sourceHash": "04508d89ceed0fb3f1991bc6343ae5cdcd2bc7084ee974786b239f88c550ddbd",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -3557,6 +3695,7 @@
     "typLine": 934,
     "sourceHash": "498ee9d157c3976cacf99d899981b47601d28eecf6fee5aa9e8a4673f23d97ca",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -3577,6 +3716,7 @@
     "typLine": 959,
     "sourceHash": "688f0973cbcd13ebfc6556a6f95534bbfba79d05a0223aa29c35e0997a393947",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -3597,6 +3737,7 @@
     "typLine": 977,
     "sourceHash": "7605f9ebc11b610219bcfd2ac8f439f7832e5d1142714d51550881326ed4f4b4",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "Lfree",
       "sphere->R3",
@@ -3629,6 +3770,7 @@
     "typLine": 995,
     "sourceHash": "99e330d13a8d0cd032f2a78209dcfa5954d5ec99c3efaebc280a81bdb7bc1f0c",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -3649,6 +3791,7 @@
     "typLine": 1011,
     "sourceHash": "878f5b7b8eb8f7661eec4ab4e663584cc1a37d449f287cad4b56d265d8b3ecb4",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "Hsphere"
     ],
@@ -3671,6 +3814,7 @@
     "typLine": 1019,
     "sourceHash": "7f03a4eca8ba7473ee8f44d96c5717a89c6d36f42ce8c11fcedc41a185d8e972",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -3691,6 +3835,7 @@
     "typLine": 1033,
     "sourceHash": "ee0b33c87a3fa4c5ca024dac622420e0ada24dd58e2e97d0d0411ab0bf67ee86",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "state-space",
       "states"
@@ -3722,6 +3867,7 @@
     "typLine": 1057,
     "sourceHash": "2c4b3a03cfdedeacd1ec2939bcf6c7106915ba5bcfc135a18131bdd5a8153cfa",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "theta",
       "omega",
@@ -3778,6 +3924,7 @@
     "typLine": 20,
     "sourceHash": "8a74e3e6766b5cec93ea38871d5f692a57645b739d836a3ceb75e0cb4316b842",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "Riemann-curvature"
     ],
@@ -3800,6 +3947,7 @@
     "typLine": 29,
     "sourceHash": "a352c84d1b9b08d262e475ffeb69982633d352289ace9f977ecd411611bcd624",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "Riemann"
     ],
@@ -3822,6 +3970,7 @@
     "typLine": 37,
     "sourceHash": "e50b57f74ca4801f02ac4c38fb93b164c444c1486b7b99f175c0d617e809fe74",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -3842,6 +3991,7 @@
     "typLine": 123,
     "sourceHash": "e122a296be9cdf0d8a71ebaf839a788ca856b676cba539d45f55cb5781573d43",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "make-state",
       "Sigma",
@@ -3874,6 +4024,7 @@
     "typLine": 134,
     "sourceHash": "f1cb42108a2cc504d45932e4a6494f4ad0515997ca2467b328b55101cf25b282",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "Chi-inverse",
       "Chi"
@@ -3901,6 +4052,7 @@
     "typLine": 140,
     "sourceHash": "f06d372714c75cde4e309f4a130a863eeb9f407f1783c27bb368698229691c38",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "Du"
     ],
@@ -3923,6 +4075,7 @@
     "typLine": 151,
     "sourceHash": "127140a341984c125b5e089b3a84130463cf4550af6ee65f3bd4c01bad18725f",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "Dsigma"
     ],
@@ -3945,6 +4098,7 @@
     "typLine": 159,
     "sourceHash": "786da3c296f7b28184a6ec8b5f1bafe54bfe34e186f7f015caba721494aa5dbb",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "g"
     ],
@@ -3967,6 +4121,7 @@
     "typLine": 167,
     "sourceHash": "4eda9a1cbdf2b59f690c2f3f163357e3a4bdcdf3ab980556f7ed489cddda5ca7",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "L"
     ],
@@ -3989,6 +4144,7 @@
     "typLine": 177,
     "sourceHash": "2612647053ee65e61e60454a67d329d058ca046a7463d83eed88fbd549bfb554",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -4009,6 +4165,7 @@
     "typLine": 203,
     "sourceHash": "4cdfc5ad648e0cf6255d6f10f82353c79852dc0c6af59bf53e9757dda4663dd4",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "curvature-from-transport"
     ],
@@ -4031,6 +4188,7 @@
     "typLine": 220,
     "sourceHash": "e025fff7f834c95987791f3cbcbe4957ab05b069d8b6dee8c47954de3242acea",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "test"
     ],
@@ -4061,6 +4219,7 @@
     "typLine": 250,
     "sourceHash": "e9ca790bd4c653b269859ac97e007ae48104686409c58c0ca1bcc8b736419cf1",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -4081,6 +4240,7 @@
     "typLine": 267,
     "sourceHash": "2cef1b5bde5a66a738a9b389a0c3f0cc893e080fd0cb6761d2a9bdc3c82c776e",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -4101,6 +4261,7 @@
     "typLine": 313,
     "sourceHash": "bca0f3c3bed2f258f46ab87076f955efdd6598847de5b43f9d9644d8a119b9e7",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "Ricci"
     ],
@@ -4123,6 +4284,7 @@
     "typLine": 328,
     "sourceHash": "2920ffb3ed9f520d2ae85711aac0635dc043d823fcc289ad7430fe9ad11b4e49",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "pseudosphere"
     ],
@@ -4145,6 +4307,7 @@
     "typLine": 339,
     "sourceHash": "f4ff66472cc75a995972f227bc5c8d9c3a90f5f4d0200ec1588ec73548f7aa24",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": false,
@@ -4165,6 +4328,7 @@
     "typLine": 369,
     "sourceHash": "710490ac71cdb2423d5aafb052e85337603d8cfce31975cbb29f23404b53e75b",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "torsion-vector",
       "torsion"
@@ -4192,6 +4356,7 @@
     "typLine": 381,
     "sourceHash": "ef5eb28643919ad29775565144a9d41f537ce6a3bc63361011369b31eb6fafd4",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -4212,6 +4377,7 @@
     "typLine": 460,
     "sourceHash": "5a1862d01eca6e70ab922503a0feaf628e801db7699545396849ed3e1e4f79c0",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "T",
       "U",
@@ -4268,6 +4434,7 @@
     "typLine": 474,
     "sourceHash": "ab4ae7a2c8abcf63bdb769448756a609f18b759fb430eea4804de566839448fb",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -4288,6 +4455,7 @@
     "typLine": 484,
     "sourceHash": "a03ce4dbf5fe5150ba2a3e845de95648b089d64c3ce51e5105566697547056ef",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -4308,6 +4476,7 @@
     "typLine": 492,
     "sourceHash": "2e92dea556106662877c936c35193a1a034647e0f3637a349bce02dc38dd0918",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -4328,6 +4497,7 @@
     "typLine": 502,
     "sourceHash": "8921e456ef0222a0d36ae8ec9f4a29d77254d41c23b4f678c8fc830d2ac81544",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -4348,6 +4518,7 @@
     "typLine": 516,
     "sourceHash": "3b70c4cc4ab48b6948f132ea6586c25170d1b827da2443240fa94ce818f34561",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -4372,6 +4543,7 @@
     "typLine": 527,
     "sourceHash": "51908bc68251ed1ab4d8e3a916f95e1e3dba1e00cd9baf70419107af887834eb",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "delta"
     ],
@@ -4398,6 +4570,7 @@
     "typLine": 538,
     "sourceHash": "792cd46adffb0c0bac14e265f50b6baf2ac48703ed66e31c3f33c7d19221aeec",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "phi-hat"
     ],
@@ -4420,6 +4593,7 @@
     "typLine": 548,
     "sourceHash": "9a2cbefd810d02cffabfaef3d4c85234617fe8519d923933e923a021ecd33a6c",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -4440,6 +4614,7 @@
     "typLine": 561,
     "sourceHash": "8eee47d619c7221de56028ef76330951db134bb3fe8d3122b6d492607a281d0d",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -4460,6 +4635,7 @@
     "typLine": 570,
     "sourceHash": "2579e54631b1b3bda40b1a5b9590b88bb601fd866908448294c24155a38dedcc",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -4480,6 +4656,7 @@
     "typLine": 586,
     "sourceHash": "99729cc5c495fc7ab9adcaac43c66f8270deeb48b0255c75f461527222f53799",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "omega",
       "X",
@@ -4522,6 +4699,7 @@
     "typLine": 595,
     "sourceHash": "51f28a0e2a9051b200b8d29fbda3d1b4be5e533c5dbc2aa73872dce746155ab3",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "nabla"
     ],
@@ -4548,6 +4726,7 @@
     "typLine": 614,
     "sourceHash": "1e55c2dd2b09a5d5df2e121c59d6ee7c9e44c2d434146dfd326008a72aa4ade7",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "cyclic-sum"
     ],
@@ -4570,6 +4749,7 @@
     "typLine": 628,
     "sourceHash": "37404b7357acbd4f705ab32adf38023e7da49698f56f721e90979953d0f9cc95",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -4590,6 +4770,7 @@
     "typLine": 644,
     "sourceHash": "e0758e775247aea607bbd37aa34a0073f159109facc3cf68f95dd8b08b57bf32",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": false,
@@ -4610,6 +4791,7 @@
     "typLine": 657,
     "sourceHash": "74c69db787dfa122157a6fc866a4de7db5da9af2c7bcf8417b76c880375de413",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "nabla",
       "R",
@@ -4647,6 +4829,7 @@
     "typLine": 677,
     "sourceHash": "fc950b037adff2d1e97f418e1a94f5e9fb61d4fd2782287da18a906acf955fc3",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": false,
@@ -4667,6 +4850,7 @@
     "typLine": 691,
     "sourceHash": "340f79774ed9fef9773d350de0171fdbab5ea5b1762405c5e7992bf11d7d348d",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": false,
@@ -4687,6 +4871,7 @@
     "typLine": 704,
     "sourceHash": "f87b2c64166f996076bd7d1cc4da9c9c21e115955c46fcae11d2b9d0f6cb0f5d",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "general-Cartan-2"
     ],
@@ -4709,6 +4894,7 @@
     "typLine": 53,
     "sourceHash": "b0da6805874113fd44e4e168c99665cef876c33820637f865d841eefde288d49",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "lower"
     ],
@@ -4731,6 +4917,7 @@
     "typLine": 62,
     "sourceHash": "3331e15a71a9b9a78d580fe0b5626dbc1a1e8260af2ccca5320301ab298ed7a4",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "raise"
     ],
@@ -4753,6 +4940,7 @@
     "typLine": 74,
     "sourceHash": "f080e8b259eaccd0db91c1f6c22cfdc46ee265274916a316f15585032ef52428",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "contract"
     ],
@@ -4775,6 +4963,7 @@
     "typLine": 111,
     "sourceHash": "74436869c541223eec1ca50e2f141b974ac7b19f50548527d3b26dc7d45cd60e",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "g-sphere"
     ],
@@ -4797,6 +4986,7 @@
     "typLine": 123,
     "sourceHash": "ce1cf54783c16170848b067e5dd73f8182ecc22d675ac25f88ce6fc0ad691232",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -4817,6 +5007,7 @@
     "typLine": 138,
     "sourceHash": "6e6481b751599ee71695e6e3ad20c1210c952e363d3edd6981984d7e8f7e7acf",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -4837,6 +5028,7 @@
     "typLine": 167,
     "sourceHash": "e1549a2fb80d7f90093a3e5078aaa3ba184278b85c886b126ce37b944bf73c62",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "metric->Lagrangian"
     ],
@@ -4859,6 +5051,7 @@
     "typLine": 180,
     "sourceHash": "f3d4f434946992c32e2d8d73cd0fa28207efa3078a28d43e1b197bd06d642176",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "Lagrange-explicit"
     ],
@@ -4881,6 +5074,7 @@
     "typLine": 189,
     "sourceHash": "417023d23508c920b72f73fda371811138c62891c0eb422cb4b3ee9ab7c5b83a",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -4901,6 +5095,7 @@
     "typLine": 242,
     "sourceHash": "a6d6f06dea773e54af81ca7035f035d735ea28e6c05ff8282cdc66d6a1e83b47",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "L2",
       "L1"
@@ -4928,6 +5123,7 @@
     "typLine": 254,
     "sourceHash": "505eb12496965b8b1b52eb33864c762726cf74b8d026fd0771279a57a55de3cd",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -4948,6 +5144,7 @@
     "typLine": 265,
     "sourceHash": "ba77449a2f4acb1817c18b8bf90bc8080b13f71b14a2b2aca7d85a9d8008a21f",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -4968,6 +5165,7 @@
     "typLine": 277,
     "sourceHash": "a28fd31a829bbccf406b8e53abc00d746bd5a606218ee4234326531576496491",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "L1"
     ],
@@ -4979,7 +5177,7 @@
         "capturesResult": false
       },
       {
-        "code": "(simplify (((Lagrange-equations L1) (up (literal-function 'x) (literal-function 'y))) 't))",
+        "code": "(let [x (literal-function 'x)\n      y (literal-function 'y)\n      equations (((Lagrange-equations L1) (up x y)) 't)\n      speed2 (+ (square ((D x) 't)) (square ((D y) 't)))\n      denominator (* speed2 (sqrt speed2))]\n  (/ (simplify (* equations denominator)) denominator))",
         "capturesResult": true
       }
     ],
@@ -4994,6 +5192,7 @@
     "typLine": 324,
     "sourceHash": "1b9f2f628295a82741f2da1b63ff0bba85a3f55d7fed93f5940ecd7b533aa04b",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -5014,6 +5213,7 @@
     "typLine": 350,
     "sourceHash": "401816f1190a49042c8a63538654b0886c4f684f6b7b7fe1c322212a1dd63742",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -5034,6 +5234,7 @@
     "typLine": 375,
     "sourceHash": "47b4341ec603d560ab4462f3e60c896bc35f18cb056a8275801843ee11a94b98",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "SO3-metric"
     ],
@@ -5056,6 +5257,7 @@
     "typLine": 388,
     "sourceHash": "b2597e0297ddf0bbb63adba66bbc3bf7b146d302f05f4386bdb0127b8ee91127",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "M",
       "spherical",
@@ -5097,6 +5299,7 @@
     "typLine": 409,
     "sourceHash": "992bde67830cfa29450c5d6148db4704d8c12207942df3bdd81cde1510544bb0",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "trace2down"
     ],
@@ -5119,6 +5322,7 @@
     "typLine": 467,
     "sourceHash": "10426598b81e504aa45c546c45325e5e35d60dc514d25b93e6fb9e65b2a659ac",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "spacetime-rect-basis",
       "Newton-metric",
@@ -5169,6 +5373,7 @@
     "typLine": 503,
     "sourceHash": "3872bf3f583c17e4aa42f1bb4bfa58a651aa7789d85e51e5a29f9fae25f0230c",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": false,
@@ -5189,6 +5394,7 @@
     "typLine": 514,
     "sourceHash": "2b4d07dbf4ef4f282590632371212ba161a3bc9d8f9e812d6ab9a270d83c6563",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "Tdust"
     ],
@@ -5211,6 +5417,7 @@
     "typLine": 524,
     "sourceHash": "facebb69452a6912ee6e52ba7dbd7da8c62246926126bf90babd883bf604f1b4",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "drop2"
     ],
@@ -5233,6 +5440,7 @@
     "typLine": 537,
     "sourceHash": "fcbbc8eacded9ef51e0c9d326d6dd9a45c6c5675d7457fe0ef67dc54829b061b",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -5253,6 +5461,7 @@
     "typLine": 558,
     "sourceHash": "53a0eb275025cb9cb615fb145795ed9e56e8f7582a1424bf0c529947ba02a070",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -5281,6 +5490,7 @@
     "typLine": 567,
     "sourceHash": "b3681700f411de33d4f090aeb39b8af3b1f3667453678478c16cc1cdbe99da51",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "Schwarzschild-metric"
     ],
@@ -5307,6 +5517,7 @@
     "typLine": 587,
     "sourceHash": "01d4009c366208cee1b26d8a071d022977da0f4cc079c616949cbc45f21d796f",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "prime-meridian"
     ],
@@ -5329,6 +5540,7 @@
     "typLine": 604,
     "sourceHash": "6a0bcf7b1d9ad10ffac001383e3a54c127c607573fa9490cca603cf1d2cb8005",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "prime-meridian+X"
     ],
@@ -5351,6 +5563,7 @@
     "typLine": 620,
     "sourceHash": "ab2a1bfc2e81f579a8b6fd7f5fe3b75cb5c3773313782b7048660875cb52ee96",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "Cartan",
       "geodesic-equation+X-residuals"
@@ -5378,6 +5591,7 @@
     "typLine": 638,
     "sourceHash": "26b9a0275bcb6637426a3b58a64c6663e9e47a40d3fb8efccc347be095bbe34a",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -5398,6 +5612,7 @@
     "typLine": 653,
     "sourceHash": "be17856270cd4708504df619c245d88eb36e56844e2e71eb2477eed54bf5100b",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "Einstein",
       "Einstein-field-equation"
@@ -5425,6 +5640,7 @@
     "typLine": 682,
     "sourceHash": "78a6d7d6da8949768a6b00d9763f939b0ea27cd473d80d9b28f04fbc98dada3f",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "FLRW-metric"
     ],
@@ -5447,6 +5663,7 @@
     "typLine": 701,
     "sourceHash": "f75cad5d82292e4c1dddd53aa5d1b32dbcb917646f896baf25581b1d5d2c770f",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "Tperfect-fluid"
     ],
@@ -5469,6 +5686,7 @@
     "typLine": 33,
     "sourceHash": "01d97c76c717db545ad3853f649ae538d210e40a21153f315dbd9866d8de98af",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "gradient"
     ],
@@ -5491,6 +5709,7 @@
     "typLine": 57,
     "sourceHash": "844b28d45de24ff3744399cf4575c4c8f7a7b657ab50d53869193c16541b8a6f",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "curl"
     ],
@@ -5513,6 +5732,7 @@
     "typLine": 80,
     "sourceHash": "66a8f877f7fe8f3b4682fd3a193c9fc51de5a08717c52f1a180c20a515412dde",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "divergence"
     ],
@@ -5535,6 +5755,7 @@
     "typLine": 90,
     "sourceHash": "9778deceea4a305f57ba965979ada8c78251311c97c5683e0f564e9357d40090",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "divergence"
     ],
@@ -5557,6 +5778,7 @@
     "typLine": 106,
     "sourceHash": "21332d77d560aa1cc9b968a259b650d8d5b2405f6813355b243f1f6194239f43",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "Laplacian"
     ],
@@ -5579,6 +5801,7 @@
     "typLine": 116,
     "sourceHash": "14c14e90ac57c098ad20d17d9abfa92bea8591fbad2058d7a0ce40eb7af768af",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "spherical",
       "R3-spherical-point"
@@ -5610,6 +5833,7 @@
     "typLine": 128,
     "sourceHash": "e206a3a8912d25ebdb28b1a1ddcc9bc592c89ebe72bd254f52e3ec10b25a33b2",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "spherical-metric"
     ],
@@ -5632,6 +5856,7 @@
     "typLine": 140,
     "sourceHash": "2da1df74aaf0334ca1152c4abc8dc44156686c4858806f873caf2225117d86cc",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "e_0",
       "e_1",
@@ -5679,6 +5904,7 @@
     "typLine": 162,
     "sourceHash": "af81de1e3299af0116cc3382964427493b752d5d70a94de6f0f0ce96ab6972a9",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -5699,6 +5925,7 @@
     "typLine": 177,
     "sourceHash": "fb7e08cbfc5cd627696ef6b62c142473ce9e519ab8d71eb543344ffaf6226f8f",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "v"
     ],
@@ -5721,6 +5948,7 @@
     "typLine": 187,
     "sourceHash": "4363d38a68fb49b83c24b9292b12beb3d036e7d15b715a437a42af61c0e5d9ab",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -5741,6 +5969,7 @@
     "typLine": 211,
     "sourceHash": "e58791d93be487674ef0b22c335d1a55a5198e49ad7839b2d9330f33dcd067ce",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -5765,6 +5994,7 @@
     "typLine": 240,
     "sourceHash": "c1d69ab98515a3affa2e3ae34cea5bc841f7fc2c4b3a992cfe646efad166be73",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "SR",
       "an-event",
@@ -5801,6 +6031,7 @@
     "typLine": 259,
     "sourceHash": "561fe676e982e453565b36b41f93f39a483419fd3a7c516be8db616aad6656c8",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "g-Minkowski"
     ],
@@ -5823,6 +6054,7 @@
     "typLine": 274,
     "sourceHash": "4ec29c942384280cefb348db42db5a4583b77f921dadd43894a5cbb7c2dc126b",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -5843,6 +6075,7 @@
     "typLine": 287,
     "sourceHash": "2958679a64f2f481c97384bb8efe41576acfe586159b88b0bdad83f41dcdba9b",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "SR-vector-basis",
       "SR-basis"
@@ -5870,6 +6103,7 @@
     "typLine": 295,
     "sourceHash": "3c3e80f85452354b633b7b03a06234ca08995e280edc4a61de6bd8ca0118ce35",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -5890,6 +6124,7 @@
     "typLine": 306,
     "sourceHash": "10126fe3f60a3b4bb88c7191fc0ef57c0dd47148e965d71f99a57ecd3368fe67",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "p"
     ],
@@ -5916,6 +6151,7 @@
     "typLine": 322,
     "sourceHash": "1abaf421cc1a539590ca30fccd7998be38f5b7b83a5ba443e9114533fc0ec5a6",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "Faraday"
     ],
@@ -5938,6 +6174,7 @@
     "typLine": 335,
     "sourceHash": "9488678443429baab0426d456c26fc2d8a394d780a98c5e7e55b2bcb36533025",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "Maxwell"
     ],
@@ -5960,6 +6197,7 @@
     "typLine": 348,
     "sourceHash": "7fb3d10cde41227f9482d3f6eb2b18e681c0a321486a53e01725179b446ef9e2",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "SR-star"
     ],
@@ -5982,6 +6220,7 @@
     "typLine": 355,
     "sourceHash": "a39ab005d556457e6dceaf8a256c17e0ad218b46bdac25a771a7db794cbd2d06",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -6002,6 +6241,7 @@
     "typLine": 367,
     "sourceHash": "33274f2dc509428725584de7c82a46eabd2665d1b1139fa658348bf036cc8c18",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "J"
     ],
@@ -6024,6 +6264,7 @@
     "typLine": 378,
     "sourceHash": "02b9244601c0474dea7c10b6fb68a589528a56496702b281ba2e0512a0be5ba5",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "F",
       "four-current"
@@ -6051,6 +6292,7 @@
     "typLine": 416,
     "sourceHash": "ecd74df697ee1f69e4aa74b597cec9d9e3067ebb3f4e72d391500e47b3dab9c1",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -6071,6 +6313,7 @@
     "typLine": 428,
     "sourceHash": "d9f4825cbca1e7dbed37e30242078a09b76cab23d3188b812bf3aba54f9784b1",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -6091,6 +6334,7 @@
     "typLine": 438,
     "sourceHash": "5bd4fef99516cb9eca101cc4936d9e05b8dec2406d840eaf05bdc51c3ea37d5d",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -6111,6 +6355,7 @@
     "typLine": 448,
     "sourceHash": "4d4b2c85051f74687e5d74f073bfeff88338316eeb546c14ca9e84f515f71f5c",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -6131,6 +6376,7 @@
     "typLine": 460,
     "sourceHash": "9ee2b21477dd4f0283f79af7cd7a678a982052b8fd4adb09bc77437158dd9d0d",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -6151,6 +6397,7 @@
     "typLine": 475,
     "sourceHash": "ed4ea8395572c6a1e2b92346cc06b21c50ee2d3ce1f9758e2f2f0999eb1b64ad",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -6171,6 +6418,7 @@
     "typLine": 488,
     "sourceHash": "1892d5f54152fb689a4c7352d461da97554e2bd2c81b62cf2d1e1129dc70990b",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -6191,6 +6439,7 @@
     "typLine": 501,
     "sourceHash": "22959105d42817f26f4ca871aabf645a52edd605db4f00a72b947be0735a513c",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -6211,6 +6460,7 @@
     "typLine": 521,
     "sourceHash": "5e843c6f7c2cd44cf82cfa13459a36dac5b03dfaecdb9c96336235921e487197",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "E",
       "B",
@@ -6243,6 +6493,7 @@
     "typLine": 538,
     "sourceHash": "f8a1d250fca29b0cd8251cf36d57a9d826801db7c4dbe67c693b90ad0906ecb4",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -6263,6 +6514,7 @@
     "typLine": 558,
     "sourceHash": "547f8f74f99b440ff413660e54b9b8fd11a17774b0168481f758869f40178564",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "eta-inverse",
       "Force"
@@ -6290,6 +6542,7 @@
     "typLine": 575,
     "sourceHash": "77b1aa50a5eee268e59de01144c0e136cdf3b9d887a53a19b1b58db45c65a112",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -6310,6 +6563,7 @@
     "typLine": 585,
     "sourceHash": "f5ae7ca3949cc0c71b7d19820f36e91b69a4119f0778322eb76034d6e80008cc",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "Ux"
     ],
@@ -6336,6 +6590,7 @@
     "typLine": 604,
     "sourceHash": "502d13208a3a77748aa9c7ba540b68ef16d6caef641321f47d3dd4c43f70b0a3",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -6356,6 +6611,7 @@
     "typLine": 214,
     "sourceHash": "77d225fba17a84e04d687928212555eb33b2103be36dc945d19ed699ac90ce14",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "make-four-tuple",
       "four-tuple->ct",
@@ -6388,6 +6644,7 @@
     "typLine": 226,
     "sourceHash": "e4d4492c0f0ac9aab68a4e65098b20fd5cdcb46869d6eab9f4bc3dbf313bcfe5",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "proper-space-interval"
     ],
@@ -6410,6 +6667,7 @@
     "typLine": 237,
     "sourceHash": "b92030bcebe2baaea6d443e37b9b6027ddbf6aa18b6ffe64cb5dea7e2c79144c",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "proper-time-interval"
     ],
@@ -6432,6 +6690,7 @@
     "typLine": 246,
     "sourceHash": "6c411b3c5ad4bf84f5ec7dfa1739d07428ec2928f2a42793f123fbb9ac15c519",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "general-boost"
     ],
@@ -6454,6 +6713,7 @@
     "typLine": 263,
     "sourceHash": "5da983fb854506ce4bf9ffa234c40c48b45e949615aeed2a6e962f43c655f961",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -6474,6 +6734,7 @@
     "typLine": 275,
     "sourceHash": "89277579f0f1975e0ec201ad8d2f797f8a65b1c82cbcd9908fae3e9bfd7c1ba5",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "general-boost2"
     ],
@@ -6496,6 +6757,7 @@
     "typLine": 308,
     "sourceHash": "8e8bae14e1d887ea1329df87695fe29951e22a272e102f4b54e94d026982fd87",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "extended-rotation"
     ],
@@ -6518,6 +6780,7 @@
     "typLine": 318,
     "sourceHash": "a9675de0d9f19bb98763472a01e743b1d51159ffe7d7c4a136d7ff1440722600",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -6538,6 +6801,7 @@
     "typLine": 359,
     "sourceHash": "d85915d69d8041b6d85ffe769afe8702c8a8d91929d00a5b222e441263a377a5",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "coordinates->event",
       "event->coordinates"
@@ -6565,6 +6829,7 @@
     "typLine": 379,
     "sourceHash": "2cda792410ed6ece1a65517b8d88955a0f28721b2b9611789a411aff79cb9263",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "make-SR-frame"
     ],
@@ -6587,6 +6852,7 @@
     "typLine": 388,
     "sourceHash": "e8db2400758c7749a3302e191122ff5ea003571ac7955486c28af934b3124653",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "home",
       "A"
@@ -6614,6 +6880,7 @@
     "typLine": 403,
     "sourceHash": "a1ee5f616aafb9e2873ac9eabe57be004d4a7f6fa14d218a00743c19ee062085",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "B"
     ],
@@ -6636,6 +6903,7 @@
     "typLine": 414,
     "sourceHash": "767a6bc7611717e54ed289b159b866f0514470a02b2617571897a96bf52657f8",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -6656,6 +6924,7 @@
     "typLine": 427,
     "sourceHash": "c2adc99f1ec7f04d520560d35ab3e0d46bed30f1a140f0fe1d4f95129f032d1a",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "add-v:cs"
     ],
@@ -6678,6 +6947,7 @@
     "typLine": 439,
     "sourceHash": "f1153851812f25529e892b730ea096aa331cf9213b6698cab441a1ef78e8385b",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "start-event"
     ],
@@ -6700,6 +6970,7 @@
     "typLine": 448,
     "sourceHash": "0b15d4e4297fdef9b262d60f2a2d84ce63053c3b88781f7e8742a93a642860a2",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "outgoing"
     ],
@@ -6722,6 +6993,7 @@
     "typLine": 461,
     "sourceHash": "6d12bd8f7c11518c87a5ce3a92671aa42695087b26a58f037dd5a32c2063a3d1",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "traveller-at-turning-point-event"
     ],
@@ -6744,6 +7016,7 @@
     "typLine": 473,
     "sourceHash": "fd9d41f33b8b65cfb506d69f35fc6b0eb6b0c268701847baecb6ee863c20febe",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -6764,6 +7037,7 @@
     "typLine": 482,
     "sourceHash": "cf5c839312251a4f43b3555f30ed74b7bfe4e190c03a796996f6487773f82335",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -6784,6 +7058,7 @@
     "typLine": 491,
     "sourceHash": "4d8cbe6381dda6e6fc125708b4fe49d731a44b00dd8814ceb4888b6ef0a0ae77",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -6808,6 +7083,7 @@
     "typLine": 506,
     "sourceHash": "d47aec70e16c6e569580338d3ef188d862e8fb04fd45fbb0531965da4fe86479",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "halfway-at-home-event"
     ],
@@ -6830,6 +7106,7 @@
     "typLine": 515,
     "sourceHash": "df899074b624e251cf2caf5256f77d890dbeace5734904966ba49bcaeb62add7",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -6854,6 +7131,7 @@
     "typLine": 532,
     "sourceHash": "dee1c5566128447ee8332a038148317b2ae96a264364bebcca491aec1e4d93be",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "home-at-outgoing-turning-point-event"
     ],
@@ -6876,6 +7154,7 @@
     "typLine": 542,
     "sourceHash": "0f0fd44e33c67c920cf1d4170139d76edd068ed8d0f3e0448943ed17dbb65708",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -6896,6 +7175,7 @@
     "typLine": 552,
     "sourceHash": "faae205f4e6cb4607741e2098fd064ac408a125c329421a385c335dcaf3c826f",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "incoming"
     ],
@@ -6918,6 +7198,7 @@
     "typLine": 563,
     "sourceHash": "191979bd2bfdc96c7f2c0cf51ca613289c2879f4160c6b6acc16579289c44b0f",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "end-event"
     ],
@@ -6940,6 +7221,7 @@
     "typLine": 572,
     "sourceHash": "7d7d9af3842de60c1cf0b1a2a1c3bd8988e842b300c4da9519939c9898f0c137",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -6964,6 +7246,7 @@
     "typLine": 589,
     "sourceHash": "ec9e177f55119670f2941b9645f70ebe726d052482f38f50f770b1caa6c780bf",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -6984,6 +7267,7 @@
     "typLine": 602,
     "sourceHash": "0c5bc67d403f4b87703c28b045559cec460d3521b6a8f9a78a211968a0017374",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -7004,6 +7288,7 @@
     "typLine": 612,
     "sourceHash": "76ceadcdf264120447d0dfbef88ea9d231aad461f8b682a70409ebcf1fa84059",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "home-at-incoming-turning-point-event"
     ],
@@ -7026,6 +7311,7 @@
     "typLine": 622,
     "sourceHash": "289742d73497d12d25521a558a11ba8caea072396e1ef7b017b3737d41768ffb",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -7046,6 +7332,7 @@
     "typLine": 19,
     "sourceHash": "ab776dda3ca588559ca63ada8d43b6a5693ee71078c4f94bd5ae7af22c6304f1",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -7070,6 +7357,7 @@
     "typLine": 30,
     "sourceHash": "e1bf65b1a1f917b41d6c066cebdac0445c3e4435e20895d14a37bc3d5a0a2a49",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": false,
@@ -7090,6 +7378,7 @@
     "typLine": 40,
     "sourceHash": "50c684c8b5a4d12adb16af8e050b4eee41a984e1f19bbf03418bd7805c219329",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -7110,6 +7399,7 @@
     "typLine": 47,
     "sourceHash": "1e7167bfd1ad77ea1c367f5adfec24cfd8bfb2fe9edc9d914f324fb8de4bc6f5",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -7130,6 +7420,7 @@
     "typLine": 55,
     "sourceHash": "30e7c1cda758a2d3ef9441cb22b4edff26cfe9a65c460dd2702bf00fd3679993",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": false,
@@ -7150,6 +7441,7 @@
     "typLine": 65,
     "sourceHash": "f8ec58c90fad39ca74c71d94af6333ccd57b989adda8cbbbbf87065f6e6ba55f",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "pi",
       "square"
@@ -7177,6 +7469,7 @@
     "typLine": 74,
     "sourceHash": "60ca4022d4515ecd8c530c3fe09f308635e16bd5eac3c071030be05f2b0c81ff",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -7197,6 +7490,7 @@
     "typLine": 82,
     "sourceHash": "f64052b69f567c382d37bc59fd45af57ef0b0775891cc7beb83bb231e50b1e4d",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "square"
     ],
@@ -7219,6 +7513,7 @@
     "typLine": 91,
     "sourceHash": "0d2d67cb03d1eb2e5ade4edb3c8b226f235e3adf84f59f369fec84f9e851cff7",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "compose"
     ],
@@ -7249,6 +7544,7 @@
     "typLine": 107,
     "sourceHash": "f8e425d0cfc5310cc3df39675fc21b3d447b19e0fa13f6bacd883adf476fb8f7",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "compose"
     ],
@@ -7275,6 +7571,7 @@
     "typLine": 120,
     "sourceHash": "1586187d13b7dec2f45935fc97f8fe0cb428cd392600da66dacbad3089b91b7c",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "abs"
     ],
@@ -7297,6 +7594,7 @@
     "typLine": 130,
     "sourceHash": "95c5522c963dfc6f93897286a106e9f1e1561bf7ccf2661a83d50611ae7dd6ca",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": false,
@@ -7317,6 +7615,7 @@
     "typLine": 139,
     "sourceHash": "736ad73e7a7e588d3ab1e3db385970bd4bfaa470ee21d907ff019ea17f76117b",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "abs"
     ],
@@ -7339,6 +7638,7 @@
     "typLine": 149,
     "sourceHash": "aa37aea5b9a035ed52ba9a357f34629cdf29ec10665c82b5238080ca88c7ae57",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": false,
@@ -7359,6 +7659,7 @@
     "typLine": 159,
     "sourceHash": "996504cbc502eeb9fad3d2517fc665bb67e856849fd471929926270b6ee0baf9",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "factorial"
     ],
@@ -7389,6 +7690,7 @@
     "typLine": 176,
     "sourceHash": "7106b26ddcab5969b44b4a7205951942d140b0774c58594e68f23d1201f42cad",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "f"
     ],
@@ -7415,6 +7717,7 @@
     "typLine": 189,
     "sourceHash": "76b5865ef51461b24d92a536703065989e0dac0ed2f21044c1022674a108b00e",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": false,
@@ -7435,6 +7738,7 @@
     "typLine": 201,
     "sourceHash": "86ddc1ba26b4515ac7478a64b37c482b674c33fd5b59a65304c28dc9ce12f92c",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "factorial"
     ],
@@ -7461,6 +7765,7 @@
     "typLine": 220,
     "sourceHash": "aca706c482cf6aa3f9c6c7dbb05693fbae4f3ec85f7a489a7834b41f9c200897",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "a-list"
     ],
@@ -7495,6 +7800,7 @@
     "typLine": 236,
     "sourceHash": "3b53eabcac6d5ae36a93903e74d313e9f919d6434f3eb2cdb7232c09ba64ecfe",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "another-list"
     ],
@@ -7537,6 +7843,7 @@
     "typLine": 263,
     "sourceHash": "0f38f5ddee449ef4394d9ad84489c54a435bd930b53678cb428ba82763d9b4f7",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "a-vector"
     ],
@@ -7571,6 +7878,7 @@
     "typLine": 289,
     "sourceHash": "d48666f4d01d5cef1b2144c39c963d955709b2fbabc46aadacc50a39db227fa0",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "sum?"
     ],
@@ -7601,6 +7909,7 @@
     "typLine": 27,
     "sourceHash": "2014c116aa4a999194fe562d2e0173ae832a5e5d42889a79ebea16b7b43a1f7b",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "d"
     ],
@@ -7623,6 +7932,7 @@
     "typLine": 39,
     "sourceHash": "62adab4182bd1e4b1f6c71c290916af2addbeb6a4c02666db4b3488e12d14b17",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "h"
     ],
@@ -7649,6 +7959,7 @@
     "typLine": 49,
     "sourceHash": "7fa3a78c6f98e657cac112391c04b21552d88d4b070929072272fdab6868dfdc",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -7669,6 +7980,7 @@
     "typLine": 61,
     "sourceHash": "b94bdfd133a1127bbc8ec9237faf2255810e5da3c22308e0a828a71828c6775a",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "g"
     ],
@@ -7699,6 +8011,7 @@
     "typLine": 75,
     "sourceHash": "b53056b2681f937016f68f6540f91b78f413f9b350cb235baa6d3e07c4bfcd97",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -7719,6 +8032,7 @@
     "typLine": 83,
     "sourceHash": "babee4cbd43dc585fbc6457042803b31943559c3881cb489cf2acb101232c9a1",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -7739,6 +8053,7 @@
     "typLine": 91,
     "sourceHash": "1a968ac74e585c15a1a23f68fa5ab07c2ae1ceca15739268ad770aa6663c8c44",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -7763,6 +8078,7 @@
     "typLine": 102,
     "sourceHash": "57d26e8ad06a5de5476329a95d7a4dfe4cab8584eda418662db462915bb6c5c7",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "g"
     ],
@@ -7789,6 +8105,7 @@
     "typLine": 127,
     "sourceHash": "089b7551fca43c7219bc3a07ce0b02916483c6379f9576fc55d88e1a40095065",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "v",
       "p"
@@ -7824,6 +8141,7 @@
     "typLine": 147,
     "sourceHash": "b0b8057baa00269f26e077d43a8375adce09dab295ebbda6c813dd7a70108d71",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "s"
     ],
@@ -7846,6 +8164,7 @@
     "typLine": 166,
     "sourceHash": "3322df03c6e623ff50479b46edeca092b38b1234533316929c09a4986b335c9f",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -7866,6 +8185,7 @@
     "typLine": 174,
     "sourceHash": "c0c3a48b09a857738a86ef526948dcad8945991ce9ffcf324c682724e46f7e23",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -7886,6 +8206,7 @@
     "typLine": 182,
     "sourceHash": "fcc4451adca491444ae0415b97a272d623bca3fdd8469abf7bdd69f4d42e9249",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -7906,6 +8227,7 @@
     "typLine": 200,
     "sourceHash": "795a1ca024afd24254731794f31bc0feba688641d5ecf5e61213d5668a2cd64a",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -7926,6 +8248,7 @@
     "typLine": 239,
     "sourceHash": "a1984397bc1d43528810e94af4aa2eecba4a971f8da1e8313d34143fdfa15d7f",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "derivative-of-sine"
     ],
@@ -7952,6 +8275,7 @@
     "typLine": 271,
     "sourceHash": "a585ba5e800d4ecd68280a6b64e4179ab7f39ff7ee059e15325133a6a0c869a7",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -7972,6 +8296,7 @@
     "typLine": 279,
     "sourceHash": "16fc2ddb140668a234c53c61964a1ebeeecaab85e6ab167ce1b7ac0a312e9c3f",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -7992,6 +8317,7 @@
     "typLine": 296,
     "sourceHash": "0e0abaf5ede13b8ba8b7cc5bfbea3e0097da66b9fe3d49a48ca31dd76d23e5cf",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -8012,6 +8338,7 @@
     "typLine": 330,
     "sourceHash": "9abf8a5fa8fd8e3f541417a08aeef190857630ed4ad96ac18d57b8a6f04236f2",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "h"
     ],
@@ -8023,7 +8350,11 @@
         "capturesResult": false
       },
       {
-        "code": "(simplify (h (up 'x 'y)))",
+        "code": "(h (up 'x 'y))",
+        "capturesResult": true
+      },
+      {
+        "code": "(simplify ((D g) 'x 'y))",
         "capturesResult": true
       }
     ],
@@ -8038,6 +8369,7 @@
     "typLine": 371,
     "sourceHash": "01fed75d0a83caf4172a0ecb0cfb35bc16719b6638b3006daffce1ca9c49b61e",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "H"
     ],
@@ -8068,6 +8400,7 @@
     "typLine": 403,
     "sourceHash": "01b90fdf6170868e3abd3b4e1a2a415d23e833c1b65b56e23c8dfedef9176783",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "helix"
     ],
@@ -8090,6 +8423,7 @@
     "typLine": 411,
     "sourceHash": "bed6db140c84ed6f29a41e112fae6be82c5965b213c0adb6d43f1eda742fbde8",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "helix"
     ],
@@ -8112,6 +8446,7 @@
     "typLine": 418,
     "sourceHash": "42270503b8430aa678f1fc72af431c0ff9731b50fea63cd4f80c8345de667118",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -8132,6 +8467,7 @@
     "typLine": 434,
     "sourceHash": "2b7982d9680616d9dfb3d03c83935c4ba0875089a5a6c21da0332d8b8e9a4fa3",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "g"
     ],
@@ -8158,6 +8494,7 @@
     "typLine": 458,
     "sourceHash": "9edefc5f37baf40bb4871d975c6f93b63c9e91f7075b741b73075e33ec20d1d2",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "f",
       "g",
@@ -8190,6 +8527,7 @@
     "typLine": 474,
     "sourceHash": "6cf227407ea94973010f14dcd815a01df4e8efcb904f63647d583444b07038f2",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "f",
       "g",
@@ -8222,6 +8560,7 @@
     "typLine": 44,
     "sourceHash": "e10ca95c9a852c21c63a12083d947d7e2668e959bd9f96ccbf33db372a7a80bd",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -8242,6 +8581,7 @@
     "typLine": 86,
     "sourceHash": "edddc5d519d4c94174943e6b8fd609ce3a35f423f6fef4c52f661822ed4e5339",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -8262,6 +8602,7 @@
     "typLine": 97,
     "sourceHash": "d0744aabeee0d6aa42cc698bb63411214dad963bcb11f7c40d6b7ebfeccd9a9c",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -8282,6 +8623,7 @@
     "typLine": 112,
     "sourceHash": "109c1ca9b64d729f91471dd6c973118993dafb2ea8b96b6b75f9b9389ef457b5",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "F"
     ],
@@ -8308,6 +8650,7 @@
     "typLine": 135,
     "sourceHash": "7a6c314eba0bc69763c49384f10917a6fe3e70bfe058e6d8ed0823bed4fd3403",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": true,
@@ -8328,6 +8671,7 @@
     "typLine": 21,
     "sourceHash": "18918a44a216826e7391f50e81e39628a5f1b4103a243efb8697b3a7f7670c97",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": false,
     "executable": false,
@@ -8348,6 +8692,7 @@
     "typLine": 29,
     "sourceHash": "4de974ba844f9ae4ca705d53d1e155e8c1f717a508e69213d27eab7ef048db5a",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": false,
     "executable": false,
@@ -8368,6 +8713,7 @@
     "typLine": 36,
     "sourceHash": "f4036d4e9f46874dacceaea0ea71a27d4715f392b5e102b212201edd4c04fc71",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "R3-rect-point"
     ],
@@ -8390,6 +8736,7 @@
     "typLine": 43,
     "sourceHash": "62a6e659cb8f8c7c1d310a5b427a01f6ca661289744d916cb94df14374905878",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": false,
     "executable": false,
@@ -8410,6 +8757,7 @@
     "typLine": 50,
     "sourceHash": "bbea08834284320ca05714618dec251b1a9cf3bd6332c8c032480f4b1baf6dbc",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": false,
     "executable": false,
@@ -8430,6 +8778,7 @@
     "typLine": 61,
     "sourceHash": "1e29977a3be8d59088aa2911bc1d3fe1169d2d1e46dad35e66d8bd9460f7a26b",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "R2-rect-point"
     ],
@@ -8452,6 +8801,7 @@
     "typLine": 69,
     "sourceHash": "45d891be20f97b3a9d0b0b8ba60e7ac7f92d0079509c56533a88d0be87afffad",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "S2"
     ],
@@ -8474,6 +8824,7 @@
     "typLine": 77,
     "sourceHash": "e691f8bf78d567a8d1dc683760e11340386960eaa4f1aae9f3305f3057d7e79f",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": false,
@@ -8494,6 +8845,7 @@
     "typLine": 88,
     "sourceHash": "720b644a0bb0fb9ac8aab4581e3f284ce21e5204c4af70a6d861b2bffbd1421e",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": false,
@@ -8514,6 +8866,7 @@
     "typLine": 101,
     "sourceHash": "0c569ae6906545edad38204d13033325abbf1cb7fb59680dd03a11609e7b1edb",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": false,
@@ -8534,6 +8887,7 @@
     "typLine": 108,
     "sourceHash": "760d38b2262ca7e49c825abe177fd2bff332970183d444d55c8d0138f05c2e43",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": false,
@@ -8554,6 +8908,7 @@
     "typLine": 115,
     "sourceHash": "76fef8025349cf7e871a7fa9f6e54331f4dd26fb5fdaa610b0e29177534f6bbd",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": false,
     "executable": false,
@@ -8574,6 +8929,7 @@
     "typLine": 125,
     "sourceHash": "76fef8025349cf7e871a7fa9f6e54331f4dd26fb5fdaa610b0e29177534f6bbd",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": false,
     "executable": false,
@@ -8594,6 +8950,7 @@
     "typLine": 132,
     "sourceHash": "b4a7dec839df03c202b345dca9034dd0e8132a991bc1fb075561780818eb282e",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "omega"
     ],
@@ -8616,6 +8973,7 @@
     "typLine": 139,
     "sourceHash": "1c3ee9625e0133b0502ffae4e0153bd65c532a0ea56e224d4a995bd07e78bf39",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": false,
@@ -8636,6 +8994,7 @@
     "typLine": 148,
     "sourceHash": "9e718fed8ca164f0a9e26c02af732e7aa8d6d138cdbf1e34f8fd526b7a83e038",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "f"
     ],
@@ -8658,6 +9017,7 @@
     "typLine": 158,
     "sourceHash": "59d9b88ed7ba2b5f7bb5a9b6f67b25d2d290a131a04b9d2d7a45a511e24a32c7",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "S2-basis"
     ],
@@ -8684,6 +9044,7 @@
     "typLine": 172,
     "sourceHash": "7c897a7b8bde31da8de1c07c416b4296cd115e27b0f0c705ca6223c530a2727e",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "spacetime-rect-basis"
     ],
@@ -8710,6 +9071,7 @@
     "typLine": 180,
     "sourceHash": "79ea2a9cae952f5cbb64dc06557c73f2a319ea5d1a5fdd0445e75a31f8e418fc",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "V"
     ],
@@ -8732,6 +9094,7 @@
     "typLine": 187,
     "sourceHash": "0ef8d4b9341689fb93b71dd9cf6136cc81748e920c03214971346359849ee78e",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": false,
@@ -8752,6 +9115,7 @@
     "typLine": 196,
     "sourceHash": "6d2b70afc6d2486f14a1cac44217bfe5b43bfaf5ca43bcf2b17deecf7c7468e0",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [],
     "capturesResult": true,
     "executable": false,
@@ -8772,6 +9136,7 @@
     "typLine": 206,
     "sourceHash": "5c5a9f4f458d6e58b449a5a58ed33e7b5bd721d184807bb39c4e5548fc384d03",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "SR-basis"
     ],
@@ -8794,6 +9159,7 @@
     "typLine": 213,
     "sourceHash": "bdfb2e37254c1bd989c50946b4ab8b7cafd840101880f137d8591eaef946674f",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "SR-vector-basis"
     ],
@@ -8816,6 +9182,7 @@
     "typLine": 222,
     "sourceHash": "c740fa47e658fc94b6e26de8e3b999a62961d1512b5b0a1a333afc1b2222ad56",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "g-Minkowski",
       "SR-vector-basis",
@@ -8892,6 +9259,7 @@
     "typLine": 287,
     "sourceHash": "70a56cf5f23ddcda8576780517e57d04dc9551978d1f8d255dbbc4422e0b6d02",
     "backgroundSetup": false,
+    "prerequisiteIds": [],
     "definitions": [
       "home"
     ],

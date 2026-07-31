@@ -334,7 +334,25 @@ function applyPdfFidelitySourceRepairs(source, stem) {
 }
 
 function normalizeOrgSource(source, stem) {
-  const repairedSource = applyPdfFidelitySourceRepairs(normalizeImportedOrgSource(source, stem), stem);
+  // Org's `:results value raw` places cached evaluator output in a following
+  // #| ... |# block. Attach that output to the displayed source as comments
+  // before Pandoc sees it; otherwise Pandoc makes two adjacent raw blocks and
+  // the later merge pass cannot distinguish the result from executable code.
+  const sourceWithCommentedRawResults = source.replace(
+    /(^[ \t]*#\+begin_src[ \t]+scheme[^\n]*:results[^\n]*\braw\b[^\n]*\n)([\s\S]*?)(^[ \t]*#\+end_src[^\n]*\n)[ \t]*\n?^[ \t]*#\+RESULTS[^\n]*:\n#\|\n?([\s\S]*?)\n?\|#/gim,
+    (_match, begin, code, end, result) => {
+      const commentedResult = result
+        .trim()
+        .split("\n")
+        .map(line => `;; ${line}`.trimEnd())
+        .join("\n");
+      return `${begin}${code.trimEnd()}\n${commentedResult}\n${end.trimEnd()}`;
+    },
+  );
+  const repairedSource = applyPdfFidelitySourceRepairs(
+    normalizeImportedOrgSource(sourceWithCommentedRawResults, stem),
+    stem,
+  );
   return wrapBareSchemeBlocks(normalizeDollarMath(normalizeLatexDisplaysWithFootnotes(repairedSource, stem)))
     // Pandoc emits Org headings below level three as plain paragraphs in
     // Typst. Mark them here so the cleanup pass can preserve them as visible
@@ -797,8 +815,19 @@ function cleanTypstOutput(body) {
       "```scheme\n(define Cartan\n  (Christoffel->Cartan\n   (metric->Christoffel-2 the-metric\n         (coordinate-system->basis R2-rect))))\n```",
     )
     .replace(
-      /```scheme\n([\s\S]*?)\n```\n\n```\n(#\|[\s\S]*?\|#)\n```/g,
-      (_match, code, result) => `\`\`\`scheme\n${code}\n\n${result}\n\`\`\``,
+      /```scheme\n([\s\S]*?)\n```\n\n```\n#\|\n?([\s\S]*?)\n?\|#\n```/g,
+      (_match, code, result) => {
+        // `:results value raw` makes Pandoc emit the cached result as a
+        // second verbatim block. Keep it visually attached to the example,
+        // but make it a comment: it is output, not another expression for
+        // the Emmy runner to execute.
+        const commentedResult = result
+          .trim()
+          .split("\n")
+          .map(line => `;; ${line}`.trimEnd())
+          .join("\n");
+        return `\`\`\`scheme\n${code}\n${commentedResult}\n\`\`\``;
+      },
     )
     .replace(/\\#\|\n\n```scheme\n([\s\S]*?)\n\|#\n```\n?/g, "```scheme\n$1\n```\n")
     .replace(/(```scheme\n[\s\S]*?\n```)/g, block => block.replaceAll("’", "'"))
@@ -2169,14 +2198,8 @@ function wrapEmbeddedSchemeBlocks(body, stem) {
   let ordinal = 0;
   return body.replace(/```scheme\n[\s\S]*?\n```/g, source => {
     ordinal += 1;
-    let executableOrdinal = ordinal;
     const code = source.slice("```scheme\n".length, -"\n```".length);
-    // The printed discussion introduces the geodesic residual immediately
-    // before showing how Cartan is computed. Execute those two blocks in the
-    // dependency order while leaving their printed positions untouched.
-    if (stem === "chapter001" && code.includes("(define geodesic-equation-residuals")) executableOrdinal = 16;
-    if (stem === "chapter001" && code.includes("(define Cartan")) executableOrdinal = 15;
-    const number = String(executableOrdinal).padStart(3, "0");
+    const number = String(ordinal).padStart(3, "0");
     const id = `${stem}/${number}`;
     if (code.includes("*/")) throw new Error(`Scheme block ${id} cannot be embedded in a Typst comment`);
     return `/* fdg-code-source: ${id}\n${code}\nfdg-code-source-end */\n#fdg-code-block("${id}")`;

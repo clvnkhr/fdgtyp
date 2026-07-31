@@ -93,11 +93,8 @@ So the value of the Lagrangian at an arbitrary dynamical state is:
 /* fdg-code-source: chapter001/005
 ((Lsphere 'm 'R)
  (up 't (up 'theta 'phi) (up 'thetadot 'phidot)))
-
-#|
-(+ (* 1/2 (expt R 2) m (expt phidot 2) (expt (sin theta) 2))
-   (* 1/2 (expt R 2) m (expt thetadot 2)))
-|#
+;; (+ (* 1/2 (expt R 2) m (expt phidot 2) (expt (sin theta) 2))
+;;    (* 1/2 (expt R 2) m (expt thetadot 2)))
 fdg-code-source-end */
 #fdg-code-block("chapter001/005")
 
@@ -168,12 +165,9 @@ And we can apply our Lagrangian to an arbitrary state:
 
 /* fdg-code-source: chapter001/010
 (L (up 't (up 'x 'y) (up 'vx 'vy)))
-
-#|
-(+ (* 1/2 m (expt vx 2) (g_00 (up x y)))
-   (* m vx vy (g_01 (up x y)))
-   (* 1/2 m (expt vy 2) (g_11 (up x y))))
-|#
+;; (+ (* 1/2 m (expt vx 2) (g_00 (up x y)))
+;;    (* m vx vy (g_01 (up x y)))
+;;    (* 1/2 m (expt vy 2) (g_11 (up x y))))
 fdg-code-source-end */
 #fdg-code-block("chapter001/010")
 
@@ -191,10 +185,7 @@ The values of $gamma$ are points on the manifold, not a coordinate representatio
 
 /* fdg-code-source: chapter001/012
 ((chart R2-rect) (gamma ((point R1-rect) 't)))
-
-#|
-(up (q^0 t) (q^1 t))
-|#
+;; (up (q^0 t) (q^1 t))
 fdg-code-source-end */
 #fdg-code-block("chapter001/012")
 
@@ -205,10 +196,7 @@ So, to work with coordinates we write:
   (compose (chart R2-rect) gamma (point R1-rect)))
 
 (coordinate-path 't)
-
-#|
-(up (q^0 t) (q^1 t))
-|#
+;; (up (q^0 t) (q^1 t))
 fdg-code-source-end */
 #fdg-code-block("chapter001/013")
 
@@ -230,14 +218,14 @@ In coordinates, the geodesic equations are expressed $ D^2 q^i (t)+ sum_(j k) Ga
 We can get and save the geodesic equation residuals by:
 
 
-/* fdg-code-source: chapter001/016
+/* fdg-code-source: chapter001/015
 (define geodesic-equation-residuals
   (((((covariant-derivative Cartan gamma) d/dt)
      ((differential gamma) d/dt))
     (chart R2-rect))
    ((point R1-rect) 't)))
 fdg-code-source-end */
-#fdg-code-block("chapter001/016")
+#fdg-code-block("chapter001/015")
 
 where #raw(lang:"scheme", "d/dt") is a vector field on the real line#footnote[#metadata("chapter001: real-line coordinate setup")#label("cljs-text-edit-chapter001-real-line-coordinate-setup")#fdg-edition-select(
   scheme: [We established #raw(lang:"scheme", "t") as a coordinate function on the rectangular coordinates of the real line by #raw(lang:"scheme", "(define-coordinates t R1-rect)"). This also defined #raw(lang:"scheme", "d/dt") as a coordinate vector field and #raw(lang:"scheme", "dt") as a one-form field on the real line.],
@@ -245,13 +233,13 @@ where #raw(lang:"scheme", "d/dt") is a vector field on the real line#footnote[#m
   both: [The setup #raw(lang:"scheme", "(define-coordinates t R1-rect)") establishes the real-line coordinate objects. Scheme names the coordinate vector field #raw(lang:"scheme", "d/dt"); the translated ClojureScript uses #raw(lang:"clojure", "d:dt"). Both use #raw(lang:"scheme", "dt") for the one-form field.],
 )] and #raw(lang:"scheme", "Cartan") is a way of encapsulating the geometry, as specified by the Christoffel coefficients. The Christoffel coefficients are computed from the metric:
 
-/* fdg-code-source: chapter001/015
+/* fdg-code-source: chapter001/016
 (define Cartan
   (Christoffel->Cartan
    (metric->Christoffel-2 the-metric
          (coordinate-system->basis R2-rect))))
 fdg-code-source-end */
-#fdg-code-block("chapter001/015")
+#fdg-code-block("chapter001/016")
 
 The two messy residual results that we did not show are related by the metric. If we change the representation of the geodesic equations by "lowering" them using the mass and the metric, we see that the residuals are equal:
 
@@ -264,8 +252,7 @@ The two messy residual results that we did not show are related by the metric. I
 (- Lagrange-residuals
    (* (* 'm (metric-components (gamma ((point R1-rect) 't))))
       geodesic-equation-residuals))
-
-(down 0 0)
+;; (down 0 0)
 fdg-code-source-end */
 #fdg-code-block("chapter001/017")
 

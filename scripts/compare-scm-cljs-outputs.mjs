@@ -6,6 +6,7 @@ import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const manifest = JSON.parse(readFileSync(path.join(root, "emmy-runner/public/generated/blocks.json"), "utf8"));
+const check = process.argv.includes("--check");
 
 function commentOutputs(source, marker) {
   const lines = source.split("\n");
@@ -237,7 +238,8 @@ const different = counts.different ?? [];
 const unresolved = counts.unresolved ?? [];
 const equal = counts.equal ?? [];
 const verboseEquivalent = equal.filter(row =>
-  row.cljs.length >= 1.5 * Math.max(1, row.scm.length) && row.cljs.length - row.scm.length >= 120
+  row.cljs.length >= 1.5 * Math.max(1, row.scm.length)
+  && row.cljs.length - row.scm.length >= 120
 );
 const coverageGaps = unresolved.filter(row =>
   row.reason.includes("output count differs")
@@ -368,3 +370,11 @@ writeFileSync(path.join(root, "output-comparison.typ"), report);
 
 console.log(`Output comparison: ${comparedCount} paired positions: ${equal.length} equivalent (${verboseEquivalent.length} disproportionately verbose), ${different.length} different, ${otherUnresolved.length} unresolved; ${coverageGaps.length} missing counterparts excluded.`);
 if (different.length) console.error(`OUTPUT DIFFERENCES: ${different.map(x => `${x.id}:${x.index}`).join(", ")}`);
+if (check && verboseEquivalent.length) {
+  console.error(
+    `DISPROPORTIONATELY LARGE CLJS OUTPUTS: ${
+      verboseEquivalent.map(row => `${row.id}:${row.index}`).join(", ")
+    }`,
+  );
+  process.exitCode = 1;
+}

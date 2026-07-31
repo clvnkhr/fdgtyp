@@ -16,6 +16,14 @@ npm run dev
 
 Then open <http://localhost:8080/>.
 
+The runner includes a Clojure-aware CodeMirror editor with syntax highlighting,
+structural editing, bracket matching, and completion (`Ctrl-Space`). The
+inspector shows live SCI namespaces and public vars. Put the cursor on a symbol
+or hover over it to see its runtime category, collection shape, function
+argument lists, documentation, and a bounded value preview. Pending `declare`
+Vars are hidden from the namespace list by default and can be revealed with the
+**Show pending declarations** toggle.
+
 For the optimized build used by GitHub Pages:
 
 ```sh
