@@ -8,4 +8,5 @@
 
 (defn spherical-metric
   [r]
-  (fn [v1 v2] (* (square r) (+ (* (dtheta v1) (dtheta v2)) (* (square (sin theta)) (dphi v1) (dphi v2))))))
+  (fn [v1 v2]
+    (* (square r) (+ (* (dtheta v1) (dtheta v2)) (* (square (sin theta)) (dphi v1) (dphi v2))))))

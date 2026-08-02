@@ -1,4 +1,6 @@
-(tensor-test (F (covariant-derivative (literal-Cartan 'G R3-rect))) '(oneform vector vector) R3-rect)
+(tensor-test (F (covariant-derivative (literal-Cartan 'G R3-rect)))
+             '(oneform vector vector)
+             R3-rect)
 ;; => [0 0
 ;;     (+ (* (omega41535_0 (up x041872 x141873 x241874))
 ;;           (v41537↑0 (up x041872 x141873 x241874))

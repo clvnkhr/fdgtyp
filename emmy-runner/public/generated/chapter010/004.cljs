@@ -1,6 +1,8 @@
 (defn divergence
   ([metric orthonormal-basis]
-   (let [star (Hodge-star metric orthonormal-basis) flat (lower metric)] (compose star d star flat)))
+   (let [star (Hodge-star metric orthonormal-basis)
+         flat (lower metric)]
+     (compose star d star flat)))
   ([Cartan]
    (fn [v]
      (fn [point]

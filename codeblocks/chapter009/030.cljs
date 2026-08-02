@@ -5,7 +5,8 @@
         nabla (covariant-derivative connection)
         Ricci-tensor (Ricci nabla basis)
         Ricci-scalar ((trace2down metric-tensor basis) Ricci-tensor)]
-    (letfn [(Einstein-tensor [v1 v2] (- (Ricci-tensor v1 v2) (* (/ 1 2) Ricci-scalar (metric-tensor v1 v2))))]
+    (letfn [(Einstein-tensor [v1 v2]
+              (- (Ricci-tensor v1 v2) (* (/ 1 2) Ricci-scalar (metric-tensor v1 v2))))]
       Einstein-tensor)))
 
 (defn Einstein-field-equation

@@ -19,7 +19,7 @@ node scripts/convert-scheme-to-emmy.mjs
 ```
 
 The Emmy converter runs zprint 1.3.0 over every editable and browser-served
-`.cljs` block. The formatter is pinned by the root `deps.edn`; its 120-column
+`.cljs` block. The formatter is pinned by the root `deps.edn`; its 100-column
 output is the only stage allowed to make line-breaking decisions. The mechanical
 Scheme translator emits flat forms and does not insert layout newlines of its
 own. Captured `;; =>` comments are deliberately excluded from reformatting. To

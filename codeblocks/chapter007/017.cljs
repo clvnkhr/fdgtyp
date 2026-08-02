@@ -8,5 +8,6 @@
           oneform-basis (basis->oneform-basis basis)]
       (let [J-inv (mapr oneform-basis prime-vector-basis)
             J (mapr prime-dual-basis vector-basis)]
-        (let [omega-prime-forms (procedure->oneform-field (fn [v] (+ (* J (v J-inv)) (* J (* (forms v) J-inv)))))]
+        (let [omega-prime-forms (procedure->oneform-field
+                                  (fn [v] (+ (* J (v J-inv)) (* J (* (forms v) J-inv)))))]
           (make-Cartan omega-prime-forms basis-prime))))))

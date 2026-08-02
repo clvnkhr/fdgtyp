@@ -6,7 +6,8 @@
         v (literal-vector-field 'v-coord coordsys)
         f (literal-manifold-function 'f-coord coordsys)]
     (let [nabla (covariant-derivative Cartan)]
-      (- (((((curvature-from-transport Cartan) w v) u) f) m) (((((Riemann-curvature nabla) w v) u) f) m)))))
+      (- (((((curvature-from-transport Cartan) w v) u) f) m)
+         (((((Riemann-curvature nabla) w v) u) f) m)))))
 
 (simplify (test R2-rect general-Cartan-2))
 ;; => 0

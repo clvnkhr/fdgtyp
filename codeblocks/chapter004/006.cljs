@@ -1,4 +1,5 @@
-(def b-polar (* (Jacobian (coordinate-system->basis R2-polar) (coordinate-system->basis R2-rect)) b-rect))
+(def b-polar
+  (* (Jacobian (coordinate-system->basis R2-polar) (coordinate-system->basis R2-rect)) b-rect))
 
 ;; scmutils simplified this result automatically; Emmy requires an explicit call.
 (simplify (b-polar ((point R2-rect) (up 'x0 'y0))))

@@ -5,7 +5,8 @@
                 sigma (up 'sigma0 'sigma1)]
             (let [m (Chi-inverse sigma)]
               (let [s (make-state sigma ((U Chi) m))]
-                (- (((commutator (L W) (L V)) U-select) s) ((((commutator (nabla W) (nabla V)) U) Chi) m))))))
+                (- (((commutator (L W) (L V)) U-select) s)
+                   ((((commutator (nabla W) (nabla V)) U) Chi) m))))))
 ;; => (up (+ (* 2 (U-rect↑1 (up sigma0 sigma1)) (W-rect↑1 (up sigma0 sigma1))
 ;;    (Gamma_11↑0 (up sigma0 sigma1)) (Gamma_00↑0 (up sigma0 sigma1)) (V-rect↑0
 ;;    (up sigma0 sigma1))) (* -2 (U-rect↑1 (up sigma0 sigma1)) (W-rect↑1 (up

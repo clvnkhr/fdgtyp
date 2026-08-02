@@ -8,5 +8,6 @@
               gamma (/ 1 (sqrt (- 1 betasq)))]
           (let [alpha (- gamma 1)]
             (let [delta-ct (* gamma (+ delta-ct-prime (* bx v:c)))
-                  delta-x (+ (* gamma v:c direction delta-ct-prime) delta-x-prime (* alpha direction bx))]
+                  delta-x
+                    (+ (* gamma v:c direction delta-ct-prime) delta-x-prime (* alpha direction bx))]
               (make-four-tuple delta-ct delta-x))))))))

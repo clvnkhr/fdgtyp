@@ -4,7 +4,7 @@
             [zprint.core :as zprint]))
 
 (def options
-  {:width 120
+  {:width 100
    :parse {:interpose "\n\n"}})
 
 (def result-options

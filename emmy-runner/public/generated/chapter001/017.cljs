@@ -2,5 +2,6 @@
 
 ;; scmutils simplified this result automatically; Emmy requires an explicit call.
 (simplify (- Lagrange-residuals
-             (* (* 'm (metric-components (gamma ((point R1-rect) 't)))) geodesic-equation-residuals)))
+             (* (* 'm (metric-components (gamma ((point R1-rect) 't))))
+                geodesic-equation-residuals)))
 ;; => (down 0 0)

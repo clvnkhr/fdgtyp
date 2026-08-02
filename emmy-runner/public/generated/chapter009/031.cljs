@@ -6,5 +6,6 @@
     (letfn [(g [v1 v2]
               (+ (* -1 (square c) (dt v1) (dt v2))
                  (* a (dr v1) (dr v2))
-                 (* b (+ (* (dtheta v1) (dtheta v2)) (* (square (sin theta)) (dphi v1) (dphi v2))))))]
+                 (* b
+                    (+ (* (dtheta v1) (dtheta v2)) (* (square (sin theta)) (dphi v1) (dphi v2))))))]
       g)))

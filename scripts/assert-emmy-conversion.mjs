@@ -39,11 +39,11 @@ const shadowConfig = readFileSync(
   path.join(root, "emmy-runner", "shadow-cljs.edn"),
   "utf8",
 );
-if (!formatterSource.includes(':width 120')
+if (!formatterSource.includes(':width 100')
     || !formatterSource.includes('zprint-file-str source "emmy.cljs" options')
     || !formatterSource.includes('(defn format-source-once [source]')
     || !formatterSource.includes('(= formatted current) current')) {
-  throw new Error("The Emmy formatter must pass its 120-column options to zprint");
+  throw new Error("The Emmy formatter must pass its 100-column options to zprint");
 }
 if (!converterSource.includes('node.items.map(render).join(" ")')
     || converterSource.includes("flat.length <= 92")

@@ -1,5 +1,6 @@
 ;; scmutils simplified this result automatically; Emmy requires an explicit call.
-(simplify ((orthonormal-spherical-oneform-basis ((curl spherical-metric orthonormal-spherical-basis) v))
+(simplify ((orthonormal-spherical-oneform-basis ((curl spherical-metric orthonormal-spherical-basis)
+                                                  v))
             R3-spherical-point))
 ;; => (up (/ (+ (* (sin theta0) (((partial 1) v↑2) (up r0 theta0 phi0)))
 ;;              (* (v↑2 (up r0 theta0 phi0)) (cos theta0))

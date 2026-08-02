@@ -4,6 +4,7 @@
                 polar-dual-basis (basis->oneform-basis polar-basis)
                 f (literal-manifold-function 'f-rect R2-rect)]
             ((- ((commutator e0 e1) f)
-                (* (- (e0 (polar-dual-basis e1)) (e1 (polar-dual-basis e0))) (polar-vector-basis f)))
+                (* (- (e0 (polar-dual-basis e1)) (e1 (polar-dual-basis e0)))
+                   (polar-vector-basis f)))
               R2-rect-point)))
 ;; => 0

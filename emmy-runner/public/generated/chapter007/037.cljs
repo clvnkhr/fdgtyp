@@ -1,4 +1,5 @@
-(show-expression (((((covariant-derivative sphere-Cartan gamma) d:dt) ((differential gamma) d:dt)) (chart S2-spherical))
+(show-expression (((((covariant-derivative sphere-Cartan gamma) d:dt) ((differential gamma) d:dt))
+                    (chart S2-spherical))
                    ((point R1-rect) 't0)))
 ;; => (up (+ (((expt D 2) alpha) t0)
 ;;           (* (- (* (sin (alpha t0)) (cos (alpha t0)))) ((D beta) t0) ((D beta) t0)))

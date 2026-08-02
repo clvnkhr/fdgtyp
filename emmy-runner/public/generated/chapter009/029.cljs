@@ -1,4 +1,5 @@
-(determinant (submatrix (((* (partial 1) (partial 0)) geodesic-equation+X-residuals) 0 (up 0 0 0)) 0 2 0 2))
+(determinant
+  (submatrix (((* (partial 1) (partial 0)) geodesic-equation+X-residuals) 0 (up 0 0 0)) 0 2 0 2))
 ;; => (- (* lambda (exp (* lambda t)) lambda (- (* (+ (* lambda (exp (* lambda t))
 ;;    lambda) (* (+ (* (/ (* -1 (expt c 2) (- 1 (/ (* 2 G M) (* (expt c 2) r)))
 ;;    (expt r 2) (expt r 2) (expt (sin (* (sqrt (/ (* G M) (expt r 3))) t)) 2)) (*

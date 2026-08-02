@@ -1,4 +1,6 @@
-(defn Ux [beta] (+ (* (/ 1 (sqrt (- 1 (square beta)))) d:dct) (* (/ beta (sqrt (- 1 (square beta)))) d:dx)))
+(defn Ux
+  [beta]
+  (+ (* (/ 1 (sqrt (- 1 (square beta)))) d:dct) (* (/ beta (sqrt (- 1 (square beta)))) d:dx)))
 
 ((Force 'q F (Ux 'v:c) dy) an-event)
 ;; => (* -1

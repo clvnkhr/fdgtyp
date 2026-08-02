@@ -6,4 +6,6 @@
         (let [k (get-rank tau)
               nabla_V ((covariant-derivative-vector Cartan) V)]
           (- (V (apply tau vs))
-             (sigma (fn [i] (apply tau (list-with-substituted-coord vs i (nabla_V (nth vs i))))) 0 (- k 1))))))))
+             (sigma (fn [i] (apply tau (list-with-substituted-coord vs i (nabla_V (nth vs i)))))
+                    0
+                    (- k 1))))))))

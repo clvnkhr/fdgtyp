@@ -6,5 +6,6 @@
         (let [xi-p-time (four-tuple->ct xi-p)
               xi-p-space (four-tuple->space xi-p)]
           (let [beta-dot-xi-p (dot-product beta xi-p-space)]
-            (make-four-tuple (* gamma (+ xi-p-time beta-dot-xi-p))
-                             (+ (* gamma beta xi-p-time) xi-p-space (* factor beta beta-dot-xi-p)))))))))
+            (make-four-tuple
+              (* gamma (+ xi-p-time beta-dot-xi-p))
+              (+ (* gamma beta xi-p-time) xi-p-space (* factor beta beta-dot-xi-p)))))))))

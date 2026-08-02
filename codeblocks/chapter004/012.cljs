@@ -12,7 +12,9 @@
      (* (/ (sin phi) (sin theta)) d:dpsi)))
 
 (def e_y
-  (+ (/ (* (cos phi) (cos theta) d:dphi) (sin theta)) (* (sin phi) d:dtheta) (* -1 (/ (cos phi) (sin theta)) d:dpsi)))
+  (+ (/ (* (cos phi) (cos theta) d:dphi) (sin theta))
+     (* (sin phi) d:dtheta)
+     (* -1 (/ (cos phi) (sin theta)) d:dpsi)))
 
 (def e_z d:dphi)
 

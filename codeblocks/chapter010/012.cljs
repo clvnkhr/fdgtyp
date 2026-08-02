@@ -7,7 +7,8 @@
 ;;       (* r0 (sin theta0)))
 
 ;; scmutils simplified this result automatically; Emmy requires an explicit call.
-(simplify (((Laplacian spherical-metric orthonormal-spherical-basis) (literal-manifold-function 'f spherical))
+(simplify (((Laplacian spherical-metric orthonormal-spherical-basis)
+             (literal-manifold-function 'f spherical))
             R3-spherical-point))
 ;; => (/ (+ (* (expt r0 2)
 ;;             (expt (sin theta0) 2)
