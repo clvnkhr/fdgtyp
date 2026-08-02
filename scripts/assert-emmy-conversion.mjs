@@ -81,10 +81,17 @@ if (!smokeSource.includes("(defn locate-form")
 if (!workerSource.includes("(or (:backgroundSetup block) (not (:executable block)))")) {
   throw new Error("The web runner must not evaluate cached, non-executable Scheme output");
 }
+if (!workerSource.includes('["fdg.session" "emmy.env" "fdg.compat"]')
+    || !workerSource.includes('(symbol % token)')) {
+  throw new Error("Hover inspection must fall back through the same namespaces as autocomplete");
+}
 if (!runnerSource.includes('(js/Worker. "worker/main.js"')
     || !runnerSource.includes('#js {:type "module"}')
+    || !runnerSource.includes('(.-lineWrapping EditorView)')
+    || !runnerSource.includes('(tooltips #js {:parent (.-body js/document) :position "fixed"})')
+    || !runnerSource.includes(':positionInfo completion-info-position')
     || runnerSource.includes("(eval-session! @context code)")) {
-  throw new Error("Browser evaluation must execute in the Web Worker, not on the UI thread");
+  throw new Error("The runner must keep evaluation off-thread, wrap long lines, and keep editor popups outside clipping frames");
 }
 if (!shadowConfig.includes(":worker\n  {:target :esm\n   :runtime :custom")) {
   throw new Error("The evaluation worker must use Shadow's custom ESM runtime, not its document-dependent browser bootstrap");

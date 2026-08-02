@@ -6,7 +6,7 @@
             ["@codemirror/state" :refer [EditorState]]
             ["@codemirror/view" :refer
              [EditorView drawSelection dropCursor highlightActiveLine highlightSpecialChars hoverTooltip keymap
-              lineNumbers]]
+              lineNumbers tooltips]]
             ["@lezer/highlight" :refer [tags]]
             ["@nextjournal/clojure-mode" :refer [complete_keymap default_extensions]]))
 
@@ -182,6 +182,23 @@
                          (.append target (el "p" {:class "status"} "No matching public vars.")))))))
           (.catch (fn [_] (when (.-isConnected target) (set! (.-textContent target) "Inspector unavailable."))))))))
 
+(defn completion-info-position
+  "Put completion documentation in a bounded viewport panel. CodeMirror's
+   default side-by-side placement is elegant when there is room, but this app's
+   three-column layout can leave the right edge outside the visible window."
+  [_view list _option info space]
+  (let [left-bound (+ (.-left space) 16)
+        right-bound (- (.-right space) 16)
+        width (min 520 (- right-bound left-bound))
+        left (max left-bound (min (.-left list) (- right-bound width)))
+        below (+ (.-bottom list) 8)
+        top (if (<= (+ below (.-height info)) (.-bottom space))
+              below
+              (max (+ (.-top space) 16) (- (.-top list) (.-height info) 8)))]
+    #js {:style (str "position: fixed; left: " left "px; top: " top
+                     "px; width: " width "px; max-width: " width "px;")
+         :class "cm-completionInfo-viewport"}))
+
 (defn clojure-completions
   [^js completion-context]
   (let [word (.matchBefore completion-context #"[A-Za-z0-9*+!_?.<>=/$%&:#'-]*")]
@@ -234,7 +251,14 @@
   (into-array
     (concat (array-seq default_extensions)
             [(lineNumbers) (highlightSpecialChars) (syntaxHighlighting editor-highlight-style) (history) (drawSelection)
-             (dropCursor) (highlightActiveLine) symbol-hover (autocompletion #js {:override #js [clojure-completions]})
+             (dropCursor) (highlightActiveLine) symbol-hover
+             (autocompletion #js {:override #js [clojure-completions]
+                                  :positionInfo completion-info-position})
+             ;; Keep the editor usable for the book's very long symbolic forms,
+             ;; and place transient UI at the document level so the editor's
+             ;; rounded, scrolling frame cannot clip it.
+             (.-lineWrapping EditorView)
+             (tooltips #js {:parent (.-body js/document) :position "fixed"})
              (.of keymap
                   (into-array (concat (array-seq complete_keymap)
                                       (array-seq defaultKeymap)

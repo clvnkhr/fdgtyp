@@ -1556,12 +1556,12 @@ if(cljs.core.not(cljs.core.next(more))){
 return emmy.structure.up_STAR_(ans);
 } else {
 var r_SINGLEQUOTE_ = emmy.generic.sqrt.cljs$core$IFn$_invoke$arity$1(emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2(emmy.generic.square.cljs$core$IFn$_invoke$arity$1(cljs.core.first(more)),emmy.generic.square.cljs$core$IFn$_invoke$arity$1(r)));
-var G__36023 = r_SINGLEQUOTE_;
-var G__36024 = cljs.core.rest(more);
-var G__36025 = cljs.core.cons(safe_atan(r_SINGLEQUOTE_,cljs.core.second(more)),ans);
-r = G__36023;
-more = G__36024;
-ans = G__36025;
+var G__36036 = r_SINGLEQUOTE_;
+var G__36037 = cljs.core.rest(more);
+var G__36038 = cljs.core.cons(safe_atan(r_SINGLEQUOTE_,cljs.core.second(more)),ans);
+r = G__36036;
+more = G__36037;
+ans = G__36038;
 continue;
 }
 break;

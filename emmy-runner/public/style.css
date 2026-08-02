@@ -267,7 +267,6 @@ select:focus, input[type="search"]:focus {
 }
 
 #editor {
-  overflow: hidden;
   margin-top: 1.1rem;
   border: 1px solid var(--border-strong);
   border-radius: var(--radius);
@@ -283,6 +282,7 @@ select:focus, input[type="search"]:focus {
 }
 .cm-editor.cm-focused { outline: 2px solid var(--accent); outline-offset: -1px; }
 .cm-scroller { overflow: auto; }
+.cm-lineWrapping { overflow-wrap: anywhere; }
 .cm-content { padding: .85rem 0; caret-color: var(--accent); }
 .cm-line { padding-left: .6rem; }
 .cm-gutters {
@@ -457,6 +457,7 @@ pre.error { border-color: color-mix(in srgb, var(--danger) 45%, var(--border)); 
   box-shadow: var(--shadow-md);
 }
 .cm-tooltip {
+  z-index: 1000;
   border-color: var(--border-strong) !important;
   background: var(--surface-raised) !important;
   color: var(--text) !important;
@@ -464,6 +465,12 @@ pre.error { border-color: color-mix(in srgb, var(--danger) 45%, var(--border)); 
 }
 .cm-tooltip-autocomplete > ul > li { font-family: ui-monospace, monospace; }
 .cm-tooltip-autocomplete > ul > li[aria-selected] { background: var(--accent) !important; color: var(--accent-contrast) !important; }
+.cm-completionInfo-viewport {
+  max-height: min(42vh, 26rem);
+  overflow: auto;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap !important;
+}
 
 @media (max-width: 1120px) {
   #app { grid-template-columns: 17rem minmax(0, 1fr); }

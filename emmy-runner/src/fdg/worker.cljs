@@ -75,9 +75,23 @@
      :macro? (true? (:macro metadata)) :dynamic? (true? (:dynamic metadata))
      :preview (if bound? (safe-preview value) "<declared, but not defined yet>")}))
 
+(def inspection-namespaces
+  ;; Keep this in the same precedence order as the completion list: names
+  ;; defined by the current book example first, then Emmy, then our shims.
+  ["fdg.session" "emmy.env" "fdg.compat"])
+
 (defn inspect-symbol [token]
   (when (and @context (seq token))
-    (when-let [resolved (sci/resolve @context (symbol token))] (describe-var resolved))))
+    (let [sym (symbol token)
+          resolved (or (sci/resolve @context sym)
+                       ;; `sci/resolve` does not consistently follow a
+                       ;; namespace's :refer mappings when invoked directly
+                       ;; from the host. Try the same public namespaces that
+                       ;; autocomplete queries, so hover has identical cover.
+                       (when-not (namespace sym)
+                         (some #(sci/resolve @context (symbol % token))
+                               inspection-namespaces)))]
+      (some-> resolved describe-var))))
 
 (defn namespace-names []
   (->> (sci/all-ns @context) (keep #(some-> % meta :name str)) distinct sort vec))
