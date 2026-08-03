@@ -62,10 +62,7 @@ jobs:
           cache: npm
           cache-dependency-path: emmy-runner/package-lock.json
 
-      - name: Generate current Emmy runner files
-        run: make emmy-convert
-
-      - name: Stage current Emmy runner files
+      - name: Stage generated files from the current successful build
         working-directory: emmy-runner
         run: npm run sync-generated
 

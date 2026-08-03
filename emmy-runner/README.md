@@ -40,9 +40,10 @@ npm run build
 
 The `Deploy Emmy runner to GitHub Pages` workflow builds and deploys the runner
 after each push to `master`. It can also be run manually from the Actions tab.
-The workflow regenerates the Emmy blocks into `build/current` and packages
-those current files with the runner during deployment. It does not execute or
-recapture the examples.
+The workflow copies the captured Emmy blocks from the committed successful
+`build/current` and packages them with the runner. It does not regenerate or
+recapture examples during deployment, because conversion alone would discard
+captured output comments.
 
 The optimized JavaScript runner is cached using a key derived from its
 ClojureScript sources and dependency files. Book-only changes reuse that exact

@@ -1,0 +1,12 @@
+{
+  "id": "20260803T152356Z-from-raw-0ce869f-289682",
+  "target": "from-raw",
+  "source": "/Users/calvinkhor/Documents/GitHub/fdgtyp",
+  "revision": "0ce869f",
+  "startedAt": "2026-08-03T15:23:56.733Z",
+  "log": "build.log",
+  "status": "succeeded",
+  "artifacts": "/Users/calvinkhor/Documents/GitHub/fdgtyp/build/current",
+  "workspace": "/Users/calvinkhor/Documents/GitHub/fdgtyp/build/history/20260803T152356Z-from-raw-0ce869f-289682/work",
+  "finishedAt": "2026-08-03T15:32:02.185Z"
+}
