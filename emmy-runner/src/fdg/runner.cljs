@@ -573,6 +573,8 @@
            (.then (fn [data]
                     (let [manifest (js->clj data :keywordize-keys true)
                           first-block (first manifest)]
+                      (when-not first-block
+                        (throw (js/Error. "The generated Emmy manifest is empty.")))
                       (swap! state assoc :manifest manifest :chapter (:chapter first-block))
                       (start-worker!)
                       (let [initialization (worker-call "init" {:manifest manifest

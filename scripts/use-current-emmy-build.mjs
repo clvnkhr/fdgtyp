@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { cpSync, existsSync, lstatSync, readlinkSync, rmSync, symlinkSync } from "node:fs";
+import { cpSync, existsSync, lstatSync, readFileSync, rmSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -9,7 +9,6 @@ const generated = path.join(root, "emmy-runner", "public", "generated");
 const artifactCurrent = path.join(root, "build", "current", "emmy-generated");
 const legacyCurrent = path.join(root, "build", "current", "work", "emmy-runner", "public", "generated");
 const current = existsSync(artifactCurrent) ? artifactCurrent : legacyCurrent;
-const relativeCurrent = path.relative(path.dirname(generated), current);
 
 if (!existsSync(current)) {
   if (existsSync(generated)) {
@@ -19,22 +18,15 @@ if (!existsSync(current)) {
   throw new Error("No generated Emmy files are available. Run `make emmy-convert` first.");
 }
 
-if (existsSync(generated) || lstatExists(generated)) {
-  const alreadyCurrent = lstatSync(generated).isSymbolicLink()
-    && readlinkSync(generated) === relativeCurrent;
-  if (alreadyCurrent) {
-    console.log("Emmy runner already uses build/current generated files.");
-    process.exit(0);
-  }
-  rmSync(generated, { recursive: true, force: true });
+const manifestPath = path.join(current, "blocks.json");
+const manifest = JSON.parse(readFileSync(manifestPath, "utf8"));
+if (!Array.isArray(manifest) || manifest.length === 0) {
+  throw new Error(`Current Emmy manifest is empty: ${manifestPath}`);
 }
 
-if (process.env.CI) {
-  cpSync(current, generated, { recursive: true });
-} else {
-  symlinkSync(relativeCurrent, generated, "dir");
-}
-console.log(`Emmy runner generated files: ${current}`);
+if (existsSync(generated) || lstatExists(generated)) rmSync(generated, { recursive: true, force: true });
+cpSync(current, generated, { recursive: true });
+console.log(`Copied ${manifest.length} Emmy blocks from ${current}`);
 
 function lstatExists(file) {
   try {
