@@ -1,5 +1,0 @@
-((((partial 0) f-rect) (up 1 0))
- (* -1 a (((partial 1) f-rect) (up 1 0)))
- (* -1/2 (expt a 2) (((partial 1) f-rect) (up 1 0)))
- (* 1/6 (expt a 3) (((partial 0) f-rect) (up 1 0)))
- (* 1/24 (expt a 4) (((partial 1) f-rect) (up 1 0))))

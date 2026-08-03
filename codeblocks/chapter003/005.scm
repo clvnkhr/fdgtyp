@@ -1,6 +1,0 @@
-(define (coordinatize v coordsys)
-  (define ((coordinatized-v f) x)
-    (let ((b (compose (v (chart coordsys))
-                      (point coordsys))))
-      (* ((D f) x) (b x))))
-  (make-operator coordinatized-v))

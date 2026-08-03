@@ -1,5 +1,0 @@
-(define ((Lc mass metric coordsys) state)
-  (let ((x (coordinates state))
-        (v (velocities state))
-        (e (coordinate-system->vector-basis coordsys)))
-    ((L2 mass metric) ((point coordsys) x) (* e v))))

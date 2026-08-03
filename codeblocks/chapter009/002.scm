@@ -1,6 +1,0 @@
-(define (raise metric basis)
-  (let ((gi (metric:invert metric basis)))
-    (lambda (omega)
-      (contract (lambda (e i w^i)
-                  (* (gi omega w^i) e i))
-                basis))))

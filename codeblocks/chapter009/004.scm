@@ -1,6 +1,0 @@
-(define ((g-sphere R) u v)
-  (* (square R)
-     (+ (* (dtheta u) (dtheta v))
-        (* (compose (square sin) theta)
-           (dphi u)
-           (dphi v)))))

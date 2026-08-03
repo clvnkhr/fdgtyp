@@ -44,9 +44,42 @@ const ignoredRelativeRoots = new Set([
   "build",
   "emmy-runner/node_modules",
   "emmy-runner/.shadow-cljs",
+  "emmy-runner/public/generated",
   "emmy-runner/public/js",
   "emmy-runner/public/worker",
+  "codeblocks",
+  "typ/content",
+  "typ/main.typ",
+  "typ/manifest.typ",
+  "typ/references.bib",
+  "typ/main.pdf",
+  "typ/main-cljs.pdf",
+  "typ/main-both.pdf",
+  "typ/audit.pdf",
+  "fdg-book.pdf",
+  "fdg-book-cljs.pdf",
+  "fdg-book-both.pdf",
+  "output-comparison.typ",
+  "output-comparison.pdf",
 ]);
+
+const generatedRelativePaths = [
+  "codeblocks",
+  "emmy-runner/public/generated",
+  "typ/content",
+  "typ/main.typ",
+  "typ/manifest.typ",
+  "typ/references.bib",
+  "typ/main.pdf",
+  "typ/main-cljs.pdf",
+  "typ/main-both.pdf",
+  "typ/audit.pdf",
+  "fdg-book.pdf",
+  "fdg-book-cljs.pdf",
+  "fdg-book-both.pdf",
+  "output-comparison.typ",
+  "output-comparison.pdf",
+];
 
 function shouldCopy(source) {
   const relative = path.relative(root, source);
@@ -71,6 +104,18 @@ for (const entry of readdirSync(root)) {
   const source = path.join(root, entry);
   if (!shouldCopy(source)) continue;
   cpSync(source, path.join(workDir, entry), { recursive: true, filter: shouldCopy });
+}
+// Partial workflows (for example `just-pdf`) reuse the latest successful
+// generated state. A complete `make` regenerates these paths in staging.
+const previousWorkDir = path.join(buildDir, "current", "work");
+if (existsSync(previousWorkDir)) {
+  for (const relative of generatedRelativePaths) {
+    const source = path.join(previousWorkDir, relative);
+    if (!existsSync(source)) continue;
+    const destination = path.join(workDir, relative);
+    mkdirSync(path.dirname(destination), { recursive: true });
+    cpSync(source, destination, { recursive: true });
+  }
 }
 for (const relative of [".tools", "emmy-runner/node_modules"]) {
   const source = path.join(root, relative);

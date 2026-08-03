@@ -1,7 +1,0 @@
-(define (Maxwell Ex Ey Ez Bx By Bz)
-  (+ (* -1 Bx (wedge dx dct))
-     (* -1 By (wedge dy dct))
-     (* -1 Bz (wedge dz dct))
-     (* Ex (wedge dy dz))
-     (* Ey (wedge dz dx))
-     (* Ez (wedge dx dy))))
