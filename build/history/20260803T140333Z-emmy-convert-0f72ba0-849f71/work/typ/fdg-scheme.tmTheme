@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>name</key>
+  <string>FDG Scheme Light</string>
+  <key>settings</key>
+  <array>
+    <dict>
+      <key>settings</key>
+      <dict>
+        <key>background</key>
+        <string>#FBF7EF</string>
+        <key>foreground</key>
+        <string>#27211D</string>
+        <key>caret</key>
+        <string>#006E8A</string>
+        <key>lineHighlight</key>
+        <string>#F1E8DA</string>
+        <key>selection</key>
+        <string>#CFE9F3</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key>
+      <string>Line and Block Comments</string>
+      <key>scope</key>
+      <string>comment.line, comment.block</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>#7A7660</string>
+        <key>fontStyle</key>
+        <string>italic</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key>
+      <string>Expression Comments</string>
+      <key>scope</key>
+      <string>meta.comment.expression, meta.comment.eof, meta.comment</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>#8A8170</string>
+        <key>background</key>
+        <string>#EFE7D8</string>
+        <key>fontStyle</key>
+        <string>italic</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key>
+      <string>Comment Punctuation</string>
+      <key>scope</key>
+      <string>punctuation.definition.comment</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>#B07023</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key>
+      <string>Strings</string>
+      <key>scope</key>
+      <string>string.quoted.double, string.gensym</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>#B24C16</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key>
+      <string>String Escapes and Placeholders</string>
+      <key>scope</key>
+      <string>constant.character.escape, constant.other.placeholder, punctuation.separator.continuation</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>#E05E23</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key>
+      <string>Numbers and Constants</string>
+      <key>scope</key>
+      <string>constant.numeric, storage.modifier.numeric</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>#7D3AC1</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key>
+      <string>Scheme Booleans and Characters</string>
+      <key>scope</key>
+      <string>constant.boolean, constant.character, constant.language</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>#D14A8B</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key>
+      <string>Control Forms</string>
+      <key>scope</key>
+      <string>keyword.control.scheme, keyword.aux.scheme</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>#C0265A</string>
+        <key>fontStyle</key>
+        <string>bold</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key>
+      <string>Definitions and Mutation Forms</string>
+      <key>scope</key>
+      <string>keyword.declaration, keyword.assignment, storage.type.function</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>#D53A3A</string>
+        <key>fontStyle</key>
+        <string>bold</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key>
+      <string>Syntax and Macro Forms</string>
+      <key>scope</key>
+      <string>keyword.syntax, keyword.quasisyntax, keyword.unsyntax, keyword.unsyntax-splicing, keyword.control.syntax, meta.syntax, meta.quasisyntax, meta.unsyntax, meta.unsyntax-splicing</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>#A331B5</string>
+        <key>fontStyle</key>
+        <string>bold</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key>
+      <string>Quote and Quasiquote Forms</string>
+      <key>scope</key>
+      <string>keyword.quote, keyword.quasiquote, keyword.unquote, keyword.unquote-splicing</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>#D08400</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key>
+      <string>Vector and Reader Prefixes</string>
+      <key>scope</key>
+      <string>storage.modifier.vector, storage.modifier.bytevector, storage.modifier.fxvector, storage.modifier.boxes, storage.modifier.gensym, storage.modifier.character, storage.modifier.record-name, prefix.primitive</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>#E05E23</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key>
+      <string>Defined Names</string>
+      <key>scope</key>
+      <string>entity.name.function.scheme, meta.named-let.scheme entity.name.function.scheme</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>#007A7A</string>
+        <key>fontStyle</key>
+        <string>bold</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key>
+      <string>Primitive and Supported Functions</string>
+      <key>scope</key>
+      <string>support.function.scheme, primitive.function.scheme</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>#008078</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key>
+      <string>Function Calls</string>
+      <key>scope</key>
+      <string>meta.function-call.scheme, variable.function.scheme</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>#0B73A8</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key>
+      <string>Parameters</string>
+      <key>scope</key>
+      <string>variable.parameter.scheme</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>#4765C4</string>
+        <key>fontStyle</key>
+        <string>italic</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key>
+      <string>Variables and Other Identifiers</string>
+      <key>scope</key>
+      <string>variable, entity.other.scheme</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>#2459A6</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key>
+      <string>Quoted Forms</string>
+      <key>scope</key>
+      <string>symbol.quoted.scheme, constant.symbol.literal.scheme</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>#C27A00</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key>
+      <string>Parentheses and Punctuation</string>
+      <key>scope</key>
+      <string>punctuation.paren, punctuation.bracket, punctuation.definition.string</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>#8B5E34</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key>
+      <string>Invalid Forms</string>
+      <key>scope</key>
+      <string>invalid</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>#FFFFFF</string>
+        <key>background</key>
+        <string>#C93A3A</string>
+        <key>fontStyle</key>
+        <string>bold</string>
+      </dict>
+    </dict>
+  </array>
+</dict>
+</plist>

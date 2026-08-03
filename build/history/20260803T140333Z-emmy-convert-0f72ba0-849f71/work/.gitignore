@@ -1,0 +1,16 @@
+.tools/
+build/
+codeblocks/
+emmy-runner/public/generated/
+typ/content/
+typ/main.typ
+typ/manifest.typ
+typ/references.bib
+typ/*.pdf
+fdg-book.pdf
+fdg-book-cljs.pdf
+fdg-book-both.pdf
+output-comparison.typ
+output-comparison.pdf
+emmy-runner/.shadow-cljs/
+emmy-runner/public/js/
