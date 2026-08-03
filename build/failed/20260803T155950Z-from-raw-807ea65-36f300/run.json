@@ -1,0 +1,11 @@
+{
+  "id": "20260803T155950Z-from-raw-807ea65-36f300",
+  "target": "from-raw",
+  "source": "/Users/calvinkhor/Documents/GitHub/fdgtyp",
+  "revision": "807ea65",
+  "startedAt": "2026-08-03T15:59:50.985Z",
+  "log": "build.log",
+  "status": "failed",
+  "workspace": "/Users/calvinkhor/Documents/GitHub/fdgtyp/build/.staging/20260803T155950Z-from-raw-807ea65-36f300/work",
+  "finishedAt": "2026-08-03T16:02:41.208Z"
+}

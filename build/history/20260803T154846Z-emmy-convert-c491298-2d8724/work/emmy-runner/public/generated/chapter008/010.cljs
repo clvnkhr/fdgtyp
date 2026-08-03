@@ -1,9 +1,0 @@
-(simplify (let [U (literal-vector-field 'U-rect R2-rect)
-                W (literal-vector-field 'W-rect R2-rect)
-                V (literal-vector-field 'V-rect R2-rect)
-                sigma (up 'sigma0 'sigma1)]
-            (let [nabla (covariant-derivative general-Cartan-2)
-                  m (Chi-inverse sigma)]
-              (let [s (make-state sigma ((U Chi) m))]
-                (- (((- (commutator (L V) (L W)) (L (commutator V W))) U-select) s)
-                   (((((Riemann-curvature nabla) W V) U) Chi) m))))))
