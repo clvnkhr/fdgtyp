@@ -411,8 +411,14 @@ for (const id of inlineZeroResultIds) {
   if (/\n\s*0\s*$/.test(scheme)) {
     throw new Error(`${id} retains a bare cached Scheme result as executable source`);
   }
+  if (!/\n;; 0\s*$/.test(scheme)) {
+    throw new Error(`${id} lost its cached Scheme result comment`);
+  }
   if (/\n\s*0\s*$/.test(cljs)) {
     throw new Error(`${id} propagated a cached Scheme result into executable ClojureScript`);
+  }
+  if (!/\n;; => 0\s*$/.test(cljs)) {
+    throw new Error(`${id} lost its cached ClojureScript result comment`);
   }
 }
 if (/\(sign \(alpha tau\)\)/.test(readFileSync(path.join(root, "codeblocks/chapter007/031.scm"), "utf8"))) {

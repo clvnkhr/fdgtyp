@@ -15,6 +15,9 @@ const timeoutMs = Number(timeoutArgument?.slice("--timeout-ms=".length)
   ?? process.env.EMMY_CHAPTER_TIMEOUT_MS
   ?? 120_000);
 const verbose = process.argv.includes("--verbose");
+// Captured results are part of the generated book, so preserve the historical
+// default. Read-only verification opts out explicitly.
+const captureResults = !process.argv.includes("--no-capture-results");
 
 if (!Number.isFinite(timeoutMs) || timeoutMs <= 0) {
   throw new Error(`Invalid Emmy chapter timeout: ${timeoutMs}`);
@@ -26,7 +29,7 @@ for (const chapter of chapters) {
   console.log(`\nEMMY CHAPTER: ${chapter} (timeout ${timeoutMs / 1000}s)`);
   const result = spawnSync(
     process.execPath,
-    ["target/smoke.js", "--capture-results", `--chapter=${chapter}`,
+    ["target/smoke.js", ...(captureResults ? ["--capture-results"] : []), `--chapter=${chapter}`,
       ...(verbose ? ["--verbose"] : [])],
     { cwd: runnerDir, stdio: "inherit", timeout: timeoutMs },
   );
@@ -38,7 +41,7 @@ for (const chapter of chapters) {
     failures.push(`${chapter}: exited ${result.status ?? "without a status"} after ${elapsed}s`);
     console.error(`EMMY CHAPTER FAILED: ${chapter} after ${elapsed}s`);
   } else {
-    console.log(`EMMY CHAPTER PASSED: ${chapter} in ${elapsed}s`);
+    console.log(`EMMY CHAPTER PASSED: ${chapter} in ${elapsed}s${captureResults ? " (results captured)" : ""}`);
   }
 }
 

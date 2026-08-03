@@ -735,7 +735,7 @@ A vector with coordinate components $b_{\chi,\mathsf{v}}$ applies to a manifold
      #+begin_src scheme
        (define f (literal-manifold-function ’f-rect R2-rect))
        (((- circular d/dtheta) f) R2-rect-point)
-       ;; => 0
+       0
      #+end_src
 **** Not All One-Form Fields Are Differentials
 

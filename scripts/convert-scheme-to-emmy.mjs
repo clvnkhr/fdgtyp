@@ -100,18 +100,19 @@ function stripCapturedResults(source) {
   return source.replace(/^;; =>[^\n]*(?:\n;;[^\n]*)*\n?/gm, "");
 }
 
+const inlineZeroResultIds = new Set([
+  "chapter003-020", "chapter005-009", "chapter005-014",
+  "chapter007-003", "chapter007-006", "chapter007-007", "chapter007-008",
+  "chapter007-009", "chapter007-012", "chapter007-026",
+]);
+
 function correctMalformedSchemeOutputs(source, id) {
   // A handful of early Org examples put the displayed zero result inside the
   // source block as a bare final form. That is prose output, not a second
   // expression to evaluate. Keep it as a Scheme result comment so it remains
   // available to the comparison audit without becoming ClojureScript code.
-  const inlineZeroResultIds = new Set([
-    "chapter003-020", "chapter005-009", "chapter005-014",
-    "chapter007-003", "chapter007-006", "chapter007-007", "chapter007-008",
-    "chapter007-009", "chapter007-012", "chapter007-026",
-  ]);
   if (inlineZeroResultIds.has(id)) {
-    source = source.replace(/\n\s*0\s*$/, "\n;; => 0");
+    source = source.replace(/\n\s*0\s*$/, "\n;; 0");
   }
   switch (id) {
     case "chapter003-016":
@@ -127,6 +128,11 @@ function correctMalformedSchemeOutputs(source, id) {
     default:
       return source;
   }
+}
+
+function preserveKnownCachedResult(source, id) {
+  if (!inlineZeroResultIds.has(id) || /\n;; => 0\s*$/.test(source)) return source;
+  return `${source.trimEnd()}\n;; => 0`;
 }
 
 function extractBlocks(source, language) {
@@ -1003,15 +1009,21 @@ for (const file of files) {
       writeFileSync(cljsFile, withComments ? `${withComments}\n` : "");
     }
 
+    // A cached port may predate a source-level correction. Apply the same
+    // narrowly scoped cleanup here as well, so cache reuse can never restore
+    // a displayed Scheme result as executable ClojureScript.
     const corrected = applyReviewedCorrections(
-      normalizeClojureBlockComments(readFileSync(cljsFile, "utf8"))
+      correctMalformedSchemeOutputs(
+        normalizeClojureBlockComments(readFileSync(cljsFile, "utf8")),
+        id,
+      )
         .replaceAll("basis->1-form-basis", "basis->oneform-basis")
         .replaceAll("s:sigma/r", "sumr")
         .replace(/'?pi\/(\d+)/g, "(/ pi $1)"),
       id,
     );
     const simplified = ensureExplicitSimplifyAllResults(ensureExplicitSimplify(corrected, id), id);
-    writeFileSync(cljsFile, simplified);
+    writeFileSync(cljsFile, preserveKnownCachedResult(simplified, id));
     const cljs = readFileSync(cljsFile, "utf8");
     const executable = stem !== "errata" && !nonExecutableIds.has(id)
       && !block.code.includes("series:for-each print-expression")

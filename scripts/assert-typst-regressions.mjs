@@ -5,6 +5,11 @@ import { execFileSync } from "node:child_process";
 import path from "node:path";
 
 const root = process.cwd();
+const pdfOnly = process.argv.includes("--pdf-only");
+const skipPdf = process.argv.includes("--skip-pdf");
+if (pdfOnly && skipPdf) {
+  throw new Error("Use at most one of --pdf-only and --skip-pdf");
+}
 const contentDir = path.join(root, "typ", "content");
 const figuresDir = path.join(root, "typ", "assets", "figures");
 const orgDir = path.join(root, "fdg-book", "scheme", "org");
@@ -80,6 +85,11 @@ const expectedGeneratedDoubleBackslashCounts = {};
 
 function normalize(text) {
   return text
+    // Typst's PDF text extractor emits typographic quotation marks even when
+    // the source uses straight quotes. Assertions should check the words and
+    // numbering, not that extractor-specific typography.
+    .replace(/[\u2018\u2019]/g, "'")
+    .replace(/[\u201C\u201D]/g, '"')
     .replace(/\s+/g, " ")
     .trim();
 }
@@ -273,7 +283,7 @@ const assertions = [
       "This analysis will work for any number of dimensions (but will take your computer longer in higher dimensions, because the complexity increases).",
       "$ sans(d) theta (sans(v))= dot(theta) sans(d) phi.alt (sans(v))= dot(phi.alt)\\, $",
       'subscripted #raw(lang:"scheme", "g")s',
-      "```scheme\n((Lsphere 'm 'R)\n (up 't (up 'theta 'phi) (up 'thetadot 'phidot)))\n\n#|\n(+ (* 1/2 (expt R 2) m (expt phidot 2) (expt (sin theta) 2))\n   (* 1/2 (expt R 2) m (expt thetadot 2)))\n|#\n```",
+      "```scheme\n((Lsphere 'm 'R)\n (up 't (up 'theta 'phi) (up 'thetadot 'phidot)))\n;; (+ (* 1/2 (expt R 2) m (expt phidot 2) (expt (sin theta) 2))\n;;    (* 1/2 (expt R 2) m (expt thetadot 2)))\n```",
       "So, to work with coordinates we write:",
       "Galileo Galilei @galilei1623assayer",
       "equation @1.1",
@@ -945,7 +955,7 @@ function readPdfText(file) {
   }
 }
 
-for (const assertion of assertions) {
+for (const assertion of (pdfOnly ? [] : assertions)) {
   const text = readTyp(assertion.file);
 
   for (const expected of assertion.contains ?? []) {
@@ -961,7 +971,7 @@ for (const assertion of assertions) {
   }
 }
 
-for (const assertion of typFileAssertions) {
+for (const assertion of (pdfOnly ? [] : typFileAssertions)) {
   const text = normalize(readTypFile(assertion.file));
 
   for (const expected of assertion.contains ?? []) {
@@ -977,7 +987,7 @@ for (const assertion of typFileAssertions) {
   }
 }
 
-for (const assertion of pdfTextAssertions) {
+for (const assertion of (skipPdf ? [] : pdfTextAssertions)) {
   const text = readPdfText(assertion.file);
 
   for (const expected of assertion.contains ?? []) {
@@ -993,19 +1003,19 @@ for (const assertion of pdfTextAssertions) {
   }
 }
 
-for (const rejected of globalExcludes) {
+for (const rejected of (pdfOnly ? [] : globalExcludes)) {
   if (allContentNormalized.includes(normalize(rejected))) {
     fail("Found globally rejected text:", rejected);
   }
 }
 
-for (const { name, regex } of globalRegexExcludes) {
+for (const { name, regex } of (pdfOnly ? [] : globalRegexExcludes)) {
   if (regex.test(allContent)) {
     fail(`Found globally rejected pattern: ${name}`, regex.toString());
   }
 }
 
-for (const { name, regex } of globalProseRegexExcludes) {
+for (const { name, regex } of (pdfOnly ? [] : globalProseRegexExcludes)) {
   if (regex.test(allProseContent)) {
     fail(`Found globally rejected prose pattern: ${name}`, regex.toString());
   }

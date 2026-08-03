@@ -4,4 +4,4 @@
 ((- ((((Lie-directional R3-rect 2) v) w) f)
 ((commutator v w) f))
 ((point R3-rect) (up 'x0 'y0 'z0))))
-;; => 0
+;; 0

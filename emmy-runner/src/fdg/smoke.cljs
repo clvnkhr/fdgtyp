@@ -195,7 +195,10 @@
                  (let [failure (str (:id block) ": " (.-message error))]
                    (swap! failures conj failure)
                    (js/console.error (str "EMMY BLOCK FAILED: " failure))))))))
-    (when capture? (doseq [[file content] @pending-writes] (.writeFileSync fs file content "utf8")))
+    ;; A capture run is transactional: failed blocks must not leave a mixture
+    ;; of newly captured and stale result comments in the checked-in sources.
+    (when (and capture? (empty? @failures))
+      (doseq [[file content] @pending-writes] (.writeFileSync fs file content "utf8")))
     (if (seq @failures)
       (do (js/console.error (str "\nEMMY SMOKE SUMMARY: " (count @failures) " block(s) failed:"))
           (doseq [failure @failures] (js/console.error (str "  - " failure)))

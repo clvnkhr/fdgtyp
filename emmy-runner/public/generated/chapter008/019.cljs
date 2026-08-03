@@ -6,3 +6,4 @@
                                       ((point S2-spherical) (up 'theta0 'phi0))))))
                       (list d:dtheta d:dphi)))
           (list d:dtheta d:dphi))
+;; => nil

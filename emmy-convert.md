@@ -7,11 +7,12 @@ and observable results rather than preserving source spelling or printed forms.
 
 The vendored Org files under `fdg-book/scheme/org/` are immutable upstream
 sources. Never fix or annotate them. Source repairs remain the responsibility of
-`scripts/convert-org-to-typst.mjs`; Emmy-specific work belongs under `emmy/`.
+`scripts/convert-org-to-typst.mjs`; Emmy-specific work belongs under
+`codeblocks/`, `emmy-runner/`, or the Scheme-to-Emmy converter.
 
 ## Generated block workspace
 
-Run:
+To regenerate the editable block workspace, run:
 
 ```sh
 node scripts/convert-org-to-typst.mjs
@@ -30,7 +31,7 @@ clojure -M:format-emmy codeblocks emmy-runner/public/generated
 clojure -M:format-emmy --check codeblocks emmy-runner/public/generated
 ```
 
-The second command extracts the Scheme blocks into stable, chapter-scoped pairs:
+The converter extracts the Scheme blocks into stable, chapter-scoped pairs:
 
 ```text
 codeblocks/chapter003/012.scm   immutable comparison snapshot
@@ -39,8 +40,9 @@ codeblocks/chapter003/012.cljs  editable Emmy port
 
 It also creates `emmy-runner/public/generated/blocks.json`, which records the
 chapter, section, original Org line, source hash, and browser URL for each
-block. Existing `.cljs` files are preserved. `--force` deliberately
-regenerates them and should only be used when discarding manual work is intended.
+block. Existing `.cljs` files are preserved when their Scheme source hash is
+unchanged. `--force` deliberately regenerates them and should only be used when
+discarding manual work is intended.
 
 Chapter 1 is special: the upstream `mentat-collective/fdg-book` repository
 already contains 22 corresponding Clojure examples. The extractor uses these as
@@ -71,10 +73,9 @@ the Org converter retains each repaired Scheme block in a non-rendered Typst
 source comment, and `convert-scheme-to-emmy.mjs` extracts `codeblocks/` from
 those comments. The rendered book reads the neighboring files rather than an
 embedded copy. Scheme is the default edition; build the ClojureScript edition
-with `make cljs-draft` or `make cljs-book`; `make draft` and `make book`
-produce both language editions. The centralized
-Typst edition selector also accepts `code=both` for future combined-edition
-work, though that layout is not yet a publication target.
+with `make cljs-draft` or `make cljs-book`. `make draft` and `make book`
+produce Scheme, ClojureScript, and combined-edition PDFs. The centralized Typst
+edition selector accepts `code=both` for the combined edition.
 Do not add generated headers, status comments, or bookkeeping comments. Comments
 that introduce the source code are preserved from Scheme. Trailing `;; =>`
 comments are reserved for output produced by running that exact ClojureScript
@@ -144,25 +145,36 @@ node target/smoke.js --capture-results
 node target/smoke.js --capture-results --chapter=chapter008
 ```
 
-Capture mode runs each chapter from a fresh context and stages every updated
-comment in memory. Only after the entire requested run succeeds does it replace
-the previous `;; =>` comments in `codeblocks/` and the browser's served copies;
-a failure leaves all files unchanged. Results longer than 20,000 characters retain their first 200
+Capture mode runs each requested chapter from a fresh context and stages every
+updated comment in memory. Only a successful chapter run replaces its previous
+`;; =>` comments in `codeblocks/` and the browser's served copies. Results
+longer than 20,000 characters retain their first 200
 characters followed by an explicit truncation marker and total size, instead of
 making a source block megabytes long; inspect those values in the web runner
 when needed. A normal smoke invocation verifies the examples without writing.
 
-`make emmy-blocks` performs conversion, compiles the smoke runner, captures all
-results transactionally, and runs the consistency checks. It is the complete
-start-to-finish build for the Emmy ports.
+The Make targets separate mutation from checking:
+
+```sh
+make emmy-convert  # regenerate blocks and manifest (writes)
+make smoke-emmy    # run existing blocks without changing result comments
+make capture-emmy  # refresh result comments (the smoke default; writes)
+make emmy-check    # compile, smoke-test, and validate existing generated state
+make emmy-refresh  # convert, capture, format, and validate (writes)
+```
+
+`make emmy-blocks` remains an alias for `make emmy-refresh`. `make test-emmy`
+is a read-only check of the existing generated state. Direct use of
+`scripts/run-emmy-smoke.mjs` captures results by default; pass
+`--no-capture-results` only when a read-only run is intended.
 
 ## Running the browser debugger
 
-First regenerate the blocks, then:
+After `make emmy-refresh` (or when checked-in generated blocks are current),
+start the runner with:
 
 ```sh
-cd emmy-runner
-clojure -M:shadow-cljs watch app
+make runner-dev
 ```
 
 Open <http://localhost:8080>. The runner evaluates code with SCI plus Emmy. The

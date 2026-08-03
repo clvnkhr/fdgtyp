@@ -370,7 +370,7 @@ So `circular` is the same as `d/dtheta`, as we can see by applying them both to 
 /* fdg-code-source: chapter003/020
 (define f (literal-manifold-function 'f-rect R2-rect))
 (((- circular d/dtheta) f) R2-rect-point)
-;; => 0
+;; 0
 fdg-code-source-end */
 #fdg-code-block("chapter003/020")
 

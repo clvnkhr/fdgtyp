@@ -90,3 +90,4 @@
       Gamma-transformed (transform-stereographic-Christoffel-to-spherical (Gamma-stereo xy) q)
       transformation (residuals Gamma-transformed Gamma-sphere)]
   (verified-zero 0 (up derivation transformation)))
+;; => 0

@@ -472,7 +472,7 @@ rectangular space. Taking two exterior derivatives of $\theta$ yields a
 three-form field. It is zero:
 
 (((d (d theta)) X Y Z) R3-rect-point)
-;; => 0
+0
 
 Not every closed form field is an exact form field. Whether a closed form field
 is exact depends on the topology of a manifold.
@@ -660,7 +660,7 @@ vector fields at an arbitrary point:
      (d flux-through-boundary-element))
   X Y Z)
  R3-rect-point)
-;; => 0
+0
 #+end_src
 
 as expected.

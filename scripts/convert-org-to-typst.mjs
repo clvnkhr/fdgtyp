@@ -2194,13 +2194,32 @@ function unescapeTypstProseQuotes(body) {
     .join("");
 }
 
+// These upstream source blocks end with a displayed zero written as a bare
+// Scheme form. It is a cached result, not executable code. Normalize it in
+// generated Typst as a Scheme result comment; the ClojureScript converter
+// subsequently renders the same result with its `;; =>` convention. The
+// pinned Org snapshot remains byte-for-byte upstream.
+const inlineZeroResultIds = new Set([
+  "chapter003/020", "chapter005/009", "chapter005/014",
+  "chapter007/003", "chapter007/006", "chapter007/007", "chapter007/008",
+  "chapter007/009", "chapter007/012", "chapter007/026",
+]);
+
+function normalizeEmbeddedSchemeResult(code, id) {
+  if (!inlineZeroResultIds.has(id)) return code;
+  return code.replace(/\n\s*0\s*$/, "\n;; 0");
+}
+
 function wrapEmbeddedSchemeBlocks(body, stem) {
   let ordinal = 0;
   return body.replace(/```scheme\n[\s\S]*?\n```/g, source => {
     ordinal += 1;
-    const code = source.slice("```scheme\n".length, -"\n```".length);
     const number = String(ordinal).padStart(3, "0");
     const id = `${stem}/${number}`;
+    const code = normalizeEmbeddedSchemeResult(
+      source.slice("```scheme\n".length, -"\n```".length),
+      id,
+    );
     if (code.includes("*/")) throw new Error(`Scheme block ${id} cannot be embedded in a Typst comment`);
     return `/* fdg-code-source: ${id}\n${code}\nfdg-code-source-end */\n#fdg-code-block("${id}")`;
   });

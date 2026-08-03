@@ -124,7 +124,7 @@ Verifying this computation
 ((- ((((Lie-directional R3-rect 2) v) w) f)
 ((commutator v w) f))
 ((point R3-rect) (up 'x0 'y0 'z0))))
-;; => 0
+;; 0
 fdg-code-source-end */
 #fdg-code-block("chapter007/003")
 
@@ -233,7 +233,7 @@ fdg-code-source-end */
 (d ((Lie-derivative V) theta)))
 X Y)
 R3-rect-point)
-;; => 0
+;; 0
 fdg-code-source-end */
 #fdg-code-block("chapter007/006")
 
@@ -244,7 +244,7 @@ and for the general two-form field:
 (d ((Lie-derivative V) omega)))
 X Y Z)
 R3-rect-point)
-;; => 0
+;; 0
 fdg-code-source-end */
 #fdg-code-block("chapter007/007")
 
@@ -260,7 +260,7 @@ Again, for our general one-form field $θ$:
 theta)
 Z)
 R3-rect-point)
-;; => 0
+;; 0
 fdg-code-source-end */
 #fdg-code-block("chapter007/008")
 
@@ -272,7 +272,7 @@ and for the two-form field $ω$:
 omega)
 Z V)
 R3-rect-point)
-;; => 0
+;; 0
 fdg-code-source-end */
 #fdg-code-block("chapter007/009")
 
@@ -348,7 +348,7 @@ We can verify Cartan\'s formula in a simple case with a program:
 ((- (((Lie-derivative X) omega) Y Z)
 (((L1 X) omega) Y Z))
 ((point R3-rect) (up 'x0 'y0 'z0)))
-;; => 0
+;; 0
 fdg-code-source-end */
 #fdg-code-block("chapter007/012")
 
@@ -712,7 +712,7 @@ V)
 W)
 f)
 R2-rect-point)
-;; => 0
+;; 0
 fdg-code-source-end */
 #fdg-code-block("chapter007/026")
 

@@ -1,3 +1,4 @@
 .tools/
+build/
 emmy-runner/.shadow-cljs/
 emmy-runner/public/js/

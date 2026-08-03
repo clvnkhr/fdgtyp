@@ -7,6 +7,7 @@ import { fileURLToPath } from "node:url";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const manifest = JSON.parse(readFileSync(path.join(root, "emmy-runner/public/generated/blocks.json"), "utf8"));
 const check = process.argv.includes("--check");
+const writeReport = !process.argv.includes("--no-report");
 
 function commentOutputs(source, marker) {
   const lines = source.split("\n");
@@ -366,15 +367,24 @@ report += table(coverageGaps, "#dbeafe", row => {
 report += `\n= Other unresolved comparisons\n\n${otherUnresolved.length} positions have results on both sides but cannot yet be compared safely.\n\n`;
 report += table(otherUnresolved, "#f1f3f5", row => row.reason);
 report += "\n";
-writeFileSync(path.join(root, "output-comparison.typ"), report);
+if (writeReport) {
+  writeFileSync(path.join(root, "output-comparison.typ"), report);
+}
 
 console.log(`Output comparison: ${comparedCount} paired positions: ${equal.length} equivalent (${verboseEquivalent.length} disproportionately verbose), ${different.length} different, ${otherUnresolved.length} unresolved; ${coverageGaps.length} missing counterparts excluded.`);
 if (different.length) console.error(`OUTPUT DIFFERENCES: ${different.map(x => `${x.id}:${x.index}`).join(", ")}`);
-if (check && verboseEquivalent.length) {
-  console.error(
-    `DISPROPORTIONATELY LARGE CLJS OUTPUTS: ${
-      verboseEquivalent.map(row => `${row.id}:${row.index}`).join(", ")
-    }`,
-  );
+if (check && (different.length || verboseEquivalent.length)) {
+  if (different.length) {
+    console.error(
+      `OUTPUT DIFFERENCES: ${different.map(row => `${row.id}:${row.index}`).join(", ")}`,
+    );
+  }
+  if (verboseEquivalent.length) {
+    console.error(
+      `DISPROPORTIONATELY LARGE CLJS OUTPUTS: ${
+        verboseEquivalent.map(row => `${row.id}:${row.index}`).join(", ")
+      }`,
+    );
+  }
   process.exitCode = 1;
 }

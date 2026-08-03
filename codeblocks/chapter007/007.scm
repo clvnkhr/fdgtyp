@@ -2,4 +2,4 @@
 (d ((Lie-derivative V) omega)))
 X Y Z)
 R3-rect-point)
-;; => 0
+;; 0
