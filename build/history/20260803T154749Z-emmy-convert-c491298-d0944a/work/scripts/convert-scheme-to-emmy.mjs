@@ -679,15 +679,9 @@ function positionSimplifyExplanation(source, id) {
 
 function boundSlowSimplifications(source, id) {
   if (id !== "chapter008-012") return source;
-  const explanation = "Full rational simplification enters an expensive polynomial GCD here.";
-  const verification = "Polynomial simplification proves the same exact zero without that GCD.";
-  const withoutExistingExplanation = source.replace(
-    new RegExp(`(?:^;; ${explanation.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\n^;; ${verification.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\n?)+`, "gm"),
-    "",
-  );
-  return withoutExistingExplanation.replace(
-    /(?:\(simplify\s+(?:\(polynomially-verified-zero\s+)?\(test R2-polar general-Cartan-2\)\)?\)|\(polynomially-verified-zero \(test R2-polar general-Cartan-2\)\))/,
-    `;; ${explanation}\n;; ${verification}\n(polynomially-verified-zero (test R2-polar general-Cartan-2))`,
+  return source.replace(
+    /\(simplify\s+(?:\(polynomially-verified-zero\s+)?\(test R2-polar general-Cartan-2\)\)?\)/,
+    `;; Full rational simplification enters an expensive polynomial GCD here.\n;; Polynomial simplification proves the same exact zero without that GCD.\n(polynomially-verified-zero (test R2-polar general-Cartan-2))`,
   );
 }
 

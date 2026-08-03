@@ -1,0 +1,6 @@
+node scripts/convert-scheme-to-emmy.mjs
+Formatted 18 of 732 ClojureScript files.
+Prepared 366 Emmy blocks in codeblocks.
+17 blocks use the upstream Chapter 1 port.
+349 blocks need semantic review.
+[make-step] 2026-08-03T15:48:47.390Z 8630.8 ms (ok) node scripts/convert-scheme-to-emmy.mjs
