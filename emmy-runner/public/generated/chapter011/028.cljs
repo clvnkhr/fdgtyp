@@ -2,4 +2,3 @@
                                       ((chart outgoing) start-event)))
              (proper-time-interval (- ((chart incoming) end-event)
                                       ((chart incoming) traveller-at-turning-point-event)))))
-;; => (* 14 c)

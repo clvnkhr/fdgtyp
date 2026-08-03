@@ -17,4 +17,3 @@
             (- (F omega (+ (* f u) (* g x)) v w) (+ (* f (F omega u v w)) (* g (F omega x v w))))
             (- (F omega v (+ (* f u) (* g x)) w) (+ (* f (F omega v u w)) (* g (F omega v x w))))
             (- (F omega v w (+ (* f u) (* g x))) (+ (* f (F omega v w u)) (* g (F omega v w x)))))))
-;; => (up 0 0 0 0)

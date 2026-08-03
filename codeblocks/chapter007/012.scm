@@ -18,4 +18,4 @@
 ((- (((Lie-derivative X) omega) Y Z)
 (((L1 X) omega) Y Z))
 ((point R3-rect) (up 'x0 'y0 'z0)))
-0
+;; => 0

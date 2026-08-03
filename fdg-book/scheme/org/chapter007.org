@@ -200,7 +200,7 @@ g(\delta) = \mathsf{y}(\mathsf{f})(\mathsf{m})-(\phi^{\mathsf{v}}_{\delta *}\mat
 ((- ((((Lie-directional R3-rect 2) v) w) f)
 ((commutator v w) f))
 ((point R3-rect) (up 'x0 'y0 'z0))))
-0
+;; => 0
 
    Although this is tested to second order, evaluating the derivative
    at zero ensures that first order is enough. So we can safely
@@ -389,7 +389,7 @@ g(\delta) = \mathsf{y}(\mathsf{f})(\mathsf{m})-(\phi^{\mathsf{v}}_{\delta *}\mat
 (d ((Lie-derivative V) theta)))
 X Y)
 R3-rect-point)
-0
+;; => 0
 
    and for the general two-form field:
 
@@ -397,7 +397,7 @@ R3-rect-point)
 (d ((Lie-derivative V) omega)))
 X Y Z)
 R3-rect-point)
-0
+;; => 0
 
    The Lie derivative satisfies another nice elementary
    relationship. If $\mathsf{v}$ and $\mathsf{w]$ are two vector
@@ -414,7 +414,7 @@ R3-rect-point)
 theta)
 Z)
 R3-rect-point)
-0
+;; => 0
 
    and for the two-form field ω:
 
@@ -423,7 +423,7 @@ R3-rect-point)
 omega)
 Z V)
 R3-rect-point)
-0
+;; => 0
 
 ** Exponentiating Lie Derivatives
 
@@ -524,7 +524,7 @@ e^{t\mathcal{L}_{\mathsf{v}}}\mathsf{y} = \mathsf{y}+t\mathcal{L}_{\mathsf{v}}\m
 ((- (((Lie-derivative X) omega) Y Z)
 (((L1 X) omega) Y Z))
 ((point R3-rect) (up 'x0 'y0 'z0)))
-0
+;; => 0
 
    Note that $i_{\mathsf{v}}\circ{i}_{\mathsf{u}} +
    {i}_{\mathsf{u}}\circ{i}_{\mathsf{v}} = 0$. One consequence of this
@@ -1020,7 +1020,7 @@ V)
 W)
 f)
 R2-rect-point)
-0
+;; => 0
 
 ** Parallel Transport
 

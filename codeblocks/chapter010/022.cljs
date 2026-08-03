@@ -2,4 +2,3 @@
              (literal-vector-field 'u SR)
              (literal-vector-field 'v SR))
             an-event))
-;; => 0

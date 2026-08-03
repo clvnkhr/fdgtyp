@@ -378,7 +378,7 @@ for (const id of allResultSimplifyIds) {
   }
 }
 const printedTorsion = readFileSync(path.join(root, "codeblocks/chapter008/019.cljs"), "utf8");
-if (!printedTorsion.includes("(print-expression (simplify")) {
+if (!/\(print-expression\s+\(simplify/.test(printedTorsion)) {
   throw new Error("chapter008-019 must simplify each value passed to print-expression");
 }
 const correctedSchemeOutputs = new Map([
@@ -392,6 +392,28 @@ for (const [id, expected] of correctedSchemeOutputs) {
   const ordinal = String(block.ordinal).padStart(3, "0");
   const scheme = readFileSync(path.join(root, "codeblocks", block.chapter, `${ordinal}.scm`), "utf8");
   if (!expected.test(scheme)) throw new Error(`${id} lost its corrected parseable Scheme output`);
+}
+
+// Historical Org sources occasionally put a displayed zero on its own final
+// line inside a Scheme source block. The converter must retain it only as a
+// comment, never as an extra ClojureScript expression.
+const inlineZeroResultIds = [
+  "chapter003-020", "chapter005-009", "chapter005-014",
+  "chapter007-003", "chapter007-006", "chapter007-007", "chapter007-008",
+  "chapter007-009", "chapter007-012", "chapter007-026",
+];
+for (const id of inlineZeroResultIds) {
+  const block = manifest.find(candidate => candidate.id === id);
+  if (!block) throw new Error(`Missing inline-result regression block ${id}`);
+  const ordinal = String(block.ordinal).padStart(3, "0");
+  const scheme = readFileSync(path.join(root, "codeblocks", block.chapter, `${ordinal}.scm`), "utf8");
+  const cljs = readFileSync(path.join(root, "codeblocks", block.chapter, `${ordinal}.cljs`), "utf8");
+  if (/\n\s*0\s*$/.test(scheme)) {
+    throw new Error(`${id} retains a bare cached Scheme result as executable source`);
+  }
+  if (/\n\s*0\s*$/.test(cljs)) {
+    throw new Error(`${id} propagated a cached Scheme result into executable ClojureScript`);
+  }
 }
 if (/\(sign \(alpha tau\)\)/.test(readFileSync(path.join(root, "codeblocks/chapter007/031.scm"), "utf8"))) {
   throw new Error("chapter007-031 must use sin, not the transcribed sign typo");

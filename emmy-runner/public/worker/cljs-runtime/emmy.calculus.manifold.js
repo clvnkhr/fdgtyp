@@ -24,8 +24,8 @@ goog.provide('emmy.calculus.manifold');
  *   NOTE: only `'Real` does anything as of 3.15.2021.
  */
 emmy.calculus.manifold.make_manifold_family = (function emmy$calculus$manifold$make_manifold_family(var_args){
-var G__35919 = arguments.length;
-switch (G__35919) {
+var G__47353 = arguments.length;
+switch (G__47353) {
 case 1:
 return emmy.calculus.manifold.make_manifold_family.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -75,8 +75,8 @@ return cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(emmy.value.kind(m),new cljs.
  *   that locally resembles Euclidean space near each point.
  */
 emmy.calculus.manifold.make_manifold = (function emmy$calculus$manifold$make_manifold(var_args){
-var G__35921 = arguments.length;
-switch (G__35921) {
+var G__47355 = arguments.length;
+switch (G__47355) {
 case 2:
 return emmy.calculus.manifold.make_manifold.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -239,8 +239,8 @@ return (ctor.cljs$core$IFn$_invoke$arity$1 ? ctor.cljs$core$IFn$_invoke$arity$1(
  *   by `:coordinate-representations`; passing these values will seed the cache.
  */
 emmy.calculus.manifold.make_manifold_point = (function emmy$calculus$manifold$make_manifold_point(var_args){
-var G__35923 = arguments.length;
-switch (G__35923) {
+var G__47357 = arguments.length;
+switch (G__47357) {
 case 2:
 return emmy.calculus.manifold.make_manifold_point.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -304,8 +304,8 @@ return ((emmy.calculus.manifold.manifold_point_QMARK_(point)) && (cljs.core._EQ_
 emmy.calculus.manifold.get_coordinates = (function emmy$calculus$manifold$get_coordinates(manifold_point,coordinate_system,thunk){
 var reps = new cljs.core.Keyword(null,"coordinate-representations","coordinate-representations",-676047034).cljs$core$IFn$_invoke$arity$1(manifold_point);
 var coordsys_id = (emmy.calculus.manifold.uuid.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.manifold.uuid.cljs$core$IFn$_invoke$arity$1(coordinate_system) : emmy.calculus.manifold.uuid.call(null,coordinate_system));
-var or__5162__auto__ = (function (){var fexpr__35924 = cljs.core.deref(reps);
-return (fexpr__35924.cljs$core$IFn$_invoke$arity$1 ? fexpr__35924.cljs$core$IFn$_invoke$arity$1(coordsys_id) : fexpr__35924.call(null,coordsys_id));
+var or__5162__auto__ = (function (){var fexpr__47358 = cljs.core.deref(reps);
+return (fexpr__47358.cljs$core$IFn$_invoke$arity$1 ? fexpr__47358.cljs$core$IFn$_invoke$arity$1(coordsys_id) : fexpr__47358.call(null,coordsys_id));
 })();
 if(cljs.core.truth_(or__5162__auto__)){
 return or__5162__auto__;
@@ -322,7 +322,7 @@ return rep;
  */
 emmy.calculus.manifold.ICoordinateSystem = function(){};
 
-var emmy$calculus$manifold$ICoordinateSystem$check_coordinates$dyn_36014 = (function (this$,coords){
+var emmy$calculus$manifold$ICoordinateSystem$check_coordinates$dyn_47448 = (function (this$,coords){
 var x__5519__auto__ = (((this$ == null))?null:this$);
 var m__5520__auto__ = (emmy.calculus.manifold.check_coordinates[goog.typeOf(x__5519__auto__)]);
 if((!((m__5520__auto__ == null)))){
@@ -344,11 +344,11 @@ emmy.calculus.manifold.check_coordinates = (function emmy$calculus$manifold$chec
 if((((!((this$ == null)))) && ((!((this$.emmy$calculus$manifold$ICoordinateSystem$check_coordinates$arity$2 == null)))))){
 return this$.emmy$calculus$manifold$ICoordinateSystem$check_coordinates$arity$2(this$,coords);
 } else {
-return emmy$calculus$manifold$ICoordinateSystem$check_coordinates$dyn_36014(this$,coords);
+return emmy$calculus$manifold$ICoordinateSystem$check_coordinates$dyn_47448(this$,coords);
 }
 });
 
-var emmy$calculus$manifold$ICoordinateSystem$check_point$dyn_36015 = (function (this$,point){
+var emmy$calculus$manifold$ICoordinateSystem$check_point$dyn_47449 = (function (this$,point){
 var x__5519__auto__ = (((this$ == null))?null:this$);
 var m__5520__auto__ = (emmy.calculus.manifold.check_point[goog.typeOf(x__5519__auto__)]);
 if((!((m__5520__auto__ == null)))){
@@ -370,11 +370,11 @@ emmy.calculus.manifold.check_point = (function emmy$calculus$manifold$check_poin
 if((((!((this$ == null)))) && ((!((this$.emmy$calculus$manifold$ICoordinateSystem$check_point$arity$2 == null)))))){
 return this$.emmy$calculus$manifold$ICoordinateSystem$check_point$arity$2(this$,point);
 } else {
-return emmy$calculus$manifold$ICoordinateSystem$check_point$dyn_36015(this$,point);
+return emmy$calculus$manifold$ICoordinateSystem$check_point$dyn_47449(this$,point);
 }
 });
 
-var emmy$calculus$manifold$ICoordinateSystem$coords__GT_point$dyn_36016 = (function (this$,coords){
+var emmy$calculus$manifold$ICoordinateSystem$coords__GT_point$dyn_47450 = (function (this$,coords){
 var x__5519__auto__ = (((this$ == null))?null:this$);
 var m__5520__auto__ = (emmy.calculus.manifold.coords__GT_point[goog.typeOf(x__5519__auto__)]);
 if((!((m__5520__auto__ == null)))){
@@ -396,11 +396,11 @@ emmy.calculus.manifold.coords__GT_point = (function emmy$calculus$manifold$coord
 if((((!((this$ == null)))) && ((!((this$.emmy$calculus$manifold$ICoordinateSystem$coords__GT_point$arity$2 == null)))))){
 return this$.emmy$calculus$manifold$ICoordinateSystem$coords__GT_point$arity$2(this$,coords);
 } else {
-return emmy$calculus$manifold$ICoordinateSystem$coords__GT_point$dyn_36016(this$,coords);
+return emmy$calculus$manifold$ICoordinateSystem$coords__GT_point$dyn_47450(this$,coords);
 }
 });
 
-var emmy$calculus$manifold$ICoordinateSystem$point__GT_coords$dyn_36017 = (function (this$,point){
+var emmy$calculus$manifold$ICoordinateSystem$point__GT_coords$dyn_47451 = (function (this$,point){
 var x__5519__auto__ = (((this$ == null))?null:this$);
 var m__5520__auto__ = (emmy.calculus.manifold.point__GT_coords[goog.typeOf(x__5519__auto__)]);
 if((!((m__5520__auto__ == null)))){
@@ -422,11 +422,11 @@ emmy.calculus.manifold.point__GT_coords = (function emmy$calculus$manifold$point
 if((((!((this$ == null)))) && ((!((this$.emmy$calculus$manifold$ICoordinateSystem$point__GT_coords$arity$2 == null)))))){
 return this$.emmy$calculus$manifold$ICoordinateSystem$point__GT_coords$arity$2(this$,point);
 } else {
-return emmy$calculus$manifold$ICoordinateSystem$point__GT_coords$dyn_36017(this$,point);
+return emmy$calculus$manifold$ICoordinateSystem$point__GT_coords$dyn_47451(this$,point);
 }
 });
 
-var emmy$calculus$manifold$ICoordinateSystem$uuid$dyn_36018 = (function (this$){
+var emmy$calculus$manifold$ICoordinateSystem$uuid$dyn_47452 = (function (this$){
 var x__5519__auto__ = (((this$ == null))?null:this$);
 var m__5520__auto__ = (emmy.calculus.manifold.uuid[goog.typeOf(x__5519__auto__)]);
 if((!((m__5520__auto__ == null)))){
@@ -451,7 +451,7 @@ emmy.calculus.manifold.uuid = (function emmy$calculus$manifold$uuid(this$){
 if((((!((this$ == null)))) && ((!((this$.emmy$calculus$manifold$ICoordinateSystem$uuid$arity$1 == null)))))){
 return this$.emmy$calculus$manifold$ICoordinateSystem$uuid$arity$1(this$);
 } else {
-return emmy$calculus$manifold$ICoordinateSystem$uuid$dyn_36018(this$);
+return emmy$calculus$manifold$ICoordinateSystem$uuid$dyn_47452(this$);
 }
 });
 
@@ -675,41 +675,41 @@ return cljs.core.symbol.cljs$core$IFn$_invoke$arity$1((""+"x"+cljs.core.str.cljs
  * @implements {cljs.core.IMeta}
  * @implements {cljs.core.IWithMeta}
 */
-emmy.calculus.manifold.t_emmy$calculus$manifold35928 = (function (manifold,coordinate_prototype,id,meta35929){
+emmy.calculus.manifold.t_emmy$calculus$manifold47362 = (function (manifold,coordinate_prototype,id,meta47363){
 this.manifold = manifold;
 this.coordinate_prototype = coordinate_prototype;
 this.id = id;
-this.meta35929 = meta35929;
+this.meta47363 = meta47363;
 this.cljs$lang$protocol_mask$partition0$ = 393216;
 this.cljs$lang$protocol_mask$partition1$ = 0;
 });
-(emmy.calculus.manifold.t_emmy$calculus$manifold35928.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (_35930,meta35929__$1){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47362.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (_47364,meta47363__$1){
 var self__ = this;
-var _35930__$1 = this;
-return (new emmy.calculus.manifold.t_emmy$calculus$manifold35928(self__.manifold,self__.coordinate_prototype,self__.id,meta35929__$1));
+var _47364__$1 = this;
+return (new emmy.calculus.manifold.t_emmy$calculus$manifold47362(self__.manifold,self__.coordinate_prototype,self__.id,meta47363__$1));
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35928.prototype.cljs$core$IMeta$_meta$arity$1 = (function (_35930){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47362.prototype.cljs$core$IMeta$_meta$arity$1 = (function (_47364){
 var self__ = this;
-var _35930__$1 = this;
-return self__.meta35929;
+var _47364__$1 = this;
+return self__.meta47363;
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35928.prototype.emmy$calculus$manifold$ICoordinateSystem$ = cljs.core.PROTOCOL_SENTINEL);
+(emmy.calculus.manifold.t_emmy$calculus$manifold47362.prototype.emmy$calculus$manifold$ICoordinateSystem$ = cljs.core.PROTOCOL_SENTINEL);
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35928.prototype.emmy$calculus$manifold$ICoordinateSystem$check_coordinates$arity$2 = (function (_,coords){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47362.prototype.emmy$calculus$manifold$ICoordinateSystem$check_coordinates$arity$2 = (function (_,coords){
 var self__ = this;
 var ___$1 = this;
 return cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(emmy.structure.dimension(coords),new cljs.core.Keyword(null,"dimension","dimension",543254198).cljs$core$IFn$_invoke$arity$1(self__.manifold));
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35928.prototype.emmy$calculus$manifold$ICoordinateSystem$check_point$arity$2 = (function (_,point){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47362.prototype.emmy$calculus$manifold$ICoordinateSystem$check_point$arity$2 = (function (_,point){
 var self__ = this;
 var ___$1 = this;
 return emmy.calculus.manifold.my_manifold_point_QMARK_(point,self__.manifold);
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35928.prototype.emmy$calculus$manifold$ICoordinateSystem$coords__GT_point$arity$2 = (function (this$,coords){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47362.prototype.emmy$calculus$manifold$ICoordinateSystem$coords__GT_point$arity$2 = (function (this$,coords){
 var self__ = this;
 var this$__$1 = this;
 if(cljs.core.truth_(this$__$1.emmy$calculus$manifold$ICoordinateSystem$check_coordinates$arity$2(null,coords))){
@@ -720,7 +720,7 @@ throw (new Error("Assert failed: (check-coordinates this coords)"));
 return emmy.calculus.manifold.make_manifold_point.cljs$core$IFn$_invoke$arity$4(coords,self__.manifold,this$__$1,coords);
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35928.prototype.emmy$calculus$manifold$ICoordinateSystem$point__GT_coords$arity$2 = (function (this$,point){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47362.prototype.emmy$calculus$manifold$ICoordinateSystem$point__GT_coords$arity$2 = (function (this$,point){
 var self__ = this;
 var this$__$1 = this;
 if(cljs.core.truth_(this$__$1.emmy$calculus$manifold$ICoordinateSystem$check_point$arity$2(null,point))){
@@ -739,29 +739,29 @@ return rep;
 }));
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35928.prototype.emmy$calculus$manifold$ICoordinateSystem$uuid$arity$1 = (function (_){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47362.prototype.emmy$calculus$manifold$ICoordinateSystem$uuid$arity$1 = (function (_){
 var self__ = this;
 var ___$1 = this;
 return self__.id;
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35928.getBasis = (function (){
-return new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"manifold","manifold",-299796682,null),new cljs.core.Symbol(null,"coordinate-prototype","coordinate-prototype",-1149174049,null),new cljs.core.Symbol(null,"id","id",252129435,null),new cljs.core.Symbol(null,"meta35929","meta35929",-1550647858,null)], null);
+(emmy.calculus.manifold.t_emmy$calculus$manifold47362.getBasis = (function (){
+return new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"manifold","manifold",-299796682,null),new cljs.core.Symbol(null,"coordinate-prototype","coordinate-prototype",-1149174049,null),new cljs.core.Symbol(null,"id","id",252129435,null),new cljs.core.Symbol(null,"meta47363","meta47363",437360062,null)], null);
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35928.cljs$lang$type = true);
+(emmy.calculus.manifold.t_emmy$calculus$manifold47362.cljs$lang$type = true);
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35928.cljs$lang$ctorStr = "emmy.calculus.manifold/t_emmy$calculus$manifold35928");
+(emmy.calculus.manifold.t_emmy$calculus$manifold47362.cljs$lang$ctorStr = "emmy.calculus.manifold/t_emmy$calculus$manifold47362");
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35928.cljs$lang$ctorPrWriter = (function (this__5455__auto__,writer__5456__auto__,opt__5457__auto__){
-return cljs.core._write(writer__5456__auto__,"emmy.calculus.manifold/t_emmy$calculus$manifold35928");
+(emmy.calculus.manifold.t_emmy$calculus$manifold47362.cljs$lang$ctorPrWriter = (function (this__5455__auto__,writer__5456__auto__,opt__5457__auto__){
+return cljs.core._write(writer__5456__auto__,"emmy.calculus.manifold/t_emmy$calculus$manifold47362");
 }));
 
 /**
- * Positional factory function for emmy.calculus.manifold/t_emmy$calculus$manifold35928.
+ * Positional factory function for emmy.calculus.manifold/t_emmy$calculus$manifold47362.
  */
-emmy.calculus.manifold.__GT_t_emmy$calculus$manifold35928 = (function emmy$calculus$manifold$__GT_t_emmy$calculus$manifold35928(manifold,coordinate_prototype,id,meta35929){
-return (new emmy.calculus.manifold.t_emmy$calculus$manifold35928(manifold,coordinate_prototype,id,meta35929));
+emmy.calculus.manifold.__GT_t_emmy$calculus$manifold47362 = (function emmy$calculus$manifold$__GT_t_emmy$calculus$manifold47362(manifold,coordinate_prototype,id,meta47363){
+return (new emmy.calculus.manifold.t_emmy$calculus$manifold47362(manifold,coordinate_prototype,id,meta47363));
 });
 
 
@@ -773,8 +773,8 @@ return (new emmy.calculus.manifold.t_emmy$calculus$manifold35928(manifold,coordi
  *   This is as close to an identity coordinate transformation as the system gets!
  */
 emmy.calculus.manifold.__GT_Rectangular = (function emmy$calculus$manifold$__GT_Rectangular(var_args){
-var G__35927 = arguments.length;
-switch (G__35927) {
+var G__47361 = arguments.length;
+switch (G__47361) {
 case 1:
 return emmy.calculus.manifold.__GT_Rectangular.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -796,7 +796,7 @@ return emmy.calculus.manifold.__GT_Rectangular.cljs$core$IFn$_invoke$arity$2(man
 
 (emmy.calculus.manifold.__GT_Rectangular.cljs$core$IFn$_invoke$arity$2 = (function (manifold,coordinate_prototype){
 var id = emmy.util.uuid();
-return cljs.core.with_meta((new emmy.calculus.manifold.t_emmy$calculus$manifold35928(manifold,coordinate_prototype,id,cljs.core.PersistentArrayMap.EMPTY)),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword("emmy.calculus.manifold","coord-prototype","emmy.calculus.manifold/coord-prototype",1491234441),coordinate_prototype,new cljs.core.Keyword("emmy.calculus.manifold","manifold","emmy.calculus.manifold/manifold",-1013288811),manifold], null));
+return cljs.core.with_meta((new emmy.calculus.manifold.t_emmy$calculus$manifold47362(manifold,coordinate_prototype,id,cljs.core.PersistentArrayMap.EMPTY)),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword("emmy.calculus.manifold","coord-prototype","emmy.calculus.manifold/coord-prototype",1491234441),coordinate_prototype,new cljs.core.Keyword("emmy.calculus.manifold","manifold","emmy.calculus.manifold/manifold",-1013288811),manifold], null));
 }));
 
 (emmy.calculus.manifold.__GT_Rectangular.cljs$lang$maxFixedArity = 2);
@@ -808,29 +808,29 @@ return cljs.core.with_meta((new emmy.calculus.manifold.t_emmy$calculus$manifold3
  * @implements {cljs.core.IMeta}
  * @implements {cljs.core.IWithMeta}
 */
-emmy.calculus.manifold.t_emmy$calculus$manifold35933 = (function (manifold,coordinate_prototype,id,meta35934){
+emmy.calculus.manifold.t_emmy$calculus$manifold47367 = (function (manifold,coordinate_prototype,id,meta47368){
 this.manifold = manifold;
 this.coordinate_prototype = coordinate_prototype;
 this.id = id;
-this.meta35934 = meta35934;
+this.meta47368 = meta47368;
 this.cljs$lang$protocol_mask$partition0$ = 393216;
 this.cljs$lang$protocol_mask$partition1$ = 0;
 });
-(emmy.calculus.manifold.t_emmy$calculus$manifold35933.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (_35935,meta35934__$1){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47367.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (_47369,meta47368__$1){
 var self__ = this;
-var _35935__$1 = this;
-return (new emmy.calculus.manifold.t_emmy$calculus$manifold35933(self__.manifold,self__.coordinate_prototype,self__.id,meta35934__$1));
+var _47369__$1 = this;
+return (new emmy.calculus.manifold.t_emmy$calculus$manifold47367(self__.manifold,self__.coordinate_prototype,self__.id,meta47368__$1));
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35933.prototype.cljs$core$IMeta$_meta$arity$1 = (function (_35935){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47367.prototype.cljs$core$IMeta$_meta$arity$1 = (function (_47369){
 var self__ = this;
-var _35935__$1 = this;
-return self__.meta35934;
+var _47369__$1 = this;
+return self__.meta47368;
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35933.prototype.emmy$calculus$manifold$ICoordinateSystem$ = cljs.core.PROTOCOL_SENTINEL);
+(emmy.calculus.manifold.t_emmy$calculus$manifold47367.prototype.emmy$calculus$manifold$ICoordinateSystem$ = cljs.core.PROTOCOL_SENTINEL);
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35933.prototype.emmy$calculus$manifold$ICoordinateSystem$check_coordinates$arity$2 = (function (_,coords){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47367.prototype.emmy$calculus$manifold$ICoordinateSystem$check_coordinates$arity$2 = (function (_,coords){
 var self__ = this;
 var ___$1 = this;
 var and__5160__auto__ = emmy.structure.up_QMARK_(coords);
@@ -852,13 +852,13 @@ return and__5160__auto__;
 }
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35933.prototype.emmy$calculus$manifold$ICoordinateSystem$check_point$arity$2 = (function (_,point){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47367.prototype.emmy$calculus$manifold$ICoordinateSystem$check_point$arity$2 = (function (_,point){
 var self__ = this;
 var ___$1 = this;
 return emmy.calculus.manifold.my_manifold_point_QMARK_(point,self__.manifold);
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35933.prototype.emmy$calculus$manifold$ICoordinateSystem$coords__GT_point$arity$2 = (function (this$,coords){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47367.prototype.emmy$calculus$manifold$ICoordinateSystem$coords__GT_point$arity$2 = (function (this$,coords){
 var self__ = this;
 var this$__$1 = this;
 if(cljs.core.truth_(this$__$1.emmy$calculus$manifold$ICoordinateSystem$check_coordinates$arity$2(null,coords))){
@@ -866,13 +866,13 @@ if(cljs.core.truth_(this$__$1.emmy$calculus$manifold$ICoordinateSystem$check_coo
 throw (new Error("Assert failed: (check-coordinates this coords)"));
 }
 
-var vec__35936 = coords;
-var r = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__35936,(0),null);
-var theta = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__35936,(1),null);
+var vec__47370 = coords;
+var r = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47370,(0),null);
+var theta = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47370,(1),null);
 return emmy.calculus.manifold.make_manifold_point.cljs$core$IFn$_invoke$arity$4(cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(coords,(0),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(r,emmy.generic.cos.cljs$core$IFn$_invoke$arity$1(theta))),(1),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(r,emmy.generic.sin.cljs$core$IFn$_invoke$arity$1(theta))),self__.manifold,this$__$1,coords);
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35933.prototype.emmy$calculus$manifold$ICoordinateSystem$point__GT_coords$arity$2 = (function (this$,point){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47367.prototype.emmy$calculus$manifold$ICoordinateSystem$point__GT_coords$arity$2 = (function (this$,point){
 var self__ = this;
 var this$__$1 = this;
 if(cljs.core.truth_(this$__$1.emmy$calculus$manifold$ICoordinateSystem$check_point$arity$2(null,point))){
@@ -887,9 +887,9 @@ if(((emmy.structure.up_QMARK_(rep)) && (cljs.core._EQ_.cljs$core$IFn$_invoke$ari
 emmy.util.illegal("PolarCylindrical bad point");
 }
 
-var vec__35939 = rep;
-var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__35939,(0),null);
-var y = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__35939,(1),null);
+var vec__47373 = rep;
+var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47373,(0),null);
+var y = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47373,(1),null);
 var rsq = emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2(emmy.generic.square.cljs$core$IFn$_invoke$arity$1(x),emmy.generic.square.cljs$core$IFn$_invoke$arity$1(y));
 if(cljs.core.truth_(emmy.generic.zero_QMARK_.cljs$core$IFn$_invoke$arity$1(rsq))){
 emmy.util.illegal_state("PolarCylindrical singular");
@@ -900,29 +900,29 @@ return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(cljs.core.assoc.cljs$core$I
 }));
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35933.prototype.emmy$calculus$manifold$ICoordinateSystem$uuid$arity$1 = (function (_){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47367.prototype.emmy$calculus$manifold$ICoordinateSystem$uuid$arity$1 = (function (_){
 var self__ = this;
 var ___$1 = this;
 return self__.id;
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35933.getBasis = (function (){
-return new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"manifold","manifold",-299796682,null),new cljs.core.Symbol(null,"coordinate-prototype","coordinate-prototype",-1149174049,null),new cljs.core.Symbol(null,"id","id",252129435,null),new cljs.core.Symbol(null,"meta35934","meta35934",1216058134,null)], null);
+(emmy.calculus.manifold.t_emmy$calculus$manifold47367.getBasis = (function (){
+return new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"manifold","manifold",-299796682,null),new cljs.core.Symbol(null,"coordinate-prototype","coordinate-prototype",-1149174049,null),new cljs.core.Symbol(null,"id","id",252129435,null),new cljs.core.Symbol(null,"meta47368","meta47368",1500177292,null)], null);
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35933.cljs$lang$type = true);
+(emmy.calculus.manifold.t_emmy$calculus$manifold47367.cljs$lang$type = true);
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35933.cljs$lang$ctorStr = "emmy.calculus.manifold/t_emmy$calculus$manifold35933");
+(emmy.calculus.manifold.t_emmy$calculus$manifold47367.cljs$lang$ctorStr = "emmy.calculus.manifold/t_emmy$calculus$manifold47367");
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35933.cljs$lang$ctorPrWriter = (function (this__5455__auto__,writer__5456__auto__,opt__5457__auto__){
-return cljs.core._write(writer__5456__auto__,"emmy.calculus.manifold/t_emmy$calculus$manifold35933");
+(emmy.calculus.manifold.t_emmy$calculus$manifold47367.cljs$lang$ctorPrWriter = (function (this__5455__auto__,writer__5456__auto__,opt__5457__auto__){
+return cljs.core._write(writer__5456__auto__,"emmy.calculus.manifold/t_emmy$calculus$manifold47367");
 }));
 
 /**
- * Positional factory function for emmy.calculus.manifold/t_emmy$calculus$manifold35933.
+ * Positional factory function for emmy.calculus.manifold/t_emmy$calculus$manifold47367.
  */
-emmy.calculus.manifold.__GT_t_emmy$calculus$manifold35933 = (function emmy$calculus$manifold$__GT_t_emmy$calculus$manifold35933(manifold,coordinate_prototype,id,meta35934){
-return (new emmy.calculus.manifold.t_emmy$calculus$manifold35933(manifold,coordinate_prototype,id,meta35934));
+emmy.calculus.manifold.__GT_t_emmy$calculus$manifold47367 = (function emmy$calculus$manifold$__GT_t_emmy$calculus$manifold47367(manifold,coordinate_prototype,id,meta47368){
+return (new emmy.calculus.manifold.t_emmy$calculus$manifold47367(manifold,coordinate_prototype,id,meta47368));
 });
 
 
@@ -935,8 +935,8 @@ return (new emmy.calculus.manifold.t_emmy$calculus$manifold35933(manifold,coordi
  *   all other points are untouched.
  */
 emmy.calculus.manifold.__GT_PolarCylindrical = (function emmy$calculus$manifold$__GT_PolarCylindrical(var_args){
-var G__35932 = arguments.length;
-switch (G__35932) {
+var G__47366 = arguments.length;
+switch (G__47366) {
 case 1:
 return emmy.calculus.manifold.__GT_PolarCylindrical.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -958,7 +958,7 @@ return emmy.calculus.manifold.__GT_PolarCylindrical.cljs$core$IFn$_invoke$arity$
 
 (emmy.calculus.manifold.__GT_PolarCylindrical.cljs$core$IFn$_invoke$arity$2 = (function (manifold,coordinate_prototype){
 var id = emmy.util.uuid();
-return cljs.core.with_meta((new emmy.calculus.manifold.t_emmy$calculus$manifold35933(manifold,coordinate_prototype,id,cljs.core.PersistentArrayMap.EMPTY)),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword("emmy.calculus.manifold","coord-prototype","emmy.calculus.manifold/coord-prototype",1491234441),coordinate_prototype,new cljs.core.Keyword("emmy.calculus.manifold","manifold","emmy.calculus.manifold/manifold",-1013288811),manifold], null));
+return cljs.core.with_meta((new emmy.calculus.manifold.t_emmy$calculus$manifold47367(manifold,coordinate_prototype,id,cljs.core.PersistentArrayMap.EMPTY)),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword("emmy.calculus.manifold","coord-prototype","emmy.calculus.manifold/coord-prototype",1491234441),coordinate_prototype,new cljs.core.Keyword("emmy.calculus.manifold","manifold","emmy.calculus.manifold/manifold",-1013288811),manifold], null));
 }));
 
 (emmy.calculus.manifold.__GT_PolarCylindrical.cljs$lang$maxFixedArity = 2);
@@ -970,29 +970,29 @@ return cljs.core.with_meta((new emmy.calculus.manifold.t_emmy$calculus$manifold3
  * @implements {cljs.core.IMeta}
  * @implements {cljs.core.IWithMeta}
 */
-emmy.calculus.manifold.t_emmy$calculus$manifold35944 = (function (manifold,coordinate_prototype,id,meta35945){
+emmy.calculus.manifold.t_emmy$calculus$manifold47378 = (function (manifold,coordinate_prototype,id,meta47379){
 this.manifold = manifold;
 this.coordinate_prototype = coordinate_prototype;
 this.id = id;
-this.meta35945 = meta35945;
+this.meta47379 = meta47379;
 this.cljs$lang$protocol_mask$partition0$ = 393216;
 this.cljs$lang$protocol_mask$partition1$ = 0;
 });
-(emmy.calculus.manifold.t_emmy$calculus$manifold35944.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (_35946,meta35945__$1){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47378.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (_47380,meta47379__$1){
 var self__ = this;
-var _35946__$1 = this;
-return (new emmy.calculus.manifold.t_emmy$calculus$manifold35944(self__.manifold,self__.coordinate_prototype,self__.id,meta35945__$1));
+var _47380__$1 = this;
+return (new emmy.calculus.manifold.t_emmy$calculus$manifold47378(self__.manifold,self__.coordinate_prototype,self__.id,meta47379__$1));
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35944.prototype.cljs$core$IMeta$_meta$arity$1 = (function (_35946){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47378.prototype.cljs$core$IMeta$_meta$arity$1 = (function (_47380){
 var self__ = this;
-var _35946__$1 = this;
-return self__.meta35945;
+var _47380__$1 = this;
+return self__.meta47379;
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35944.prototype.emmy$calculus$manifold$ICoordinateSystem$ = cljs.core.PROTOCOL_SENTINEL);
+(emmy.calculus.manifold.t_emmy$calculus$manifold47378.prototype.emmy$calculus$manifold$ICoordinateSystem$ = cljs.core.PROTOCOL_SENTINEL);
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35944.prototype.emmy$calculus$manifold$ICoordinateSystem$check_coordinates$arity$2 = (function (_,coords){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47378.prototype.emmy$calculus$manifold$ICoordinateSystem$check_coordinates$arity$2 = (function (_,coords){
 var self__ = this;
 var ___$1 = this;
 var and__5160__auto__ = emmy.structure.up_QMARK_(coords);
@@ -1013,13 +1013,13 @@ return and__5160__auto__;
 }
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35944.prototype.emmy$calculus$manifold$ICoordinateSystem$check_point$arity$2 = (function (_,point){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47378.prototype.emmy$calculus$manifold$ICoordinateSystem$check_point$arity$2 = (function (_,point){
 var self__ = this;
 var ___$1 = this;
 return emmy.calculus.manifold.my_manifold_point_QMARK_(point,self__.manifold);
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35944.prototype.emmy$calculus$manifold$ICoordinateSystem$coords__GT_point$arity$2 = (function (this$,coords){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47378.prototype.emmy$calculus$manifold$ICoordinateSystem$coords__GT_point$arity$2 = (function (this$,coords){
 var self__ = this;
 var this$__$1 = this;
 if(cljs.core.truth_(this$__$1.emmy$calculus$manifold$ICoordinateSystem$check_coordinates$arity$2(null,coords))){
@@ -1027,14 +1027,14 @@ if(cljs.core.truth_(this$__$1.emmy$calculus$manifold$ICoordinateSystem$check_coo
 throw (new Error("Assert failed: (check-coordinates this coords)"));
 }
 
-var vec__35947 = coords;
-var r = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__35947,(0),null);
-var theta = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__35947,(1),null);
-var phi = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__35947,(2),null);
+var vec__47381 = coords;
+var r = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47381,(0),null);
+var theta = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47381,(1),null);
+var phi = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47381,(2),null);
 return emmy.calculus.manifold.make_manifold_point.cljs$core$IFn$_invoke$arity$4(cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(coords,(0),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$variadic(r,emmy.generic.sin.cljs$core$IFn$_invoke$arity$1(theta),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.generic.cos.cljs$core$IFn$_invoke$arity$1(phi)], 0))),(1),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$variadic(r,emmy.generic.sin.cljs$core$IFn$_invoke$arity$1(theta),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.generic.sin.cljs$core$IFn$_invoke$arity$1(phi)], 0))),(2),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(r,emmy.generic.cos.cljs$core$IFn$_invoke$arity$1(theta))),self__.manifold,this$__$1,coords);
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35944.prototype.emmy$calculus$manifold$ICoordinateSystem$point__GT_coords$arity$2 = (function (this$,point){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47378.prototype.emmy$calculus$manifold$ICoordinateSystem$point__GT_coords$arity$2 = (function (this$,point){
 var self__ = this;
 var this$__$1 = this;
 if(cljs.core.truth_(this$__$1.emmy$calculus$manifold$ICoordinateSystem$check_point$arity$2(null,point))){
@@ -1049,10 +1049,10 @@ if(((emmy.structure.up_QMARK_(rep)) && (cljs.core._EQ_.cljs$core$IFn$_invoke$ari
 emmy.util.illegal("SphericalCylindrical bad point");
 }
 
-var vec__35950 = rep;
-var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__35950,(0),null);
-var y = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__35950,(1),null);
-var z = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__35950,(2),null);
+var vec__47384 = rep;
+var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47384,(0),null);
+var y = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47384,(1),null);
+var z = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47384,(2),null);
 var r = emmy.generic.sqrt.cljs$core$IFn$_invoke$arity$1(emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$variadic(emmy.generic.square.cljs$core$IFn$_invoke$arity$1(x),emmy.generic.square.cljs$core$IFn$_invoke$arity$1(y),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.generic.square.cljs$core$IFn$_invoke$arity$1(z)], 0)));
 if(cljs.core.truth_(emmy.generic.zero_QMARK_.cljs$core$IFn$_invoke$arity$1(r))){
 emmy.util.illegal_state("SphericalCylindrical singular");
@@ -1063,29 +1063,29 @@ return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(cljs.core.assoc.cljs$core$I
 }));
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35944.prototype.emmy$calculus$manifold$ICoordinateSystem$uuid$arity$1 = (function (_){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47378.prototype.emmy$calculus$manifold$ICoordinateSystem$uuid$arity$1 = (function (_){
 var self__ = this;
 var ___$1 = this;
 return self__.id;
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35944.getBasis = (function (){
-return new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"manifold","manifold",-299796682,null),new cljs.core.Symbol(null,"coordinate-prototype","coordinate-prototype",-1149174049,null),new cljs.core.Symbol(null,"id","id",252129435,null),new cljs.core.Symbol(null,"meta35945","meta35945",-349499887,null)], null);
+(emmy.calculus.manifold.t_emmy$calculus$manifold47378.getBasis = (function (){
+return new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"manifold","manifold",-299796682,null),new cljs.core.Symbol(null,"coordinate-prototype","coordinate-prototype",-1149174049,null),new cljs.core.Symbol(null,"id","id",252129435,null),new cljs.core.Symbol(null,"meta47379","meta47379",-1696168122,null)], null);
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35944.cljs$lang$type = true);
+(emmy.calculus.manifold.t_emmy$calculus$manifold47378.cljs$lang$type = true);
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35944.cljs$lang$ctorStr = "emmy.calculus.manifold/t_emmy$calculus$manifold35944");
+(emmy.calculus.manifold.t_emmy$calculus$manifold47378.cljs$lang$ctorStr = "emmy.calculus.manifold/t_emmy$calculus$manifold47378");
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35944.cljs$lang$ctorPrWriter = (function (this__5455__auto__,writer__5456__auto__,opt__5457__auto__){
-return cljs.core._write(writer__5456__auto__,"emmy.calculus.manifold/t_emmy$calculus$manifold35944");
+(emmy.calculus.manifold.t_emmy$calculus$manifold47378.cljs$lang$ctorPrWriter = (function (this__5455__auto__,writer__5456__auto__,opt__5457__auto__){
+return cljs.core._write(writer__5456__auto__,"emmy.calculus.manifold/t_emmy$calculus$manifold47378");
 }));
 
 /**
- * Positional factory function for emmy.calculus.manifold/t_emmy$calculus$manifold35944.
+ * Positional factory function for emmy.calculus.manifold/t_emmy$calculus$manifold47378.
  */
-emmy.calculus.manifold.__GT_t_emmy$calculus$manifold35944 = (function emmy$calculus$manifold$__GT_t_emmy$calculus$manifold35944(manifold,coordinate_prototype,id,meta35945){
-return (new emmy.calculus.manifold.t_emmy$calculus$manifold35944(manifold,coordinate_prototype,id,meta35945));
+emmy.calculus.manifold.__GT_t_emmy$calculus$manifold47378 = (function emmy$calculus$manifold$__GT_t_emmy$calculus$manifold47378(manifold,coordinate_prototype,id,meta47379){
+return (new emmy.calculus.manifold.t_emmy$calculus$manifold47378(manifold,coordinate_prototype,id,meta47379));
 });
 
 
@@ -1101,8 +1101,8 @@ return (new emmy.calculus.manifold.t_emmy$calculus$manifold35944(manifold,coordi
  *   than three dimensions.
  */
 emmy.calculus.manifold.__GT_SphericalCylindrical = (function emmy$calculus$manifold$__GT_SphericalCylindrical(var_args){
-var G__35943 = arguments.length;
-switch (G__35943) {
+var G__47377 = arguments.length;
+switch (G__47377) {
 case 1:
 return emmy.calculus.manifold.__GT_SphericalCylindrical.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -1124,7 +1124,7 @@ return emmy.calculus.manifold.__GT_SphericalCylindrical.cljs$core$IFn$_invoke$ar
 
 (emmy.calculus.manifold.__GT_SphericalCylindrical.cljs$core$IFn$_invoke$arity$2 = (function (manifold,coordinate_prototype){
 var id = emmy.util.uuid();
-return cljs.core.with_meta((new emmy.calculus.manifold.t_emmy$calculus$manifold35944(manifold,coordinate_prototype,id,cljs.core.PersistentArrayMap.EMPTY)),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword("emmy.calculus.manifold","coord-prototype","emmy.calculus.manifold/coord-prototype",1491234441),coordinate_prototype,new cljs.core.Keyword("emmy.calculus.manifold","manifold","emmy.calculus.manifold/manifold",-1013288811),manifold], null));
+return cljs.core.with_meta((new emmy.calculus.manifold.t_emmy$calculus$manifold47378(manifold,coordinate_prototype,id,cljs.core.PersistentArrayMap.EMPTY)),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword("emmy.calculus.manifold","coord-prototype","emmy.calculus.manifold/coord-prototype",1491234441),coordinate_prototype,new cljs.core.Keyword("emmy.calculus.manifold","manifold","emmy.calculus.manifold/manifold",-1013288811),manifold], null));
 }));
 
 (emmy.calculus.manifold.__GT_SphericalCylindrical.cljs$lang$maxFixedArity = 2);
@@ -1136,41 +1136,41 @@ return cljs.core.with_meta((new emmy.calculus.manifold.t_emmy$calculus$manifold3
  * @implements {cljs.core.IMeta}
  * @implements {cljs.core.IWithMeta}
 */
-emmy.calculus.manifold.t_emmy$calculus$manifold35955 = (function (manifold,coordinate_prototype,id,meta35956){
+emmy.calculus.manifold.t_emmy$calculus$manifold47389 = (function (manifold,coordinate_prototype,id,meta47390){
 this.manifold = manifold;
 this.coordinate_prototype = coordinate_prototype;
 this.id = id;
-this.meta35956 = meta35956;
+this.meta47390 = meta47390;
 this.cljs$lang$protocol_mask$partition0$ = 393216;
 this.cljs$lang$protocol_mask$partition1$ = 0;
 });
-(emmy.calculus.manifold.t_emmy$calculus$manifold35955.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (_35957,meta35956__$1){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47389.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (_47391,meta47390__$1){
 var self__ = this;
-var _35957__$1 = this;
-return (new emmy.calculus.manifold.t_emmy$calculus$manifold35955(self__.manifold,self__.coordinate_prototype,self__.id,meta35956__$1));
+var _47391__$1 = this;
+return (new emmy.calculus.manifold.t_emmy$calculus$manifold47389(self__.manifold,self__.coordinate_prototype,self__.id,meta47390__$1));
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35955.prototype.cljs$core$IMeta$_meta$arity$1 = (function (_35957){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47389.prototype.cljs$core$IMeta$_meta$arity$1 = (function (_47391){
 var self__ = this;
-var _35957__$1 = this;
-return self__.meta35956;
+var _47391__$1 = this;
+return self__.meta47390;
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35955.prototype.emmy$calculus$manifold$ICoordinateSystem$ = cljs.core.PROTOCOL_SENTINEL);
+(emmy.calculus.manifold.t_emmy$calculus$manifold47389.prototype.emmy$calculus$manifold$ICoordinateSystem$ = cljs.core.PROTOCOL_SENTINEL);
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35955.prototype.emmy$calculus$manifold$ICoordinateSystem$check_coordinates$arity$2 = (function (_,coords){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47389.prototype.emmy$calculus$manifold$ICoordinateSystem$check_coordinates$arity$2 = (function (_,coords){
 var self__ = this;
 var ___$1 = this;
 return ((emmy.structure.up_QMARK_(coords)) && (cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(emmy.generic.dimension.cljs$core$IFn$_invoke$arity$1(coords),(4))));
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35955.prototype.emmy$calculus$manifold$ICoordinateSystem$check_point$arity$2 = (function (_,point){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47389.prototype.emmy$calculus$manifold$ICoordinateSystem$check_point$arity$2 = (function (_,point){
 var self__ = this;
 var ___$1 = this;
 return emmy.calculus.manifold.my_manifold_point_QMARK_(point,self__.manifold);
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35955.prototype.emmy$calculus$manifold$ICoordinateSystem$coords__GT_point$arity$2 = (function (this$,coords){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47389.prototype.emmy$calculus$manifold$ICoordinateSystem$coords__GT_point$arity$2 = (function (this$,coords){
 var self__ = this;
 var this$__$1 = this;
 if(cljs.core.truth_(this$__$1.emmy$calculus$manifold$ICoordinateSystem$check_coordinates$arity$2(null,coords))){
@@ -1178,15 +1178,15 @@ if(cljs.core.truth_(this$__$1.emmy$calculus$manifold$ICoordinateSystem$check_coo
 throw (new Error("Assert failed: (check-coordinates this coords)"));
 }
 
-var vec__35958 = coords;
-var t = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__35958,(0),null);
-var r = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__35958,(1),null);
-var theta = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__35958,(2),null);
-var phi = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__35958,(3),null);
+var vec__47392 = coords;
+var t = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47392,(0),null);
+var r = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47392,(1),null);
+var theta = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47392,(2),null);
+var phi = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47392,(3),null);
 return emmy.calculus.manifold.make_manifold_point.cljs$core$IFn$_invoke$arity$4(emmy.structure.up.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([t,emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$variadic(r,emmy.generic.sin.cljs$core$IFn$_invoke$arity$1(theta),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.generic.cos.cljs$core$IFn$_invoke$arity$1(phi)], 0)),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$variadic(r,emmy.generic.sin.cljs$core$IFn$_invoke$arity$1(theta),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.generic.sin.cljs$core$IFn$_invoke$arity$1(phi)], 0)),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(r,emmy.generic.cos.cljs$core$IFn$_invoke$arity$1(theta))], 0)),self__.manifold,this$__$1,coords);
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35955.prototype.emmy$calculus$manifold$ICoordinateSystem$point__GT_coords$arity$2 = (function (this$,point){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47389.prototype.emmy$calculus$manifold$ICoordinateSystem$point__GT_coords$arity$2 = (function (this$,point){
 var self__ = this;
 var this$__$1 = this;
 if(cljs.core.truth_(this$__$1.emmy$calculus$manifold$ICoordinateSystem$check_point$arity$2(null,point))){
@@ -1199,11 +1199,11 @@ var rep = emmy.calculus.manifold.manifold_point_representation(point);
 if(cljs.core.not(this$__$1.emmy$calculus$manifold$ICoordinateSystem$check_coordinates$arity$2(null,rep))){
 throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2("bad ->SpacetimeSpherical point: ",new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"point","point",1813198264),point,new cljs.core.Keyword(null,"coordinate-system","coordinate-system",-1298347271),this$__$1], null));
 } else {
-var vec__35961 = rep;
-var t = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__35961,(0),null);
-var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__35961,(1),null);
-var y = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__35961,(2),null);
-var z = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__35961,(3),null);
+var vec__47395 = rep;
+var t = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47395,(0),null);
+var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47395,(1),null);
+var y = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47395,(2),null);
+var z = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47395,(3),null);
 var r = emmy.generic.sqrt.cljs$core$IFn$_invoke$arity$1(emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$variadic(emmy.generic.square.cljs$core$IFn$_invoke$arity$1(x),emmy.generic.square.cljs$core$IFn$_invoke$arity$1(y),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.generic.square.cljs$core$IFn$_invoke$arity$1(z)], 0)));
 if(cljs.core.truth_((function (){var and__5160__auto__ = emmy.value.number_QMARK_(r);
 if(and__5160__auto__){
@@ -1221,29 +1221,29 @@ return emmy.structure.up.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq
 }));
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35955.prototype.emmy$calculus$manifold$ICoordinateSystem$uuid$arity$1 = (function (_){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47389.prototype.emmy$calculus$manifold$ICoordinateSystem$uuid$arity$1 = (function (_){
 var self__ = this;
 var ___$1 = this;
 return self__.id;
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35955.getBasis = (function (){
-return new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"manifold","manifold",-299796682,null),new cljs.core.Symbol(null,"coordinate-prototype","coordinate-prototype",-1149174049,null),new cljs.core.Symbol(null,"id","id",252129435,null),new cljs.core.Symbol(null,"meta35956","meta35956",1774704415,null)], null);
+(emmy.calculus.manifold.t_emmy$calculus$manifold47389.getBasis = (function (){
+return new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"manifold","manifold",-299796682,null),new cljs.core.Symbol(null,"coordinate-prototype","coordinate-prototype",-1149174049,null),new cljs.core.Symbol(null,"id","id",252129435,null),new cljs.core.Symbol(null,"meta47390","meta47390",1364980497,null)], null);
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35955.cljs$lang$type = true);
+(emmy.calculus.manifold.t_emmy$calculus$manifold47389.cljs$lang$type = true);
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35955.cljs$lang$ctorStr = "emmy.calculus.manifold/t_emmy$calculus$manifold35955");
+(emmy.calculus.manifold.t_emmy$calculus$manifold47389.cljs$lang$ctorStr = "emmy.calculus.manifold/t_emmy$calculus$manifold47389");
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35955.cljs$lang$ctorPrWriter = (function (this__5455__auto__,writer__5456__auto__,opt__5457__auto__){
-return cljs.core._write(writer__5456__auto__,"emmy.calculus.manifold/t_emmy$calculus$manifold35955");
+(emmy.calculus.manifold.t_emmy$calculus$manifold47389.cljs$lang$ctorPrWriter = (function (this__5455__auto__,writer__5456__auto__,opt__5457__auto__){
+return cljs.core._write(writer__5456__auto__,"emmy.calculus.manifold/t_emmy$calculus$manifold47389");
 }));
 
 /**
- * Positional factory function for emmy.calculus.manifold/t_emmy$calculus$manifold35955.
+ * Positional factory function for emmy.calculus.manifold/t_emmy$calculus$manifold47389.
  */
-emmy.calculus.manifold.__GT_t_emmy$calculus$manifold35955 = (function emmy$calculus$manifold$__GT_t_emmy$calculus$manifold35955(manifold,coordinate_prototype,id,meta35956){
-return (new emmy.calculus.manifold.t_emmy$calculus$manifold35955(manifold,coordinate_prototype,id,meta35956));
+emmy.calculus.manifold.__GT_t_emmy$calculus$manifold47389 = (function emmy$calculus$manifold$__GT_t_emmy$calculus$manifold47389(manifold,coordinate_prototype,id,meta47390){
+return (new emmy.calculus.manifold.t_emmy$calculus$manifold47389(manifold,coordinate_prototype,id,meta47390));
 });
 
 
@@ -1257,8 +1257,8 @@ return (new emmy.calculus.manifold.t_emmy$calculus$manifold35955(manifold,coordi
  *   longitude).
  */
 emmy.calculus.manifold.__GT_SpacetimeSpherical = (function emmy$calculus$manifold$__GT_SpacetimeSpherical(var_args){
-var G__35954 = arguments.length;
-switch (G__35954) {
+var G__47388 = arguments.length;
+switch (G__47388) {
 case 1:
 return emmy.calculus.manifold.__GT_SpacetimeSpherical.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -1280,7 +1280,7 @@ return emmy.calculus.manifold.__GT_SpacetimeSpherical.cljs$core$IFn$_invoke$arit
 
 (emmy.calculus.manifold.__GT_SpacetimeSpherical.cljs$core$IFn$_invoke$arity$2 = (function (manifold,coordinate_prototype){
 var id = emmy.util.uuid();
-return cljs.core.with_meta((new emmy.calculus.manifold.t_emmy$calculus$manifold35955(manifold,coordinate_prototype,id,cljs.core.PersistentArrayMap.EMPTY)),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword("emmy.calculus.manifold","coord-prototype","emmy.calculus.manifold/coord-prototype",1491234441),coordinate_prototype,new cljs.core.Keyword("emmy.calculus.manifold","manifold","emmy.calculus.manifold/manifold",-1013288811),manifold], null));
+return cljs.core.with_meta((new emmy.calculus.manifold.t_emmy$calculus$manifold47389(manifold,coordinate_prototype,id,cljs.core.PersistentArrayMap.EMPTY)),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword("emmy.calculus.manifold","coord-prototype","emmy.calculus.manifold/coord-prototype",1491234441),coordinate_prototype,new cljs.core.Keyword("emmy.calculus.manifold","manifold","emmy.calculus.manifold/manifold",-1013288811),manifold], null));
 }));
 
 (emmy.calculus.manifold.__GT_SpacetimeSpherical.cljs$lang$maxFixedArity = 2);
@@ -1292,44 +1292,44 @@ return cljs.core.with_meta((new emmy.calculus.manifold.t_emmy$calculus$manifold3
  * @implements {cljs.core.IMeta}
  * @implements {cljs.core.IWithMeta}
 */
-emmy.calculus.manifold.t_emmy$calculus$manifold35964 = (function (orientation,inverse_orientation,ctor,manifold,coordinate_prototype,id,meta35965){
+emmy.calculus.manifold.t_emmy$calculus$manifold47398 = (function (orientation,inverse_orientation,ctor,manifold,coordinate_prototype,id,meta47399){
 this.orientation = orientation;
 this.inverse_orientation = inverse_orientation;
 this.ctor = ctor;
 this.manifold = manifold;
 this.coordinate_prototype = coordinate_prototype;
 this.id = id;
-this.meta35965 = meta35965;
+this.meta47399 = meta47399;
 this.cljs$lang$protocol_mask$partition0$ = 393216;
 this.cljs$lang$protocol_mask$partition1$ = 0;
 });
-(emmy.calculus.manifold.t_emmy$calculus$manifold35964.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (_35966,meta35965__$1){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47398.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (_47400,meta47399__$1){
 var self__ = this;
-var _35966__$1 = this;
-return (new emmy.calculus.manifold.t_emmy$calculus$manifold35964(self__.orientation,self__.inverse_orientation,self__.ctor,self__.manifold,self__.coordinate_prototype,self__.id,meta35965__$1));
+var _47400__$1 = this;
+return (new emmy.calculus.manifold.t_emmy$calculus$manifold47398(self__.orientation,self__.inverse_orientation,self__.ctor,self__.manifold,self__.coordinate_prototype,self__.id,meta47399__$1));
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35964.prototype.cljs$core$IMeta$_meta$arity$1 = (function (_35966){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47398.prototype.cljs$core$IMeta$_meta$arity$1 = (function (_47400){
 var self__ = this;
-var _35966__$1 = this;
-return self__.meta35965;
+var _47400__$1 = this;
+return self__.meta47399;
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35964.prototype.emmy$calculus$manifold$ICoordinateSystem$ = cljs.core.PROTOCOL_SENTINEL);
+(emmy.calculus.manifold.t_emmy$calculus$manifold47398.prototype.emmy$calculus$manifold$ICoordinateSystem$ = cljs.core.PROTOCOL_SENTINEL);
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35964.prototype.emmy$calculus$manifold$ICoordinateSystem$check_coordinates$arity$2 = (function (_,coords){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47398.prototype.emmy$calculus$manifold$ICoordinateSystem$check_coordinates$arity$2 = (function (_,coords){
 var self__ = this;
 var ___$1 = this;
 return ((emmy.structure.up_QMARK_(coords)) && (((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(emmy.generic.dimension.cljs$core$IFn$_invoke$arity$1(coords),(2))) && ((((!(emmy.value.number_QMARK_(coords)))) || ((cljs.core.nth.cljs$core$IFn$_invoke$arity$2(coords,(0)) >= (0))))))));
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35964.prototype.emmy$calculus$manifold$ICoordinateSystem$check_point$arity$2 = (function (_,point){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47398.prototype.emmy$calculus$manifold$ICoordinateSystem$check_point$arity$2 = (function (_,point){
 var self__ = this;
 var ___$1 = this;
 return emmy.calculus.manifold.my_manifold_point_QMARK_(point,self__.manifold);
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35964.prototype.emmy$calculus$manifold$ICoordinateSystem$coords__GT_point$arity$2 = (function (this$,coords){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47398.prototype.emmy$calculus$manifold$ICoordinateSystem$coords__GT_point$arity$2 = (function (this$,coords){
 var self__ = this;
 var this$__$1 = this;
 if(cljs.core.truth_(this$__$1.emmy$calculus$manifold$ICoordinateSystem$check_coordinates$arity$2(null,coords))){
@@ -1337,13 +1337,13 @@ if(cljs.core.truth_(this$__$1.emmy$calculus$manifold$ICoordinateSystem$check_coo
 throw (new Error("Assert failed: (check-coordinates this coords)"));
 }
 
-var vec__35967 = coords;
-var colatitude = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__35967,(0),null);
-var longitude = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__35967,(1),null);
+var vec__47401 = coords;
+var colatitude = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47401,(0),null);
+var longitude = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47401,(1),null);
 return emmy.calculus.manifold.make_manifold_point.cljs$core$IFn$_invoke$arity$4(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(self__.orientation,emmy.structure.up.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(emmy.generic.sin.cljs$core$IFn$_invoke$arity$1(colatitude),emmy.generic.cos.cljs$core$IFn$_invoke$arity$1(longitude)),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(emmy.generic.sin.cljs$core$IFn$_invoke$arity$1(colatitude),emmy.generic.sin.cljs$core$IFn$_invoke$arity$1(longitude)),emmy.generic.cos.cljs$core$IFn$_invoke$arity$1(colatitude)], 0))),self__.manifold,this$__$1,coords);
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35964.prototype.emmy$calculus$manifold$ICoordinateSystem$point__GT_coords$arity$2 = (function (this$,point){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47398.prototype.emmy$calculus$manifold$ICoordinateSystem$point__GT_coords$arity$2 = (function (this$,point){
 var self__ = this;
 var this$__$1 = this;
 if(cljs.core.truth_(this$__$1.emmy$calculus$manifold$ICoordinateSystem$check_point$arity$2(null,point))){
@@ -1354,10 +1354,10 @@ throw (new Error("Assert failed: (check-point this point)"));
 return emmy.calculus.manifold.get_coordinates(point,this$__$1,(function (){
 var rep = emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(self__.inverse_orientation,emmy.calculus.manifold.manifold_point_representation(point));
 if(((emmy.structure.up_QMARK_(rep)) && (cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(emmy.generic.dimension.cljs$core$IFn$_invoke$arity$1(rep),new cljs.core.Keyword(null,"embedding-dimension","embedding-dimension",1369585967).cljs$core$IFn$_invoke$arity$1(self__.manifold))))){
-var vec__35970 = rep;
-var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__35970,(0),null);
-var y = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__35970,(1),null);
-var z = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__35970,(2),null);
+var vec__47404 = rep;
+var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47404,(0),null);
+var y = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47404,(1),null);
+var z = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47404,(2),null);
 return emmy.structure.up.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.generic.acos.cljs$core$IFn$_invoke$arity$1(z),emmy.generic.atan.cljs$core$IFn$_invoke$arity$2(y,x)], 0));
 } else {
 return emmy.util.illegal("S2-coordinates bad point");
@@ -1365,29 +1365,29 @@ return emmy.util.illegal("S2-coordinates bad point");
 }));
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35964.prototype.emmy$calculus$manifold$ICoordinateSystem$uuid$arity$1 = (function (_){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47398.prototype.emmy$calculus$manifold$ICoordinateSystem$uuid$arity$1 = (function (_){
 var self__ = this;
 var ___$1 = this;
 return self__.id;
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35964.getBasis = (function (){
-return new cljs.core.PersistentVector(null, 7, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"orientation","orientation",-2030878190,null),new cljs.core.Symbol(null,"inverse-orientation","inverse-orientation",338347381,null),new cljs.core.Symbol(null,"ctor","ctor",-903570967,null),new cljs.core.Symbol(null,"manifold","manifold",-299796682,null),new cljs.core.Symbol(null,"coordinate-prototype","coordinate-prototype",-1149174049,null),new cljs.core.Symbol(null,"id","id",252129435,null),new cljs.core.Symbol(null,"meta35965","meta35965",-1453431632,null)], null);
+(emmy.calculus.manifold.t_emmy$calculus$manifold47398.getBasis = (function (){
+return new cljs.core.PersistentVector(null, 7, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"orientation","orientation",-2030878190,null),new cljs.core.Symbol(null,"inverse-orientation","inverse-orientation",338347381,null),new cljs.core.Symbol(null,"ctor","ctor",-903570967,null),new cljs.core.Symbol(null,"manifold","manifold",-299796682,null),new cljs.core.Symbol(null,"coordinate-prototype","coordinate-prototype",-1149174049,null),new cljs.core.Symbol(null,"id","id",252129435,null),new cljs.core.Symbol(null,"meta47399","meta47399",296539761,null)], null);
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35964.cljs$lang$type = true);
+(emmy.calculus.manifold.t_emmy$calculus$manifold47398.cljs$lang$type = true);
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35964.cljs$lang$ctorStr = "emmy.calculus.manifold/t_emmy$calculus$manifold35964");
+(emmy.calculus.manifold.t_emmy$calculus$manifold47398.cljs$lang$ctorStr = "emmy.calculus.manifold/t_emmy$calculus$manifold47398");
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35964.cljs$lang$ctorPrWriter = (function (this__5455__auto__,writer__5456__auto__,opt__5457__auto__){
-return cljs.core._write(writer__5456__auto__,"emmy.calculus.manifold/t_emmy$calculus$manifold35964");
+(emmy.calculus.manifold.t_emmy$calculus$manifold47398.cljs$lang$ctorPrWriter = (function (this__5455__auto__,writer__5456__auto__,opt__5457__auto__){
+return cljs.core._write(writer__5456__auto__,"emmy.calculus.manifold/t_emmy$calculus$manifold47398");
 }));
 
 /**
- * Positional factory function for emmy.calculus.manifold/t_emmy$calculus$manifold35964.
+ * Positional factory function for emmy.calculus.manifold/t_emmy$calculus$manifold47398.
  */
-emmy.calculus.manifold.__GT_t_emmy$calculus$manifold35964 = (function emmy$calculus$manifold$__GT_t_emmy$calculus$manifold35964(orientation,inverse_orientation,ctor,manifold,coordinate_prototype,id,meta35965){
-return (new emmy.calculus.manifold.t_emmy$calculus$manifold35964(orientation,inverse_orientation,ctor,manifold,coordinate_prototype,id,meta35965));
+emmy.calculus.manifold.__GT_t_emmy$calculus$manifold47398 = (function emmy$calculus$manifold$__GT_t_emmy$calculus$manifold47398(orientation,inverse_orientation,ctor,manifold,coordinate_prototype,id,meta47399){
+return (new emmy.calculus.manifold.t_emmy$calculus$manifold47398(orientation,inverse_orientation,ctor,manifold,coordinate_prototype,id,meta47399));
 });
 
 
@@ -1414,7 +1414,7 @@ return emmy$calculus$manifold$__GT_S2_coordinates_$_ctor.cljs$core$IFn$_invoke$a
 });
 var emmy$calculus$manifold$__GT_S2_coordinates_$_ctor__2 = (function (manifold,coordinate_prototype){
 var id = emmy.util.uuid();
-return cljs.core.with_meta((new emmy.calculus.manifold.t_emmy$calculus$manifold35964(orientation,inverse_orientation,emmy$calculus$manifold$__GT_S2_coordinates_$_ctor,manifold,coordinate_prototype,id,cljs.core.PersistentArrayMap.EMPTY)),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword("emmy.calculus.manifold","coord-prototype","emmy.calculus.manifold/coord-prototype",1491234441),coordinate_prototype,new cljs.core.Keyword("emmy.calculus.manifold","manifold","emmy.calculus.manifold/manifold",-1013288811),manifold], null));
+return cljs.core.with_meta((new emmy.calculus.manifold.t_emmy$calculus$manifold47398(orientation,inverse_orientation,emmy$calculus$manifold$__GT_S2_coordinates_$_ctor,manifold,coordinate_prototype,id,cljs.core.PersistentArrayMap.EMPTY)),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword("emmy.calculus.manifold","coord-prototype","emmy.calculus.manifold/coord-prototype",1491234441),coordinate_prototype,new cljs.core.Keyword("emmy.calculus.manifold","manifold","emmy.calculus.manifold/manifold",-1013288811),manifold], null));
 });
 emmy$calculus$manifold$__GT_S2_coordinates_$_ctor = function(manifold,coordinate_prototype){
 switch(arguments.length){
@@ -1437,7 +1437,7 @@ return emmy$calculus$manifold$__GT_S2_coordinates_$_ctor;
  * @implements {cljs.core.IMeta}
  * @implements {cljs.core.IWithMeta}
 */
-emmy.calculus.manifold.t_emmy$calculus$manifold35974 = (function (rotate_left,ctor,orientation_function,n,manifold,id,orientation_inverse_matrix,orientation_matrix,coordinate_prototype,meta35975){
+emmy.calculus.manifold.t_emmy$calculus$manifold47408 = (function (rotate_left,ctor,orientation_function,n,manifold,id,orientation_inverse_matrix,orientation_matrix,coordinate_prototype,meta47409){
 this.rotate_left = rotate_left;
 this.ctor = ctor;
 this.orientation_function = orientation_function;
@@ -1447,25 +1447,25 @@ this.id = id;
 this.orientation_inverse_matrix = orientation_inverse_matrix;
 this.orientation_matrix = orientation_matrix;
 this.coordinate_prototype = coordinate_prototype;
-this.meta35975 = meta35975;
+this.meta47409 = meta47409;
 this.cljs$lang$protocol_mask$partition0$ = 393216;
 this.cljs$lang$protocol_mask$partition1$ = 0;
 });
-(emmy.calculus.manifold.t_emmy$calculus$manifold35974.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (_35976,meta35975__$1){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47408.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (_47410,meta47409__$1){
 var self__ = this;
-var _35976__$1 = this;
-return (new emmy.calculus.manifold.t_emmy$calculus$manifold35974(self__.rotate_left,self__.ctor,self__.orientation_function,self__.n,self__.manifold,self__.id,self__.orientation_inverse_matrix,self__.orientation_matrix,self__.coordinate_prototype,meta35975__$1));
+var _47410__$1 = this;
+return (new emmy.calculus.manifold.t_emmy$calculus$manifold47408(self__.rotate_left,self__.ctor,self__.orientation_function,self__.n,self__.manifold,self__.id,self__.orientation_inverse_matrix,self__.orientation_matrix,self__.coordinate_prototype,meta47409__$1));
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35974.prototype.cljs$core$IMeta$_meta$arity$1 = (function (_35976){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47408.prototype.cljs$core$IMeta$_meta$arity$1 = (function (_47410){
 var self__ = this;
-var _35976__$1 = this;
-return self__.meta35975;
+var _47410__$1 = this;
+return self__.meta47409;
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35974.prototype.emmy$calculus$manifold$ICoordinateSystem$ = cljs.core.PROTOCOL_SENTINEL);
+(emmy.calculus.manifold.t_emmy$calculus$manifold47408.prototype.emmy$calculus$manifold$ICoordinateSystem$ = cljs.core.PROTOCOL_SENTINEL);
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35974.prototype.emmy$calculus$manifold$ICoordinateSystem$check_coordinates$arity$2 = (function (_,coords){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47408.prototype.emmy$calculus$manifold$ICoordinateSystem$check_coordinates$arity$2 = (function (_,coords){
 var self__ = this;
 var ___$1 = this;
 var dim = emmy.generic.dimension.cljs$core$IFn$_invoke$arity$1(coords);
@@ -1474,13 +1474,13 @@ return ((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2((i + (1)),self__.n)) || ((
 })),coords)))))));
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35974.prototype.emmy$calculus$manifold$ICoordinateSystem$check_point$arity$2 = (function (_,point){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47408.prototype.emmy$calculus$manifold$ICoordinateSystem$check_point$arity$2 = (function (_,point){
 var self__ = this;
 var ___$1 = this;
 return emmy.calculus.manifold.my_manifold_point_QMARK_(point,self__.manifold);
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35974.prototype.emmy$calculus$manifold$ICoordinateSystem$coords__GT_point$arity$2 = (function (this$,coords){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47408.prototype.emmy$calculus$manifold$ICoordinateSystem$coords__GT_point$arity$2 = (function (this$,coords){
 var self__ = this;
 var this$__$1 = this;
 if(cljs.core.truth_(this$__$1.emmy$calculus$manifold$ICoordinateSystem$check_coordinates$arity$2(null,coords))){
@@ -1494,20 +1494,20 @@ return emmy.calculus.manifold.make_manifold_point.cljs$core$IFn$_invoke$arity$4(
 } else {
 var sines = cljs.core.map.cljs$core$IFn$_invoke$arity$2(emmy.generic.sin,coords);
 var cosines = cljs.core.map.cljs$core$IFn$_invoke$arity$2(emmy.generic.cos,coords);
-var pt = emmy.structure.up_STAR_((function (){var G__35977 = cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (i){
+var pt = emmy.structure.up_STAR_((function (){var G__47411 = cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (i){
 if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(i,self__.n)){
 return cljs.core.apply.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_,sines);
 } else {
 return cljs.core.apply.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_,cljs.core.cons(cljs.core.nth.cljs$core$IFn$_invoke$arity$2(cosines,i),cljs.core.take.cljs$core$IFn$_invoke$arity$2(i,sines)));
 }
 }),cljs.core.range.cljs$core$IFn$_invoke$arity$1((self__.n + (1))));
-return (self__.rotate_left.cljs$core$IFn$_invoke$arity$1 ? self__.rotate_left.cljs$core$IFn$_invoke$arity$1(G__35977) : self__.rotate_left.call(null,G__35977));
+return (self__.rotate_left.cljs$core$IFn$_invoke$arity$1 ? self__.rotate_left.cljs$core$IFn$_invoke$arity$1(G__47411) : self__.rotate_left.call(null,G__47411));
 })());
 return emmy.calculus.manifold.make_manifold_point.cljs$core$IFn$_invoke$arity$4(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(self__.orientation_matrix,pt),self__.manifold,this$__$1,coords);
 }
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35974.prototype.emmy$calculus$manifold$ICoordinateSystem$point__GT_coords$arity$2 = (function (this$,point){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47408.prototype.emmy$calculus$manifold$ICoordinateSystem$point__GT_coords$arity$2 = (function (this$,point){
 var self__ = this;
 var this$__$1 = this;
 if(cljs.core.truth_(this$__$1.emmy$calculus$manifold$ICoordinateSystem$check_point$arity$2(null,point))){
@@ -1536,14 +1536,14 @@ return and__5160__auto__;
 })())){
 taoensso.timbre._log_BANG_.cljs$core$IFn$_invoke$arity$11(taoensso.timbre._STAR_config_STAR_,new cljs.core.Keyword(null,"warn","warn",-436710552),"emmy.calculus.manifold",null,866,new cljs.core.Keyword(null,"p","p",151049309),new cljs.core.Keyword(null,"auto","auto",-566279492),(new cljs.core.Delay((function (){
 return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, ["Sn-coordinates singular!"], null);
-}),null)),null,-2120377979,null);
+}),null)),null,796540218,null);
 } else {
 }
 
 return emmy.generic.atan.cljs$core$IFn$_invoke$arity$2(y,x);
 });
-var pt = (function (){var G__35978 = cljs.core.reverse(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(self__.orientation_inverse_matrix,emmy.calculus.manifold.manifold_point_representation(point)));
-return (self__.rotate_left.cljs$core$IFn$_invoke$arity$1 ? self__.rotate_left.cljs$core$IFn$_invoke$arity$1(G__35978) : self__.rotate_left.call(null,G__35978));
+var pt = (function (){var G__47412 = cljs.core.reverse(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(self__.orientation_inverse_matrix,emmy.calculus.manifold.manifold_point_representation(point)));
+return (self__.rotate_left.cljs$core$IFn$_invoke$arity$1 ? self__.rotate_left.cljs$core$IFn$_invoke$arity$1(G__47412) : self__.rotate_left.call(null,G__47412));
 })();
 if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(self__.n,(1))){
 return safe_atan(cljs.core.nth.cljs$core$IFn$_invoke$arity$2(pt,(1)),cljs.core.nth.cljs$core$IFn$_invoke$arity$2(pt,(0)));
@@ -1556,12 +1556,12 @@ if(cljs.core.not(cljs.core.next(more))){
 return emmy.structure.up_STAR_(ans);
 } else {
 var r_SINGLEQUOTE_ = emmy.generic.sqrt.cljs$core$IFn$_invoke$arity$1(emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2(emmy.generic.square.cljs$core$IFn$_invoke$arity$1(cljs.core.first(more)),emmy.generic.square.cljs$core$IFn$_invoke$arity$1(r)));
-var G__36036 = r_SINGLEQUOTE_;
-var G__36037 = cljs.core.rest(more);
-var G__36038 = cljs.core.cons(safe_atan(r_SINGLEQUOTE_,cljs.core.second(more)),ans);
-r = G__36036;
-more = G__36037;
-ans = G__36038;
+var G__47457 = r_SINGLEQUOTE_;
+var G__47458 = cljs.core.rest(more);
+var G__47459 = cljs.core.cons(safe_atan(r_SINGLEQUOTE_,cljs.core.second(more)),ans);
+r = G__47457;
+more = G__47458;
+ans = G__47459;
 continue;
 }
 break;
@@ -1570,29 +1570,29 @@ break;
 }));
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35974.prototype.emmy$calculus$manifold$ICoordinateSystem$uuid$arity$1 = (function (_){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47408.prototype.emmy$calculus$manifold$ICoordinateSystem$uuid$arity$1 = (function (_){
 var self__ = this;
 var ___$1 = this;
 return self__.id;
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35974.getBasis = (function (){
-return new cljs.core.PersistentVector(null, 10, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"rotate-left","rotate-left",-1088090459,null),new cljs.core.Symbol(null,"ctor","ctor",-903570967,null),new cljs.core.Symbol(null,"orientation-function","orientation-function",-1851559379,null),new cljs.core.Symbol(null,"n","n",-2092305744,null),new cljs.core.Symbol(null,"manifold","manifold",-299796682,null),new cljs.core.Symbol(null,"id","id",252129435,null),new cljs.core.Symbol(null,"orientation-inverse-matrix","orientation-inverse-matrix",1827755966,null),new cljs.core.Symbol(null,"orientation-matrix","orientation-matrix",-591482625,null),new cljs.core.Symbol(null,"coordinate-prototype","coordinate-prototype",-1149174049,null),new cljs.core.Symbol(null,"meta35975","meta35975",431335835,null)], null);
+(emmy.calculus.manifold.t_emmy$calculus$manifold47408.getBasis = (function (){
+return new cljs.core.PersistentVector(null, 10, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"rotate-left","rotate-left",-1088090459,null),new cljs.core.Symbol(null,"ctor","ctor",-903570967,null),new cljs.core.Symbol(null,"orientation-function","orientation-function",-1851559379,null),new cljs.core.Symbol(null,"n","n",-2092305744,null),new cljs.core.Symbol(null,"manifold","manifold",-299796682,null),new cljs.core.Symbol(null,"id","id",252129435,null),new cljs.core.Symbol(null,"orientation-inverse-matrix","orientation-inverse-matrix",1827755966,null),new cljs.core.Symbol(null,"orientation-matrix","orientation-matrix",-591482625,null),new cljs.core.Symbol(null,"coordinate-prototype","coordinate-prototype",-1149174049,null),new cljs.core.Symbol(null,"meta47409","meta47409",-850004969,null)], null);
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35974.cljs$lang$type = true);
+(emmy.calculus.manifold.t_emmy$calculus$manifold47408.cljs$lang$type = true);
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35974.cljs$lang$ctorStr = "emmy.calculus.manifold/t_emmy$calculus$manifold35974");
+(emmy.calculus.manifold.t_emmy$calculus$manifold47408.cljs$lang$ctorStr = "emmy.calculus.manifold/t_emmy$calculus$manifold47408");
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35974.cljs$lang$ctorPrWriter = (function (this__5455__auto__,writer__5456__auto__,opt__5457__auto__){
-return cljs.core._write(writer__5456__auto__,"emmy.calculus.manifold/t_emmy$calculus$manifold35974");
+(emmy.calculus.manifold.t_emmy$calculus$manifold47408.cljs$lang$ctorPrWriter = (function (this__5455__auto__,writer__5456__auto__,opt__5457__auto__){
+return cljs.core._write(writer__5456__auto__,"emmy.calculus.manifold/t_emmy$calculus$manifold47408");
 }));
 
 /**
- * Positional factory function for emmy.calculus.manifold/t_emmy$calculus$manifold35974.
+ * Positional factory function for emmy.calculus.manifold/t_emmy$calculus$manifold47408.
  */
-emmy.calculus.manifold.__GT_t_emmy$calculus$manifold35974 = (function emmy$calculus$manifold$__GT_t_emmy$calculus$manifold35974(rotate_left,ctor,orientation_function,n,manifold,id,orientation_inverse_matrix,orientation_matrix,coordinate_prototype,meta35975){
-return (new emmy.calculus.manifold.t_emmy$calculus$manifold35974(rotate_left,ctor,orientation_function,n,manifold,id,orientation_inverse_matrix,orientation_matrix,coordinate_prototype,meta35975));
+emmy.calculus.manifold.__GT_t_emmy$calculus$manifold47408 = (function emmy$calculus$manifold$__GT_t_emmy$calculus$manifold47408(rotate_left,ctor,orientation_function,n,manifold,id,orientation_inverse_matrix,orientation_matrix,coordinate_prototype,meta47409){
+return (new emmy.calculus.manifold.t_emmy$calculus$manifold47408(rotate_left,ctor,orientation_function,n,manifold,id,orientation_inverse_matrix,orientation_matrix,coordinate_prototype,meta47409));
 });
 
 
@@ -1627,12 +1627,12 @@ return emmy$calculus$manifold$__GT_Sn_coordinates_$_ctor.cljs$core$IFn$_invoke$a
 });
 var emmy$calculus$manifold$__GT_Sn_coordinates_$_ctor__2 = (function (manifold,coordinate_prototype){
 var n = new cljs.core.Keyword(null,"dimension","dimension",543254198).cljs$core$IFn$_invoke$arity$1(manifold);
-var orientation_matrix = (function (){var G__35973 = (n + (1));
-return (orientation_function.cljs$core$IFn$_invoke$arity$1 ? orientation_function.cljs$core$IFn$_invoke$arity$1(G__35973) : orientation_function.call(null,G__35973));
+var orientation_matrix = (function (){var G__47407 = (n + (1));
+return (orientation_function.cljs$core$IFn$_invoke$arity$1 ? orientation_function.cljs$core$IFn$_invoke$arity$1(G__47407) : orientation_function.call(null,G__47407));
 })();
 var orientation_inverse_matrix = emmy.generic.invert.cljs$core$IFn$_invoke$arity$1(orientation_matrix);
 var id = emmy.util.uuid();
-return cljs.core.with_meta((new emmy.calculus.manifold.t_emmy$calculus$manifold35974(rotate_left,emmy$calculus$manifold$__GT_Sn_coordinates_$_ctor,orientation_function,n,manifold,id,orientation_inverse_matrix,orientation_matrix,coordinate_prototype,cljs.core.PersistentArrayMap.EMPTY)),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword("emmy.calculus.manifold","coord-prototype","emmy.calculus.manifold/coord-prototype",1491234441),coordinate_prototype,new cljs.core.Keyword("emmy.calculus.manifold","manifold","emmy.calculus.manifold/manifold",-1013288811),manifold], null));
+return cljs.core.with_meta((new emmy.calculus.manifold.t_emmy$calculus$manifold47408(rotate_left,emmy$calculus$manifold$__GT_Sn_coordinates_$_ctor,orientation_function,n,manifold,id,orientation_inverse_matrix,orientation_matrix,coordinate_prototype,cljs.core.PersistentArrayMap.EMPTY)),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword("emmy.calculus.manifold","coord-prototype","emmy.calculus.manifold/coord-prototype",1491234441),coordinate_prototype,new cljs.core.Keyword("emmy.calculus.manifold","manifold","emmy.calculus.manifold/manifold",-1013288811),manifold], null));
 });
 emmy$calculus$manifold$__GT_Sn_coordinates_$_ctor = function(manifold,coordinate_prototype){
 switch(arguments.length){
@@ -1655,7 +1655,7 @@ return emmy$calculus$manifold$__GT_Sn_coordinates_$_ctor;
  * @implements {cljs.core.IMeta}
  * @implements {cljs.core.IWithMeta}
 */
-emmy.calculus.manifold.t_emmy$calculus$manifold35982 = (function (orientation_function,ctor,manifold,coordinate_prototype,n,orientation_matrix,orientation_inverse_matrix,id,meta35983){
+emmy.calculus.manifold.t_emmy$calculus$manifold47416 = (function (orientation_function,ctor,manifold,coordinate_prototype,n,orientation_matrix,orientation_inverse_matrix,id,meta47417){
 this.orientation_function = orientation_function;
 this.ctor = ctor;
 this.manifold = manifold;
@@ -1664,37 +1664,37 @@ this.n = n;
 this.orientation_matrix = orientation_matrix;
 this.orientation_inverse_matrix = orientation_inverse_matrix;
 this.id = id;
-this.meta35983 = meta35983;
+this.meta47417 = meta47417;
 this.cljs$lang$protocol_mask$partition0$ = 393216;
 this.cljs$lang$protocol_mask$partition1$ = 0;
 });
-(emmy.calculus.manifold.t_emmy$calculus$manifold35982.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (_35984,meta35983__$1){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47416.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (_47418,meta47417__$1){
 var self__ = this;
-var _35984__$1 = this;
-return (new emmy.calculus.manifold.t_emmy$calculus$manifold35982(self__.orientation_function,self__.ctor,self__.manifold,self__.coordinate_prototype,self__.n,self__.orientation_matrix,self__.orientation_inverse_matrix,self__.id,meta35983__$1));
+var _47418__$1 = this;
+return (new emmy.calculus.manifold.t_emmy$calculus$manifold47416(self__.orientation_function,self__.ctor,self__.manifold,self__.coordinate_prototype,self__.n,self__.orientation_matrix,self__.orientation_inverse_matrix,self__.id,meta47417__$1));
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35982.prototype.cljs$core$IMeta$_meta$arity$1 = (function (_35984){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47416.prototype.cljs$core$IMeta$_meta$arity$1 = (function (_47418){
 var self__ = this;
-var _35984__$1 = this;
-return self__.meta35983;
+var _47418__$1 = this;
+return self__.meta47417;
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35982.prototype.emmy$calculus$manifold$ICoordinateSystem$ = cljs.core.PROTOCOL_SENTINEL);
+(emmy.calculus.manifold.t_emmy$calculus$manifold47416.prototype.emmy$calculus$manifold$ICoordinateSystem$ = cljs.core.PROTOCOL_SENTINEL);
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35982.prototype.emmy$calculus$manifold$ICoordinateSystem$check_coordinates$arity$2 = (function (_,coords){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47416.prototype.emmy$calculus$manifold$ICoordinateSystem$check_coordinates$arity$2 = (function (_,coords){
 var self__ = this;
 var ___$1 = this;
 return ((((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(self__.n,(1))) && (cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(emmy.generic.dimension.cljs$core$IFn$_invoke$arity$1(coords),(1))))) || (((emmy.structure.up_QMARK_(coords)) && (cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(emmy.generic.dimension.cljs$core$IFn$_invoke$arity$1(coords),self__.n)))));
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35982.prototype.emmy$calculus$manifold$ICoordinateSystem$check_point$arity$2 = (function (_,point){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47416.prototype.emmy$calculus$manifold$ICoordinateSystem$check_point$arity$2 = (function (_,point){
 var self__ = this;
 var ___$1 = this;
 return emmy.calculus.manifold.my_manifold_point_QMARK_(point,self__.manifold);
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35982.prototype.emmy$calculus$manifold$ICoordinateSystem$coords__GT_point$arity$2 = (function (this$,coords){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47416.prototype.emmy$calculus$manifold$ICoordinateSystem$coords__GT_point$arity$2 = (function (this$,coords){
 var self__ = this;
 var this$__$1 = this;
 if(cljs.core.truth_(this$__$1.emmy$calculus$manifold$ICoordinateSystem$check_coordinates$arity$2(null,coords))){
@@ -1704,23 +1704,23 @@ throw (new Error("Assert failed: (check-coordinates this coords)"));
 
 var coords_SINGLEQUOTE_ = ((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(self__.n,(1)))?emmy.structure.up.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([coords], 0)):coords);
 var delta = emmy.generic.dot_product.cljs$core$IFn$_invoke$arity$2(coords_SINGLEQUOTE_,coords_SINGLEQUOTE_);
-var xn = (function (){var G__35985 = emmy.generic._.cljs$core$IFn$_invoke$arity$2(delta,(1));
-var G__35986 = emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2((1),delta);
-return (emmy.generic.divide.cljs$core$IFn$_invoke$arity$2 ? emmy.generic.divide.cljs$core$IFn$_invoke$arity$2(G__35985,G__35986) : emmy.generic.divide.call(null,G__35985,G__35986));
+var xn = (function (){var G__47419 = emmy.generic._.cljs$core$IFn$_invoke$arity$2(delta,(1));
+var G__47420 = emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2((1),delta);
+return (emmy.generic.divide.cljs$core$IFn$_invoke$arity$2 ? emmy.generic.divide.cljs$core$IFn$_invoke$arity$2(G__47419,G__47420) : emmy.generic.divide.call(null,G__47419,G__47420));
 })();
-var pt = emmy.structure.generate((self__.n + (1)),new cljs.core.Keyword("emmy.structure","up","emmy.structure/up",790281384),(function (p1__35979_SHARP_){
-if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(p1__35979_SHARP_,self__.n)){
+var pt = emmy.structure.generate((self__.n + (1)),new cljs.core.Keyword("emmy.structure","up","emmy.structure/up",790281384),(function (p1__47413_SHARP_){
+if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(p1__47413_SHARP_,self__.n)){
 return xn;
 } else {
-var G__35987 = emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2((2),cljs.core.nth.cljs$core$IFn$_invoke$arity$2(coords_SINGLEQUOTE_,p1__35979_SHARP_));
-var G__35988 = emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2((1),delta);
-return (emmy.generic.divide.cljs$core$IFn$_invoke$arity$2 ? emmy.generic.divide.cljs$core$IFn$_invoke$arity$2(G__35987,G__35988) : emmy.generic.divide.call(null,G__35987,G__35988));
+var G__47421 = emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2((2),cljs.core.nth.cljs$core$IFn$_invoke$arity$2(coords_SINGLEQUOTE_,p1__47413_SHARP_));
+var G__47422 = emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2((1),delta);
+return (emmy.generic.divide.cljs$core$IFn$_invoke$arity$2 ? emmy.generic.divide.cljs$core$IFn$_invoke$arity$2(G__47421,G__47422) : emmy.generic.divide.call(null,G__47421,G__47422));
 }
 }));
 return emmy.calculus.manifold.make_manifold_point.cljs$core$IFn$_invoke$arity$4(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(self__.orientation_matrix,pt),self__.manifold,this$__$1,coords);
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35982.prototype.emmy$calculus$manifold$ICoordinateSystem$point__GT_coords$arity$2 = (function (this$,point){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47416.prototype.emmy$calculus$manifold$ICoordinateSystem$point__GT_coords$arity$2 = (function (this$,point){
 var self__ = this;
 var this$__$1 = this;
 if(cljs.core.truth_(this$__$1.emmy$calculus$manifold$ICoordinateSystem$check_point$arity$2(null,point))){
@@ -1735,10 +1735,10 @@ emmy.util.illegal_state("S^n stereographic singular");
 } else {
 }
 
-var coords = emmy.structure.generate(self__.n,new cljs.core.Keyword("emmy.structure","up","emmy.structure/up",790281384),(function (p1__35980_SHARP_){
-var G__35989 = cljs.core.nth.cljs$core$IFn$_invoke$arity$2(pt,p1__35980_SHARP_);
-var G__35990 = emmy.generic._.cljs$core$IFn$_invoke$arity$2((1),cljs.core.nth.cljs$core$IFn$_invoke$arity$2(pt,self__.n));
-return (emmy.generic.divide.cljs$core$IFn$_invoke$arity$2 ? emmy.generic.divide.cljs$core$IFn$_invoke$arity$2(G__35989,G__35990) : emmy.generic.divide.call(null,G__35989,G__35990));
+var coords = emmy.structure.generate(self__.n,new cljs.core.Keyword("emmy.structure","up","emmy.structure/up",790281384),(function (p1__47414_SHARP_){
+var G__47423 = cljs.core.nth.cljs$core$IFn$_invoke$arity$2(pt,p1__47414_SHARP_);
+var G__47424 = emmy.generic._.cljs$core$IFn$_invoke$arity$2((1),cljs.core.nth.cljs$core$IFn$_invoke$arity$2(pt,self__.n));
+return (emmy.generic.divide.cljs$core$IFn$_invoke$arity$2 ? emmy.generic.divide.cljs$core$IFn$_invoke$arity$2(G__47423,G__47424) : emmy.generic.divide.call(null,G__47423,G__47424));
 }));
 if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(self__.n,(1))){
 return cljs.core.first(coords);
@@ -1748,29 +1748,29 @@ return coords;
 }));
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35982.prototype.emmy$calculus$manifold$ICoordinateSystem$uuid$arity$1 = (function (_){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47416.prototype.emmy$calculus$manifold$ICoordinateSystem$uuid$arity$1 = (function (_){
 var self__ = this;
 var ___$1 = this;
 return self__.id;
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35982.getBasis = (function (){
-return new cljs.core.PersistentVector(null, 9, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"orientation-function","orientation-function",-1851559379,null),new cljs.core.Symbol(null,"ctor","ctor",-903570967,null),new cljs.core.Symbol(null,"manifold","manifold",-299796682,null),new cljs.core.Symbol(null,"coordinate-prototype","coordinate-prototype",-1149174049,null),new cljs.core.Symbol(null,"n","n",-2092305744,null),new cljs.core.Symbol(null,"orientation-matrix","orientation-matrix",-591482625,null),new cljs.core.Symbol(null,"orientation-inverse-matrix","orientation-inverse-matrix",1827755966,null),new cljs.core.Symbol(null,"id","id",252129435,null),new cljs.core.Symbol(null,"meta35983","meta35983",296624670,null)], null);
+(emmy.calculus.manifold.t_emmy$calculus$manifold47416.getBasis = (function (){
+return new cljs.core.PersistentVector(null, 9, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"orientation-function","orientation-function",-1851559379,null),new cljs.core.Symbol(null,"ctor","ctor",-903570967,null),new cljs.core.Symbol(null,"manifold","manifold",-299796682,null),new cljs.core.Symbol(null,"coordinate-prototype","coordinate-prototype",-1149174049,null),new cljs.core.Symbol(null,"n","n",-2092305744,null),new cljs.core.Symbol(null,"orientation-matrix","orientation-matrix",-591482625,null),new cljs.core.Symbol(null,"orientation-inverse-matrix","orientation-inverse-matrix",1827755966,null),new cljs.core.Symbol(null,"id","id",252129435,null),new cljs.core.Symbol(null,"meta47417","meta47417",1327519716,null)], null);
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35982.cljs$lang$type = true);
+(emmy.calculus.manifold.t_emmy$calculus$manifold47416.cljs$lang$type = true);
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35982.cljs$lang$ctorStr = "emmy.calculus.manifold/t_emmy$calculus$manifold35982");
+(emmy.calculus.manifold.t_emmy$calculus$manifold47416.cljs$lang$ctorStr = "emmy.calculus.manifold/t_emmy$calculus$manifold47416");
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35982.cljs$lang$ctorPrWriter = (function (this__5455__auto__,writer__5456__auto__,opt__5457__auto__){
-return cljs.core._write(writer__5456__auto__,"emmy.calculus.manifold/t_emmy$calculus$manifold35982");
+(emmy.calculus.manifold.t_emmy$calculus$manifold47416.cljs$lang$ctorPrWriter = (function (this__5455__auto__,writer__5456__auto__,opt__5457__auto__){
+return cljs.core._write(writer__5456__auto__,"emmy.calculus.manifold/t_emmy$calculus$manifold47416");
 }));
 
 /**
- * Positional factory function for emmy.calculus.manifold/t_emmy$calculus$manifold35982.
+ * Positional factory function for emmy.calculus.manifold/t_emmy$calculus$manifold47416.
  */
-emmy.calculus.manifold.__GT_t_emmy$calculus$manifold35982 = (function emmy$calculus$manifold$__GT_t_emmy$calculus$manifold35982(orientation_function,ctor,manifold,coordinate_prototype,n,orientation_matrix,orientation_inverse_matrix,id,meta35983){
-return (new emmy.calculus.manifold.t_emmy$calculus$manifold35982(orientation_function,ctor,manifold,coordinate_prototype,n,orientation_matrix,orientation_inverse_matrix,id,meta35983));
+emmy.calculus.manifold.__GT_t_emmy$calculus$manifold47416 = (function emmy$calculus$manifold$__GT_t_emmy$calculus$manifold47416(orientation_function,ctor,manifold,coordinate_prototype,n,orientation_matrix,orientation_inverse_matrix,id,meta47417){
+return (new emmy.calculus.manifold.t_emmy$calculus$manifold47416(orientation_function,ctor,manifold,coordinate_prototype,n,orientation_matrix,orientation_inverse_matrix,id,meta47417));
 });
 
 
@@ -1809,12 +1809,12 @@ return emmy$calculus$manifold$__GT_Sn_stereographic_$_ctor.cljs$core$IFn$_invoke
 });
 var emmy$calculus$manifold$__GT_Sn_stereographic_$_ctor__2 = (function (manifold,coordinate_prototype){
 var n = new cljs.core.Keyword(null,"dimension","dimension",543254198).cljs$core$IFn$_invoke$arity$1(manifold);
-var orientation_matrix = (function (){var G__35981 = (n + (1));
-return (orientation_function.cljs$core$IFn$_invoke$arity$1 ? orientation_function.cljs$core$IFn$_invoke$arity$1(G__35981) : orientation_function.call(null,G__35981));
+var orientation_matrix = (function (){var G__47415 = (n + (1));
+return (orientation_function.cljs$core$IFn$_invoke$arity$1 ? orientation_function.cljs$core$IFn$_invoke$arity$1(G__47415) : orientation_function.call(null,G__47415));
 })();
 var orientation_inverse_matrix = emmy.generic.invert.cljs$core$IFn$_invoke$arity$1(orientation_matrix);
 var id = emmy.util.uuid();
-return cljs.core.with_meta((new emmy.calculus.manifold.t_emmy$calculus$manifold35982(orientation_function,emmy$calculus$manifold$__GT_Sn_stereographic_$_ctor,manifold,coordinate_prototype,n,orientation_matrix,orientation_inverse_matrix,id,cljs.core.PersistentArrayMap.EMPTY)),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword("emmy.calculus.manifold","coord-prototype","emmy.calculus.manifold/coord-prototype",1491234441),coordinate_prototype,new cljs.core.Keyword("emmy.calculus.manifold","manifold","emmy.calculus.manifold/manifold",-1013288811),manifold], null));
+return cljs.core.with_meta((new emmy.calculus.manifold.t_emmy$calculus$manifold47416(orientation_function,emmy$calculus$manifold$__GT_Sn_stereographic_$_ctor,manifold,coordinate_prototype,n,orientation_matrix,orientation_inverse_matrix,id,cljs.core.PersistentArrayMap.EMPTY)),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword("emmy.calculus.manifold","coord-prototype","emmy.calculus.manifold/coord-prototype",1491234441),coordinate_prototype,new cljs.core.Keyword("emmy.calculus.manifold","manifold","emmy.calculus.manifold/manifold",-1013288811),manifold], null));
 });
 emmy$calculus$manifold$__GT_Sn_stereographic_$_ctor = function(manifold,coordinate_prototype){
 switch(arguments.length){
@@ -1837,7 +1837,7 @@ return emmy$calculus$manifold$__GT_Sn_stereographic_$_ctor;
  * @implements {cljs.core.IMeta}
  * @implements {cljs.core.IWithMeta}
 */
-emmy.calculus.manifold.t_emmy$calculus$manifold35992 = (function (orientation_function,ctor,manifold,coordinate_prototype,n,orientation_matrix,orientation_inverse_matrix,id,meta35993){
+emmy.calculus.manifold.t_emmy$calculus$manifold47426 = (function (orientation_function,ctor,manifold,coordinate_prototype,n,orientation_matrix,orientation_inverse_matrix,id,meta47427){
 this.orientation_function = orientation_function;
 this.ctor = ctor;
 this.manifold = manifold;
@@ -1846,37 +1846,37 @@ this.n = n;
 this.orientation_matrix = orientation_matrix;
 this.orientation_inverse_matrix = orientation_inverse_matrix;
 this.id = id;
-this.meta35993 = meta35993;
+this.meta47427 = meta47427;
 this.cljs$lang$protocol_mask$partition0$ = 393216;
 this.cljs$lang$protocol_mask$partition1$ = 0;
 });
-(emmy.calculus.manifold.t_emmy$calculus$manifold35992.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (_35994,meta35993__$1){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47426.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (_47428,meta47427__$1){
 var self__ = this;
-var _35994__$1 = this;
-return (new emmy.calculus.manifold.t_emmy$calculus$manifold35992(self__.orientation_function,self__.ctor,self__.manifold,self__.coordinate_prototype,self__.n,self__.orientation_matrix,self__.orientation_inverse_matrix,self__.id,meta35993__$1));
+var _47428__$1 = this;
+return (new emmy.calculus.manifold.t_emmy$calculus$manifold47426(self__.orientation_function,self__.ctor,self__.manifold,self__.coordinate_prototype,self__.n,self__.orientation_matrix,self__.orientation_inverse_matrix,self__.id,meta47427__$1));
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35992.prototype.cljs$core$IMeta$_meta$arity$1 = (function (_35994){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47426.prototype.cljs$core$IMeta$_meta$arity$1 = (function (_47428){
 var self__ = this;
-var _35994__$1 = this;
-return self__.meta35993;
+var _47428__$1 = this;
+return self__.meta47427;
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35992.prototype.emmy$calculus$manifold$ICoordinateSystem$ = cljs.core.PROTOCOL_SENTINEL);
+(emmy.calculus.manifold.t_emmy$calculus$manifold47426.prototype.emmy$calculus$manifold$ICoordinateSystem$ = cljs.core.PROTOCOL_SENTINEL);
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35992.prototype.emmy$calculus$manifold$ICoordinateSystem$check_coordinates$arity$2 = (function (_,coords){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47426.prototype.emmy$calculus$manifold$ICoordinateSystem$check_coordinates$arity$2 = (function (_,coords){
 var self__ = this;
 var ___$1 = this;
 return ((((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(self__.n,(1))) && (cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(emmy.generic.dimension.cljs$core$IFn$_invoke$arity$1(coords),(1))))) || (((emmy.structure.up_QMARK_(coords)) && (cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(emmy.generic.dimension.cljs$core$IFn$_invoke$arity$1(coords),self__.n)))));
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35992.prototype.emmy$calculus$manifold$ICoordinateSystem$check_point$arity$2 = (function (_,point){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47426.prototype.emmy$calculus$manifold$ICoordinateSystem$check_point$arity$2 = (function (_,point){
 var self__ = this;
 var ___$1 = this;
 return emmy.calculus.manifold.my_manifold_point_QMARK_(point,self__.manifold);
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35992.prototype.emmy$calculus$manifold$ICoordinateSystem$coords__GT_point$arity$2 = (function (this$,coords){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47426.prototype.emmy$calculus$manifold$ICoordinateSystem$coords__GT_point$arity$2 = (function (this$,coords){
 var self__ = this;
 var this$__$1 = this;
 if(cljs.core.truth_(this$__$1.emmy$calculus$manifold$ICoordinateSystem$check_coordinates$arity$2(null,coords))){
@@ -1898,7 +1898,7 @@ return emmy.generic._SLASH_.cljs$core$IFn$_invoke$arity$2(cljs.core.nth.cljs$cor
 return emmy.calculus.manifold.make_manifold_point.cljs$core$IFn$_invoke$arity$4(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(self__.orientation_matrix,pt),self__.manifold,this$__$1,coords__$1);
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35992.prototype.emmy$calculus$manifold$ICoordinateSystem$point__GT_coords$arity$2 = (function (this$,point){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47426.prototype.emmy$calculus$manifold$ICoordinateSystem$point__GT_coords$arity$2 = (function (this$,point){
 var self__ = this;
 var this$__$1 = this;
 if(cljs.core.truth_(this$__$1.emmy$calculus$manifold$ICoordinateSystem$check_point$arity$2(null,point))){
@@ -1936,29 +1936,29 @@ return coords;
 }));
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35992.prototype.emmy$calculus$manifold$ICoordinateSystem$uuid$arity$1 = (function (_){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47426.prototype.emmy$calculus$manifold$ICoordinateSystem$uuid$arity$1 = (function (_){
 var self__ = this;
 var ___$1 = this;
 return self__.id;
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35992.getBasis = (function (){
-return new cljs.core.PersistentVector(null, 9, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"orientation-function","orientation-function",-1851559379,null),new cljs.core.Symbol(null,"ctor","ctor",-903570967,null),new cljs.core.Symbol(null,"manifold","manifold",-299796682,null),new cljs.core.Symbol(null,"coordinate-prototype","coordinate-prototype",-1149174049,null),new cljs.core.Symbol(null,"n","n",-2092305744,null),new cljs.core.Symbol(null,"orientation-matrix","orientation-matrix",-591482625,null),new cljs.core.Symbol(null,"orientation-inverse-matrix","orientation-inverse-matrix",1827755966,null),new cljs.core.Symbol(null,"id","id",252129435,null),new cljs.core.Symbol(null,"meta35993","meta35993",967284735,null)], null);
+(emmy.calculus.manifold.t_emmy$calculus$manifold47426.getBasis = (function (){
+return new cljs.core.PersistentVector(null, 9, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"orientation-function","orientation-function",-1851559379,null),new cljs.core.Symbol(null,"ctor","ctor",-903570967,null),new cljs.core.Symbol(null,"manifold","manifold",-299796682,null),new cljs.core.Symbol(null,"coordinate-prototype","coordinate-prototype",-1149174049,null),new cljs.core.Symbol(null,"n","n",-2092305744,null),new cljs.core.Symbol(null,"orientation-matrix","orientation-matrix",-591482625,null),new cljs.core.Symbol(null,"orientation-inverse-matrix","orientation-inverse-matrix",1827755966,null),new cljs.core.Symbol(null,"id","id",252129435,null),new cljs.core.Symbol(null,"meta47427","meta47427",-500440185,null)], null);
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35992.cljs$lang$type = true);
+(emmy.calculus.manifold.t_emmy$calculus$manifold47426.cljs$lang$type = true);
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35992.cljs$lang$ctorStr = "emmy.calculus.manifold/t_emmy$calculus$manifold35992");
+(emmy.calculus.manifold.t_emmy$calculus$manifold47426.cljs$lang$ctorStr = "emmy.calculus.manifold/t_emmy$calculus$manifold47426");
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35992.cljs$lang$ctorPrWriter = (function (this__5455__auto__,writer__5456__auto__,opt__5457__auto__){
-return cljs.core._write(writer__5456__auto__,"emmy.calculus.manifold/t_emmy$calculus$manifold35992");
+(emmy.calculus.manifold.t_emmy$calculus$manifold47426.cljs$lang$ctorPrWriter = (function (this__5455__auto__,writer__5456__auto__,opt__5457__auto__){
+return cljs.core._write(writer__5456__auto__,"emmy.calculus.manifold/t_emmy$calculus$manifold47426");
 }));
 
 /**
- * Positional factory function for emmy.calculus.manifold/t_emmy$calculus$manifold35992.
+ * Positional factory function for emmy.calculus.manifold/t_emmy$calculus$manifold47426.
  */
-emmy.calculus.manifold.__GT_t_emmy$calculus$manifold35992 = (function emmy$calculus$manifold$__GT_t_emmy$calculus$manifold35992(orientation_function,ctor,manifold,coordinate_prototype,n,orientation_matrix,orientation_inverse_matrix,id,meta35993){
-return (new emmy.calculus.manifold.t_emmy$calculus$manifold35992(orientation_function,ctor,manifold,coordinate_prototype,n,orientation_matrix,orientation_inverse_matrix,id,meta35993));
+emmy.calculus.manifold.__GT_t_emmy$calculus$manifold47426 = (function emmy$calculus$manifold$__GT_t_emmy$calculus$manifold47426(orientation_function,ctor,manifold,coordinate_prototype,n,orientation_matrix,orientation_inverse_matrix,id,meta47427){
+return (new emmy.calculus.manifold.t_emmy$calculus$manifold47426(orientation_function,ctor,manifold,coordinate_prototype,n,orientation_matrix,orientation_inverse_matrix,id,meta47427));
 });
 
 
@@ -1995,12 +1995,12 @@ return emmy$calculus$manifold$__GT_Sn_gnomonic_$_ctor.cljs$core$IFn$_invoke$arit
 });
 var emmy$calculus$manifold$__GT_Sn_gnomonic_$_ctor__2 = (function (manifold,coordinate_prototype){
 var n = new cljs.core.Keyword(null,"dimension","dimension",543254198).cljs$core$IFn$_invoke$arity$1(manifold);
-var orientation_matrix = (function (){var G__35991 = (n + (1));
-return (orientation_function.cljs$core$IFn$_invoke$arity$1 ? orientation_function.cljs$core$IFn$_invoke$arity$1(G__35991) : orientation_function.call(null,G__35991));
+var orientation_matrix = (function (){var G__47425 = (n + (1));
+return (orientation_function.cljs$core$IFn$_invoke$arity$1 ? orientation_function.cljs$core$IFn$_invoke$arity$1(G__47425) : orientation_function.call(null,G__47425));
 })();
 var orientation_inverse_matrix = emmy.generic.invert.cljs$core$IFn$_invoke$arity$1(orientation_matrix);
 var id = emmy.util.uuid();
-return cljs.core.with_meta((new emmy.calculus.manifold.t_emmy$calculus$manifold35992(orientation_function,emmy$calculus$manifold$__GT_Sn_gnomonic_$_ctor,manifold,coordinate_prototype,n,orientation_matrix,orientation_inverse_matrix,id,cljs.core.PersistentArrayMap.EMPTY)),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword("emmy.calculus.manifold","coord-prototype","emmy.calculus.manifold/coord-prototype",1491234441),coordinate_prototype,new cljs.core.Keyword("emmy.calculus.manifold","manifold","emmy.calculus.manifold/manifold",-1013288811),manifold], null));
+return cljs.core.with_meta((new emmy.calculus.manifold.t_emmy$calculus$manifold47426(orientation_function,emmy$calculus$manifold$__GT_Sn_gnomonic_$_ctor,manifold,coordinate_prototype,n,orientation_matrix,orientation_inverse_matrix,id,cljs.core.PersistentArrayMap.EMPTY)),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword("emmy.calculus.manifold","coord-prototype","emmy.calculus.manifold/coord-prototype",1491234441),coordinate_prototype,new cljs.core.Keyword("emmy.calculus.manifold","manifold","emmy.calculus.manifold/manifold",-1013288811),manifold], null));
 });
 emmy$calculus$manifold$__GT_Sn_gnomonic_$_ctor = function(manifold,coordinate_prototype){
 switch(arguments.length){
@@ -2023,30 +2023,30 @@ return emmy$calculus$manifold$__GT_Sn_gnomonic_$_ctor;
  * @implements {cljs.core.IMeta}
  * @implements {cljs.core.IWithMeta}
 */
-emmy.calculus.manifold.t_emmy$calculus$manifold35997 = (function (manifold,coordinate_prototype,n,id,meta35998){
+emmy.calculus.manifold.t_emmy$calculus$manifold47431 = (function (manifold,coordinate_prototype,n,id,meta47432){
 this.manifold = manifold;
 this.coordinate_prototype = coordinate_prototype;
 this.n = n;
 this.id = id;
-this.meta35998 = meta35998;
+this.meta47432 = meta47432;
 this.cljs$lang$protocol_mask$partition0$ = 393216;
 this.cljs$lang$protocol_mask$partition1$ = 0;
 });
-(emmy.calculus.manifold.t_emmy$calculus$manifold35997.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (_35999,meta35998__$1){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47431.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (_47433,meta47432__$1){
 var self__ = this;
-var _35999__$1 = this;
-return (new emmy.calculus.manifold.t_emmy$calculus$manifold35997(self__.manifold,self__.coordinate_prototype,self__.n,self__.id,meta35998__$1));
+var _47433__$1 = this;
+return (new emmy.calculus.manifold.t_emmy$calculus$manifold47431(self__.manifold,self__.coordinate_prototype,self__.n,self__.id,meta47432__$1));
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35997.prototype.cljs$core$IMeta$_meta$arity$1 = (function (_35999){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47431.prototype.cljs$core$IMeta$_meta$arity$1 = (function (_47433){
 var self__ = this;
-var _35999__$1 = this;
-return self__.meta35998;
+var _47433__$1 = this;
+return self__.meta47432;
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35997.prototype.emmy$calculus$manifold$ICoordinateSystem$ = cljs.core.PROTOCOL_SENTINEL);
+(emmy.calculus.manifold.t_emmy$calculus$manifold47431.prototype.emmy$calculus$manifold$ICoordinateSystem$ = cljs.core.PROTOCOL_SENTINEL);
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35997.prototype.emmy$calculus$manifold$ICoordinateSystem$check_coordinates$arity$2 = (function (_,coords){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47431.prototype.emmy$calculus$manifold$ICoordinateSystem$check_coordinates$arity$2 = (function (_,coords){
 var self__ = this;
 var ___$1 = this;
 var and__5160__auto__ = emmy.structure.up_QMARK_(coords);
@@ -2063,13 +2063,13 @@ return and__5160__auto__;
 }
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35997.prototype.emmy$calculus$manifold$ICoordinateSystem$check_point$arity$2 = (function (_,point){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47431.prototype.emmy$calculus$manifold$ICoordinateSystem$check_point$arity$2 = (function (_,point){
 var self__ = this;
 var ___$1 = this;
 return emmy.calculus.manifold.my_manifold_point_QMARK_(point,self__.manifold);
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35997.prototype.emmy$calculus$manifold$ICoordinateSystem$coords__GT_point$arity$2 = (function (this$,coords){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47431.prototype.emmy$calculus$manifold$ICoordinateSystem$coords__GT_point$arity$2 = (function (this$,coords){
 var self__ = this;
 var this$__$1 = this;
 if(cljs.core.truth_(this$__$1.emmy$calculus$manifold$ICoordinateSystem$check_coordinates$arity$2(null,coords))){
@@ -2077,10 +2077,10 @@ if(cljs.core.truth_(this$__$1.emmy$calculus$manifold$ICoordinateSystem$check_coo
 throw (new Error("Assert failed: (check-coordinates this coords)"));
 }
 
-var vec__36000 = coords;
-var theta = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36000,(0),null);
-var phi = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36000,(1),null);
-var psi = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36000,(2),null);
+var vec__47434 = coords;
+var theta = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47434,(0),null);
+var phi = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47434,(1),null);
+var psi = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47434,(2),null);
 var Mx_theta = emmy.mechanics.rotation.rotate_x_matrix(theta);
 var Mz_phi = emmy.mechanics.rotation.rotate_z_matrix(phi);
 var Mz_psi = emmy.mechanics.rotation.rotate_z_matrix(psi);
@@ -2088,7 +2088,7 @@ var M = emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$variadic(Mz_phi,Mx_theta
 return emmy.calculus.manifold.make_manifold_point.cljs$core$IFn$_invoke$arity$4(M,self__.manifold,this$__$1,coords);
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35997.prototype.emmy$calculus$manifold$ICoordinateSystem$point__GT_coords$arity$2 = (function (this$,point){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47431.prototype.emmy$calculus$manifold$ICoordinateSystem$point__GT_coords$arity$2 = (function (this$,point){
 var self__ = this;
 var this$__$1 = this;
 if(cljs.core.truth_(this$__$1.emmy$calculus$manifold$ICoordinateSystem$check_point$arity$2(null,point))){
@@ -2105,29 +2105,29 @@ return emmy.structure.up.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq
 }));
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35997.prototype.emmy$calculus$manifold$ICoordinateSystem$uuid$arity$1 = (function (_){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47431.prototype.emmy$calculus$manifold$ICoordinateSystem$uuid$arity$1 = (function (_){
 var self__ = this;
 var ___$1 = this;
 return self__.id;
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35997.getBasis = (function (){
-return new cljs.core.PersistentVector(null, 5, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"manifold","manifold",-299796682,null),new cljs.core.Symbol(null,"coordinate-prototype","coordinate-prototype",-1149174049,null),new cljs.core.Symbol(null,"n","n",-2092305744,null),new cljs.core.Symbol(null,"id","id",252129435,null),new cljs.core.Symbol(null,"meta35998","meta35998",-543173714,null)], null);
+(emmy.calculus.manifold.t_emmy$calculus$manifold47431.getBasis = (function (){
+return new cljs.core.PersistentVector(null, 5, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"manifold","manifold",-299796682,null),new cljs.core.Symbol(null,"coordinate-prototype","coordinate-prototype",-1149174049,null),new cljs.core.Symbol(null,"n","n",-2092305744,null),new cljs.core.Symbol(null,"id","id",252129435,null),new cljs.core.Symbol(null,"meta47432","meta47432",-132052325,null)], null);
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35997.cljs$lang$type = true);
+(emmy.calculus.manifold.t_emmy$calculus$manifold47431.cljs$lang$type = true);
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35997.cljs$lang$ctorStr = "emmy.calculus.manifold/t_emmy$calculus$manifold35997");
+(emmy.calculus.manifold.t_emmy$calculus$manifold47431.cljs$lang$ctorStr = "emmy.calculus.manifold/t_emmy$calculus$manifold47431");
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold35997.cljs$lang$ctorPrWriter = (function (this__5455__auto__,writer__5456__auto__,opt__5457__auto__){
-return cljs.core._write(writer__5456__auto__,"emmy.calculus.manifold/t_emmy$calculus$manifold35997");
+(emmy.calculus.manifold.t_emmy$calculus$manifold47431.cljs$lang$ctorPrWriter = (function (this__5455__auto__,writer__5456__auto__,opt__5457__auto__){
+return cljs.core._write(writer__5456__auto__,"emmy.calculus.manifold/t_emmy$calculus$manifold47431");
 }));
 
 /**
- * Positional factory function for emmy.calculus.manifold/t_emmy$calculus$manifold35997.
+ * Positional factory function for emmy.calculus.manifold/t_emmy$calculus$manifold47431.
  */
-emmy.calculus.manifold.__GT_t_emmy$calculus$manifold35997 = (function emmy$calculus$manifold$__GT_t_emmy$calculus$manifold35997(manifold,coordinate_prototype,n,id,meta35998){
-return (new emmy.calculus.manifold.t_emmy$calculus$manifold35997(manifold,coordinate_prototype,n,id,meta35998));
+emmy.calculus.manifold.__GT_t_emmy$calculus$manifold47431 = (function emmy$calculus$manifold$__GT_t_emmy$calculus$manifold47431(manifold,coordinate_prototype,n,id,meta47432){
+return (new emmy.calculus.manifold.t_emmy$calculus$manifold47431(manifold,coordinate_prototype,n,id,meta47432));
 });
 
 
@@ -2137,8 +2137,8 @@ return (new emmy.calculus.manifold.t_emmy$calculus$manifold35997(manifold,coordi
  *   SO(3).
  */
 emmy.calculus.manifold.__GT_Euler_chart = (function emmy$calculus$manifold$__GT_Euler_chart(var_args){
-var G__35996 = arguments.length;
-switch (G__35996) {
+var G__47430 = arguments.length;
+switch (G__47430) {
 case 1:
 return emmy.calculus.manifold.__GT_Euler_chart.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -2161,7 +2161,7 @@ return emmy.calculus.manifold.__GT_Euler_chart.cljs$core$IFn$_invoke$arity$2(man
 (emmy.calculus.manifold.__GT_Euler_chart.cljs$core$IFn$_invoke$arity$2 = (function (manifold,coordinate_prototype){
 var n = new cljs.core.Keyword(null,"dimension","dimension",543254198).cljs$core$IFn$_invoke$arity$1(manifold);
 var id = emmy.util.uuid();
-return cljs.core.with_meta((new emmy.calculus.manifold.t_emmy$calculus$manifold35997(manifold,coordinate_prototype,n,id,cljs.core.PersistentArrayMap.EMPTY)),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword("emmy.calculus.manifold","coord-prototype","emmy.calculus.manifold/coord-prototype",1491234441),coordinate_prototype,new cljs.core.Keyword("emmy.calculus.manifold","manifold","emmy.calculus.manifold/manifold",-1013288811),manifold], null));
+return cljs.core.with_meta((new emmy.calculus.manifold.t_emmy$calculus$manifold47431(manifold,coordinate_prototype,n,id,cljs.core.PersistentArrayMap.EMPTY)),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword("emmy.calculus.manifold","coord-prototype","emmy.calculus.manifold/coord-prototype",1491234441),coordinate_prototype,new cljs.core.Keyword("emmy.calculus.manifold","manifold","emmy.calculus.manifold/manifold",-1013288811),manifold], null));
 }));
 
 (emmy.calculus.manifold.__GT_Euler_chart.cljs$lang$maxFixedArity = 2);
@@ -2173,42 +2173,42 @@ return cljs.core.with_meta((new emmy.calculus.manifold.t_emmy$calculus$manifold3
  * @implements {cljs.core.IMeta}
  * @implements {cljs.core.IWithMeta}
 */
-emmy.calculus.manifold.t_emmy$calculus$manifold36005 = (function (manifold,coordinate_prototype,n,id,meta36006){
+emmy.calculus.manifold.t_emmy$calculus$manifold47439 = (function (manifold,coordinate_prototype,n,id,meta47440){
 this.manifold = manifold;
 this.coordinate_prototype = coordinate_prototype;
 this.n = n;
 this.id = id;
-this.meta36006 = meta36006;
+this.meta47440 = meta47440;
 this.cljs$lang$protocol_mask$partition0$ = 393216;
 this.cljs$lang$protocol_mask$partition1$ = 0;
 });
-(emmy.calculus.manifold.t_emmy$calculus$manifold36005.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (_36007,meta36006__$1){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47439.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (_47441,meta47440__$1){
 var self__ = this;
-var _36007__$1 = this;
-return (new emmy.calculus.manifold.t_emmy$calculus$manifold36005(self__.manifold,self__.coordinate_prototype,self__.n,self__.id,meta36006__$1));
+var _47441__$1 = this;
+return (new emmy.calculus.manifold.t_emmy$calculus$manifold47439(self__.manifold,self__.coordinate_prototype,self__.n,self__.id,meta47440__$1));
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold36005.prototype.cljs$core$IMeta$_meta$arity$1 = (function (_36007){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47439.prototype.cljs$core$IMeta$_meta$arity$1 = (function (_47441){
 var self__ = this;
-var _36007__$1 = this;
-return self__.meta36006;
+var _47441__$1 = this;
+return self__.meta47440;
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold36005.prototype.emmy$calculus$manifold$ICoordinateSystem$ = cljs.core.PROTOCOL_SENTINEL);
+(emmy.calculus.manifold.t_emmy$calculus$manifold47439.prototype.emmy$calculus$manifold$ICoordinateSystem$ = cljs.core.PROTOCOL_SENTINEL);
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold36005.prototype.emmy$calculus$manifold$ICoordinateSystem$check_coordinates$arity$2 = (function (_,coords){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47439.prototype.emmy$calculus$manifold$ICoordinateSystem$check_coordinates$arity$2 = (function (_,coords){
 var self__ = this;
 var ___$1 = this;
 return ((emmy.structure.up_QMARK_(coords)) && (((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(emmy.generic.dimension.cljs$core$IFn$_invoke$arity$1(coords),self__.n)) && ((((!(emmy.value.number_QMARK_(cljs.core.nth.cljs$core$IFn$_invoke$arity$2(coords,(0)))))) || (((((Math.PI / (-2)) < cljs.core.nth.cljs$core$IFn$_invoke$arity$2(coords,(0)))) && ((cljs.core.nth.cljs$core$IFn$_invoke$arity$2(coords,(0)) < (Math.PI / (2)))))))))));
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold36005.prototype.emmy$calculus$manifold$ICoordinateSystem$check_point$arity$2 = (function (_,point){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47439.prototype.emmy$calculus$manifold$ICoordinateSystem$check_point$arity$2 = (function (_,point){
 var self__ = this;
 var ___$1 = this;
 return emmy.calculus.manifold.my_manifold_point_QMARK_(point,self__.manifold);
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold36005.prototype.emmy$calculus$manifold$ICoordinateSystem$coords__GT_point$arity$2 = (function (this$,coords){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47439.prototype.emmy$calculus$manifold$ICoordinateSystem$coords__GT_point$arity$2 = (function (this$,coords){
 var self__ = this;
 var this$__$1 = this;
 if(cljs.core.truth_(this$__$1.emmy$calculus$manifold$ICoordinateSystem$check_coordinates$arity$2(null,coords))){
@@ -2216,10 +2216,10 @@ if(cljs.core.truth_(this$__$1.emmy$calculus$manifold$ICoordinateSystem$check_coo
 throw (new Error("Assert failed: (check-coordinates this coords)"));
 }
 
-var vec__36008 = coords;
-var theta = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36008,(0),null);
-var phi = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36008,(1),null);
-var psi = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36008,(2),null);
+var vec__47442 = coords;
+var theta = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47442,(0),null);
+var phi = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47442,(1),null);
+var psi = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47442,(2),null);
 var Mx_theta = emmy.mechanics.rotation.rotate_x_matrix(theta);
 var Mz_phi = emmy.mechanics.rotation.rotate_z_matrix(phi);
 var My_psi = emmy.mechanics.rotation.rotate_y_matrix(psi);
@@ -2227,7 +2227,7 @@ var pt = emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$variadic(Mz_phi,Mx_thet
 return emmy.calculus.manifold.make_manifold_point.cljs$core$IFn$_invoke$arity$4(pt,self__.manifold,this$__$1,coords);
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold36005.prototype.emmy$calculus$manifold$ICoordinateSystem$point__GT_coords$arity$2 = (function (this$,point){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47439.prototype.emmy$calculus$manifold$ICoordinateSystem$point__GT_coords$arity$2 = (function (this$,point){
 var self__ = this;
 var this$__$1 = this;
 if(cljs.core.truth_(this$__$1.emmy$calculus$manifold$ICoordinateSystem$check_point$arity$2(null,point))){
@@ -2244,29 +2244,29 @@ return emmy.structure.up.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq
 }));
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold36005.prototype.emmy$calculus$manifold$ICoordinateSystem$uuid$arity$1 = (function (_){
+(emmy.calculus.manifold.t_emmy$calculus$manifold47439.prototype.emmy$calculus$manifold$ICoordinateSystem$uuid$arity$1 = (function (_){
 var self__ = this;
 var ___$1 = this;
 return self__.id;
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold36005.getBasis = (function (){
-return new cljs.core.PersistentVector(null, 5, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"manifold","manifold",-299796682,null),new cljs.core.Symbol(null,"coordinate-prototype","coordinate-prototype",-1149174049,null),new cljs.core.Symbol(null,"n","n",-2092305744,null),new cljs.core.Symbol(null,"id","id",252129435,null),new cljs.core.Symbol(null,"meta36006","meta36006",418638599,null)], null);
+(emmy.calculus.manifold.t_emmy$calculus$manifold47439.getBasis = (function (){
+return new cljs.core.PersistentVector(null, 5, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"manifold","manifold",-299796682,null),new cljs.core.Symbol(null,"coordinate-prototype","coordinate-prototype",-1149174049,null),new cljs.core.Symbol(null,"n","n",-2092305744,null),new cljs.core.Symbol(null,"id","id",252129435,null),new cljs.core.Symbol(null,"meta47440","meta47440",1768126687,null)], null);
 }));
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold36005.cljs$lang$type = true);
+(emmy.calculus.manifold.t_emmy$calculus$manifold47439.cljs$lang$type = true);
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold36005.cljs$lang$ctorStr = "emmy.calculus.manifold/t_emmy$calculus$manifold36005");
+(emmy.calculus.manifold.t_emmy$calculus$manifold47439.cljs$lang$ctorStr = "emmy.calculus.manifold/t_emmy$calculus$manifold47439");
 
-(emmy.calculus.manifold.t_emmy$calculus$manifold36005.cljs$lang$ctorPrWriter = (function (this__5455__auto__,writer__5456__auto__,opt__5457__auto__){
-return cljs.core._write(writer__5456__auto__,"emmy.calculus.manifold/t_emmy$calculus$manifold36005");
+(emmy.calculus.manifold.t_emmy$calculus$manifold47439.cljs$lang$ctorPrWriter = (function (this__5455__auto__,writer__5456__auto__,opt__5457__auto__){
+return cljs.core._write(writer__5456__auto__,"emmy.calculus.manifold/t_emmy$calculus$manifold47439");
 }));
 
 /**
- * Positional factory function for emmy.calculus.manifold/t_emmy$calculus$manifold36005.
+ * Positional factory function for emmy.calculus.manifold/t_emmy$calculus$manifold47439.
  */
-emmy.calculus.manifold.__GT_t_emmy$calculus$manifold36005 = (function emmy$calculus$manifold$__GT_t_emmy$calculus$manifold36005(manifold,coordinate_prototype,n,id,meta36006){
-return (new emmy.calculus.manifold.t_emmy$calculus$manifold36005(manifold,coordinate_prototype,n,id,meta36006));
+emmy.calculus.manifold.__GT_t_emmy$calculus$manifold47439 = (function emmy$calculus$manifold$__GT_t_emmy$calculus$manifold47439(manifold,coordinate_prototype,n,id,meta47440){
+return (new emmy.calculus.manifold.t_emmy$calculus$manifold47439(manifold,coordinate_prototype,n,id,meta47440));
 });
 
 
@@ -2277,8 +2277,8 @@ return (new emmy.calculus.manifold.t_emmy$calculus$manifold36005(manifold,coordi
  *   NOTE: Please add docs about what these are!
  */
 emmy.calculus.manifold.__GT_Alternate_chart = (function emmy$calculus$manifold$__GT_Alternate_chart(var_args){
-var G__36004 = arguments.length;
-switch (G__36004) {
+var G__47438 = arguments.length;
+switch (G__47438) {
 case 1:
 return emmy.calculus.manifold.__GT_Alternate_chart.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -2301,7 +2301,7 @@ return emmy.calculus.manifold.__GT_Alternate_chart.cljs$core$IFn$_invoke$arity$2
 (emmy.calculus.manifold.__GT_Alternate_chart.cljs$core$IFn$_invoke$arity$2 = (function (manifold,coordinate_prototype){
 var n = new cljs.core.Keyword(null,"dimension","dimension",543254198).cljs$core$IFn$_invoke$arity$1(manifold);
 var id = emmy.util.uuid();
-return cljs.core.with_meta((new emmy.calculus.manifold.t_emmy$calculus$manifold36005(manifold,coordinate_prototype,n,id,cljs.core.PersistentArrayMap.EMPTY)),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword("emmy.calculus.manifold","coord-prototype","emmy.calculus.manifold/coord-prototype",1491234441),coordinate_prototype,new cljs.core.Keyword("emmy.calculus.manifold","manifold","emmy.calculus.manifold/manifold",-1013288811),manifold], null));
+return cljs.core.with_meta((new emmy.calculus.manifold.t_emmy$calculus$manifold47439(manifold,coordinate_prototype,n,id,cljs.core.PersistentArrayMap.EMPTY)),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword("emmy.calculus.manifold","coord-prototype","emmy.calculus.manifold/coord-prototype",1491234441),coordinate_prototype,new cljs.core.Keyword("emmy.calculus.manifold","manifold","emmy.calculus.manifold/manifold",-1013288811),manifold], null));
 }));
 
 (emmy.calculus.manifold.__GT_Alternate_chart.cljs$lang$maxFixedArity = 2);

@@ -9,8 +9,8 @@ goog.provide('cljs.analyzer.api');
  * for details: https://clojurescript.org/reference/compiler-options
  */
 cljs.analyzer.api.empty_state = (function cljs$analyzer$api$empty_state(var_args){
-var G__20702 = arguments.length;
-switch (G__20702) {
+var G__47311 = arguments.length;
+switch (G__47311) {
 case 0:
 return cljs.analyzer.api.empty_state.cljs$core$IFn$_invoke$arity$0();
 
@@ -94,8 +94,8 @@ return cljs.analyzer._STAR_cljs_warnings_STAR_;
  * Return the compiler options from compiler state.
  */
 cljs.analyzer.api.get_options = (function cljs$analyzer$api$get_options(var_args){
-var G__20704 = arguments.length;
-switch (G__20704) {
+var G__47313 = arguments.length;
+switch (G__47313) {
 case 0:
 return cljs.analyzer.api.get_options.cljs$core$IFn$_invoke$arity$0();
 
@@ -125,8 +125,8 @@ return cljs.core.get.cljs$core$IFn$_invoke$arity$2(cljs.core.deref(state),new cl
  *   compiler state.
  */
 cljs.analyzer.api.get_js_index = (function cljs$analyzer$api$get_js_index(var_args){
-var G__20706 = arguments.length;
-switch (G__20706) {
+var G__47315 = arguments.length;
+switch (G__47315) {
 case 0:
 return cljs.analyzer.api.get_js_index.cljs$core$IFn$_invoke$arity$0();
 
@@ -170,13 +170,13 @@ if((sym instanceof cljs.core.Symbol)){
 throw (new Error("Assert failed: (symbol? sym)"));
 }
 
-try{var _STAR_private_var_access_nowarn_STAR__orig_val__20717 = cljs.analyzer._STAR_private_var_access_nowarn_STAR_;
-var _STAR_private_var_access_nowarn_STAR__temp_val__20718 = true;
-(cljs.analyzer._STAR_private_var_access_nowarn_STAR_ = _STAR_private_var_access_nowarn_STAR__temp_val__20718);
+try{var _STAR_private_var_access_nowarn_STAR__orig_val__47317 = cljs.analyzer._STAR_private_var_access_nowarn_STAR_;
+var _STAR_private_var_access_nowarn_STAR__temp_val__47318 = true;
+(cljs.analyzer._STAR_private_var_access_nowarn_STAR_ = _STAR_private_var_access_nowarn_STAR__temp_val__47318);
 
 try{return cljs.analyzer.resolve_var.cljs$core$IFn$_invoke$arity$3(env,sym,cljs.analyzer.confirm_var_exists_throw());
-}finally {(cljs.analyzer._STAR_private_var_access_nowarn_STAR_ = _STAR_private_var_access_nowarn_STAR__orig_val__20717);
-}}catch (e20716){var e = e20716;
+}finally {(cljs.analyzer._STAR_private_var_access_nowarn_STAR_ = _STAR_private_var_access_nowarn_STAR__orig_val__47317);
+}}catch (e47316){var e = e47316;
 return cljs.analyzer.resolve_macro_var(env,sym);
 }});
 /**
@@ -184,8 +184,8 @@ return cljs.analyzer.resolve_macro_var(env,sym);
  *   returns symbols identifying namespaces not Namespace instances.
  */
 cljs.analyzer.api.all_ns = (function cljs$analyzer$api$all_ns(var_args){
-var G__20720 = arguments.length;
-switch (G__20720) {
+var G__47320 = arguments.length;
+switch (G__47320) {
 case 0:
 return cljs.analyzer.api.all_ns.cljs$core$IFn$_invoke$arity$0();
 
@@ -214,8 +214,8 @@ return cljs.core.keys(cljs.core.get.cljs$core$IFn$_invoke$arity$2(cljs.core.dere
  * Given a symbol attempt to look it up in the provided externs
  */
 cljs.analyzer.api.resolve_extern = (function cljs$analyzer$api$resolve_extern(var_args){
-var G__20722 = arguments.length;
-switch (G__20722) {
+var G__47322 = arguments.length;
+switch (G__47322) {
 case 1:
 return cljs.analyzer.api.resolve_extern.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -239,12 +239,12 @@ var pre = cljs.analyzer.__GT_pre(sym);
 var env__1491__auto__ = state;
 var env__1491__auto____$1 = ((cljs.core.map_QMARK_(env__1491__auto__))?cljs.core.atom.cljs$core$IFn$_invoke$arity$1(env__1491__auto__):(((((env__1491__auto__ instanceof clojure.lang.Atom)) && (cljs.core.map_QMARK_(cljs.core.deref(env__1491__auto__)))))?env__1491__auto__:(function (){throw (new java.lang.IllegalArgumentException((""+"Compiler environment must be a map or atom containing a map, not "+cljs.core.str.cljs$core$IFn$_invoke$arity$1((cljs.core.class$.cljs$core$IFn$_invoke$arity$1 ? cljs.core.class$.cljs$core$IFn$_invoke$arity$1(env__1491__auto__) : cljs.core.class$.call(null,env__1491__auto__))))))})()
 ));
-var _STAR_compiler_STAR__orig_val__20724 = cljs.env._STAR_compiler_STAR_;
-var _STAR_compiler_STAR__temp_val__20725 = env__1491__auto____$1;
-(cljs.env._STAR_compiler_STAR_ = _STAR_compiler_STAR__temp_val__20725);
+var _STAR_compiler_STAR__orig_val__47323 = cljs.env._STAR_compiler_STAR_;
+var _STAR_compiler_STAR__temp_val__47324 = env__1491__auto____$1;
+(cljs.env._STAR_compiler_STAR_ = _STAR_compiler_STAR__temp_val__47324);
 
 try{return new cljs.core.Keyword(null,"info","info",-317069002).cljs$core$IFn$_invoke$arity$1(cljs.analyzer.resolve_extern.cljs$core$IFn$_invoke$arity$1(pre));
-}finally {(cljs.env._STAR_compiler_STAR_ = _STAR_compiler_STAR__orig_val__20724);
+}finally {(cljs.env._STAR_compiler_STAR_ = _STAR_compiler_STAR__orig_val__47323);
 }}));
 
 (cljs.analyzer.api.resolve_extern.cljs$lang$maxFixedArity = 2);
@@ -254,8 +254,8 @@ try{return new cljs.core.Keyword(null,"info","info",-317069002).cljs$core$IFn$_i
  *   to clojure.core/find-ns.
  */
 cljs.analyzer.api.find_ns = (function cljs$analyzer$api$find_ns(var_args){
-var G__20727 = arguments.length;
-switch (G__20727) {
+var G__47326 = arguments.length;
+switch (G__47326) {
 case 1:
 return cljs.analyzer.api.find_ns.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -290,8 +290,8 @@ return cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(cljs.core.deref(state),new
  *   exception if not found. Analagous to clojure.core/the-ns.
  */
 cljs.analyzer.api.the_ns = (function cljs$analyzer$api$the_ns(var_args){
-var G__20729 = arguments.length;
-switch (G__20729) {
+var G__47328 = arguments.length;
+switch (G__47328) {
 case 1:
 return cljs.analyzer.api.the_ns.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -331,8 +331,8 @@ throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2((""+"No namespace found: "
  *   clojure.core/ns-interns but returns var analysis maps not vars.
  */
 cljs.analyzer.api.ns_interns = (function cljs$analyzer$api$ns_interns(var_args){
-var G__20731 = arguments.length;
-switch (G__20731) {
+var G__47330 = arguments.length;
+switch (G__47330) {
 case 1:
 return cljs.analyzer.api.ns_interns.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -368,8 +368,8 @@ return cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.c
  *   clojure.core/ns-publics but returns var analysis maps not vars.
  */
 cljs.analyzer.api.ns_publics = (function cljs$analyzer$api$ns_publics(var_args){
-var G__20733 = arguments.length;
-switch (G__20733) {
+var G__47332 = arguments.length;
+switch (G__47332) {
 case 1:
 return cljs.analyzer.api.ns_publics.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -394,10 +394,10 @@ if((ns instanceof cljs.core.Symbol)){
 throw (new Error("Assert failed: (symbol? ns)"));
 }
 
-return cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentArrayMap.EMPTY,cljs.core.remove.cljs$core$IFn$_invoke$arity$2((function (p__20734){
-var vec__20735 = p__20734;
-var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20735,(0),null);
-var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20735,(1),null);
+return cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentArrayMap.EMPTY,cljs.core.remove.cljs$core$IFn$_invoke$arity$2((function (p__47333){
+var vec__47334 = p__47333;
+var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47334,(0),null);
+var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47334,(1),null);
 return new cljs.core.Keyword(null,"private","private",-558947994).cljs$core$IFn$_invoke$arity$1(v);
 }),cljs.analyzer.api.ns_interns.cljs$core$IFn$_invoke$arity$2(state,ns)));
 }));
@@ -409,8 +409,8 @@ return new cljs.core.Keyword(null,"private","private",-558947994).cljs$core$IFn$
  *   Analagous to clojure.core/ns-resolve but returns var analysis map not Var.
  */
 cljs.analyzer.api.ns_resolve = (function cljs$analyzer$api$ns_resolve(var_args){
-var G__20740 = arguments.length;
-switch (G__20740) {
+var G__47338 = arguments.length;
+switch (G__47338) {
 case 2:
 return cljs.analyzer.api.ns_resolve.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -449,8 +449,8 @@ return cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(cljs.core.deref(state),new
  * Removes the namespace named by the symbol.
  */
 cljs.analyzer.api.remove_ns = (function cljs$analyzer$api$remove_ns(var_args){
-var G__20743 = arguments.length;
-switch (G__20743) {
+var G__47340 = arguments.length;
+switch (G__47340) {
 case 1:
 return cljs.analyzer.api.remove_ns.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 

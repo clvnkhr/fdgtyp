@@ -14,11 +14,6 @@
 
 (defn L1 [X] (fn [omega] (+ ((interior-product X) (d omega)) (d ((interior-product X) omega)))))
 
-((- (((Lie-derivative X) omega) Y Z) (((L1 X) omega) Y Z)) ((point R3-rect) (up 'x0 'y0 'z0)))
-;; => (- (- (+ (* (+ (* (+ (* (Y-rect↑2 (up x0 y0 z0)) (Z-rect↑0 (up x0 y0 z0)))
-;;    (* -1 (Z-rect↑2 (up x0 y0 z0)) (Y-rect↑0 (up x0 y0 z0)))) (((partial 0)
-;;    gamma) (up x0 y0 z0))) (* (+ (* (gamma (up x0 y0 z0))... <result truncated:
-;;    42116 characters total; inspect in the web runner>
-
-0
-;; => 0
+;; scmutils simplified this result automatically; Emmy requires an explicit call.
+(simplify ((- (((Lie-derivative X) omega) Y Z) (((L1 X) omega) Y Z))
+            ((point R3-rect) (up 'x0 'y0 'z0))))

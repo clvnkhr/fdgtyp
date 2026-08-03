@@ -7,4 +7,3 @@
               (let [s (make-state sigma ((U Chi) m))]
                 (- (((- (commutator (L V) (L W)) (L (commutator V W))) U-select) s)
                    (((((Riemann-curvature nabla) W V) U) Chi) m))))))
-;; => (up 0 0)

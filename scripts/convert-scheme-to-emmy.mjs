@@ -17,8 +17,15 @@ const explicitSimplifyIds = new Set([
   "chapter003-008", "chapter003-009", "chapter003-018", "chapter003-024", "chapter003-025",
   "chapter004-003", "chapter004-004", "chapter004-006", "chapter004-007", "chapter004-008",
   "chapter004-010", "chapter004-011", "chapter004-012", "chapter004-013", "chapter004-014", "chapter004-015",
-  "chapter005-006", "chapter005-007", "chapter005-010", "chapter005-013", "chapter005-016",
+  "chapter005-006", "chapter005-007", "chapter005-009", "chapter005-010", "chapter005-013", "chapter005-014", "chapter005-016",
   "chapter006-016",
+  // These have no parseable scmutils result comment, but the historical
+  // sources show coordinate-invariance identities. Their raw Emmy expansions
+  // are enormous; simplify the displayed final expression just as scmutils
+  // did. (The Ch. 9 stability determinant was also tried, but full simplify
+  // does not finish within the smoke-test bound.)
+  "chapter007-003", "chapter007-012", "chapter007-026",
+  "chapter003-020",
   "chapter008-003", "chapter008-012", "chapter008-022", "chapter008-023", "chapter008-025", "chapter008-026",
   "chapter008-032", "chapter008-034", "chapter008-036",
   "chapter009-005", "chapter009-006", "chapter009-008", "chapter009-010", "chapter009-011",
@@ -94,6 +101,18 @@ function stripCapturedResults(source) {
 }
 
 function correctMalformedSchemeOutputs(source, id) {
+  // A handful of early Org examples put the displayed zero result inside the
+  // source block as a bare final form. That is prose output, not a second
+  // expression to evaluate. Keep it as a Scheme result comment so it remains
+  // available to the comparison audit without becoming ClojureScript code.
+  const inlineZeroResultIds = new Set([
+    "chapter003-020", "chapter005-009", "chapter005-014",
+    "chapter007-003", "chapter007-006", "chapter007-007", "chapter007-008",
+    "chapter007-009", "chapter007-012", "chapter007-026",
+  ]);
+  if (inlineZeroResultIds.has(id)) {
+    source = source.replace(/\n\s*0\s*$/, "\n;; => 0");
+  }
   switch (id) {
     case "chapter003-016":
       return source.replace(/(;;\s+r)\)\)\s*$/, "$1)))");

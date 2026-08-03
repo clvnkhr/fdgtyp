@@ -10,4 +10,3 @@
                  (simplify (- (dot-product (R beta) (R x)) (dot-product beta x)))
                  (simplify (- (R-inverse (R x)) x)))]
   (verified-zero (up 0 0 0 0) checks))
-;; => (up 0 0 0 0)

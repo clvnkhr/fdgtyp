@@ -15,7 +15,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(defn Lagrange-equations\n  [Lagrangian]\n  (fn [w] (- (D (compose ((partial 2) Lagrangian) (Gamma w))) (compose ((partial 1) Lagrangian) (Gamma w)))))",
+        "code": "(defn Lagrange-equations\n  [Lagrangian]\n  (fn [w]\n    (- (D (compose ((partial 2) Lagrangian) (Gamma w)))\n       (compose ((partial 1) Lagrangian) (Gamma w)))))",
         "capturesResult": false
       }
     ],
@@ -61,7 +61,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(defn L-harmonic\n  [m k]\n  (fn [local] (let [q (coordinate local) v (velocity local)] (- (* (/ 1 2) m (square v)) (* (/ 1 2) k (square q))))))",
+        "code": "(defn L-harmonic\n  [m k]\n  (fn [local]\n    (let [q (coordinate local)\n          v (velocity local)]\n      (- (* (/ 1 2) m (square v)) (* (/ 1 2) k (square q))))))",
         "capturesResult": false
       }
     ],
@@ -178,7 +178,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(defn F->C\n  [F]\n  (fn [state] (up (time state) (F state) (+ (((partial 0) F) state) (* (((partial 1) F) state) (velocity state))))))",
+        "code": "(defn F->C\n  [F]\n  (fn [state]\n    (up (time state)\n        (F state)\n        (+ (((partial 0) F) state) (* (((partial 1) F) state) (velocity state))))))",
         "capturesResult": false
       }
     ],
@@ -454,7 +454,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(def geodesic-equation-residuals\n  (((((covariant-derivative Cartan gamma) d:dt) ((differential gamma) d:dt)) (chart R2-rect)) ((point R1-rect) 't)))",
+        "code": "(def geodesic-equation-residuals\n  (((((covariant-derivative Cartan gamma) d:dt) ((differential gamma) d:dt)) (chart R2-rect))\n    ((point R1-rect) 't)))",
         "capturesResult": false
       }
     ],
@@ -477,7 +477,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(def Cartan (Christoffel->Cartan (metric->Christoffel-2 the-metric (coordinate-system->basis R2-rect))))",
+        "code": "(def Cartan\n  (Christoffel->Cartan (metric->Christoffel-2 the-metric (coordinate-system->basis R2-rect))))",
         "capturesResult": false
       }
     ],
@@ -504,7 +504,7 @@
         "capturesResult": false
       },
       {
-        "code": "(simplify (- Lagrange-residuals\n             (* (* 'm (metric-components (gamma ((point R1-rect) 't)))) geodesic-equation-residuals)))",
+        "code": "(simplify (- Lagrange-residuals\n             (* (* 'm (metric-components (gamma ((point R1-rect) 't))))\n                geodesic-equation-residuals)))",
         "capturesResult": true
       }
     ],
@@ -817,7 +817,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(def corresponding-polar-point (R2-polar-chi-inverse (up (sqrt (+ (square 'x0) (square 'y0))) (atan 'y0 'x0))))",
+        "code": "(def corresponding-polar-point\n  (R2-polar-chi-inverse (up (sqrt (+ (square 'x0) (square 'y0))) (atan 'y0 'x0))))",
         "capturesResult": false
       }
     ],
@@ -998,7 +998,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "((compose (chart S2-spherical) (point S2-Riemann) (chart R2-rect) (point R2-polar)) (up 'rho 'theta))",
+        "code": "((compose (chart S2-spherical) (point S2-Riemann) (chart R2-rect) (point R2-polar))\n  (up 'rho 'theta))",
         "capturesResult": true
       }
     ],
@@ -1044,7 +1044,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(def v (components->vector-field (up (literal-function 'b↑0 R2->R) (literal-function 'b↑1 R2->R)) R2-rect))",
+        "code": "(def v\n  (components->vector-field (up (literal-function 'b↑0 R2->R) (literal-function 'b↑1 R2->R))\n                            R2-rect))",
         "capturesResult": false
       }
     ],
@@ -1109,7 +1109,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(defn coordinatize\n  [v coordsys]\n  (letfn [(coordinatized-v [f] (fn [x] (let [b (compose (v (chart coordsys)) (point coordsys))] (* ((D f) x) (b x)))))]\n    (make-operator coordinatized-v)))",
+        "code": "(defn coordinatize\n  [v coordsys]\n  (letfn [(coordinatized-v [f]\n            (fn [x] (let [b (compose (v (chart coordsys)) (point coordsys))] (* ((D f) x) (b x)))))]\n    (make-operator coordinatized-v)))",
         "capturesResult": false
       }
     ],
@@ -1224,7 +1224,7 @@
     "executable": false,
     "forms": [
       {
-        "code": "(series:for-each print-expression (((exp (* 't circular)) (chart R2-rect)) ((point R2-rect) (up 1 0))) 6)",
+        "code": "(series:for-each print-expression\n                 (((exp (* 't circular)) (chart R2-rect)) ((point R2-rect) (up 1 0)))\n                 6)",
         "capturesResult": true
       }
     ],
@@ -1247,7 +1247,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(defn evolution [order] (fn [delta-t v] (fn [f] (fn [m] (series:sum (((exp (* delta-t v)) f) m) order)))))",
+        "code": "(defn evolution\n  [order]\n  (fn [delta-t v] (fn [f] (fn [m] (series:sum (((exp (* delta-t v)) f) m) order)))))",
         "capturesResult": false
       }
     ],
@@ -1291,7 +1291,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(def omega (components->oneform-field (down (literal-function 'a_0 R2->R) (literal-function 'a_1 R2->R)) R2-rect))",
+        "code": "(def omega\n  (components->oneform-field (down (literal-function 'a_0 R2->R) (literal-function 'a_1 R2->R))\n                             R2-rect))",
         "capturesResult": false
       },
       {
@@ -1339,7 +1339,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(((d (literal-manifold-function 'f-rect R2-rect)) (coordinate-system->vector-basis R2-rect)) R2-rect-point)",
+        "code": "(((d (literal-manifold-function 'f-rect R2-rect)) (coordinate-system->vector-basis R2-rect))\n  R2-rect-point)",
         "capturesResult": true
       }
     ],
@@ -1360,7 +1360,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(simplify (((d (literal-manifold-function 'f-polar R2-polar)) (coordinate-system->vector-basis R2-rect))\n            ((point R2-polar) (up 'r 'theta))))",
+        "code": "(simplify (((d (literal-manifold-function 'f-polar R2-polar))\n             (coordinate-system->vector-basis R2-rect))\n            ((point R2-polar) (up 'r 'theta))))",
         "capturesResult": true
       }
     ],
@@ -1452,7 +1452,7 @@
     "ordinal": 20,
     "heading": "Coordinate-Basis One-Form Fields <sec-3.4.3>",
     "typLine": 370,
-    "sourceHash": "9c6241ced68dd998a41e536e9b1d48c5ccf51217925327152e4a93a9a7f36ff9",
+    "sourceHash": "9506d70d5edff82ae539dbca70e1de15c97c0f7cfb2e56ec1273087d9f437bb2",
     "backgroundSetup": false,
     "prerequisiteIds": [],
     "definitions": [
@@ -1466,11 +1466,7 @@
         "capturesResult": false
       },
       {
-        "code": "(((- circular d:dtheta) f) R2-rect-point)",
-        "capturesResult": true
-      },
-      {
-        "code": "0",
+        "code": "(simplify (((- circular d:dtheta) f) R2-rect-point))",
         "capturesResult": true
       }
     ],
@@ -1526,11 +1522,11 @@
     "executable": true,
     "forms": [
       {
-        "code": "(def e0 (+ (* (literal-manifold-function 'e0x R2-rect) d:dx) (* (literal-manifold-function 'e0y R2-rect) d:dy)))",
+        "code": "(def e0\n  (+ (* (literal-manifold-function 'e0x R2-rect) d:dx)\n     (* (literal-manifold-function 'e0y R2-rect) d:dy)))",
         "capturesResult": false
       },
       {
-        "code": "(def e1 (+ (* (literal-manifold-function 'e1x R2-rect) d:dx) (* (literal-manifold-function 'e1y R2-rect) d:dy)))",
+        "code": "(def e1\n  (+ (* (literal-manifold-function 'e1x R2-rect) d:dx)\n     (* (literal-manifold-function 'e1y R2-rect) d:dy)))",
         "capturesResult": false
       }
     ],
@@ -1602,7 +1598,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(def v (* (up (literal-manifold-function 'b↑0 R2-rect) (literal-manifold-function 'b↑1 R2-rect)) e-vector-basis))",
+        "code": "(def v\n  (* (up (literal-manifold-function 'b↑0 R2-rect) (literal-manifold-function 'b↑1 R2-rect))\n     e-vector-basis))",
         "capturesResult": false
       },
       {
@@ -1629,7 +1625,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(defn Jacobian [to-basis from-basis] (mapr (basis->oneform-basis to-basis) (basis->vector-basis from-basis)))",
+        "code": "(defn Jacobian\n  [to-basis from-basis]\n  (mapr (basis->oneform-basis to-basis) (basis->vector-basis from-basis)))",
         "capturesResult": false
       }
     ],
@@ -1652,7 +1648,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(def b-polar (* (Jacobian (coordinate-system->basis R2-polar) (coordinate-system->basis R2-rect)) b-rect))",
+        "code": "(def b-polar\n  (* (Jacobian (coordinate-system->basis R2-polar) (coordinate-system->basis R2-rect)) b-rect))",
         "capturesResult": false
       },
       {
@@ -1698,7 +1694,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(simplify (let [polar-basis (coordinate-system->basis R2-polar)\n                polar-vector-basis (basis->vector-basis polar-basis)\n                polar-dual-basis (basis->oneform-basis polar-basis)\n                f (literal-manifold-function 'f-rect R2-rect)]\n            ((- ((commutator e0 e1) f)\n                (* (- (e0 (polar-dual-basis e1)) (e1 (polar-dual-basis e0))) (polar-vector-basis f)))\n              R2-rect-point)))",
+        "code": "(simplify (let [polar-basis (coordinate-system->basis R2-polar)\n                polar-vector-basis (basis->vector-basis polar-basis)\n                polar-dual-basis (basis->oneform-basis polar-basis)\n                f (literal-manifold-function 'f-rect R2-rect)]\n            ((- ((commutator e0 e1) f)\n                (* (- (e0 (polar-dual-basis e1)) (e1 (polar-dual-basis e0)))\n                   (polar-vector-basis f)))\n              R2-rect-point)))",
         "capturesResult": true
       }
     ],
@@ -1874,7 +1870,7 @@
         "capturesResult": false
       },
       {
-        "code": "(def e_y\n  (+ (/ (* (cos phi) (cos theta) d:dphi) (sin theta)) (* (sin phi) d:dtheta) (* -1 (/ (cos phi) (sin theta)) d:dpsi)))",
+        "code": "(def e_y\n  (+ (/ (* (cos phi) (cos theta) d:dphi) (sin theta))\n     (* (sin phi) d:dtheta)\n     (* -1 (/ (cos phi) (sin theta)) d:dpsi)))",
         "capturesResult": false
       },
       {
@@ -2020,7 +2016,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(simplify (- (((wedge dx dy dz) u v w) R3-rect-point)\n             (determinant (matrix-by-rows (list 'u↑0 'u↑1 'u↑2) (list 'v↑0 'v↑1 'v↑2) (list 'w↑0 'w↑1 'w↑2)))))",
+        "code": "(simplify (- (((wedge dx dy dz) u v w) R3-rect-point)\n             (determinant\n               (matrix-by-rows (list 'u↑0 'u↑1 'u↑2) (list 'v↑0 'v↑1 'v↑2) (list 'w↑0 'w↑1 'w↑2)))))",
         "capturesResult": true
       }
     ],
@@ -2090,7 +2086,7 @@
         "capturesResult": false
       },
       {
-        "code": "(simplify (((- (d theta) (+ (wedge (d a) dx) (wedge (d b) dy) (wedge (d c) dz))) X Y) R3-rect-point))",
+        "code": "(simplify (((- (d theta) (+ (wedge (d a) dx) (wedge (d b) dy) (wedge (d c) dz))) X Y)\n            R3-rect-point))",
         "capturesResult": true
       }
     ],
@@ -2140,7 +2136,7 @@
         "capturesResult": false
       },
       {
-        "code": "(simplify (((- (d omega) (+ (wedge (d a) dy dz) (wedge (d b) dz dx) (wedge (d c) dx dy))) X Y Z) R3-rect-point))",
+        "code": "(simplify (((- (d omega) (+ (wedge (d a) dy dz) (wedge (d b) dz dx) (wedge (d c) dx dy))) X Y Z)\n            R3-rect-point))",
         "capturesResult": true
       }
     ],
@@ -2153,7 +2149,7 @@
     "ordinal": 9,
     "heading": "Properties of Exterior Derivatives <sec-5.7>",
     "typLine": 304,
-    "sourceHash": "88dcc408abc9b0d5e2bc36fcf8d10a2a7773f1eaf50e02a60cdf6f81e8058188",
+    "sourceHash": "d395b4a67149d37a47c8444daf504a931cf5d48059417457cc86d5c6152148ab",
     "backgroundSetup": false,
     "prerequisiteIds": [],
     "definitions": [],
@@ -2161,11 +2157,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(((d (d theta)) X Y Z) R3-rect-point)",
-        "capturesResult": true
-      },
-      {
-        "code": "0",
+        "code": "(simplify (((d (d theta)) X Y Z) R3-rect-point))",
         "capturesResult": true
       }
     ],
@@ -2225,7 +2217,7 @@
         "capturesResult": false
       },
       {
-        "code": "(simplify (let [dx (ref (basis->oneform-basis R2-rect-basis) 0)\n                dy (ref (basis->oneform-basis R2-rect-basis) 1)]\n            (((- (d (+ (* (compose alpha (chart R2-rect)) dx) (* (compose beta (chart R2-rect)) dy)))\n                 (* (compose (- ((partial 0) beta) ((partial 1) alpha)) (chart R2-rect)) (wedge dx dy)))\n               v\n               w)\n              R2-rect-point)))",
+        "code": "(simplify\n  (let [dx (ref (basis->oneform-basis R2-rect-basis) 0)\n        dy (ref (basis->oneform-basis R2-rect-basis) 1)]\n    (((- (d (+ (* (compose alpha (chart R2-rect)) dx) (* (compose beta (chart R2-rect)) dy)))\n         (* (compose (- ((partial 0) beta) ((partial 1) alpha)) (chart R2-rect)) (wedge dx dy)))\n       v\n       w)\n      R2-rect-point)))",
         "capturesResult": true
       }
     ],
@@ -2299,7 +2291,7 @@
     "ordinal": 14,
     "heading": "Vector Integral Theorems <sec-5.9>",
     "typLine": 426,
-    "sourceHash": "7eebed6a73b38e8369c9477a1e1ea60d8e3f4a80be60b33c4c154e4283ad039e",
+    "sourceHash": "df5a91760e1d1c4fc028681ed53279667ebbcd1a79b3b28d6705146fae4320e8",
     "backgroundSetup": false,
     "prerequisiteIds": [],
     "definitions": [
@@ -2323,11 +2315,7 @@
         "capturesResult": false
       },
       {
-        "code": "(((- production-in-volume-element (d flux-through-boundary-element)) X Y Z) R3-rect-point)",
-        "capturesResult": true
-      },
-      {
-        "code": "0",
+        "code": "(simplify (((- production-in-volume-element (d flux-through-boundary-element)) X Y Z)\n            R3-rect-point))",
         "capturesResult": true
       }
     ],
@@ -2396,7 +2384,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(defn form-field->form-field-over-map\n  [mu:N->M]\n  (fn [w-on-M]\n    (letfn [(make-fake-vector-field [V-over-mu n]\n              (letfn [(u [f] (fn [m] ((V-over-mu f) n)))]\n                (procedure->vector-field u)))]\n      (procedure->nform-field\n        (fn [& vectors-over-map]\n          (fn [n]\n            ((apply w-on-M (map (fn [V-over-mu] (make-fake-vector-field V-over-mu n)) vectors-over-map)) (mu:N->M n))))\n        (get-rank w-on-M)))))",
+        "code": "(defn form-field->form-field-over-map\n  [mu:N->M]\n  (fn [w-on-M]\n    (letfn [(make-fake-vector-field [V-over-mu n]\n              (letfn [(u [f] (fn [m] ((V-over-mu f) n)))]\n                (procedure->vector-field u)))]\n      (procedure->nform-field (fn [& vectors-over-map]\n                                (fn [n]\n                                  ((apply w-on-M\n                                     (map (fn [V-over-mu] (make-fake-vector-field V-over-mu n))\n                                       vectors-over-map))\n                                    (mu:N->M n))))\n                              (get-rank w-on-M)))))",
         "capturesResult": false
       }
     ],
@@ -2479,7 +2467,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(def mu (compose (point S2-spherical) (up (literal-function 'theta) (literal-function 'phi)) (chart R1-rect)))",
+        "code": "(def mu\n  (compose (point S2-spherical)\n           (up (literal-function 'theta) (literal-function 'phi))\n           (chart R1-rect)))",
         "capturesResult": false
       }
     ],
@@ -2532,7 +2520,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(((basis->oneform-basis S2-basis-over-mu) (basis->vector-basis S2-basis-over-mu)) ((point R1-rect) 't0))",
+        "code": "(((basis->oneform-basis S2-basis-over-mu) (basis->vector-basis S2-basis-over-mu))\n  ((point R1-rect) 't0))",
         "capturesResult": true
       }
     ],
@@ -2599,7 +2587,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(defn pushforward-vector\n  [mu:N->M mu-inverse:M->N]\n  (fn [v-on-N] (procedure->vector-field (fn [f] (compose (v-on-N (compose f mu:N->M)) mu-inverse:M->N)))))",
+        "code": "(defn pushforward-vector\n  [mu:N->M mu-inverse:M->N]\n  (fn [v-on-N]\n    (procedure->vector-field (fn [f] (compose (v-on-N (compose f mu:N->M)) mu-inverse:M->N)))))",
         "capturesResult": false
       }
     ],
@@ -2732,7 +2720,7 @@
         "capturesResult": false
       },
       {
-        "code": "(simplify (((- ((pullback mu) (d theta)) (d ((pullback mu) theta))) X Y) ((point R2-rect) (up 'x0 'y0))))",
+        "code": "(simplify (((- ((pullback mu) (d theta)) (d ((pullback mu) theta))) X Y)\n            ((point R2-rect) (up 'x0 'y0))))",
         "capturesResult": true
       }
     ],
@@ -2780,7 +2768,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(defn Lie-directional [coordsys order] (let [Phi (phi coordsys order)] (F->directional-derivative (F-Lie Phi))))",
+        "code": "(defn Lie-directional\n  [coordsys order]\n  (let [Phi (phi coordsys order)] (F->directional-derivative (F-Lie Phi))))",
         "capturesResult": false
       },
       {
@@ -2788,7 +2776,7 @@
         "capturesResult": false
       },
       {
-        "code": "(defn phi\n  [coordsys order]\n  (fn [v] (fn [delta] (fn [m] ((point coordsys) (series:sum (((exp (* delta v)) (chart coordsys)) m) order))))))",
+        "code": "(defn phi\n  [coordsys order]\n  (fn [v]\n    (fn [delta]\n      (fn [m] ((point coordsys) (series:sum (((exp (* delta v)) (chart coordsys)) m) order))))))",
         "capturesResult": false
       }
     ],
@@ -2801,7 +2789,7 @@
     "ordinal": 3,
     "heading": "Vector Fields <sec-7.3>",
     "typLine": 120,
-    "sourceHash": "c1fc7057d63171936f6e0fcd3e8caedcf6cb0c8c349d6d6b4330ca9b50776c7b",
+    "sourceHash": "8f9ad75065704455ef74babf0eafb62fe3b386cb7fd250d47fbc78732232accb",
     "backgroundSetup": false,
     "prerequisiteIds": [],
     "definitions": [],
@@ -2809,11 +2797,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(let [v (literal-vector-field 'v-rect R3-rect)\n      w (literal-vector-field 'w-rect R3-rect)\n      f (literal-manifold-function 'f-rect R3-rect)]\n  ((- ((((Lie-directional R3-rect 2) v) w) f) ((commutator v w) f)) ((point R3-rect) (up 'x0 'y0 'z0))))",
-        "capturesResult": true
-      },
-      {
-        "code": "0",
+        "code": "(simplify (let [v (literal-vector-field 'v-rect R3-rect)\n                w (literal-vector-field 'w-rect R3-rect)\n                f (literal-manifold-function 'f-rect R3-rect)]\n            ((- ((((Lie-directional R3-rect 2) v) w) f) ((commutator v w) f))\n              ((point R3-rect) (up 'x0 'y0 'z0)))))",
         "capturesResult": true
       }
     ],
@@ -2882,7 +2866,7 @@
     "ordinal": 6,
     "heading": "Properties of the Lie Derivative <sec-7.7>",
     "typLine": 231,
-    "sourceHash": "45bca5e3348f40c99fad79575898aec4f978b18a5c3f402e89bde997c1c745a5",
+    "sourceHash": "8eb138455724af5e6f0fa8f1f6c76b48f4fcbc7c2395785f0cb5c67ea1e1464c",
     "backgroundSetup": false,
     "prerequisiteIds": [],
     "definitions": [],
@@ -2891,10 +2875,6 @@
     "forms": [
       {
         "code": "(((- ((Lie-derivative V) (d theta)) (d ((Lie-derivative V) theta))) X Y) R3-rect-point)",
-        "capturesResult": true
-      },
-      {
-        "code": "0",
         "capturesResult": true
       }
     ],
@@ -2907,7 +2887,7 @@
     "ordinal": 7,
     "heading": "Properties of the Lie Derivative <sec-7.7>",
     "typLine": 242,
-    "sourceHash": "2a78acc2aca17307941e7dd2457a19dfbc0e19c41bcee1db30673115bfb94e20",
+    "sourceHash": "9a78d37cdce642950aa698d43a9a472ddc9ff05edcfde7ee26b02023a1d5b246",
     "backgroundSetup": false,
     "prerequisiteIds": [],
     "definitions": [],
@@ -2916,10 +2896,6 @@
     "forms": [
       {
         "code": "(((- ((Lie-derivative V) (d omega)) (d ((Lie-derivative V) omega))) X Y Z) R3-rect-point)",
-        "capturesResult": true
-      },
-      {
-        "code": "0",
         "capturesResult": true
       }
     ],
@@ -2932,7 +2908,7 @@
     "ordinal": 8,
     "heading": "Properties of the Lie Derivative <sec-7.7>",
     "typLine": 257,
-    "sourceHash": "69bd5513713c83b199750b7f4f9026ca27442aa99dc6d6af491352a0f9200242",
+    "sourceHash": "ee6ed7e8782ad2d557f7179feb43825d4c2f843574fcc90e817b7e627bcb5664",
     "backgroundSetup": false,
     "prerequisiteIds": [],
     "definitions": [],
@@ -2940,11 +2916,7 @@
     "executable": false,
     "forms": [
       {
-        "code": "((((- (commutator (Lie-derivative X) (Lie-derivative Y)) (Lie-derivative (commutator X Y))) theta) Z) R3-rect-point)",
-        "capturesResult": true
-      },
-      {
-        "code": "0",
+        "code": "((((- (commutator (Lie-derivative X) (Lie-derivative Y)) (Lie-derivative (commutator X Y))) theta)\n   Z)\n  R3-rect-point)",
         "capturesResult": true
       }
     ],
@@ -2957,7 +2929,7 @@
     "ordinal": 9,
     "heading": "Properties of the Lie Derivative <sec-7.7>",
     "typLine": 269,
-    "sourceHash": "88fd166f9e14fa4fd16ef804e5380e811adf924697da35d470426aba8cbdbfda",
+    "sourceHash": "211e32a34f74e558285916d4074653e452016918aec145999152d68686fd703a",
     "backgroundSetup": false,
     "prerequisiteIds": [],
     "definitions": [],
@@ -2965,11 +2937,7 @@
     "executable": false,
     "forms": [
       {
-        "code": "((((- (commutator (Lie-derivative X) (Lie-derivative Y)) (Lie-derivative (commutator X Y))) omega) Z V) R3-rect-point)",
-        "capturesResult": true
-      },
-      {
-        "code": "0",
+        "code": "((((- (commutator (Lie-derivative X) (Lie-derivative Y)) (Lie-derivative (commutator X Y))) omega)\n   Z\n   V)\n  R3-rect-point)",
         "capturesResult": true
       }
     ],
@@ -3017,7 +2985,7 @@
     "executable": false,
     "forms": [
       {
-        "code": "(series:for-each print-expression\n                 ((((exp (* 'a (Lie-derivative Jz))) d:dy) (literal-manifold-function 'f-rect R3-rect))\n                   ((point R3-rect) (up 1 0 0)))\n                 5)",
+        "code": "(series:for-each print-expression\n                 ((((exp (* 'a (Lie-derivative Jz))) d:dy)\n                    (literal-manifold-function 'f-rect R3-rect))\n                   ((point R3-rect) (up 1 0 0)))\n                 5)",
         "capturesResult": true
       }
     ],
@@ -3030,7 +2998,7 @@
     "ordinal": 12,
     "heading": "Interior Product <sec-7.9>",
     "typLine": 330,
-    "sourceHash": "313f29d2344a0af2eef0d0944a47b4d568ff26c75e1d0597823718b7eb021d10",
+    "sourceHash": "493c0cbfb320fa26b3e8d25872306f93d7c7afe3bb07316f7f1479fafe915e6c",
     "backgroundSetup": false,
     "prerequisiteIds": [],
     "definitions": [
@@ -3079,11 +3047,7 @@
         "capturesResult": false
       },
       {
-        "code": "((- (((Lie-derivative X) omega) Y Z) (((L1 X) omega) Y Z)) ((point R3-rect) (up 'x0 'y0 'z0)))",
-        "capturesResult": true
-      },
-      {
-        "code": "0",
+        "code": "(simplify ((- (((Lie-derivative X) omega) Y Z) (((L1 X) omega) Y Z))\n            ((point R3-rect) (up 'x0 'y0 'z0))))",
         "capturesResult": true
       }
     ],
@@ -3157,7 +3121,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(defn covariant-derivative-oneform\n  [Cartan]\n  (fn [V]\n    (fn [tau] (fn [U] (let [nabla_V ((covariant-derivative-vector Cartan) V)] (- (V (tau U)) (tau (nabla_V U))))))))",
+        "code": "(defn covariant-derivative-oneform\n  [Cartan]\n  (fn [V]\n    (fn [tau]\n      (fn [U]\n        (let [nabla_V ((covariant-derivative-vector Cartan) V)]\n          (- (V (tau U)) (tau (nabla_V U))))))))",
         "capturesResult": false
       }
     ],
@@ -3180,7 +3144,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(defn covariant-derivative-form\n  [Cartan]\n  (fn [V]\n    (fn [tau]\n      (fn [vs]\n        (let [k (get-rank tau)\n              nabla_V ((covariant-derivative-vector Cartan) V)]\n          (- (V (apply tau vs))\n             (sigma (fn [i] (apply tau (list-with-substituted-coord vs i (nabla_V (nth vs i))))) 0 (- k 1))))))))",
+        "code": "(defn covariant-derivative-form\n  [Cartan]\n  (fn [V]\n    (fn [tau]\n      (fn [vs]\n        (let [k (get-rank tau)\n              nabla_V ((covariant-derivative-vector Cartan) V)]\n          (- (V (apply tau vs))\n             (sigma (fn [i] (apply tau (list-with-substituted-coord vs i (nabla_V (nth vs i)))))\n                    0\n                    (- k 1))))))))",
         "capturesResult": false
       }
     ],
@@ -3203,7 +3167,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(defn Cartan-transform\n  [Cartan basis-prime]\n  (let [basis (Cartan->basis Cartan)\n        forms (Cartan->forms Cartan)\n        prime-dual-basis (basis->oneform-basis basis-prime)\n        prime-vector-basis (basis->vector-basis basis-prime)]\n    (let [vector-basis (basis->vector-basis basis)\n          oneform-basis (basis->oneform-basis basis)]\n      (let [J-inv (mapr oneform-basis prime-vector-basis)\n            J (mapr prime-dual-basis vector-basis)]\n        (let [omega-prime-forms (procedure->oneform-field (fn [v] (+ (* J (v J-inv)) (* J (* (forms v) J-inv)))))]\n          (make-Cartan omega-prime-forms basis-prime))))))",
+        "code": "(defn Cartan-transform\n  [Cartan basis-prime]\n  (let [basis (Cartan->basis Cartan)\n        forms (Cartan->forms Cartan)\n        prime-dual-basis (basis->oneform-basis basis-prime)\n        prime-vector-basis (basis->vector-basis basis-prime)]\n    (let [vector-basis (basis->vector-basis basis)\n          oneform-basis (basis->oneform-basis basis)]\n      (let [J-inv (mapr oneform-basis prime-vector-basis)\n            J (mapr prime-dual-basis vector-basis)]\n        (let [omega-prime-forms (procedure->oneform-field\n                                  (fn [v] (+ (* J (v J-inv)) (* J (* (forms v) J-inv)))))]\n          (make-Cartan omega-prime-forms basis-prime))))))",
         "capturesResult": false
       }
     ],
@@ -3262,7 +3226,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(def R2-rect-Christoffel\n  (make-Christoffel (let [zero (fn [m] 0)]\n                      (down (down (up zero zero) (up zero zero)) (down (up zero zero) (up zero zero))))\n                    R2-rect-basis))",
+        "code": "(def R2-rect-Christoffel\n  (make-Christoffel (let [zero (fn [m] 0)]\n                      (down (down (up zero zero) (up zero zero))\n                            (down (up zero zero) (up zero zero))))\n                    R2-rect-basis))",
         "capturesResult": false
       }
     ],
@@ -3423,7 +3387,7 @@
     "ordinal": 26,
     "heading": "Change of Basis <sec-7.14>",
     "typLine": 705,
-    "sourceHash": "8669fd02ab341ceea916a74d3b2f1b35d9d49431dc64bbe3dedfbb51fad79774",
+    "sourceHash": "b1e02f7f622d6568ff29b88fb21c5cff06a7f66c63e292d874f917223a9a8b3a",
     "backgroundSetup": false,
     "prerequisiteIds": [],
     "definitions": [
@@ -3442,11 +3406,7 @@
         "capturesResult": false
       },
       {
-        "code": "(((((- (covariant-derivative R2-rect-Cartan) (covariant-derivative R2-polar-Cartan)) V) W) f) R2-rect-point)",
-        "capturesResult": true
-      },
-      {
-        "code": "0",
+        "code": "(simplify (((((- (covariant-derivative R2-rect-Cartan) (covariant-derivative R2-polar-Cartan)) V) W)\n             f)\n            R2-rect-point))",
         "capturesResult": true
       }
     ],
@@ -3506,7 +3466,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(def gamma (compose (point S2-spherical) (up (literal-function 'alpha) (literal-function 'beta)) (chart R1-rect)))",
+        "code": "(def gamma\n  (compose (point S2-spherical)\n           (up (literal-function 'alpha) (literal-function 'beta))\n           (chart R1-rect)))",
         "capturesResult": false
       }
     ],
@@ -3534,7 +3494,7 @@
         "capturesResult": false
       },
       {
-        "code": "(def u_gamma\n  (* (up (compose (literal-function 'u↑0) (chart R1-rect)) (compose (literal-function 'u↑1) (chart R1-rect)))\n     (basis->vector-basis basis-over-gamma)))",
+        "code": "(def u_gamma\n  (* (up (compose (literal-function 'u↑0) (chart R1-rect))\n         (compose (literal-function 'u↑1) (chart R1-rect)))\n     (basis->vector-basis basis-over-gamma)))",
         "capturesResult": false
       }
     ],
@@ -3558,7 +3518,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(def S2-Christoffel\n  (make-Christoffel (let [zero (fn [point] 0)]\n                      (down (down (up zero zero) (up zero (/ 1 (tan theta))))\n                            (down (up zero (/ 1 (tan theta))) (up (- (* (sin theta) (cos theta))) zero))))\n                    S2-basis))",
+        "code": "(def S2-Christoffel\n  (make-Christoffel (let [zero (fn [point] 0)]\n                      (down (down (up zero zero) (up zero (/ 1 (tan theta))))\n                            (down (up zero (/ 1 (tan theta)))\n                                  (up (- (* (sin theta) (cos theta))) zero))))\n                    S2-basis))",
         "capturesResult": false
       },
       {
@@ -3587,7 +3547,7 @@
         "capturesResult": false
       },
       {
-        "code": "(mapr (fn [omega] ((omega (((covariant-derivative sphere-Cartan gamma) d:dt) u_gamma)) ((point R1-rect) 'tau)))\n      (basis->oneform-basis basis-over-gamma))",
+        "code": "(mapr (fn [omega]\n        ((omega (((covariant-derivative sphere-Cartan gamma) d:dt) u_gamma))\n          ((point R1-rect) 'tau)))\n      (basis->oneform-basis basis-over-gamma))",
         "capturesResult": true
       }
     ],
@@ -3610,7 +3570,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(defn g\n  [gamma Cartan]\n  (let [omega ((Cartan->forms (Cartan->Cartan-over-map Cartan gamma)) ((differential gamma) d:dt))]\n    (letfn [(the-state-derivative []\n              (fn [state] (let [t ((point R1-rect) (ref state 0)) u (ref state 1)] (up 1 (* -1 (omega t) u)))))]\n      the-state-derivative)))",
+        "code": "(defn g\n  [gamma Cartan]\n  (let [omega ((Cartan->forms (Cartan->Cartan-over-map Cartan gamma)) ((differential gamma) d:dt))]\n    (letfn\n      [(the-state-derivative []\n         (fn [state]\n           (let [t ((point R1-rect) (ref state 0)) u (ref state 1)] (up 1 (* -1 (omega t) u)))))]\n      the-state-derivative)))",
         "capturesResult": false
       }
     ],
@@ -3659,7 +3619,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "((state-advancer (g (tilted-path 1) sphere-Cartan)) (up 0 (* ((D (transform 1)) (up (/ pi 2) 0)) (up 1 0))) (/ pi 2))",
+        "code": "((state-advancer (g (tilted-path 1) sphere-Cartan))\n  (up 0 (* ((D (transform 1)) (up (/ pi 2) 0)) (up 1 0)))\n  (/ pi 2))",
         "capturesResult": true
       }
     ],
@@ -3680,7 +3640,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "((state-advancer (g (tilted-path 1) sphere-Cartan)) (up 0 (* ((D (transform 1)) (up (/ pi 2) 0)) (up 1 0))) 1)",
+        "code": "((state-advancer (g (tilted-path 1) sphere-Cartan))\n  (up 0 (* ((D (transform 1)) (up (/ pi 2) 0)) (up 1 0)))\n  1)",
         "capturesResult": true
       }
     ],
@@ -3722,7 +3682,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(show-expression (((((covariant-derivative sphere-Cartan gamma) d:dt) ((differential gamma) d:dt)) (chart S2-spherical))\n                   ((point R1-rect) 't0)))",
+        "code": "(show-expression (((((covariant-derivative sphere-Cartan gamma) d:dt) ((differential gamma) d:dt))\n                    (chart S2-spherical))\n                   ((point R1-rect) 't0)))",
         "capturesResult": true
       }
     ],
@@ -3751,7 +3711,7 @@
         "capturesResult": false
       },
       {
-        "code": "(defn sphere->R3\n  [s]\n  (let [q (coordinate s)]\n    (let [theta (ref q 0) phi (ref q 1)] (up (* (sin theta) (cos phi)) (* (sin theta) (sin phi)) (cos theta)))))",
+        "code": "(defn sphere->R3\n  [s]\n  (let [q (coordinate s)]\n    (let [theta (ref q 0)\n          phi (ref q 1)]\n      (up (* (sin theta) (cos phi)) (* (sin theta) (sin phi)) (cos theta)))))",
         "capturesResult": false
       },
       {
@@ -3776,7 +3736,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(show-expression (((Lagrange-equations Lsphere) (up (literal-function 'alpha) (literal-function 'beta))) 't))",
+        "code": "(show-expression\n  (((Lagrange-equations Lsphere) (up (literal-function 'alpha) (literal-function 'beta))) 't))",
         "capturesResult": true
       }
     ],
@@ -3932,7 +3892,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(defn Riemann-curvature [nabla] (fn [w v] (- (commutator (nabla w) (nabla v)) (nabla (commutator w v)))))",
+        "code": "(defn Riemann-curvature\n  [nabla]\n  (fn [w v] (- (commutator (nabla w) (nabla v)) (nabla (commutator w v)))))",
         "capturesResult": false
       }
     ],
@@ -4060,7 +4020,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(defn Du\n  [v]\n  (fn [state] (let [CF (Cartan->forms general-Cartan-2)] (* -1 ((CF v) (Chi-inverse (Sigma state))) (U-select state)))))",
+        "code": "(defn Du\n  [v]\n  (fn [state]\n    (let [CF (Cartan->forms general-Cartan-2)]\n      (* -1 ((CF v) (Chi-inverse (Sigma state))) (U-select state)))))",
         "capturesResult": false
       }
     ],
@@ -4196,7 +4156,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(defn test\n  [coordsys Cartan]\n  (let [m (typical-point coordsys)\n        u (literal-vector-field 'u-coord coordsys)\n        w (literal-vector-field 'w-coord coordsys)\n        v (literal-vector-field 'v-coord coordsys)\n        f (literal-manifold-function 'f-coord coordsys)]\n    (let [nabla (covariant-derivative Cartan)]\n      (- (((((curvature-from-transport Cartan) w v) u) f) m) (((((Riemann-curvature nabla) w v) u) f) m)))))",
+        "code": "(defn test\n  [coordsys Cartan]\n  (let [m (typical-point coordsys)\n        u (literal-vector-field 'u-coord coordsys)\n        w (literal-vector-field 'w-coord coordsys)\n        v (literal-vector-field 'v-coord coordsys)\n        f (literal-manifold-function 'f-coord coordsys)]\n    (let [nabla (covariant-derivative Cartan)]\n      (- (((((curvature-from-transport Cartan) w v) u) f) m)\n         (((((Riemann-curvature nabla) w v) u) f) m)))))",
         "capturesResult": false
       },
       {
@@ -4225,7 +4185,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(simplify (let [U (literal-vector-field 'U-rect R2-rect)\n                V (literal-vector-field 'V-rect R2-rect)\n                W (literal-vector-field 'W-rect R2-rect)\n                nabla (covariant-derivative general-Cartan-2)\n                sigma (up 'sigma0 'sigma1)]\n            (let [m (Chi-inverse sigma)]\n              (let [s (make-state sigma ((U Chi) m))]\n                (- (((commutator (L W) (L V)) U-select) s) ((((commutator (nabla W) (nabla V)) U) Chi) m))))))",
+        "code": "(simplify (let [U (literal-vector-field 'U-rect R2-rect)\n                V (literal-vector-field 'V-rect R2-rect)\n                W (literal-vector-field 'W-rect R2-rect)\n                nabla (covariant-derivative general-Cartan-2)\n                sigma (up 'sigma0 'sigma1)]\n            (let [m (Chi-inverse sigma)]\n              (let [s (make-state sigma ((U Chi) m))]\n                (- (((commutator (L W) (L V)) U-select) s)\n                   ((((commutator (nabla W) (nabla V)) U) Chi) m))))))",
         "capturesResult": true
       }
     ],
@@ -4292,7 +4252,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(defn pseudosphere\n  [q]\n  (let [t (ref q 0) theta (ref q 1)] (up (* (sech t) (cos theta)) (* (sech t) (sin theta)) (- t (tanh t)))))",
+        "code": "(defn pseudosphere\n  [q]\n  (let [t (ref q 0)\n        theta (ref q 1)]\n    (up (* (sech t) (cos theta)) (* (sech t) (sin theta)) (- t (tanh t)))))",
         "capturesResult": false
       }
     ],
@@ -4362,7 +4322,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(for-each (fn [x]\n            (for-each (fn [y]\n                        (print-expression (simplify ((((torsion-vector (covariant-derivative sphere-Cartan)) x y)\n                                                       (literal-manifold-function 'f S2-spherical))\n                                                      ((point S2-spherical) (up 'theta0 'phi0))))))\n                      (list d:dtheta d:dphi)))\n          (list d:dtheta d:dphi))",
+        "code": "(for-each (fn [x]\n            (for-each (fn [y]\n                        (print-expression\n                          (simplify ((((torsion-vector (covariant-derivative sphere-Cartan)) x y)\n                                       (literal-manifold-function 'f S2-spherical))\n                                      ((point S2-spherical) (up 'theta0 'phi0))))))\n                      (list d:dtheta d:dphi)))\n          (list d:dtheta d:dphi))",
         "capturesResult": true
       }
     ],
@@ -4707,7 +4667,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(def nabla (covariant-derivative (Christoffel->Cartan (symmetrize-Christoffel (literal-Christoffel-2 'C R4-rect)))))",
+        "code": "(def nabla\n  (covariant-derivative (Christoffel->Cartan (symmetrize-Christoffel\n                                               (literal-Christoffel-2 'C R4-rect)))))",
         "capturesResult": false
       },
       {
@@ -4776,7 +4736,7 @@
     "executable": false,
     "forms": [
       {
-        "code": "(((cyclic-sum (fn [x y z] (((nabla x) (Riemann nabla)) omega V y z))) X Y Z) (typical-point R4-rect))",
+        "code": "(((cyclic-sum (fn [x y z] (((nabla x) (Riemann nabla)) omega V y z))) X Y Z)\n  (typical-point R4-rect))",
         "capturesResult": true
       }
     ],
@@ -4835,7 +4795,7 @@
     "executable": false,
     "forms": [
       {
-        "code": "(((cyclic-sum (fn [x y z] (- (R omega x y z) (+ (omega (T (T x y) z)) (((nabla x) TT) omega y z))))) X Y Z)\n  (typical-point R4-rect))",
+        "code": "(((cyclic-sum (fn [x y z] (- (R omega x y z) (+ (omega (T (T x y) z)) (((nabla x) TT) omega y z)))))\n   X\n   Y\n   Z)\n  (typical-point R4-rect))",
         "capturesResult": true
       }
     ],
@@ -4856,7 +4816,7 @@
     "executable": false,
     "forms": [
       {
-        "code": "(((cyclic-sum (fn [x y z] (+ (((nabla x) R) omega V y z) (R omega V (T x y) z)))) X Y Z) (typical-point R4-rect))",
+        "code": "(((cyclic-sum (fn [x y z] (+ (((nabla x) R) omega V y z) (R omega V (T x y) z)))) X Y Z)\n  (typical-point R4-rect))",
         "capturesResult": true
       }
     ],
@@ -4925,7 +4885,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(defn raise\n  [metric basis]\n  (let [gi (invert metric basis)] (fn [omega] (contract (fn [e i w↑i] (* (gi omega w↑i) e i)) basis))))",
+        "code": "(defn raise\n  [metric basis]\n  (let [gi (invert metric basis)]\n    (fn [omega] (contract (fn [e i w↑i] (* (gi omega w↑i) e i)) basis))))",
         "capturesResult": false
       }
     ],
@@ -4971,7 +4931,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(defn g-sphere\n  [R]\n  (fn [u v] (* (square R) (+ (* (dtheta u) (dtheta v)) (* (compose (square sin) theta) (dphi u) (dphi v))))))",
+        "code": "(defn g-sphere\n  [R]\n  (fn [u v]\n    (* (square R)\n       (+ (* (dtheta u) (dtheta v)) (* (compose (square sin) theta) (dphi u) (dphi v))))))",
         "capturesResult": false
       }
     ],
@@ -5080,7 +5040,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(simplify (let [metric (literal-metric 'g R3-rect)\n                q (typical-coords R3-rect)\n                L2 (metric->Lagrangian metric R3-rect)]\n            (+ (* (/ 1 2) (((expt (partial 2) 2) (Lagrange-explicit L2)) (up 't q (corresponding-velocities q))))\n               ((Christoffel->symbols (metric->Christoffel-2 metric (coordinate-system->basis R3-rect)))\n                 ((point R3-rect) q)))))",
+        "code": "(simplify\n  (let [metric (literal-metric 'g R3-rect)\n        q (typical-coords R3-rect)\n        L2 (metric->Lagrangian metric R3-rect)]\n    (+ (* (/ 1 2)\n          (((expt (partial 2) 2) (Lagrange-explicit L2)) (up 't q (corresponding-velocities q))))\n       ((Christoffel->symbols (metric->Christoffel-2 metric (coordinate-system->basis R3-rect)))\n         ((point R3-rect) q)))))",
         "capturesResult": true
       }
     ],
@@ -5198,7 +5158,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(simplify (let [x (literal-function 'x)\n                y (literal-function 'y)\n                f (literal-function 'f)\n                E1 (Euler-Lagrange-operator L1)]\n            ((- (compose E1 (Gamma (up (compose x f) (compose y f)) 4)) (* (compose E1 (Gamma (up x y) 4) f) (D f)))\n              't)))",
+        "code": "(simplify (let [x (literal-function 'x)\n                y (literal-function 'y)\n                f (literal-function 'f)\n                E1 (Euler-Lagrange-operator L1)]\n            ((- (compose E1 (Gamma (up (compose x f) (compose y f)) 4))\n                (* (compose E1 (Gamma (up x y) 4) f) (D f)))\n              't)))",
         "capturesResult": true
       }
     ],
@@ -5284,7 +5244,7 @@
         "capturesResult": false
       },
       {
-        "code": "(defn spherical-metric\n  [r]\n  (fn [v1 v2] (* (square r) (+ (* (dtheta v1) (dtheta v2)) (* (square (sin theta)) (dphi v1) (dphi v2))))))",
+        "code": "(defn spherical-metric\n  [r]\n  (fn [v1 v2]\n    (* (square r) (+ (* (dtheta v1) (dtheta v2)) (* (square (sin theta)) (dphi v1) (dphi v2))))))",
         "capturesResult": false
       }
     ],
@@ -5307,7 +5267,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(defn trace2down\n  [metric basis]\n  (fn [tensor]\n    (let [inverse-metric-tensor (invert metric basis)]\n      (contract (fn [v1 w1] (contract (fn [v w] (* (inverse-metric-tensor w1 w) (tensor v v1))) basis)) basis))))",
+        "code": "(defn trace2down\n  [metric basis]\n  (fn [tensor]\n    (let [inverse-metric-tensor (invert metric basis)]\n      (contract (fn [v1 w1]\n                  (contract (fn [v w] (* (inverse-metric-tensor w1 w) (tensor v v1))) basis))\n                basis))))",
         "capturesResult": false
       }
     ],
@@ -5342,7 +5302,7 @@
         "capturesResult": false
       },
       {
-        "code": "(defn Newton-metric\n  [M G c V]\n  (let [a (+ 1 (* (/ 2 (square c)) (compose V (up x y z))))]\n    (letfn [(g [v1 v2]\n              (+ (* -1 (square c) a (dt v1) (dt v2)) (* (dx v1) (dx v2)) (* (dy v1) (dy v2)) (* (dz v1) (dz v2))))]\n      g)))",
+        "code": "(defn Newton-metric\n  [M G c V]\n  (let [a (+ 1 (* (/ 2 (square c)) (compose V (up x y z))))]\n    (letfn [(g [v1 v2]\n              (+ (* -1 (square c) a (dt v1) (dt v2))\n                 (* (dx v1) (dx v2))\n                 (* (dy v1) (dy v2))\n                 (* (dz v1) (dz v2))))]\n      g)))",
         "capturesResult": false
       },
       {
@@ -5358,7 +5318,7 @@
         "capturesResult": false
       },
       {
-        "code": "(((Ricci nabla (coordinate-system->basis spacetime-rect)) d:dt d:dt) ((point spacetime-rect) (up 't 'x 'y 'z)))",
+        "code": "(((Ricci nabla (coordinate-system->basis spacetime-rect)) d:dt d:dt)\n  ((point spacetime-rect) (up 't 'x 'y 'z)))",
         "capturesResult": true
       }
     ],
@@ -5425,7 +5385,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(defn drop2\n  [metric-tensor basis]\n  (fn [tensor]\n    (fn [v1 v2]\n      (contract (fn [e1 w1]\n                  (contract (fn [e2 w2] (* (metric-tensor v1 e1) (tensor w1 w2) (metric-tensor e2 v2))) basis))\n                basis))))",
+        "code": "(defn drop2\n  [metric-tensor basis]\n  (fn [tensor]\n    (fn [v1 v2]\n      (contract (fn [e1 w1]\n                  (contract (fn [e2 w2]\n                              (* (metric-tensor v1 e1) (tensor w1 w2) (metric-tensor e2 v2)))\n                            basis))\n                basis))))",
         "capturesResult": false
       }
     ],
@@ -5446,7 +5406,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(simplify (let [g (Newton-metric 'M 'G 'c V)]\n            (let [T_ij ((drop2 g spacetime-rect-basis) (Tdust 'rho))]\n              (let [T ((trace2down g spacetime-rect-basis) T_ij)]\n                ((- (T_ij d:dt d:dt) (* (/ 1 2) T (g d:dt d:dt))) ((point spacetime-rect) (up 't 'x 'y 'z)))))))",
+        "code": "(simplify (let [g (Newton-metric 'M 'G 'c V)]\n            (let [T_ij ((drop2 g spacetime-rect-basis) (Tdust 'rho))]\n              (let [T ((trace2down g spacetime-rect-basis) T_ij)]\n                ((- (T_ij d:dt d:dt) (* (/ 1 2) T (g d:dt d:dt)))\n                  ((point spacetime-rect) (up 't 'x 'y 'z)))))))",
         "capturesResult": true
       }
     ],
@@ -5502,7 +5462,7 @@
         "capturesResult": false
       },
       {
-        "code": "(defn Schwarzschild-metric\n  [M G c]\n  (let [a (- 1 (/ (* 2 G M) (* (square c) r)))]\n    (fn [v1 v2]\n      (+ (* -1 (square c) a (dt v1) (dt v2))\n         (* (/ 1 a) (dr v1) (dr v2))\n         (* (square r) (+ (* (dtheta v1) (dtheta v2)) (* (square (sin theta)) (dphi v1) (dphi v2))))))))",
+        "code": "(defn Schwarzschild-metric\n  [M G c]\n  (let [a (- 1 (/ (* 2 G M) (* (square c) r)))]\n    (fn [v1 v2]\n      (+ (* -1 (square c) a (dt v1) (dt v2))\n         (* (/ 1 a) (dr v1) (dr v2))\n         (* (square r)\n            (+ (* (dtheta v1) (dtheta v2)) (* (square (sin theta)) (dphi v1) (dphi v2))))))))",
         "capturesResult": false
       }
     ],
@@ -5525,7 +5485,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(defn prime-meridian [r omega] (compose (point spacetime-sphere) (fn [t] (up t r (* omega t) 0)) (chart R1-rect)))",
+        "code": "(defn prime-meridian\n  [r omega]\n  (compose (point spacetime-sphere) (fn [t] (up t r (* omega t) 0)) (chart R1-rect)))",
         "capturesResult": false
       }
     ],
@@ -5548,7 +5508,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(defn prime-meridian+X\n  [r epsilon X]\n  (compose (point spacetime-sphere)\n           (fn [t]\n             (up (+ t (* epsilon (* (ref X 0) (exp (* 'lambda t)))))\n                 (+ r (* epsilon (* (ref X 1) (exp (* 'lambda t)))))\n                 (+ (* (sqrt (/ (* 'G 'M) (expt r 3))) t) (* epsilon (* (ref X 2) (exp (* 'lambda t)))))\n                 0))\n           (chart R1-rect)))",
+        "code": "(defn prime-meridian+X\n  [r epsilon X]\n  (compose (point spacetime-sphere)\n           (fn [t]\n             (up (+ t (* epsilon (* (ref X 0) (exp (* 'lambda t)))))\n                 (+ r (* epsilon (* (ref X 1) (exp (* 'lambda t)))))\n                 (+ (* (sqrt (/ (* 'G 'M) (expt r 3))) t)\n                    (* epsilon (* (ref X 2) (exp (* 'lambda t)))))\n                 0))\n           (chart R1-rect)))",
         "capturesResult": false
       }
     ],
@@ -5576,7 +5536,7 @@
         "capturesResult": false
       },
       {
-        "code": "(defn geodesic-equation+X-residuals\n  [eps X]\n  (let [gamma (prime-meridian+X 'r eps X)]\n    (((((covariant-derivative Cartan gamma) d:dtau) ((differential gamma) d:dtau)) (chart spacetime-sphere))\n      ((point R1-rect) 't))))",
+        "code": "(defn geodesic-equation+X-residuals\n  [eps X]\n  (let [gamma (prime-meridian+X 'r eps X)]\n    (((((covariant-derivative Cartan gamma) d:dtau) ((differential gamma) d:dtau))\n       (chart spacetime-sphere))\n      ((point R1-rect) 't))))",
         "capturesResult": false
       }
     ],
@@ -5597,7 +5557,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(determinant (submatrix (((* (partial 1) (partial 0)) geodesic-equation+X-residuals) 0 (up 0 0 0)) 0 2 0 2))",
+        "code": "(determinant\n  (submatrix (((* (partial 1) (partial 0)) geodesic-equation+X-residuals) 0 (up 0 0 0)) 0 2 0 2))",
         "capturesResult": true
       }
     ],
@@ -5621,7 +5581,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(defn Einstein\n  [coordinate-system metric-tensor]\n  (let [basis (coordinate-system->basis coordinate-system)\n        connection (Christoffel->Cartan (metric->Christoffel-2 metric-tensor basis))\n        nabla (covariant-derivative connection)\n        Ricci-tensor (Ricci nabla basis)\n        Ricci-scalar ((trace2down metric-tensor basis) Ricci-tensor)]\n    (letfn [(Einstein-tensor [v1 v2] (- (Ricci-tensor v1 v2) (* (/ 1 2) Ricci-scalar (metric-tensor v1 v2))))]\n      Einstein-tensor)))",
+        "code": "(defn Einstein\n  [coordinate-system metric-tensor]\n  (let [basis (coordinate-system->basis coordinate-system)\n        connection (Christoffel->Cartan (metric->Christoffel-2 metric-tensor basis))\n        nabla (covariant-derivative connection)\n        Ricci-tensor (Ricci nabla basis)\n        Ricci-scalar ((trace2down metric-tensor basis) Ricci-tensor)]\n    (letfn [(Einstein-tensor [v1 v2]\n              (- (Ricci-tensor v1 v2) (* (/ 1 2) Ricci-scalar (metric-tensor v1 v2))))]\n      Einstein-tensor)))",
         "capturesResult": false
       },
       {
@@ -5648,7 +5608,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(defn FLRW-metric\n  [c k R]\n  (define-coordinates (up t r theta phi) spacetime-sphere)\n  (let [a (/ (square (compose R t)) (- 1 (* k (square r))))\n        b (square (* (compose R t) r))]\n    (letfn [(g [v1 v2]\n              (+ (* -1 (square c) (dt v1) (dt v2))\n                 (* a (dr v1) (dr v2))\n                 (* b (+ (* (dtheta v1) (dtheta v2)) (* (square (sin theta)) (dphi v1) (dphi v2))))))]\n      g)))",
+        "code": "(defn FLRW-metric\n  [c k R]\n  (define-coordinates (up t r theta phi) spacetime-sphere)\n  (let [a (/ (square (compose R t)) (- 1 (* k (square r))))\n        b (square (* (compose R t) r))]\n    (letfn [(g [v1 v2]\n              (+ (* -1 (square c) (dt v1) (dt v2))\n                 (* a (dr v1) (dr v2))\n                 (* b\n                    (+ (* (dtheta v1) (dtheta v2)) (* (square (sin theta)) (dphi v1) (dphi v2))))))]\n      g)))",
         "capturesResult": false
       }
     ],
@@ -5763,7 +5723,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(defn divergence\n  ([metric orthonormal-basis]\n   (let [star (Hodge-star metric orthonormal-basis) flat (lower metric)] (compose star d star flat)))\n  ([Cartan]\n   (fn [v]\n     (fn [point]\n       (let [basis (Cartan->basis Cartan)\n             nabla (covariant-derivative Cartan)]\n         (contract (fn [ei wi] ((wi ((nabla ei) v)) point)) basis))))))",
+        "code": "(defn divergence\n  ([metric orthonormal-basis]\n   (let [star (Hodge-star metric orthonormal-basis)\n         flat (lower metric)]\n     (compose star d star flat)))\n  ([Cartan]\n   (fn [v]\n     (fn [point]\n       (let [basis (Cartan->basis Cartan)\n             nabla (covariant-derivative Cartan)]\n         (contract (fn [ei wi] ((wi ((nabla ei) v)) point)) basis))))))",
         "capturesResult": false
       }
     ],
@@ -5841,7 +5801,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(defn spherical-metric\n  [v1 v2]\n  (+ (* (dr v1) (dr v2)) (* (square r) (+ (* (dtheta v1) (dtheta v2)) (* (expt (sin theta) 2) (dphi v1) (dphi v2))))))",
+        "code": "(defn spherical-metric\n  [v1 v2]\n  (+ (* (dr v1) (dr v2))\n     (* (square r) (+ (* (dtheta v1) (dtheta v2)) (* (expt (sin theta) 2) (dphi v1) (dphi v2))))))",
         "capturesResult": false
       }
     ],
@@ -5885,11 +5845,11 @@
         "capturesResult": false
       },
       {
-        "code": "(def orthonormal-spherical-oneform-basis (vector-basis->dual orthonormal-spherical-vector-basis spherical))",
+        "code": "(def orthonormal-spherical-oneform-basis\n  (vector-basis->dual orthonormal-spherical-vector-basis spherical))",
         "capturesResult": false
       },
       {
-        "code": "(def orthonormal-spherical-basis (make-basis orthonormal-spherical-vector-basis orthonormal-spherical-oneform-basis))",
+        "code": "(def orthonormal-spherical-basis\n  (make-basis orthonormal-spherical-vector-basis orthonormal-spherical-oneform-basis))",
         "capturesResult": false
       }
     ],
@@ -5910,7 +5870,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(simplify ((orthonormal-spherical-oneform-basis ((gradient spherical-metric orthonormal-spherical-basis)\n                                                  (literal-manifold-function 'f spherical)))\n            R3-spherical-point))",
+        "code": "(simplify ((orthonormal-spherical-oneform-basis ((gradient spherical-metric\n                                                           orthonormal-spherical-basis)\n                                                  (literal-manifold-function 'f spherical)))\n            R3-spherical-point))",
         "capturesResult": true
       }
     ],
@@ -5954,7 +5914,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(simplify ((orthonormal-spherical-oneform-basis ((curl spherical-metric orthonormal-spherical-basis) v))\n            R3-spherical-point))",
+        "code": "(simplify ((orthonormal-spherical-oneform-basis ((curl spherical-metric orthonormal-spherical-basis)\n                                                  v))\n            R3-spherical-point))",
         "capturesResult": true
       }
     ],
@@ -5979,7 +5939,7 @@
         "capturesResult": true
       },
       {
-        "code": "(simplify (((Laplacian spherical-metric orthonormal-spherical-basis) (literal-manifold-function 'f spherical))\n            R3-spherical-point))",
+        "code": "(simplify (((Laplacian spherical-metric orthonormal-spherical-basis)\n             (literal-manifold-function 'f spherical))\n            R3-spherical-point))",
         "capturesResult": true
       }
     ],
@@ -6039,7 +5999,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(defn g-Minkowski [u v] (+ (* -1 (dct u) (dct v)) (* (dx u) (dx v)) (* (dy u) (dy v)) (* (dz u) (dz v))))",
+        "code": "(defn g-Minkowski\n  [u v]\n  (+ (* -1 (dct u) (dct v)) (* (dx u) (dx v)) (* (dy u) (dy v)) (* (dz u) (dz v))))",
         "capturesResult": false
       }
     ],
@@ -6249,7 +6209,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(defn J [charge-density Ix Iy Iz] (- (* (/ 1 'c) (+ (* Ix dx) (* Iy dy) (* Iz dz))) (* charge-density dct)))",
+        "code": "(defn J\n  [charge-density Ix Iy Iz]\n  (- (* (/ 1 'c) (+ (* Ix dx) (* Iy dy) (* Iz dz))) (* charge-density dct)))",
         "capturesResult": false
       }
     ],
@@ -6470,11 +6430,11 @@
     "executable": true,
     "forms": [
       {
-        "code": "(def E (up (literal-manifold-function 'Ex SR) (literal-manifold-function 'Ey SR) (literal-manifold-function 'Ez SR)))",
+        "code": "(def E\n  (up (literal-manifold-function 'Ex SR)\n      (literal-manifold-function 'Ey SR)\n      (literal-manifold-function 'Ez SR)))",
         "capturesResult": false
       },
       {
-        "code": "(def B (up (literal-manifold-function 'Bx SR) (literal-manifold-function 'By SR) (literal-manifold-function 'Bz SR)))",
+        "code": "(def B\n  (up (literal-manifold-function 'Bx SR)\n      (literal-manifold-function 'By SR)\n      (literal-manifold-function 'Bz SR)))",
         "capturesResult": false
       },
       {
@@ -6527,7 +6487,7 @@
         "capturesResult": false
       },
       {
-        "code": "(defn Force\n  [charge F four-velocity component]\n  (* -1\n     charge\n     (contract (fn [a b] (contract (fn [e w] (* (w four-velocity) (F e a) (eta-inverse b component))) SR-basis))\n               SR-basis)))",
+        "code": "(defn Force\n  [charge F four-velocity component]\n  (* -1\n     charge\n     (contract (fn [a b]\n                 (contract (fn [e w] (* (w four-velocity) (F e a) (eta-inverse b component)))\n                           SR-basis))\n               SR-basis)))",
         "capturesResult": false
       }
     ],
@@ -6571,7 +6531,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(defn Ux [beta] (+ (* (/ 1 (sqrt (- 1 (square beta)))) d:dct) (* (/ beta (sqrt (- 1 (square beta)))) d:dx)))",
+        "code": "(defn Ux\n  [beta]\n  (+ (* (/ 1 (sqrt (- 1 (square beta)))) d:dct) (* (/ beta (sqrt (- 1 (square beta)))) d:dx)))",
         "capturesResult": false
       },
       {
@@ -6698,7 +6658,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(defn general-boost\n  [beta]\n  (fn [xi-p]\n    (let [gamma (expt (- 1 (square beta)) (/ -1 2))]\n      (let [factor (/ (- gamma 1) (square beta))]\n        (let [xi-p-time (four-tuple->ct xi-p)\n              xi-p-space (four-tuple->space xi-p)]\n          (let [beta-dot-xi-p (dot-product beta xi-p-space)]\n            (make-four-tuple (* gamma (+ xi-p-time beta-dot-xi-p))\n                             (+ (* gamma beta xi-p-time) xi-p-space (* factor beta beta-dot-xi-p)))))))))",
+        "code": "(defn general-boost\n  [beta]\n  (fn [xi-p]\n    (let [gamma (expt (- 1 (square beta)) (/ -1 2))]\n      (let [factor (/ (- gamma 1) (square beta))]\n        (let [xi-p-time (four-tuple->ct xi-p)\n              xi-p-space (four-tuple->space xi-p)]\n          (let [beta-dot-xi-p (dot-product beta xi-p-space)]\n            (make-four-tuple\n              (* gamma (+ xi-p-time beta-dot-xi-p))\n              (+ (* gamma beta xi-p-time) xi-p-space (* factor beta beta-dot-xi-p)))))))))",
         "capturesResult": false
       }
     ],
@@ -6719,7 +6679,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(simplify (- (proper-space-interval ((general-boost (up 'vx 'vy 'vz)) (make-four-tuple 'ct (up 'x 'y 'z))))\n             (proper-space-interval (make-four-tuple 'ct (up 'x 'y 'z)))))",
+        "code": "(simplify (- (proper-space-interval ((general-boost (up 'vx 'vy 'vz))\n                                      (make-four-tuple 'ct (up 'x 'y 'z))))\n             (proper-space-interval (make-four-tuple 'ct (up 'x 'y 'z)))))",
         "capturesResult": true
       }
     ],
@@ -6742,7 +6702,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(defn general-boost2\n  [direction v:c]\n  (fn [four-tuple-prime]\n    (let [delta-ct-prime (four-tuple->ct four-tuple-prime)\n          delta-x-prime (four-tuple->space four-tuple-prime)]\n      (let [betasq (square v:c)]\n        (let [bx (dot-product direction delta-x-prime)\n              gamma (/ 1 (sqrt (- 1 betasq)))]\n          (let [alpha (- gamma 1)]\n            (let [delta-ct (* gamma (+ delta-ct-prime (* bx v:c)))\n                  delta-x (+ (* gamma v:c direction delta-ct-prime) delta-x-prime (* alpha direction bx))]\n              (make-four-tuple delta-ct delta-x))))))))",
+        "code": "(defn general-boost2\n  [direction v:c]\n  (fn [four-tuple-prime]\n    (let [delta-ct-prime (four-tuple->ct four-tuple-prime)\n          delta-x-prime (four-tuple->space four-tuple-prime)]\n      (let [betasq (square v:c)]\n        (let [bx (dot-product direction delta-x-prime)\n              gamma (/ 1 (sqrt (- 1 betasq)))]\n          (let [alpha (- gamma 1)]\n            (let [delta-ct (* gamma (+ delta-ct-prime (* bx v:c)))\n                  delta-x\n                    (+ (* gamma v:c direction delta-ct-prime) delta-x-prime (* alpha direction bx))]\n              (make-four-tuple delta-ct delta-x))))))))",
         "capturesResult": false
       }
     ],
@@ -6765,7 +6725,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(defn extended-rotation [R] (fn [xi] (make-four-tuple (four-tuple->ct xi) (R (four-tuple->space xi)))))",
+        "code": "(defn extended-rotation\n  [R]\n  (fn [xi] (make-four-tuple (four-tuple->ct xi) (R (four-tuple->space xi)))))",
         "capturesResult": false
       }
     ],
@@ -6810,11 +6770,11 @@
     "executable": true,
     "forms": [
       {
-        "code": "(defn coordinates->event\n  [ancestor-frame this-frame boost-direction v:c origin]\n  (fn [coords]\n    ((point ancestor-frame)\n      (make-SR-coordinates ancestor-frame (+ ((general-boost2 boost-direction v:c) coords) origin)))))",
+        "code": "(defn coordinates->event\n  [ancestor-frame this-frame boost-direction v:c origin]\n  (fn [coords]\n    ((point ancestor-frame)\n      (make-SR-coordinates ancestor-frame\n                           (+ ((general-boost2 boost-direction v:c) coords) origin)))))",
         "capturesResult": false
       },
       {
-        "code": "(defn event->coordinates\n  [ancestor-frame this-frame boost-direction v:c origin]\n  (fn [event]\n    (make-SR-coordinates this-frame\n                         ((general-boost2 (- boost-direction) v:c) (- ((chart ancestor-frame) event) origin)))))",
+        "code": "(defn event->coordinates\n  [ancestor-frame this-frame boost-direction v:c origin]\n  (fn [event]\n    (make-SR-coordinates this-frame\n                         ((general-boost2 (- boost-direction) v:c)\n                           (- ((chart ancestor-frame) event) origin)))))",
         "capturesResult": false
       }
     ],
@@ -6909,7 +6869,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(simplify (let [B-origin-home-coords ((chart home) ((point B) (make-SR-coordinates B (up 'ct 0 0 0))))]\n            (/ (ref B-origin-home-coords 1) (ref B-origin-home-coords 0))))",
+        "code": "(simplify (let [B-origin-home-coords ((chart home)\n                                       ((point B) (make-SR-coordinates B (up 'ct 0 0 0))))]\n            (/ (ref B-origin-home-coords 1) (ref B-origin-home-coords 0))))",
         "capturesResult": true
       }
     ],
@@ -7001,7 +6961,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(def traveller-at-turning-point-event ((point home) (make-SR-coordinates home (up (* 'c 25) (* 25 (/ 24 25) 'c) 0 0))))",
+        "code": "(def traveller-at-turning-point-event\n  ((point home) (make-SR-coordinates home (up (* 'c 25) (* 25 (/ 24 25) 'c) 0 0))))",
         "capturesResult": false
       }
     ],
@@ -7064,11 +7024,11 @@
     "executable": true,
     "forms": [
       {
-        "code": "(simplify (proper-time-interval (- ((chart outgoing) traveller-at-turning-point-event) ((chart outgoing) start-event))))",
+        "code": "(simplify (proper-time-interval (- ((chart outgoing) traveller-at-turning-point-event)\n                                   ((chart outgoing) start-event))))",
         "capturesResult": true
       },
       {
-        "code": "(simplify (proper-time-interval (- ((chart home) traveller-at-turning-point-event) ((chart home) start-event))))",
+        "code": "(simplify (proper-time-interval (- ((chart home) traveller-at-turning-point-event)\n                                   ((chart home) start-event))))",
         "capturesResult": true
       }
     ],
@@ -7160,7 +7120,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(simplify (proper-time-interval (- ((chart home) home-at-outgoing-turning-point-event) ((chart home) start-event))))",
+        "code": "(simplify (proper-time-interval (- ((chart home) home-at-outgoing-turning-point-event)\n                                   ((chart home) start-event))))",
         "capturesResult": true
       }
     ],
@@ -7183,7 +7143,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(def incoming (make-SR-frame 'incoming home (up -1 0 0) (/ 24 25) ((chart home) traveller-at-turning-point-event)))",
+        "code": "(def incoming\n  (make-SR-frame 'incoming\n                 home\n                 (up -1 0 0)\n                 (/ 24 25)\n                 ((chart home) traveller-at-turning-point-event)))",
         "capturesResult": false
       }
     ],
@@ -7252,7 +7212,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(simplify\n  (+ (proper-time-interval (- ((chart outgoing) traveller-at-turning-point-event) ((chart outgoing) start-event)))\n     (proper-time-interval (- ((chart incoming) end-event) ((chart incoming) traveller-at-turning-point-event)))))",
+        "code": "(simplify (+ (proper-time-interval (- ((chart outgoing) traveller-at-turning-point-event)\n                                      ((chart outgoing) start-event)))\n             (proper-time-interval (- ((chart incoming) end-event)\n                                      ((chart incoming) traveller-at-turning-point-event)))))",
         "capturesResult": true
       }
     ],
@@ -7317,7 +7277,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(simplify (proper-time-interval (- ((chart home) end-event) ((chart home) home-at-incoming-turning-point-event))))",
+        "code": "(simplify (proper-time-interval (- ((chart home) end-event)\n                                   ((chart home) home-at-incoming-turning-point-event))))",
         "capturesResult": true
       }
     ],
@@ -7698,7 +7658,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(defn f [radius] (let [area (* 4 pi (square radius)) volume (* (/ 4 3) pi (cube radius))] (/ volume area)))",
+        "code": "(defn f\n  [radius]\n  (let [area (* 4 pi (square radius)) volume (* (/ 4 3) pi (cube radius))] (/ volume area)))",
         "capturesResult": false
       },
       {
@@ -8583,7 +8543,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(tensor-test (Riemann (covariant-derivative (literal-Cartan 'G R3-rect))) '(oneform vector vector vector) R3-rect)",
+        "code": "(tensor-test (Riemann (covariant-derivative (literal-Cartan 'G R3-rect)))\n             '(oneform vector vector vector)\n             R3-rect)",
         "capturesResult": true
       }
     ],
@@ -8604,7 +8564,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(tensor-test (torsion (covariant-derivative (literal-Cartan 'G R3-rect))) '(oneform vector vector) R3-rect)",
+        "code": "(tensor-test (torsion (covariant-derivative (literal-Cartan 'G R3-rect)))\n             '(oneform vector vector)\n             R3-rect)",
         "capturesResult": true
       }
     ],
@@ -8652,7 +8612,7 @@
     "executable": true,
     "forms": [
       {
-        "code": "(tensor-test (F (covariant-derivative (literal-Cartan 'G R3-rect))) '(oneform vector vector) R3-rect)",
+        "code": "(tensor-test (F (covariant-derivative (literal-Cartan 'G R3-rect)))\n             '(oneform vector vector)\n             R3-rect)",
         "capturesResult": true
       }
     ],
@@ -9096,7 +9056,7 @@
     "executable": false,
     "forms": [
       {
-        "code": "(+ (* (/ 1 2) (expt 'c 4) rho) (* 2 (expt 'c 2) rho (V (up x y z))) (* 2 rho (expt (V (up x y z)) 2)))",
+        "code": "(+ (* (/ 1 2) (expt 'c 4) rho)\n   (* 2 (expt 'c 2) rho (V (up x y z)))\n   (* 2 rho (expt (V (up x y z)) 2)))",
         "capturesResult": true
       }
     ],
@@ -9192,7 +9152,7 @@
     "executable": false,
     "forms": [
       {
-        "code": "(defn g-Minkowski [u v] (+ (* -1 (square 'c) (dct u) (dct v)) (* (dx u) (dx v)) (* (dy u) (dy v)) (* (dz u) (dz v))))",
+        "code": "(defn g-Minkowski\n  [u v]\n  (+ (* -1 (square 'c) (dct u) (dct v)) (* (dx u) (dx v)) (* (dy u) (dy v)) (* (dz u) (dz v))))",
         "capturesResult": false
       },
       {
@@ -9216,7 +9176,7 @@
         "capturesResult": false
       },
       {
-        "code": "(defn J [charge-density Ix Iy Iz] (- (* (/ 1 'c) (+ (* Ix dx) (* Iy dy) (* Iz dz))) (* charge-density 'c dct)))",
+        "code": "(defn J\n  [charge-density Ix Iy Iz]\n  (- (* (/ 1 'c) (+ (* Ix dx) (* Iy dy) (* Iz dz))) (* charge-density 'c dct)))",
         "capturesResult": false
       },
       {

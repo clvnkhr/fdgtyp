@@ -2,5 +2,3 @@
    Z
    V)
   R3-rect-point)
-
-0

@@ -303,7 +303,7 @@ Consider the general one-form field $theta$ defined on 3-dimensional rectangular
 
 /* fdg-code-source: chapter005/009
 (((d (d theta)) X Y Z) R3-rect-point)
-0
+;; => 0
 fdg-code-source-end */
 #fdg-code-block("chapter005/009")
 
@@ -432,7 +432,7 @@ Assuming Stokes\'s Theorem, the exterior derivative of the leakage of stuff per 
      (d flux-through-boundary-element))
   X Y Z)
  R3-rect-point)
-0
+;; => 0
 fdg-code-source-end */
 #fdg-code-block("chapter005/014")
 

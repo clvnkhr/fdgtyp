@@ -3,4 +3,4 @@
 theta)
 Z)
 R3-rect-point)
-0
+;; => 0

@@ -7,4 +7,4 @@ V)
 W)
 f)
 R2-rect-point)
-0
+;; => 0
