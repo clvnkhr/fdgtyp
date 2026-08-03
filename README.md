@@ -6,11 +6,12 @@ interactive Emmy runner for the book examples.
 
 ## Workflow stages
 
-The build is split into reusable stages. Public Make targets first snapshot the
-repository, then run these stages inside a fresh staging workspace. On success,
-that workspace is stored under `build/history/` and `build/current` points to
-it. The source checkout is therefore never changed by a build; its generated
-files are inputs to a snapshot, not mutable build state. The three latest
+The build is split into reusable stages. Public Make targets copy only the
+required source and configuration inputs into a fresh staging workspace. On success,
+that private workspace is stored under `build/history/`, while `build/current`
+points only to its published artifacts. The source checkout is therefore never
+changed by a build; its generated files are inputs to a snapshot, not mutable
+build state. The three latest
 successful builds are retained. Failed builds are retained separately under
 `build/failed/`, also capped at three.
 
@@ -41,16 +42,17 @@ final status. Combined stdout/stderr and per-recipe elapsed times are retained
 in `build/current/build.log`. To choose a readable identifier, use
 `make <target> FDG_RUN_ID=my-run`. A failed build is moved to `build/failed/`
 and leaves the previous `build/current` intact. `build/current` is a symlink to
-the latest entry in `build/history/`.
+the artifact view of the latest entry in `build/history/`; its private `work/`
+snapshot remains in that history entry for diagnostics.
 
 ## Source flow
 
 ```text
 source checkout: fdg-book/scheme/org
   -> scripts/convert-org-to-typst.mjs
-  -> build/current/work/typ/content
+  -> build/current/typ/content
   -> scripts/convert-scheme-to-emmy.mjs
-  -> build/current/work/codeblocks + runner/public/generated
+  -> build/current/codeblocks + build/current/emmy-generated
   -> Typst PDFs and the interactive runner
 ```
 
