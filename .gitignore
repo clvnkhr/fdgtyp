@@ -1,6 +1,7 @@
 .tools/
 codeblocks/
 emmy-runner/public/generated/
+emmy-runner/public/generated
 typ/content/
 typ/main.typ
 typ/manifest.typ

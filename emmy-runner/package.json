@@ -1,7 +1,10 @@
 {
   "private": true,
   "scripts": {
+    "sync-generated": "node ../scripts/use-current-emmy-build.mjs",
+    "prebuild": "npm run sync-generated",
     "build": "clojure -M:shadow-cljs release app worker",
+    "predev": "npm run sync-generated",
     "dev": "clojure -M:shadow-cljs watch app worker"
   },
   "dependencies": {

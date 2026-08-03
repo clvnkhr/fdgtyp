@@ -90,6 +90,10 @@ import "./cljs-runtime/cljs.core.js";
 SHADOW_ENV.setLoaded("cljs.core.js");
 import "./cljs-runtime/clojure.string.js";
 SHADOW_ENV.setLoaded("clojure.string.js");
+import "./cljs-runtime/clojure.set.js";
+SHADOW_ENV.setLoaded("clojure.set.js");
+import "./cljs-runtime/shadow.cljs.devtools.client.env.js";
+SHADOW_ENV.setLoaded("shadow.cljs.devtools.client.env.js");
 import "./cljs-runtime/cljs.pprint.js";
 SHADOW_ENV.setLoaded("cljs.pprint.js");
 import "./cljs-runtime/clojure.walk.js";
@@ -126,8 +130,6 @@ import "./cljs-runtime/cljs.reader.js";
 SHADOW_ENV.setLoaded("cljs.reader.js");
 import "./cljs-runtime/cljs.tagged_literals.js";
 SHADOW_ENV.setLoaded("cljs.tagged_literals.js");
-import "./cljs-runtime/clojure.set.js";
-SHADOW_ENV.setLoaded("clojure.set.js");
 import "./cljs-runtime/cljs.analyzer.js";
 SHADOW_ENV.setLoaded("cljs.analyzer.js");
 import "./cljs-runtime/cljs.analyzer.api.js";
@@ -591,3 +593,4 @@ SHADOW_ENV.setLoaded("shadow.module.main.append.js");
 
 
 try { fdg.worker.init_BANG_(); } catch (e) { console.error("An error occurred when calling (fdg.worker/init!)"); console.error(e); }
+shadow.cljs.devtools.client.env.module_loaded("main");

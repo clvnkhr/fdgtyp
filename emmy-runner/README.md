@@ -8,11 +8,15 @@ written to `public/`.
 From the repository root:
 
 ```sh
-node scripts/convert-scheme-to-emmy.mjs
+make emmy-convert
 cd emmy-runner
 npm ci
 npm run dev
 ```
+
+The npm development and release commands link `public/generated/` to the
+latest successful files under `build/current`. Inside an isolated build
+workspace they use that workspace's newly generated files instead.
 
 Then open <http://localhost:8080/>.
 
@@ -35,8 +39,9 @@ npm run build
 
 The `Deploy Emmy runner to GitHub Pages` workflow builds and deploys the runner
 after each push to `master`. It can also be run manually from the Actions tab.
-The workflow uses the checked-in files under `public/generated/`; it does not
-regenerate or recapture the book's Emmy blocks during deployment.
+The workflow regenerates the Emmy blocks into `build/current` and packages
+those current files with the runner during deployment. It does not execute or
+recapture the examples.
 
 The optimized JavaScript runner is cached using a key derived from its
 ClojureScript sources and dependency files. Book-only changes reuse that exact
