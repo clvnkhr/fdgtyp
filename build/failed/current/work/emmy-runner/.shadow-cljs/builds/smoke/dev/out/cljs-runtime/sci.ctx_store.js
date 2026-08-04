@@ -40,11 +40,11 @@ return (sci.ctx_store._STAR_ctx_STAR_ = cljs.core.apply.cljs$core$IFn$_invoke$ar
 (sci.ctx_store.swap_ctx_BANG_.cljs$lang$maxFixedArity = (1));
 
 /** @this {Function} */
-(sci.ctx_store.swap_ctx_BANG_.cljs$lang$applyTo = (function (seq59676){
-var G__59678 = cljs.core.first(seq59676);
-var seq59676__$1 = cljs.core.next(seq59676);
+(sci.ctx_store.swap_ctx_BANG_.cljs$lang$applyTo = (function (seq59688){
+var G__59689 = cljs.core.first(seq59688);
+var seq59688__$1 = cljs.core.next(seq59688);
 var self__5882__auto__ = this;
-return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__59678,seq59676__$1);
+return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__59689,seq59688__$1);
 }));
 
 /**

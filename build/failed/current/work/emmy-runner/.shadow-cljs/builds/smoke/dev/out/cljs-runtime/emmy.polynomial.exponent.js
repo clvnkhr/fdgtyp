@@ -50,8 +50,8 @@ return emmy.polynomial.exponent.dense__GT_exponents(cljs.core.merge_with.cljs$co
  *   Calling [[gcd]] with a single argument acts as identity.
  */
 emmy.polynomial.exponent.gcd = (function emmy$polynomial$exponent$gcd(var_args){
-var G__32639 = arguments.length;
-switch (G__32639) {
+var G__32580 = arguments.length;
+switch (G__32580) {
 case 1:
 return emmy.polynomial.exponent.gcd.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -86,8 +86,8 @@ return cljs.core.merge_with.cljs$core$IFn$_invoke$arity$variadic(cljs.core.min,c
  *   with a single argument acts as identity.
  */
 emmy.polynomial.exponent.lcm = (function emmy$polynomial$exponent$lcm(var_args){
-var G__32642 = arguments.length;
-switch (G__32642) {
+var G__32586 = arguments.length;
+switch (G__32586) {
 case 0:
 return emmy.polynomial.exponent.lcm.cljs$core$IFn$_invoke$arity$0();
 
@@ -158,8 +158,8 @@ return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(m,x,n);
  *   ```
  */
 emmy.polynomial.exponent.lower = (function emmy$polynomial$exponent$lower(var_args){
-var G__32647 = arguments.length;
-switch (G__32647) {
+var G__32599 = arguments.length;
+switch (G__32599) {
 case 1:
 return emmy.polynomial.exponent.lower.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -212,8 +212,8 @@ return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(acc,k,v);
  *   ```
  */
 emmy.polynomial.exponent.raise = (function emmy$polynomial$exponent$raise(var_args){
-var G__32654 = arguments.length;
-switch (G__32654) {
+var G__32605 = arguments.length;
+switch (G__32605) {
 case 1:
 return emmy.polynomial.exponent.raise.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -265,8 +265,8 @@ return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(m,i,n);
  *   the entry for `i` in `m`, defaulting to `0`.
  */
 emmy.polynomial.exponent.monomial_degree = (function emmy$polynomial$exponent$monomial_degree(var_args){
-var G__32662 = arguments.length;
-switch (G__32662) {
+var G__32614 = arguments.length;
+switch (G__32614) {
 case 1:
 return emmy.polynomial.exponent.monomial_degree.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -303,8 +303,8 @@ var indices = cljs.core.range.cljs$core$IFn$_invoke$arity$1(cljs.core.count(m));
 var order = cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentVector.EMPTY,cljs.core.sort_by.cljs$core$IFn$_invoke$arity$2(m,cljs.core.keys(m)));
 var sort = (function emmy$polynomial$exponent$__GT_sort_PLUS_unsort_$_sort(m_SINGLEQUOTE_){
 return cljs.core.into.cljs$core$IFn$_invoke$arity$3(emmy.polynomial.exponent.empty,cljs.core.mapcat.cljs$core$IFn$_invoke$arity$1((function (i){
-var temp__5825__auto__ = (function (){var G__32667 = (order.cljs$core$IFn$_invoke$arity$1 ? order.cljs$core$IFn$_invoke$arity$1(i) : order.call(null,i));
-return (m_SINGLEQUOTE_.cljs$core$IFn$_invoke$arity$1 ? m_SINGLEQUOTE_.cljs$core$IFn$_invoke$arity$1(G__32667) : m_SINGLEQUOTE_.call(null,G__32667));
+var temp__5825__auto__ = (function (){var G__32630 = (order.cljs$core$IFn$_invoke$arity$1 ? order.cljs$core$IFn$_invoke$arity$1(i) : order.call(null,i));
+return (m_SINGLEQUOTE_.cljs$core$IFn$_invoke$arity$1 ? m_SINGLEQUOTE_.cljs$core$IFn$_invoke$arity$1(G__32630) : m_SINGLEQUOTE_.call(null,G__32630));
 })();
 if(cljs.core.truth_(temp__5825__auto__)){
 var v = temp__5825__auto__;
@@ -346,14 +346,14 @@ return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMP
  */
 emmy.polynomial.exponent.lex_order = (function emmy$polynomial$exponent$lex_order(var_args){
 var args__5903__auto__ = [];
-var len__5897__auto___32786 = arguments.length;
-var i__5898__auto___32787 = (0);
+var len__5897__auto___32740 = arguments.length;
+var i__5898__auto___32741 = (0);
 while(true){
-if((i__5898__auto___32787 < len__5897__auto___32786)){
-args__5903__auto__.push((arguments[i__5898__auto___32787]));
+if((i__5898__auto___32741 < len__5897__auto___32740)){
+args__5903__auto__.push((arguments[i__5898__auto___32741]));
 
-var G__32788 = (i__5898__auto___32787 + (1));
-i__5898__auto___32787 = G__32788;
+var G__32742 = (i__5898__auto___32741 + (1));
+i__5898__auto___32741 = G__32742;
 continue;
 } else {
 }
@@ -364,10 +364,10 @@ var argseq__5904__auto__ = ((((2) < args__5903__auto__.length))?(new cljs.core.I
 return emmy.polynomial.exponent.lex_order.cljs$core$IFn$_invoke$arity$variadic((arguments[(0)]),(arguments[(1)]),argseq__5904__auto__);
 });
 
-(emmy.polynomial.exponent.lex_order.cljs$core$IFn$_invoke$arity$variadic = (function (xs,ys,p__32698){
-var map__32702 = p__32698;
-var map__32702__$1 = cljs.core.__destructure_map(map__32702);
-var reverse_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__32702__$1,new cljs.core.Keyword(null,"reverse?","reverse?",-1672868474));
+(emmy.polynomial.exponent.lex_order.cljs$core$IFn$_invoke$arity$variadic = (function (xs,ys,p__32660){
+var map__32661 = p__32660;
+var map__32661__$1 = cljs.core.__destructure_map(map__32661);
+var reverse_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__32661__$1,new cljs.core.Keyword(null,"reverse?","reverse?",-1672868474));
 var xs__$1 = cljs.core.vec((cljs.core.truth_(reverse_QMARK_)?cljs.core.rseq(xs):xs));
 var ys__$1 = cljs.core.vec((cljs.core.truth_(reverse_QMARK_)?cljs.core.rseq(ys):ys));
 var i = cljs.core.long$((0));
@@ -388,8 +388,8 @@ if((bit === (0))){
 var xv = cljs.core.nth.cljs$core$IFn$_invoke$arity$2(x,(1));
 var yv = cljs.core.nth.cljs$core$IFn$_invoke$arity$2(y,(1));
 if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(xv,yv)){
-var G__32806 = (i + (1));
-i = G__32806;
+var G__32748 = (i + (1));
+i = G__32748;
 continue;
 } else {
 if(cljs.core.truth_(reverse_QMARK_)){
@@ -417,13 +417,13 @@ break;
 (emmy.polynomial.exponent.lex_order.cljs$lang$maxFixedArity = (2));
 
 /** @this {Function} */
-(emmy.polynomial.exponent.lex_order.cljs$lang$applyTo = (function (seq32691){
-var G__32692 = cljs.core.first(seq32691);
-var seq32691__$1 = cljs.core.next(seq32691);
-var G__32693 = cljs.core.first(seq32691__$1);
-var seq32691__$2 = cljs.core.next(seq32691__$1);
+(emmy.polynomial.exponent.lex_order.cljs$lang$applyTo = (function (seq32634){
+var G__32635 = cljs.core.first(seq32634);
+var seq32634__$1 = cljs.core.next(seq32634);
+var G__32636 = cljs.core.first(seq32634__$1);
+var seq32634__$2 = cljs.core.next(seq32634__$1);
 var self__5882__auto__ = this;
-return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__32692,G__32693,seq32691__$2);
+return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__32635,G__32636,seq32634__$2);
 }));
 
 /**

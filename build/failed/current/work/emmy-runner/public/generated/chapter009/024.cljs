@@ -19,7 +19,7 @@
 ;;     :type :emmy.calculus.manifold/manifold}
 
 (show spacetime-rect)
-;; => #object [emmy.calculus.manifold.t_emmy$calculus$manifold35426]
+;; => #object [emmy.calculus.manifold.t_emmy$calculus$manifold47272]
 
 (show spacetime-sphere)
-;; => #object [emmy.calculus.manifold.t_emmy$calculus$manifold35453]
+;; => #object [emmy.calculus.manifold.t_emmy$calculus$manifold47299]

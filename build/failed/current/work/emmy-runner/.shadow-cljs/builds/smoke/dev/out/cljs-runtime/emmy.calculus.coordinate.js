@@ -34,9 +34,9 @@ emmy.calculus.coordinate.quotify_coordinate_prototype = (function emmy$calculus$
 var q = (function emmy$calculus$coordinate$quotify_coordinate_prototype_$_q(p__$1){
 if(cljs.core.truth_((function (){var and__5160__auto__ = cljs.core.sequential_QMARK_(p__$1);
 if(and__5160__auto__){
-var G__48447 = cljs.core.first(p__$1);
-var fexpr__48446 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Symbol(null,"down","down",-1089190199,null),"null",new cljs.core.Symbol(null,"up","up",1370819414,null),"null"], null), null);
-return (fexpr__48446.cljs$core$IFn$_invoke$arity$1 ? fexpr__48446.cljs$core$IFn$_invoke$arity$1(G__48447) : fexpr__48446.call(null,G__48447));
+var G__48450 = cljs.core.first(p__$1);
+var fexpr__48449 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Symbol(null,"down","down",-1089190199,null),"null",new cljs.core.Symbol(null,"up","up",1370819414,null),"null"], null), null);
+return (fexpr__48449.cljs$core$IFn$_invoke$arity$1 ? fexpr__48449.cljs$core$IFn$_invoke$arity$1(G__48450) : fexpr__48449.call(null,G__48450));
 } else {
 return and__5160__auto__;
 }
@@ -69,9 +69,9 @@ return q(p);
 emmy.calculus.coordinate.symbols_from_prototype = (function emmy$calculus$coordinate$symbols_from_prototype(p){
 if(cljs.core.truth_((function (){var and__5160__auto__ = cljs.core.sequential_QMARK_(p);
 if(and__5160__auto__){
-var G__48454 = cljs.core.first(p);
-var fexpr__48453 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Symbol(null,"down","down",-1089190199,null),"null",new cljs.core.Symbol(null,"up","up",1370819414,null),"null"], null), null);
-return (fexpr__48453.cljs$core$IFn$_invoke$arity$1 ? fexpr__48453.cljs$core$IFn$_invoke$arity$1(G__48454) : fexpr__48453.call(null,G__48454));
+var G__48456 = cljs.core.first(p);
+var fexpr__48455 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Symbol(null,"down","down",-1089190199,null),"null",new cljs.core.Symbol(null,"up","up",1370819414,null),"null"], null), null);
+return (fexpr__48455.cljs$core$IFn$_invoke$arity$1 ? fexpr__48455.cljs$core$IFn$_invoke$arity$1(G__48456) : fexpr__48455.call(null,G__48456));
 } else {
 return and__5160__auto__;
 }
@@ -122,14 +122,14 @@ return emmy.util.illegal((""+"Invalid coordinate prototype: "+cljs.core.str.cljs
  */
 emmy.calculus.coordinate.let_coordinates = (function emmy$calculus$coordinate$let_coordinates(var_args){
 var args__5903__auto__ = [];
-var len__5897__auto___48541 = arguments.length;
-var i__5898__auto___48542 = (0);
+var len__5897__auto___48547 = arguments.length;
+var i__5898__auto___48548 = (0);
 while(true){
-if((i__5898__auto___48542 < len__5897__auto___48541)){
-args__5903__auto__.push((arguments[i__5898__auto___48542]));
+if((i__5898__auto___48548 < len__5897__auto___48547)){
+args__5903__auto__.push((arguments[i__5898__auto___48548]));
 
-var G__48543 = (i__5898__auto___48542 + (1));
-i__5898__auto___48542 = G__48543;
+var G__48549 = (i__5898__auto___48548 + (1));
+i__5898__auto___48548 = G__48549;
 continue;
 } else {
 }
@@ -186,14 +186,14 @@ return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__48464,G__48465
  */
 emmy.calculus.coordinate.using_coordinates = (function emmy$calculus$coordinate$using_coordinates(var_args){
 var args__5903__auto__ = [];
-var len__5897__auto___48552 = arguments.length;
-var i__5898__auto___48553 = (0);
+var len__5897__auto___48554 = arguments.length;
+var i__5898__auto___48555 = (0);
 while(true){
-if((i__5898__auto___48553 < len__5897__auto___48552)){
-args__5903__auto__.push((arguments[i__5898__auto___48553]));
+if((i__5898__auto___48555 < len__5897__auto___48554)){
+args__5903__auto__.push((arguments[i__5898__auto___48555]));
 
-var G__48554 = (i__5898__auto___48553 + (1));
-i__5898__auto___48553 = G__48554;
+var G__48556 = (i__5898__auto___48555 + (1));
+i__5898__auto___48555 = G__48556;
 continue;
 } else {
 }
@@ -212,17 +212,17 @@ return cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.
 (emmy.calculus.coordinate.using_coordinates.cljs$lang$maxFixedArity = (4));
 
 /** @this {Function} */
-(emmy.calculus.coordinate.using_coordinates.cljs$lang$applyTo = (function (seq48482){
-var G__48483 = cljs.core.first(seq48482);
-var seq48482__$1 = cljs.core.next(seq48482);
-var G__48484 = cljs.core.first(seq48482__$1);
-var seq48482__$2 = cljs.core.next(seq48482__$1);
-var G__48485 = cljs.core.first(seq48482__$2);
-var seq48482__$3 = cljs.core.next(seq48482__$2);
-var G__48486 = cljs.core.first(seq48482__$3);
-var seq48482__$4 = cljs.core.next(seq48482__$3);
+(emmy.calculus.coordinate.using_coordinates.cljs$lang$applyTo = (function (seq48499){
+var G__48500 = cljs.core.first(seq48499);
+var seq48499__$1 = cljs.core.next(seq48499);
+var G__48501 = cljs.core.first(seq48499__$1);
+var seq48499__$2 = cljs.core.next(seq48499__$1);
+var G__48502 = cljs.core.first(seq48499__$2);
+var seq48499__$3 = cljs.core.next(seq48499__$2);
+var G__48503 = cljs.core.first(seq48499__$3);
+var seq48499__$4 = cljs.core.next(seq48499__$3);
 var self__5882__auto__ = this;
-return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__48483,G__48484,G__48485,G__48486,seq48482__$4);
+return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__48500,G__48501,G__48502,G__48503,seq48499__$4);
 }));
 
 /**

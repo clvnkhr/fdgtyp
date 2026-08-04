@@ -10,8 +10,8 @@ emmy.mechanics.lagrange.momentum_tuple = emmy.structure.down;
  *   Useful for constructing Lagrangian literal functions.
  */
 emmy.mechanics.lagrange.Lagrangian = (function emmy$mechanics$lagrange$Lagrangian(var_args){
-var G__58881 = arguments.length;
-switch (G__58881) {
+var G__58920 = arguments.length;
+switch (G__58920) {
 case 0:
 return emmy.mechanics.lagrange.Lagrangian.cljs$core$IFn$_invoke$arity$0();
 
@@ -31,12 +31,12 @@ return cljs.core.list(new cljs.core.Symbol(null,"->","->",-2139605430,null),cljs
 }));
 
 (emmy.mechanics.lagrange.Lagrangian.cljs$core$IFn$_invoke$arity$1 = (function (n){
-var r__36219__auto__ = cljs.core.seq(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"->","->",-2139605430,null),cljs.core.seq(new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"UP","UP",-1898089532,null),new cljs.core.Symbol(null,"Real","Real",374292741,null),cljs.core.seq(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"UP*","UP*",294235991,null),new cljs.core.Symbol(null,"Real","Real",374292741,null),n], null)),cljs.core.seq(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"UP*","UP*",294235991,null),new cljs.core.Symbol(null,"Real","Real",374292741,null),n], null))], null)),new cljs.core.Symbol(null,"Real","Real",374292741,null)], null));
-var or__5162__auto__ = r__36219__auto__;
+var r__33819__auto__ = cljs.core.seq(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"->","->",-2139605430,null),cljs.core.seq(new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"UP","UP",-1898089532,null),new cljs.core.Symbol(null,"Real","Real",374292741,null),cljs.core.seq(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"UP*","UP*",294235991,null),new cljs.core.Symbol(null,"Real","Real",374292741,null),n], null)),cljs.core.seq(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"UP*","UP*",294235991,null),new cljs.core.Symbol(null,"Real","Real",374292741,null),n], null))], null)),new cljs.core.Symbol(null,"Real","Real",374292741,null)], null));
+var or__5162__auto__ = r__33819__auto__;
 if(or__5162__auto__){
 return or__5162__auto__;
 } else {
-return emmy.pattern.consequence.succeed(r__36219__auto__);
+return emmy.pattern.consequence.succeed(r__33819__auto__);
 }
 }));
 
@@ -49,14 +49,14 @@ return emmy.pattern.consequence.succeed(r__36219__auto__);
  */
 emmy.mechanics.lagrange.__GT_L_state = (function emmy$mechanics$lagrange$__GT_L_state(var_args){
 var args__5903__auto__ = [];
-var len__5897__auto___59167 = arguments.length;
-var i__5898__auto___59168 = (0);
+var len__5897__auto___59265 = arguments.length;
+var i__5898__auto___59266 = (0);
 while(true){
-if((i__5898__auto___59168 < len__5897__auto___59167)){
-args__5903__auto__.push((arguments[i__5898__auto___59168]));
+if((i__5898__auto___59266 < len__5897__auto___59265)){
+args__5903__auto__.push((arguments[i__5898__auto___59266]));
 
-var G__59169 = (i__5898__auto___59168 + (1));
-i__5898__auto___59168 = G__59169;
+var G__59267 = (i__5898__auto___59266 + (1));
+i__5898__auto___59266 = G__59267;
 continue;
 } else {
 }
@@ -74,15 +74,15 @@ return cljs.core.apply.cljs$core$IFn$_invoke$arity$5(emmy.structure.up,t,q,qdot,
 (emmy.mechanics.lagrange.__GT_L_state.cljs$lang$maxFixedArity = (3));
 
 /** @this {Function} */
-(emmy.mechanics.lagrange.__GT_L_state.cljs$lang$applyTo = (function (seq58882){
-var G__58883 = cljs.core.first(seq58882);
-var seq58882__$1 = cljs.core.next(seq58882);
-var G__58884 = cljs.core.first(seq58882__$1);
-var seq58882__$2 = cljs.core.next(seq58882__$1);
-var G__58885 = cljs.core.first(seq58882__$2);
-var seq58882__$3 = cljs.core.next(seq58882__$2);
+(emmy.mechanics.lagrange.__GT_L_state.cljs$lang$applyTo = (function (seq58923){
+var G__58924 = cljs.core.first(seq58923);
+var seq58923__$1 = cljs.core.next(seq58923);
+var G__58925 = cljs.core.first(seq58923__$1);
+var seq58923__$2 = cljs.core.next(seq58923__$1);
+var G__58926 = cljs.core.first(seq58923__$2);
+var seq58923__$3 = cljs.core.next(seq58923__$2);
 var self__5882__auto__ = this;
-return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__58883,G__58884,G__58885,seq58882__$3);
+return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__58924,G__58925,G__58926,seq58923__$3);
 }));
 
 /**
@@ -236,8 +236,8 @@ return emmy.structure.up.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq
  *   function (from time to local tuple).
  */
 emmy.mechanics.lagrange.Gamma = (function emmy$mechanics$lagrange$Gamma(var_args){
-var G__58895 = arguments.length;
-switch (G__58895) {
+var G__58960 = arguments.length;
+switch (G__58960) {
 case 1:
 return emmy.mechanics.lagrange.Gamma.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -285,11 +285,11 @@ return emmy.generic._.cljs$core$IFn$_invoke$arity$2(kinetic_energy,potential_ene
  *   just the kinetic energy.
  */
 emmy.mechanics.lagrange.L_free_particle = (function emmy$mechanics$lagrange$L_free_particle(mass){
-return (function (p__58902){
-var vec__58903 = p__58902;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58903,(0),null);
-var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58903,(1),null);
-var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58903,(2),null);
+return (function (p__58961){
+var vec__58962 = p__58961;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58962,(0),null);
+var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58962,(1),null);
+var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58962,(2),null);
 return emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$variadic(emmy.generic._SLASH_.cljs$core$IFn$_invoke$arity$2((1),(2)),mass,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.generic.square.cljs$core$IFn$_invoke$arity$1(v)], 0));
 });
 });
@@ -297,13 +297,13 @@ return emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$variadic(emmy.generic._SL
  * Lagrangian for a point mass on with the potential energy V(x, y)
  */
 emmy.mechanics.lagrange.L_rectangular = (function emmy$mechanics$lagrange$L_rectangular(m,V){
-return (function (p__58909){
-var vec__58910 = p__58909;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58910,(0),null);
-var vec__58913 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58910,(1),null);
-var q0 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58913,(0),null);
-var q1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58913,(1),null);
-var qdot = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58910,(2),null);
+return (function (p__58965){
+var vec__58966 = p__58965;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58966,(0),null);
+var vec__58969 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58966,(1),null);
+var q0 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58969,(0),null);
+var q1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58969,(1),null);
+var qdot = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58966,(2),null);
 return emmy.generic._.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$variadic(emmy.generic._SLASH_.cljs$core$IFn$_invoke$arity$2((1),(2)),m,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.generic.square.cljs$core$IFn$_invoke$arity$1(qdot)], 0)),(V.cljs$core$IFn$_invoke$arity$2 ? V.cljs$core$IFn$_invoke$arity$2(q0,q1) : V.call(null,q0,q1)));
 });
 });
@@ -314,11 +314,11 @@ return emmy.generic._.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$cor
  *   local tuple of the system.
  */
 emmy.mechanics.lagrange.L_harmonic = (function emmy$mechanics$lagrange$L_harmonic(m,k){
-return (function (p__58916){
-var vec__58917 = p__58916;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58917,(0),null);
-var q = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58917,(1),null);
-var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58917,(2),null);
+return (function (p__58972){
+var vec__58973 = p__58972;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58973,(0),null);
+var q = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58973,(1),null);
+var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58973,(2),null);
 return emmy.generic._.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$variadic(emmy.generic._SLASH_.cljs$core$IFn$_invoke$arity$2((1),(2)),m,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.generic.square.cljs$core$IFn$_invoke$arity$1(v)], 0)),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$variadic(emmy.generic._SLASH_.cljs$core$IFn$_invoke$arity$2((1),(2)),k,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.generic.square.cljs$core$IFn$_invoke$arity$1(q)], 0)));
 });
 });
@@ -327,24 +327,24 @@ return emmy.generic._.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$cor
  *   in the negative y direction, i.e. the acceleration due to gravity
  */
 emmy.mechanics.lagrange.L_uniform_acceleration = (function emmy$mechanics$lagrange$L_uniform_acceleration(m,g){
-return (function (p__58920){
-var vec__58921 = p__58920;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58921,(0),null);
-var vec__58924 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58921,(1),null);
-var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58924,(0),null);
-var y = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58924,(1),null);
-var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58921,(2),null);
+return (function (p__58979){
+var vec__58980 = p__58979;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58980,(0),null);
+var vec__58983 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58980,(1),null);
+var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58983,(0),null);
+var y = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58983,(1),null);
+var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58980,(2),null);
 return emmy.generic._.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$variadic(emmy.generic._SLASH_.cljs$core$IFn$_invoke$arity$2((1),(2)),m,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.generic.square.cljs$core$IFn$_invoke$arity$1(v)], 0)),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$variadic(m,g,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([y], 0)));
 });
 });
 emmy.mechanics.lagrange.L_central_rectangular = (function emmy$mechanics$lagrange$L_central_rectangular(m,U){
-return (function (p__58929){
-var vec__58930 = p__58929;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58930,(0),null);
-var q = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58930,(1),null);
-var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58930,(2),null);
-return emmy.generic._.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$variadic(emmy.generic._SLASH_.cljs$core$IFn$_invoke$arity$2((1),(2)),m,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.generic.square.cljs$core$IFn$_invoke$arity$1(v)], 0)),(function (){var G__58933 = emmy.generic.abs.cljs$core$IFn$_invoke$arity$1(q);
-return (U.cljs$core$IFn$_invoke$arity$1 ? U.cljs$core$IFn$_invoke$arity$1(G__58933) : U.call(null,G__58933));
+return (function (p__58986){
+var vec__58987 = p__58986;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58987,(0),null);
+var q = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58987,(1),null);
+var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58987,(2),null);
+return emmy.generic._.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$variadic(emmy.generic._SLASH_.cljs$core$IFn$_invoke$arity$2((1),(2)),m,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.generic.square.cljs$core$IFn$_invoke$arity$1(v)], 0)),(function (){var G__58990 = emmy.generic.abs.cljs$core$IFn$_invoke$arity$1(q);
+return (U.cljs$core$IFn$_invoke$arity$1 ? U.cljs$core$IFn$_invoke$arity$1(G__58990) : U.call(null,G__58990));
 })());
 });
 });
@@ -353,75 +353,75 @@ return (U.cljs$core$IFn$_invoke$arity$1 ? U.cljs$core$IFn$_invoke$arity$1(G__589
  *   `U`, depending only on the radius. The generalized coordinates are polar.
  */
 emmy.mechanics.lagrange.L_central_polar = (function emmy$mechanics$lagrange$L_central_polar(m,U){
-return (function (p__58934){
-var vec__58935 = p__58934;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58935,(0),null);
-var vec__58938 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58935,(1),null);
-var r = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58938,(0),null);
-var vec__58941 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58935,(2),null);
-var rdot = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58941,(0),null);
-var φdot = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58941,(1),null);
+return (function (p__58991){
+var vec__58992 = p__58991;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58992,(0),null);
+var vec__58995 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58992,(1),null);
+var r = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58995,(0),null);
+var vec__58998 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58992,(2),null);
+var rdot = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58998,(0),null);
+var φdot = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58998,(1),null);
 return emmy.generic._.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$variadic(emmy.generic._SLASH_.cljs$core$IFn$_invoke$arity$2((1),(2)),m,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2(emmy.generic.square.cljs$core$IFn$_invoke$arity$1(rdot),emmy.generic.square.cljs$core$IFn$_invoke$arity$1(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(r,φdot)))], 0)),(U.cljs$core$IFn$_invoke$arity$1 ? U.cljs$core$IFn$_invoke$arity$1(r) : U.call(null,r)));
 });
 });
 emmy.mechanics.lagrange.L_Kepler_polar = (function emmy$mechanics$lagrange$L_Kepler_polar(GM,m){
-return (function (p__58948){
-var vec__58949 = p__58948;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58949,(0),null);
-var vec__58952 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58949,(1),null);
-var r = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58952,(0),null);
-var vec__58955 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58949,(2),null);
-var rdot = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58955,(0),null);
-var phidot = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58955,(1),null);
+return (function (p__59004){
+var vec__59005 = p__59004;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59005,(0),null);
+var vec__59008 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59005,(1),null);
+var r = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59008,(0),null);
+var vec__59011 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59005,(2),null);
+var rdot = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59011,(0),null);
+var phidot = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59011,(1),null);
 return emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$variadic(emmy.generic._SLASH_.cljs$core$IFn$_invoke$arity$2((1),(2)),m,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2(emmy.generic.square.cljs$core$IFn$_invoke$arity$1(rdot),emmy.generic.square.cljs$core$IFn$_invoke$arity$1(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(r,phidot)))], 0)),emmy.generic._SLASH_.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(GM,m),r));
 });
 });
 emmy.mechanics.lagrange.L_axisymmetric_top = (function emmy$mechanics$lagrange$L_axisymmetric_top(A,C,gMR){
-return (function (p__58958){
-var vec__58959 = p__58958;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58959,(0),null);
-var vec__58962 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58959,(1),null);
-var theta = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58962,(0),null);
-var vec__58965 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58959,(2),null);
-var thetadot = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58965,(0),null);
-var phidot = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58965,(1),null);
-var psidot = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58965,(2),null);
+return (function (p__59014){
+var vec__59015 = p__59014;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59015,(0),null);
+var vec__59018 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59015,(1),null);
+var theta = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59018,(0),null);
+var vec__59021 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59015,(2),null);
+var thetadot = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59021,(0),null);
+var phidot = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59021,(1),null);
+var psidot = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59021,(2),null);
 return emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$variadic(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$variadic(emmy.generic._SLASH_.cljs$core$IFn$_invoke$arity$2((1),(2)),A,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2(emmy.generic.square.cljs$core$IFn$_invoke$arity$1(thetadot),emmy.generic.square.cljs$core$IFn$_invoke$arity$1(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(phidot,emmy.generic.sin.cljs$core$IFn$_invoke$arity$1(theta))))], 0)),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$variadic(emmy.generic._SLASH_.cljs$core$IFn$_invoke$arity$2((1),(2)),C,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.generic.square.cljs$core$IFn$_invoke$arity$1(emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2(psidot,emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(phidot,emmy.generic.cos.cljs$core$IFn$_invoke$arity$1(theta))))], 0)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$variadic((-1),gMR,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.generic.cos.cljs$core$IFn$_invoke$arity$1(theta)], 0))], 0));
 });
 });
 emmy.mechanics.lagrange.L_coupled_harmonic = (function emmy$mechanics$lagrange$L_coupled_harmonic(m,k){
-return (function (p__58968){
-var vec__58969 = p__58968;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58969,(0),null);
-var q = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58969,(1),null);
-var qdot = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58969,(2),null);
+return (function (p__59024){
+var vec__59025 = p__59024;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59025,(0),null);
+var q = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59025,(1),null);
+var qdot = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59025,(2),null);
 return emmy.generic._.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$variadic(emmy.generic._SLASH_.cljs$core$IFn$_invoke$arity$2((1),(2)),qdot,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([m,qdot], 0)),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$variadic(emmy.generic._SLASH_.cljs$core$IFn$_invoke$arity$2((1),(2)),q,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([k,q], 0)));
 });
 });
 emmy.mechanics.lagrange.F_sliding_pend = (function emmy$mechanics$lagrange$F_sliding_pend(l){
-return (function (p__58975){
-var vec__58976 = p__58975;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58976,(0),null);
-var vec__58979 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58976,(1),null);
-var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58979,(0),null);
-var theta = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58979,(1),null);
+return (function (p__59028){
+var vec__59029 = p__59028;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59029,(0),null);
+var vec__59032 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59029,(1),null);
+var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59032,(0),null);
+var theta = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59032,(1),null);
 return emmy.structure.up.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.structure.up.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([x,(0)], 0)),emmy.structure.up.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2(x,emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(l,emmy.generic.sin.cljs$core$IFn$_invoke$arity$1(theta))),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$variadic((-1),l,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.generic.cos.cljs$core$IFn$_invoke$arity$1(theta)], 0))], 0))], 0));
 });
 });
 emmy.mechanics.lagrange.two_free = (function emmy$mechanics$lagrange$two_free(m1,m2,g){
-return (function (p__58982){
-var vec__58983 = p__58982;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58983,(0),null);
-var vec__58986 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58983,(1),null);
-var vec__58989 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58986,(0),null);
-var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58989,(0),null);
-var h1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58989,(1),null);
-var vec__58992 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58986,(1),null);
-var ___$2 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58992,(0),null);
-var h2 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58992,(1),null);
-var vec__58995 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58983,(2),null);
-var v1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58995,(0),null);
-var v2 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58995,(1),null);
+return (function (p__59035){
+var vec__59036 = p__59035;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59036,(0),null);
+var vec__59039 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59036,(1),null);
+var vec__59042 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59039,(0),null);
+var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59042,(0),null);
+var h1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59042,(1),null);
+var vec__59045 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59039,(1),null);
+var ___$2 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59045,(0),null);
+var h2 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59045,(1),null);
+var vec__59048 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59036,(2),null);
+var v1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59048,(0),null);
+var v2 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59048,(1),null);
 return emmy.generic._.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(emmy.generic._SLASH_.cljs$core$IFn$_invoke$arity$2((1),(2)),emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(m1,emmy.generic.square.cljs$core$IFn$_invoke$arity$1(v1)),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(m2,emmy.generic.square.cljs$core$IFn$_invoke$arity$1(v2)))),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(g,emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(m1,h1),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(m2,h2))));
 });
 });
@@ -430,44 +430,44 @@ return emmy.generic._.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$cor
  *   free to move horizontally (from Groesberg, Advanced Mechanics, p. 72)
  */
 emmy.mechanics.lagrange.L_sliding_pend = (function emmy$mechanics$lagrange$L_sliding_pend(m1,m2,l,g){
-return emmy.function$.compose.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.mechanics.lagrange.two_free(m1,m2,g),(function (){var G__58999 = emmy.mechanics.lagrange.F_sliding_pend(l);
-return (emmy.mechanics.lagrange.F__GT_C.cljs$core$IFn$_invoke$arity$1 ? emmy.mechanics.lagrange.F__GT_C.cljs$core$IFn$_invoke$arity$1(G__58999) : emmy.mechanics.lagrange.F__GT_C.call(null,G__58999));
+return emmy.function$.compose.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.mechanics.lagrange.two_free(m1,m2,g),(function (){var G__59053 = emmy.mechanics.lagrange.F_sliding_pend(l);
+return (emmy.mechanics.lagrange.F__GT_C.cljs$core$IFn$_invoke$arity$1 ? emmy.mechanics.lagrange.F__GT_C.cljs$core$IFn$_invoke$arity$1(G__59053) : emmy.mechanics.lagrange.F__GT_C.call(null,G__59053));
 })()], 0));
 });
 emmy.mechanics.lagrange.L_pendulum = (function emmy$mechanics$lagrange$L_pendulum(g,m,l){
-return (function (p__59004){
-var vec__59006 = p__59004;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59006,(0),null);
-var theta = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59006,(1),null);
-var thetadot = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59006,(2),null);
+return (function (p__59054){
+var vec__59055 = p__59054;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59055,(0),null);
+var theta = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59055,(1),null);
+var thetadot = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59055,(2),null);
 return emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$variadic(emmy.generic._SLASH_.cljs$core$IFn$_invoke$arity$2((1),(2)),m,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.generic.square.cljs$core$IFn$_invoke$arity$1(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(l,thetadot))], 0)),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$variadic(g,m,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([l,emmy.generic.cos.cljs$core$IFn$_invoke$arity$1(theta)], 0)));
 });
 });
 emmy.mechanics.lagrange.Rayleigh_dissipation = (function emmy$mechanics$lagrange$Rayleigh_dissipation(k){
-return (function (p__59021){
-var vec__59026 = p__59021;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59026,(0),null);
-var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59026,(1),null);
-var qdot = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59026,(2),null);
+return (function (p__59060){
+var vec__59061 = p__59060;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59061,(0),null);
+var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59061,(1),null);
+var qdot = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59061,(2),null);
 return emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$variadic(qdot,k,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([qdot], 0));
 });
 });
 emmy.mechanics.lagrange.L_two_particle = (function emmy$mechanics$lagrange$L_two_particle(m1,m2,V){
-return (function (p__59029){
-var vec__59030 = p__59029;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59030,(0),null);
-var vec__59033 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59030,(1),null);
-var x1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59033,(0),null);
-var x2 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59033,(1),null);
-var vec__59036 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59030,(2),null);
-var v1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59036,(0),null);
-var v2 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59036,(1),null);
+return (function (p__59066){
+var vec__59067 = p__59066;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59067,(0),null);
+var vec__59070 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59067,(1),null);
+var x1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59070,(0),null);
+var x2 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59070,(1),null);
+var vec__59073 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59067,(2),null);
+var v1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59073,(0),null);
+var v2 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59073,(1),null);
 return emmy.generic._.cljs$core$IFn$_invoke$arity$2(emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$variadic(emmy.generic._SLASH_.cljs$core$IFn$_invoke$arity$2((1),(2)),m1,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.generic.square.cljs$core$IFn$_invoke$arity$1(v1)], 0)),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$variadic(emmy.generic._SLASH_.cljs$core$IFn$_invoke$arity$2((1),(2)),m2,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.generic.square.cljs$core$IFn$_invoke$arity$1(v2)], 0))),(V.cljs$core$IFn$_invoke$arity$2 ? V.cljs$core$IFn$_invoke$arity$2(x1,x2) : V.call(null,x1,x2)));
 });
 });
 emmy.mechanics.lagrange.Lagrange_equations = (function emmy$mechanics$lagrange$Lagrange_equations(var_args){
-var G__59043 = arguments.length;
-switch (G__59043) {
+var G__59085 = arguments.length;
+switch (G__59085) {
 case 1:
 return emmy.mechanics.lagrange.Lagrange_equations.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -489,14 +489,14 @@ return emmy.mechanics.lagrange.Lagrange_equations.cljs$core$IFn$_invoke$arity$2(
 (emmy.mechanics.lagrange.Lagrange_equations.cljs$core$IFn$_invoke$arity$2 = (function (L,dissipation_fn){
 return (function (q){
 var state_path = emmy.mechanics.lagrange.Gamma.cljs$core$IFn$_invoke$arity$1(q);
-return emmy.generic._.cljs$core$IFn$_invoke$arity$variadic((function (){var G__59048 = emmy.function$.compose.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(function (){var fexpr__59049 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((2)) : emmy.calculus.derivative.partial.call(null,(2)));
-return (fexpr__59049.cljs$core$IFn$_invoke$arity$1 ? fexpr__59049.cljs$core$IFn$_invoke$arity$1(L) : fexpr__59049.call(null,L));
+return emmy.generic._.cljs$core$IFn$_invoke$arity$variadic((function (){var G__59090 = emmy.function$.compose.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(function (){var fexpr__59091 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((2)) : emmy.calculus.derivative.partial.call(null,(2)));
+return (fexpr__59091.cljs$core$IFn$_invoke$arity$1 ? fexpr__59091.cljs$core$IFn$_invoke$arity$1(L) : fexpr__59091.call(null,L));
 })(),state_path], 0));
-return (emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1(G__59048) : emmy.calculus.derivative.D.call(null,G__59048));
-})(),emmy.function$.compose.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(function (){var fexpr__59050 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((1)) : emmy.calculus.derivative.partial.call(null,(1)));
-return (fexpr__59050.cljs$core$IFn$_invoke$arity$1 ? fexpr__59050.cljs$core$IFn$_invoke$arity$1(L) : fexpr__59050.call(null,L));
-})(),state_path], 0)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(cljs.core.truth_(dissipation_fn)?emmy.generic._.cljs$core$IFn$_invoke$arity$1(emmy.function$.compose.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(function (){var fexpr__59051 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((2)) : emmy.calculus.derivative.partial.call(null,(2)));
-return (fexpr__59051.cljs$core$IFn$_invoke$arity$1 ? fexpr__59051.cljs$core$IFn$_invoke$arity$1(dissipation_fn) : fexpr__59051.call(null,dissipation_fn));
+return (emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1(G__59090) : emmy.calculus.derivative.D.call(null,G__59090));
+})(),emmy.function$.compose.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(function (){var fexpr__59093 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((1)) : emmy.calculus.derivative.partial.call(null,(1)));
+return (fexpr__59093.cljs$core$IFn$_invoke$arity$1 ? fexpr__59093.cljs$core$IFn$_invoke$arity$1(L) : fexpr__59093.call(null,L));
+})(),state_path], 0)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(cljs.core.truth_(dissipation_fn)?emmy.generic._.cljs$core$IFn$_invoke$arity$1(emmy.function$.compose.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(function (){var fexpr__59094 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((2)) : emmy.calculus.derivative.partial.call(null,(2)));
+return (fexpr__59094.cljs$core$IFn$_invoke$arity$1 ? fexpr__59094.cljs$core$IFn$_invoke$arity$1(dissipation_fn) : fexpr__59094.call(null,dissipation_fn));
 })(),state_path], 0))):(0))], 0));
 });
 }));
@@ -504,8 +504,8 @@ return (fexpr__59051.cljs$core$IFn$_invoke$arity$1 ? fexpr__59051.cljs$core$IFn$
 (emmy.mechanics.lagrange.Lagrange_equations.cljs$lang$maxFixedArity = 2);
 
 emmy.mechanics.lagrange.Lagrangian__GT_acceleration = (function emmy$mechanics$lagrange$Lagrangian__GT_acceleration(var_args){
-var G__59056 = arguments.length;
-switch (G__59056) {
+var G__59097 = arguments.length;
+switch (G__59097) {
 case 1:
 return emmy.mechanics.lagrange.Lagrangian__GT_acceleration.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -525,20 +525,20 @@ return emmy.mechanics.lagrange.Lagrangian__GT_acceleration.cljs$core$IFn$_invoke
 }));
 
 (emmy.mechanics.lagrange.Lagrangian__GT_acceleration.cljs$core$IFn$_invoke$arity$2 = (function (L,dissipation_fn){
-var P = (function (){var fexpr__59061 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((2)) : emmy.calculus.derivative.partial.call(null,(2)));
-return (fexpr__59061.cljs$core$IFn$_invoke$arity$1 ? fexpr__59061.cljs$core$IFn$_invoke$arity$1(L) : fexpr__59061.call(null,L));
+var P = (function (){var fexpr__59098 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((2)) : emmy.calculus.derivative.partial.call(null,(2)));
+return (fexpr__59098.cljs$core$IFn$_invoke$arity$1 ? fexpr__59098.cljs$core$IFn$_invoke$arity$1(L) : fexpr__59098.call(null,L));
 })();
-var F = (function (){var fexpr__59062 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((1)) : emmy.calculus.derivative.partial.call(null,(1)));
-return (fexpr__59062.cljs$core$IFn$_invoke$arity$1 ? fexpr__59062.cljs$core$IFn$_invoke$arity$1(L) : fexpr__59062.call(null,L));
+var F = (function (){var fexpr__59099 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((1)) : emmy.calculus.derivative.partial.call(null,(1)));
+return (fexpr__59099.cljs$core$IFn$_invoke$arity$1 ? fexpr__59099.cljs$core$IFn$_invoke$arity$1(L) : fexpr__59099.call(null,L));
 })();
-return emmy.generic.solve_linear_left((function (){var fexpr__59063 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((2)) : emmy.calculus.derivative.partial.call(null,(2)));
-return (fexpr__59063.cljs$core$IFn$_invoke$arity$1 ? fexpr__59063.cljs$core$IFn$_invoke$arity$1(P) : fexpr__59063.call(null,P));
-})(),emmy.generic._.cljs$core$IFn$_invoke$arity$variadic(F,(cljs.core.truth_(dissipation_fn)?(function (){var fexpr__59064 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((2)) : emmy.calculus.derivative.partial.call(null,(2)));
-return (fexpr__59064.cljs$core$IFn$_invoke$arity$1 ? fexpr__59064.cljs$core$IFn$_invoke$arity$1(dissipation_fn) : fexpr__59064.call(null,dissipation_fn));
-})():(0)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2((function (){var fexpr__59065 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((0)) : emmy.calculus.derivative.partial.call(null,(0)));
-return (fexpr__59065.cljs$core$IFn$_invoke$arity$1 ? fexpr__59065.cljs$core$IFn$_invoke$arity$1(P) : fexpr__59065.call(null,P));
-})(),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2((function (){var fexpr__59066 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((1)) : emmy.calculus.derivative.partial.call(null,(1)));
-return (fexpr__59066.cljs$core$IFn$_invoke$arity$1 ? fexpr__59066.cljs$core$IFn$_invoke$arity$1(P) : fexpr__59066.call(null,P));
+return emmy.generic.solve_linear_left((function (){var fexpr__59100 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((2)) : emmy.calculus.derivative.partial.call(null,(2)));
+return (fexpr__59100.cljs$core$IFn$_invoke$arity$1 ? fexpr__59100.cljs$core$IFn$_invoke$arity$1(P) : fexpr__59100.call(null,P));
+})(),emmy.generic._.cljs$core$IFn$_invoke$arity$variadic(F,(cljs.core.truth_(dissipation_fn)?(function (){var fexpr__59101 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((2)) : emmy.calculus.derivative.partial.call(null,(2)));
+return (fexpr__59101.cljs$core$IFn$_invoke$arity$1 ? fexpr__59101.cljs$core$IFn$_invoke$arity$1(dissipation_fn) : fexpr__59101.call(null,dissipation_fn));
+})():(0)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2((function (){var fexpr__59102 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((0)) : emmy.calculus.derivative.partial.call(null,(0)));
+return (fexpr__59102.cljs$core$IFn$_invoke$arity$1 ? fexpr__59102.cljs$core$IFn$_invoke$arity$1(P) : fexpr__59102.call(null,P));
+})(),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2((function (){var fexpr__59103 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((1)) : emmy.calculus.derivative.partial.call(null,(1)));
+return (fexpr__59103.cljs$core$IFn$_invoke$arity$1 ? fexpr__59103.cljs$core$IFn$_invoke$arity$1(P) : fexpr__59103.call(null,P));
 })(),emmy.mechanics.lagrange.velocity))], 0)));
 }));
 
@@ -546,18 +546,18 @@ return (fexpr__59066.cljs$core$IFn$_invoke$arity$1 ? fexpr__59066.cljs$core$IFn$
 
 emmy.mechanics.lagrange.qv__GT_local_path = (function emmy$mechanics$lagrange$qv__GT_local_path(q,v){
 return (function (t){
-var G__59073 = t;
-var G__59074 = (q.cljs$core$IFn$_invoke$arity$1 ? q.cljs$core$IFn$_invoke$arity$1(t) : q.call(null,t));
-var G__59075 = (v.cljs$core$IFn$_invoke$arity$1 ? v.cljs$core$IFn$_invoke$arity$1(t) : v.call(null,t));
-return (emmy.mechanics.lagrange.__GT_local.cljs$core$IFn$_invoke$arity$3 ? emmy.mechanics.lagrange.__GT_local.cljs$core$IFn$_invoke$arity$3(G__59073,G__59074,G__59075) : emmy.mechanics.lagrange.__GT_local.call(null,G__59073,G__59074,G__59075));
+var G__59104 = t;
+var G__59105 = (q.cljs$core$IFn$_invoke$arity$1 ? q.cljs$core$IFn$_invoke$arity$1(t) : q.call(null,t));
+var G__59106 = (v.cljs$core$IFn$_invoke$arity$1 ? v.cljs$core$IFn$_invoke$arity$1(t) : v.call(null,t));
+return (emmy.mechanics.lagrange.__GT_local.cljs$core$IFn$_invoke$arity$3 ? emmy.mechanics.lagrange.__GT_local.cljs$core$IFn$_invoke$arity$3(G__59104,G__59105,G__59106) : emmy.mechanics.lagrange.__GT_local.call(null,G__59104,G__59105,G__59106));
 });
 });
 /**
  * Optionally takes a dissipation function.
  */
 emmy.mechanics.lagrange.Lagrangian__GT_state_derivative = (function emmy$mechanics$lagrange$Lagrangian__GT_state_derivative(var_args){
-var G__59078 = arguments.length;
-switch (G__59078) {
+var G__59108 = arguments.length;
+switch (G__59108) {
 case 1:
 return emmy.mechanics.lagrange.Lagrangian__GT_state_derivative.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -606,44 +606,44 @@ return emmy.generic._.cljs$core$IFn$_invoke$arity$2((emmy.calculus.derivative.D.
  */
 emmy.mechanics.lagrange.Lagrange_equations_1 = emmy.mechanics.lagrange.Lagrange_equations_first_order;
 emmy.mechanics.lagrange.Lagrangian__GT_energy = (function emmy$mechanics$lagrange$Lagrangian__GT_energy(L){
-var P = (function (){var fexpr__59083 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((2)) : emmy.calculus.derivative.partial.call(null,(2)));
-return (fexpr__59083.cljs$core$IFn$_invoke$arity$1 ? fexpr__59083.cljs$core$IFn$_invoke$arity$1(L) : fexpr__59083.call(null,L));
+var P = (function (){var fexpr__59116 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((2)) : emmy.calculus.derivative.partial.call(null,(2)));
+return (fexpr__59116.cljs$core$IFn$_invoke$arity$1 ? fexpr__59116.cljs$core$IFn$_invoke$arity$1(L) : fexpr__59116.call(null,L));
 })();
 return emmy.generic._.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(P,emmy.mechanics.lagrange.velocity),L);
 });
 emmy.mechanics.lagrange.Lagrangian__GT_power_loss = (function emmy$mechanics$lagrange$Lagrangian__GT_power_loss(L){
 return (function (q){
-var G__59084 = emmy.function$.compose.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.mechanics.lagrange.Lagrangian__GT_energy(L),emmy.mechanics.lagrange.Gamma.cljs$core$IFn$_invoke$arity$1(q)], 0));
-return (emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1(G__59084) : emmy.calculus.derivative.D.call(null,G__59084));
+var G__59117 = emmy.function$.compose.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.mechanics.lagrange.Lagrangian__GT_energy(L),emmy.mechanics.lagrange.Gamma.cljs$core$IFn$_invoke$arity$1(q)], 0));
+return (emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1(G__59117) : emmy.calculus.derivative.D.call(null,G__59117));
 });
 });
 emmy.mechanics.lagrange.T3_spherical = (function emmy$mechanics$lagrange$T3_spherical(m){
-return (function (p__59085){
-var vec__59086 = p__59085;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59086,(0),null);
-var vec__59089 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59086,(1),null);
-var r = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59089,(0),null);
-var theta = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59089,(1),null);
-var vec__59092 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59086,(2),null);
-var rdot = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59092,(0),null);
-var thetadot = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59092,(1),null);
-var phidot = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59092,(2),null);
+return (function (p__59118){
+var vec__59119 = p__59118;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59119,(0),null);
+var vec__59122 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59119,(1),null);
+var r = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59122,(0),null);
+var theta = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59122,(1),null);
+var vec__59125 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59119,(2),null);
+var rdot = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59125,(0),null);
+var thetadot = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59125,(1),null);
+var phidot = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59125,(2),null);
 return emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$variadic(emmy.generic._SLASH_.cljs$core$IFn$_invoke$arity$2((1),(2)),m,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$variadic(emmy.generic.square.cljs$core$IFn$_invoke$arity$1(rdot),emmy.generic.square.cljs$core$IFn$_invoke$arity$1(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(r,thetadot)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.generic.square.cljs$core$IFn$_invoke$arity$1(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$variadic(r,emmy.generic.sin.cljs$core$IFn$_invoke$arity$1(theta),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([phidot], 0)))], 0))], 0));
 });
 });
 emmy.mechanics.lagrange.L3_central = (function emmy$mechanics$lagrange$L3_central(m,Vr){
-var Vs = (function emmy$mechanics$lagrange$L3_central_$_Vs(p__59102){
-var vec__59103 = p__59102;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59103,(0),null);
-var vec__59106 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59103,(1),null);
-var r = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59106,(0),null);
+var Vs = (function emmy$mechanics$lagrange$L3_central_$_Vs(p__59144){
+var vec__59145 = p__59144;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59145,(0),null);
+var vec__59148 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59145,(1),null);
+var r = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59148,(0),null);
 return (Vr.cljs$core$IFn$_invoke$arity$1 ? Vr.cljs$core$IFn$_invoke$arity$1(r) : Vr.call(null,r));
 });
 return emmy.generic._.cljs$core$IFn$_invoke$arity$2(emmy.mechanics.lagrange.T3_spherical(m),Vs);
 });
 emmy.mechanics.lagrange.Lagrangian_action = (function emmy$mechanics$lagrange$Lagrangian_action(var_args){
-var G__59110 = arguments.length;
-switch (G__59110) {
+var G__59155 = arguments.length;
+switch (G__59155) {
 case 4:
 return emmy.mechanics.lagrange.Lagrangian_action.cljs$core$IFn$_invoke$arity$4((arguments[(0)]),(arguments[(1)]),(arguments[(2)]),(arguments[(3)]));
 
@@ -671,25 +671,25 @@ return emmy.numerical.quadrature.definite_integral.cljs$core$IFn$_invoke$arity$4
 emmy.mechanics.lagrange.linear_interpolants = (function emmy$mechanics$lagrange$linear_interpolants(x0,x1,n){
 var n_PLUS_1 = (n + (1));
 var dx = emmy.generic._SLASH_.cljs$core$IFn$_invoke$arity$2(emmy.generic._.cljs$core$IFn$_invoke$arity$2(x1,x0),n_PLUS_1);
-var iter__5649__auto__ = (function emmy$mechanics$lagrange$linear_interpolants_$_iter__59111(s__59112){
+var iter__5649__auto__ = (function emmy$mechanics$lagrange$linear_interpolants_$_iter__59165(s__59166){
 return (new cljs.core.LazySeq(null,(function (){
-var s__59112__$1 = s__59112;
+var s__59166__$1 = s__59166;
 while(true){
-var temp__5825__auto__ = cljs.core.seq(s__59112__$1);
+var temp__5825__auto__ = cljs.core.seq(s__59166__$1);
 if(temp__5825__auto__){
-var s__59112__$2 = temp__5825__auto__;
-if(cljs.core.chunked_seq_QMARK_(s__59112__$2)){
-var c__5647__auto__ = cljs.core.chunk_first(s__59112__$2);
+var s__59166__$2 = temp__5825__auto__;
+if(cljs.core.chunked_seq_QMARK_(s__59166__$2)){
+var c__5647__auto__ = cljs.core.chunk_first(s__59166__$2);
 var size__5648__auto__ = cljs.core.count(c__5647__auto__);
-var b__59114 = cljs.core.chunk_buffer(size__5648__auto__);
-if((function (){var i__59113 = (0);
+var b__59168 = cljs.core.chunk_buffer(size__5648__auto__);
+if((function (){var i__59167 = (0);
 while(true){
-if((i__59113 < size__5648__auto__)){
-var i = cljs.core._nth(c__5647__auto__,i__59113);
-cljs.core.chunk_append(b__59114,emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2(x0,emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(i,dx)));
+if((i__59167 < size__5648__auto__)){
+var i = cljs.core._nth(c__5647__auto__,i__59167);
+cljs.core.chunk_append(b__59168,emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2(x0,emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(i,dx)));
 
-var G__59265 = (i__59113 + (1));
-i__59113 = G__59265;
+var G__59285 = (i__59167 + (1));
+i__59167 = G__59285;
 continue;
 } else {
 return true;
@@ -697,13 +697,13 @@ return true;
 break;
 }
 })()){
-return cljs.core.chunk_cons(cljs.core.chunk(b__59114),emmy$mechanics$lagrange$linear_interpolants_$_iter__59111(cljs.core.chunk_rest(s__59112__$2)));
+return cljs.core.chunk_cons(cljs.core.chunk(b__59168),emmy$mechanics$lagrange$linear_interpolants_$_iter__59165(cljs.core.chunk_rest(s__59166__$2)));
 } else {
-return cljs.core.chunk_cons(cljs.core.chunk(b__59114),null);
+return cljs.core.chunk_cons(cljs.core.chunk(b__59168),null);
 }
 } else {
-var i = cljs.core.first(s__59112__$2);
-return cljs.core.cons(emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2(x0,emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(i,dx)),emmy$mechanics$lagrange$linear_interpolants_$_iter__59111(cljs.core.rest(s__59112__$2)));
+var i = cljs.core.first(s__59166__$2);
+return cljs.core.cons(emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2(x0,emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(i,dx)),emmy$mechanics$lagrange$linear_interpolants_$_iter__59165(cljs.core.rest(s__59166__$2)));
 }
 } else {
 return null;
@@ -748,14 +748,14 @@ return emmy.mechanics.lagrange.Lagrangian_action.cljs$core$IFn$_invoke$arity$5(L
  */
 emmy.mechanics.lagrange.find_path = (function emmy$mechanics$lagrange$find_path(var_args){
 var args__5903__auto__ = [];
-var len__5897__auto___59268 = arguments.length;
-var i__5898__auto___59269 = (0);
+var len__5897__auto___59286 = arguments.length;
+var i__5898__auto___59287 = (0);
 while(true){
-if((i__5898__auto___59269 < len__5897__auto___59268)){
-args__5903__auto__.push((arguments[i__5898__auto___59269]));
+if((i__5898__auto___59287 < len__5897__auto___59286)){
+args__5903__auto__.push((arguments[i__5898__auto___59287]));
 
-var G__59270 = (i__5898__auto___59269 + (1));
-i__5898__auto___59269 = G__59270;
+var G__59288 = (i__5898__auto___59287 + (1));
+i__5898__auto___59287 = G__59288;
 continue;
 } else {
 }
@@ -766,10 +766,10 @@ var argseq__5904__auto__ = ((((6) < args__5903__auto__.length))?(new cljs.core.I
 return emmy.mechanics.lagrange.find_path.cljs$core$IFn$_invoke$arity$variadic((arguments[(0)]),(arguments[(1)]),(arguments[(2)]),(arguments[(3)]),(arguments[(4)]),(arguments[(5)]),argseq__5904__auto__);
 });
 
-(emmy.mechanics.lagrange.find_path.cljs$core$IFn$_invoke$arity$variadic = (function (Lagrangian,t0,q0,t1,q1,n,p__59122){
-var map__59123 = p__59122;
-var map__59123__$1 = cljs.core.__destructure_map(map__59123);
-var observe = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__59123__$1,new cljs.core.Keyword(null,"observe","observe",-86651450));
+(emmy.mechanics.lagrange.find_path.cljs$core$IFn$_invoke$arity$variadic = (function (Lagrangian,t0,q0,t1,q1,n,p__59191){
+var map__59192 = p__59191;
+var map__59192__$1 = cljs.core.__destructure_map(map__59192);
+var observe = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__59192__$1,new cljs.core.Keyword(null,"observe","observe",-86651450));
 var initial_qs = emmy.mechanics.lagrange.linear_interpolants(q0,q1,n);
 var minimizing_qs = emmy.numerical.minimize.multidimensional_minimize.cljs$core$IFn$_invoke$arity$variadic(emmy.mechanics.lagrange.parametric_path_action(Lagrangian,t0,q0,t1,q1),initial_qs,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"callback","callback",-705136228),observe], 0));
 return emmy.mechanics.lagrange.make_path(t0,q0,t1,q1,minimizing_qs);
@@ -778,21 +778,21 @@ return emmy.mechanics.lagrange.make_path(t0,q0,t1,q1,minimizing_qs);
 (emmy.mechanics.lagrange.find_path.cljs$lang$maxFixedArity = (6));
 
 /** @this {Function} */
-(emmy.mechanics.lagrange.find_path.cljs$lang$applyTo = (function (seq59115){
-var G__59116 = cljs.core.first(seq59115);
-var seq59115__$1 = cljs.core.next(seq59115);
-var G__59117 = cljs.core.first(seq59115__$1);
-var seq59115__$2 = cljs.core.next(seq59115__$1);
-var G__59118 = cljs.core.first(seq59115__$2);
-var seq59115__$3 = cljs.core.next(seq59115__$2);
-var G__59119 = cljs.core.first(seq59115__$3);
-var seq59115__$4 = cljs.core.next(seq59115__$3);
-var G__59120 = cljs.core.first(seq59115__$4);
-var seq59115__$5 = cljs.core.next(seq59115__$4);
-var G__59121 = cljs.core.first(seq59115__$5);
-var seq59115__$6 = cljs.core.next(seq59115__$5);
+(emmy.mechanics.lagrange.find_path.cljs$lang$applyTo = (function (seq59184){
+var G__59185 = cljs.core.first(seq59184);
+var seq59184__$1 = cljs.core.next(seq59184);
+var G__59186 = cljs.core.first(seq59184__$1);
+var seq59184__$2 = cljs.core.next(seq59184__$1);
+var G__59187 = cljs.core.first(seq59184__$2);
+var seq59184__$3 = cljs.core.next(seq59184__$2);
+var G__59188 = cljs.core.first(seq59184__$3);
+var seq59184__$4 = cljs.core.next(seq59184__$3);
+var G__59189 = cljs.core.first(seq59184__$4);
+var seq59184__$5 = cljs.core.next(seq59184__$4);
+var G__59190 = cljs.core.first(seq59184__$5);
+var seq59184__$6 = cljs.core.next(seq59184__$5);
 var self__5882__auto__ = this;
-return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__59116,G__59117,G__59118,G__59119,G__59120,G__59121,seq59115__$6);
+return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__59185,G__59186,G__59187,G__59188,G__59189,G__59190,seq59184__$6);
 }));
 
 /**
@@ -803,9 +803,9 @@ return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__59116,G__59117
  *   tuple.
  */
 emmy.mechanics.lagrange.osculating_path = (function emmy$mechanics$lagrange$osculating_path(state0){
-var vec__59124 = state0;
-var t0 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59124,(0),null);
-var q0 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59124,(1),null);
+var vec__59193 = state0;
+var t0 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59193,(0),null);
+var q0 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59193,(1),null);
 var k = cljs.core.count(state0);
 return (function (t){
 var dt = emmy.generic._.cljs$core$IFn$_invoke$arity$2(t,t0);
@@ -816,12 +816,12 @@ while(true){
 if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(n,k)){
 return sum;
 } else {
-var G__59272 = (n + (1));
-var G__59273 = emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2(sum,emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(cljs.core.nth.cljs$core$IFn$_invoke$arity$2(state0,n),dt_STAR__STAR_n_COLON_n_BANG_));
-var G__59274 = emmy.generic._SLASH_.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(dt_STAR__STAR_n_COLON_n_BANG_,dt),n);
-n = G__59272;
-sum = G__59273;
-dt_STAR__STAR_n_COLON_n_BANG_ = G__59274;
+var G__59290 = (n + (1));
+var G__59291 = emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2(sum,emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(cljs.core.nth.cljs$core$IFn$_invoke$arity$2(state0,n),dt_STAR__STAR_n_COLON_n_BANG_));
+var G__59292 = emmy.generic._SLASH_.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(dt_STAR__STAR_n_COLON_n_BANG_,dt),n);
+n = G__59290;
+sum = G__59291;
+dt_STAR__STAR_n_COLON_n_BANG_ = G__59292;
 continue;
 }
 break;
@@ -830,19 +830,19 @@ break;
 });
 emmy.mechanics.lagrange.Gamma_bar = (function emmy$mechanics$lagrange$Gamma_bar(f){
 return (function (local){
-var G__59129 = cljs.core.first(local);
-var fexpr__59128 = (function (){var G__59130 = emmy.mechanics.lagrange.osculating_path(local);
-return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__59130) : f.call(null,G__59130));
+var G__59198 = cljs.core.first(local);
+var fexpr__59197 = (function (){var G__59202 = emmy.mechanics.lagrange.osculating_path(local);
+return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__59202) : f.call(null,G__59202));
 })();
-return (fexpr__59128.cljs$core$IFn$_invoke$arity$1 ? fexpr__59128.cljs$core$IFn$_invoke$arity$1(G__59129) : fexpr__59128.call(null,G__59129));
+return (fexpr__59197.cljs$core$IFn$_invoke$arity$1 ? fexpr__59197.cljs$core$IFn$_invoke$arity$1(G__59198) : fexpr__59197.call(null,G__59198));
 });
 });
 emmy.mechanics.lagrange.Dt_procedure = (function emmy$mechanics$lagrange$Dt_procedure(F){
 return (function emmy$mechanics$lagrange$Dt_procedure_$_DtF(state){
 var n = cljs.core.count(state);
 var DF_on_path = (function emmy$mechanics$lagrange$Dt_procedure_$_DtF_$_DF_on_path(q){
-var G__59132 = emmy.function$.compose.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([F,emmy.mechanics.lagrange.Gamma.cljs$core$IFn$_invoke$arity$2(q,(n - (1)))], 0));
-return (emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1(G__59132) : emmy.calculus.derivative.D.call(null,G__59132));
+var G__59204 = emmy.function$.compose.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([F,emmy.mechanics.lagrange.Gamma.cljs$core$IFn$_invoke$arity$2(q,(n - (1)))], 0));
+return (emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1(G__59204) : emmy.calculus.derivative.D.call(null,G__59204));
 });
 return emmy.mechanics.lagrange.Gamma_bar(DF_on_path)(state);
 });
@@ -852,12 +852,12 @@ emmy.mechanics.lagrange.trim_last_argument = (function emmy$mechanics$lagrange$t
 return emmy.structure.up_STAR_(cljs.core.pop(emmy.structure.structure__GT_vector(local)));
 });
 emmy.mechanics.lagrange.Euler_Lagrange_operator = (function emmy$mechanics$lagrange$Euler_Lagrange_operator(L){
-return emmy.generic._.cljs$core$IFn$_invoke$arity$2((function (){var G__59133 = (function (){var fexpr__59134 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((2)) : emmy.calculus.derivative.partial.call(null,(2)));
-return (fexpr__59134.cljs$core$IFn$_invoke$arity$1 ? fexpr__59134.cljs$core$IFn$_invoke$arity$1(L) : fexpr__59134.call(null,L));
+return emmy.generic._.cljs$core$IFn$_invoke$arity$2((function (){var G__59210 = (function (){var fexpr__59211 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((2)) : emmy.calculus.derivative.partial.call(null,(2)));
+return (fexpr__59211.cljs$core$IFn$_invoke$arity$1 ? fexpr__59211.cljs$core$IFn$_invoke$arity$1(L) : fexpr__59211.call(null,L));
 })();
-return (emmy.mechanics.lagrange.Dt.cljs$core$IFn$_invoke$arity$1 ? emmy.mechanics.lagrange.Dt.cljs$core$IFn$_invoke$arity$1(G__59133) : emmy.mechanics.lagrange.Dt.call(null,G__59133));
-})(),emmy.function$.compose.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(function (){var fexpr__59135 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((1)) : emmy.calculus.derivative.partial.call(null,(1)));
-return (fexpr__59135.cljs$core$IFn$_invoke$arity$1 ? fexpr__59135.cljs$core$IFn$_invoke$arity$1(L) : fexpr__59135.call(null,L));
+return (emmy.mechanics.lagrange.Dt.cljs$core$IFn$_invoke$arity$1 ? emmy.mechanics.lagrange.Dt.cljs$core$IFn$_invoke$arity$1(G__59210) : emmy.mechanics.lagrange.Dt.call(null,G__59210));
+})(),emmy.function$.compose.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(function (){var fexpr__59212 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((1)) : emmy.calculus.derivative.partial.call(null,(1)));
+return (fexpr__59212.cljs$core$IFn$_invoke$arity$1 ? fexpr__59212.cljs$core$IFn$_invoke$arity$1(L) : fexpr__59212.call(null,L));
 })(),emmy.mechanics.lagrange.trim_last_argument], 0)));
 });
 /**
@@ -880,13 +880,13 @@ var lp = (function emmy$mechanics$lagrange$generalized_LE_$_lp(i,state__$1){
 if((i === (0))){
 return (0);
 } else {
-return emmy.generic._.cljs$core$IFn$_invoke$arity$2((function (){var fexpr__59146 = (function (){var G__59148 = (function (){var fexpr__59149 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1(i) : emmy.calculus.derivative.partial.call(null,i));
-return (fexpr__59149.cljs$core$IFn$_invoke$arity$1 ? fexpr__59149.cljs$core$IFn$_invoke$arity$1(Lagrangian) : fexpr__59149.call(null,Lagrangian));
+return emmy.generic._.cljs$core$IFn$_invoke$arity$2((function (){var fexpr__59225 = (function (){var G__59227 = (function (){var fexpr__59228 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1(i) : emmy.calculus.derivative.partial.call(null,i));
+return (fexpr__59228.cljs$core$IFn$_invoke$arity$1 ? fexpr__59228.cljs$core$IFn$_invoke$arity$1(Lagrangian) : fexpr__59228.call(null,Lagrangian));
 })();
-var fexpr__59147 = emmy.generic.expt.cljs$core$IFn$_invoke$arity$2(emmy.mechanics.lagrange.Dt,(i - (1)));
-return (fexpr__59147.cljs$core$IFn$_invoke$arity$1 ? fexpr__59147.cljs$core$IFn$_invoke$arity$1(G__59148) : fexpr__59147.call(null,G__59148));
+var fexpr__59226 = emmy.generic.expt.cljs$core$IFn$_invoke$arity$2(emmy.mechanics.lagrange.Dt,(i - (1)));
+return (fexpr__59226.cljs$core$IFn$_invoke$arity$1 ? fexpr__59226.cljs$core$IFn$_invoke$arity$1(G__59227) : fexpr__59226.call(null,G__59227));
 })();
-return (fexpr__59146.cljs$core$IFn$_invoke$arity$1 ? fexpr__59146.cljs$core$IFn$_invoke$arity$1(state__$1) : fexpr__59146.call(null,state__$1));
+return (fexpr__59225.cljs$core$IFn$_invoke$arity$1 ? fexpr__59225.cljs$core$IFn$_invoke$arity$1(state__$1) : fexpr__59225.call(null,state__$1));
 })(),emmy$mechanics$lagrange$generalized_LE_$_lp((i - (1)),emmy.mechanics.lagrange.trim_last_argument(state__$1)));
 }
 });
@@ -910,10 +910,10 @@ return emmy.mechanics.lagrange.Gamma.cljs$core$IFn$_invoke$arity$2(q,n);
 return emmy.mechanics.lagrange.Gamma_bar(f_bar)(local);
 });
 });
-emmy.mechanics.lagrange.rectangular__GT_polar = (function emmy$mechanics$lagrange$rectangular__GT_polar(p__59150){
-var vec__59151 = p__59150;
-var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59151,(0),null);
-var y = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59151,(1),null);
+emmy.mechanics.lagrange.rectangular__GT_polar = (function emmy$mechanics$lagrange$rectangular__GT_polar(p__59235){
+var vec__59236 = p__59235;
+var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59236,(0),null);
+var y = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59236,(1),null);
 var r = emmy.generic.sqrt.cljs$core$IFn$_invoke$arity$1(emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2(emmy.generic.square.cljs$core$IFn$_invoke$arity$1(x),emmy.generic.square.cljs$core$IFn$_invoke$arity$1(y)));
 var phi = emmy.generic.atan.cljs$core$IFn$_invoke$arity$2(y,x);
 return emmy.structure.up.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([r,phi], 0));
@@ -921,10 +921,10 @@ return emmy.structure.up.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq
 emmy.mechanics.lagrange.r__GT_p = (function emmy$mechanics$lagrange$r__GT_p(tqv){
 return emmy.mechanics.lagrange.rectangular__GT_polar(emmy.mechanics.lagrange.coordinate(tqv));
 });
-emmy.mechanics.lagrange.polar__GT_rectangular = (function emmy$mechanics$lagrange$polar__GT_rectangular(p__59154){
-var vec__59155 = p__59154;
-var r = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59155,(0),null);
-var phi = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59155,(1),null);
+emmy.mechanics.lagrange.polar__GT_rectangular = (function emmy$mechanics$lagrange$polar__GT_rectangular(p__59239){
+var vec__59240 = p__59239;
+var r = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59240,(0),null);
+var phi = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59240,(1),null);
 var x = emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(r,emmy.generic.cos.cljs$core$IFn$_invoke$arity$1(phi));
 var y = emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(r,emmy.generic.sin.cljs$core$IFn$_invoke$arity$1(phi));
 return emmy.structure.up.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([x,y], 0));
@@ -935,11 +935,11 @@ return emmy.structure.up.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq
 emmy.mechanics.lagrange.p__GT_r = (function emmy$mechanics$lagrange$p__GT_r(tqv){
 return emmy.mechanics.lagrange.polar__GT_rectangular(emmy.mechanics.lagrange.coordinate(tqv));
 });
-emmy.mechanics.lagrange.spherical__GT_rectangular = (function emmy$mechanics$lagrange$spherical__GT_rectangular(p__59158){
-var vec__59159 = p__59158;
-var r = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59159,(0),null);
-var theta = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59159,(1),null);
-var phi = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59159,(2),null);
+emmy.mechanics.lagrange.spherical__GT_rectangular = (function emmy$mechanics$lagrange$spherical__GT_rectangular(p__59244){
+var vec__59245 = p__59244;
+var r = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59245,(0),null);
+var theta = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59245,(1),null);
+var phi = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59245,(2),null);
 var x = emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$variadic(r,emmy.generic.sin.cljs$core$IFn$_invoke$arity$1(theta),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.generic.cos.cljs$core$IFn$_invoke$arity$1(phi)], 0));
 var y = emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$variadic(r,emmy.generic.sin.cljs$core$IFn$_invoke$arity$1(theta),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.generic.sin.cljs$core$IFn$_invoke$arity$1(phi)], 0));
 var z = emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(r,emmy.generic.cos.cljs$core$IFn$_invoke$arity$1(theta));
@@ -951,11 +951,11 @@ return (emmy.mechanics.lagrange.coordinate_tuple.cljs$core$IFn$_invoke$arity$3 ?
 emmy.mechanics.lagrange.s__GT_r = (function emmy$mechanics$lagrange$s__GT_r(local){
 return emmy.mechanics.lagrange.spherical__GT_rectangular(emmy.mechanics.lagrange.coordinate(local));
 });
-emmy.mechanics.lagrange.rectangular__GT_spherical = (function emmy$mechanics$lagrange$rectangular__GT_spherical(p__59162){
-var vec__59163 = p__59162;
-var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59163,(0),null);
-var y = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59163,(1),null);
-var z = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59163,(2),null);
+emmy.mechanics.lagrange.rectangular__GT_spherical = (function emmy$mechanics$lagrange$rectangular__GT_spherical(p__59248){
+var vec__59249 = p__59248;
+var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59249,(0),null);
+var y = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59249,(1),null);
+var z = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59249,(2),null);
 var r = emmy.generic.sqrt.cljs$core$IFn$_invoke$arity$1(emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$variadic(emmy.generic.square.cljs$core$IFn$_invoke$arity$1(x),emmy.generic.square.cljs$core$IFn$_invoke$arity$1(y),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.generic.square.cljs$core$IFn$_invoke$arity$1(z)], 0)));
 var theta = emmy.generic.acos.cljs$core$IFn$_invoke$arity$1(emmy.generic._SLASH_.cljs$core$IFn$_invoke$arity$2(z,r));
 var phi = emmy.generic.atan.cljs$core$IFn$_invoke$arity$2(y,x);

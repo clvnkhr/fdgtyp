@@ -9,3 +9,13 @@
       speed2 (+ (square ((D x) 't)) (square ((D y) 't)))
       denominator (* speed2 (sqrt speed2))]
   (/ (simplify (* equations denominator)) denominator))
+;; => (down (* (+ (* -1 ((D x) t) ((D y) t) (((expt D 2) y) t))
+;;                (* (((expt D 2) x) t) (expt ((D y) t) 2)))
+;;             (/ 1
+;;                (* (+ (expt ((D x) t) 2) (expt ((D y) t) 2))
+;;                   (sqrt (+ (expt ((D x) t) 2) (expt ((D y) t) 2))))))
+;;          (* (+ (* (expt ((D x) t) 2) (((expt D 2) y) t))
+;;                (* -1 ((D x) t) (((expt D 2) x) t) ((D y) t)))
+;;             (/ 1
+;;                (* (+ (expt ((D x) t) 2) (expt ((D y) t) 2))
+;;                   (sqrt (+ (expt ((D x) t) 2) (expt ((D y) t) 2)))))))

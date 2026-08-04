@@ -1,13 +1,13 @@
 {
-  "id": "20260803T155950Z-from-raw-807ea65-36f300",
-  "target": "from-raw",
+  "id": "fix-ch7-simplify",
+  "target": "emmy-refresh",
   "source": "/Users/calvinkhor/Documents/GitHub/fdgtyp",
   "revision": "807ea65",
-  "startedAt": "2026-08-03T15:59:50.985Z",
+  "startedAt": "2026-08-03T16:05:40.751Z",
   "log": "build.log",
   "status": "failed",
-  "artifacts": null,
   "workspace": null,
-  "finishedAt": "2026-08-03T16:02:41.208Z",
+  "finishedAt": "2026-08-03T16:08:43.177Z",
+  "artifacts": null,
   "archive": "previous-1.tar.gz"
 }

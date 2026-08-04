@@ -20,7 +20,10 @@
 
 ;; scmutils simplified this result automatically; Emmy requires an explicit call.
 (simplify (((+ (commutator e_x e_y) e_z) f) SO3-point))
+;; => 0
 
 (simplify (((+ (commutator e_y e_z) e_x) f) SO3-point))
+;; => 0
 
 (simplify (((+ (commutator e_z e_x) e_y) f) SO3-point))
+;; => 0

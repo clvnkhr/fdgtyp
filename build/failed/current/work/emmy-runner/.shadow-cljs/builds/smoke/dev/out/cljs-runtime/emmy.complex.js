@@ -21,8 +21,8 @@ cljs.core.derive.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword("emmy.compl
  *   part `im`. `im` defaults to 0.
  */
 emmy.complex.complex = (function emmy$complex$complex(var_args){
-var G__28129 = arguments.length;
-switch (G__28129) {
+var G__28169 = arguments.length;
+switch (G__28169) {
 case 1:
 return emmy.complex.complex.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -47,9 +47,9 @@ if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(cljs.core.count(c),(2))){
 throw (new Error("Assert failed: (= (count c) 2)"));
 }
 
-var vec__28132 = c;
-var re = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28132,(0),null);
-var im = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28132,(1),null);
+var vec__28172 = c;
+var re = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28172,(0),null);
+var im = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28172,(1),null);
 return emmy.complex.impl.__GT_Complex(re,im);
 } else {
 return emmy.complex.impl.__GT_Complex(c,(0));
@@ -151,19 +151,19 @@ return and__5160__auto__;
 })())){
 return emmy.util.illegal("gcd can only be computed for gaussian integers.");
 } else {
-var vec__28141 = (((emmy.generic.magnitude.cljs$core$IFn$_invoke$arity$1(l) > emmy.generic.magnitude.cljs$core$IFn$_invoke$arity$1(r)))?new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [l,r], null):new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [r,l], null));
-var l__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28141,(0),null);
-var r__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28141,(1),null);
+var vec__28179 = (((emmy.generic.magnitude.cljs$core$IFn$_invoke$arity$1(l) > emmy.generic.magnitude.cljs$core$IFn$_invoke$arity$1(r)))?new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [l,r], null):new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [r,l], null));
+var l__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28179,(0),null);
+var r__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28179,(1),null);
 var a = l__$1;
 var b = r__$1;
 while(true){
 if(cljs.core.truth_(emmy.generic.zero_QMARK_.cljs$core$IFn$_invoke$arity$1(b))){
 return emmy.complex.abs_real(a);
 } else {
-var G__28262 = b;
-var G__28263 = emmy.generic.sub.cljs$core$IFn$_invoke$arity$2(a,emmy.generic.mul.cljs$core$IFn$_invoke$arity$2(emmy.complex.round(emmy.generic.div.cljs$core$IFn$_invoke$arity$2(a,b)),b));
-a = G__28262;
-b = G__28263;
+var G__28252 = b;
+var G__28253 = emmy.generic.sub.cljs$core$IFn$_invoke$arity$2(a,emmy.generic.mul.cljs$core$IFn$_invoke$arity$2(emmy.complex.round(emmy.generic.div.cljs$core$IFn$_invoke$arity$2(a,b)),b));
+a = G__28252;
+b = G__28253;
 continue;
 }
 break;

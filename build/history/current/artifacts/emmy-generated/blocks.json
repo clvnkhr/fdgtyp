@@ -2987,7 +2987,7 @@
     "smokeEligible": true,
     "forms": [
       {
-        "code": "(simplify (((- ((Lie-derivative V) (d theta)) (d ((Lie-derivative V) theta))) X Y) R3-rect-point)\n          ;; => 0\n)",
+        "code": "(simplify (((- ((Lie-derivative V) (d theta)) (d ((Lie-derivative V) theta))) X Y) R3-rect-point))",
         "capturesResult": true
       }
     ],
@@ -3011,7 +3011,7 @@
     "smokeEligible": true,
     "forms": [
       {
-        "code": "(simplify (((- ((Lie-derivative V) (d omega)) (d ((Lie-derivative V) omega))) X Y Z) R3-rect-point)\n          ;; => 0\n)",
+        "code": "(simplify (((- ((Lie-derivative V) (d omega)) (d ((Lie-derivative V) omega))) X Y Z) R3-rect-point))",
         "capturesResult": true
       }
     ],
@@ -3035,7 +3035,7 @@
     "smokeEligible": true,
     "forms": [
       {
-        "code": "(simplify\n  ((((- (commutator (Lie-derivative X) (Lie-derivative Y)) (Lie-derivative (commutator X Y))) theta)\n     Z)\n    R3-rect-point)\n  ;; => 0\n)",
+        "code": "(simplify\n  ((((- (commutator (Lie-derivative X) (Lie-derivative Y)) (Lie-derivative (commutator X Y))) theta)\n     Z)\n    R3-rect-point))",
         "capturesResult": true
       }
     ],
@@ -3059,7 +3059,7 @@
     "smokeEligible": true,
     "forms": [
       {
-        "code": "(simplify\n  ((((- (commutator (Lie-derivative X) (Lie-derivative Y)) (Lie-derivative (commutator X Y))) omega)\n     Z\n     V)\n    R3-rect-point)\n  ;; => 0\n)",
+        "code": "(simplify\n  ((((- (commutator (Lie-derivative X) (Lie-derivative Y)) (Lie-derivative (commutator X Y))) omega)\n     Z\n     V)\n    R3-rect-point))",
         "capturesResult": true
       }
     ],

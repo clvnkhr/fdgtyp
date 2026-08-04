@@ -101,7 +101,7 @@ function normalizeClojureBlockComments(source) {
 }
 
 function stripCapturedResults(source) {
-  return source.replace(/^;; =>[^\n]*(?:\n;;[^\n]*)*\n?/gm, "");
+  return source.replace(/^[ \t]*;; =>[^\n]*(?:\n[ \t]*;;[^\n]*)*\n?/gm, "");
 }
 
 const inlineZeroResultIds = new Set([
@@ -592,7 +592,6 @@ function topLevelForms(source) {
 function ensureExplicitSimplify(source, id) {
   if (!explicitSimplifyIds.has(id)) return source;
   const code = stripCapturedResults(source);
-  const codeEnd = source.length;
   let start = -1;
   let finalStart = -1;
   let finalEnd = -1;
@@ -630,7 +629,10 @@ function ensureExplicitSimplify(source, id) {
     const between = code.slice(finalEnd).trimEnd();
     return `${prefix}${prefix ? "\n" : ""}${wrappedDefinition[1]}${between ? `\n${between}` : ""}`;
   }
-  if (/^\(simplify\b/.test(form)) return source;
+  // Return the capture-free code even when this form was wrapped by a prior
+  // conversion. Otherwise an indented captured result can remain inside the
+  // simplify form and then receive a second outer capture.
+  if (/^\(simplify\b/.test(form)) return code;
   if (/^\((?:def\w*|declare|define-coordinates|in-ns|ns)\b/.test(form)) {
     return source;
   }
@@ -698,7 +700,8 @@ function commentClojureSource(source) {
 }
 
 function applyReviewedCorrections(source, id) {
-  if (["chapter007-006", "chapter007-007", "chapter007-008", "chapter007-009"].includes(id)) {
+  if (["chapter007-006", "chapter007-007", "chapter007-008", "chapter007-009",
+    "chapter007-025"].includes(id)) {
     // These are identities, but Emmy does not automatically simplify their
     // generic coordinate expansions to the displayed zero. Without this the
     // result capture replaces `0` with expressions hundreds of kilobytes (or

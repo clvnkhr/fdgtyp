@@ -8,7 +8,10 @@
 
 ;; scmutils simplified this result automatically; Emmy requires an explicit call.
 (simplify (((+ (commutator Jx Jy) Jz) g) R3-rect-point))
+;; => 0
 
 (simplify (((+ (commutator Jy Jz) Jx) g) R3-rect-point))
+;; => 0
 
 (simplify (((+ (commutator Jz Jx) Jy) g) R3-rect-point))
+;; => 0

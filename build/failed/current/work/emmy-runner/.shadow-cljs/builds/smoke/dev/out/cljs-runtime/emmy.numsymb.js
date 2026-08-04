@@ -544,8 +544,8 @@ return (new cljs.core.List(null,new cljs.core.Symbol(null,"acos","acos",35374176
 }
 });
 emmy.numsymb.atan = (function emmy$numsymb$atan(var_args){
-var G__36833 = arguments.length;
-switch (G__36833) {
+var G__36877 = arguments.length;
+switch (G__36877) {
 case 1:
 return emmy.numsymb.atan.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -806,9 +806,9 @@ return and__5160__auto____$1;
 return and__5160__auto__;
 }
 })())){
-var G__36861 = cljs.core.first((emmy.numsymb.operands.cljs$core$IFn$_invoke$arity$1 ? emmy.numsymb.operands.cljs$core$IFn$_invoke$arity$1(b) : emmy.numsymb.operands.call(null,b)));
-var G__36862 = cljs.core.quot(e,(2));
-return (emmy.numsymb.expt.cljs$core$IFn$_invoke$arity$2 ? emmy.numsymb.expt.cljs$core$IFn$_invoke$arity$2(G__36861,G__36862) : emmy.numsymb.expt.call(null,G__36861,G__36862));
+var G__36878 = cljs.core.first((emmy.numsymb.operands.cljs$core$IFn$_invoke$arity$1 ? emmy.numsymb.operands.cljs$core$IFn$_invoke$arity$1(b) : emmy.numsymb.operands.call(null,b)));
+var G__36879 = cljs.core.quot(e,(2));
+return (emmy.numsymb.expt.cljs$core$IFn$_invoke$arity$2 ? emmy.numsymb.expt.cljs$core$IFn$_invoke$arity$2(G__36878,G__36879) : emmy.numsymb.expt.call(null,G__36878,G__36879));
 } else {
 if(cljs.core.truth_((function (){var and__5160__auto__ = emmy.numsymb.expt_QMARK_(b);
 if(cljs.core.truth_(and__5160__auto__)){
@@ -817,14 +817,14 @@ return ((emmy.value.number_QMARK_(cljs.core.second((emmy.numsymb.operands.cljs$c
 return and__5160__auto__;
 }
 })())){
-var G__36863 = cljs.core.first((emmy.numsymb.operands.cljs$core$IFn$_invoke$arity$1 ? emmy.numsymb.operands.cljs$core$IFn$_invoke$arity$1(b) : emmy.numsymb.operands.call(null,b)));
-var G__36864 = (cljs.core.second((emmy.numsymb.operands.cljs$core$IFn$_invoke$arity$1 ? emmy.numsymb.operands.cljs$core$IFn$_invoke$arity$1(b) : emmy.numsymb.operands.call(null,b))) * e);
-return (emmy.numsymb.expt.cljs$core$IFn$_invoke$arity$2 ? emmy.numsymb.expt.cljs$core$IFn$_invoke$arity$2(G__36863,G__36864) : emmy.numsymb.expt.call(null,G__36863,G__36864));
+var G__36880 = cljs.core.first((emmy.numsymb.operands.cljs$core$IFn$_invoke$arity$1 ? emmy.numsymb.operands.cljs$core$IFn$_invoke$arity$1(b) : emmy.numsymb.operands.call(null,b)));
+var G__36881 = (cljs.core.second((emmy.numsymb.operands.cljs$core$IFn$_invoke$arity$1 ? emmy.numsymb.operands.cljs$core$IFn$_invoke$arity$1(b) : emmy.numsymb.operands.call(null,b))) * e);
+return (emmy.numsymb.expt.cljs$core$IFn$_invoke$arity$2 ? emmy.numsymb.expt.cljs$core$IFn$_invoke$arity$2(G__36880,G__36881) : emmy.numsymb.expt.call(null,G__36880,G__36881));
 } else {
 if((e < (0))){
-return emmy.numsymb.invert((function (){var G__36866 = b;
-var G__36867 = (- e);
-return (emmy.numsymb.expt.cljs$core$IFn$_invoke$arity$2 ? emmy.numsymb.expt.cljs$core$IFn$_invoke$arity$2(G__36866,G__36867) : emmy.numsymb.expt.call(null,G__36866,G__36867));
+return emmy.numsymb.invert((function (){var G__36882 = b;
+var G__36883 = (- e);
+return (emmy.numsymb.expt.cljs$core$IFn$_invoke$arity$2 ? emmy.numsymb.expt.cljs$core$IFn$_invoke$arity$2(G__36882,G__36883) : emmy.numsymb.expt.call(null,G__36882,G__36883));
 })());
 } else {
 return cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol(null,"expt","expt",2123850345,null),null,(1),null)),(new cljs.core.List(null,b,null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,e,null,(1),null))], 0))));
@@ -1064,14 +1064,14 @@ return emmy.numsymb.sym_COLON__EQ_.cljs$core$IFn$_invoke$arity$2((arguments[(0)]
 break;
 default:
 var args_arr__5922__auto__ = [];
-var len__5897__auto___36937 = arguments.length;
-var i__5898__auto___36938 = (0);
+var len__5897__auto___36934 = arguments.length;
+var i__5898__auto___36935 = (0);
 while(true){
-if((i__5898__auto___36938 < len__5897__auto___36937)){
-args_arr__5922__auto__.push((arguments[i__5898__auto___36938]));
+if((i__5898__auto___36935 < len__5897__auto___36934)){
+args_arr__5922__auto__.push((arguments[i__5898__auto___36935]));
 
-var G__36940 = (i__5898__auto___36938 + (1));
-i__5898__auto___36938 = G__36940;
+var G__36936 = (i__5898__auto___36935 + (1));
+i__5898__auto___36935 = G__36936;
 continue;
 } else {
 }

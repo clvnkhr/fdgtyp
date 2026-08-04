@@ -111,6 +111,31 @@ execFileSync(
   { cwd: root, stdio: "inherit" },
 );
 const ids = new Set();
+function capturedResultInsideForm(source) {
+  let depth = 0;
+  let inString = false;
+  let escaped = false;
+  for (const line of source.split("\n")) {
+    if (/^\s*;; =>/.test(line) && depth > 0) return true;
+    for (let index = 0; index < line.length; index += 1) {
+      const char = line[index];
+      if (inString) {
+        if (escaped) escaped = false;
+        else if (char === "\\") escaped = true;
+        else if (char === '"') inString = false;
+      } else if (char === '"') {
+        inString = true;
+      } else if (char === ";") {
+        break;
+      } else if (char === "(") {
+        depth += 1;
+      } else if (char === ")") {
+        depth -= 1;
+      }
+    }
+  }
+  return false;
+}
 for (const block of manifest) {
   if (ids.has(block.id)) throw new Error(`Duplicate block ID: ${block.id}`);
   ids.add(block.id);
@@ -315,6 +340,9 @@ for (const block of manifest) {
   }
   if (/^;; => #'fdg\.session\//m.test(code)) {
     throw new Error(`${block.id} incorrectly captures a definition Var as mathematical output`);
+  }
+  if (capturedResultInsideForm(code)) {
+    throw new Error(`${block.id} contains a captured result comment inside an executable form`);
   }
   const capturedCount = [...code.matchAll(/^;; =>/gm)].length;
   const expectedCapturedCount = block.forms.filter(form => form.capturesResult).length;

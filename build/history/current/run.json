@@ -1,12 +1,12 @@
 {
-  "id": "static-layout-test",
-  "target": "emmy-convert",
+  "id": "fix-nested-captures-final",
+  "target": "emmy-refresh",
   "source": "/Users/calvinkhor/Documents/GitHub/fdgtyp",
-  "revision": "a4547e9",
-  "startedAt": "2026-08-04T09:42:07.249Z",
+  "revision": "c197592",
+  "startedAt": "2026-08-04T10:26:50.807Z",
   "log": "build.log",
   "status": "succeeded",
   "artifacts": "/Users/calvinkhor/Documents/GitHub/fdgtyp/build/current",
   "workspace": "/Users/calvinkhor/Documents/GitHub/fdgtyp/build/history/current/work",
-  "finishedAt": "2026-08-04T09:42:16.804Z"
+  "finishedAt": "2026-08-04T10:29:42.256Z"
 }

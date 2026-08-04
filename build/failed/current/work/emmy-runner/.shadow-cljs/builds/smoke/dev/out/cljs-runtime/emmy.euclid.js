@@ -26,18 +26,18 @@ if(cljs.core.truth_(emmy.generic.zero_QMARK_.cljs$core$IFn$_invoke$arity$1(r))){
 return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [r0,s0,t0], null);
 } else {
 var q = emmy.generic.quotient.cljs$core$IFn$_invoke$arity$2(r0,r);
-var G__26754 = emmy.generic._.cljs$core$IFn$_invoke$arity$2(s0,emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(q,s));
-var G__26755 = s;
-var G__26756 = emmy.generic._.cljs$core$IFn$_invoke$arity$2(t0,emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(q,t));
-var G__26757 = t;
-var G__26758 = emmy.generic._.cljs$core$IFn$_invoke$arity$2(r0,emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(q,r));
-var G__26759 = r;
-s = G__26754;
-s0 = G__26755;
-t = G__26756;
-t0 = G__26757;
-r = G__26758;
-r0 = G__26759;
+var G__26736 = emmy.generic._.cljs$core$IFn$_invoke$arity$2(s0,emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(q,s));
+var G__26737 = s;
+var G__26738 = emmy.generic._.cljs$core$IFn$_invoke$arity$2(t0,emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(q,t));
+var G__26739 = t;
+var G__26740 = emmy.generic._.cljs$core$IFn$_invoke$arity$2(r0,emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(q,r));
+var G__26741 = r;
+s = G__26736;
+s0 = G__26737;
+t = G__26738;
+t0 = G__26739;
+r = G__26740;
+r0 = G__26741;
 continue;
 }
 break;
@@ -76,10 +76,10 @@ while(true){
 if(cljs.core.truth_(emmy.generic.zero_QMARK_.cljs$core$IFn$_invoke$arity$1(b__$1))){
 return a__$1;
 } else {
-var G__26760 = b__$1;
-var G__26761 = emmy.generic.remainder.cljs$core$IFn$_invoke$arity$2(a__$1,b__$1);
-a__$1 = G__26760;
-b__$1 = G__26761;
+var G__26742 = b__$1;
+var G__26743 = emmy.generic.remainder.cljs$core$IFn$_invoke$arity$2(a__$1,b__$1);
+a__$1 = G__26742;
+b__$1 = G__26743;
 continue;
 }
 break;

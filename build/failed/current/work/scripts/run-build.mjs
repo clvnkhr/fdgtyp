@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { cpSync, createWriteStream, existsSync, lstatSync, mkdirSync, readFileSync, readdirSync, realpathSync, renameSync, rmSync, statSync, symlinkSync, writeFileSync } from "node:fs";
+import { cpSync, createWriteStream, existsSync, lstatSync, mkdirSync, readFileSync, realpathSync, renameSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
 import { execFileSync, spawn } from "node:child_process";
 import path from "node:path";
 import { randomBytes } from "node:crypto";
@@ -139,30 +139,71 @@ const finish = (status, extra = {}) => writeFileSync(manifestPath, JSON.stringif
   status,
 }, null, 2) + "\n");
 
-function existingCurrentId(currentDir) {
-  const manifest = path.join(currentDir, "run.json");
-  if (!existsSync(manifest)) return `legacy-${Date.now()}`;
-  const id = JSON.parse(readFileSync(manifest, "utf8")).id;
-  return /^[A-Za-z0-9][A-Za-z0-9._-]*$/.test(id) ? id : `legacy-${Date.now()}`;
+function archiveDirectory(source, archive) {
+  const temporary = `${archive}.tmp-${process.pid}`;
+  try {
+    execFileSync("tar", ["-czf", temporary, "-C", source, "."], {
+      stdio: "inherit",
+    });
+    renameSync(temporary, archive);
+    rmSync(source, { recursive: true, force: true });
+  } catch (error) {
+    rmSync(temporary, { force: true });
+    throw error;
+  }
 }
 
-function pruneToNewest(directory, count) {
-  const retained = readdirSync(directory)
-    .map(name => ({ name, path: path.join(directory, name), time: statSync(path.join(directory, name)).mtimeMs }))
-    .sort((a, b) => b.time - a.time);
-  for (const stale of retained.slice(count)) rmSync(stale.path, { recursive: true, force: true });
+function rotateRetainedRuns(directory) {
+  const current = path.join(directory, "current");
+  const previous1 = path.join(directory, "previous-1.tar.gz");
+  const previous2 = path.join(directory, "previous-2.tar.gz");
+  const previous1Metadata = path.join(directory, "previous-1.json");
+  const previous2Metadata = path.join(directory, "previous-2.json");
+  rmSync(previous2, { force: true });
+  rmSync(previous2Metadata, { force: true });
+  if (existsSync(previous1)) renameSync(previous1, previous2);
+  if (existsSync(previous1Metadata)) {
+    const metadata = JSON.parse(readFileSync(previous1Metadata, "utf8"));
+    writeFileSync(previous2Metadata, JSON.stringify({
+      ...metadata,
+      archive: path.basename(previous2),
+    }, null, 2) + "\n");
+    rmSync(previous1Metadata, { force: true });
+  }
+  if (existsSync(current)) {
+    const metadataTemporary = `${previous1Metadata}.tmp-${process.pid}`;
+    const metadata = JSON.parse(readFileSync(path.join(current, "run.json"), "utf8"));
+    writeFileSync(metadataTemporary, JSON.stringify({
+      ...metadata,
+      artifacts: null,
+      workspace: null,
+      archive: path.basename(previous1),
+    }, null, 2) + "\n");
+    try {
+      archiveDirectory(current, previous1);
+      renameSync(metadataTemporary, previous1Metadata);
+    } catch (error) {
+      rmSync(metadataTemporary, { force: true });
+      throw error;
+    }
+  }
 }
 
 function promoteCurrent() {
   const historyDir = path.join(buildDir, "history");
   const currentDir = path.join(buildDir, "current");
+  const currentRunDir = path.join(historyDir, "current");
   mkdirSync(historyDir, { recursive: true });
 
-  // Migrate the one-build layout introduced earlier, if present.
-  if (existsSync(currentDir) && !lstatSync(currentDir).isSymbolicLink()) {
-    const previousDir = path.join(historyDir, existingCurrentId(currentDir));
-    if (existsSync(previousDir)) rmSync(previousDir, { recursive: true, force: true });
-    renameSync(currentDir, previousDir);
+  // Accept the earlier timestamped layout during the first promotion after an
+  // upgrade. The committed tree itself uses the static current slot.
+  if (!existsSync(currentRunDir) && existsSync(currentDir)) {
+    if (lstatSync(currentDir).isSymbolicLink()) {
+      const legacyRunDir = path.dirname(realpathSync(currentDir));
+      renameSync(legacyRunDir, currentRunDir);
+    } else {
+      renameSync(currentDir, currentRunDir);
+    }
   }
 
   const artifactsDir = path.join(runDir, "artifacts");
@@ -177,23 +218,21 @@ function promoteCurrent() {
   cpSync(manifestPath, path.join(artifactsDir, "run.json"));
   cpSync(logPath, path.join(artifactsDir, "build.log"));
 
-  const finalDir = path.join(historyDir, runId);
-  renameSync(runDir, finalDir);
+  rotateRetainedRuns(historyDir);
+  renameSync(runDir, currentRunDir);
   rmSync(currentDir, { recursive: true, force: true });
-  symlinkSync(path.join("history", runId, "artifacts"), currentDir, "dir");
+  symlinkSync(path.join("history", "current", "artifacts"), currentDir, "dir");
 
-  pruneToNewest(historyDir, 3);
-  return finalDir;
+  return currentRunDir;
 }
 
 function retainFailure() {
   const failedDir = path.join(buildDir, "failed");
+  const currentFailureDir = path.join(failedDir, "current");
   mkdirSync(failedDir, { recursive: true });
-  const finalDir = path.join(failedDir, runId);
-  if (existsSync(finalDir)) rmSync(finalDir, { recursive: true, force: true });
-  renameSync(runDir, finalDir);
-  pruneToNewest(failedDir, 3);
-  return finalDir;
+  rotateRetainedRuns(failedDir);
+  renameSync(runDir, currentFailureDir);
+  return currentFailureDir;
 }
 
 console.log(`FDG build run: ${runDir}`);
@@ -226,14 +265,14 @@ try {
   if (exitCode !== 0) throw new Error(`make exited with status ${exitCode}`);
   finish("succeeded", {
     artifacts: path.join(buildDir, "current"),
-    workspace: path.join(buildDir, "history", runId, "work"),
+    workspace: path.join(buildDir, "history", "current", "work"),
   });
-  // Promotion occurs only after a successful build. `build/current` points to
-  // the latest entry while history retains the three newest successful runs.
+  // Promotion occurs only after a successful build. Static slot names make
+  // successive generated trees directly comparable in Git.
   promoteCurrent();
   console.log(`FDG build artifacts: ${path.join(buildDir, "current")}`);
 } catch (error) {
-  finish("failed", { workspace: workDir });
+  finish("failed", { workspace: path.join(buildDir, "failed", "current", "work") });
   const failureDir = retainFailure();
   console.error(`FDG failed build retained: ${failureDir}`);
   throw error;

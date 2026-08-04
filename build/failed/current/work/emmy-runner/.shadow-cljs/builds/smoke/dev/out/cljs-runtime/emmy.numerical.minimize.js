@@ -6,8 +6,8 @@ goog.provide('emmy.numerical.minimize');
  *   count and the values of x and f(x) at each search step.
  */
 emmy.numerical.minimize.minimize = (function emmy$numerical$minimize$minimize(var_args){
-var G__49406 = arguments.length;
-switch (G__49406) {
+var G__49414 = arguments.length;
+switch (G__49414) {
 case 3:
 return emmy.numerical.minimize.minimize.cljs$core$IFn$_invoke$arity$3((arguments[(0)]),(arguments[(1)]),(arguments[(2)]));
 
@@ -40,14 +40,14 @@ return emmy.numerical.unimin.brent.brent_min.cljs$core$IFn$_invoke$arity$4(f,a,b
  */
 emmy.numerical.minimize.multidimensional_minimize = (function emmy$numerical$minimize$multidimensional_minimize(var_args){
 var args__5903__auto__ = [];
-var len__5897__auto___49413 = arguments.length;
-var i__5898__auto___49414 = (0);
+var len__5897__auto___49423 = arguments.length;
+var i__5898__auto___49424 = (0);
 while(true){
-if((i__5898__auto___49414 < len__5897__auto___49413)){
-args__5903__auto__.push((arguments[i__5898__auto___49414]));
+if((i__5898__auto___49424 < len__5897__auto___49423)){
+args__5903__auto__.push((arguments[i__5898__auto___49424]));
 
-var G__49415 = (i__5898__auto___49414 + (1));
-i__5898__auto___49414 = G__49415;
+var G__49425 = (i__5898__auto___49424 + (1));
+i__5898__auto___49424 = G__49425;
 continue;
 } else {
 }
@@ -58,11 +58,11 @@ var argseq__5904__auto__ = ((((2) < args__5903__auto__.length))?(new cljs.core.I
 return emmy.numerical.minimize.multidimensional_minimize.cljs$core$IFn$_invoke$arity$variadic((arguments[(0)]),(arguments[(1)]),argseq__5904__auto__);
 });
 
-(emmy.numerical.minimize.multidimensional_minimize.cljs$core$IFn$_invoke$arity$variadic = (function (func,x0,p__49410){
-var map__49411 = p__49410;
-var map__49411__$1 = cljs.core.__destructure_map(map__49411);
-var opts = map__49411__$1;
-var info_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__49411__$1,new cljs.core.Keyword(null,"info?","info?",361925553));
+(emmy.numerical.minimize.multidimensional_minimize.cljs$core$IFn$_invoke$arity$variadic = (function (func,x0,p__49420){
+var map__49421 = p__49420;
+var map__49421__$1 = cljs.core.__destructure_map(map__49421);
+var opts = map__49421__$1;
+var info_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__49421__$1,new cljs.core.Keyword(null,"info?","info?",361925553));
 var result = emmy.numerical.multimin.nelder_mead.nelder_mead(func,x0,opts);
 if(cljs.core.truth_(new cljs.core.Keyword(null,"converged?","converged?",1779059976).cljs$core$IFn$_invoke$arity$1(result))){
 if(cljs.core.truth_(info_QMARK_)){
@@ -78,13 +78,13 @@ return emmy.util.failure_to_converge((""+"multidimensional-minimize failed to co
 (emmy.numerical.minimize.multidimensional_minimize.cljs$lang$maxFixedArity = (2));
 
 /** @this {Function} */
-(emmy.numerical.minimize.multidimensional_minimize.cljs$lang$applyTo = (function (seq49407){
-var G__49408 = cljs.core.first(seq49407);
-var seq49407__$1 = cljs.core.next(seq49407);
-var G__49409 = cljs.core.first(seq49407__$1);
-var seq49407__$2 = cljs.core.next(seq49407__$1);
+(emmy.numerical.minimize.multidimensional_minimize.cljs$lang$applyTo = (function (seq49416){
+var G__49417 = cljs.core.first(seq49416);
+var seq49416__$1 = cljs.core.next(seq49416);
+var G__49418 = cljs.core.first(seq49416__$1);
+var seq49416__$2 = cljs.core.next(seq49416__$1);
 var self__5882__auto__ = this;
-return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__49408,G__49409,seq49407__$2);
+return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__49417,G__49418,seq49416__$2);
 }));
 
 

@@ -28,8 +28,8 @@ goog.provide('emmy.numerical.quadrature.simpson38');
  *   memoize your function before calling `simpson38-sequence`.
  */
 emmy.numerical.quadrature.simpson38.simpson38_sequence = (function emmy$numerical$quadrature$simpson38$simpson38_sequence(var_args){
-var G__57041 = arguments.length;
-switch (G__57041) {
+var G__56644 = arguments.length;
+switch (G__56644) {
 case 3:
 return emmy.numerical.quadrature.simpson38.simpson38_sequence.cljs$core$IFn$_invoke$arity$3((arguments[(0)]),(arguments[(1)]),(arguments[(2)]));
 
@@ -48,10 +48,10 @@ throw (new Error(["Invalid arity: ",arguments.length].join("")));
 return emmy.numerical.quadrature.simpson38.simpson38_sequence.cljs$core$IFn$_invoke$arity$4(f,a,b,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"n","n",562130025),(1)], null));
 }));
 
-(emmy.numerical.quadrature.simpson38.simpson38_sequence.cljs$core$IFn$_invoke$arity$4 = (function (f,a,b,p__57042){
-var map__57043 = p__57042;
-var map__57043__$1 = cljs.core.__destructure_map(map__57043);
-var n = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__57043__$1,new cljs.core.Keyword(null,"n","n",562130025),(1));
+(emmy.numerical.quadrature.simpson38.simpson38_sequence.cljs$core$IFn$_invoke$arity$4 = (function (f,a,b,p__56668){
+var map__56669 = p__56668;
+var map__56669__$1 = cljs.core.__destructure_map(map__56669);
+var n = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__56669__$1,new cljs.core.Keyword(null,"n","n",562130025),(1));
 if(typeof n === 'number'){
 } else {
 throw (new Error("Assert failed: (number? n)"));

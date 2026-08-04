@@ -78,8 +78,14 @@ if (!smokeSource.includes("(defn locate-form")
     || !smokeSource.includes("(clojure.string/join \"\\\\s+\")")) {
   throw new Error("Captured results must tolerate formatter whitespace changes");
 }
-if (!workerSource.includes("(or (:backgroundSetup block) (not (:executable block)))")) {
+if (!workerSource.includes("(:backgroundSetup block)")
+    || !workerSource.includes("(not (:executable block))")) {
   throw new Error("The web runner must not evaluate cached, non-executable Scheme output");
+}
+if (!runnerSource.includes('(remove :capturesResult)')
+    || !runnerSource.includes('(definition-block? %)')
+    || !workerSource.includes('(and (not selected?) (every? :capturesResult (:forms block)))')) {
+  throw new Error("Run-through must replay only definition forms from blocks before the selected example");
 }
 if (!workerSource.includes('["fdg.session" "emmy.env" "fdg.compat"]')
     || !workerSource.includes('(symbol % token)')) {
@@ -105,6 +111,31 @@ execFileSync(
   { cwd: root, stdio: "inherit" },
 );
 const ids = new Set();
+function capturedResultInsideForm(source) {
+  let depth = 0;
+  let inString = false;
+  let escaped = false;
+  for (const line of source.split("\n")) {
+    if (/^\s*;; =>/.test(line) && depth > 0) return true;
+    for (let index = 0; index < line.length; index += 1) {
+      const char = line[index];
+      if (inString) {
+        if (escaped) escaped = false;
+        else if (char === "\\") escaped = true;
+        else if (char === '"') inString = false;
+      } else if (char === '"') {
+        inString = true;
+      } else if (char === ";") {
+        break;
+      } else if (char === "(") {
+        depth += 1;
+      } else if (char === ")") {
+        depth -= 1;
+      }
+    }
+  }
+  return false;
+}
 for (const block of manifest) {
   if (ids.has(block.id)) throw new Error(`Duplicate block ID: ${block.id}`);
   ids.add(block.id);
@@ -147,6 +178,14 @@ for (const id of ["chapter007-025", "chapter008-017", "chapter009-020"]) {
   const block = manifest.find(candidate => candidate.id === id);
   if (!block?.executable || block.smokeEligible !== true) {
     throw new Error(`${id} must remain an executable smoke-tested ClojureScript example`);
+  }
+}
+{
+  const block = manifest.find(candidate => candidate.id === "chapter007-025");
+  const ordinal = String(block.ordinal).padStart(3, "0");
+  const cljs = readFileSync(path.join(root, "codeblocks", block.chapter, `${ordinal}.cljs`), "utf8");
+  if (!/^\(simplify\s/.test(cljs)) {
+    throw new Error("chapter007-025 must explicitly simplify its covariant-derivative result");
   }
 }
 
@@ -301,6 +340,9 @@ for (const block of manifest) {
   }
   if (/^;; => #'fdg\.session\//m.test(code)) {
     throw new Error(`${block.id} incorrectly captures a definition Var as mathematical output`);
+  }
+  if (capturedResultInsideForm(code)) {
+    throw new Error(`${block.id} contains a captured result comment inside an executable form`);
   }
   const capturedCount = [...code.matchAll(/^;; =>/gm)].length;
   const expectedCapturedCount = block.forms.filter(form => form.capturesResult).length;

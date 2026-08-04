@@ -13,34 +13,34 @@ emmy.numerical.quadrature.common.closed_QMARK_ = (function emmy$numerical$quadra
 return cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(x,emmy.numerical.quadrature.common.closed);
 });
 emmy.numerical.quadrature.common.open_QMARK_ = cljs.core.complement(emmy.numerical.quadrature.common.closed_QMARK_);
-emmy.numerical.quadrature.common.close_l = (function emmy$numerical$quadrature$common$close_l(p__54260){
-var vec__54262 = p__54260;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54262,(0),null);
-var r = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54262,(1),null);
+emmy.numerical.quadrature.common.close_l = (function emmy$numerical$quadrature$common$close_l(p__54293){
+var vec__54294 = p__54293;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54294,(0),null);
+var r = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54294,(1),null);
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("emmy.numerical.quadrature.common","closed","emmy.numerical.quadrature.common/closed",-1976285246),r], null);
 });
-emmy.numerical.quadrature.common.close_r = (function emmy$numerical$quadrature$common$close_r(p__54265){
-var vec__54266 = p__54265;
-var l = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54266,(0),null);
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54266,(1),null);
+emmy.numerical.quadrature.common.close_r = (function emmy$numerical$quadrature$common$close_r(p__54297){
+var vec__54298 = p__54297;
+var l = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54298,(0),null);
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54298,(1),null);
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [l,new cljs.core.Keyword("emmy.numerical.quadrature.common","closed","emmy.numerical.quadrature.common/closed",-1976285246)], null);
 });
-emmy.numerical.quadrature.common.open_l = (function emmy$numerical$quadrature$common$open_l(p__54269){
-var vec__54270 = p__54269;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54270,(0),null);
-var r = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54270,(1),null);
+emmy.numerical.quadrature.common.open_l = (function emmy$numerical$quadrature$common$open_l(p__54303){
+var vec__54304 = p__54303;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54304,(0),null);
+var r = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54304,(1),null);
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("emmy.numerical.quadrature.common","open","emmy.numerical.quadrature.common/open",-708131519),r], null);
 });
-emmy.numerical.quadrature.common.open_r = (function emmy$numerical$quadrature$common$open_r(p__54273){
-var vec__54274 = p__54273;
-var l = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54274,(0),null);
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54274,(1),null);
+emmy.numerical.quadrature.common.open_r = (function emmy$numerical$quadrature$common$open_r(p__54307){
+var vec__54308 = p__54307;
+var l = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54308,(0),null);
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54308,(1),null);
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [l,new cljs.core.Keyword("emmy.numerical.quadrature.common","open","emmy.numerical.quadrature.common/open",-708131519)], null);
 });
-emmy.numerical.quadrature.common.flip = (function emmy$numerical$quadrature$common$flip(p__54277){
-var vec__54278 = p__54277;
-var l = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54278,(0),null);
-var r = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54278,(1),null);
+emmy.numerical.quadrature.common.flip = (function emmy$numerical$quadrature$common$flip(p__54311){
+var vec__54312 = p__54311;
+var l = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54312,(0),null);
+var r = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54312,(1),null);
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [r,l], null);
 });
 /**
@@ -69,8 +69,8 @@ return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(opts,new cljs.core.Keyword(
  */
 emmy.numerical.quadrature.common.update_interval = (function emmy$numerical$quadrature$common$update_interval(opts,f){
 var k = new cljs.core.Keyword(null,"interval","interval",1708495417);
-return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(opts,k,(function (){var G__54281 = emmy.numerical.quadrature.common.interval(opts);
-return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__54281) : f.call(null,G__54281));
+return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(opts,k,(function (){var G__54319 = emmy.numerical.quadrature.common.interval(opts);
+return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__54319) : f.call(null,G__54319));
 })());
 });
 /**
@@ -111,11 +111,11 @@ var emmy$numerical$quadrature$common$make_integrator_fn_$_call = null;
 var emmy$numerical$quadrature$common$make_integrator_fn_$_call__3 = (function (f,a,b){
 return emmy$numerical$quadrature$common$make_integrator_fn_$_call.cljs$core$IFn$_invoke$arity$4(f,a,b,cljs.core.PersistentArrayMap.EMPTY);
 });
-var emmy$numerical$quadrature$common$make_integrator_fn_$_call__4 = (function (f,a,b,p__54288){
-var map__54289 = p__54288;
-var map__54289__$1 = cljs.core.__destructure_map(map__54289);
-var opts = map__54289__$1;
-var roundoff_cutoff = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__54289__$1,new cljs.core.Keyword(null,"roundoff-cutoff","roundoff-cutoff",1739938187),emmy.numerical.quadrature.common._STAR_roundoff_cutoff_STAR_);
+var emmy$numerical$quadrature$common$make_integrator_fn_$_call__4 = (function (f,a,b,p__54320){
+var map__54326 = p__54320;
+var map__54326__$1 = cljs.core.__destructure_map(map__54326);
+var opts = map__54326__$1;
+var roundoff_cutoff = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__54326__$1,new cljs.core.Keyword(null,"roundoff-cutoff","roundoff-cutoff",1739938187),emmy.numerical.quadrature.common._STAR_roundoff_cutoff_STAR_);
 if(emmy.numerical.quadrature.common.narrow_slice_QMARK_(a,b,roundoff_cutoff)){
 taoensso.timbre._log_BANG_.cljs$core$IFn$_invoke$arity$11(taoensso.timbre._STAR_config_STAR_,new cljs.core.Keyword(null,"info","info",-317069002),"emmy.numerical.quadrature.common",null,136,new cljs.core.Keyword(null,"p","p",151049309),new cljs.core.Keyword(null,"auto","auto",-566279492),(new cljs.core.Delay((function (){
 return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, ["Integrating narrow slice: ",a,b], null);
@@ -126,12 +126,12 @@ return new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"co
 return emmy.util.stream.seq_limit.cljs$core$IFn$_invoke$arity$2((seq_fn.cljs$core$IFn$_invoke$arity$4 ? seq_fn.cljs$core$IFn$_invoke$arity$4(f,a,b,opts) : seq_fn.call(null,f,a,b,opts)),opts);
 }
 });
-emmy$numerical$quadrature$common$make_integrator_fn_$_call = function(f,a,b,p__54288){
+emmy$numerical$quadrature$common$make_integrator_fn_$_call = function(f,a,b,p__54320){
 switch(arguments.length){
 case 3:
 return emmy$numerical$quadrature$common$make_integrator_fn_$_call__3.call(this,f,a,b);
 case 4:
-return emmy$numerical$quadrature$common$make_integrator_fn_$_call__4.call(this,f,a,b,p__54288);
+return emmy$numerical$quadrature$common$make_integrator_fn_$_call__4.call(this,f,a,b,p__54320);
 }
 throw(new Error('Invalid arity: ' + arguments.length));
 };
@@ -152,8 +152,8 @@ return emmy$numerical$quadrature$common$make_integrator_fn_$_call;
  *   list of unprocessed macro arguments.
  */
 emmy.numerical.quadrature.common.name_with_attributes = (function emmy$numerical$quadrature$common$name_with_attributes(var_args){
-var G__54296 = arguments.length;
-switch (G__54296) {
+var G__54328 = arguments.length;
+switch (G__54328) {
 case 2:
 return emmy.numerical.quadrature.common.name_with_attributes.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -173,12 +173,12 @@ return emmy.numerical.quadrature.common.name_with_attributes.cljs$core$IFn$_invo
 }));
 
 (emmy.numerical.quadrature.common.name_with_attributes.cljs$core$IFn$_invoke$arity$3 = (function (name,body,meta){
-var vec__54300 = ((typeof cljs.core.first(body) === 'string')?new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.first(body),cljs.core.next(body)], null):new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [null,body], null));
-var docstring = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54300,(0),null);
-var body__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54300,(1),null);
-var vec__54303 = ((cljs.core.map_QMARK_(cljs.core.first(body__$1)))?new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.first(body__$1),cljs.core.next(body__$1)], null):new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.PersistentArrayMap.EMPTY,body__$1], null));
-var attr = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54303,(0),null);
-var body__$2 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54303,(1),null);
+var vec__54333 = ((typeof cljs.core.first(body) === 'string')?new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.first(body),cljs.core.next(body)], null):new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [null,body], null));
+var docstring = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54333,(0),null);
+var body__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54333,(1),null);
+var vec__54336 = ((cljs.core.map_QMARK_(cljs.core.first(body__$1)))?new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.first(body__$1),cljs.core.next(body__$1)], null):new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.PersistentArrayMap.EMPTY,body__$1], null));
+var attr = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54336,(0),null);
+var body__$2 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54336,(1),null);
 var attr__$1 = cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([meta,attr], 0));
 var attr__$2 = (cljs.core.truth_(docstring)?cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(attr__$1,new cljs.core.Keyword(null,"doc","doc",1913296891),docstring):attr__$1);
 var attr__$3 = (cljs.core.truth_((meta.cljs$core$IFn$_invoke$arity$1 ? meta.cljs$core$IFn$_invoke$arity$1(name) : meta.call(null,name)))?cljs.core.conj.cljs$core$IFn$_invoke$arity$2((meta.cljs$core$IFn$_invoke$arity$1 ? meta.cljs$core$IFn$_invoke$arity$1(name) : meta.call(null,name)),attr__$2):attr__$2);
@@ -192,14 +192,14 @@ return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMP
  */
 emmy.numerical.quadrature.common.defintegrator = (function emmy$numerical$quadrature$common$defintegrator(var_args){
 var args__5903__auto__ = [];
-var len__5897__auto___54346 = arguments.length;
-var i__5898__auto___54347 = (0);
+var len__5897__auto___54361 = arguments.length;
+var i__5898__auto___54362 = (0);
 while(true){
-if((i__5898__auto___54347 < len__5897__auto___54346)){
-args__5903__auto__.push((arguments[i__5898__auto___54347]));
+if((i__5898__auto___54362 < len__5897__auto___54361)){
+args__5903__auto__.push((arguments[i__5898__auto___54362]));
 
-var G__54348 = (i__5898__auto___54347 + (1));
-i__5898__auto___54347 = G__54348;
+var G__54363 = (i__5898__auto___54362 + (1));
+i__5898__auto___54362 = G__54363;
 continue;
 } else {
 }
@@ -213,13 +213,13 @@ return emmy.numerical.quadrature.common.defintegrator.cljs$core$IFn$_invoke$arit
 (emmy.numerical.quadrature.common.defintegrator.cljs$core$IFn$_invoke$arity$variadic = (function (_AMPERSAND_form,_AMPERSAND_env,sym,body){
 var _AMPERSAND_env__$1 = cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(_AMPERSAND_env,new cljs.core.Keyword(null,"sci?","sci?",2029704845),true);
 var meta = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"arglists","arglists",1661989754),(new cljs.core.List(null,new cljs.core.Symbol(null,"quote","quote",1377916282,null),(new cljs.core.List(null,cljs.core.list(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"f","f",43394975,null),new cljs.core.Symbol(null,"a","a",-482876059,null),new cljs.core.Symbol(null,"b","b",-1172211299,null)], null),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"f","f",43394975,null),new cljs.core.Symbol(null,"a","a",-482876059,null),new cljs.core.Symbol(null,"b","b",-1172211299,null),new cljs.core.Symbol(null,"opts","opts",1795607228,null)], null)),null,(1),null)),(2),null))], null);
-var vec__54315 = emmy.numerical.quadrature.common.name_with_attributes.cljs$core$IFn$_invoke$arity$3(sym,body,meta);
-var sym__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54315,(0),null);
-var body__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54315,(1),null);
-var map__54318 = cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,body__$1);
-var map__54318__$1 = cljs.core.__destructure_map(map__54318);
-var area_fn = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__54318__$1,new cljs.core.Keyword(null,"area-fn","area-fn",-1818898652));
-var seq_fn = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__54318__$1,new cljs.core.Keyword(null,"seq-fn","seq-fn",-991013231));
+var vec__54348 = emmy.numerical.quadrature.common.name_with_attributes.cljs$core$IFn$_invoke$arity$3(sym,body,meta);
+var sym__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54348,(0),null);
+var body__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54348,(1),null);
+var map__54351 = cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,body__$1);
+var map__54351__$1 = cljs.core.__destructure_map(map__54351);
+var area_fn = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__54351__$1,new cljs.core.Keyword(null,"area-fn","area-fn",-1818898652));
+var seq_fn = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__54351__$1,new cljs.core.Keyword(null,"seq-fn","seq-fn",-991013231));
 if(cljs.core.truth_(seq_fn)){
 } else {
 throw (new Error((""+"Assert failed: "+cljs.core.str.cljs$core$IFn$_invoke$arity$1((""+"defintegrator "+cljs.core.str.cljs$core$IFn$_invoke$arity$1(sym__$1)+": seq-fn cannot be nil"))+"\n"+"seq-fn")));
@@ -236,15 +236,15 @@ return cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.
 (emmy.numerical.quadrature.common.defintegrator.cljs$lang$maxFixedArity = (3));
 
 /** @this {Function} */
-(emmy.numerical.quadrature.common.defintegrator.cljs$lang$applyTo = (function (seq54306){
-var G__54307 = cljs.core.first(seq54306);
-var seq54306__$1 = cljs.core.next(seq54306);
-var G__54308 = cljs.core.first(seq54306__$1);
-var seq54306__$2 = cljs.core.next(seq54306__$1);
-var G__54309 = cljs.core.first(seq54306__$2);
-var seq54306__$3 = cljs.core.next(seq54306__$2);
+(emmy.numerical.quadrature.common.defintegrator.cljs$lang$applyTo = (function (seq54339){
+var G__54340 = cljs.core.first(seq54339);
+var seq54339__$1 = cljs.core.next(seq54339);
+var G__54341 = cljs.core.first(seq54339__$1);
+var seq54339__$2 = cljs.core.next(seq54339__$1);
+var G__54342 = cljs.core.first(seq54339__$2);
+var seq54339__$3 = cljs.core.next(seq54339__$2);
 var self__5882__auto__ = this;
-return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__54307,G__54308,G__54309,seq54306__$3);
+return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__54340,G__54341,G__54342,seq54339__$3);
 }));
 
 

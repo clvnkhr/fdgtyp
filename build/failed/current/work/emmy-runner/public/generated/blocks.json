@@ -3512,7 +3512,7 @@
     "smokeEligible": true,
     "forms": [
       {
-        "code": "(((((covariant-derivative R2-polar-Cartan) d:dx) circular) f) R2-rect-point)",
+        "code": "(simplify (((((covariant-derivative R2-polar-Cartan) d:dx) circular) f) R2-rect-point))",
         "capturesResult": true
       }
     ],

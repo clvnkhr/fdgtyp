@@ -25,16 +25,16 @@ return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMP
  *   See these notes for the derivation of this method:
  *   http://fourier.eng.hmc.edu/e176/lectures/NM/node25.html
  */
-emmy.numerical.unimin.bracket.parabolic_pieces = (function emmy$numerical$unimin$bracket$parabolic_pieces(p__49171,p__49172,p__49173){
-var vec__49174 = p__49171;
-var xa = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49174,(0),null);
-var fa = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49174,(1),null);
-var vec__49177 = p__49172;
-var xb = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49177,(0),null);
-var fb = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49177,(1),null);
-var vec__49180 = p__49173;
-var xc = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49180,(0),null);
-var fc = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49180,(1),null);
+emmy.numerical.unimin.bracket.parabolic_pieces = (function emmy$numerical$unimin$bracket$parabolic_pieces(p__49169,p__49170,p__49171){
+var vec__49172 = p__49169;
+var xa = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49172,(0),null);
+var fa = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49172,(1),null);
+var vec__49175 = p__49170;
+var xb = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49175,(0),null);
+var fb = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49175,(1),null);
+var vec__49178 = p__49171;
+var xc = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49178,(0),null);
+var fc = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49178,(1),null);
 var _PERCENT_ = (function (){var tmp1 = ((xb - xa) * (fb - fc));
 var tmp2 = ((xb - xc) * (fb - fa));
 var v = (tmp2 - tmp1);
@@ -46,11 +46,11 @@ return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMP
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [p,emmy.generic.abs.cljs$core$IFn$_invoke$arity$1(q)], null);
 }
 })();
-if(cljs.core.truth_((function (p1__49170_SHARP_){
-return (cljs.core.second(p1__49170_SHARP_) >= (0));
+if(cljs.core.truth_((function (p1__49168_SHARP_){
+return (cljs.core.second(p1__49168_SHARP_) >= (0));
 }))){
 } else {
-throw (new Error("Assert failed: (fn* [p1__49170#] (>= (second p1__49170#) 0))"));
+throw (new Error("Assert failed: (fn* [p1__49168#] (>= (second p1__49168#) 0))"));
 }
 
 return _PERCENT_;
@@ -62,14 +62,14 @@ return _PERCENT_;
  *   If the supplied points are colinear, returns a point that takes a large jump
  *   in the direction of the downward slope of the line.
  */
-emmy.numerical.unimin.bracket.parabolic_step = (function emmy$numerical$unimin$bracket$parabolic_step(a,p__49185,c){
-var vec__49186 = p__49185;
-var xb = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49186,(0),null);
-var b = vec__49186;
+emmy.numerical.unimin.bracket.parabolic_step = (function emmy$numerical$unimin$bracket$parabolic_step(a,p__49181,c){
+var vec__49183 = p__49181;
+var xb = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49183,(0),null);
+var b = vec__49183;
 var two_eps = (2.0 * 1.0E-21);
-var vec__49189 = emmy.numerical.unimin.bracket.parabolic_pieces(a,b,c);
-var p = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49189,(0),null);
-var q = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49189,(1),null);
+var vec__49186 = emmy.numerical.unimin.bracket.parabolic_pieces(a,b,c);
+var p = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49186,(0),null);
+var q = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49186,(1),null);
 var q__$1 = (((q < two_eps))?two_eps:q);
 return (xb + (p / q__$1));
 });
@@ -79,19 +79,19 @@ return (xb + (p / q__$1));
  *   :grow-limit is the maximum factor that the parabolic interpolation can jump
  *   the function.
  */
-emmy.numerical.unimin.bracket.bracket_step_fn = (function emmy$numerical$unimin$bracket$bracket_step_fn(f,p__49192){
-var map__49193 = p__49192;
-var map__49193__$1 = cljs.core.__destructure_map(map__49193);
-var grow_limit = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__49193__$1,new cljs.core.Keyword(null,"grow-limit","grow-limit",2130208943),110.0);
-return (function (a,p__49194,p__49195){
-var vec__49196 = p__49194;
-var xb = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49196,(0),null);
-var fb = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49196,(1),null);
-var b = vec__49196;
-var vec__49199 = p__49195;
-var xc = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49199,(0),null);
-var fc = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49199,(1),null);
-var c = vec__49199;
+emmy.numerical.unimin.bracket.bracket_step_fn = (function emmy$numerical$unimin$bracket$bracket_step_fn(f,p__49189){
+var map__49190 = p__49189;
+var map__49190__$1 = cljs.core.__destructure_map(map__49190);
+var grow_limit = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__49190__$1,new cljs.core.Keyword(null,"grow-limit","grow-limit",2130208943),110.0);
+return (function (a,p__49191,p__49192){
+var vec__49193 = p__49191;
+var xb = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49193,(0),null);
+var fb = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49193,(1),null);
+var b = vec__49193;
+var vec__49196 = p__49192;
+var xc = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49196,(0),null);
+var fc = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49196,(1),null);
+var c = vec__49196;
 var wlim = (xb + (grow_limit * (xc - xb)));
 var w = emmy.numerical.unimin.bracket.parabolic_step(a,b,c);
 if((((xb <= w)) && ((w <= xc)))){
@@ -171,8 +171,8 @@ return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMP
  *   
  */
 emmy.numerical.unimin.bracket.bracket_min = (function emmy$numerical$unimin$bracket$bracket_min(var_args){
-var G__49203 = arguments.length;
-switch (G__49203) {
+var G__49200 = arguments.length;
+switch (G__49200) {
 case 1:
 return emmy.numerical.unimin.bracket.bracket_min.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -191,14 +191,14 @@ throw (new Error(["Invalid arity: ",arguments.length].join("")));
 return emmy.numerical.unimin.bracket.bracket_min.cljs$core$IFn$_invoke$arity$2(f,cljs.core.PersistentArrayMap.EMPTY);
 }));
 
-(emmy.numerical.unimin.bracket.bracket_min.cljs$core$IFn$_invoke$arity$2 = (function (f,p__49204){
-var map__49205 = p__49204;
-var map__49205__$1 = cljs.core.__destructure_map(map__49205);
-var opts = map__49205__$1;
-var xa = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__49205__$1,new cljs.core.Keyword(null,"xa","xa",-251918777),0.0);
-var xb = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__49205__$1,new cljs.core.Keyword(null,"xb","xb",-1641297359),1.0);
-var maxiter = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__49205__$1,new cljs.core.Keyword(null,"maxiter","maxiter",-1867223754),(1000));
-var maxfun = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__49205__$1,new cljs.core.Keyword(null,"maxfun","maxfun",-50301814),(1000));
+(emmy.numerical.unimin.bracket.bracket_min.cljs$core$IFn$_invoke$arity$2 = (function (f,p__49201){
+var map__49202 = p__49201;
+var map__49202__$1 = cljs.core.__destructure_map(map__49202);
+var opts = map__49202__$1;
+var xa = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__49202__$1,new cljs.core.Keyword(null,"xa","xa",-251918777),0.0);
+var xb = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__49202__$1,new cljs.core.Keyword(null,"xb","xb",-1641297359),1.0);
+var maxiter = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__49202__$1,new cljs.core.Keyword(null,"maxiter","maxiter",-1867223754),(1000));
+var maxfun = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__49202__$1,new cljs.core.Keyword(null,"maxfun","maxfun",-50301814),(1000));
 var vec__49206 = emmy.util.counted.cljs$core$IFn$_invoke$arity$1(f);
 var f_counter = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49206,(0),null);
 var f__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__49206,(1),null);

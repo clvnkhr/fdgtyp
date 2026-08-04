@@ -14,8 +14,8 @@ emmy.polynomial.richardson.semi_perimeter = (function emmy$polynomial$richardson
 return ((n / (2)) * side_len);
 });
 emmy.polynomial.richardson.side_lengths = cljs.core.iterate(emmy.polynomial.richardson.refine_by_doubling,Math.sqrt((2)));
-emmy.polynomial.richardson.side_numbers = cljs.core.iterate((function (p1__55794_SHARP_){
-return ((2) * p1__55794_SHARP_);
+emmy.polynomial.richardson.side_numbers = cljs.core.iterate((function (p1__54359_SHARP_){
+return ((2) * p1__54359_SHARP_);
 }),(4));
 emmy.polynomial.richardson.archimedean_pi_sequence = cljs.core.map.cljs$core$IFn$_invoke$arity$3(emmy.polynomial.richardson.semi_perimeter,emmy.polynomial.richardson.side_numbers,emmy.polynomial.richardson.side_lengths);
 /**
@@ -41,8 +41,8 @@ return (((t_STAR__STAR_p * ah_over_t) - ah) / t_STAR__STAR_p_1);
  *   columns.
  */
 emmy.polynomial.richardson.make_tableau = (function emmy$polynomial$richardson$make_tableau(var_args){
-var G__55806 = arguments.length;
-switch (G__55806) {
+var G__54369 = arguments.length;
+switch (G__54369) {
 case 2:
 return emmy.polynomial.richardson.make_tableau.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -62,15 +62,15 @@ return emmy.polynomial.richardson.make_tableau.cljs$core$IFn$_invoke$arity$3(xs,
 }));
 
 (emmy.polynomial.richardson.make_tableau.cljs$core$IFn$_invoke$arity$3 = (function (xs,t,ps){
-return cljs.core.take_while.cljs$core$IFn$_invoke$arity$2(cljs.core.seq,cljs.core.map.cljs$core$IFn$_invoke$arity$2(cljs.core.first,cljs.core.iterate((function (p__55814){
-var vec__55815 = p__55814;
-var xs__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__55815,(0),null);
-var vec__55818 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__55815,(1),null);
-var seq__55819 = cljs.core.seq(vec__55818);
-var first__55820 = cljs.core.first(seq__55819);
-var seq__55819__$1 = cljs.core.next(seq__55819);
-var p = first__55820;
-var ps__$1 = seq__55819__$1;
+return cljs.core.take_while.cljs$core$IFn$_invoke$arity$2(cljs.core.seq,cljs.core.map.cljs$core$IFn$_invoke$arity$2(cljs.core.first,cljs.core.iterate((function (p__54370){
+var vec__54372 = p__54370;
+var xs__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54372,(0),null);
+var vec__54375 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54372,(1),null);
+var seq__54376 = cljs.core.seq(vec__54375);
+var first__54377 = cljs.core.first(seq__54376);
+var seq__54376__$1 = cljs.core.next(seq__54376);
+var p = first__54377;
+var ps__$1 = seq__54376__$1;
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [emmy.polynomial.richardson.accelerate_sequence(xs__$1,t,p),ps__$1], null);
 }),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [xs,ps], null))));
 }));
@@ -137,8 +137,8 @@ return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMP
  *   - GJS, ['Abstraction in Numerical Methods'](https://dspace.mit.edu/bitstream/handle/1721.1/6060/AIM-997.pdf?sequence=2)
  */
 emmy.polynomial.richardson.richardson_sequence = (function emmy$polynomial$richardson$richardson_sequence(var_args){
-var G__55827 = arguments.length;
-switch (G__55827) {
+var G__54387 = arguments.length;
+switch (G__54387) {
 case 2:
 return emmy.polynomial.richardson.richardson_sequence.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -166,8 +166,8 @@ return emmy.polynomial.interpolate.first_terms(emmy.polynomial.richardson.make_t
 }));
 
 (emmy.polynomial.richardson.richardson_sequence.cljs$core$IFn$_invoke$arity$4 = (function (xs,t,p,q){
-var arithmetic_p_q = cljs.core.iterate((function (p1__55821_SHARP_){
-return (q + p1__55821_SHARP_);
+var arithmetic_p_q = cljs.core.iterate((function (p1__54384_SHARP_){
+return (q + p1__54384_SHARP_);
 }),p);
 return emmy.polynomial.richardson.richardson_sequence.cljs$core$IFn$_invoke$arity$3(xs,t,arithmetic_p_q);
 }));
@@ -199,8 +199,8 @@ return emmy.polynomial.richardson.richardson_sequence.cljs$core$IFn$_invoke$arit
  *   be merged with that function.
  */
 emmy.polynomial.richardson.richardson_column = (function emmy$polynomial$richardson$richardson_column(var_args){
-var G__55842 = arguments.length;
-switch (G__55842) {
+var G__54395 = arguments.length;
+switch (G__54395) {
 case 3:
 return emmy.polynomial.richardson.richardson_column.cljs$core$IFn$_invoke$arity$3((arguments[(0)]),(arguments[(1)]),(arguments[(2)]));
 
@@ -228,8 +228,8 @@ return cljs.core.nth.cljs$core$IFn$_invoke$arity$2(emmy.polynomial.richardson.ma
 }));
 
 (emmy.polynomial.richardson.richardson_column.cljs$core$IFn$_invoke$arity$5 = (function (xs,col,t,p,q){
-var arithmetic_p_q = cljs.core.iterate((function (p1__55838_SHARP_){
-return (q + p1__55838_SHARP_);
+var arithmetic_p_q = cljs.core.iterate((function (p1__54393_SHARP_){
+return (q + p1__54393_SHARP_);
 }),p);
 return emmy.polynomial.richardson.richardson_column.cljs$core$IFn$_invoke$arity$4(xs,col,t,arithmetic_p_q);
 }));
@@ -269,8 +269,8 @@ return emmy.polynomial.richardson.richardson_column.cljs$core$IFn$_invoke$arity$
  *   ```
  */
 emmy.polynomial.richardson.richardson_fold = (function emmy$polynomial$richardson$richardson_fold(var_args){
-var G__55855 = arguments.length;
-switch (G__55855) {
+var G__54402 = arguments.length;
+switch (G__54402) {
 case 1:
 return emmy.polynomial.richardson.richardson_fold.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -293,13 +293,13 @@ return emmy.polynomial.richardson.richardson_fold.cljs$core$IFn$_invoke$arity$3(
 var prepare = (function emmy$polynomial$richardson$prepare(x){
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [initial_p,x], null);
 });
-var combine = (function emmy$polynomial$richardson$combine(p__55888,p__55889){
-var vec__55892 = p__55888;
-var p = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__55892,(0),null);
-var ah_over_t = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__55892,(1),null);
-var vec__55895 = p__55889;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__55895,(0),null);
-var ah = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__55895,(1),null);
+var combine = (function emmy$polynomial$richardson$combine(p__54413,p__54414){
+var vec__54415 = p__54413;
+var p = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54415,(0),null);
+var ah_over_t = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54415,(1),null);
+var vec__54418 = p__54414;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54418,(0),null);
+var ah = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54418,(1),null);
 var t_STAR__STAR_p = Math.pow(t,p);
 var t_STAR__STAR_p_1 = (t_STAR__STAR_p - (1));
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [(next_p_fn.cljs$core$IFn$_invoke$arity$1 ? next_p_fn.cljs$core$IFn$_invoke$arity$1(p) : next_p_fn.call(null,p)),(((t_STAR__STAR_p * ah_over_t) - ah) / t_STAR__STAR_p_1)], null);
@@ -325,14 +325,14 @@ return emmy.polynomial.interpolate.tableau_fold_fn(prepare,combine,present);
  */
 emmy.polynomial.richardson.richardson_sum = (function emmy$polynomial$richardson$richardson_sum(var_args){
 var args__5903__auto__ = [];
-var len__5897__auto___56000 = arguments.length;
-var i__5898__auto___56001 = (0);
+var len__5897__auto___54486 = arguments.length;
+var i__5898__auto___54487 = (0);
 while(true){
-if((i__5898__auto___56001 < len__5897__auto___56000)){
-args__5903__auto__.push((arguments[i__5898__auto___56001]));
+if((i__5898__auto___54487 < len__5897__auto___54486)){
+args__5903__auto__.push((arguments[i__5898__auto___54487]));
 
-var G__56002 = (i__5898__auto___56001 + (1));
-i__5898__auto___56001 = G__56002;
+var G__54488 = (i__5898__auto___54487 + (1));
+i__5898__auto___54487 = G__54488;
 continue;
 } else {
 }
@@ -350,11 +350,11 @@ return emmy.algebra.fold.fold__GT_sum_fn.cljs$core$IFn$_invoke$arity$1(cljs.core
 (emmy.polynomial.richardson.richardson_sum.cljs$lang$maxFixedArity = (1));
 
 /** @this {Function} */
-(emmy.polynomial.richardson.richardson_sum.cljs$lang$applyTo = (function (seq55913){
-var G__55914 = cljs.core.first(seq55913);
-var seq55913__$1 = cljs.core.next(seq55913);
+(emmy.polynomial.richardson.richardson_sum.cljs$lang$applyTo = (function (seq54425){
+var G__54426 = cljs.core.first(seq54425);
+var seq54425__$1 = cljs.core.next(seq54425);
 var self__5882__auto__ = this;
-return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__55914,seq55913__$1);
+return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__54426,seq54425__$1);
 }));
 
 /**
@@ -370,14 +370,14 @@ return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__55914,seq55913
  */
 emmy.polynomial.richardson.richardson_scan = (function emmy$polynomial$richardson$richardson_scan(var_args){
 var args__5903__auto__ = [];
-var len__5897__auto___56007 = arguments.length;
-var i__5898__auto___56008 = (0);
+var len__5897__auto___54491 = arguments.length;
+var i__5898__auto___54492 = (0);
 while(true){
-if((i__5898__auto___56008 < len__5897__auto___56007)){
-args__5903__auto__.push((arguments[i__5898__auto___56008]));
+if((i__5898__auto___54492 < len__5897__auto___54491)){
+args__5903__auto__.push((arguments[i__5898__auto___54492]));
 
-var G__56009 = (i__5898__auto___56008 + (1));
-i__5898__auto___56008 = G__56009;
+var G__54493 = (i__5898__auto___54492 + (1));
+i__5898__auto___54492 = G__54493;
 continue;
 } else {
 }
@@ -395,11 +395,11 @@ return emmy.algebra.fold.fold__GT_scan_fn.cljs$core$IFn$_invoke$arity$1(cljs.cor
 (emmy.polynomial.richardson.richardson_scan.cljs$lang$maxFixedArity = (1));
 
 /** @this {Function} */
-(emmy.polynomial.richardson.richardson_scan.cljs$lang$applyTo = (function (seq55933){
-var G__55934 = cljs.core.first(seq55933);
-var seq55933__$1 = cljs.core.next(seq55933);
+(emmy.polynomial.richardson.richardson_scan.cljs$lang$applyTo = (function (seq54439){
+var G__54440 = cljs.core.first(seq54439);
+var seq54439__$1 = cljs.core.next(seq54439);
 var self__5882__auto__ = this;
-return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__55934,seq55933__$1);
+return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__54440,seq54439__$1);
 }));
 
 

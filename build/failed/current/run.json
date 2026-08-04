@@ -1,11 +1,11 @@
 {
-  "id": "fix-ch7-simplify",
+  "id": "fix-nested-captures",
   "target": "emmy-refresh",
   "source": "/Users/calvinkhor/Documents/GitHub/fdgtyp",
-  "revision": "807ea65",
-  "startedAt": "2026-08-03T16:05:40.751Z",
+  "revision": "c197592",
+  "startedAt": "2026-08-04T10:22:20.437Z",
   "log": "build.log",
   "status": "failed",
   "workspace": "/Users/calvinkhor/Documents/GitHub/fdgtyp/build/failed/current/work",
-  "finishedAt": "2026-08-03T16:08:43.177Z"
+  "finishedAt": "2026-08-04T10:25:22.234Z"
 }

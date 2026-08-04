@@ -126,10 +126,10 @@ while(true){
 if((b__$1 === emmy.bigfraction.ZERO)){
 return a__$1;
 } else {
-var G__22346 = b__$1;
-var G__22347 = (a__$1 % b__$1);
-a__$1 = G__22346;
-b__$1 = G__22347;
+var G__22382 = b__$1;
+var G__22383 = (a__$1 % b__$1);
+a__$1 = G__22382;
+b__$1 = G__22383;
 continue;
 }
 break;
@@ -208,13 +208,13 @@ emmy.bigfraction.real__GT_ = (function emmy$bigfraction$real__GT_(x){
 var s = x.toString();
 var temp__5823__auto__ = cljs.core.re_matches(emmy.bigfraction.double_re,s);
 if(cljs.core.truth_(temp__5823__auto__)){
-var vec__22294 = temp__5823__auto__;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__22294,(0),null);
-var int$ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__22294,(1),null);
-var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__22294,(2),null);
-var frac = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__22294,(3),null);
-var ___$2 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__22294,(4),null);
-var exp = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__22294,(5),null);
+var vec__22328 = temp__5823__auto__;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__22328,(0),null);
+var int$ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__22328,(1),null);
+var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__22328,(2),null);
+var frac = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__22328,(3),null);
+var ___$2 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__22328,(4),null);
+var exp = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__22328,(5),null);
 var scale = (parseInt((function (){var or__5162__auto__ = exp;
 if(cljs.core.truth_(or__5162__auto__)){
 return or__5162__auto__;

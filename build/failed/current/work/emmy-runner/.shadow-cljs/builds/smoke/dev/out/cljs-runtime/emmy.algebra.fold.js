@@ -7,8 +7,8 @@ goog.provide('emmy.algebra.fold');
  *   - given a single argument `acc`, acts as identity.
  */
 emmy.algebra.fold.generic_sum_fold = (function emmy$algebra$fold$generic_sum_fold(var_args){
-var G__28126 = arguments.length;
-switch (G__28126) {
+var G__28167 = arguments.length;
+switch (G__28167) {
 case 0:
 return emmy.algebra.fold.generic_sum_fold.cljs$core$IFn$_invoke$arity$0();
 
@@ -68,8 +68,8 @@ return emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2(acc,x);
  *   `present` for the 1-arity argument.
  */
 emmy.algebra.fold.fold__GT_sum_fn = (function emmy$algebra$fold$fold__GT_sum_fn(var_args){
-var G__28130 = arguments.length;
-switch (G__28130) {
+var G__28171 = arguments.length;
+switch (G__28171) {
 case 1:
 return emmy.algebra.fold.fold__GT_sum_fn.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -98,27 +98,27 @@ return emmy.algebra.fold.fold__GT_sum_fn.cljs$core$IFn$_invoke$arity$3(fold,fold
 
 (emmy.algebra.fold.fold__GT_sum_fn.cljs$core$IFn$_invoke$arity$3 = (function (init,fold,present){
 return (function() {
-var G__28235 = null;
-var G__28235__1 = (function (xs){
-var G__28131 = cljs.core.reduce.cljs$core$IFn$_invoke$arity$3(fold,(init.cljs$core$IFn$_invoke$arity$0 ? init.cljs$core$IFn$_invoke$arity$0() : init.call(null)),xs);
-return (present.cljs$core$IFn$_invoke$arity$1 ? present.cljs$core$IFn$_invoke$arity$1(G__28131) : present.call(null,G__28131));
+var G__28288 = null;
+var G__28288__1 = (function (xs){
+var G__28175 = cljs.core.reduce.cljs$core$IFn$_invoke$arity$3(fold,(init.cljs$core$IFn$_invoke$arity$0 ? init.cljs$core$IFn$_invoke$arity$0() : init.call(null)),xs);
+return (present.cljs$core$IFn$_invoke$arity$1 ? present.cljs$core$IFn$_invoke$arity$1(G__28175) : present.call(null,G__28175));
 });
-var G__28235__3 = (function (f,low,high){
+var G__28288__3 = (function (f,low,high){
 var xs = cljs.core.range.cljs$core$IFn$_invoke$arity$2(low,high);
 return cljs.core.transduce.cljs$core$IFn$_invoke$arity$3(cljs.core.map.cljs$core$IFn$_invoke$arity$1(f),fold,xs);
 });
-G__28235 = function(f,low,high){
+G__28288 = function(f,low,high){
 switch(arguments.length){
 case 1:
-return G__28235__1.call(this,f);
+return G__28288__1.call(this,f);
 case 3:
-return G__28235__3.call(this,f,low,high);
+return G__28288__3.call(this,f,low,high);
 }
 throw(new Error('Invalid arity: ' + arguments.length));
 };
-G__28235.cljs$core$IFn$_invoke$arity$1 = G__28235__1;
-G__28235.cljs$core$IFn$_invoke$arity$3 = G__28235__3;
-return G__28235;
+G__28288.cljs$core$IFn$_invoke$arity$1 = G__28288__1;
+G__28288.cljs$core$IFn$_invoke$arity$3 = G__28288__3;
+return G__28288;
 })()
 }));
 
@@ -130,24 +130,24 @@ return G__28235;
  */
 emmy.algebra.fold.constant = (function emmy$algebra$fold$constant(const$){
 return (function() { 
-var G__28250__delegate = function (_){
+var G__28293__delegate = function (_){
 return const$;
 };
-var G__28250 = function (var_args){
+var G__28293 = function (var_args){
 var _ = null;
 if (arguments.length > 0) {
-var G__28251__i = 0, G__28251__a = new Array(arguments.length -  0);
-while (G__28251__i < G__28251__a.length) {G__28251__a[G__28251__i] = arguments[G__28251__i + 0]; ++G__28251__i;}
-  _ = new cljs.core.IndexedSeq(G__28251__a,0,null);
+var G__28294__i = 0, G__28294__a = new Array(arguments.length -  0);
+while (G__28294__i < G__28294__a.length) {G__28294__a[G__28294__i] = arguments[G__28294__i + 0]; ++G__28294__i;}
+  _ = new cljs.core.IndexedSeq(G__28294__a,0,null);
 } 
-return G__28250__delegate.call(this,_);};
-G__28250.cljs$lang$maxFixedArity = 0;
-G__28250.cljs$lang$applyTo = (function (arglist__28252){
-var _ = cljs.core.seq(arglist__28252);
-return G__28250__delegate(_);
+return G__28293__delegate.call(this,_);};
+G__28293.cljs$lang$maxFixedArity = 0;
+G__28293.cljs$lang$applyTo = (function (arglist__28295){
+var _ = cljs.core.seq(arglist__28295);
+return G__28293__delegate(_);
 });
-G__28250.cljs$core$IFn$_invoke$arity$variadic = G__28250__delegate;
-return G__28250;
+G__28293.cljs$core$IFn$_invoke$arity$variadic = G__28293__delegate;
+return G__28293;
 })()
 ;
 });
@@ -156,8 +156,8 @@ return G__28250;
  *   encounters that return true when passed to `pred`, false otherwise.
  */
 emmy.algebra.fold.count = (function emmy$algebra$fold$count(var_args){
-var G__28136 = arguments.length;
-switch (G__28136) {
+var G__28177 = arguments.length;
+switch (G__28177) {
 case 0:
 return emmy.algebra.fold.count.cljs$core$IFn$_invoke$arity$0();
 
@@ -180,35 +180,35 @@ return true;
 
 (emmy.algebra.fold.count.cljs$core$IFn$_invoke$arity$1 = (function (pred){
 return (function() {
-var G__28255 = null;
-var G__28255__0 = (function (){
+var G__28297 = null;
+var G__28297__0 = (function (){
 return (0);
 });
-var G__28255__1 = (function (acc){
+var G__28297__1 = (function (acc){
 return acc;
 });
-var G__28255__2 = (function (acc,x){
+var G__28297__2 = (function (acc,x){
 if(cljs.core.truth_((pred.cljs$core$IFn$_invoke$arity$1 ? pred.cljs$core$IFn$_invoke$arity$1(x) : pred.call(null,x)))){
 return (acc + (1));
 } else {
 return acc;
 }
 });
-G__28255 = function(acc,x){
+G__28297 = function(acc,x){
 switch(arguments.length){
 case 0:
-return G__28255__0.call(this);
+return G__28297__0.call(this);
 case 1:
-return G__28255__1.call(this,acc);
+return G__28297__1.call(this,acc);
 case 2:
-return G__28255__2.call(this,acc,x);
+return G__28297__2.call(this,acc,x);
 }
 throw(new Error('Invalid arity: ' + arguments.length));
 };
-G__28255.cljs$core$IFn$_invoke$arity$0 = G__28255__0;
-G__28255.cljs$core$IFn$_invoke$arity$1 = G__28255__1;
-G__28255.cljs$core$IFn$_invoke$arity$2 = G__28255__2;
-return G__28255;
+G__28297.cljs$core$IFn$_invoke$arity$0 = G__28297__0;
+G__28297.cljs$core$IFn$_invoke$arity$1 = G__28297__1;
+G__28297.cljs$core$IFn$_invoke$arity$2 = G__28297__2;
+return G__28297;
 })()
 }));
 
@@ -221,8 +221,8 @@ return G__28255;
  *   Accumulation initializes with `nil`.
  */
 emmy.algebra.fold.min = (function emmy$algebra$fold$min(var_args){
-var G__28140 = arguments.length;
-switch (G__28140) {
+var G__28182 = arguments.length;
+switch (G__28182) {
 case 0:
 return emmy.algebra.fold.min.cljs$core$IFn$_invoke$arity$0();
 
@@ -266,8 +266,8 @@ return x;
  *   Accumulation initializes with `nil`.
  */
 emmy.algebra.fold.max = (function emmy$algebra$fold$max(var_args){
-var G__28145 = arguments.length;
-switch (G__28145) {
+var G__28184 = arguments.length;
+switch (G__28184) {
 case 0:
 return emmy.algebra.fold.max.cljs$core$IFn$_invoke$arity$0();
 
@@ -316,8 +316,8 @@ return x;
  *   The no-argument call `(join)` is equivalent to `([[constant]] [])`.
  */
 emmy.algebra.fold.join = (function emmy$algebra$fold$join(var_args){
-var G__28154 = arguments.length;
-switch (G__28154) {
+var G__28192 = arguments.length;
+switch (G__28192) {
 case 0:
 return emmy.algebra.fold.join.cljs$core$IFn$_invoke$arity$0();
 
@@ -328,14 +328,14 @@ return emmy.algebra.fold.join.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 break;
 default:
 var args_arr__5922__auto__ = [];
-var len__5897__auto___28264 = arguments.length;
-var i__5898__auto___28265 = (0);
+var len__5897__auto___28306 = arguments.length;
+var i__5898__auto___28307 = (0);
 while(true){
-if((i__5898__auto___28265 < len__5897__auto___28264)){
-args_arr__5922__auto__.push((arguments[i__5898__auto___28265]));
+if((i__5898__auto___28307 < len__5897__auto___28306)){
+args_arr__5922__auto__.push((arguments[i__5898__auto___28307]));
 
-var G__28266 = (i__5898__auto___28265 + (1));
-i__5898__auto___28265 = G__28266;
+var G__28308 = (i__5898__auto___28307 + (1));
+i__5898__auto___28307 = G__28308;
 continue;
 } else {
 }
@@ -359,46 +359,46 @@ return fold;
 (emmy.algebra.fold.join.cljs$core$IFn$_invoke$arity$variadic = (function (fold,folds){
 var folds__$1 = cljs.core.cons(fold,folds);
 return (function() {
-var G__28267 = null;
-var G__28267__0 = (function (){
+var G__28309 = null;
+var G__28309__0 = (function (){
 return cljs.core.mapv.cljs$core$IFn$_invoke$arity$2((function (f){
 return (f.cljs$core$IFn$_invoke$arity$0 ? f.cljs$core$IFn$_invoke$arity$0() : f.call(null));
 }),folds__$1);
 });
-var G__28267__1 = (function (accs){
-return cljs.core.mapv.cljs$core$IFn$_invoke$arity$3((function (p1__28149_SHARP_,p2__28150_SHARP_){
-return (p1__28149_SHARP_.cljs$core$IFn$_invoke$arity$1 ? p1__28149_SHARP_.cljs$core$IFn$_invoke$arity$1(p2__28150_SHARP_) : p1__28149_SHARP_.call(null,p2__28150_SHARP_));
+var G__28309__1 = (function (accs){
+return cljs.core.mapv.cljs$core$IFn$_invoke$arity$3((function (p1__28185_SHARP_,p2__28186_SHARP_){
+return (p1__28185_SHARP_.cljs$core$IFn$_invoke$arity$1 ? p1__28185_SHARP_.cljs$core$IFn$_invoke$arity$1(p2__28186_SHARP_) : p1__28185_SHARP_.call(null,p2__28186_SHARP_));
 }),folds__$1,accs);
 });
-var G__28267__2 = (function (accs,x){
+var G__28309__2 = (function (accs,x){
 return cljs.core.mapv.cljs$core$IFn$_invoke$arity$3((function (f,acc){
 return (f.cljs$core$IFn$_invoke$arity$2 ? f.cljs$core$IFn$_invoke$arity$2(acc,x) : f.call(null,acc,x));
 }),folds__$1,accs);
 });
-G__28267 = function(accs,x){
+G__28309 = function(accs,x){
 switch(arguments.length){
 case 0:
-return G__28267__0.call(this);
+return G__28309__0.call(this);
 case 1:
-return G__28267__1.call(this,accs);
+return G__28309__1.call(this,accs);
 case 2:
-return G__28267__2.call(this,accs,x);
+return G__28309__2.call(this,accs,x);
 }
 throw(new Error('Invalid arity: ' + arguments.length));
 };
-G__28267.cljs$core$IFn$_invoke$arity$0 = G__28267__0;
-G__28267.cljs$core$IFn$_invoke$arity$1 = G__28267__1;
-G__28267.cljs$core$IFn$_invoke$arity$2 = G__28267__2;
-return G__28267;
+G__28309.cljs$core$IFn$_invoke$arity$0 = G__28309__0;
+G__28309.cljs$core$IFn$_invoke$arity$1 = G__28309__1;
+G__28309.cljs$core$IFn$_invoke$arity$2 = G__28309__2;
+return G__28309;
 })()
 }));
 
 /** @this {Function} */
-(emmy.algebra.fold.join.cljs$lang$applyTo = (function (seq28152){
-var G__28153 = cljs.core.first(seq28152);
-var seq28152__$1 = cljs.core.next(seq28152);
+(emmy.algebra.fold.join.cljs$lang$applyTo = (function (seq28190){
+var G__28191 = cljs.core.first(seq28190);
+var seq28190__$1 = cljs.core.next(seq28190);
 var self__5882__auto__ = this;
-return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__28153,seq28152__$1);
+return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__28191,seq28190__$1);
 }));
 
 (emmy.algebra.fold.join.cljs$lang$maxFixedArity = (1));
@@ -439,8 +439,8 @@ return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__28153,seq28152
  *   `present` for the 1-arity argument.
  */
 emmy.algebra.fold.fold__GT_scan_fn = (function emmy$algebra$fold$fold__GT_scan_fn(var_args){
-var G__28156 = arguments.length;
-switch (G__28156) {
+var G__28208 = arguments.length;
+switch (G__28208) {
 case 1:
 return emmy.algebra.fold.fold__GT_scan_fn.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -500,8 +500,8 @@ return emmy$algebra$fold$scan;
  *   maintaining stability in the face of accumulating floating point errors.
  */
 emmy.algebra.fold.kahan = (function emmy$algebra$fold$kahan(var_args){
-var G__28158 = arguments.length;
-switch (G__28158) {
+var G__28215 = arguments.length;
+switch (G__28215) {
 case 0:
 return emmy.algebra.fold.kahan.cljs$core$IFn$_invoke$arity$0();
 
@@ -524,17 +524,17 @@ throw (new Error(["Invalid arity: ",arguments.length].join("")));
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [0.0,0.0], null);
 }));
 
-(emmy.algebra.fold.kahan.cljs$core$IFn$_invoke$arity$1 = (function (p__28159){
-var vec__28160 = p__28159;
-var acc = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28160,(0),null);
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28160,(1),null);
+(emmy.algebra.fold.kahan.cljs$core$IFn$_invoke$arity$1 = (function (p__28219){
+var vec__28220 = p__28219;
+var acc = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28220,(0),null);
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28220,(1),null);
 return acc;
 }));
 
-(emmy.algebra.fold.kahan.cljs$core$IFn$_invoke$arity$2 = (function (p__28163,x){
-var vec__28164 = p__28163;
-var acc = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28164,(0),null);
-var c = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28164,(1),null);
+(emmy.algebra.fold.kahan.cljs$core$IFn$_invoke$arity$2 = (function (p__28226,x){
+var vec__28227 = p__28226;
+var acc = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28227,(0),null);
+var c = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28227,(1),null);
 var y = (x - c);
 var t = (acc + y);
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [t,((t - acc) - y)], null);
@@ -551,8 +551,8 @@ return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMP
  *   should be preferred.
  */
 emmy.algebra.fold.kahan_babushka_neumaier = (function emmy$algebra$fold$kahan_babushka_neumaier(var_args){
-var G__28168 = arguments.length;
-switch (G__28168) {
+var G__28236 = arguments.length;
+switch (G__28236) {
 case 0:
 return emmy.algebra.fold.kahan_babushka_neumaier.cljs$core$IFn$_invoke$arity$0();
 
@@ -579,10 +579,10 @@ return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMP
 return cljs.core.reduce.cljs$core$IFn$_invoke$arity$2(cljs.core._PLUS_,acc);
 }));
 
-(emmy.algebra.fold.kahan_babushka_neumaier.cljs$core$IFn$_invoke$arity$2 = (function (p__28169,x){
-var vec__28170 = p__28169;
-var acc = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28170,(0),null);
-var c = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28170,(1),null);
+(emmy.algebra.fold.kahan_babushka_neumaier.cljs$core$IFn$_invoke$arity$2 = (function (p__28241,x){
+var vec__28242 = p__28241;
+var acc = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28242,(0),null);
+var c = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28242,(1),null);
 var acc_PLUS_x = (acc + x);
 var delta = (((Math.abs(acc) >= Math.abs(x)))?((acc - acc_PLUS_x) + x):((x - acc_PLUS_x) + acc));
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [acc_PLUS_x,(c + delta)], null);
@@ -608,8 +608,8 @@ emmy.algebra.fold.kbn = emmy.algebra.fold.kahan_babushka_neumaier;
  *   along with the higher-order versions implemented by [[kbk-n]].
  */
 emmy.algebra.fold.kahan_babushka_klein = (function emmy$algebra$fold$kahan_babushka_klein(var_args){
-var G__28178 = arguments.length;
-switch (G__28178) {
+var G__28248 = arguments.length;
+switch (G__28248) {
 case 0:
 return emmy.algebra.fold.kahan_babushka_klein.cljs$core$IFn$_invoke$arity$0();
 
@@ -636,11 +636,11 @@ return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMP
 return cljs.core.reduce.cljs$core$IFn$_invoke$arity$2(cljs.core._PLUS_,acc);
 }));
 
-(emmy.algebra.fold.kahan_babushka_klein.cljs$core$IFn$_invoke$arity$2 = (function (p__28183,x){
-var vec__28184 = p__28183;
-var acc = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28184,(0),null);
-var cs = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28184,(1),null);
-var ccs = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28184,(2),null);
+(emmy.algebra.fold.kahan_babushka_klein.cljs$core$IFn$_invoke$arity$2 = (function (p__28254,x){
+var vec__28255 = p__28254;
+var acc = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28255,(0),null);
+var cs = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28255,(1),null);
+var ccs = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28255,(2),null);
 var acc_PLUS_x = (acc + x);
 var delta = (((Math.abs(acc) >= Math.abs(x)))?((acc - acc_PLUS_x) + x):((x - acc_PLUS_x) + acc));
 var cs_PLUS_delta = (cs + delta);
@@ -660,7 +660,7 @@ return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMP
  *   `delta` to the new compensation amount in `(+ acc delta)`.
  */
 emmy.algebra.fold.klein_term = (function emmy$algebra$fold$klein_term(acc,delta){
-return cljs.core.vec(cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol(null,"sum__28191__auto__","sum__28191__auto__",1369794377,null),null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","+","cljs.core/+",-342754435,null),null,(1),null)),(new cljs.core.List(null,acc,null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,delta,null,(1),null))], 0)))),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,delta,null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol(null,"if","if",1181717262,null),null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol("emmy.util.def","fork","emmy.util.def/fork",1565339133,null),null,(1),null)),(new cljs.core.List(null,new cljs.core.Keyword(null,"clj","clj",-660495428),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol("cljs.core",">=","cljs.core/>=",350096541,null),null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,new cljs.core.Symbol("java.lang.Math","abs","java.lang.Math/abs",1272698622,null),null,(1),null)),(new cljs.core.List(null,cljs.core.with_meta(acc,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"tag","tag",-1290361223),new cljs.core.Symbol(null,"double","double",-1769548886,null)], null)),null,(1),null))))),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,new cljs.core.Symbol("java.lang.Math","abs","java.lang.Math/abs",1272698622,null),null,(1),null)),(new cljs.core.List(null,cljs.core.with_meta(delta,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"tag","tag",-1290361223),new cljs.core.Symbol(null,"double","double",-1769548886,null)], null)),null,(1),null))))),null,(1),null))], 0)))),null,(1),null)),(new cljs.core.List(null,new cljs.core.Keyword(null,"cljs","cljs",1492417629),null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol("cljs.core",">=","cljs.core/>=",350096541,null),null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol(null,".abs",".abs",1832478636,null),null,(1),null)),(new cljs.core.List(null,new cljs.core.Symbol("js","Math","js/Math",2033291075,null),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,acc,null,(1),null))], 0)))),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol(null,".abs",".abs",1832478636,null),null,(1),null)),(new cljs.core.List(null,new cljs.core.Symbol("js","Math","js/Math",2033291075,null),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,delta,null,(1),null))], 0)))),null,(1),null))], 0)))),null,(1),null))], 0)))),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","+","cljs.core/+",-342754435,null),null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","-","cljs.core/-",187040141,null),null,(1),null)),(new cljs.core.List(null,acc,null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,new cljs.core.Symbol(null,"sum__28191__auto__","sum__28191__auto__",1369794377,null),null,(1),null))], 0)))),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,delta,null,(1),null))], 0)))),null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","+","cljs.core/+",-342754435,null),null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","-","cljs.core/-",187040141,null),null,(1),null)),(new cljs.core.List(null,delta,null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,new cljs.core.Symbol(null,"sum__28191__auto__","sum__28191__auto__",1369794377,null),null,(1),null))], 0)))),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,acc,null,(1),null))], 0)))),null,(1),null))], 0)))),null,(1),null)),(new cljs.core.List(null,acc,null,(1),null)),(new cljs.core.List(null,new cljs.core.Symbol(null,"sum__28191__auto__","sum__28191__auto__",1369794377,null),null,(1),null))], 0)))));
+return cljs.core.vec(cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol(null,"sum__28258__auto__","sum__28258__auto__",1859689684,null),null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","+","cljs.core/+",-342754435,null),null,(1),null)),(new cljs.core.List(null,acc,null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,delta,null,(1),null))], 0)))),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,delta,null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol(null,"if","if",1181717262,null),null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol("emmy.util.def","fork","emmy.util.def/fork",1565339133,null),null,(1),null)),(new cljs.core.List(null,new cljs.core.Keyword(null,"clj","clj",-660495428),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol("cljs.core",">=","cljs.core/>=",350096541,null),null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,new cljs.core.Symbol("java.lang.Math","abs","java.lang.Math/abs",1272698622,null),null,(1),null)),(new cljs.core.List(null,cljs.core.with_meta(acc,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"tag","tag",-1290361223),new cljs.core.Symbol(null,"double","double",-1769548886,null)], null)),null,(1),null))))),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,new cljs.core.Symbol("java.lang.Math","abs","java.lang.Math/abs",1272698622,null),null,(1),null)),(new cljs.core.List(null,cljs.core.with_meta(delta,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"tag","tag",-1290361223),new cljs.core.Symbol(null,"double","double",-1769548886,null)], null)),null,(1),null))))),null,(1),null))], 0)))),null,(1),null)),(new cljs.core.List(null,new cljs.core.Keyword(null,"cljs","cljs",1492417629),null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol("cljs.core",">=","cljs.core/>=",350096541,null),null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol(null,".abs",".abs",1832478636,null),null,(1),null)),(new cljs.core.List(null,new cljs.core.Symbol("js","Math","js/Math",2033291075,null),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,acc,null,(1),null))], 0)))),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol(null,".abs",".abs",1832478636,null),null,(1),null)),(new cljs.core.List(null,new cljs.core.Symbol("js","Math","js/Math",2033291075,null),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,delta,null,(1),null))], 0)))),null,(1),null))], 0)))),null,(1),null))], 0)))),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","+","cljs.core/+",-342754435,null),null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","-","cljs.core/-",187040141,null),null,(1),null)),(new cljs.core.List(null,acc,null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,new cljs.core.Symbol(null,"sum__28258__auto__","sum__28258__auto__",1859689684,null),null,(1),null))], 0)))),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,delta,null,(1),null))], 0)))),null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","+","cljs.core/+",-342754435,null),null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","-","cljs.core/-",187040141,null),null,(1),null)),(new cljs.core.List(null,delta,null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,new cljs.core.Symbol(null,"sum__28258__auto__","sum__28258__auto__",1859689684,null),null,(1),null))], 0)))),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,acc,null,(1),null))], 0)))),null,(1),null))], 0)))),null,(1),null)),(new cljs.core.List(null,acc,null,(1),null)),(new cljs.core.List(null,new cljs.core.Symbol(null,"sum__28258__auto__","sum__28258__auto__",1859689684,null),null,(1),null))], 0)))));
 });
 /**
  * Given some order `n`, generates the function body of a fold implementing `n`-th
@@ -673,8 +673,8 @@ var syms = cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentVect
 var prefix = cljs.core.pop(syms);
 var final$ = cljs.core.peek(syms);
 var delta = cljs.core.gensym.cljs$core$IFn$_invoke$arity$0();
-return cljs.core.vec(cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,cljs.core.vec(cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$0()))),null,(1),null)),(new cljs.core.List(null,cljs.core.vec(cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$1(cljs.core.repeat.cljs$core$IFn$_invoke$arity$2((n + (1)),0.0))))),null,(1),null))))),null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,cljs.core.vec(cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$1((new cljs.core.List(null,new cljs.core.Symbol(null,"accs__28203__auto__","accs__28203__auto__",-883749834,null),null,(1),null)))))),null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","reduce","cljs.core/reduce",2025430439,null),null,(1),null)),(new cljs.core.List(null,new cljs.core.Symbol("cljs.core","+","cljs.core/+",-342754435,null),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,new cljs.core.Symbol(null,"accs__28203__auto__","accs__28203__auto__",-883749834,null),null,(1),null))], 0)))),null,(1),null))))),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,cljs.core.vec(cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,syms,null,(1),null)),(new cljs.core.List(null,delta,null,(1),null)))))),null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","let","cljs.core/let",-308701135,null),null,(1),null)),(new cljs.core.List(null,cljs.core.vec(cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$1(cljs.core.mapcat.cljs$core$IFn$_invoke$arity$variadic((function (p1__28202_SHARP_){
-return emmy.algebra.fold.klein_term(p1__28202_SHARP_,delta);
+return cljs.core.vec(cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,cljs.core.vec(cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$0()))),null,(1),null)),(new cljs.core.List(null,cljs.core.vec(cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$1(cljs.core.repeat.cljs$core$IFn$_invoke$arity$2((n + (1)),0.0))))),null,(1),null))))),null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,cljs.core.vec(cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$1((new cljs.core.List(null,new cljs.core.Symbol(null,"accs__28271__auto__","accs__28271__auto__",-681942286,null),null,(1),null)))))),null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","reduce","cljs.core/reduce",2025430439,null),null,(1),null)),(new cljs.core.List(null,new cljs.core.Symbol("cljs.core","+","cljs.core/+",-342754435,null),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,new cljs.core.Symbol(null,"accs__28271__auto__","accs__28271__auto__",-681942286,null),null,(1),null))], 0)))),null,(1),null))))),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,cljs.core.vec(cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,syms,null,(1),null)),(new cljs.core.List(null,delta,null,(1),null)))))),null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","let","cljs.core/let",-308701135,null),null,(1),null)),(new cljs.core.List(null,cljs.core.vec(cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$1(cljs.core.mapcat.cljs$core$IFn$_invoke$arity$variadic((function (p1__28270_SHARP_){
+return emmy.algebra.fold.klein_term(p1__28270_SHARP_,delta);
 }),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([prefix], 0)))))),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,cljs.core.vec(cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2(prefix,(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","+","cljs.core/+",-342754435,null),null,(1),null)),(new cljs.core.List(null,final$,null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,delta,null,(1),null))], 0)))),null,(1),null)))))),null,(1),null))], 0)))),null,(1),null))))),null,(1),null))], 0)))));
 });
 /**

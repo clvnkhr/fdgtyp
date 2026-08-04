@@ -17,8 +17,8 @@ return ((emmy.operator.operator_QMARK_(vf)) && (cljs.core._EQ_.cljs$core$IFn$_in
  *   `g` at each point of the manifold.
  */
 emmy.calculus.vector_field.procedure__GT_vector_field = (function emmy$calculus$vector_field$procedure__GT_vector_field(var_args){
-var G__47358 = arguments.length;
-switch (G__47358) {
+var G__47364 = arguments.length;
+switch (G__47364) {
 case 1:
 return emmy.calculus.vector_field.procedure__GT_vector_field.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -57,8 +57,8 @@ return emmy.operator.make_operator.cljs$core$IFn$_invoke$arity$3(f,name,context)
  */
 emmy.calculus.vector_field.vector_field_procedure = (function emmy$calculus$vector_field$vector_field_procedure(component_fns,coordinate_system){
 return (function (f){
-return emmy.function$.compose.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2((function (){var G__47359 = emmy.function$.compose.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([f,emmy.calculus.manifold.point(coordinate_system)], 0));
-return (emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1(G__47359) : emmy.calculus.derivative.D.call(null,G__47359));
+return emmy.function$.compose.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2((function (){var G__47365 = emmy.function$.compose.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([f,emmy.calculus.manifold.point(coordinate_system)], 0));
+return (emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1(G__47365) : emmy.calculus.derivative.D.call(null,G__47365));
 })(),component_fns),emmy.calculus.manifold.chart(coordinate_system)], 0));
 });
 });
@@ -77,8 +77,8 @@ return (emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus
  *   derivative of the given function at each point of the manifold.
  */
 emmy.calculus.vector_field.components__GT_vector_field = (function emmy$calculus$vector_field$components__GT_vector_field(var_args){
-var G__47362 = arguments.length;
-switch (G__47362) {
+var G__47368 = arguments.length;
+switch (G__47368) {
 case 2:
 return emmy.calculus.vector_field.components__GT_vector_field.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -129,8 +129,8 @@ if(emmy.calculus.vector_field.vector_field_QMARK_(vf)){
 throw (new Error("Assert failed: (vector-field? vf)"));
 }
 
-return emmy.function$.compose.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(function (){var G__47364 = emmy.calculus.manifold.chart(coordinate_system);
-return (vf.cljs$core$IFn$_invoke$arity$1 ? vf.cljs$core$IFn$_invoke$arity$1(G__47364) : vf.call(null,G__47364));
+return emmy.function$.compose.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(function (){var G__47369 = emmy.calculus.manifold.chart(coordinate_system);
+return (vf.cljs$core$IFn$_invoke$arity$1 ? vf.cljs$core$IFn$_invoke$arity$1(G__47369) : vf.call(null,G__47369));
 })(),emmy.calculus.manifold.point(coordinate_system)], 0));
 });
 /**
@@ -181,14 +181,14 @@ return emmy.calculus.vector_field.components__GT_vector_field.cljs$core$IFn$_inv
 });
 emmy.calculus.vector_field.coordinate_basis_vector_field_procedure = (function emmy$calculus$vector_field$coordinate_basis_vector_field_procedure(var_args){
 var args__5903__auto__ = [];
-var len__5897__auto___47389 = arguments.length;
-var i__5898__auto___47390 = (0);
+var len__5897__auto___47392 = arguments.length;
+var i__5898__auto___47393 = (0);
 while(true){
-if((i__5898__auto___47390 < len__5897__auto___47389)){
-args__5903__auto__.push((arguments[i__5898__auto___47390]));
+if((i__5898__auto___47393 < len__5897__auto___47392)){
+args__5903__auto__.push((arguments[i__5898__auto___47393]));
 
-var G__47391 = (i__5898__auto___47390 + (1));
-i__5898__auto___47390 = G__47391;
+var G__47394 = (i__5898__auto___47393 + (1));
+i__5898__auto___47393 = G__47394;
 continue;
 } else {
 }
@@ -201,9 +201,9 @@ return emmy.calculus.vector_field.coordinate_basis_vector_field_procedure.cljs$c
 
 (emmy.calculus.vector_field.coordinate_basis_vector_field_procedure.cljs$core$IFn$_invoke$arity$variadic = (function (coordinate_system,indices){
 return (function (f){
-return emmy.function$.compose.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(function (){var G__47372 = emmy.function$.compose.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([f,emmy.calculus.manifold.point(coordinate_system)], 0));
-var fexpr__47371 = cljs.core.apply.cljs$core$IFn$_invoke$arity$2(emmy.calculus.derivative.partial,indices);
-return (fexpr__47371.cljs$core$IFn$_invoke$arity$1 ? fexpr__47371.cljs$core$IFn$_invoke$arity$1(G__47372) : fexpr__47371.call(null,G__47372));
+return emmy.function$.compose.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(function (){var G__47375 = emmy.function$.compose.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([f,emmy.calculus.manifold.point(coordinate_system)], 0));
+var fexpr__47374 = cljs.core.apply.cljs$core$IFn$_invoke$arity$2(emmy.calculus.derivative.partial,indices);
+return (fexpr__47374.cljs$core$IFn$_invoke$arity$1 ? fexpr__47374.cljs$core$IFn$_invoke$arity$1(G__47375) : fexpr__47374.call(null,G__47375));
 })(),emmy.calculus.manifold.chart(coordinate_system)], 0));
 });
 }));
@@ -211,11 +211,11 @@ return (fexpr__47371.cljs$core$IFn$_invoke$arity$1 ? fexpr__47371.cljs$core$IFn$
 (emmy.calculus.vector_field.coordinate_basis_vector_field_procedure.cljs$lang$maxFixedArity = (1));
 
 /** @this {Function} */
-(emmy.calculus.vector_field.coordinate_basis_vector_field_procedure.cljs$lang$applyTo = (function (seq47369){
-var G__47370 = cljs.core.first(seq47369);
-var seq47369__$1 = cljs.core.next(seq47369);
+(emmy.calculus.vector_field.coordinate_basis_vector_field_procedure.cljs$lang$applyTo = (function (seq47371){
+var G__47372 = cljs.core.first(seq47371);
+var seq47371__$1 = cljs.core.next(seq47371);
 var self__5882__auto__ = this;
-return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__47370,seq47369__$1);
+return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__47372,seq47371__$1);
 }));
 
 /**
@@ -230,14 +230,14 @@ return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__47370,seq47369
  */
 emmy.calculus.vector_field.coordinate_basis_vector_field = (function emmy$calculus$vector_field$coordinate_basis_vector_field(var_args){
 var args__5903__auto__ = [];
-var len__5897__auto___47392 = arguments.length;
-var i__5898__auto___47393 = (0);
+var len__5897__auto___47395 = arguments.length;
+var i__5898__auto___47396 = (0);
 while(true){
-if((i__5898__auto___47393 < len__5897__auto___47392)){
-args__5903__auto__.push((arguments[i__5898__auto___47393]));
+if((i__5898__auto___47396 < len__5897__auto___47395)){
+args__5903__auto__.push((arguments[i__5898__auto___47396]));
 
-var G__47394 = (i__5898__auto___47393 + (1));
-i__5898__auto___47393 = G__47394;
+var G__47397 = (i__5898__auto___47396 + (1));
+i__5898__auto___47396 = G__47397;
 continue;
 } else {
 }
@@ -256,13 +256,13 @@ return emmy.calculus.vector_field.procedure__GT_vector_field.cljs$core$IFn$_invo
 (emmy.calculus.vector_field.coordinate_basis_vector_field.cljs$lang$maxFixedArity = (2));
 
 /** @this {Function} */
-(emmy.calculus.vector_field.coordinate_basis_vector_field.cljs$lang$applyTo = (function (seq47373){
-var G__47374 = cljs.core.first(seq47373);
-var seq47373__$1 = cljs.core.next(seq47373);
-var G__47375 = cljs.core.first(seq47373__$1);
-var seq47373__$2 = cljs.core.next(seq47373__$1);
+(emmy.calculus.vector_field.coordinate_basis_vector_field.cljs$lang$applyTo = (function (seq47376){
+var G__47377 = cljs.core.first(seq47376);
+var seq47376__$1 = cljs.core.next(seq47376);
+var G__47378 = cljs.core.first(seq47376__$1);
+var seq47376__$2 = cljs.core.next(seq47376__$1);
 var self__5882__auto__ = this;
-return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__47374,G__47375,seq47373__$2);
+return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__47377,G__47378,seq47376__$2);
 }));
 
 /**
@@ -367,11 +367,11 @@ return (w.cljs$core$IFn$_invoke$arity$1 ? w.cljs$core$IFn$_invoke$arity$1(vf) : 
 emmy.calculus.vector_field.coordinatize = (function emmy$calculus$vector_field$coordinatize(vf,coordinate_system){
 var coordinatized_v = (function emmy$calculus$vector_field$coordinatize_$_coordinatized_v(f){
 return (function (x){
-var b = emmy.function$.compose.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(function (){var G__47380 = emmy.calculus.manifold.chart(coordinate_system);
-return (vf.cljs$core$IFn$_invoke$arity$1 ? vf.cljs$core$IFn$_invoke$arity$1(G__47380) : vf.call(null,G__47380));
+var b = emmy.function$.compose.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(function (){var G__47382 = emmy.calculus.manifold.chart(coordinate_system);
+return (vf.cljs$core$IFn$_invoke$arity$1 ? vf.cljs$core$IFn$_invoke$arity$1(G__47382) : vf.call(null,G__47382));
 })(),emmy.calculus.manifold.point(coordinate_system)], 0));
-return emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2((function (){var fexpr__47381 = (emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1(f) : emmy.calculus.derivative.D.call(null,f));
-return (fexpr__47381.cljs$core$IFn$_invoke$arity$1 ? fexpr__47381.cljs$core$IFn$_invoke$arity$1(x) : fexpr__47381.call(null,x));
+return emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2((function (){var fexpr__47383 = (emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1(f) : emmy.calculus.derivative.D.call(null,f));
+return (fexpr__47383.cljs$core$IFn$_invoke$arity$1 ? fexpr__47383.cljs$core$IFn$_invoke$arity$1(x) : fexpr__47383.call(null,x));
 })(),(b.cljs$core$IFn$_invoke$arity$1 ? b.cljs$core$IFn$_invoke$arity$1(x) : b.call(null,x)));
 });
 });
@@ -387,10 +387,10 @@ emmy.calculus.vector_field.evolution = (function emmy$calculus$vector_field$evol
 return (function (delta_t,vector_field){
 return (function (manifold_fn){
 return (function (manifold_point){
-return emmy.series.sum((function (){var fexpr__47383 = (function (){var fexpr__47384 = emmy.generic.exp.cljs$core$IFn$_invoke$arity$1(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(delta_t,vector_field));
-return (fexpr__47384.cljs$core$IFn$_invoke$arity$1 ? fexpr__47384.cljs$core$IFn$_invoke$arity$1(manifold_fn) : fexpr__47384.call(null,manifold_fn));
+return emmy.series.sum((function (){var fexpr__47385 = (function (){var fexpr__47386 = emmy.generic.exp.cljs$core$IFn$_invoke$arity$1(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(delta_t,vector_field));
+return (fexpr__47386.cljs$core$IFn$_invoke$arity$1 ? fexpr__47386.cljs$core$IFn$_invoke$arity$1(manifold_fn) : fexpr__47386.call(null,manifold_fn));
 })();
-return (fexpr__47383.cljs$core$IFn$_invoke$arity$1 ? fexpr__47383.cljs$core$IFn$_invoke$arity$1(manifold_point) : fexpr__47383.call(null,manifold_point));
+return (fexpr__47385.cljs$core$IFn$_invoke$arity$1 ? fexpr__47385.cljs$core$IFn$_invoke$arity$1(manifold_point) : fexpr__47385.call(null,manifold_point));
 })(),order);
 });
 });

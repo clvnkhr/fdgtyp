@@ -1,22 +1,22 @@
 goog.provide('emmy.sr.boost');
-emmy.sr.boost.make_four_tuple = (function emmy$sr$boost$make_four_tuple(ct,p__59188){
-var vec__59189 = p__59188;
-var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59189,(0),null);
-var y = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59189,(1),null);
-var z = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59189,(2),null);
+emmy.sr.boost.make_four_tuple = (function emmy$sr$boost$make_four_tuple(ct,p__59076){
+var vec__59077 = p__59076;
+var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59077,(0),null);
+var y = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59077,(1),null);
+var z = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59077,(2),null);
 return emmy.structure.up.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([ct,x,y,z], 0));
 });
-emmy.sr.boost.four_tuple__GT_ct = (function emmy$sr$boost$four_tuple__GT_ct(p__59200){
-var vec__59201 = p__59200;
-var ct = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59201,(0),null);
+emmy.sr.boost.four_tuple__GT_ct = (function emmy$sr$boost$four_tuple__GT_ct(p__59080){
+var vec__59081 = p__59080;
+var ct = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59081,(0),null);
 return ct;
 });
-emmy.sr.boost.four_tuple__GT_space = (function emmy$sr$boost$four_tuple__GT_space(p__59211){
-var vec__59213 = p__59211;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59213,(0),null);
-var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59213,(1),null);
-var y = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59213,(2),null);
-var z = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59213,(3),null);
+emmy.sr.boost.four_tuple__GT_space = (function emmy$sr$boost$four_tuple__GT_space(p__59086){
+var vec__59087 = p__59086;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59087,(0),null);
+var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59087,(1),null);
+var y = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59087,(2),null);
+var z = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59087,(3),null);
 return emmy.structure.up.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([x,y,z], 0));
 });
 emmy.sr.boost.proper_time_interval = (function emmy$sr$boost$proper_time_interval(four_tuple){
@@ -54,8 +54,8 @@ return emmy.sr.boost.make_four_tuple(delta_ct,delta_x);
 });
 emmy.sr.boost.extended_rotation = (function emmy$sr$boost$extended_rotation(R){
 return (function (xi_p){
-return emmy.sr.boost.make_four_tuple(emmy.sr.boost.four_tuple__GT_ct(xi_p),(function (){var G__59251 = emmy.sr.boost.four_tuple__GT_space(xi_p);
-return (R.cljs$core$IFn$_invoke$arity$1 ? R.cljs$core$IFn$_invoke$arity$1(G__59251) : R.call(null,G__59251));
+return emmy.sr.boost.make_four_tuple(emmy.sr.boost.four_tuple__GT_ct(xi_p),(function (){var G__59109 = emmy.sr.boost.four_tuple__GT_space(xi_p);
+return (R.cljs$core$IFn$_invoke$arity$1 ? R.cljs$core$IFn$_invoke$arity$1(G__59109) : R.call(null,G__59109));
 })());
 });
 });

@@ -74,18 +74,18 @@ return not_found;
 (emmy.quaternion.Quaternion.prototype.cljs$core$IKVReduce$_kv_reduce$arity$3 = (function (_,f,init){
 var self__ = this;
 var ___$1 = this;
-var G__58409 = (function (){var G__58412 = (function (){var G__58415 = (f.cljs$core$IFn$_invoke$arity$3 ? f.cljs$core$IFn$_invoke$arity$3(init,self__.r,(0)) : f.call(null,init,self__.r,(0)));
-var G__58416 = self__.i;
-var G__58417 = (1);
-return (f.cljs$core$IFn$_invoke$arity$3 ? f.cljs$core$IFn$_invoke$arity$3(G__58415,G__58416,G__58417) : f.call(null,G__58415,G__58416,G__58417));
+var G__57298 = (function (){var G__57301 = (function (){var G__57304 = (f.cljs$core$IFn$_invoke$arity$3 ? f.cljs$core$IFn$_invoke$arity$3(init,self__.r,(0)) : f.call(null,init,self__.r,(0)));
+var G__57305 = self__.i;
+var G__57306 = (1);
+return (f.cljs$core$IFn$_invoke$arity$3 ? f.cljs$core$IFn$_invoke$arity$3(G__57304,G__57305,G__57306) : f.call(null,G__57304,G__57305,G__57306));
 })();
-var G__58413 = self__.j;
-var G__58414 = (2);
-return (f.cljs$core$IFn$_invoke$arity$3 ? f.cljs$core$IFn$_invoke$arity$3(G__58412,G__58413,G__58414) : f.call(null,G__58412,G__58413,G__58414));
+var G__57302 = self__.j;
+var G__57303 = (2);
+return (f.cljs$core$IFn$_invoke$arity$3 ? f.cljs$core$IFn$_invoke$arity$3(G__57301,G__57302,G__57303) : f.call(null,G__57301,G__57302,G__57303));
 })();
-var G__58410 = self__.k;
-var G__58411 = (3);
-return (f.cljs$core$IFn$_invoke$arity$3 ? f.cljs$core$IFn$_invoke$arity$3(G__58409,G__58410,G__58411) : f.call(null,G__58409,G__58410,G__58411));
+var G__57299 = self__.k;
+var G__57300 = (3);
+return (f.cljs$core$IFn$_invoke$arity$3 ? f.cljs$core$IFn$_invoke$arity$3(G__57298,G__57299,G__57300) : f.call(null,G__57298,G__57299,G__57300));
 }));
 
 (emmy.quaternion.Quaternion.prototype.cljs$core$IIndexed$_nth$arity$2 = (function (this$,n){
@@ -97,8 +97,8 @@ return this$__$1.cljs$core$IIndexed$_nth$arity$3(null,n,null);
 (emmy.quaternion.Quaternion.prototype.cljs$core$IIndexed$_nth$arity$3 = (function (_,n,default$){
 var self__ = this;
 var ___$1 = this;
-var G__58422 = n;
-switch (G__58422) {
+var G__57308 = n;
+switch (G__57308) {
 case (0):
 return self__.r;
 
@@ -166,26 +166,26 @@ return (new emmy.quaternion.Quaternion((0),(0),(0),(0),self__.m));
 (emmy.quaternion.Quaternion.prototype.cljs$core$IReduce$_reduce$arity$2 = (function (_,f){
 var self__ = this;
 var ___$1 = this;
-var G__58430 = (function (){var G__58432 = (f.cljs$core$IFn$_invoke$arity$2 ? f.cljs$core$IFn$_invoke$arity$2(self__.r,self__.i) : f.call(null,self__.r,self__.i));
-var G__58433 = self__.j;
-return (f.cljs$core$IFn$_invoke$arity$2 ? f.cljs$core$IFn$_invoke$arity$2(G__58432,G__58433) : f.call(null,G__58432,G__58433));
+var G__57310 = (function (){var G__57313 = (f.cljs$core$IFn$_invoke$arity$2 ? f.cljs$core$IFn$_invoke$arity$2(self__.r,self__.i) : f.call(null,self__.r,self__.i));
+var G__57314 = self__.j;
+return (f.cljs$core$IFn$_invoke$arity$2 ? f.cljs$core$IFn$_invoke$arity$2(G__57313,G__57314) : f.call(null,G__57313,G__57314));
 })();
-var G__58431 = self__.k;
-return (f.cljs$core$IFn$_invoke$arity$2 ? f.cljs$core$IFn$_invoke$arity$2(G__58430,G__58431) : f.call(null,G__58430,G__58431));
+var G__57311 = self__.k;
+return (f.cljs$core$IFn$_invoke$arity$2 ? f.cljs$core$IFn$_invoke$arity$2(G__57310,G__57311) : f.call(null,G__57310,G__57311));
 }));
 
 (emmy.quaternion.Quaternion.prototype.cljs$core$IReduce$_reduce$arity$3 = (function (_,f,start){
 var self__ = this;
 var ___$1 = this;
-var G__58434 = (function (){var G__58437 = (function (){var G__58439 = (f.cljs$core$IFn$_invoke$arity$2 ? f.cljs$core$IFn$_invoke$arity$2(start,self__.r) : f.call(null,start,self__.r));
-var G__58440 = self__.i;
-return (f.cljs$core$IFn$_invoke$arity$2 ? f.cljs$core$IFn$_invoke$arity$2(G__58439,G__58440) : f.call(null,G__58439,G__58440));
+var G__57315 = (function (){var G__57318 = (function (){var G__57320 = (f.cljs$core$IFn$_invoke$arity$2 ? f.cljs$core$IFn$_invoke$arity$2(start,self__.r) : f.call(null,start,self__.r));
+var G__57321 = self__.i;
+return (f.cljs$core$IFn$_invoke$arity$2 ? f.cljs$core$IFn$_invoke$arity$2(G__57320,G__57321) : f.call(null,G__57320,G__57321));
 })();
-var G__58438 = self__.j;
-return (f.cljs$core$IFn$_invoke$arity$2 ? f.cljs$core$IFn$_invoke$arity$2(G__58437,G__58438) : f.call(null,G__58437,G__58438));
+var G__57319 = self__.j;
+return (f.cljs$core$IFn$_invoke$arity$2 ? f.cljs$core$IFn$_invoke$arity$2(G__57318,G__57319) : f.call(null,G__57318,G__57319));
 })();
-var G__58435 = self__.k;
-return (f.cljs$core$IFn$_invoke$arity$2 ? f.cljs$core$IFn$_invoke$arity$2(G__58434,G__58435) : f.call(null,G__58434,G__58435));
+var G__57316 = self__.k;
+return (f.cljs$core$IFn$_invoke$arity$2 ? f.cljs$core$IFn$_invoke$arity$2(G__57315,G__57316) : f.call(null,G__57315,G__57316));
 }));
 
 (emmy.quaternion.Quaternion.prototype.emmy$value$IKind$ = cljs.core.PROTOCOL_SENTINEL);
@@ -207,8 +207,8 @@ return (emmy.quaternion.arity.cljs$core$IFn$_invoke$arity$1 ? emmy.quaternion.ar
 (emmy.quaternion.Quaternion.prototype.cljs$core$IAssociative$_assoc$arity$3 = (function (_,key,v){
 var self__ = this;
 var ___$1 = this;
-var G__58441 = key;
-switch (G__58441) {
+var G__57325 = key;
+switch (G__57325) {
 case (0):
 return (new emmy.quaternion.Quaternion(v,self__.i,self__.j,self__.k,self__.m));
 
@@ -234,8 +234,8 @@ throw (new Error("Quaternion's key for assoc must be 0, 1, 2 or 3."));
 (emmy.quaternion.Quaternion.prototype.cljs$core$IAssociative$_contains_key_QMARK_$arity$2 = (function (_,k__$1){
 var self__ = this;
 var ___$1 = this;
-return cljs.core.boolean$((function (){var fexpr__58442 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 4, [(0),null,(1),null,(3),null,(2),null], null), null);
-return (fexpr__58442.cljs$core$IFn$_invoke$arity$1 ? fexpr__58442.cljs$core$IFn$_invoke$arity$1(k__$1) : fexpr__58442.call(null,k__$1));
+return cljs.core.boolean$((function (){var fexpr__57326 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 4, [(0),null,(1),null,(3),null,(2),null], null), null);
+return (fexpr__57326.cljs$core$IFn$_invoke$arity$1 ? fexpr__57326.cljs$core$IFn$_invoke$arity$1(k__$1) : fexpr__57326.call(null,k__$1));
 })());
 }));
 
@@ -260,8 +260,8 @@ throw (new Error((""+"conj not suported on Quaternion instances. convert to"+" v
 (emmy.quaternion.Quaternion.prototype.call = (function (unused__2830__auto__){
 var self__ = this;
 var self__ = this;
-var G__58449 = (arguments.length - (1));
-switch (G__58449) {
+var G__57328 = (arguments.length - (1));
+switch (G__57328) {
 case (0):
 return self__.cljs$core$IFn$_invoke$arity$0();
 
@@ -356,186 +356,186 @@ throw (new Error((""+"Invalid arity: "+cljs.core.str.cljs$core$IFn$_invoke$arity
 }
 }));
 
-(emmy.quaternion.Quaternion.prototype.apply = (function (self__,args58403){
+(emmy.quaternion.Quaternion.prototype.apply = (function (self__,args57292){
 var self__ = this;
 var self____$1 = this;
-return self____$1.call.apply(self____$1,[self____$1].concat(cljs.core.aclone(args58403)));
+return self____$1.call.apply(self____$1,[self____$1].concat(cljs.core.aclone(args57292)));
 }));
 
 (emmy.quaternion.Quaternion.prototype.cljs$core$IFn$_invoke$arity$0 = (function (){
 var self__ = this;
 var this$ = this;
-var G__58476 = this$;
-var G__58477 = cljs.core.PersistentVector.EMPTY;
-return (emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2 ? emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2(G__58476,G__58477) : emmy.quaternion.evaluate.call(null,G__58476,G__58477));
+var G__57338 = this$;
+var G__57339 = cljs.core.PersistentVector.EMPTY;
+return (emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2 ? emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2(G__57338,G__57339) : emmy.quaternion.evaluate.call(null,G__57338,G__57339));
 }));
 
 (emmy.quaternion.Quaternion.prototype.cljs$core$IFn$_invoke$arity$1 = (function (a){
 var self__ = this;
 var this$ = this;
-var G__58479 = this$;
-var G__58480 = new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [a], null);
-return (emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2 ? emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2(G__58479,G__58480) : emmy.quaternion.evaluate.call(null,G__58479,G__58480));
+var G__57341 = this$;
+var G__57342 = new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [a], null);
+return (emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2 ? emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2(G__57341,G__57342) : emmy.quaternion.evaluate.call(null,G__57341,G__57342));
 }));
 
 (emmy.quaternion.Quaternion.prototype.cljs$core$IFn$_invoke$arity$2 = (function (a,b){
 var self__ = this;
 var this$ = this;
-var G__58481 = this$;
-var G__58482 = new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [a,b], null);
-return (emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2 ? emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2(G__58481,G__58482) : emmy.quaternion.evaluate.call(null,G__58481,G__58482));
+var G__57343 = this$;
+var G__57344 = new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [a,b], null);
+return (emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2 ? emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2(G__57343,G__57344) : emmy.quaternion.evaluate.call(null,G__57343,G__57344));
 }));
 
 (emmy.quaternion.Quaternion.prototype.cljs$core$IFn$_invoke$arity$3 = (function (a,b,c){
 var self__ = this;
 var this$ = this;
-var G__58483 = this$;
-var G__58484 = new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [a,b,c], null);
-return (emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2 ? emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2(G__58483,G__58484) : emmy.quaternion.evaluate.call(null,G__58483,G__58484));
+var G__57345 = this$;
+var G__57346 = new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [a,b,c], null);
+return (emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2 ? emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2(G__57345,G__57346) : emmy.quaternion.evaluate.call(null,G__57345,G__57346));
 }));
 
 (emmy.quaternion.Quaternion.prototype.cljs$core$IFn$_invoke$arity$4 = (function (a,b,c,d){
 var self__ = this;
 var this$ = this;
-var G__58486 = this$;
-var G__58487 = new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [a,b,c,d], null);
-return (emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2 ? emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2(G__58486,G__58487) : emmy.quaternion.evaluate.call(null,G__58486,G__58487));
+var G__57347 = this$;
+var G__57348 = new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [a,b,c,d], null);
+return (emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2 ? emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2(G__57347,G__57348) : emmy.quaternion.evaluate.call(null,G__57347,G__57348));
 }));
 
 (emmy.quaternion.Quaternion.prototype.cljs$core$IFn$_invoke$arity$5 = (function (a,b,c,d,e){
 var self__ = this;
 var this$ = this;
-var G__58488 = this$;
-var G__58489 = new cljs.core.PersistentVector(null, 5, 5, cljs.core.PersistentVector.EMPTY_NODE, [a,b,c,d,e], null);
-return (emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2 ? emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2(G__58488,G__58489) : emmy.quaternion.evaluate.call(null,G__58488,G__58489));
+var G__57351 = this$;
+var G__57352 = new cljs.core.PersistentVector(null, 5, 5, cljs.core.PersistentVector.EMPTY_NODE, [a,b,c,d,e], null);
+return (emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2 ? emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2(G__57351,G__57352) : emmy.quaternion.evaluate.call(null,G__57351,G__57352));
 }));
 
 (emmy.quaternion.Quaternion.prototype.cljs$core$IFn$_invoke$arity$6 = (function (a,b,c,d,e,f){
 var self__ = this;
 var this$ = this;
-var G__58493 = this$;
-var G__58494 = new cljs.core.PersistentVector(null, 6, 5, cljs.core.PersistentVector.EMPTY_NODE, [a,b,c,d,e,f], null);
-return (emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2 ? emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2(G__58493,G__58494) : emmy.quaternion.evaluate.call(null,G__58493,G__58494));
+var G__57353 = this$;
+var G__57354 = new cljs.core.PersistentVector(null, 6, 5, cljs.core.PersistentVector.EMPTY_NODE, [a,b,c,d,e,f], null);
+return (emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2 ? emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2(G__57353,G__57354) : emmy.quaternion.evaluate.call(null,G__57353,G__57354));
 }));
 
 (emmy.quaternion.Quaternion.prototype.cljs$core$IFn$_invoke$arity$7 = (function (a,b,c,d,e,f,g){
 var self__ = this;
 var this$ = this;
-var G__58495 = this$;
-var G__58496 = new cljs.core.PersistentVector(null, 7, 5, cljs.core.PersistentVector.EMPTY_NODE, [a,b,c,d,e,f,g], null);
-return (emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2 ? emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2(G__58495,G__58496) : emmy.quaternion.evaluate.call(null,G__58495,G__58496));
+var G__57355 = this$;
+var G__57356 = new cljs.core.PersistentVector(null, 7, 5, cljs.core.PersistentVector.EMPTY_NODE, [a,b,c,d,e,f,g], null);
+return (emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2 ? emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2(G__57355,G__57356) : emmy.quaternion.evaluate.call(null,G__57355,G__57356));
 }));
 
 (emmy.quaternion.Quaternion.prototype.cljs$core$IFn$_invoke$arity$8 = (function (a,b,c,d,e,f,g,h){
 var self__ = this;
 var this$ = this;
-var G__58497 = this$;
-var G__58498 = new cljs.core.PersistentVector(null, 8, 5, cljs.core.PersistentVector.EMPTY_NODE, [a,b,c,d,e,f,g,h], null);
-return (emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2 ? emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2(G__58497,G__58498) : emmy.quaternion.evaluate.call(null,G__58497,G__58498));
+var G__57358 = this$;
+var G__57359 = new cljs.core.PersistentVector(null, 8, 5, cljs.core.PersistentVector.EMPTY_NODE, [a,b,c,d,e,f,g,h], null);
+return (emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2 ? emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2(G__57358,G__57359) : emmy.quaternion.evaluate.call(null,G__57358,G__57359));
 }));
 
 (emmy.quaternion.Quaternion.prototype.cljs$core$IFn$_invoke$arity$9 = (function (a,b,c,d,e,f,g,h,i__$1){
 var self__ = this;
 var this$ = this;
-var G__58500 = this$;
-var G__58501 = new cljs.core.PersistentVector(null, 9, 5, cljs.core.PersistentVector.EMPTY_NODE, [a,b,c,d,e,f,g,h,i__$1], null);
-return (emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2 ? emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2(G__58500,G__58501) : emmy.quaternion.evaluate.call(null,G__58500,G__58501));
+var G__57360 = this$;
+var G__57361 = new cljs.core.PersistentVector(null, 9, 5, cljs.core.PersistentVector.EMPTY_NODE, [a,b,c,d,e,f,g,h,i__$1], null);
+return (emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2 ? emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2(G__57360,G__57361) : emmy.quaternion.evaluate.call(null,G__57360,G__57361));
 }));
 
 (emmy.quaternion.Quaternion.prototype.cljs$core$IFn$_invoke$arity$10 = (function (a,b,c,d,e,f,g,h,i__$1,j__$1){
 var self__ = this;
 var this$ = this;
-var G__58503 = this$;
-var G__58504 = new cljs.core.PersistentVector(null, 10, 5, cljs.core.PersistentVector.EMPTY_NODE, [a,b,c,d,e,f,g,h,i__$1,j__$1], null);
-return (emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2 ? emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2(G__58503,G__58504) : emmy.quaternion.evaluate.call(null,G__58503,G__58504));
+var G__57363 = this$;
+var G__57364 = new cljs.core.PersistentVector(null, 10, 5, cljs.core.PersistentVector.EMPTY_NODE, [a,b,c,d,e,f,g,h,i__$1,j__$1], null);
+return (emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2 ? emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2(G__57363,G__57364) : emmy.quaternion.evaluate.call(null,G__57363,G__57364));
 }));
 
 (emmy.quaternion.Quaternion.prototype.cljs$core$IFn$_invoke$arity$11 = (function (a,b,c,d,e,f,g,h,i__$1,j__$1,k__$1){
 var self__ = this;
 var this$ = this;
-var G__58506 = this$;
-var G__58507 = new cljs.core.PersistentVector(null, 11, 5, cljs.core.PersistentVector.EMPTY_NODE, [a,b,c,d,e,f,g,h,i__$1,j__$1,k__$1], null);
-return (emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2 ? emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2(G__58506,G__58507) : emmy.quaternion.evaluate.call(null,G__58506,G__58507));
+var G__57365 = this$;
+var G__57366 = new cljs.core.PersistentVector(null, 11, 5, cljs.core.PersistentVector.EMPTY_NODE, [a,b,c,d,e,f,g,h,i__$1,j__$1,k__$1], null);
+return (emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2 ? emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2(G__57365,G__57366) : emmy.quaternion.evaluate.call(null,G__57365,G__57366));
 }));
 
 (emmy.quaternion.Quaternion.prototype.cljs$core$IFn$_invoke$arity$12 = (function (a,b,c,d,e,f,g,h,i__$1,j__$1,k__$1,l){
 var self__ = this;
 var this$ = this;
-var G__58508 = this$;
-var G__58509 = new cljs.core.PersistentVector(null, 12, 5, cljs.core.PersistentVector.EMPTY_NODE, [a,b,c,d,e,f,g,h,i__$1,j__$1,k__$1,l], null);
-return (emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2 ? emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2(G__58508,G__58509) : emmy.quaternion.evaluate.call(null,G__58508,G__58509));
+var G__57368 = this$;
+var G__57369 = new cljs.core.PersistentVector(null, 12, 5, cljs.core.PersistentVector.EMPTY_NODE, [a,b,c,d,e,f,g,h,i__$1,j__$1,k__$1,l], null);
+return (emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2 ? emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2(G__57368,G__57369) : emmy.quaternion.evaluate.call(null,G__57368,G__57369));
 }));
 
 (emmy.quaternion.Quaternion.prototype.cljs$core$IFn$_invoke$arity$13 = (function (a,b,c,d,e,f,g,h,i__$1,j__$1,k__$1,l,m__$1){
 var self__ = this;
 var this$ = this;
-var G__58510 = this$;
-var G__58511 = new cljs.core.PersistentVector(null, 13, 5, cljs.core.PersistentVector.EMPTY_NODE, [a,b,c,d,e,f,g,h,i__$1,j__$1,k__$1,l,m__$1], null);
-return (emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2 ? emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2(G__58510,G__58511) : emmy.quaternion.evaluate.call(null,G__58510,G__58511));
+var G__57370 = this$;
+var G__57371 = new cljs.core.PersistentVector(null, 13, 5, cljs.core.PersistentVector.EMPTY_NODE, [a,b,c,d,e,f,g,h,i__$1,j__$1,k__$1,l,m__$1], null);
+return (emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2 ? emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2(G__57370,G__57371) : emmy.quaternion.evaluate.call(null,G__57370,G__57371));
 }));
 
 (emmy.quaternion.Quaternion.prototype.cljs$core$IFn$_invoke$arity$14 = (function (a,b,c,d,e,f,g,h,i__$1,j__$1,k__$1,l,m__$1,n){
 var self__ = this;
 var this$ = this;
-var G__58512 = this$;
-var G__58513 = new cljs.core.PersistentVector(null, 14, 5, cljs.core.PersistentVector.EMPTY_NODE, [a,b,c,d,e,f,g,h,i__$1,j__$1,k__$1,l,m__$1,n], null);
-return (emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2 ? emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2(G__58512,G__58513) : emmy.quaternion.evaluate.call(null,G__58512,G__58513));
+var G__57372 = this$;
+var G__57373 = new cljs.core.PersistentVector(null, 14, 5, cljs.core.PersistentVector.EMPTY_NODE, [a,b,c,d,e,f,g,h,i__$1,j__$1,k__$1,l,m__$1,n], null);
+return (emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2 ? emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2(G__57372,G__57373) : emmy.quaternion.evaluate.call(null,G__57372,G__57373));
 }));
 
 (emmy.quaternion.Quaternion.prototype.cljs$core$IFn$_invoke$arity$15 = (function (a,b,c,d,e,f,g,h,i__$1,j__$1,k__$1,l,m__$1,n,o){
 var self__ = this;
 var this$ = this;
-var G__58516 = this$;
-var G__58517 = new cljs.core.PersistentVector(null, 15, 5, cljs.core.PersistentVector.EMPTY_NODE, [a,b,c,d,e,f,g,h,i__$1,j__$1,k__$1,l,m__$1,n,o], null);
-return (emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2 ? emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2(G__58516,G__58517) : emmy.quaternion.evaluate.call(null,G__58516,G__58517));
+var G__57376 = this$;
+var G__57377 = new cljs.core.PersistentVector(null, 15, 5, cljs.core.PersistentVector.EMPTY_NODE, [a,b,c,d,e,f,g,h,i__$1,j__$1,k__$1,l,m__$1,n,o], null);
+return (emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2 ? emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2(G__57376,G__57377) : emmy.quaternion.evaluate.call(null,G__57376,G__57377));
 }));
 
 (emmy.quaternion.Quaternion.prototype.cljs$core$IFn$_invoke$arity$16 = (function (a,b,c,d,e,f,g,h,i__$1,j__$1,k__$1,l,m__$1,n,o,p){
 var self__ = this;
 var this$ = this;
-var G__58519 = this$;
-var G__58520 = new cljs.core.PersistentVector(null, 16, 5, cljs.core.PersistentVector.EMPTY_NODE, [a,b,c,d,e,f,g,h,i__$1,j__$1,k__$1,l,m__$1,n,o,p], null);
-return (emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2 ? emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2(G__58519,G__58520) : emmy.quaternion.evaluate.call(null,G__58519,G__58520));
+var G__57380 = this$;
+var G__57381 = new cljs.core.PersistentVector(null, 16, 5, cljs.core.PersistentVector.EMPTY_NODE, [a,b,c,d,e,f,g,h,i__$1,j__$1,k__$1,l,m__$1,n,o,p], null);
+return (emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2 ? emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2(G__57380,G__57381) : emmy.quaternion.evaluate.call(null,G__57380,G__57381));
 }));
 
 (emmy.quaternion.Quaternion.prototype.cljs$core$IFn$_invoke$arity$17 = (function (a,b,c,d,e,f,g,h,i__$1,j__$1,k__$1,l,m__$1,n,o,p,q){
 var self__ = this;
 var this$ = this;
-var G__58521 = this$;
-var G__58522 = new cljs.core.PersistentVector(null, 17, 5, cljs.core.PersistentVector.EMPTY_NODE, [a,b,c,d,e,f,g,h,i__$1,j__$1,k__$1,l,m__$1,n,o,p,q], null);
-return (emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2 ? emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2(G__58521,G__58522) : emmy.quaternion.evaluate.call(null,G__58521,G__58522));
+var G__57386 = this$;
+var G__57387 = new cljs.core.PersistentVector(null, 17, 5, cljs.core.PersistentVector.EMPTY_NODE, [a,b,c,d,e,f,g,h,i__$1,j__$1,k__$1,l,m__$1,n,o,p,q], null);
+return (emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2 ? emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2(G__57386,G__57387) : emmy.quaternion.evaluate.call(null,G__57386,G__57387));
 }));
 
 (emmy.quaternion.Quaternion.prototype.cljs$core$IFn$_invoke$arity$18 = (function (a,b,c,d,e,f,g,h,i__$1,j__$1,k__$1,l,m__$1,n,o,p,q,r__$1){
 var self__ = this;
 var this$ = this;
-var G__58525 = this$;
-var G__58526 = new cljs.core.PersistentVector(null, 18, 5, cljs.core.PersistentVector.EMPTY_NODE, [a,b,c,d,e,f,g,h,i__$1,j__$1,k__$1,l,m__$1,n,o,p,q,r__$1], null);
-return (emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2 ? emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2(G__58525,G__58526) : emmy.quaternion.evaluate.call(null,G__58525,G__58526));
+var G__57388 = this$;
+var G__57389 = new cljs.core.PersistentVector(null, 18, 5, cljs.core.PersistentVector.EMPTY_NODE, [a,b,c,d,e,f,g,h,i__$1,j__$1,k__$1,l,m__$1,n,o,p,q,r__$1], null);
+return (emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2 ? emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2(G__57388,G__57389) : emmy.quaternion.evaluate.call(null,G__57388,G__57389));
 }));
 
 (emmy.quaternion.Quaternion.prototype.cljs$core$IFn$_invoke$arity$19 = (function (a,b,c,d,e,f,g,h,i__$1,j__$1,k__$1,l,m__$1,n,o,p,q,r__$1,s){
 var self__ = this;
 var this$ = this;
-var G__58527 = this$;
-var G__58528 = new cljs.core.PersistentVector(null, 19, 5, cljs.core.PersistentVector.EMPTY_NODE, [a,b,c,d,e,f,g,h,i__$1,j__$1,k__$1,l,m__$1,n,o,p,q,r__$1,s], null);
-return (emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2 ? emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2(G__58527,G__58528) : emmy.quaternion.evaluate.call(null,G__58527,G__58528));
+var G__57390 = this$;
+var G__57391 = new cljs.core.PersistentVector(null, 19, 5, cljs.core.PersistentVector.EMPTY_NODE, [a,b,c,d,e,f,g,h,i__$1,j__$1,k__$1,l,m__$1,n,o,p,q,r__$1,s], null);
+return (emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2 ? emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2(G__57390,G__57391) : emmy.quaternion.evaluate.call(null,G__57390,G__57391));
 }));
 
 (emmy.quaternion.Quaternion.prototype.cljs$core$IFn$_invoke$arity$20 = (function (a,b,c,d,e,f,g,h,i__$1,j__$1,k__$1,l,m__$1,n,o,p,q,r__$1,s,t){
 var self__ = this;
 var this$ = this;
-var G__58529 = this$;
-var G__58530 = new cljs.core.PersistentVector(null, 20, 5, cljs.core.PersistentVector.EMPTY_NODE, [a,b,c,d,e,f,g,h,i__$1,j__$1,k__$1,l,m__$1,n,o,p,q,r__$1,s,t], null);
-return (emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2 ? emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2(G__58529,G__58530) : emmy.quaternion.evaluate.call(null,G__58529,G__58530));
+var G__57396 = this$;
+var G__57397 = new cljs.core.PersistentVector(null, 20, 5, cljs.core.PersistentVector.EMPTY_NODE, [a,b,c,d,e,f,g,h,i__$1,j__$1,k__$1,l,m__$1,n,o,p,q,r__$1,s,t], null);
+return (emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2 ? emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2(G__57396,G__57397) : emmy.quaternion.evaluate.call(null,G__57396,G__57397));
 }));
 
 (emmy.quaternion.Quaternion.prototype.cljs$core$IFn$_invoke$arity$21 = (function (a,b,c,d,e,f,g,h,i__$1,j__$1,k__$1,l,m__$1,n,o,p,q,r__$1,s,t,rest){
 var self__ = this;
 var this$ = this;
-var G__58531 = this$;
-var G__58532 = cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 20, 5, cljs.core.PersistentVector.EMPTY_NODE, [a,b,c,d,e,f,g,h,i__$1,j__$1,k__$1,l,m__$1,n,o,p,q,r__$1,s,t], null),rest);
-return (emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2 ? emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2(G__58531,G__58532) : emmy.quaternion.evaluate.call(null,G__58531,G__58532));
+var G__57398 = this$;
+var G__57399 = cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 20, 5, cljs.core.PersistentVector.EMPTY_NODE, [a,b,c,d,e,f,g,h,i__$1,j__$1,k__$1,l,m__$1,n,o,p,q,r__$1,s,t], null),rest);
+return (emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2 ? emmy.quaternion.evaluate.cljs$core$IFn$_invoke$arity$2(G__57398,G__57399) : emmy.quaternion.evaluate.call(null,G__57398,G__57399));
 }));
 
 (emmy.quaternion.Quaternion.prototype.emmy$dual$IPerturbed$ = cljs.core.PROTOCOL_SENTINEL);
@@ -732,14 +732,14 @@ return emmy.generic.zero_QMARK_.cljs$core$IFn$_invoke$arity$1(emmy.quaternion.ge
  */
 emmy.quaternion.unit_QMARK_ = (function emmy$quaternion$unit_QMARK_(var_args){
 var args__5903__auto__ = [];
-var len__5897__auto___58972 = arguments.length;
-var i__5898__auto___58973 = (0);
+var len__5897__auto___57808 = arguments.length;
+var i__5898__auto___57809 = (0);
 while(true){
-if((i__5898__auto___58973 < len__5897__auto___58972)){
-args__5903__auto__.push((arguments[i__5898__auto___58973]));
+if((i__5898__auto___57809 < len__5897__auto___57808)){
+args__5903__auto__.push((arguments[i__5898__auto___57809]));
 
-var G__58974 = (i__5898__auto___58973 + (1));
-i__5898__auto___58973 = G__58974;
+var G__57810 = (i__5898__auto___57809 + (1));
+i__5898__auto___57809 = G__57810;
 continue;
 } else {
 }
@@ -750,10 +750,10 @@ var argseq__5904__auto__ = ((((1) < args__5903__auto__.length))?(new cljs.core.I
 return emmy.quaternion.unit_QMARK_.cljs$core$IFn$_invoke$arity$variadic((arguments[(0)]),argseq__5904__auto__);
 });
 
-(emmy.quaternion.unit_QMARK_.cljs$core$IFn$_invoke$arity$variadic = (function (q,p__58548){
-var map__58549 = p__58548;
-var map__58549__$1 = cljs.core.__destructure_map(map__58549);
-var epsilon = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__58549__$1,new cljs.core.Keyword(null,"epsilon","epsilon",-730158570));
+(emmy.quaternion.unit_QMARK_.cljs$core$IFn$_invoke$arity$variadic = (function (q,p__57443){
+var map__57444 = p__57443;
+var map__57444__$1 = cljs.core.__destructure_map(map__57444);
+var epsilon = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__57444__$1,new cljs.core.Keyword(null,"epsilon","epsilon",-730158570));
 var mag_sq = (emmy.quaternion.magnitude_sq.cljs$core$IFn$_invoke$arity$1 ? emmy.quaternion.magnitude_sq.cljs$core$IFn$_invoke$arity$1(q) : emmy.quaternion.magnitude_sq.call(null,q));
 if(cljs.core.truth_(epsilon)){
 return emmy.value.within(epsilon)((1),emmy.generic.sqrt.cljs$core$IFn$_invoke$arity$1(mag_sq));
@@ -765,11 +765,11 @@ return emmy.generic.one_QMARK_.cljs$core$IFn$_invoke$arity$1(mag_sq);
 (emmy.quaternion.unit_QMARK_.cljs$lang$maxFixedArity = (1));
 
 /** @this {Function} */
-(emmy.quaternion.unit_QMARK_.cljs$lang$applyTo = (function (seq58546){
-var G__58547 = cljs.core.first(seq58546);
-var seq58546__$1 = cljs.core.next(seq58546);
+(emmy.quaternion.unit_QMARK_.cljs$lang$applyTo = (function (seq57441){
+var G__57442 = cljs.core.first(seq57441);
+var seq57441__$1 = cljs.core.next(seq57441);
 var self__5882__auto__ = this;
-return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__58547,seq58546__$1);
+return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__57442,seq57441__$1);
 }));
 
 /**
@@ -892,8 +892,8 @@ emmy.quaternion.K = emmy.quaternion.__GT_Quaternion((0),(0),(0),(1),null);
  *  as the coefficients.
  */
 emmy.quaternion.make = (function emmy$quaternion$make(var_args){
-var G__58559 = arguments.length;
-switch (G__58559) {
+var G__57460 = arguments.length;
+switch (G__57460) {
 case 1:
 return emmy.quaternion.make.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -929,11 +929,11 @@ return emmy.quaternion.__GT_Quaternion(x,(0),(0),(0),null);
 }
 }));
 
-(emmy.quaternion.make.cljs$core$IFn$_invoke$arity$2 = (function (r,p__58580){
-var vec__58581 = p__58580;
-var i = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58581,(0),null);
-var j = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58581,(1),null);
-var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58581,(2),null);
+(emmy.quaternion.make.cljs$core$IFn$_invoke$arity$2 = (function (r,p__57462){
+var vec__57463 = p__57462;
+var i = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57463,(0),null);
+var j = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57463,(1),null);
+var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57463,(2),null);
 return emmy.quaternion.__GT_Quaternion(r,i,j,k,null);
 }));
 
@@ -952,11 +952,11 @@ return emmy.quaternion.__GT_Quaternion(r,i,j,k,null);
 emmy.quaternion.parse_quaternion = (function emmy$quaternion$parse_quaternion(x){
 if(cljs.core.vector_QMARK_(x)){
 if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(cljs.core.count(x),(4))){
-var vec__58588 = x;
-var r = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58588,(0),null);
-var i = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58588,(1),null);
-var j = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58588,(2),null);
-var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58588,(3),null);
+var vec__57466 = x;
+var r = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57466,(0),null);
+var i = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57466,(1),null);
+var j = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57466,(2),null);
+var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57466,(3),null);
 return cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol("emmy.quaternion","make","emmy.quaternion/make",624604930,null),null,(1),null)),(new cljs.core.List(null,r,null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,i,null,(1),null)),(new cljs.core.List(null,j,null,(1),null)),(new cljs.core.List(null,k,null,(1),null))], 0))));
 } else {
 return emmy.util.illegal((""+"Quaternion literal vectors require 4 elements. Received: "+cljs.core.str.cljs$core$IFn$_invoke$arity$1(x)));
@@ -1074,8 +1074,8 @@ return emmy.quaternion.make.cljs$core$IFn$_invoke$arity$4(emmy.generic.partial_d
  *   to the elementwise sum of the coefficients of all supplied quaternions.
  */
 emmy.quaternion.add = (function emmy$quaternion$add(var_args){
-var G__58608 = arguments.length;
-switch (G__58608) {
+var G__57490 = arguments.length;
+switch (G__57490) {
 case 0:
 return emmy.quaternion.add.cljs$core$IFn$_invoke$arity$0();
 
@@ -1090,14 +1090,14 @@ return emmy.quaternion.add.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(argum
 break;
 default:
 var args_arr__5922__auto__ = [];
-var len__5897__auto___59045 = arguments.length;
-var i__5898__auto___59046 = (0);
+var len__5897__auto___57840 = arguments.length;
+var i__5898__auto___57841 = (0);
 while(true){
-if((i__5898__auto___59046 < len__5897__auto___59045)){
-args_arr__5922__auto__.push((arguments[i__5898__auto___59046]));
+if((i__5898__auto___57841 < len__5897__auto___57840)){
+args_arr__5922__auto__.push((arguments[i__5898__auto___57841]));
 
-var G__59047 = (i__5898__auto___59046 + (1));
-i__5898__auto___59046 = G__59047;
+var G__57842 = (i__5898__auto___57841 + (1));
+i__5898__auto___57841 = G__57842;
 continue;
 } else {
 }
@@ -1127,13 +1127,13 @@ return cljs.core.reduce.cljs$core$IFn$_invoke$arity$3(emmy.quaternion.add,emmy.q
 }));
 
 /** @this {Function} */
-(emmy.quaternion.add.cljs$lang$applyTo = (function (seq58605){
-var G__58606 = cljs.core.first(seq58605);
-var seq58605__$1 = cljs.core.next(seq58605);
-var G__58607 = cljs.core.first(seq58605__$1);
-var seq58605__$2 = cljs.core.next(seq58605__$1);
+(emmy.quaternion.add.cljs$lang$applyTo = (function (seq57486){
+var G__57487 = cljs.core.first(seq57486);
+var seq57486__$1 = cljs.core.next(seq57486);
+var G__57488 = cljs.core.first(seq57486__$1);
+var seq57486__$2 = cljs.core.next(seq57486__$1);
 var self__5882__auto__ = this;
-return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__58606,G__58607,seq58605__$2);
+return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__57487,G__57488,seq57486__$2);
 }));
 
 (emmy.quaternion.add.cljs$lang$maxFixedArity = (2));
@@ -1178,8 +1178,8 @@ return emmy.quaternion.make.cljs$core$IFn$_invoke$arity$4(emmy.generic.negate.cl
  *   to the pairwise difference of the coefficients of `q1` and `q2`.
  */
 emmy.quaternion.sub = (function emmy$quaternion$sub(var_args){
-var G__58625 = arguments.length;
-switch (G__58625) {
+var G__57519 = arguments.length;
+switch (G__57519) {
 case 0:
 return emmy.quaternion.sub.cljs$core$IFn$_invoke$arity$0();
 
@@ -1194,14 +1194,14 @@ return emmy.quaternion.sub.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(argum
 break;
 default:
 var args_arr__5922__auto__ = [];
-var len__5897__auto___59058 = arguments.length;
-var i__5898__auto___59059 = (0);
+var len__5897__auto___57858 = arguments.length;
+var i__5898__auto___57859 = (0);
 while(true){
-if((i__5898__auto___59059 < len__5897__auto___59058)){
-args_arr__5922__auto__.push((arguments[i__5898__auto___59059]));
+if((i__5898__auto___57859 < len__5897__auto___57858)){
+args_arr__5922__auto__.push((arguments[i__5898__auto___57859]));
 
-var G__59060 = (i__5898__auto___59059 + (1));
-i__5898__auto___59059 = G__59060;
+var G__57860 = (i__5898__auto___57859 + (1));
+i__5898__auto___57859 = G__57860;
 continue;
 } else {
 }
@@ -1231,13 +1231,13 @@ return emmy.quaternion.sub.cljs$core$IFn$_invoke$arity$2(q1,cljs.core.apply.cljs
 }));
 
 /** @this {Function} */
-(emmy.quaternion.sub.cljs$lang$applyTo = (function (seq58622){
-var G__58623 = cljs.core.first(seq58622);
-var seq58622__$1 = cljs.core.next(seq58622);
-var G__58624 = cljs.core.first(seq58622__$1);
-var seq58622__$2 = cljs.core.next(seq58622__$1);
+(emmy.quaternion.sub.cljs$lang$applyTo = (function (seq57512){
+var G__57513 = cljs.core.first(seq57512);
+var seq57512__$1 = cljs.core.next(seq57512);
+var G__57514 = cljs.core.first(seq57512__$1);
+var seq57512__$2 = cljs.core.next(seq57512__$1);
 var self__5882__auto__ = this;
-return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__58623,G__58624,seq58622__$2);
+return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__57513,G__57514,seq57512__$2);
 }));
 
 (emmy.quaternion.sub.cljs$lang$maxFixedArity = (2));
@@ -1276,8 +1276,8 @@ return emmy.quaternion.make.cljs$core$IFn$_invoke$arity$4(emmy.generic.sub.cljs$
  *   ji  == -k, kj == -i, ik == -j
  */
 emmy.quaternion.mul = (function emmy$quaternion$mul(var_args){
-var G__58645 = arguments.length;
-switch (G__58645) {
+var G__57537 = arguments.length;
+switch (G__57537) {
 case 0:
 return emmy.quaternion.mul.cljs$core$IFn$_invoke$arity$0();
 
@@ -1292,14 +1292,14 @@ return emmy.quaternion.mul.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(argum
 break;
 default:
 var args_arr__5922__auto__ = [];
-var len__5897__auto___59071 = arguments.length;
-var i__5898__auto___59072 = (0);
+var len__5897__auto___57869 = arguments.length;
+var i__5898__auto___57870 = (0);
 while(true){
-if((i__5898__auto___59072 < len__5897__auto___59071)){
-args_arr__5922__auto__.push((arguments[i__5898__auto___59072]));
+if((i__5898__auto___57870 < len__5897__auto___57869)){
+args_arr__5922__auto__.push((arguments[i__5898__auto___57870]));
 
-var G__59076 = (i__5898__auto___59072 + (1));
-i__5898__auto___59072 = G__59076;
+var G__57871 = (i__5898__auto___57870 + (1));
+i__5898__auto___57870 = G__57871;
 continue;
 } else {
 }
@@ -1337,13 +1337,13 @@ return cljs.core.reduce.cljs$core$IFn$_invoke$arity$3(emmy.quaternion.mul,emmy.q
 }));
 
 /** @this {Function} */
-(emmy.quaternion.mul.cljs$lang$applyTo = (function (seq58642){
-var G__58643 = cljs.core.first(seq58642);
-var seq58642__$1 = cljs.core.next(seq58642);
-var G__58644 = cljs.core.first(seq58642__$1);
-var seq58642__$2 = cljs.core.next(seq58642__$1);
+(emmy.quaternion.mul.cljs$lang$applyTo = (function (seq57534){
+var G__57535 = cljs.core.first(seq57534);
+var seq57534__$1 = cljs.core.next(seq57534);
+var G__57536 = cljs.core.first(seq57534__$1);
+var seq57534__$2 = cljs.core.next(seq57534__$1);
 var self__5882__auto__ = this;
-return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__58643,G__58644,seq58642__$2);
+return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__57535,G__57536,seq57534__$2);
 }));
 
 (emmy.quaternion.mul.cljs$lang$maxFixedArity = (2));
@@ -1388,16 +1388,16 @@ return emmy.quaternion.make.cljs$core$IFn$_invoke$arity$4(emmy.generic._SLASH_.c
  *   $$r_l * r_r + i_l * i_r + j_l * j_r + k_l * k_r$$
  */
 emmy.quaternion.dot_product = (function emmy$quaternion$dot_product(l,r){
-var vec__58656 = l;
-var lr = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58656,(0),null);
-var li = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58656,(1),null);
-var lj = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58656,(2),null);
-var lk = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58656,(3),null);
-var vec__58659 = r;
-var rr = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58659,(0),null);
-var ri = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58659,(1),null);
-var rj = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58659,(2),null);
-var rk = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58659,(3),null);
+var vec__57550 = l;
+var lr = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57550,(0),null);
+var li = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57550,(1),null);
+var lj = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57550,(2),null);
+var lk = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57550,(3),null);
+var vec__57553 = r;
+var rr = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57553,(0),null);
+var ri = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57553,(1),null);
+var rj = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57553,(2),null);
+var rk = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57553,(3),null);
 return emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$variadic(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(lr,rr),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(li,ri),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(lj,rj),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(lk,rk)], 0));
 });
 /**
@@ -1434,8 +1434,8 @@ return emmy.quaternion.q_div_scalar(emmy.quaternion.conjugate(q),(emmy.quaternio
  *   `q1` and the multiplicative inverse of `q2`
  */
 emmy.quaternion.div = (function emmy$quaternion$div(var_args){
-var G__58679 = arguments.length;
-switch (G__58679) {
+var G__57566 = arguments.length;
+switch (G__57566) {
 case 0:
 return emmy.quaternion.div.cljs$core$IFn$_invoke$arity$0();
 
@@ -1450,14 +1450,14 @@ return emmy.quaternion.div.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(argum
 break;
 default:
 var args_arr__5922__auto__ = [];
-var len__5897__auto___59080 = arguments.length;
-var i__5898__auto___59081 = (0);
+var len__5897__auto___57882 = arguments.length;
+var i__5898__auto___57883 = (0);
 while(true){
-if((i__5898__auto___59081 < len__5897__auto___59080)){
-args_arr__5922__auto__.push((arguments[i__5898__auto___59081]));
+if((i__5898__auto___57883 < len__5897__auto___57882)){
+args_arr__5922__auto__.push((arguments[i__5898__auto___57883]));
 
-var G__59082 = (i__5898__auto___59081 + (1));
-i__5898__auto___59081 = G__59082;
+var G__57884 = (i__5898__auto___57883 + (1));
+i__5898__auto___57883 = G__57884;
 continue;
 } else {
 }
@@ -1487,13 +1487,13 @@ return emmy.quaternion.div.cljs$core$IFn$_invoke$arity$2(q1,cljs.core.apply.cljs
 }));
 
 /** @this {Function} */
-(emmy.quaternion.div.cljs$lang$applyTo = (function (seq58674){
-var G__58675 = cljs.core.first(seq58674);
-var seq58674__$1 = cljs.core.next(seq58674);
-var G__58676 = cljs.core.first(seq58674__$1);
-var seq58674__$2 = cljs.core.next(seq58674__$1);
+(emmy.quaternion.div.cljs$lang$applyTo = (function (seq57562){
+var G__57563 = cljs.core.first(seq57562);
+var seq57562__$1 = cljs.core.next(seq57562);
+var G__57564 = cljs.core.first(seq57562__$1);
+var seq57562__$2 = cljs.core.next(seq57562__$1);
 var self__5882__auto__ = this;
-return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__58675,G__58676,seq58674__$2);
+return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__57563,G__57564,seq57562__$2);
 }));
 
 (emmy.quaternion.div.cljs$lang$maxFixedArity = (2));
@@ -1555,11 +1555,11 @@ return emmy.quaternion.sub.cljs$core$IFn$_invoke$arity$2(emmy.quaternion.mul.clj
  *   $$
  */
 emmy.quaternion.log = (function emmy$quaternion$log(q){
-var vec__58706 = q;
-var r = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58706,(0),null);
-var i = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58706,(1),null);
-var j = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58706,(2),null);
-var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58706,(3),null);
+var vec__57594 = q;
+var r = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57594,(0),null);
+var i = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57594,(1),null);
+var j = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57594,(2),null);
+var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57594,(3),null);
 if(cljs.core.truth_((function (){var and__5160__auto__ = emmy.generic.zero_QMARK_.cljs$core$IFn$_invoke$arity$1(j);
 if(cljs.core.truth_(and__5160__auto__)){
 return emmy.generic.zero_QMARK_.cljs$core$IFn$_invoke$arity$1(k);
@@ -1706,11 +1706,11 @@ return emmy.quaternion.make.cljs$core$IFn$_invoke$arity$2(emmy.generic._SLASH_.c
  * 
  *   NOTE: If you have an UN-normalized axis, prefer [[from-angle-axis]].
  */
-emmy.quaternion.from_angle_normal_axis = (function emmy$quaternion$from_angle_normal_axis(angle,p__58735){
-var vec__58737 = p__58735;
-var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58737,(0),null);
-var y = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58737,(1),null);
-var z = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58737,(2),null);
+emmy.quaternion.from_angle_normal_axis = (function emmy$quaternion$from_angle_normal_axis(angle,p__57615){
+var vec__57617 = p__57615;
+var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57617,(0),null);
+var y = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57617,(1),null);
+var z = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57617,(2),null);
 var half_angle = emmy.generic.div.cljs$core$IFn$_invoke$arity$2(angle,(2));
 var half_sine = emmy.generic.sin.cljs$core$IFn$_invoke$arity$1(half_angle);
 return emmy.quaternion.make.cljs$core$IFn$_invoke$arity$4(emmy.generic.cos.cljs$core$IFn$_invoke$arity$1(half_angle),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(half_sine,x),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(half_sine,y),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(half_sine,z));
@@ -1819,10 +1819,10 @@ return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMP
  *   Returns a [[Quaternion]] instance with coefficients `[a b c d]`.
  */
 emmy.quaternion.from_complex_matrix = (function emmy$quaternion$from_complex_matrix(M){
-var vec__58750 = emmy.matrix.matrix__GT_vector(M);
-var vec__58753 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58750,(0),null);
-var a_PLUS_bi = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58753,(0),null);
-var c_PLUS_di = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58753,(1),null);
+var vec__57640 = emmy.matrix.matrix__GT_vector(M);
+var vec__57643 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57640,(0),null);
+var a_PLUS_bi = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57643,(0),null);
+var c_PLUS_di = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57643,(1),null);
 return emmy.quaternion.make.cljs$core$IFn$_invoke$arity$4(emmy.generic.real_part.cljs$core$IFn$_invoke$arity$1(a_PLUS_bi),emmy.generic.imag_part.cljs$core$IFn$_invoke$arity$1(a_PLUS_bi),emmy.generic.real_part.cljs$core$IFn$_invoke$arity$1(c_PLUS_di),emmy.generic.imag_part.cljs$core$IFn$_invoke$arity$1(c_PLUS_di));
 });
 /**
@@ -1840,11 +1840,11 @@ return emmy.quaternion.make.cljs$core$IFn$_invoke$arity$4(emmy.generic.real_part
  *   entries.
  */
 emmy.quaternion.__GT_complex_matrix = (function emmy$quaternion$__GT_complex_matrix(q){
-var vec__58756 = q;
-var r = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58756,(0),null);
-var i = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58756,(1),null);
-var j = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58756,(2),null);
-var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58756,(3),null);
+var vec__57647 = q;
+var r = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57647,(0),null);
+var i = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57647,(1),null);
+var j = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57647,(2),null);
+var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57647,(3),null);
 return emmy.matrix.by_rows.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [emmy.generic.make_rectangular.cljs$core$IFn$_invoke$arity$2(r,i),emmy.generic.make_rectangular.cljs$core$IFn$_invoke$arity$2(j,k)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [emmy.generic.make_rectangular.cljs$core$IFn$_invoke$arity$2(emmy.generic.negate.cljs$core$IFn$_invoke$arity$1(j),k),emmy.generic.make_rectangular.cljs$core$IFn$_invoke$arity$2(r,emmy.generic.negate.cljs$core$IFn$_invoke$arity$1(i))], null)], 0));
 });
 /**
@@ -1907,19 +1907,19 @@ emmy.quaternion.quarter = emmy.generic._SLASH_.cljs$core$IFn$_invoke$arity$2((1)
  *   operations. No `BigInt` in ClojureScript for now, for example.
  */
 emmy.quaternion.from_rotation_matrix = (function emmy$quaternion$from_rotation_matrix(M){
-var vec__58762 = M;
-var vec__58765 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58762,(0),null);
-var r11 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58765,(0),null);
-var r12 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58765,(1),null);
-var r13 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58765,(2),null);
-var vec__58768 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58762,(1),null);
-var r21 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58768,(0),null);
-var r22 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58768,(1),null);
-var r23 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58768,(2),null);
-var vec__58771 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58762,(2),null);
-var r31 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58771,(0),null);
-var r32 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58771,(1),null);
-var r33 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58771,(2),null);
+var vec__57666 = M;
+var vec__57669 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57666,(0),null);
+var r11 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57669,(0),null);
+var r12 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57669,(1),null);
+var r13 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57669,(2),null);
+var vec__57672 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57666,(1),null);
+var r21 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57672,(0),null);
+var r22 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57672,(1),null);
+var r23 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57672,(2),null);
+var vec__57675 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57666,(2),null);
+var r31 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57675,(0),null);
+var r32 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57675,(1),null);
+var r33 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__57675,(2),null);
 var q0_2 = emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(emmy.quaternion.quarter,emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$variadic((1),r11,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([r22,r33], 0)));
 var q1_2 = emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(emmy.quaternion.quarter,emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$variadic((1),r11,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.generic._.cljs$core$IFn$_invoke$arity$1(r22),emmy.generic._.cljs$core$IFn$_invoke$arity$1(r33)], 0)));
 var q2_2 = emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(emmy.quaternion.quarter,emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$variadic((1),emmy.generic._.cljs$core$IFn$_invoke$arity$1(r11),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([r22,emmy.generic._.cljs$core$IFn$_invoke$arity$1(r33)], 0)));
