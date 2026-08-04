@@ -1,16 +1,8 @@
 .tools/
-codeblocks/
-emmy-runner/public/generated/
-emmy-runner/public/generated
-typ/content/
-typ/main.typ
-typ/manifest.typ
-typ/references.bib
 typ/*.pdf
 fdg-book.pdf
 fdg-book-cljs.pdf
 fdg-book-both.pdf
-output-comparison.typ
 output-comparison.pdf
 emmy-runner/.shadow-cljs/
 emmy-runner/public/js/
@@ -20,5 +12,6 @@ build/**/work/emmy-runner/node_modules
 build/**/work/emmy-runner/target/
 build/**/work/emmy-runner/public/js/
 build/**/work/emmy-runner/public/worker/
+build/.root-sync/
 .DS_Store
 **/.DS_Store

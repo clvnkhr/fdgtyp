@@ -20,7 +20,7 @@ For a focused reading path:
   [Scheme-to-Emmy conversion](#12-scheme-to-emmy-conversion), and
   [validation](#16-emmy-validation);
 - runner developers should read [browser runner architecture](#18-browser-runner-architecture),
-  [local synchronization](#19-local-runner-synchronization), and
+  [root mirror and runner synchronization](#19-root-mirror-and-runner-synchronization), and
   [GitHub Pages deployment](#20-github-pages-deployment);
 - release work is summarized by the [change-impact guide](#23-change-impact-guide),
   [operational recipes](#24-operational-recipes), and
@@ -81,6 +81,7 @@ flowchart LR
     captured --> promote[Build promotion]
     pdfs --> promote
     promote --> committed[Committed build/current artifact]
+    promote --> rootmirror[Generated root working copies]
     committed --> pages
 ```
 
@@ -105,10 +106,10 @@ differently:
 | Emmy compatibility API | `emmy-runner/src/fdg/compat.cljs` | Smoke runner and browser worker | Reusable scmutils-to-Emmy differences only |
 | Captured Emmy outputs | Successful build's `codeblocks/**/*.cljs` | `build/current/emmy-generated/`, root runner mirror, PDFs | Produced by successful capture; never hand-copy Scheme output |
 | Promoted build | `build/history/current/` | `build/current` symlink | Commit this tree to make a build deployable |
-| Root runner generated files | `emmy-runner/public/generated/` | Local browser build | Disposable ignored mirror copied from `build/current` |
+| Root generated working copies | `codeblocks/`, `typ/content/`, generated `typ/*`, root PDFs/reports, `emmy-runner/public/generated/` | Manual compilation, inspection and local runner | Synchronized from every successful artifact set; non-PDF files are Git-visible, large PDFs are ignored |
 | GitHub Pages payload | `emmy-runner/public/` in CI | GitHub Pages | Assembled from committed files and committed `build/current` |
 
-### 3.1 The three forms of “current”
+### 3.1 The views of “current”
 
 The word “current” can otherwise be confusing:
 
@@ -117,12 +118,12 @@ flowchart TD
     history[build/history/current<br/>retained successful run]
     artifacts[build/history/current/artifacts<br/>published subset]
     symlink[build/current<br/>relative symlink]
-    mirror[emmy-runner/public/generated<br/>ignored root mirror]
+    mirrors[Generated root mirrors<br/>Typst, blocks, runner data, PDFs]
     deploy[GitHub Pages upload]
 
     history --> artifacts
     symlink -->|points to| artifacts
-    artifacts -->|use-current-emmy-build.mjs copies| mirror
+    artifacts -->|sync-build-to-root.mjs copies on promotion| mirrors
     artifacts -->|same copy during Actions| deploy
 ```
 
@@ -132,10 +133,13 @@ flowchart TD
   relative links to the root source of truth.
 - `build/history/current/artifacts/` is the smaller published result set.
 - `build/current` is only a relative symlink to that `artifacts/` directory.
-- `emmy-runner/public/generated/` is a copied mirror for local serving. It is
-  ignored by Git.
-- GitHub Pages sees the committed target of `build/current`, not uncommitted
-  local files and not a local ignored mirror.
+- Root generated paths are real working copies, not symlinks. They are replaced
+  from the artifact allowlist on every successful promotion. Non-PDF paths are
+  visible to Git; large generated PDFs remain ignored.
+- `emmy-runner/public/generated/` is one of those mirrors. The npm runner
+  commands defensively resynchronize it before building or serving.
+- GitHub Pages is assembled from the committed `build/current` artifact, not
+  from an uncommitted or experimentally edited root working copy.
 
 ## 4. Repository map
 
@@ -173,9 +177,9 @@ flowchart TD
 | `build/history/previous-*.tar.gz` | Generated retention | Two compressed older successful runs |
 | `build/failed/` | Generated diagnostics | Current and two older failed runs; never promoted |
 | `build/.staging/` | Transient generated state | In-progress isolated runs; moved on success or failure |
-| `codeblocks/` | Generated ignored mirror | Exists at root only after synchronization/conversion |
-| `typ/content/` | Generated ignored mirror | Generated chapters |
-| `emmy-runner/public/generated/` | Generated ignored mirror | Runner-ready blocks and manifest |
+| `codeblocks/` | Generated Git-visible working copy | Synchronized paired Scheme/CLJS blocks; editable for experiments |
+| `typ/content/` | Generated Git-visible working copy | Synchronized generated chapters |
+| `emmy-runner/public/generated/` | Generated Git-visible working copy | Synchronized runner-ready blocks and manifest |
 | `emmy-runner/public/js/` | Generated ignored bundle | Browser UI release/development output |
 | `emmy-runner/public/worker/` | Generated bundle | Worker ESM output; currently represented in the tracked tree |
 | `.cpcache/`, `emmy-runner/.cpcache/`, `emmy-runner/.shadow-cljs/`, `emmy-runner/target/` | Tool output | Clojure basis, Shadow cache, and compiled smoke output; not authored source |
@@ -196,8 +200,9 @@ make emmy-refresh
   -> node scripts/run-build.mjs emmy-refresh
 ```
 
-No real recipe runs in the source checkout. This prevents a normal build from
-overwriting root generated mirrors or mixing output with source.
+No real recipe runs in the source checkout. Authored and generated files cannot
+be partially overwritten by a failing recipe. Only the promotion phase writes
+the explicit root-working-copy allowlist, after artifacts are complete.
 
 ### 5.2 Inner mode
 
@@ -216,6 +221,7 @@ sequenceDiagram
     participant Orchestrator as run-build.mjs
     participant Work as build/.staging/<run>/work
     participant Inner as Inner Makefile
+    participant Root as Generated root mirrors
     participant History as build/history/current
 
     User->>Outer: make <target>
@@ -226,6 +232,7 @@ sequenceDiagram
     Inner-->>Orchestrator: stdout, stderr, exit status
     alt success
         Orchestrator->>Work: create artifacts and compact runner workspace
+        Orchestrator->>Root: transactionally replace generated mirrors
         Orchestrator->>History: rotate old current and promote staging run
         Orchestrator->>History: update build/current symlink
     else failure
@@ -314,8 +321,9 @@ Every run has a `run.json` containing:
 - start and finish timestamps;
 - log path;
 - status;
-- successful artifact/workspace paths or failed workspace path.
+- successful artifact/workspace paths or failed workspace path;
 - retained workspace layout version (`linked-runner-v1` for compacted runs).
+- successful root-mirror policy (`synchronized-on-promotion`).
 
 The default ID combines UTC time, target, revision and random suffix. Set
 `FDG_RUN_ID=<readable-id>` to choose a stable human-readable name for a run.
@@ -340,9 +348,12 @@ On success, `run-build.mjs`:
      symlinks to the root `emmy-runner/`;
    - replaces `public/generated` with a relative symlink to the adjacent
      `artifacts/emmy-generated` directory.
-6. Rotates the old successful slots.
-7. Moves the compacted staging run to `build/history/current/`.
-8. Recreates `build/current` as a relative symlink to
+6. Prepares copies of every artifact-mapped root output, then transactionally
+   replaces the existing root working copies. Missing artifact paths remove
+   stale root mirrors. An installation failure rolls all root paths back.
+7. Rotates the old successful slots.
+8. Moves the compacted staging run to `build/history/current/`.
+9. Recreates `build/current` as a relative symlink to
    `history/current/artifacts`.
 
 The relative paths remain valid across the staging-to-history rename because
@@ -361,7 +372,8 @@ On failure, the orchestrator:
 4. rotates old failed slots;
 5. moves the diagnostic workspace to `build/failed/current/`;
 6. leaves `build/history/current` and `build/current` untouched;
-7. rethrows the error so Make exits unsuccessfully.
+7. leaves every root generated mirror at the previous successful version;
+8. rethrows the error so Make exits unsuccessfully.
 
 ### 6.3 Static retention slots
 
@@ -1071,19 +1083,36 @@ metadata includes qualified name, runtime kind, nested collection shape,
 argument lists, docs, macro/dynamic flags and a bounded 600-character preview.
 Pending declarations can be shown or hidden.
 
-## 19. Local runner synchronization
+## 19. Root mirror and runner synchronization
+
+`scripts/sync-build-to-root.mjs` owns the complete artifact-to-root mapping.
+The build orchestrator uses the same exported mapping for three operations:
+
+1. layering previous artifacts into a partial staging build;
+2. copying staged generated paths into the artifact subset;
+3. copying the successful artifact subset back to root.
+
+It prepares every available source in `build/.root-sync/` before changing root.
+Existing destinations are moved to transaction-local backups, prepared paths
+are installed, and any installation failure restores all backups. Paths absent
+from the promoted artifact set are deliberately removed at root, preventing a
+stale output from looking current.
+
+The mirror allowlist covers paired code blocks, runner data, generated Typst
+content/main/manifest/bibliography, draft and final PDFs, and the optional
+output-comparison source/PDF. Metadata and logs remain under `build/current`.
 
 `scripts/use-current-emmy-build.mjs` is the bridge from promoted artifacts to
-the root static app:
+the root static app when npm is invoked independently:
 
 ```text
 build/current/emmy-generated/
     -> emmy-runner/public/generated/
 ```
 
-It validates that `blocks.json` is a nonempty array, deletes the old root mirror,
-and recursively copies the artifact. It supports one legacy build layout for
-migration.
+Promotion has already made this copy. The runner-specific script validates that
+`blocks.json` is a nonempty array and repeats the copy defensively. It supports
+one legacy build layout for migration.
 
 Both `npm run dev` and `npm run build` invoke this script first. Inside a staging
 workspace, if no promoted artifact is available but generated files already
@@ -1209,8 +1238,9 @@ tools and compiler caches are derived state.
 | Script | Technical role |
 | --- | --- |
 | `run-build.mjs` | Isolated staging, logging, promotion, retention and failure handling |
+| `sync-build-to-root.mjs` | Shared generated-path mapping and transactional artifact-to-root synchronization |
 | `compact-build-runner.mjs` | Replaces retained runner inputs with source links and removes compiler output |
-| `test-build-runner-retention.mjs` | End-to-end success, reuse and failure test for the retained runner overlay |
+| `test-build-runner-retention.mjs` | End-to-end success, artifact reuse, root synchronization, archive and failure test |
 | `timed-make-shell.mjs` | Per-Make-recipe timing wrapper |
 | `convert-org-to-typst.mjs` | Complete editorial Org/Pandoc/Typst pipeline |
 | `normalize-org-source.mjs` | Temporary source repair layer |
@@ -1262,6 +1292,7 @@ tools and compiler caches are derived state.
 | `build/failed/previous-*.tar.gz` | Compressed older failures |
 | `build/.staging/<run-id>` | In-progress run before success or failure is known |
 | `build/current` | Compatibility/convenience symlink to current artifacts |
+| Root generated working copies | Current artifact allowlist for direct tools, inspection and experimental edits; non-PDF paths are Git-visible |
 
 The artifact subset contains whichever entries exist from the generated-path
 allowlist: paired `codeblocks/`, runner `emmy-generated/`, generated Typst
@@ -1270,6 +1301,8 @@ plus `run.json` and `build.log`. The successful `work/` tree additionally
 contains the staged inputs used by the build, except that unchanged runner
 inputs link to the root source and transient runner compiler state is omitted.
 Its runner generated-data link resolves to the adjacent successful artifact.
+After promotion, every allowlisted artifact is also copied to its conventional
+root path; these copies are disposable and must not be committed as authority.
 
 ### 22.5 Audit and temporary evidence
 
@@ -1348,8 +1381,8 @@ build/failed/current/work/
 ```
 
 The previous successful `build/current` is still safe. Do not diagnose a failed
-run by looking only at the root ignored mirrors; they may still reflect the last
-success.
+run by looking only at the root working copies: by design they still reflect
+the last success.
 
 ### 24.5 Verify what Pages can deploy
 
@@ -1366,6 +1399,20 @@ sed -n '1,120p' build/current/emmy-generated/<chapter>/<block>.cljs
 - The second is the state available to a push-triggered Pages build before new
   commits are pushed.
 
+### 24.6 Compile the synchronized root manually
+
+After any successful promotion, root has a complete directly compilable mirror:
+
+```sh
+typst compile --root . --input draft=false --input code=scheme typ/main.typ /tmp/fdg-manual.pdf
+```
+
+Use `code=clojure` or `code=both` for the other editions, and omit
+`--input draft=false` for draft styling. The generated `typ/main.typ`, content,
+bibliography and code blocks are synchronized copies; presentation imports
+resolve against the authored root `typ/lib.typ`, `typ/index.typ`, `typ/fdg-lib/`
+and assets.
+
 ## 25. Invariants and failure modes
 
 ### 25.1 Core invariants
@@ -1378,7 +1425,8 @@ sed -n '1,120p' build/current/emmy-generated/<chapter>/<block>.cljs
 6. Definition/setup forms are never displayed as results.
 7. A failed capture does not partially write a chapter.
 8. A failed build does not replace the last successful build.
-9. Root generated mirrors are disposable.
+9. After successful promotion, every root generated mirror equals its mapped
+   `build/current` artifact; failed builds leave those mirrors unchanged.
 10. Deployment consumes committed successful artifacts only.
 
 ### 25.2 Common failure diagnoses
@@ -1394,7 +1442,7 @@ sed -n '1,120p' build/current/emmy-generated/<chapter>/<block>.cljs
 | `nil` shown as result | Side-effect form misclassified as value-producing |
 | Internal `#object` output | Presentation layer failed to normalize a runtime object/function |
 | PDF has old code after Emmy refresh | PDFs were carried forward; no PDF render target ran |
-| Root generated files differ from build | `use-current-emmy-build.mjs` has not synchronized them |
+| Root generated files differ from build | Promotion/root transaction was interrupted, or a disposable mirror was manually edited; run `node scripts/sync-build-to-root.mjs` |
 | CI has correct UI but old examples | Committed `build/current` artifact is old |
 | CI has correct examples but worker behavior is odd | Worker bundle/cache/commit boundary |
 
@@ -1405,6 +1453,10 @@ These are descriptions of the current design, not hidden behavior:
 - Partial targets promote carried-forward artifacts alongside newly generated
   ones. Run metadata identifies the target; consumers must not assume every file
   was rebuilt.
+- Non-PDF root generated working copies are Git-visible and convenient for
+  direct experimentation, but promotion replaces them from `build/current`.
+  Durable changes still belong in authored converters/libraries or must first
+  be incorporated into the staged artifact flow.
 - Pages CI trusts committed generated data and does not rerun local regression
   suites.
 - The Actions cache explicitly covers `public/js` while the evaluator worker is

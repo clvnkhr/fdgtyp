@@ -5,6 +5,11 @@ import { execFileSync, spawn } from "node:child_process";
 import path from "node:path";
 import { randomBytes } from "node:crypto";
 import { compactBuildRunner } from "./compact-build-runner.mjs";
+import {
+  artifactRelativePath,
+  generatedRelativePaths,
+  syncBuildToRoot,
+} from "./sync-build-to-root.mjs";
 
 const root = process.cwd();
 const target = process.argv[2];
@@ -66,28 +71,6 @@ const buildInputPaths = [
   "emmy-runner/public/index.html",
   "emmy-runner/public/style.css",
 ];
-
-const generatedRelativePaths = [
-  "codeblocks",
-  "emmy-runner/public/generated",
-  "typ/content",
-  "typ/main.typ",
-  "typ/manifest.typ",
-  "typ/references.bib",
-  "typ/main.pdf",
-  "typ/main-cljs.pdf",
-  "typ/main-both.pdf",
-  "typ/audit.pdf",
-  "fdg-book.pdf",
-  "fdg-book-cljs.pdf",
-  "fdg-book-both.pdf",
-  "output-comparison.typ",
-  "output-comparison.pdf",
-];
-
-function artifactRelativePath(relative) {
-  return relative === "emmy-runner/public/generated" ? "emmy-generated" : relative;
-}
 
 mkdirSync(runDir, { recursive: true });
 writeFileSync(path.join(runDir, "run.json"), JSON.stringify({
@@ -226,6 +209,11 @@ function promoteCurrent() {
   // authored inputs with stable links only after all build writes are done.
   compactBuildRunner({ root, runDir, linkGeneratedArtifact: true });
 
+  // Recipes write only inside staging. Once every artifact is complete, copy
+  // the explicit generated allowlist back to root as disposable mirrors. The
+  // synchronizer prepares all copies first and rolls back a failed install.
+  syncBuildToRoot({ root, artifactsDir });
+
   rotateRetainedRuns(historyDir);
   renameSync(runDir, currentRunDir);
   rmSync(currentDir, { recursive: true, force: true });
@@ -276,6 +264,7 @@ try {
     artifacts: path.join(buildDir, "current"),
     workspace: path.join(buildDir, "history", "current", "work"),
     workspaceLayout: "linked-runner-v1",
+    rootMirrors: "synchronized-on-promotion",
   });
   // Promotion occurs only after a successful build. Static slot names make
   // successive generated trees directly comparable in Git.

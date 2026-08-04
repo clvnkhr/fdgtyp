@@ -16,6 +16,8 @@ npm run dev
 
 The npm development and release commands copy the latest successful files from
 `build/current/emmy-generated` into `public/generated/`.
+Normal successful Make promotion already synchronizes this directory; the npm
+copy is a defensive refresh for direct runner commands.
 The root `emmy-runner/` remains the deployment location. Inside an isolated build
 workspace they use that workspace's newly generated files instead.
 

@@ -17,6 +17,7 @@ import os from "node:os";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
+import { syncBuildToRoot } from "./sync-build-to-root.mjs";
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const fixtureRoot = mkdtempSync(path.join(os.tmpdir(), "fdg-runner-retention-"));
@@ -91,7 +92,7 @@ try {
     "fixture-reuse:",
     "\tnode scripts/create-retention-fixture.mjs reuse",
     "fixture-fail:",
-    "\tnode scripts/create-retention-fixture.mjs first",
+    "\tnode scripts/create-retention-fixture.mjs failed",
     "\tfalse",
     "",
   ].join("\n"));
@@ -112,6 +113,7 @@ for (const relative of [
   "emmy-runner/public/worker",
   "emmy-runner/public/generated/chapter001",
   "codeblocks/chapter001",
+  "typ/content",
 ]) mkdirSync(relative, { recursive: true });
 for (const relative of [
   "emmy-runner/.shadow-cljs/builds/smoke/cache",
@@ -120,12 +122,18 @@ for (const relative of [
   "emmy-runner/public/js/main.js",
   "emmy-runner/public/worker/main.js",
 ]) writeFileSync(relative, "transient\\n");
-writeFileSync(required, JSON.stringify([{id: "chapter001-001"}]) + "\\n");
-writeFileSync("emmy-runner/public/generated/chapter001/001.cljs", "(+ 1 2)\\n");
-writeFileSync("codeblocks/chapter001/001.cljs", "(+ 1 2)\\n");
+writeFileSync(required, JSON.stringify([{id: "chapter001-001", mode}]) + "\\n");
+writeFileSync("emmy-runner/public/generated/chapter001/001.cljs", "(+ 1 2) ;; " + mode + "\\n");
+writeFileSync("codeblocks/chapter001/001.cljs", "(+ 1 2) ;; " + mode + "\\n");
 writeFileSync("codeblocks/chapter001/001.scm", "(+ 1 2)\\n");
+writeFileSync("typ/content/chapter001.typ", "Chapter " + mode + "\\n");
+writeFileSync("typ/main.typ", "Main " + mode + "\\n");
+writeFileSync("typ/manifest.typ", "Manifest " + mode + "\\n");
+writeFileSync("typ/references.bib", "References " + mode + "\\n");
+writeFileSync("fdg-book.pdf", "PDF " + mode + "\\n");
 `);
 
+  write("output-comparison.typ", "stale root mirror\n");
   runBuild("fixture", "first");
 
   const successfulRun = path.join(fixtureRoot, "build", "history", "current");
@@ -166,11 +174,31 @@ writeFileSync("codeblocks/chapter001/001.scm", "(+ 1 2)\\n");
     JSON.parse(readFileSync(path.join(successfulRun, "run.json"), "utf8")).workspaceLayout,
     "linked-runner-v1",
   );
+  assert.equal(
+    JSON.parse(readFileSync(path.join(successfulRun, "run.json"), "utf8")).rootMirrors,
+    "synchronized-on-promotion",
+  );
+  assert.equal(
+    JSON.parse(readFileSync(path.join(successfulRun, "artifacts", "run.json"), "utf8")).rootMirrors,
+    "synchronized-on-promotion",
+  );
+  assert.equal(readFileSync(path.join(fixtureRoot, "typ", "main.typ"), "utf8"), "Main first\n");
+  assert.equal(readFileSync(path.join(fixtureRoot, "fdg-book.pdf"), "utf8"), "PDF first\n");
+  assert.equal(
+    readFileSync(path.join(fixtureRoot, "emmy-runner", "public", "generated", "chapter001", "001.cljs"), "utf8"),
+    "(+ 1 2) ;; first\n",
+  );
+  assert.equal(
+    lstatSync(path.join(fixtureRoot, "emmy-runner", "public", "generated")).isDirectory(),
+    true,
+  );
+  assert.equal(existsSync(path.join(fixtureRoot, "output-comparison.typ")), false);
 
   // Prove that the next run layers generated state from artifacts rather than
   // relying on the retained workspace's convenience link.
   rmSync(retainedGenerated, { recursive: true, force: true });
   runBuild("fixture-reuse", "second");
+  assert.equal(readFileSync(path.join(fixtureRoot, "typ", "main.typ"), "utf8"), "Main reuse\n");
 
   const archive = path.join(fixtureRoot, "build", "history", "previous-1.tar.gz");
   const archiveListing = spawnSync("tar", ["-tzf", archive], { encoding: "utf8" });
@@ -188,8 +216,28 @@ writeFileSync("codeblocks/chapter001/001.scm", "(+ 1 2)\\n");
     lstatSync(path.join(failedRun, "work", "emmy-runner", "public", "generated")).isDirectory(),
     true,
   );
+  assert.equal(readFileSync(path.join(fixtureRoot, "typ", "main.typ"), "utf8"), "Main reuse\n");
+  assert.equal(
+    readFileSync(path.join(fixtureRoot, "emmy-runner", "public", "generated", "chapter001", "001.cljs"), "utf8"),
+    "(+ 1 2) ;; reuse\n",
+  );
 
-  console.log("Build runner retention layout passed.");
+  const rollbackRoot = path.join(fixtureRoot, "rollback-case");
+  const rollbackArtifacts = path.join(rollbackRoot, "artifacts");
+  mkdirSync(path.join(rollbackRoot, "codeblocks"), { recursive: true });
+  writeFileSync(path.join(rollbackRoot, "codeblocks", "value"), "old\n");
+  mkdirSync(path.join(rollbackArtifacts, "codeblocks"), { recursive: true });
+  writeFileSync(path.join(rollbackArtifacts, "codeblocks", "value"), "new\n");
+  mkdirSync(path.join(rollbackArtifacts, "emmy-generated"), { recursive: true });
+  writeFileSync(path.join(rollbackArtifacts, "emmy-generated", "blocks.json"), "[]\n");
+  writeFileSync(path.join(rollbackRoot, "emmy-runner"), "blocks destination parent\n");
+  assert.throws(() => syncBuildToRoot({
+    root: rollbackRoot,
+    artifactsDir: rollbackArtifacts,
+  }));
+  assert.equal(readFileSync(path.join(rollbackRoot, "codeblocks", "value"), "utf8"), "old\n");
+
+  console.log("Build retention and root synchronization passed.");
 } finally {
   rmSync(fixtureRoot, { recursive: true, force: true });
 }

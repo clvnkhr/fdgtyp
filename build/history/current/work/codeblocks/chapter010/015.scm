@@ -1,0 +1,5 @@
+((g-Minkowski a-vector a-vector) an-event)
+;; (+ (* -1 (expt (vˆt (up ct0 x0 y0 z0)) 2))
+;;    (expt (vˆx (up ct0 x0 y0 z0)) 2)
+;;    (expt (vˆy (up ct0 x0 y0 z0)) 2)
+;;    (expt (vˆz (up ct0 x0 y0 z0)) 2))

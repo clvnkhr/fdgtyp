@@ -1,0 +1,6 @@
+(define (spherical-metric v1 v2)
+  (+ (* (dr v1) (dr v2))
+     (* (square r)
+        (+ (* (dtheta v1) (dtheta v2))
+           (* (expt (sin theta) 2)
+              (dphi v1) (dphi v2))))))

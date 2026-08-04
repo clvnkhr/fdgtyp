@@ -1,0 +1,15 @@
+(define (Cartan-transform Cartan basis-prime)
+(let ((basis (Cartan->basis Cartan))
+(forms (Cartan->forms Cartan))
+(prime-dual-basis (basis->1form-basis basis-prime))
+(prime-vector-basis (basis->vector-basis basis-prime)))
+(let ((vector-basis (basis->vector-basis basis))
+(1form-basis (basis->1form-basis basis)))
+(let ((J-inv (s:map/r 1form-basis prime-vector-basis))
+(J (s:map/r prime-dual-basis vector-basis)))
+(let ((omega-prime-forms
+(procedure->1form-field
+(lambda (v)
+(+ (* J (v J-inv))
+(* J (* (forms v) J-inv)))))))
+(make-Cartan omega-prime-forms basis-prime))))))

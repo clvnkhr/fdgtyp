@@ -1,0 +1,11 @@
+(define-coordinates (up t r theta phi) spacetime-sphere)
+
+(define (Schwarzschild-metric M G c)
+  (let ((a (- 1 (/ (* 2 G M) (* (square c) r)))))
+    (lambda (v1 v2)
+      (+ (* -1 (square c) a (dt v1) (dt v2))
+         (* (/ 1 a) (dr v1) (dr v2))
+         (* (square r)
+            (+ (* (dtheta v1) (dtheta v2))
+               (* (square (sin theta))
+                  (dphi v1) (dphi v2))))))))

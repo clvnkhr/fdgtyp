@@ -9,5 +9,6 @@
   "artifacts": "/Users/calvinkhor/Documents/GitHub/fdgtyp/build/current",
   "workspace": "/Users/calvinkhor/Documents/GitHub/fdgtyp/build/history/current/work",
   "workspaceLayout": "linked-runner-v1",
-  "finishedAt": "2026-08-04T22:13:43.402Z"
+  "finishedAt": "2026-08-04T22:13:43.402Z",
+  "rootMirrors": "synchronized-on-promotion"
 }

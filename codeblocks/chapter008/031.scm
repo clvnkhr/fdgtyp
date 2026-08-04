@@ -1,0 +1,5 @@
+(define omega (literal-1form-field 'omega-rect R4-rect))
+(define X (literal-vector-field 'X-rect R4-rect))
+(define Y (literal-vector-field 'Y-rect R4-rect))
+(define Z (literal-vector-field 'Z-rect R4-rect))
+(define V (literal-vector-field 'V-rect R4-rect))

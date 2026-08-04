@@ -1,0 +1,9 @@
+(define X (literal-vector-field 'X-rect R3-rect))
+(define Y (literal-vector-field 'Y-rect R3-rect))
+(define Z (literal-vector-field 'Z-rect R3-rect))
+
+(((- production-in-volume-element
+     (d flux-through-boundary-element))
+  X Y Z)
+ R3-rect-point)
+;; 0

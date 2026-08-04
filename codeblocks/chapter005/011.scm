@@ -1,0 +1,14 @@
+(define alpha (literal-function 'alpha R2->R))
+(define beta (literal-function 'beta R2->R))
+
+(let ((dx (ref (basis->1form-basis R2-rect-basis) 0))
+      (dy (ref (basis->1form-basis R2-rect-basis) 1)))
+  (((- (d (+ (* (compose alpha (chart R2-rect)) dx)
+             (* (compose beta (chart R2-rect)) dy)))
+       (* (compose (- ((partial 0) beta)
+                      ((partial 1) alpha))
+                   (chart R2-rect))
+          (wedge dx dy)))
+    v w)
+   R2-rect-point))
+;; 0

@@ -1,0 +1,5 @@
+(define Euler-angles (coordinate-system-at 'Euler 'Euler-patch SO3))
+(define Euler-angles-chi-inverse (point Euler-angles))
+(define-coordinates (up theta phi psi) Euler-angles)
+(define SO3-point ((point Euler-angles) (up 'theta 'phi 'psi)))
+(define f (literal-manifold-function 'f-Euler Euler-angles))
