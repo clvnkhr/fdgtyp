@@ -14,3 +14,5 @@ output-comparison.typ
 output-comparison.pdf
 emmy-runner/.shadow-cljs/
 emmy-runner/public/js/
+.DS_Store
+**/.DS_Store
