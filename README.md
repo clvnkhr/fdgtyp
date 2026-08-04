@@ -8,12 +8,16 @@ interactive Emmy runner for the book examples.
 
 The build is split into reusable stages. Public Make targets copy only the
 required source and configuration inputs into a fresh staging workspace. On success,
-that private workspace is stored under `build/history/`, while `build/current`
-points only to its published artifacts. The source checkout is therefore never
+that private workspace is stored at `build/history/current/`, while
+`build/current` points only to its published artifacts. The source checkout is therefore never
 changed by a build; its generated files are inputs to a snapshot, not mutable
 build state. The three latest
-successful builds are retained. Failed builds are retained separately under
-`build/failed/`, also capped at three.
+successful builds are retained in static slots: `current/`,
+`previous-1.tar.gz`, and `previous-2.tar.gz`. Failed builds use the same slot
+names under `build/failed/`. Unique run IDs and timestamps live in `run.json`,
+so successive builds modify stable paths that Git can compare directly. Each
+archived slot also has a matching `previous-1.json` or `previous-2.json`, making
+its timestamps and status readable without extracting the archive.
 
 | Need | Command | Writes |
 | --- | --- | --- |
@@ -42,8 +46,10 @@ final status. Combined stdout/stderr and per-recipe elapsed times are retained
 in `build/current/build.log`. To choose a readable identifier, use
 `make <target> FDG_RUN_ID=my-run`. A failed build is moved to `build/failed/`
 and leaves the previous `build/current` intact. `build/current` is a symlink to
-the artifact view of the latest entry in `build/history/`; its private `work/`
-snapshot remains in that history entry for diagnostics.
+`build/history/current/artifacts`; its private `work/`
+snapshot remains in that history entry for diagnostics. Older successful and
+failed runs can be inspected by extracting `previous-1.tar.gz` or
+`previous-2.tar.gz` from `build/history/` or `build/failed/`.
 
 ## Source flow
 

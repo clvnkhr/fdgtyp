@@ -1,5 +1,0 @@
-{:paths ["scripts/clojure"]
- :aliases
- {:format-emmy
-  {:extra-deps {zprint/zprint {:mvn/version "1.3.0"}}
-   :main-opts ["-m" "fdg.format-emmy"]}}}

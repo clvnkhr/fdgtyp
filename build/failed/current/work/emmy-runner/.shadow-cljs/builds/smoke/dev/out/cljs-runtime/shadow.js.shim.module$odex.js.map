@@ -1,0 +1,9 @@
+{
+"version":3,
+"file":"shadow.js.shim.module$odex.js",
+"lineCount":5,
+"mappings":"AAAAA,IAAKC,CAAAA,OAAL,CAAa,4BAAb,CAAA;AACAD,IAAKC,CAAAA,OAAL,CAAa,mCAAb,CAAA;AACAC,MAAOC,CAAAA,EAAGC,CAAAA,IAAKC,CAAAA,WAAf,GAA6BH,MAAOC,CAAAA,EAAGG,CAAAA,cAAV,CAAyB,MAAzB,CAA7B,GAAgEC,OAAA,CAAQ,MAAR,CAAhE;AACAC,iCAAkCC,CAAAA,OAAlC,GAA4CP,MAAOC,CAAAA,EAAGC,CAAAA,IAAKC,CAAAA,WAA3D;;",
+"sources":["shadow.js.shim.module$odex.js"],
+"sourcesContent":["goog.provide(\"shadow.js.shim.module$odex\");\ngoog.provide(\"module$shadow_js_shim_module$odex\");\nshadow.js.shim.module$odex = shadow.js.nativeProvides[\"odex\"] = require(\"odex\");\nmodule$shadow_js_shim_module$odex.default = shadow.js.shim.module$odex;\n"],
+"names":["goog","provide","shadow","js","shim","module$odex","nativeProvides","require","module$shadow_js_shim_module$odex","default"]
+}

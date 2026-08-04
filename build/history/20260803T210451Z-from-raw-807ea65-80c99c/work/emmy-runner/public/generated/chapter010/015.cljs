@@ -1,5 +1,0 @@
-((g-Minkowski a-vector a-vector) an-event)
-;; => (+ (* -1 (v↑t (up ct0 x0 y0 z0)) (v↑t (up ct0 x0 y0 z0)))
-;;       (* (v↑x (up ct0 x0 y0 z0)) (v↑x (up ct0 x0 y0 z0)))
-;;       (* (v↑y (up ct0 x0 y0 z0)) (v↑y (up ct0 x0 y0 z0)))
-;;       (* (v↑z (up ct0 x0 y0 z0)) (v↑z (up ct0 x0 y0 z0))))
