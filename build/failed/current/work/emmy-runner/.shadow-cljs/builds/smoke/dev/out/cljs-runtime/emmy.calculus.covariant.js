@@ -12,40 +12,40 @@ return emmy.operator.commutator(X,Y);
 if(emmy.calculus.form_field.form_field_QMARK_(Y)){
 var k = emmy.calculus.form_field.get_rank(Y);
 var op = (function() { 
-var G__48898__delegate = function (vectors){
+var G__48953__delegate = function (vectors){
 var vectors__$1 = cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentVector.EMPTY,vectors);
 if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(k,cljs.core.count(vectors__$1))){
 } else {
 throw (new Error((""+"Assert failed: "+cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol(null,"\u2260","\u2260",-1444019055,null),null,(1),null)),(new cljs.core.List(null,k,null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,cljs.core.count(vectors__$1),null,(1),null)),vectors__$1,cljs.core.map.cljs$core$IFn$_invoke$arity$2(cljs.core.meta,vectors__$1)], 0)))))+"\n"+"(= k (count vectors))")));
 }
 
-return emmy.generic._.cljs$core$IFn$_invoke$arity$2((function (){var G__48667 = cljs.core.apply.cljs$core$IFn$_invoke$arity$2(Y,vectors__$1);
-var fexpr__48666 = emmy.generic.Lie_derivative.cljs$core$IFn$_invoke$arity$1(X);
-return (fexpr__48666.cljs$core$IFn$_invoke$arity$1 ? fexpr__48666.cljs$core$IFn$_invoke$arity$1(G__48667) : fexpr__48666.call(null,G__48667));
-})(),(function (){var G__48668 = (function (i){
+return emmy.generic._.cljs$core$IFn$_invoke$arity$2((function (){var G__48632 = cljs.core.apply.cljs$core$IFn$_invoke$arity$2(Y,vectors__$1);
+var fexpr__48631 = emmy.generic.Lie_derivative.cljs$core$IFn$_invoke$arity$1(X);
+return (fexpr__48631.cljs$core$IFn$_invoke$arity$1 ? fexpr__48631.cljs$core$IFn$_invoke$arity$1(G__48632) : fexpr__48631.call(null,G__48632));
+})(),(function (){var G__48636 = (function (i){
 var xs = cljs.core.update.cljs$core$IFn$_invoke$arity$3(vectors__$1,i,emmy.generic.Lie_derivative.cljs$core$IFn$_invoke$arity$1(X));
 return cljs.core.apply.cljs$core$IFn$_invoke$arity$2(Y,xs);
 });
-var G__48669 = (0);
-var G__48670 = k;
-return (emmy.util.aggregate.generic_sum.cljs$core$IFn$_invoke$arity$3 ? emmy.util.aggregate.generic_sum.cljs$core$IFn$_invoke$arity$3(G__48668,G__48669,G__48670) : emmy.util.aggregate.generic_sum.call(null,G__48668,G__48669,G__48670));
+var G__48637 = (0);
+var G__48638 = k;
+return (emmy.util.aggregate.generic_sum.cljs$core$IFn$_invoke$arity$3 ? emmy.util.aggregate.generic_sum.cljs$core$IFn$_invoke$arity$3(G__48636,G__48637,G__48638) : emmy.util.aggregate.generic_sum.call(null,G__48636,G__48637,G__48638));
 })());
 };
-var G__48898 = function (var_args){
+var G__48953 = function (var_args){
 var vectors = null;
 if (arguments.length > 0) {
-var G__48902__i = 0, G__48902__a = new Array(arguments.length -  0);
-while (G__48902__i < G__48902__a.length) {G__48902__a[G__48902__i] = arguments[G__48902__i + 0]; ++G__48902__i;}
-  vectors = new cljs.core.IndexedSeq(G__48902__a,0,null);
+var G__48956__i = 0, G__48956__a = new Array(arguments.length -  0);
+while (G__48956__i < G__48956__a.length) {G__48956__a[G__48956__i] = arguments[G__48956__i + 0]; ++G__48956__i;}
+  vectors = new cljs.core.IndexedSeq(G__48956__a,0,null);
 } 
-return G__48898__delegate.call(this,vectors);};
-G__48898.cljs$lang$maxFixedArity = 0;
-G__48898.cljs$lang$applyTo = (function (arglist__48903){
-var vectors = cljs.core.seq(arglist__48903);
-return G__48898__delegate(vectors);
+return G__48953__delegate.call(this,vectors);};
+G__48953.cljs$lang$maxFixedArity = 0;
+G__48953.cljs$lang$applyTo = (function (arglist__48958){
+var vectors = cljs.core.seq(arglist__48958);
+return G__48953__delegate(vectors);
 });
-G__48898.cljs$core$IFn$_invoke$arity$variadic = G__48898__delegate;
-return G__48898;
+G__48953.cljs$core$IFn$_invoke$arity$variadic = G__48953__delegate;
+return G__48953;
 })()
 ;
 var name = cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,new cljs.core.Symbol(null,"Lie-derivative","Lie-derivative",-641072185,null),null,(1),null)),(new cljs.core.List(null,freeze_X,null,(1),null))))),null,(1),null)),(new cljs.core.List(null,emmy.generic.freeze.cljs$core$IFn$_invoke$arity$1(Y),null,(1),null)))));
@@ -129,14 +129,14 @@ return cljs.core.apply.cljs$core$IFn$_invoke$arity$3(alpha,X,vectors);
 var emmy$calculus$covariant$interior_product_$_ix_$_the_product = function (var_args){
 var vectors = null;
 if (arguments.length > 0) {
-var G__48912__i = 0, G__48912__a = new Array(arguments.length -  0);
-while (G__48912__i < G__48912__a.length) {G__48912__a[G__48912__i] = arguments[G__48912__i + 0]; ++G__48912__i;}
-  vectors = new cljs.core.IndexedSeq(G__48912__a,0,null);
+var G__48982__i = 0, G__48982__a = new Array(arguments.length -  0);
+while (G__48982__i < G__48982__a.length) {G__48982__a[G__48982__i] = arguments[G__48982__i + 0]; ++G__48982__i;}
+  vectors = new cljs.core.IndexedSeq(G__48982__a,0,null);
 } 
 return emmy$calculus$covariant$interior_product_$_ix_$_the_product__delegate.call(this,vectors);};
 emmy$calculus$covariant$interior_product_$_ix_$_the_product.cljs$lang$maxFixedArity = 0;
-emmy$calculus$covariant$interior_product_$_ix_$_the_product.cljs$lang$applyTo = (function (arglist__48913){
-var vectors = cljs.core.seq(arglist__48913);
+emmy$calculus$covariant$interior_product_$_ix_$_the_product.cljs$lang$applyTo = (function (arglist__48987){
+var vectors = cljs.core.seq(arglist__48987);
 return emmy$calculus$covariant$interior_product_$_ix_$_the_product__delegate(vectors);
 });
 emmy$calculus$covariant$interior_product_$_ix_$_the_product.cljs$core$IFn$_invoke$arity$variadic = emmy$calculus$covariant$interior_product_$_ix_$_the_product__delegate;
@@ -241,39 +241,39 @@ return (function (tau){
 var k = emmy.calculus.form_field.get_rank(tau);
 var nabla_V = emmy.calculus.covariant.covariant_derivative_vector(Cartan)(V);
 var op = (function() { 
-var G__48929__delegate = function (vectors){
+var G__49050__delegate = function (vectors){
 var vectors__$1 = cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentVector.EMPTY,vectors);
 if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(k,cljs.core.count(vectors__$1))){
 } else {
 throw (new Error("Assert failed: (= k (count vectors))"));
 }
 
-return emmy.generic._.cljs$core$IFn$_invoke$arity$2((function (){var G__48740 = cljs.core.apply.cljs$core$IFn$_invoke$arity$2(tau,vectors__$1);
-return (V.cljs$core$IFn$_invoke$arity$1 ? V.cljs$core$IFn$_invoke$arity$1(G__48740) : V.call(null,G__48740));
-})(),(function (){var G__48741 = (function (i){
+return emmy.generic._.cljs$core$IFn$_invoke$arity$2((function (){var G__48733 = cljs.core.apply.cljs$core$IFn$_invoke$arity$2(tau,vectors__$1);
+return (V.cljs$core$IFn$_invoke$arity$1 ? V.cljs$core$IFn$_invoke$arity$1(G__48733) : V.call(null,G__48733));
+})(),(function (){var G__48734 = (function (i){
 var xs = cljs.core.update.cljs$core$IFn$_invoke$arity$3(vectors__$1,i,nabla_V);
 return cljs.core.apply.cljs$core$IFn$_invoke$arity$2(tau,xs);
 });
-var G__48742 = (0);
-var G__48743 = k;
-return (emmy.util.aggregate.generic_sum.cljs$core$IFn$_invoke$arity$3 ? emmy.util.aggregate.generic_sum.cljs$core$IFn$_invoke$arity$3(G__48741,G__48742,G__48743) : emmy.util.aggregate.generic_sum.call(null,G__48741,G__48742,G__48743));
+var G__48735 = (0);
+var G__48736 = k;
+return (emmy.util.aggregate.generic_sum.cljs$core$IFn$_invoke$arity$3 ? emmy.util.aggregate.generic_sum.cljs$core$IFn$_invoke$arity$3(G__48734,G__48735,G__48736) : emmy.util.aggregate.generic_sum.call(null,G__48734,G__48735,G__48736));
 })());
 };
-var G__48929 = function (var_args){
+var G__49050 = function (var_args){
 var vectors = null;
 if (arguments.length > 0) {
-var G__48932__i = 0, G__48932__a = new Array(arguments.length -  0);
-while (G__48932__i < G__48932__a.length) {G__48932__a[G__48932__i] = arguments[G__48932__i + 0]; ++G__48932__i;}
-  vectors = new cljs.core.IndexedSeq(G__48932__a,0,null);
+var G__49063__i = 0, G__49063__a = new Array(arguments.length -  0);
+while (G__49063__i < G__49063__a.length) {G__49063__a[G__49063__i] = arguments[G__49063__i + 0]; ++G__49063__i;}
+  vectors = new cljs.core.IndexedSeq(G__49063__a,0,null);
 } 
-return G__48929__delegate.call(this,vectors);};
-G__48929.cljs$lang$maxFixedArity = 0;
-G__48929.cljs$lang$applyTo = (function (arglist__48933){
-var vectors = cljs.core.seq(arglist__48933);
-return G__48929__delegate(vectors);
+return G__49050__delegate.call(this,vectors);};
+G__49050.cljs$lang$maxFixedArity = 0;
+G__49050.cljs$lang$applyTo = (function (arglist__49064){
+var vectors = cljs.core.seq(arglist__49064);
+return G__49050__delegate(vectors);
 });
-G__48929.cljs$core$IFn$_invoke$arity$variadic = G__48929__delegate;
-return G__48929;
+G__49050.cljs$core$IFn$_invoke$arity$variadic = G__49050__delegate;
+return G__49050;
 })()
 ;
 var name = cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,new cljs.core.Symbol(null,"nabla","nabla",1447510358,null),null,(1),null)),(new cljs.core.List(null,emmy.generic.freeze.cljs$core$IFn$_invoke$arity$1(V),null,(1),null))))),null,(1),null)),(new cljs.core.List(null,emmy.generic.freeze.cljs$core$IFn$_invoke$arity$1(tau),null,(1),null)))));
@@ -303,8 +303,8 @@ throw (new Error("Assert failed: (every? (fn [t] (or (isa? t :emmy.calculus.vect
 
 var lp = (function emmy$calculus$covariant$covariant_derivative_argument_types_$_lp(types,args,targs,factors){
 if(cljs.core.empty_QMARK_(types)){
-return emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2((function (){var G__48791 = cljs.core.apply.cljs$core$IFn$_invoke$arity$2(T,targs);
-return (V.cljs$core$IFn$_invoke$arity$1 ? V.cljs$core$IFn$_invoke$arity$1(G__48791) : V.call(null,G__48791));
+return emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2((function (){var G__48801 = cljs.core.apply.cljs$core$IFn$_invoke$arity$2(T,targs);
+return (V.cljs$core$IFn$_invoke$arity$1 ? V.cljs$core$IFn$_invoke$arity$1(G__48801) : V.call(null,G__48801));
 })(),cljs.core.apply.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_,factors));
 } else {
 return emmy.calculus.basis.contract((function (e,w){
@@ -314,8 +314,8 @@ if(emmy.calculus.vector_field.vector_field_QMARK_(cljs.core.first(args))){
 throw (new Error("Assert failed: (vf/vector-field? (first args))"));
 }
 
-return emmy$calculus$covariant$covariant_derivative_argument_types_$_lp(cljs.core.rest(types),cljs.core.rest(args),cljs.core.conj.cljs$core$IFn$_invoke$arity$2(targs,e),cljs.core.conj.cljs$core$IFn$_invoke$arity$2(factors,(function (){var G__48796 = cljs.core.first(args);
-return (w.cljs$core$IFn$_invoke$arity$1 ? w.cljs$core$IFn$_invoke$arity$1(G__48796) : w.call(null,G__48796));
+return emmy$calculus$covariant$covariant_derivative_argument_types_$_lp(cljs.core.rest(types),cljs.core.rest(args),cljs.core.conj.cljs$core$IFn$_invoke$arity$2(targs,e),cljs.core.conj.cljs$core$IFn$_invoke$arity$2(factors,(function (){var G__48809 = cljs.core.first(args);
+return (w.cljs$core$IFn$_invoke$arity$1 ? w.cljs$core$IFn$_invoke$arity$1(G__48809) : w.call(null,G__48809));
 })()));
 } else {
 if(cljs.core.isa_QMARK_.cljs$core$IFn$_invoke$arity$2(cljs.core.first(types),new cljs.core.Keyword("emmy.calculus.form-field","oneform-field","emmy.calculus.form-field/oneform-field",790058519))){
@@ -324,8 +324,8 @@ if(emmy.calculus.form_field.oneform_field_QMARK_(cljs.core.first(args))){
 throw (new Error("Assert failed: (ff/oneform-field? (first args))"));
 }
 
-return emmy$calculus$covariant$covariant_derivative_argument_types_$_lp(cljs.core.rest(types),cljs.core.rest(args),cljs.core.conj.cljs$core$IFn$_invoke$arity$2(targs,w),cljs.core.conj.cljs$core$IFn$_invoke$arity$2(factors,(function (){var fexpr__48797 = cljs.core.first(args);
-return (fexpr__48797.cljs$core$IFn$_invoke$arity$1 ? fexpr__48797.cljs$core$IFn$_invoke$arity$1(e) : fexpr__48797.call(null,e));
+return emmy$calculus$covariant$covariant_derivative_argument_types_$_lp(cljs.core.rest(types),cljs.core.rest(args),cljs.core.conj.cljs$core$IFn$_invoke$arity$2(targs,w),cljs.core.conj.cljs$core$IFn$_invoke$arity$2(factors,(function (){var fexpr__48818 = cljs.core.first(args);
+return (fexpr__48818.cljs$core$IFn$_invoke$arity$1 ? fexpr__48818.cljs$core$IFn$_invoke$arity$1(e) : fexpr__48818.call(null,e));
 })()));
 } else {
 return null;
@@ -343,11 +343,11 @@ throw (new Error("Assert failed: (= (count args) (count arg-types))"));
 
 var argv = cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentVector.EMPTY,args);
 var VT = lp(arg_types,argv,cljs.core.PersistentVector.EMPTY,cljs.core.PersistentVector.EMPTY);
-var corrections = (function (){var G__48802 = cljs.core.map_indexed.cljs$core$IFn$_invoke$arity$2((function (i,type){
+var corrections = (function (){var G__48823 = cljs.core.map_indexed.cljs$core$IFn$_invoke$arity$2((function (i,type){
 if(cljs.core.isa_QMARK_.cljs$core$IFn$_invoke$arity$2(type,new cljs.core.Keyword("emmy.calculus.form-field","oneform-field","emmy.calculus.form-field/oneform-field",790058519))){
 return emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(emmy.structure.mapr.cljs$core$IFn$_invoke$arity$variadic((function (e){
-var fexpr__48803 = cljs.core.nth.cljs$core$IFn$_invoke$arity$2(argv,i);
-return (fexpr__48803.cljs$core$IFn$_invoke$arity$1 ? fexpr__48803.cljs$core$IFn$_invoke$arity$1(e) : fexpr__48803.call(null,e));
+var fexpr__48828 = cljs.core.nth.cljs$core$IFn$_invoke$arity$2(argv,i);
+return (fexpr__48828.cljs$core$IFn$_invoke$arity$1 ? fexpr__48828.cljs$core$IFn$_invoke$arity$1(e) : fexpr__48828.call(null,e));
 }),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([vector_basis], 0)),CV),emmy.structure.mapr.cljs$core$IFn$_invoke$arity$variadic((function (w){
 return cljs.core.apply.cljs$core$IFn$_invoke$arity$2(T,cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(argv,i,w));
 }),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([oneform_basis], 0)));
@@ -356,29 +356,29 @@ if(cljs.core.isa_QMARK_.cljs$core$IFn$_invoke$arity$2(type,new cljs.core.Keyword
 return emmy.generic.negate.cljs$core$IFn$_invoke$arity$1(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(emmy.structure.mapr.cljs$core$IFn$_invoke$arity$variadic((function (e){
 return cljs.core.apply.cljs$core$IFn$_invoke$arity$2(T,cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(argv,i,e));
 }),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([vector_basis], 0)),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(CV,emmy.structure.mapr.cljs$core$IFn$_invoke$arity$variadic((function (w){
-var G__48805 = cljs.core.nth.cljs$core$IFn$_invoke$arity$2(argv,i);
-return (w.cljs$core$IFn$_invoke$arity$1 ? w.cljs$core$IFn$_invoke$arity$1(G__48805) : w.call(null,G__48805));
+var G__48830 = cljs.core.nth.cljs$core$IFn$_invoke$arity$2(argv,i);
+return (w.cljs$core$IFn$_invoke$arity$1 ? w.cljs$core$IFn$_invoke$arity$1(G__48830) : w.call(null,G__48830));
 }),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([oneform_basis], 0)))));
 } else {
 return null;
 }
 }
 }),arg_types);
-return (emmy.util.aggregate.generic_sum.cljs$core$IFn$_invoke$arity$1 ? emmy.util.aggregate.generic_sum.cljs$core$IFn$_invoke$arity$1(G__48802) : emmy.util.aggregate.generic_sum.call(null,G__48802));
+return (emmy.util.aggregate.generic_sum.cljs$core$IFn$_invoke$arity$1 ? emmy.util.aggregate.generic_sum.cljs$core$IFn$_invoke$arity$1(G__48823) : emmy.util.aggregate.generic_sum.call(null,G__48823));
 })();
 return emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2(VT,corrections);
 };
 var emmy$calculus$covariant$covariant_derivative_argument_types_$_the_derivative = function (var_args){
 var args = null;
 if (arguments.length > 0) {
-var G__48954__i = 0, G__48954__a = new Array(arguments.length -  0);
-while (G__48954__i < G__48954__a.length) {G__48954__a[G__48954__i] = arguments[G__48954__i + 0]; ++G__48954__i;}
-  args = new cljs.core.IndexedSeq(G__48954__a,0,null);
+var G__49155__i = 0, G__49155__a = new Array(arguments.length -  0);
+while (G__49155__i < G__49155__a.length) {G__49155__a[G__49155__i] = arguments[G__49155__i + 0]; ++G__49155__i;}
+  args = new cljs.core.IndexedSeq(G__49155__a,0,null);
 } 
 return emmy$calculus$covariant$covariant_derivative_argument_types_$_the_derivative__delegate.call(this,args);};
 emmy$calculus$covariant$covariant_derivative_argument_types_$_the_derivative.cljs$lang$maxFixedArity = 0;
-emmy$calculus$covariant$covariant_derivative_argument_types_$_the_derivative.cljs$lang$applyTo = (function (arglist__48955){
-var args = cljs.core.seq(arglist__48955);
+emmy$calculus$covariant$covariant_derivative_argument_types_$_the_derivative.cljs$lang$applyTo = (function (arglist__49158){
+var args = cljs.core.seq(arglist__49158);
 return emmy$calculus$covariant$covariant_derivative_argument_types_$_the_derivative__delegate(args);
 });
 emmy$calculus$covariant$covariant_derivative_argument_types_$_the_derivative.cljs$core$IFn$_invoke$arity$variadic = emmy$calculus$covariant$covariant_derivative_argument_types_$_the_derivative__delegate;
@@ -393,20 +393,20 @@ emmy.calculus.covariant.covariant_derivative_function = (function emmy$calculus$
 return (function (X){
 return (function (f){
 return (function() { 
-var G__48957__delegate = function (args){
+var G__49161__delegate = function (args){
 var types = cljs.core.apply.cljs$core$IFn$_invoke$arity$2(emmy.value.argument_kind,args);
 if(((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(cljs.core.count(args),(1))) && (emmy.calculus.manifold.manifold_point_QMARK_(cljs.core.first(args))))){
 var f__$1 = emmy.calculus.indexed.with_argument_types(f,types);
-var G__48811 = cljs.core.first(args);
-var fexpr__48810 = (X.cljs$core$IFn$_invoke$arity$1 ? X.cljs$core$IFn$_invoke$arity$1(f__$1) : X.call(null,f__$1));
-return (fexpr__48810.cljs$core$IFn$_invoke$arity$1 ? fexpr__48810.cljs$core$IFn$_invoke$arity$1(G__48811) : fexpr__48810.call(null,G__48811));
+var G__48835 = cljs.core.first(args);
+var fexpr__48834 = (X.cljs$core$IFn$_invoke$arity$1 ? X.cljs$core$IFn$_invoke$arity$1(f__$1) : X.call(null,f__$1));
+return (fexpr__48834.cljs$core$IFn$_invoke$arity$1 ? fexpr__48834.cljs$core$IFn$_invoke$arity$1(G__48835) : fexpr__48834.call(null,G__48835));
 } else {
 if(cljs.core.every_QMARK_((function (arg){
 return ((emmy.calculus.vector_field.vector_field_QMARK_(arg)) || (emmy.calculus.form_field.oneform_field_QMARK_(arg)));
 }),args)){
 var f__$1 = emmy.calculus.indexed.with_argument_types(f,types);
-return cljs.core.apply.cljs$core$IFn$_invoke$arity$2((function (){var fexpr__48812 = emmy.calculus.covariant.covariant_derivative_argument_types(Cartan)(X);
-return (fexpr__48812.cljs$core$IFn$_invoke$arity$1 ? fexpr__48812.cljs$core$IFn$_invoke$arity$1(f__$1) : fexpr__48812.call(null,f__$1));
+return cljs.core.apply.cljs$core$IFn$_invoke$arity$2((function (){var fexpr__48836 = emmy.calculus.covariant.covariant_derivative_argument_types(Cartan)(X);
+return (fexpr__48836.cljs$core$IFn$_invoke$arity$1 ? fexpr__48836.cljs$core$IFn$_invoke$arity$1(f__$1) : fexpr__48836.call(null,f__$1));
 })(),args);
 } else {
 return emmy.util.illegal("Bad function or arguments to covariant derivative");
@@ -414,21 +414,21 @@ return emmy.util.illegal("Bad function or arguments to covariant derivative");
 }
 }
 };
-var G__48957 = function (var_args){
+var G__49161 = function (var_args){
 var args = null;
 if (arguments.length > 0) {
-var G__48963__i = 0, G__48963__a = new Array(arguments.length -  0);
-while (G__48963__i < G__48963__a.length) {G__48963__a[G__48963__i] = arguments[G__48963__i + 0]; ++G__48963__i;}
-  args = new cljs.core.IndexedSeq(G__48963__a,0,null);
+var G__49166__i = 0, G__49166__a = new Array(arguments.length -  0);
+while (G__49166__i < G__49166__a.length) {G__49166__a[G__49166__i] = arguments[G__49166__i + 0]; ++G__49166__i;}
+  args = new cljs.core.IndexedSeq(G__49166__a,0,null);
 } 
-return G__48957__delegate.call(this,args);};
-G__48957.cljs$lang$maxFixedArity = 0;
-G__48957.cljs$lang$applyTo = (function (arglist__48965){
-var args = cljs.core.seq(arglist__48965);
-return G__48957__delegate(args);
+return G__49161__delegate.call(this,args);};
+G__49161.cljs$lang$maxFixedArity = 0;
+G__49161.cljs$lang$applyTo = (function (arglist__49167){
+var args = cljs.core.seq(arglist__49167);
+return G__49161__delegate(args);
 });
-G__48957.cljs$core$IFn$_invoke$arity$variadic = G__48957__delegate;
-return G__48957;
+G__49161.cljs$core$IFn$_invoke$arity$variadic = G__49161__delegate;
+return G__49161;
 })()
 ;
 });
@@ -443,20 +443,20 @@ throw (new Error("Assert failed: (Cartan? Cartan)"));
 return (function (X){
 var op = (function emmy$calculus$covariant$covariant_derivative_ordinary_$_nabla_X(V){
 if(emmy.calculus.vector_field.vector_field_QMARK_(V)){
-var fexpr__48821 = emmy.calculus.covariant.covariant_derivative_vector(Cartan)(X);
-return (fexpr__48821.cljs$core$IFn$_invoke$arity$1 ? fexpr__48821.cljs$core$IFn$_invoke$arity$1(V) : fexpr__48821.call(null,V));
+var fexpr__48838 = emmy.calculus.covariant.covariant_derivative_vector(Cartan)(X);
+return (fexpr__48838.cljs$core$IFn$_invoke$arity$1 ? fexpr__48838.cljs$core$IFn$_invoke$arity$1(V) : fexpr__48838.call(null,V));
 } else {
 if(emmy.calculus.form_field.form_field_QMARK_(V)){
-var fexpr__48823 = emmy.calculus.covariant.covariant_derivative_form(Cartan)(X);
-return (fexpr__48823.cljs$core$IFn$_invoke$arity$1 ? fexpr__48823.cljs$core$IFn$_invoke$arity$1(V) : fexpr__48823.call(null,V));
+var fexpr__48842 = emmy.calculus.covariant.covariant_derivative_form(Cartan)(X);
+return (fexpr__48842.cljs$core$IFn$_invoke$arity$1 ? fexpr__48842.cljs$core$IFn$_invoke$arity$1(V) : fexpr__48842.call(null,V));
 } else {
 if(emmy.calculus.indexed.has_argument_types_QMARK_(V)){
-var fexpr__48827 = emmy.calculus.covariant.covariant_derivative_argument_types(Cartan)(X);
-return (fexpr__48827.cljs$core$IFn$_invoke$arity$1 ? fexpr__48827.cljs$core$IFn$_invoke$arity$1(V) : fexpr__48827.call(null,V));
+var fexpr__48843 = emmy.calculus.covariant.covariant_derivative_argument_types(Cartan)(X);
+return (fexpr__48843.cljs$core$IFn$_invoke$arity$1 ? fexpr__48843.cljs$core$IFn$_invoke$arity$1(V) : fexpr__48843.call(null,V));
 } else {
 if(emmy.function$.function_QMARK_(V)){
-var fexpr__48828 = emmy.calculus.covariant.covariant_derivative_function(Cartan)(X);
-return (fexpr__48828.cljs$core$IFn$_invoke$arity$1 ? fexpr__48828.cljs$core$IFn$_invoke$arity$1(V) : fexpr__48828.call(null,V));
+var fexpr__48844 = emmy.calculus.covariant.covariant_derivative_function(Cartan)(X);
+return (fexpr__48844.cljs$core$IFn$_invoke$arity$1 ? fexpr__48844.cljs$core$IFn$_invoke$arity$1(V) : fexpr__48844.call(null,V));
 } else {
 if(emmy.structure.structure_QMARK_(V)){
 return emmy.structure.mapr.cljs$core$IFn$_invoke$arity$variadic(emmy$calculus$covariant$covariant_derivative_ordinary_$_nabla_X,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([V], 0));
@@ -474,8 +474,8 @@ return emmy.operator.make_operator.cljs$core$IFn$_invoke$arity$2(op,name);
 });
 });
 emmy.calculus.covariant.covariant_derivative = (function emmy$calculus$covariant$covariant_derivative(var_args){
-var G__48838 = arguments.length;
-switch (G__48838) {
+var G__48846 = arguments.length;
+switch (G__48846) {
 case 1:
 return emmy.calculus.covariant.covariant_derivative.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -504,8 +504,8 @@ return emmy.calculus.covariant.covariant_derivative_ordinary(emmy.calculus.covar
 emmy.calculus.covariant.covariant_differential = (function emmy$calculus$covariant$covariant_differential(Cartan){
 return (function (V){
 return (function (X){
-var fexpr__48843 = emmy.calculus.covariant.covariant_derivative.cljs$core$IFn$_invoke$arity$1(Cartan)(X);
-return (fexpr__48843.cljs$core$IFn$_invoke$arity$1 ? fexpr__48843.cljs$core$IFn$_invoke$arity$1(V) : fexpr__48843.call(null,V));
+var fexpr__48847 = emmy.calculus.covariant.covariant_derivative.cljs$core$IFn$_invoke$arity$1(Cartan)(X);
+return (fexpr__48847.cljs$core$IFn$_invoke$arity$1 ? fexpr__48847.cljs$core$IFn$_invoke$arity$1(V) : fexpr__48847.call(null,V));
 });
 });
 });
@@ -518,16 +518,16 @@ throw (new Error("Assert failed: (= 1 (:dimension (manifold/manifold source-coor
 }
 
 var e = emmy.calculus.vector_field.coordinate_system__GT_vector_basis(source_coordsys);
-var fexpr__48856 = (function (){var G__48861 = emmy.calculus.manifold.chart(target_coordsys);
-var fexpr__48860 = (function (){var G__48863 = (function (){var fexpr__48864 = (emmy.calculus.map.differential.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.map.differential.cljs$core$IFn$_invoke$arity$1(gamma) : emmy.calculus.map.differential.call(null,gamma));
-return (fexpr__48864.cljs$core$IFn$_invoke$arity$1 ? fexpr__48864.cljs$core$IFn$_invoke$arity$1(e) : fexpr__48864.call(null,e));
+var fexpr__48863 = (function (){var G__48868 = emmy.calculus.manifold.chart(target_coordsys);
+var fexpr__48867 = (function (){var G__48871 = (function (){var fexpr__48872 = (emmy.calculus.map.differential.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.map.differential.cljs$core$IFn$_invoke$arity$1(gamma) : emmy.calculus.map.differential.call(null,gamma));
+return (fexpr__48872.cljs$core$IFn$_invoke$arity$1 ? fexpr__48872.cljs$core$IFn$_invoke$arity$1(e) : fexpr__48872.call(null,e));
 })();
-var fexpr__48862 = emmy.calculus.covariant.covariant_derivative.cljs$core$IFn$_invoke$arity$2(Cartan_on_target,gamma)(e);
-return (fexpr__48862.cljs$core$IFn$_invoke$arity$1 ? fexpr__48862.cljs$core$IFn$_invoke$arity$1(G__48863) : fexpr__48862.call(null,G__48863));
+var fexpr__48870 = emmy.calculus.covariant.covariant_derivative.cljs$core$IFn$_invoke$arity$2(Cartan_on_target,gamma)(e);
+return (fexpr__48870.cljs$core$IFn$_invoke$arity$1 ? fexpr__48870.cljs$core$IFn$_invoke$arity$1(G__48871) : fexpr__48870.call(null,G__48871));
 })();
-return (fexpr__48860.cljs$core$IFn$_invoke$arity$1 ? fexpr__48860.cljs$core$IFn$_invoke$arity$1(G__48861) : fexpr__48860.call(null,G__48861));
+return (fexpr__48867.cljs$core$IFn$_invoke$arity$1 ? fexpr__48867.cljs$core$IFn$_invoke$arity$1(G__48868) : fexpr__48867.call(null,G__48868));
 })();
-return (fexpr__48856.cljs$core$IFn$_invoke$arity$1 ? fexpr__48856.cljs$core$IFn$_invoke$arity$1(source_m) : fexpr__48856.call(null,source_m));
+return (fexpr__48863.cljs$core$IFn$_invoke$arity$1 ? fexpr__48863.cljs$core$IFn$_invoke$arity$1(source_m) : fexpr__48863.call(null,source_m));
 });
 });
 });
@@ -541,13 +541,13 @@ throw (new Error("Assert failed: (= 1 (:dimension (manifold/manifold source-coor
 }
 
 var e = emmy.calculus.vector_field.coordinate_system__GT_vector_basis(source_coordsys);
-var fexpr__48877 = (function (){var G__48881 = emmy.calculus.manifold.chart(target_coordsys);
-var fexpr__48880 = (function (){var fexpr__48882 = emmy.calculus.covariant.covariant_derivative.cljs$core$IFn$_invoke$arity$2(Cartan_on_target,gamma)(e);
-return (fexpr__48882.cljs$core$IFn$_invoke$arity$1 ? fexpr__48882.cljs$core$IFn$_invoke$arity$1(vector_over_gamma) : fexpr__48882.call(null,vector_over_gamma));
+var fexpr__48918 = (function (){var G__48921 = emmy.calculus.manifold.chart(target_coordsys);
+var fexpr__48920 = (function (){var fexpr__48922 = emmy.calculus.covariant.covariant_derivative.cljs$core$IFn$_invoke$arity$2(Cartan_on_target,gamma)(e);
+return (fexpr__48922.cljs$core$IFn$_invoke$arity$1 ? fexpr__48922.cljs$core$IFn$_invoke$arity$1(vector_over_gamma) : fexpr__48922.call(null,vector_over_gamma));
 })();
-return (fexpr__48880.cljs$core$IFn$_invoke$arity$1 ? fexpr__48880.cljs$core$IFn$_invoke$arity$1(G__48881) : fexpr__48880.call(null,G__48881));
+return (fexpr__48920.cljs$core$IFn$_invoke$arity$1 ? fexpr__48920.cljs$core$IFn$_invoke$arity$1(G__48921) : fexpr__48920.call(null,G__48921));
 })();
-return (fexpr__48877.cljs$core$IFn$_invoke$arity$1 ? fexpr__48877.cljs$core$IFn$_invoke$arity$1(source_m) : fexpr__48877.call(null,source_m));
+return (fexpr__48918.cljs$core$IFn$_invoke$arity$1 ? fexpr__48918.cljs$core$IFn$_invoke$arity$1(source_m) : fexpr__48918.call(null,source_m));
 });
 });
 });

@@ -4,10 +4,10 @@ return cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"
 });
 cljs.analyzer.passes.lite.ctor__GT_ctor_lite = new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Symbol("cljs.core","vector","cljs.core/vector",720641726,null),new cljs.core.Symbol("cljs.core","vector-lite","cljs.core/vector-lite",1954842799,null),new cljs.core.Symbol("cljs.core","vec","cljs.core/vec",307622519,null),new cljs.core.Symbol("cljs.core","vec-lite","cljs.core/vec-lite",-1972352564,null)], null);
 cljs.analyzer.passes.lite.update_var = (function cljs$analyzer$passes$lite$update_var(p__21304){
-var map__21306 = p__21304;
-var map__21306__$1 = cljs.core.__destructure_map(map__21306);
-var ast = map__21306__$1;
-var name = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__21306__$1,new cljs.core.Keyword(null,"name","name",1843675177));
+var map__21305 = p__21304;
+var map__21305__$1 = cljs.core.__destructure_map(map__21305);
+var ast = map__21305__$1;
+var name = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__21305__$1,new cljs.core.Keyword(null,"name","name",1843675177));
 var replacement = cljs.core.get.cljs$core$IFn$_invoke$arity$2(cljs.analyzer.passes.lite.ctor__GT_ctor_lite,name);
 return cljs.core.assoc_in(cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(ast,new cljs.core.Keyword(null,"name","name",1843675177),replacement),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"info","info",-317069002),new cljs.core.Keyword(null,"name","name",1843675177)], null),replacement);
 });
@@ -15,11 +15,11 @@ cljs.analyzer.passes.lite.replace_var_QMARK_ = (function cljs$analyzer$passes$li
 return ((cljs.analyzer.passes.lite.var_QMARK_(ast)) && (cljs.core.contains_QMARK_(cljs.analyzer.passes.lite.ctor__GT_ctor_lite,new cljs.core.Keyword(null,"name","name",1843675177).cljs$core$IFn$_invoke$arity$1(ast))));
 });
 cljs.analyzer.passes.lite.use_lite_types = (function cljs$analyzer$passes$lite$use_lite_types(env,ast,_){
-var G__21332 = ast;
+var G__21316 = ast;
 if(cljs.analyzer.passes.lite.replace_var_QMARK_(ast)){
-return cljs.analyzer.passes.lite.update_var(G__21332);
+return cljs.analyzer.passes.lite.update_var(G__21316);
 } else {
-return G__21332;
+return G__21316;
 }
 });
 

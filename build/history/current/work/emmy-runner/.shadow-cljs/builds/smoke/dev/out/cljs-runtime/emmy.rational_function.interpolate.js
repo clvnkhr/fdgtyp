@@ -27,19 +27,19 @@ if(cljs.core.empty_QMARK_(points__$1)){
 return (0);
 } else {
 if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2((1),cljs.core.count(points__$1))){
-var vec__36830 = points__$1;
-var vec__36833 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36830,(0),null);
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36833,(0),null);
-var y = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36833,(1),null);
+var vec__36808 = points__$1;
+var vec__36811 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36808,(0),null);
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36811,(0),null);
+var y = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36811,(1),null);
 return y;
 } else {
 var l_branch = cljs.core.pop(points__$1);
 var r_branch = cljs.core.subvec.cljs$core$IFn$_invoke$arity$2(points__$1,(1));
 var center = cljs.core.pop(r_branch);
-var vec__36836 = cljs.core.first(points__$1);
-var xl = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36836,(0),null);
-var vec__36839 = cljs.core.peek(points__$1);
-var xr = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36839,(0),null);
+var vec__36814 = cljs.core.first(points__$1);
+var xl = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36814,(0),null);
+var vec__36817 = cljs.core.peek(points__$1);
+var xr = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36817,(0),null);
 var rl = emmy$rational_function$interpolate$bulirsch_stoer_recursive_$_evaluate(l_branch,x__$1);
 var rr = emmy$rational_function$interpolate$bulirsch_stoer_recursive_$_evaluate(r_branch,x__$1);
 var rc = emmy$rational_function$interpolate$bulirsch_stoer_recursive_$_evaluate(center,x__$1);
@@ -53,24 +53,24 @@ return emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2(rr,emmy.generic._SLASH_
 var point_array = cljs.core.vec(points);
 return evaluate(point_array,x);
 });
-emmy.rational_function.interpolate.bs_prepare = (function emmy$rational_function$interpolate$bs_prepare(p__36842){
-var vec__36846 = p__36842;
-var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36846,(0),null);
-var fx = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36846,(1),null);
+emmy.rational_function.interpolate.bs_prepare = (function emmy$rational_function$interpolate$bs_prepare(p__36820){
+var vec__36821 = p__36820;
+var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36821,(0),null);
+var fx = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36821,(1),null);
 return new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [x,x,(0),fx], null);
 });
 emmy.rational_function.interpolate.bs_merge = (function emmy$rational_function$interpolate$bs_merge(x){
-return (function (p__36849,p__36850){
-var vec__36851 = p__36849;
-var xl = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36851,(0),null);
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36851,(1),null);
-var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36851,(2),null);
-var rl = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36851,(3),null);
-var vec__36854 = p__36850;
-var ___$2 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36854,(0),null);
-var xr = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36854,(1),null);
-var rc = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36854,(2),null);
-var rr = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36854,(3),null);
+return (function (p__36824,p__36825){
+var vec__36826 = p__36824;
+var xl = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36826,(0),null);
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36826,(1),null);
+var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36826,(2),null);
+var rl = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36826,(3),null);
+var vec__36829 = p__36825;
+var ___$2 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36829,(0),null);
+var xr = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36829,(1),null);
+var rc = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36829,(2),null);
+var rr = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36829,(3),null);
 var p = (rr - rl);
 var q = ((((x - xl) / (x - xr)) * ((1) - (p / (rr - rc)))) - (1));
 return new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [xl,xr,rl,(rr + (p / q))], null);
@@ -130,8 +130,8 @@ return cljs.core.map.cljs$core$IFn$_invoke$arity$2(cljs.core.peek,row);
  *  - Press's Numerical Recipes (p105), [Section 3.2](http://phys.uri.edu/nigh/NumRec/bookfpdf/f3-2.pdf)
  */
 emmy.rational_function.interpolate.bulirsch_stoer = (function emmy$rational_function$interpolate$bulirsch_stoer(var_args){
-var G__36858 = arguments.length;
-switch (G__36858) {
+var G__36833 = arguments.length;
+switch (G__36833) {
 case 2:
 return emmy.rational_function.interpolate.bulirsch_stoer.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -167,10 +167,10 @@ return emmy.rational_function.interpolate.bs_present((cljs.core.truth_(column)?c
  * 
  *   The recursion starts with $C = D = f(x)$.
  */
-emmy.rational_function.interpolate.mbs_prepare = (function emmy$rational_function$interpolate$mbs_prepare(p__36864){
-var vec__36865 = p__36864;
-var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36865,(0),null);
-var fx = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36865,(1),null);
+emmy.rational_function.interpolate.mbs_prepare = (function emmy$rational_function$interpolate$mbs_prepare(p__36840){
+var vec__36841 = p__36840;
+var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36841,(0),null);
+var fx = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36841,(1),null);
 return new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [x,x,fx,fx], null);
 });
 /**
@@ -188,17 +188,17 @@ return new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMP
  *   TODO understand why this works, or where it helps!
  */
 emmy.rational_function.interpolate.mbs_merge = (function emmy$rational_function$interpolate$mbs_merge(x){
-return (function (p__36868,p__36869){
-var vec__36870 = p__36868;
-var xl = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36870,(0),null);
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36870,(1),null);
-var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36870,(2),null);
-var dl = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36870,(3),null);
-var vec__36873 = p__36869;
-var ___$2 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36873,(0),null);
-var xr = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36873,(1),null);
-var cr = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36873,(2),null);
-var ___$3 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36873,(3),null);
+return (function (p__36844,p__36845){
+var vec__36846 = p__36844;
+var xl = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36846,(0),null);
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36846,(1),null);
+var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36846,(2),null);
+var dl = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36846,(3),null);
+var vec__36849 = p__36845;
+var ___$2 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36849,(0),null);
+var xr = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36849,(1),null);
+var cr = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36849,(2),null);
+var ___$3 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36849,(3),null);
 var c_d = (cr - dl);
 var d_STAR_ratio = (((x - xl) / (x - xr)) * dl);
 var den = (d_STAR_ratio - cr);

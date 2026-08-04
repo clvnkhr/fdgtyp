@@ -8,8 +8,8 @@ if((temp__5827__auto__ == null)){
 throw (new Error((""+"Could not find instance method: "+cljs.core.str.cljs$core$IFn$_invoke$arity$1(method_name))));
 } else {
 var method = temp__5827__auto__;
-var args__$1 = args.map((function (p1__51770_SHARP_){
-return sci.impl.types.eval(p1__51770_SHARP_,ctx,bindings);
+var args__$1 = args.map((function (p1__51092_SHARP_){
+return sci.impl.types.eval(p1__51092_SHARP_,ctx,bindings);
 }));
 return Reflect.apply(method,obj,args__$1);
 }
@@ -20,7 +20,7 @@ return (class$[field_name_sym]);
 sci.impl.interop.fn_eval_allowed_QMARK_ = (function (){try{(new Function("return 1"));
 
 return true;
-}catch (e51785){var _ = e51785;
+}catch (e51094){var _ = e51094;
 return false;
 }})();
 sci.impl.interop.get_static_fields = (function sci$impl$interop$get_static_fields(cur,parts){
@@ -28,10 +28,10 @@ var cur__$1 = cur;
 var i = (0);
 while(true){
 if((i < parts.length)){
-var G__51897 = (cur__$1[(parts[i])]);
-var G__51898 = (i + (1));
-cur__$1 = G__51897;
-i = G__51898;
+var G__51194 = (cur__$1[(parts[i])]);
+var G__51195 = (i + (1));
+cur__$1 = G__51194;
+i = G__51195;
 continue;
 } else {
 return cur__$1;
@@ -53,13 +53,13 @@ return sci.impl.interop.get_static_fields(obj,parts);
 }
 });
 sci.impl.interop.invoke_js_constructor_STAR_ = (function sci$impl$interop$invoke_js_constructor_STAR_(ctx,bindings,constructor$,args){
-return Reflect.construct(constructor$,args.map((function (p1__51809_SHARP_){
-return sci.impl.types.eval(p1__51809_SHARP_,ctx,bindings);
+return Reflect.construct(constructor$,args.map((function (p1__51120_SHARP_){
+return sci.impl.types.eval(p1__51120_SHARP_,ctx,bindings);
 })));
 });
 sci.impl.interop.invoke_static_method = (function sci$impl$interop$invoke_static_method(ctx,bindings,class$,method,args){
-return Reflect.apply(method,class$,args.map((function (p1__51820_SHARP_){
-return sci.impl.types.eval(p1__51820_SHARP_,ctx,bindings);
+return Reflect.apply(method,class$,args.map((function (p1__51123_SHARP_){
+return sci.impl.types.eval(p1__51123_SHARP_,ctx,bindings);
 })));
 });
 sci.impl.interop.fully_qualify_class = (function sci$impl$interop$fully_qualify_class(ctx,sym){
@@ -119,9 +119,9 @@ var cnn = sci.impl.utils.current_ns_name();
 var imports = cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(env,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"namespaces","namespaces",-1444157469),cnn,new cljs.core.Keyword(null,"imports","imports",-1249933394)], null));
 var temp__5823__auto__ = cljs.core.find(imports,sym);
 if(cljs.core.truth_(temp__5823__auto__)){
-var vec__51858 = temp__5823__auto__;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51858,(0),null);
-var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51858,(1),null);
+var vec__51180 = temp__5823__auto__;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51180,(0),null);
+var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__51180,(1),null);
 return cljs.core.get.cljs$core$IFn$_invoke$arity$2(class__GT_opts,v);
 } else {
 var temp__5825__auto__ = cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(env,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"imports","imports",-1249933394),sym], null));

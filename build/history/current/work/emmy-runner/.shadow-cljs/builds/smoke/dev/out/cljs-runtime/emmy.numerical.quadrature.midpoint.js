@@ -18,10 +18,10 @@ var l_offset = (a + delta);
 var r_offset = (a + ((5) * delta));
 var fx = (function (i){
 var ih = (i * h);
-return ((function (){var G__55709 = (l_offset + ih);
-return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__55709) : f.call(null,G__55709));
-})() + (function (){var G__55710 = (r_offset + ih);
-return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__55710) : f.call(null,G__55710));
+return ((function (){var G__56078 = (l_offset + ih);
+return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__56078) : f.call(null,G__56078));
+})() + (function (){var G__56079 = (r_offset + ih);
+return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__56079) : f.call(null,G__56079));
 })());
 });
 return ((Sn + (h * emmy.util.aggregate.sum.cljs$core$IFn$_invoke$arity$3(fx,(0),n))) / 3.0);
@@ -44,8 +44,8 @@ return ((Sn + (h * emmy.util.aggregate.sum.cljs$core$IFn$_invoke$arity$3(fx,(0),
  *   is ignored.
  */
 emmy.numerical.quadrature.midpoint.midpoint_sequence = (function emmy$numerical$quadrature$midpoint$midpoint_sequence(var_args){
-var G__55713 = arguments.length;
-switch (G__55713) {
+var G__56081 = arguments.length;
+switch (G__56081) {
 case 3:
 return emmy.numerical.quadrature.midpoint.midpoint_sequence.cljs$core$IFn$_invoke$arity$3((arguments[(0)]),(arguments[(1)]),(arguments[(2)]));
 
@@ -64,11 +64,11 @@ throw (new Error(["Invalid arity: ",arguments.length].join("")));
 return emmy.numerical.quadrature.midpoint.midpoint_sequence.cljs$core$IFn$_invoke$arity$4(f,a,b,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"n","n",562130025),(1)], null));
 }));
 
-(emmy.numerical.quadrature.midpoint.midpoint_sequence.cljs$core$IFn$_invoke$arity$4 = (function (f,a,b,p__55718){
-var map__55719 = p__55718;
-var map__55719__$1 = cljs.core.__destructure_map(map__55719);
-var n = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__55719__$1,new cljs.core.Keyword(null,"n","n",562130025),(1));
-var accelerate_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__55719__$1,new cljs.core.Keyword(null,"accelerate?","accelerate?",-29657518));
+(emmy.numerical.quadrature.midpoint.midpoint_sequence.cljs$core$IFn$_invoke$arity$4 = (function (f,a,b,p__56082){
+var map__56083 = p__56082;
+var map__56083__$1 = cljs.core.__destructure_map(map__56083);
+var n = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__56083__$1,new cljs.core.Keyword(null,"n","n",562130025),(1));
+var accelerate_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__56083__$1,new cljs.core.Keyword(null,"accelerate?","accelerate?",-29657518));
 var S = emmy.numerical.quadrature.riemann.midpoint_sum(f,a,b);
 var next_S = emmy.numerical.quadrature.midpoint.Sn__GT_S3n(f,a,b);
 var xs = emmy.numerical.quadrature.riemann.incrementalize(S,next_S,(3),n);

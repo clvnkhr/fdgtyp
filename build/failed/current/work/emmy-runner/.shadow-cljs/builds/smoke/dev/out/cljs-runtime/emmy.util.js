@@ -9,8 +9,8 @@ goog.scope(function(){
  *   - the instrumented fn
  */
 emmy.util.counted = (function emmy$util$counted(var_args){
-var G__21720 = arguments.length;
-switch (G__21720) {
+var G__21729 = arguments.length;
+switch (G__21729) {
 case 1:
 return emmy.util.counted.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -144,8 +144,8 @@ while(true){
 if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(1.0,(e + 1.0))){
 return (e * 2.0);
 } else {
-var G__21800 = (e / 2.0);
-e = G__21800;
+var G__21793 = (e / 2.0);
+e = G__21793;
 continue;
 }
 break;

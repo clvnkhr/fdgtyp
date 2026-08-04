@@ -41,13 +41,13 @@ return cljs.core.cons(emmy.generic._.cljs$core$IFn$_invoke$arity$2(c,cljs.core.f
 }),null,null));
 });
 emmy.series.impl.seq_STAR_c = (function emmy$series$impl$seq_STAR_c(f,c){
-return cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__33115_SHARP_){
-return emmy.generic.mul.cljs$core$IFn$_invoke$arity$2(p1__33115_SHARP_,c);
+return cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__35564_SHARP_){
+return emmy.generic.mul.cljs$core$IFn$_invoke$arity$2(p1__35564_SHARP_,c);
 }),f);
 });
 emmy.series.impl.c_STAR_seq = (function emmy$series$impl$c_STAR_seq(c,f){
-return cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__33116_SHARP_){
-return emmy.generic.mul.cljs$core$IFn$_invoke$arity$2(c,p1__33116_SHARP_);
+return cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__35572_SHARP_){
+return emmy.generic.mul.cljs$core$IFn$_invoke$arity$2(c,p1__35572_SHARP_);
 }),f);
 });
 emmy.series.impl.seq_COLON__STAR_ = (function emmy$series$impl$seq_COLON__STAR_(f,g){
@@ -65,9 +65,9 @@ return cljs.core.cons(f_STAR_g,emmy.series.impl.seq_COLON__PLUS_(f_STAR_G1,F1_ST
 });
 return (new cljs.core.LazySeq(null,(function (){
 if(cljs.core.truth_(emmy.generic.zero_QMARK_.cljs$core$IFn$_invoke$arity$1(cljs.core.first(g)))){
-return cljs.core.cons(cljs.core.first(g),(function (){var G__33123 = f;
-var G__33124 = cljs.core.rest(g);
-return (emmy.series.impl.seq_COLON__STAR_.cljs$core$IFn$_invoke$arity$2 ? emmy.series.impl.seq_COLON__STAR_.cljs$core$IFn$_invoke$arity$2(G__33123,G__33124) : emmy.series.impl.seq_COLON__STAR_.call(null,G__33123,G__33124));
+return cljs.core.cons(cljs.core.first(g),(function (){var G__35581 = f;
+var G__35582 = cljs.core.rest(g);
+return (emmy.series.impl.seq_COLON__STAR_.cljs$core$IFn$_invoke$arity$2 ? emmy.series.impl.seq_COLON__STAR_.cljs$core$IFn$_invoke$arity$2(G__35581,G__35582) : emmy.series.impl.seq_COLON__STAR_.call(null,G__35581,G__35582));
 })());
 } else {
 return step(f);
@@ -96,9 +96,9 @@ if(cljs.core.truth_(emmy.generic.zero_QMARK_.cljs$core$IFn$_invoke$arity$1(g0)))
 return emmy.util.arithmetic_ex("ERROR: denominator has a zero constant term");
 } else {
 var q = emmy.generic.div.cljs$core$IFn$_invoke$arity$2(f0,g0);
-return cljs.core.cons(q,(function (){var G__33126 = emmy.series.impl.seq_COLON__(fs,emmy.series.impl.c_STAR_seq(q,gs));
-var G__33127 = g;
-return (emmy.series.impl.div.cljs$core$IFn$_invoke$arity$2 ? emmy.series.impl.div.cljs$core$IFn$_invoke$arity$2(G__33126,G__33127) : emmy.series.impl.div.call(null,G__33126,G__33127));
+return cljs.core.cons(q,(function (){var G__35594 = emmy.series.impl.seq_COLON__(fs,emmy.series.impl.c_STAR_seq(q,gs));
+var G__35595 = g;
+return (emmy.series.impl.div.cljs$core$IFn$_invoke$arity$2 ? emmy.series.impl.div.cljs$core$IFn$_invoke$arity$2(G__35594,G__35595) : emmy.series.impl.div.call(null,G__35594,G__35595));
 })());
 
 }
@@ -118,8 +118,8 @@ emmy.series.impl.c_div_seq = (function emmy$series$impl$c_div_seq(c,f){
 return emmy.series.impl.c_STAR_seq(c,emmy.series.impl.invert(f));
 });
 emmy.series.impl.seq_div_c = (function emmy$series$impl$seq_div_c(f,c){
-return cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__33128_SHARP_){
-return emmy.generic._SLASH_.cljs$core$IFn$_invoke$arity$2(p1__33128_SHARP_,c);
+return cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__35601_SHARP_){
+return emmy.generic._SLASH_.cljs$core$IFn$_invoke$arity$2(p1__35601_SHARP_,c);
 }),f);
 });
 emmy.series.impl.compose = (function emmy$series$impl$compose(f,g){
@@ -130,12 +130,12 @@ if(cljs.core.truth_(emmy.generic.zero_QMARK_.cljs$core$IFn$_invoke$arity$1(cljs.
 throw (new Error("Assert failed: (g/zero? (first g))"));
 }
 
-var vec__33139 = f__$1;
-var seq__33140 = cljs.core.seq(vec__33139);
-var first__33141 = cljs.core.first(seq__33140);
-var seq__33140__$1 = cljs.core.next(seq__33140);
-var f0 = first__33141;
-var fs = seq__33140__$1;
+var vec__35605 = f__$1;
+var seq__35606 = cljs.core.seq(vec__35605);
+var first__35607 = cljs.core.first(seq__35606);
+var seq__35606__$1 = cljs.core.next(seq__35606);
+var f0 = first__35607;
+var fs = seq__35606__$1;
 var gs = cljs.core.rest(g);
 var tail = emmy.series.impl.seq_COLON__STAR_(gs,emmy$series$impl$compose_$_step(fs));
 return cljs.core.cons(f0,tail);
@@ -162,8 +162,8 @@ emmy.series.impl.deriv = (function emmy$series$impl$deriv(f){
 return cljs.core.map.cljs$core$IFn$_invoke$arity$3(emmy.generic._STAR_,cljs.core.rest(f),cljs.core.iterate(cljs.core.inc,(1)));
 });
 emmy.series.impl.integral = (function emmy$series$impl$integral(var_args){
-var G__33151 = arguments.length;
-switch (G__33151) {
+var G__35611 = arguments.length;
+switch (G__35611) {
 case 1:
 return emmy.series.impl.integral.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -197,23 +197,23 @@ while(true){
 var t = cljs.core.even_QMARK_(n);
 var n__$1 = cljs.core.quot(n,(2));
 if(t){
-var G__33253 = n__$1;
-var G__33254 = y;
-var G__33255 = emmy.series.impl.seq_COLON__STAR_(z,z);
-n = G__33253;
-y = G__33254;
-z = G__33255;
+var G__35709 = n__$1;
+var G__35710 = y;
+var G__35711 = emmy.series.impl.seq_COLON__STAR_(z,z);
+n = G__35709;
+y = G__35710;
+z = G__35711;
 continue;
 } else {
 if((n__$1 === (0))){
 return emmy.series.impl.seq_COLON__STAR_(z,y);
 } else {
-var G__33256 = n__$1;
-var G__33257 = emmy.series.impl.seq_COLON__STAR_(z,y);
-var G__33258 = emmy.series.impl.seq_COLON__STAR_(z,z);
-n = G__33256;
-y = G__33257;
-z = G__33258;
+var G__35712 = n__$1;
+var G__35713 = emmy.series.impl.seq_COLON__STAR_(z,y);
+var G__35714 = emmy.series.impl.seq_COLON__STAR_(z,z);
+n = G__35712;
+y = G__35713;
+z = G__35714;
 continue;
 
 }
@@ -232,19 +232,19 @@ return emmy.series.impl.invert(expt(s,emmy.generic.negate.cljs$core$IFn$_invoke$
 }
 }
 });
-emmy.series.impl.sqrt = (function emmy$series$impl$sqrt(p__33163){
-var vec__33164 = p__33163;
-var seq__33165 = cljs.core.seq(vec__33164);
-var first__33166 = cljs.core.first(seq__33165);
-var seq__33165__$1 = cljs.core.next(seq__33165);
-var f1 = first__33166;
-var vec__33167 = seq__33165__$1;
-var seq__33168 = cljs.core.seq(vec__33167);
-var first__33169 = cljs.core.first(seq__33168);
-var seq__33168__$1 = cljs.core.next(seq__33168);
-var f2 = first__33169;
-var fs = seq__33168__$1;
-var f = vec__33164;
+emmy.series.impl.sqrt = (function emmy$series$impl$sqrt(p__35631){
+var vec__35632 = p__35631;
+var seq__35633 = cljs.core.seq(vec__35632);
+var first__35634 = cljs.core.first(seq__35633);
+var seq__35633__$1 = cljs.core.next(seq__35633);
+var f1 = first__35634;
+var vec__35635 = seq__35633__$1;
+var seq__35636 = cljs.core.seq(vec__35635);
+var first__35637 = cljs.core.first(seq__35636);
+var seq__35636__$1 = cljs.core.next(seq__35636);
+var f2 = first__35637;
+var fs = seq__35636__$1;
+var f = vec__35632;
 if(cljs.core.truth_((function (){var and__5160__auto__ = emmy.generic.zero_QMARK_.cljs$core$IFn$_invoke$arity$1(f1);
 if(cljs.core.truth_(and__5160__auto__)){
 return emmy.generic.zero_QMARK_.cljs$core$IFn$_invoke$arity$1(f2);
@@ -263,7 +263,7 @@ return emmy.series.impl.integral.cljs$core$IFn$_invoke$arity$2(emmy.series.impl.
 return step(f);
 }
 });
-var xs_33261 = cljs.core.concat.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [(0),(0)], null),cljs.core.iterate(cljs.core.inc,(9)));
+var xs_35717 = cljs.core.concat.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [(0),(0)], null),cljs.core.iterate(cljs.core.inc,(9)));
 emmy.series.impl.expx = (new cljs.core.LazySeq(null,(function (){
 return emmy.series.impl.integral.cljs$core$IFn$_invoke$arity$2(emmy.series.impl.expx,(1));
 }),null,null));
@@ -321,14 +321,14 @@ return acc;
 } else {
 var next = ((prev * n__$1) / k);
 var acc_SINGLEQUOTE_ = cljs.core.conj_BANG_.cljs$core$IFn$_invoke$arity$2(acc,next);
-var G__33264 = acc_SINGLEQUOTE_;
-var G__33265 = next;
-var G__33266 = (n__$1 - (1));
-var G__33267 = (k + (1));
-acc = G__33264;
-prev = G__33265;
-n__$1 = G__33266;
-k = G__33267;
+var G__35724 = acc_SINGLEQUOTE_;
+var G__35725 = next;
+var G__35726 = (n__$1 - (1));
+var G__35727 = (k + (1));
+acc = G__35724;
+prev = G__35725;
+n__$1 = G__35726;
+k = G__35727;
 continue;
 }
 break;

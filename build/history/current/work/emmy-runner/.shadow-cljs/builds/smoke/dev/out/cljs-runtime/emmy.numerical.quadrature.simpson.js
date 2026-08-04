@@ -15,8 +15,8 @@ goog.provide('emmy.numerical.quadrature.simpson');
  *   If supplied, `:n` (default 1) specifies the initial number of slices to use.
  */
 emmy.numerical.quadrature.simpson.simpson_sequence = (function emmy$numerical$quadrature$simpson$simpson_sequence(var_args){
-var G__56536 = arguments.length;
-switch (G__56536) {
+var G__56882 = arguments.length;
+switch (G__56882) {
 case 3:
 return emmy.numerical.quadrature.simpson.simpson_sequence.cljs$core$IFn$_invoke$arity$3((arguments[(0)]),(arguments[(1)]),(arguments[(2)]));
 
@@ -35,10 +35,10 @@ throw (new Error(["Invalid arity: ",arguments.length].join("")));
 return emmy.numerical.quadrature.simpson.simpson_sequence.cljs$core$IFn$_invoke$arity$4(f,a,b,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"n","n",562130025),(1)], null));
 }));
 
-(emmy.numerical.quadrature.simpson.simpson_sequence.cljs$core$IFn$_invoke$arity$4 = (function (f,a,b,p__56543){
-var map__56544 = p__56543;
-var map__56544__$1 = cljs.core.__destructure_map(map__56544);
-var n = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__56544__$1,new cljs.core.Keyword(null,"n","n",562130025),(1));
+(emmy.numerical.quadrature.simpson.simpson_sequence.cljs$core$IFn$_invoke$arity$4 = (function (f,a,b,p__56895){
+var map__56896 = p__56895;
+var map__56896__$1 = cljs.core.__destructure_map(map__56896);
+var n = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__56896__$1,new cljs.core.Keyword(null,"n","n",562130025),(1));
 if(typeof n === 'number'){
 } else {
 throw (new Error("Assert failed: (number? n)"));

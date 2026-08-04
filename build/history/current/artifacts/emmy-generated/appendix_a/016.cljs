@@ -1,6 +1,8 @@
 (defn f
   [radius]
-  (let [area (* 4 pi (square radius)) volume (* (/ 4 3) pi (cube radius))] (/ volume area)))
+  ;; Keep pi symbolic so the common factor cancels before numerical evaluation.
+  (let [pi 'pi area (* 4 pi (square radius)) volume (* (/ 4 3) pi (cube radius))] (/ volume area)))
 
-(f 3)
-;; => 0.9999999999999999
+;; scmutils simplified this result automatically; Emmy requires an explicit call.
+(simplify (f 3))
+;; => 1

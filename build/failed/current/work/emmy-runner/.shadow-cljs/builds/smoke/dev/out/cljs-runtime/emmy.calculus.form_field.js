@@ -516,7 +516,7 @@ return emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(form1,form2);
 var n = (n1 + n2);
 var k = ((1) / (emmy.special.factorial.factorial(n1) * emmy.special.factorial.factorial(n2)));
 var w = (function() { 
-var G__47458__delegate = function (args){
+var G__47465__delegate = function (args){
 if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(cljs.core.count(args),n)){
 } else {
 throw (new Error((""+"Assert failed: "+cljs.core.str.cljs$core$IFn$_invoke$arity$1((""+"Wrong number of args to wedge product: "+cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.count(args))+" vs required "+cljs.core.str.cljs$core$IFn$_invoke$arity$1(n)))+"\n"+"(= (count args) n)")));
@@ -529,21 +529,21 @@ var a2 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47416,(1),null);
 return emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$variadic(parity,cljs.core.apply.cljs$core$IFn$_invoke$arity$2(form1,a1),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([cljs.core.apply.cljs$core$IFn$_invoke$arity$2(form2,a2)], 0));
 }),emmy.util.permute.permutation_sequence(args),cljs.core.cycle(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [(1),(-1)], null)))));
 };
-var G__47458 = function (var_args){
+var G__47465 = function (var_args){
 var args = null;
 if (arguments.length > 0) {
-var G__47459__i = 0, G__47459__a = new Array(arguments.length -  0);
-while (G__47459__i < G__47459__a.length) {G__47459__a[G__47459__i] = arguments[G__47459__i + 0]; ++G__47459__i;}
-  args = new cljs.core.IndexedSeq(G__47459__a,0,null);
+var G__47466__i = 0, G__47466__a = new Array(arguments.length -  0);
+while (G__47466__i < G__47466__a.length) {G__47466__a[G__47466__i] = arguments[G__47466__i + 0]; ++G__47466__i;}
+  args = new cljs.core.IndexedSeq(G__47466__a,0,null);
 } 
-return G__47458__delegate.call(this,args);};
-G__47458.cljs$lang$maxFixedArity = 0;
-G__47458.cljs$lang$applyTo = (function (arglist__47460){
-var args = cljs.core.seq(arglist__47460);
-return G__47458__delegate(args);
+return G__47465__delegate.call(this,args);};
+G__47465.cljs$lang$maxFixedArity = 0;
+G__47465.cljs$lang$applyTo = (function (arglist__47467){
+var args = cljs.core.seq(arglist__47467);
+return G__47465__delegate(args);
 });
-G__47458.cljs$core$IFn$_invoke$arity$variadic = G__47458__delegate;
-return G__47458;
+G__47465.cljs$core$IFn$_invoke$arity$variadic = G__47465__delegate;
+return G__47465;
 })()
 ;
 var name = cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol(null,"wedge","wedge",868448626,null),null,(1),null)),(new cljs.core.List(null,emmy.generic.freeze.cljs$core$IFn$_invoke$arity$1(form1),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,emmy.generic.freeze.cljs$core$IFn$_invoke$arity$1(form2),null,(1),null))], 0))));
@@ -578,14 +578,14 @@ return emmy.calculus.form_field.wedge.cljs$core$IFn$_invoke$arity$1((arguments[(
 break;
 default:
 var args_arr__5922__auto__ = [];
-var len__5897__auto___47462 = arguments.length;
-var i__5898__auto___47463 = (0);
+var len__5897__auto___47469 = arguments.length;
+var i__5898__auto___47470 = (0);
 while(true){
-if((i__5898__auto___47463 < len__5897__auto___47462)){
-args_arr__5922__auto__.push((arguments[i__5898__auto___47463]));
+if((i__5898__auto___47470 < len__5897__auto___47469)){
+args_arr__5922__auto__.push((arguments[i__5898__auto___47470]));
 
-var G__47464 = (i__5898__auto___47463 + (1));
-i__5898__auto___47463 = G__47464;
+var G__47471 = (i__5898__auto___47470 + (1));
+i__5898__auto___47470 = G__47471;
 continue;
 } else {
 }
@@ -649,14 +649,14 @@ return (emmy.util.aggregate.generic_sum.cljs$core$IFn$_invoke$arity$1 ? emmy.uti
 var emmy$calculus$form_field$Alt_$_alternation = function (var_args){
 var args = null;
 if (arguments.length > 0) {
-var G__47465__i = 0, G__47465__a = new Array(arguments.length -  0);
-while (G__47465__i < G__47465__a.length) {G__47465__a[G__47465__i] = arguments[G__47465__i + 0]; ++G__47465__i;}
-  args = new cljs.core.IndexedSeq(G__47465__a,0,null);
+var G__47472__i = 0, G__47472__a = new Array(arguments.length -  0);
+while (G__47472__i < G__47472__a.length) {G__47472__a[G__47472__i] = arguments[G__47472__i + 0]; ++G__47472__i;}
+  args = new cljs.core.IndexedSeq(G__47472__a,0,null);
 } 
 return emmy$calculus$form_field$Alt_$_alternation__delegate.call(this,args);};
 emmy$calculus$form_field$Alt_$_alternation.cljs$lang$maxFixedArity = 0;
-emmy$calculus$form_field$Alt_$_alternation.cljs$lang$applyTo = (function (arglist__47466){
-var args = cljs.core.seq(arglist__47466);
+emmy$calculus$form_field$Alt_$_alternation.cljs$lang$applyTo = (function (arglist__47473){
+var args = cljs.core.seq(arglist__47473);
 return emmy$calculus$form_field$Alt_$_alternation__delegate(args);
 });
 emmy$calculus$form_field$Alt_$_alternation.cljs$core$IFn$_invoke$arity$variadic = emmy$calculus$form_field$Alt_$_alternation__delegate;
@@ -695,7 +695,7 @@ return emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(t1,t2);
 } else {
 var n = (n1 + n2);
 var tp = (function() { 
-var G__47476__delegate = function (args){
+var G__47475__delegate = function (args){
 if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(cljs.core.count(args),n)){
 } else {
 throw (new Error((""+"Assert failed: "+"Wrong number of args to tensor product"+"\n"+"(= (count args) n)")));
@@ -706,21 +706,21 @@ var a1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47427,(0),null);
 var a2 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47427,(1),null);
 return emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(cljs.core.apply.cljs$core$IFn$_invoke$arity$2(t1,a1),cljs.core.apply.cljs$core$IFn$_invoke$arity$2(t2,a2));
 };
-var G__47476 = function (var_args){
+var G__47475 = function (var_args){
 var args = null;
 if (arguments.length > 0) {
-var G__47480__i = 0, G__47480__a = new Array(arguments.length -  0);
-while (G__47480__i < G__47480__a.length) {G__47480__a[G__47480__i] = arguments[G__47480__i + 0]; ++G__47480__i;}
-  args = new cljs.core.IndexedSeq(G__47480__a,0,null);
+var G__47476__i = 0, G__47476__a = new Array(arguments.length -  0);
+while (G__47476__i < G__47476__a.length) {G__47476__a[G__47476__i] = arguments[G__47476__i + 0]; ++G__47476__i;}
+  args = new cljs.core.IndexedSeq(G__47476__a,0,null);
 } 
-return G__47476__delegate.call(this,args);};
-G__47476.cljs$lang$maxFixedArity = 0;
-G__47476.cljs$lang$applyTo = (function (arglist__47481){
-var args = cljs.core.seq(arglist__47481);
-return G__47476__delegate(args);
+return G__47475__delegate.call(this,args);};
+G__47475.cljs$lang$maxFixedArity = 0;
+G__47475.cljs$lang$applyTo = (function (arglist__47477){
+var args = cljs.core.seq(arglist__47477);
+return G__47475__delegate(args);
 });
-G__47476.cljs$core$IFn$_invoke$arity$variadic = G__47476__delegate;
-return G__47476;
+G__47475.cljs$core$IFn$_invoke$arity$variadic = G__47475__delegate;
+return G__47475;
 })()
 ;
 return emmy.calculus.form_field.procedure__GT_nform_field.cljs$core$IFn$_invoke$arity$3(tp,n,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol(null,"tensor-product","tensor-product",553408668,null),null,(1),null)),(new cljs.core.List(null,emmy.generic.freeze.cljs$core$IFn$_invoke$arity$1(t1),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,emmy.generic.freeze.cljs$core$IFn$_invoke$arity$1(t2),null,(1),null))], 0)))));
@@ -763,14 +763,14 @@ return emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2((emmy.special.factorial
  */
 emmy.calculus.form_field.alt_wedge = (function emmy$calculus$form_field$alt_wedge(var_args){
 var args__5903__auto__ = [];
-var len__5897__auto___47485 = arguments.length;
-var i__5898__auto___47486 = (0);
+var len__5897__auto___47481 = arguments.length;
+var i__5898__auto___47482 = (0);
 while(true){
-if((i__5898__auto___47486 < len__5897__auto___47485)){
-args__5903__auto__.push((arguments[i__5898__auto___47486]));
+if((i__5898__auto___47482 < len__5897__auto___47481)){
+args__5903__auto__.push((arguments[i__5898__auto___47482]));
 
-var G__47487 = (i__5898__auto___47486 + (1));
-i__5898__auto___47486 = G__47487;
+var G__47483 = (i__5898__auto___47482 + (1));
+i__5898__auto___47482 = G__47483;
 continue;
 } else {
 }
@@ -802,7 +802,7 @@ var without = (function (p1__47433_SHARP_,p2__47434_SHARP_){
 return cljs.core.concat.cljs$core$IFn$_invoke$arity$2(cljs.core.take.cljs$core$IFn$_invoke$arity$2(p1__47433_SHARP_,p2__47434_SHARP_),cljs.core.drop.cljs$core$IFn$_invoke$arity$2((p1__47433_SHARP_ + (1)),p2__47434_SHARP_));
 });
 var k_PLUS_1form = (function() { 
-var G__47495__delegate = function (vectors){
+var G__47487__delegate = function (vectors){
 if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(cljs.core.count(vectors),(k + (1)))){
 } else {
 throw (new Error("Assert failed: (= (count vectors) (inc k))"));
@@ -836,21 +836,21 @@ return (0);
 }
 });
 };
-var G__47495 = function (var_args){
+var G__47487 = function (var_args){
 var vectors = null;
 if (arguments.length > 0) {
-var G__47497__i = 0, G__47497__a = new Array(arguments.length -  0);
-while (G__47497__i < G__47497__a.length) {G__47497__a[G__47497__i] = arguments[G__47497__i + 0]; ++G__47497__i;}
-  vectors = new cljs.core.IndexedSeq(G__47497__a,0,null);
+var G__47489__i = 0, G__47489__a = new Array(arguments.length -  0);
+while (G__47489__i < G__47489__a.length) {G__47489__a[G__47489__i] = arguments[G__47489__i + 0]; ++G__47489__i;}
+  vectors = new cljs.core.IndexedSeq(G__47489__a,0,null);
 } 
-return G__47495__delegate.call(this,vectors);};
-G__47495.cljs$lang$maxFixedArity = 0;
-G__47495.cljs$lang$applyTo = (function (arglist__47498){
-var vectors = cljs.core.seq(arglist__47498);
-return G__47495__delegate(vectors);
+return G__47487__delegate.call(this,vectors);};
+G__47487.cljs$lang$maxFixedArity = 0;
+G__47487.cljs$lang$applyTo = (function (arglist__47490){
+var vectors = cljs.core.seq(arglist__47490);
+return G__47487__delegate(vectors);
 });
-G__47495.cljs$core$IFn$_invoke$arity$variadic = G__47495__delegate;
-return G__47495;
+G__47487.cljs$core$IFn$_invoke$arity$variadic = G__47487__delegate;
+return G__47487;
 })()
 ;
 return emmy.calculus.form_field.procedure__GT_nform_field.cljs$core$IFn$_invoke$arity$3(k_PLUS_1form,(k + (1)),cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,new cljs.core.Symbol(null,"d","d",-682293345,null),null,(1),null)),(new cljs.core.List(null,emmy.generic.freeze.cljs$core$IFn$_invoke$arity$1(kform),null,(1),null))))));

@@ -1,13 +1,13 @@
 {
-  "id": "20260803T155950Z-from-raw-807ea65-36f300",
-  "target": "from-raw",
+  "id": "deep-audit-fixes-2",
+  "target": "emmy-refresh",
   "source": "/Users/calvinkhor/Documents/GitHub/fdgtyp",
-  "revision": "807ea65",
-  "startedAt": "2026-08-03T15:59:50.985Z",
+  "revision": "139a199",
+  "startedAt": "2026-08-04T11:03:18.379Z",
   "log": "build.log",
   "status": "failed",
-  "artifacts": null,
   "workspace": null,
-  "finishedAt": "2026-08-03T16:02:41.208Z",
+  "finishedAt": "2026-08-04T11:03:24.040Z",
+  "artifacts": null,
   "archive": "previous-2.tar.gz"
 }

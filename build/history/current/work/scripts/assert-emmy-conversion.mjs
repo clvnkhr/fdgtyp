@@ -35,6 +35,10 @@ const workerSource = readFileSync(
   path.join(root, "emmy-runner", "src", "fdg", "worker.cljs"),
   "utf8",
 );
+const outputSource = readFileSync(
+  path.join(root, "emmy-runner", "src", "fdg", "output.cljs"),
+  "utf8",
+);
 const shadowConfig = readFileSync(
   path.join(root, "emmy-runner", "shadow-cljs.edn"),
   "utf8",
@@ -61,12 +65,12 @@ if (!converterSource.includes("const explicitSimplifyIds = new Set([")
     || !converterSource.includes("function ensureExplicitSimplify(source, id)")) {
   throw new Error("Reviewed scmutils result blocks must receive explicit Emmy simplification");
 }
-if (!converterSource.includes('id === "appendix_a-013"')
+if (!converterSource.includes('id === "appendix_a-015"')
     || !converterSource.includes('(* (bigint n) (factorial (- n 1)))')) {
   throw new Error("The book's recursive factorial must retain exact integer arithmetic in ClojureScript");
 }
-if (!converterSource.includes('id === "appendix_a-015"')
-    || !converterSource.includes("(let [pi 'pi]")) {
+if (!converterSource.includes('id === "appendix_a-016"')
+    || !converterSource.includes("(let [pi 'pi")) {
   throw new Error("Appendix A's common pi factor must cancel symbolically before numerical evaluation");
 }
 if (!boundedRunnerSource.includes("spawnSync(")
@@ -77,6 +81,9 @@ if (!boundedRunnerSource.includes("spawnSync(")
 if (!smokeSource.includes("(defn locate-form")
     || !smokeSource.includes("(clojure.string/join \"\\\\s+\")")) {
   throw new Error("Captured results must tolerate formatter whitespace changes");
+}
+if (!outputSource.includes('(if (fn? value)') || !outputSource.includes('"<function>"')) {
+  throw new Error("Captured function values must not expose SCI implementation objects");
 }
 if (!workerSource.includes("(:backgroundSetup block)")
     || !workerSource.includes("(not (:executable block))")) {
@@ -201,7 +208,12 @@ const newtonLaplacian = readFileSync(
   path.join(root, "codeblocks", "chapter009", "020.cljs"),
   "utf8",
 );
-if ((newtonLaplacian.match(/\(up 'x 'y 'z\)/g) ?? []).length !== 3) {
+const newtonLaplacianSource = newtonLaplacian.replace(
+  /^;; =>[^\n]*(?:\n;;[^\n]*)*/gm,
+  "",
+);
+if ((newtonLaplacianSource.match(/\(up 'x 'y 'z\)/g) ?? []).length !== 3
+    || /^;;[^\n]*\(up 'x 'y 'z\)/m.test(newtonLaplacian)) {
   throw new Error("chapter009-020 must use symbolic coordinates for Emmy differentiation");
 }
 
@@ -296,6 +308,11 @@ const stabilityDeterminant = readFileSync(path.join(root, "codeblocks", "chapter
 if (!stabilityDeterminant.includes(" 0 2 0 2)")) {
   throw new Error("scmutils exclusive submatrix bounds must become Emmy inclusive bounds");
 }
+const sphereLagrangeEquations = readFileSync(path.join(root, "codeblocks", "chapter007", "039.cljs"), "utf8");
+if (!sphereLagrangeEquations.includes("(simplify (show-expression")
+    || sphereLagrangeEquations.includes("<result truncated:")) {
+  throw new Error("chapter007-039 must simplify the displayed equations instead of caching a huge truncated expansion");
+}
 const divergence = readFileSync(path.join(root, "codeblocks", "chapter010", "004.cljs"), "utf8");
 if (!divergence.includes("([metric orthonormal-basis]") || !divergence.includes("([Cartan]")) {
   throw new Error("Repeated Scheme divergence definitions must retain both ClojureScript arities");
@@ -303,6 +320,21 @@ if (!divergence.includes("([metric orthonormal-basis]") || !divergence.includes(
 for (const id of ["appendix_b-019", "appendix_b-023"]) {
   const block = manifest.find(candidate => candidate.id === id);
   if (!block?.executable) throw new Error(`${id} should remain an executable example`);
+}
+const structuredDerivatives = readFileSync(path.join(root, "codeblocks", "appendix_b", "019.cljs"), "utf8");
+if ((structuredDerivatives.match(/^\(simplify\b/gm) ?? []).length !== 3
+    || !/\(simplify\s+\(\(D g\) 'x 'y\)\)/s.test(structuredDerivatives)
+    || !/\(simplify\s+\(\(D h\) \(up 'x 'y\)\)\)/s.test(structuredDerivatives)) {
+  throw new Error("appendix_b-019 must retain all three executable structured-derivative examples");
+}
+const exactFactorial = readFileSync(path.join(root, "codeblocks", "appendix_a", "015.cljs"), "utf8");
+if (!exactFactorial.includes("(* (bigint n) (factorial (- n 1)))")) {
+  throw new Error("appendix_a-015 must use bigint multiplication so 40! remains exact");
+}
+const symbolicPiCancellation = readFileSync(path.join(root, "codeblocks", "appendix_a", "016.cljs"), "utf8");
+if (!symbolicPiCancellation.includes("(simplify (f 3))")
+    || !symbolicPiCancellation.includes(";; => 1")) {
+  throw new Error("appendix_a-016 must simplify the symbolic common pi factor to exactly 1");
 }
 if (manifest.some(block => block.chapter === "errata" && block.executable)) {
   throw new Error("Context-dependent errata fragments must not run as standalone examples");
@@ -332,6 +364,12 @@ for (const block of manifest) {
   if (code.includes('#emmy/ratio "')) {
     throw new Error(`${block.id} exposes Emmy's tagged ratio representation instead of explicit division`);
   }
+  if (code.includes("#object")) {
+    throw new Error(`${block.id} exposes an internal ClojureScript object representation`);
+  }
+  if (/^;; => nil$/m.test(code)) {
+    throw new Error(`${block.id} captures a side-effecting form's meaningless nil return value`);
+  }
   if (/^;; FDG Emmy block|^;; source-sha256:|^;; status:/m.test(code)) {
     throw new Error(`${block.id} contains generated metadata comments`);
   }
@@ -350,6 +388,23 @@ for (const block of manifest) {
     throw new Error(
       `${block.id} has ${capturedCount} captured results; expected ${expectedCapturedCount}`,
     );
+  }
+}
+
+{
+  const block = manifest.find(candidate => candidate.id === "chapter008-019");
+  const code = readFileSync(path.join(root, "codeblocks/chapter008/019.cljs"), "utf8");
+  if (block?.forms.some(form => form.capturesResult) || /^;; =>/m.test(code)) {
+    throw new Error("chapter008-019 must execute its print loop without capturing the loop's nil return value");
+  }
+}
+
+{
+  const block = manifest.find(candidate => candidate.id === "chapter009-024");
+  const code = readFileSync(path.join(root, "codeblocks/chapter009/024.cljs"), "utf8");
+  if (block?.definitions.join(",") !== "spacetime,spacetime-rect,spacetime-sphere"
+      || code.includes("(show ")) {
+    throw new Error("chapter009-024 must retain its three spacetime definitions");
   }
 }
 

@@ -61,8 +61,8 @@ return cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(emmy.value.kind(m),new cljs.
  *   that locally resembles Euclidean space near each point.
  */
 emmy.calculus.manifold.make_manifold = (function emmy$calculus$manifold$make_manifold(var_args){
-var G__47232 = arguments.length;
-switch (G__47232) {
+var G__47236 = arguments.length;
+switch (G__47236) {
 case 2:
 return emmy.calculus.manifold.make_manifold.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -225,8 +225,8 @@ return (ctor.cljs$core$IFn$_invoke$arity$1 ? ctor.cljs$core$IFn$_invoke$arity$1(
  *   by `:coordinate-representations`; passing these values will seed the cache.
  */
 emmy.calculus.manifold.make_manifold_point = (function emmy$calculus$manifold$make_manifold_point(var_args){
-var G__47240 = arguments.length;
-switch (G__47240) {
+var G__47267 = arguments.length;
+switch (G__47267) {
 case 2:
 return emmy.calculus.manifold.make_manifold_point.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -290,8 +290,8 @@ return ((emmy.calculus.manifold.manifold_point_QMARK_(point)) && (cljs.core._EQ_
 emmy.calculus.manifold.get_coordinates = (function emmy$calculus$manifold$get_coordinates(manifold_point,coordinate_system,thunk){
 var reps = new cljs.core.Keyword(null,"coordinate-representations","coordinate-representations",-676047034).cljs$core$IFn$_invoke$arity$1(manifold_point);
 var coordsys_id = (emmy.calculus.manifold.uuid.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.manifold.uuid.cljs$core$IFn$_invoke$arity$1(coordinate_system) : emmy.calculus.manifold.uuid.call(null,coordinate_system));
-var or__5162__auto__ = (function (){var fexpr__47262 = cljs.core.deref(reps);
-return (fexpr__47262.cljs$core$IFn$_invoke$arity$1 ? fexpr__47262.cljs$core$IFn$_invoke$arity$1(coordsys_id) : fexpr__47262.call(null,coordsys_id));
+var or__5162__auto__ = (function (){var fexpr__47268 = cljs.core.deref(reps);
+return (fexpr__47268.cljs$core$IFn$_invoke$arity$1 ? fexpr__47268.cljs$core$IFn$_invoke$arity$1(coordsys_id) : fexpr__47268.call(null,coordsys_id));
 })();
 if(cljs.core.truth_(or__5162__auto__)){
 return or__5162__auto__;

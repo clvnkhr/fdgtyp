@@ -34,8 +34,8 @@ var width = (b - a);
 return (function (n){
 var h = (width / n);
 var fx = (function (i){
-var G__55615 = (a + (i * h));
-return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__55615) : f.call(null,G__55615));
+var G__55950 = (a + (i * h));
+return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__55950) : f.call(null,G__55950));
 });
 return (h * emmy.util.aggregate.sum.cljs$core$IFn$_invoke$arity$3(fx,(0),n));
 });
@@ -56,8 +56,8 @@ return (function (n){
 var h = (width / n);
 var start = (a + h);
 var fx = (function (i){
-var G__55625 = (start + (i * h));
-return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__55625) : f.call(null,G__55625));
+var G__55956 = (start + (i * h));
+return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__55956) : f.call(null,G__55956));
 });
 return (h * emmy.util.aggregate.sum.cljs$core$IFn$_invoke$arity$3(fx,(0),n));
 });
@@ -94,11 +94,11 @@ return ((r - l) * cljs.core.min.cljs$core$IFn$_invoke$arity$2((f.cljs$core$IFn$_
  * 
  *   This only applies to the Riemann sequences in this namespace!
  */
-emmy.numerical.quadrature.riemann.accelerate = (function emmy$numerical$quadrature$riemann$accelerate(estimate_seq,p__55626){
-var map__55627 = p__55626;
-var map__55627__$1 = cljs.core.__destructure_map(map__55627);
-var n = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__55627__$1,new cljs.core.Keyword(null,"n","n",562130025),(1));
-var accelerate_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__55627__$1,new cljs.core.Keyword(null,"accelerate?","accelerate?",-29657518));
+emmy.numerical.quadrature.riemann.accelerate = (function emmy$numerical$quadrature$riemann$accelerate(estimate_seq,p__55969){
+var map__55970 = p__55969;
+var map__55970__$1 = cljs.core.__destructure_map(map__55970);
+var n = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__55970__$1,new cljs.core.Keyword(null,"n","n",562130025),(1));
+var accelerate_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__55970__$1,new cljs.core.Keyword(null,"accelerate?","accelerate?",-29657518));
 if(cljs.core.truth_((function (){var and__5160__auto__ = accelerate_QMARK_;
 if(cljs.core.truth_(and__5160__auto__)){
 return typeof n === 'number';
@@ -122,8 +122,8 @@ return (function (n){
 var h = (width / n);
 var offset = (a + (h / 2.0));
 var fx = (function (i){
-var G__55633 = (offset + (i * h));
-return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__55633) : f.call(null,G__55633));
+var G__55972 = (offset + (i * h));
+return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__55972) : f.call(null,G__55972));
 });
 return (h * emmy.util.aggregate.sum.cljs$core$IFn$_invoke$arity$3(fx,(0),n));
 });
@@ -174,8 +174,8 @@ return cljs.core.reductions.cljs$core$IFn$_invoke$arity$3(next_S_fn,first_S,step
  *   slices.
  */
 emmy.numerical.quadrature.riemann.left_sequence_STAR__STAR_ = (function emmy$numerical$quadrature$riemann$left_sequence_STAR__STAR_(var_args){
-var G__55643 = arguments.length;
-switch (G__55643) {
+var G__55998 = arguments.length;
+switch (G__55998) {
 case 3:
 return emmy.numerical.quadrature.riemann.left_sequence_STAR__STAR_.cljs$core$IFn$_invoke$arity$3((arguments[(0)]),(arguments[(1)]),(arguments[(2)]));
 
@@ -214,10 +214,10 @@ return emmy.numerical.quadrature.riemann.geometric_estimate_seq(emmy.numerical.q
  *   generate successive estimates.
  */
 emmy.numerical.quadrature.riemann.general_estimate_seq = (function emmy$numerical$quadrature$riemann$general_estimate_seq(S_fn,next_S_fn,factor,n_seq){
-var f = (function (p__55649,n){
-var vec__55650 = p__55649;
-var cache = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__55650,(0),null);
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__55650,(1),null);
+var f = (function (p__56016,n){
+var vec__56017 = p__56016;
+var cache = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__56017,(0),null);
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__56017,(1),null);
 var Sn = (((cljs.core.rem(n,factor) === (0)))?(function (){var prev = cljs.core.quot(n,factor);
 var temp__5823__auto__ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(cache,prev);
 if(cljs.core.truth_(temp__5823__auto__)){
@@ -272,8 +272,8 @@ return (f.cljs$core$IFn$_invoke$arity$4 ? f.cljs$core$IFn$_invoke$arity$4(S_fn,n
  *   is ignored.
  */
 emmy.numerical.quadrature.riemann.left_sequence = (function emmy$numerical$quadrature$riemann$left_sequence(var_args){
-var G__55658 = arguments.length;
-switch (G__55658) {
+var G__56036 = arguments.length;
+switch (G__56036) {
 case 3:
 return emmy.numerical.quadrature.riemann.left_sequence.cljs$core$IFn$_invoke$arity$3((arguments[(0)]),(arguments[(1)]),(arguments[(2)]));
 
@@ -317,8 +317,8 @@ return emmy.numerical.quadrature.riemann.accelerate(emmy.numerical.quadrature.ri
  *   is ignored.
  */
 emmy.numerical.quadrature.riemann.right_sequence = (function emmy$numerical$quadrature$riemann$right_sequence(var_args){
-var G__55660 = arguments.length;
-switch (G__55660) {
+var G__56050 = arguments.length;
+switch (G__56050) {
 case 3:
 return emmy.numerical.quadrature.riemann.right_sequence.cljs$core$IFn$_invoke$arity$3((arguments[(0)]),(arguments[(1)]),(arguments[(2)]));
 
@@ -362,8 +362,8 @@ return emmy.numerical.quadrature.riemann.accelerate(emmy.numerical.quadrature.ri
  *   is ignored.
  */
 emmy.numerical.quadrature.riemann.lower_sequence = (function emmy$numerical$quadrature$riemann$lower_sequence(var_args){
-var G__55666 = arguments.length;
-switch (G__55666) {
+var G__56064 = arguments.length;
+switch (G__56064) {
 case 3:
 return emmy.numerical.quadrature.riemann.lower_sequence.cljs$core$IFn$_invoke$arity$3((arguments[(0)]),(arguments[(1)]),(arguments[(2)]));
 
@@ -382,11 +382,11 @@ throw (new Error(["Invalid arity: ",arguments.length].join("")));
 return emmy.numerical.quadrature.riemann.lower_sequence.cljs$core$IFn$_invoke$arity$4(f,a,b,cljs.core.PersistentArrayMap.EMPTY);
 }));
 
-(emmy.numerical.quadrature.riemann.lower_sequence.cljs$core$IFn$_invoke$arity$4 = (function (f,a,b,p__55667){
-var map__55668 = p__55667;
-var map__55668__$1 = cljs.core.__destructure_map(map__55668);
-var opts = map__55668__$1;
-var n = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__55668__$1,new cljs.core.Keyword(null,"n","n",562130025),(1));
+(emmy.numerical.quadrature.riemann.lower_sequence.cljs$core$IFn$_invoke$arity$4 = (function (f,a,b,p__56065){
+var map__56066 = p__56065;
+var map__56066__$1 = cljs.core.__destructure_map(map__56066);
+var opts = map__56066__$1;
+var n = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__56066__$1,new cljs.core.Keyword(null,"n","n",562130025),(1));
 var n_seq = ((typeof n === 'number')?emmy.util.stream.powers.cljs$core$IFn$_invoke$arity$2((2),n):n);
 return emmy.numerical.quadrature.riemann.accelerate(cljs.core.map.cljs$core$IFn$_invoke$arity$2(emmy.numerical.quadrature.riemann.lower_sum(f,a,b),n_seq),opts);
 }));
@@ -410,8 +410,8 @@ return emmy.numerical.quadrature.riemann.accelerate(cljs.core.map.cljs$core$IFn$
  *   is ignored.
  */
 emmy.numerical.quadrature.riemann.upper_sequence = (function emmy$numerical$quadrature$riemann$upper_sequence(var_args){
-var G__55670 = arguments.length;
-switch (G__55670) {
+var G__56068 = arguments.length;
+switch (G__56068) {
 case 3:
 return emmy.numerical.quadrature.riemann.upper_sequence.cljs$core$IFn$_invoke$arity$3((arguments[(0)]),(arguments[(1)]),(arguments[(2)]));
 
@@ -430,11 +430,11 @@ throw (new Error(["Invalid arity: ",arguments.length].join("")));
 return emmy.numerical.quadrature.riemann.upper_sequence.cljs$core$IFn$_invoke$arity$4(f,a,b,cljs.core.PersistentArrayMap.EMPTY);
 }));
 
-(emmy.numerical.quadrature.riemann.upper_sequence.cljs$core$IFn$_invoke$arity$4 = (function (f,a,b,p__55672){
-var map__55673 = p__55672;
-var map__55673__$1 = cljs.core.__destructure_map(map__55673);
-var opts = map__55673__$1;
-var n = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__55673__$1,new cljs.core.Keyword(null,"n","n",562130025),(1));
+(emmy.numerical.quadrature.riemann.upper_sequence.cljs$core$IFn$_invoke$arity$4 = (function (f,a,b,p__56069){
+var map__56070 = p__56069;
+var map__56070__$1 = cljs.core.__destructure_map(map__56070);
+var opts = map__56070__$1;
+var n = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__56070__$1,new cljs.core.Keyword(null,"n","n",562130025),(1));
 var n_seq = ((typeof n === 'number')?emmy.util.stream.powers.cljs$core$IFn$_invoke$arity$2((2),n):n);
 return emmy.numerical.quadrature.riemann.accelerate(cljs.core.map.cljs$core$IFn$_invoke$arity$2(emmy.numerical.quadrature.riemann.upper_sum(f,a,b),n_seq),opts);
 }));

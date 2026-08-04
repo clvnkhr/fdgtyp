@@ -14,17 +14,17 @@ while(true){
 if(cljs.core.empty_QMARK_(ins)){
 return emmy.structure.down_STAR_(outs);
 } else {
-var G__48515 = cljs.core.rest(ins);
-var G__48516 = cljs.core.conj.cljs$core$IFn$_invoke$arity$2(outs,normalize(emmy.generic._.cljs$core$IFn$_invoke$arity$2(cljs.core.first(ins),cljs.core.apply.cljs$core$IFn$_invoke$arity$2(emmy.generic._PLUS_,cljs.core.map.cljs$core$IFn$_invoke$arity$2(((function (ins,outs,vects,e0){
+var G__48561 = cljs.core.rest(ins);
+var G__48562 = cljs.core.conj.cljs$core$IFn$_invoke$arity$2(outs,normalize(emmy.generic._.cljs$core$IFn$_invoke$arity$2(cljs.core.first(ins),cljs.core.apply.cljs$core$IFn$_invoke$arity$2(emmy.generic._PLUS_,cljs.core.map.cljs$core$IFn$_invoke$arity$2(((function (ins,outs,vects,e0){
 return (function (outv){
-return emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2((function (){var G__48498 = cljs.core.first(ins);
-var G__48499 = outv;
-return (metric.cljs$core$IFn$_invoke$arity$2 ? metric.cljs$core$IFn$_invoke$arity$2(G__48498,G__48499) : metric.call(null,G__48498,G__48499));
+return emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2((function (){var G__48531 = cljs.core.first(ins);
+var G__48532 = outv;
+return (metric.cljs$core$IFn$_invoke$arity$2 ? metric.cljs$core$IFn$_invoke$arity$2(G__48531,G__48532) : metric.call(null,G__48531,G__48532));
 })(),outv);
 });})(ins,outs,vects,e0))
 ,outs)))));
-ins = G__48515;
-outs = G__48516;
+ins = G__48561;
+outs = G__48562;
 continue;
 }
 break;
@@ -57,14 +57,14 @@ return cljs.core.remove.cljs$core$IFn$_invoke$arity$2(cljs.core.into.cljs$core$I
  */
 emmy.calculus.hodge_star.Hodge_star = (function emmy$calculus$hodge_star$Hodge_star(var_args){
 var args__5903__auto__ = [];
-var len__5897__auto___48517 = arguments.length;
-var i__5898__auto___48518 = (0);
+var len__5897__auto___48565 = arguments.length;
+var i__5898__auto___48566 = (0);
 while(true){
-if((i__5898__auto___48518 < len__5897__auto___48517)){
-args__5903__auto__.push((arguments[i__5898__auto___48518]));
+if((i__5898__auto___48566 < len__5897__auto___48565)){
+args__5903__auto__.push((arguments[i__5898__auto___48566]));
 
-var G__48519 = (i__5898__auto___48518 + (1));
-i__5898__auto___48518 = G__48519;
+var G__48568 = (i__5898__auto___48566 + (1));
+i__5898__auto___48566 = G__48568;
 continue;
 } else {
 }
@@ -75,10 +75,10 @@ var argseq__5904__auto__ = ((((2) < args__5903__auto__.length))?(new cljs.core.I
 return emmy.calculus.hodge_star.Hodge_star.cljs$core$IFn$_invoke$arity$variadic((arguments[(0)]),(arguments[(1)]),argseq__5904__auto__);
 });
 
-(emmy.calculus.hodge_star.Hodge_star.cljs$core$IFn$_invoke$arity$variadic = (function (metric,spec,p__48503){
-var map__48504 = p__48503;
-var map__48504__$1 = cljs.core.__destructure_map(map__48504);
-var orthonormalize_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__48504__$1,new cljs.core.Keyword(null,"orthonormalize?","orthonormalize?",-11872752),false);
+(emmy.calculus.hodge_star.Hodge_star.cljs$core$IFn$_invoke$arity$variadic = (function (metric,spec,p__48542){
+var map__48543 = p__48542;
+var map__48543__$1 = cljs.core.__destructure_map(map__48543);
+var orthonormalize_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__48543__$1,new cljs.core.Keyword(null,"orthonormalize?","orthonormalize?",-11872752),false);
 var basis = ((emmy.calculus.basis.basis_QMARK_(spec))?(cljs.core.truth_(orthonormalize_QMARK_)?emmy.calculus.hodge_star.orthonormalize(spec,metric,orthonormalize_QMARK_):spec):(cljs.core.truth_(orthonormalize_QMARK_)?emmy.calculus.hodge_star.orthonormalize(emmy.calculus.basis.coordinate_system__GT_basis(spec),metric,spec):emmy.calculus.basis.coordinate_system__GT_basis(spec)));
 var on_vector_basis = cljs.core.flatten(emmy.calculus.basis.basis__GT_vector_basis(basis));
 var on_oneform_basis = cljs.core.flatten(emmy.calculus.basis.basis__GT_oneform_basis(basis));
@@ -120,13 +120,13 @@ return cljs.core.apply.cljs$core$IFn$_invoke$arity$2(emmy.generic._PLUS_,cljs.co
 (emmy.calculus.hodge_star.Hodge_star.cljs$lang$maxFixedArity = (2));
 
 /** @this {Function} */
-(emmy.calculus.hodge_star.Hodge_star.cljs$lang$applyTo = (function (seq48500){
-var G__48501 = cljs.core.first(seq48500);
-var seq48500__$1 = cljs.core.next(seq48500);
-var G__48502 = cljs.core.first(seq48500__$1);
-var seq48500__$2 = cljs.core.next(seq48500__$1);
+(emmy.calculus.hodge_star.Hodge_star.cljs$lang$applyTo = (function (seq48535){
+var G__48536 = cljs.core.first(seq48535);
+var seq48535__$1 = cljs.core.next(seq48535);
+var G__48537 = cljs.core.first(seq48535__$1);
+var seq48535__$2 = cljs.core.next(seq48535__$1);
 var self__5882__auto__ = this;
-return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__48501,G__48502,seq48500__$2);
+return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__48536,G__48537,seq48535__$2);
 }));
 
 

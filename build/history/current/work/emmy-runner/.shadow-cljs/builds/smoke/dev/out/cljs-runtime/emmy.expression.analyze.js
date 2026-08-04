@@ -71,8 +71,8 @@ return cljs.core.compare(v,w);
  * 
  */
 emmy.expression.analyze.monotonic_symbol_generator = (function emmy$expression$analyze$monotonic_symbol_generator(var_args){
-var G__36863 = arguments.length;
-switch (G__36863) {
+var G__36896 = arguments.length;
+switch (G__36896) {
 case 0:
 return emmy.expression.analyze.monotonic_symbol_generator.cljs$core$IFn$_invoke$arity$0();
 
@@ -141,9 +141,9 @@ return emmy$expression$analyze$g;
  */
 emmy.expression.analyze.ICanonicalize = function(){};
 
-var emmy$expression$analyze$ICanonicalize$expression__GT_$dyn_36985 = (function() {
-var G__36986 = null;
-var G__36986__3 = (function (analyzer,x,continue$){
+var emmy$expression$analyze$ICanonicalize$expression__GT_$dyn_36994 = (function() {
+var G__36995 = null;
+var G__36995__3 = (function (analyzer,x,continue$){
 var x__5519__auto__ = (((analyzer == null))?null:analyzer);
 var m__5520__auto__ = (emmy.expression.analyze.expression__GT_[goog.typeOf(x__5519__auto__)]);
 if((!((m__5520__auto__ == null)))){
@@ -157,7 +157,7 @@ throw cljs.core.missing_protocol("ICanonicalize.expression->",analyzer);
 }
 }
 });
-var G__36986__4 = (function (analyzer,x,continue$,compare_fn){
+var G__36995__4 = (function (analyzer,x,continue$,compare_fn){
 var x__5519__auto__ = (((analyzer == null))?null:analyzer);
 var m__5520__auto__ = (emmy.expression.analyze.expression__GT_[goog.typeOf(x__5519__auto__)]);
 if((!((m__5520__auto__ == null)))){
@@ -171,18 +171,18 @@ throw cljs.core.missing_protocol("ICanonicalize.expression->",analyzer);
 }
 }
 });
-G__36986 = function(analyzer,x,continue$,compare_fn){
+G__36995 = function(analyzer,x,continue$,compare_fn){
 switch(arguments.length){
 case 3:
-return G__36986__3.call(this,analyzer,x,continue$);
+return G__36995__3.call(this,analyzer,x,continue$);
 case 4:
-return G__36986__4.call(this,analyzer,x,continue$,compare_fn);
+return G__36995__4.call(this,analyzer,x,continue$,compare_fn);
 }
 throw(new Error('Invalid arity: ' + arguments.length));
 };
-G__36986.cljs$core$IFn$_invoke$arity$3 = G__36986__3;
-G__36986.cljs$core$IFn$_invoke$arity$4 = G__36986__4;
-return G__36986;
+G__36995.cljs$core$IFn$_invoke$arity$3 = G__36995__3;
+G__36995.cljs$core$IFn$_invoke$arity$4 = G__36995__4;
+return G__36995;
 })()
 ;
 /**
@@ -195,8 +195,8 @@ return G__36986;
  *   to [[clojure.core/compare]].
  */
 emmy.expression.analyze.expression__GT_ = (function emmy$expression$analyze$expression__GT_(var_args){
-var G__36877 = arguments.length;
-switch (G__36877) {
+var G__36898 = arguments.length;
+switch (G__36898) {
 case 3:
 return emmy.expression.analyze.expression__GT_.cljs$core$IFn$_invoke$arity$3((arguments[(0)]),(arguments[(1)]),(arguments[(2)]));
 
@@ -215,7 +215,7 @@ throw (new Error(["Invalid arity: ",arguments.length].join("")));
 if((((!((analyzer == null)))) && ((!((analyzer.emmy$expression$analyze$ICanonicalize$expression__GT_$arity$3 == null)))))){
 return analyzer.emmy$expression$analyze$ICanonicalize$expression__GT_$arity$3(analyzer,x,continue$);
 } else {
-return emmy$expression$analyze$ICanonicalize$expression__GT_$dyn_36985(analyzer,x,continue$);
+return emmy$expression$analyze$ICanonicalize$expression__GT_$dyn_36994(analyzer,x,continue$);
 }
 }));
 
@@ -223,14 +223,14 @@ return emmy$expression$analyze$ICanonicalize$expression__GT_$dyn_36985(analyzer,
 if((((!((analyzer == null)))) && ((!((analyzer.emmy$expression$analyze$ICanonicalize$expression__GT_$arity$4 == null)))))){
 return analyzer.emmy$expression$analyze$ICanonicalize$expression__GT_$arity$4(analyzer,x,continue$,compare_fn);
 } else {
-return emmy$expression$analyze$ICanonicalize$expression__GT_$dyn_36985(analyzer,x,continue$,compare_fn);
+return emmy$expression$analyze$ICanonicalize$expression__GT_$dyn_36994(analyzer,x,continue$,compare_fn);
 }
 }));
 
 (emmy.expression.analyze.expression__GT_.cljs$lang$maxFixedArity = 4);
 
 
-var emmy$expression$analyze$ICanonicalize$__GT_expression$dyn_36994 = (function (analyzer,b,variables){
+var emmy$expression$analyze$ICanonicalize$__GT_expression$dyn_37001 = (function (analyzer,b,variables){
 var x__5519__auto__ = (((analyzer == null))?null:analyzer);
 var m__5520__auto__ = (emmy.expression.analyze.__GT_expression[goog.typeOf(x__5519__auto__)]);
 if((!((m__5520__auto__ == null)))){
@@ -255,11 +255,11 @@ emmy.expression.analyze.__GT_expression = (function emmy$expression$analyze$__GT
 if((((!((analyzer == null)))) && ((!((analyzer.emmy$expression$analyze$ICanonicalize$__GT_expression$arity$3 == null)))))){
 return analyzer.emmy$expression$analyze$ICanonicalize$__GT_expression$arity$3(analyzer,b,variables);
 } else {
-return emmy$expression$analyze$ICanonicalize$__GT_expression$dyn_36994(analyzer,b,variables);
+return emmy$expression$analyze$ICanonicalize$__GT_expression$dyn_37001(analyzer,b,variables);
 }
 });
 
-var emmy$expression$analyze$ICanonicalize$known_operation_QMARK_$dyn_36995 = (function (analyzer,x){
+var emmy$expression$analyze$ICanonicalize$known_operation_QMARK_$dyn_37004 = (function (analyzer,x){
 var x__5519__auto__ = (((analyzer == null))?null:analyzer);
 var m__5520__auto__ = (emmy.expression.analyze.known_operation_QMARK_[goog.typeOf(x__5519__auto__)]);
 if((!((m__5520__auto__ == null)))){
@@ -281,7 +281,7 @@ emmy.expression.analyze.known_operation_QMARK_ = (function emmy$expression$analy
 if((((!((analyzer == null)))) && ((!((analyzer.emmy$expression$analyze$ICanonicalize$known_operation_QMARK_$arity$2 == null)))))){
 return analyzer.emmy$expression$analyze$ICanonicalize$known_operation_QMARK_$arity$2(analyzer,x);
 } else {
-return emmy$expression$analyze$ICanonicalize$known_operation_QMARK_$dyn_36995(analyzer,x);
+return emmy$expression$analyze$ICanonicalize$known_operation_QMARK_$dyn_37004(analyzer,x);
 }
 });
 
@@ -298,8 +298,8 @@ return emmy$expression$analyze$ICanonicalize$known_operation_QMARK_$dyn_36995(an
  *   afterwards.
  */
 emmy.expression.analyze.make_analyzer = (function emmy$expression$analyze$make_analyzer(var_args){
-var G__36888 = arguments.length;
-switch (G__36888) {
+var G__36907 = arguments.length;
+switch (G__36907) {
 case 1:
 return emmy.expression.analyze.make_analyzer.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -322,18 +322,18 @@ return emmy.expression.analyze.make_analyzer.cljs$core$IFn$_invoke$arity$2(backe
 var ref = cljs.core.atom;
 var alter = cljs.core.swap_BANG_;
 var ref_set = cljs.core.reset_BANG_;
-var expr__GT_var = (function (){var G__36892 = cljs.core.PersistentArrayMap.EMPTY;
-return (ref.cljs$core$IFn$_invoke$arity$1 ? ref.cljs$core$IFn$_invoke$arity$1(G__36892) : ref.call(null,G__36892));
+var expr__GT_var = (function (){var G__36910 = cljs.core.PersistentArrayMap.EMPTY;
+return (ref.cljs$core$IFn$_invoke$arity$1 ? ref.cljs$core$IFn$_invoke$arity$1(G__36910) : ref.call(null,G__36910));
 })();
-var var__GT_expr = (function (){var G__36893 = cljs.core.PersistentArrayMap.EMPTY;
-return (ref.cljs$core$IFn$_invoke$arity$1 ? ref.cljs$core$IFn$_invoke$arity$1(G__36893) : ref.call(null,G__36893));
+var var__GT_expr = (function (){var G__36911 = cljs.core.PersistentArrayMap.EMPTY;
+return (ref.cljs$core$IFn$_invoke$arity$1 ? ref.cljs$core$IFn$_invoke$arity$1(G__36911) : ref.call(null,G__36911));
 })();
 var compare_fn = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(cljs.core.compare);
 var add_symbol_BANG_ = (function emmy$expression$analyze$add_symbol_BANG_(expr){
 if(cljs.core.truth_(unquoted_list_QMARK_(expr))){
 var expr_k = emmy.generic.freeze.cljs$core$IFn$_invoke$arity$1(expr);
-return cljs.core.identity((function (){var temp__5823__auto__ = (function (){var fexpr__36942 = cljs.core.deref(expr__GT_var);
-return (fexpr__36942.cljs$core$IFn$_invoke$arity$1 ? fexpr__36942.cljs$core$IFn$_invoke$arity$1(expr_k) : fexpr__36942.call(null,expr_k));
+return cljs.core.identity((function (){var temp__5823__auto__ = (function (){var fexpr__36945 = cljs.core.deref(expr__GT_var);
+return (fexpr__36945.cljs$core$IFn$_invoke$arity$1 ? fexpr__36945.cljs$core$IFn$_invoke$arity$1(expr_k) : fexpr__36945.call(null,expr_k));
 })();
 if(cljs.core.truth_(temp__5823__auto__)){
 var existing_expr = temp__5823__auto__;
@@ -352,14 +352,14 @@ return expr;
 }
 });
 var analyze = (function emmy$expression$analyze$analyze(expr){
-var vcompare_36998 = emmy.expression.analyze.make_vcompare(emmy.expression.variables_in(expr));
-cljs.core.reset_BANG_(compare_fn,vcompare_36998);
+var vcompare_37010 = emmy.expression.analyze.make_vcompare(emmy.expression.variables_in(expr));
+cljs.core.reset_BANG_(compare_fn,vcompare_37010);
 
 return ianalyze(expr);
 });
 var v_compare = (function emmy$expression$analyze$v_compare(v1,v2){
-var fexpr__36946 = cljs.core.deref(compare_fn);
-return (fexpr__36946.cljs$core$IFn$_invoke$arity$2 ? fexpr__36946.cljs$core$IFn$_invoke$arity$2(v1,v2) : fexpr__36946.call(null,v1,v2));
+var fexpr__36947 = cljs.core.deref(compare_fn);
+return (fexpr__36947.cljs$core$IFn$_invoke$arity$2 ? fexpr__36947.cljs$core$IFn$_invoke$arity$2(v1,v2) : fexpr__36947.call(null,v1,v2));
 });
 var ianalyze = (function emmy$expression$analyze$ianalyze(expr){
 if(cljs.core.truth_(unquoted_list_QMARK_(expr))){
@@ -384,8 +384,8 @@ return and__5160__auto__;
 })())){
 return analyzed_expr;
 } else {
-var temp__5823__auto__ = (function (){var fexpr__36948 = cljs.core.deref(expr__GT_var);
-return (fexpr__36948.cljs$core$IFn$_invoke$arity$1 ? fexpr__36948.cljs$core$IFn$_invoke$arity$1(analyzed_expr) : fexpr__36948.call(null,analyzed_expr));
+var temp__5823__auto__ = (function (){var fexpr__36955 = cljs.core.deref(expr__GT_var);
+return (fexpr__36955.cljs$core$IFn$_invoke$arity$1 ? fexpr__36955.cljs$core$IFn$_invoke$arity$1(analyzed_expr) : fexpr__36955.call(null,analyzed_expr));
 })();
 if(cljs.core.truth_(temp__5823__auto__)){
 var existing_expr = temp__5823__auto__;
@@ -404,20 +404,20 @@ return ((cljs.core.sequential_QMARK_(expr)) && ((!(cljs.core._EQ_.cljs$core$IFn$
 var new_analysis_BANG_ = (function emmy$expression$analyze$new_analysis_BANG_(){
 cljs.core.reset_BANG_(compare_fn,cljs.core.compare);
 
-var G__36949_37001 = expr__GT_var;
-var G__36950_37002 = cljs.core.PersistentArrayMap.EMPTY;
-(ref_set.cljs$core$IFn$_invoke$arity$2 ? ref_set.cljs$core$IFn$_invoke$arity$2(G__36949_37001,G__36950_37002) : ref_set.call(null,G__36949_37001,G__36950_37002));
+var G__36959_37013 = expr__GT_var;
+var G__36960_37014 = cljs.core.PersistentArrayMap.EMPTY;
+(ref_set.cljs$core$IFn$_invoke$arity$2 ? ref_set.cljs$core$IFn$_invoke$arity$2(G__36959_37013,G__36960_37014) : ref_set.call(null,G__36959_37013,G__36960_37014));
 
-var G__36951_37003 = var__GT_expr;
-var G__36952_37004 = cljs.core.PersistentArrayMap.EMPTY;
-(ref_set.cljs$core$IFn$_invoke$arity$2 ? ref_set.cljs$core$IFn$_invoke$arity$2(G__36951_37003,G__36952_37004) : ref_set.call(null,G__36951_37003,G__36952_37004));
+var G__36961_37015 = var__GT_expr;
+var G__36962_37016 = cljs.core.PersistentArrayMap.EMPTY;
+(ref_set.cljs$core$IFn$_invoke$arity$2 ? ref_set.cljs$core$IFn$_invoke$arity$2(G__36961_37015,G__36962_37016) : ref_set.call(null,G__36961_37015,G__36962_37016));
 
 return null;
 });
 var base_simplify = (function emmy$expression$analyze$base_simplify(expr){
 if(cljs.core.truth_(unquoted_list_QMARK_(expr))){
-return emmy.expression.analyze.expression__GT_(backend,expr,(function (p1__36881_SHARP_,p2__36882_SHARP_){
-return emmy.expression.analyze.__GT_expression(backend,p1__36881_SHARP_,p2__36882_SHARP_);
+return emmy.expression.analyze.expression__GT_(backend,expr,(function (p1__36903_SHARP_,p2__36904_SHARP_){
+return emmy.expression.analyze.__GT_expression(backend,p1__36903_SHARP_,p2__36904_SHARP_);
 }),v_compare);
 } else {
 return expr;
@@ -429,12 +429,12 @@ new_analysis_BANG_();
 return simplify_expression(emmy.expression.expression_of(expr));
 });
 var analyze_expression = (function emmy$expression$analyze$analyze_expression(expr){
-var _STAR_incremental_simplifier_STAR__orig_val__36955 = emmy.numsymb._STAR_incremental_simplifier_STAR_;
-var _STAR_incremental_simplifier_STAR__temp_val__36956 = false;
-(emmy.numsymb._STAR_incremental_simplifier_STAR_ = _STAR_incremental_simplifier_STAR__temp_val__36956);
+var _STAR_incremental_simplifier_STAR__orig_val__36964 = emmy.numsymb._STAR_incremental_simplifier_STAR_;
+var _STAR_incremental_simplifier_STAR__temp_val__36965 = false;
+(emmy.numsymb._STAR_incremental_simplifier_STAR_ = _STAR_incremental_simplifier_STAR__temp_val__36965);
 
 try{return base_simplify(analyze(expr));
-}finally {(emmy.numsymb._STAR_incremental_simplifier_STAR_ = _STAR_incremental_simplifier_STAR__orig_val__36955);
+}finally {(emmy.numsymb._STAR_incremental_simplifier_STAR_ = _STAR_incremental_simplifier_STAR__orig_val__36964);
 }});
 var simplify_expression = (function emmy$expression$analyze$simplify_expression(expr){
 return backsubstitute(analyze_expression(expr));
@@ -464,8 +464,8 @@ if(cljs.core.sequential_QMARK_(expr)){
 return cljs.core.doall.cljs$core$IFn$_invoke$arity$1(cljs.core.map.cljs$core$IFn$_invoke$arity$2(emmy$expression$analyze$backsubstitute,expr));
 } else {
 if((expr instanceof cljs.core.Symbol)){
-var temp__5823__auto__ = (function (){var fexpr__36965 = cljs.core.deref(var__GT_expr);
-return (fexpr__36965.cljs$core$IFn$_invoke$arity$1 ? fexpr__36965.cljs$core$IFn$_invoke$arity$1(expr) : fexpr__36965.call(null,expr));
+var temp__5823__auto__ = (function (){var fexpr__36974 = cljs.core.deref(var__GT_expr);
+return (fexpr__36974.cljs$core$IFn$_invoke$arity$1 ? fexpr__36974.cljs$core$IFn$_invoke$arity$1(expr) : fexpr__36974.call(null,expr));
 })();
 if(cljs.core.truth_(temp__5823__auto__)){
 var w = temp__5823__auto__;

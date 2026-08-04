@@ -69,9 +69,9 @@ return q(p);
 emmy.calculus.coordinate.symbols_from_prototype = (function emmy$calculus$coordinate$symbols_from_prototype(p){
 if(cljs.core.truth_((function (){var and__5160__auto__ = cljs.core.sequential_QMARK_(p);
 if(and__5160__auto__){
-var G__48435 = cljs.core.first(p);
-var fexpr__48434 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Symbol(null,"down","down",-1089190199,null),"null",new cljs.core.Symbol(null,"up","up",1370819414,null),"null"], null), null);
-return (fexpr__48434.cljs$core$IFn$_invoke$arity$1 ? fexpr__48434.cljs$core$IFn$_invoke$arity$1(G__48435) : fexpr__48434.call(null,G__48435));
+var G__48430 = cljs.core.first(p);
+var fexpr__48429 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Symbol(null,"down","down",-1089190199,null),"null",new cljs.core.Symbol(null,"up","up",1370819414,null),"null"], null), null);
+return (fexpr__48429.cljs$core$IFn$_invoke$arity$1 ? fexpr__48429.cljs$core$IFn$_invoke$arity$1(G__48430) : fexpr__48429.call(null,G__48430));
 } else {
 return and__5160__auto__;
 }
@@ -122,14 +122,14 @@ return emmy.util.illegal((""+"Invalid coordinate prototype: "+cljs.core.str.cljs
  */
 emmy.calculus.coordinate.let_coordinates = (function emmy$calculus$coordinate$let_coordinates(var_args){
 var args__5903__auto__ = [];
-var len__5897__auto___48505 = arguments.length;
-var i__5898__auto___48506 = (0);
+var len__5897__auto___48474 = arguments.length;
+var i__5898__auto___48475 = (0);
 while(true){
-if((i__5898__auto___48506 < len__5897__auto___48505)){
-args__5903__auto__.push((arguments[i__5898__auto___48506]));
+if((i__5898__auto___48475 < len__5897__auto___48474)){
+args__5903__auto__.push((arguments[i__5898__auto___48475]));
 
-var G__48507 = (i__5898__auto___48506 + (1));
-i__5898__auto___48506 = G__48507;
+var G__48476 = (i__5898__auto___48475 + (1));
+i__5898__auto___48475 = G__48476;
 continue;
 } else {
 }
@@ -154,21 +154,21 @@ var system_names = cljs.core.map.cljs$core$IFn$_invoke$arity$2(cljs.core.comp.cl
 var coordinate_names = cljs.core.mapcat.cljs$core$IFn$_invoke$arity$variadic(emmy.calculus.coordinate.symbols_from_prototype,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([prototypes], 0));
 var coordinate_vector_field_names = cljs.core.map.cljs$core$IFn$_invoke$arity$2(emmy.calculus.vector_field.coordinate_name__GT_vf_name,coordinate_names);
 var coordinate_form_field_names = cljs.core.map.cljs$core$IFn$_invoke$arity$2(emmy.calculus.form_field.coordinate_name__GT_ff_name,coordinate_names);
-return cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","let","cljs.core/let",-308701135,null),null,(1),null)),(new cljs.core.List(null,cljs.core.vec(cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,cljs.core.vec(cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic(system_names,(new cljs.core.List(null,new cljs.core.Keyword(null,"as","as",1148689641),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,new cljs.core.Symbol(null,"c-systems__48436__auto__","c-systems__48436__auto__",-1047102936,null),null,(1),null))], 0))))),null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","mapv","cljs.core/mapv",433728488,null),null,(1),null)),(new cljs.core.List(null,new cljs.core.Symbol("emmy.calculus.manifold","with-coordinate-prototype","emmy.calculus.manifold/with-coordinate-prototype",-636709634,null),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentVector.EMPTY,c_systems),null,(1),null)),(new cljs.core.List(null,cljs.core.mapv.cljs$core$IFn$_invoke$arity$2(emmy.calculus.coordinate.quotify_coordinate_prototype,prototypes),null,(1),null))], 0)))),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentVector.EMPTY,coordinate_names),null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","flatten","cljs.core/flatten",-237795822,null),null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","map","cljs.core/map",-338988913,null),null,(1),null)),(new cljs.core.List(null,new cljs.core.Symbol("emmy.calculus.coordinate","coordinate-functions","emmy.calculus.coordinate/coordinate-functions",388209362,null),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,new cljs.core.Symbol(null,"c-systems__48436__auto__","c-systems__48436__auto__",-1047102936,null),null,(1),null))], 0)))),null,(1),null))))),null,(1),null)),(new cljs.core.List(null,cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentVector.EMPTY,coordinate_vector_field_names),null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","flatten","cljs.core/flatten",-237795822,null),null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","map","cljs.core/map",-338988913,null),null,(1),null)),(new cljs.core.List(null,new cljs.core.Symbol("emmy.calculus.vector-field","coordinate-system->vector-basis","emmy.calculus.vector-field/coordinate-system->vector-basis",-807504210,null),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,new cljs.core.Symbol(null,"c-systems__48436__auto__","c-systems__48436__auto__",-1047102936,null),null,(1),null))], 0)))),null,(1),null))))),null,(1),null)),(new cljs.core.List(null,cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentVector.EMPTY,coordinate_form_field_names),null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","flatten","cljs.core/flatten",-237795822,null),null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","map","cljs.core/map",-338988913,null),null,(1),null)),(new cljs.core.List(null,new cljs.core.Symbol("emmy.calculus.form-field","coordinate-system->oneform-basis","emmy.calculus.form-field/coordinate-system->oneform-basis",659366848,null),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,new cljs.core.Symbol(null,"c-systems__48436__auto__","c-systems__48436__auto__",-1047102936,null),null,(1),null))], 0)))),null,(1),null))))),null,(1),null))], 0))))),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([body], 0))));
+return cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","let","cljs.core/let",-308701135,null),null,(1),null)),(new cljs.core.List(null,cljs.core.vec(cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,cljs.core.vec(cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic(system_names,(new cljs.core.List(null,new cljs.core.Keyword(null,"as","as",1148689641),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,new cljs.core.Symbol(null,"c-systems__48433__auto__","c-systems__48433__auto__",-1135203024,null),null,(1),null))], 0))))),null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","mapv","cljs.core/mapv",433728488,null),null,(1),null)),(new cljs.core.List(null,new cljs.core.Symbol("emmy.calculus.manifold","with-coordinate-prototype","emmy.calculus.manifold/with-coordinate-prototype",-636709634,null),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentVector.EMPTY,c_systems),null,(1),null)),(new cljs.core.List(null,cljs.core.mapv.cljs$core$IFn$_invoke$arity$2(emmy.calculus.coordinate.quotify_coordinate_prototype,prototypes),null,(1),null))], 0)))),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentVector.EMPTY,coordinate_names),null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","flatten","cljs.core/flatten",-237795822,null),null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","map","cljs.core/map",-338988913,null),null,(1),null)),(new cljs.core.List(null,new cljs.core.Symbol("emmy.calculus.coordinate","coordinate-functions","emmy.calculus.coordinate/coordinate-functions",388209362,null),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,new cljs.core.Symbol(null,"c-systems__48433__auto__","c-systems__48433__auto__",-1135203024,null),null,(1),null))], 0)))),null,(1),null))))),null,(1),null)),(new cljs.core.List(null,cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentVector.EMPTY,coordinate_vector_field_names),null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","flatten","cljs.core/flatten",-237795822,null),null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","map","cljs.core/map",-338988913,null),null,(1),null)),(new cljs.core.List(null,new cljs.core.Symbol("emmy.calculus.vector-field","coordinate-system->vector-basis","emmy.calculus.vector-field/coordinate-system->vector-basis",-807504210,null),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,new cljs.core.Symbol(null,"c-systems__48433__auto__","c-systems__48433__auto__",-1135203024,null),null,(1),null))], 0)))),null,(1),null))))),null,(1),null)),(new cljs.core.List(null,cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentVector.EMPTY,coordinate_form_field_names),null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","flatten","cljs.core/flatten",-237795822,null),null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol("cljs.core","map","cljs.core/map",-338988913,null),null,(1),null)),(new cljs.core.List(null,new cljs.core.Symbol("emmy.calculus.form-field","coordinate-system->oneform-basis","emmy.calculus.form-field/coordinate-system->oneform-basis",659366848,null),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,new cljs.core.Symbol(null,"c-systems__48433__auto__","c-systems__48433__auto__",-1135203024,null),null,(1),null))], 0)))),null,(1),null))))),null,(1),null))], 0))))),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([body], 0))));
 }));
 
 (emmy.calculus.coordinate.let_coordinates.cljs$lang$maxFixedArity = (3));
 
 /** @this {Function} */
-(emmy.calculus.coordinate.let_coordinates.cljs$lang$applyTo = (function (seq48437){
-var G__48438 = cljs.core.first(seq48437);
-var seq48437__$1 = cljs.core.next(seq48437);
-var G__48439 = cljs.core.first(seq48437__$1);
-var seq48437__$2 = cljs.core.next(seq48437__$1);
-var G__48440 = cljs.core.first(seq48437__$2);
-var seq48437__$3 = cljs.core.next(seq48437__$2);
+(emmy.calculus.coordinate.let_coordinates.cljs$lang$applyTo = (function (seq48434){
+var G__48435 = cljs.core.first(seq48434);
+var seq48434__$1 = cljs.core.next(seq48434);
+var G__48436 = cljs.core.first(seq48434__$1);
+var seq48434__$2 = cljs.core.next(seq48434__$1);
+var G__48437 = cljs.core.first(seq48434__$2);
+var seq48434__$3 = cljs.core.next(seq48434__$2);
 var self__5882__auto__ = this;
-return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__48438,G__48439,G__48440,seq48437__$3);
+return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__48435,G__48436,G__48437,seq48434__$3);
 }));
 
 /**
@@ -186,14 +186,14 @@ return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__48438,G__48439
  */
 emmy.calculus.coordinate.using_coordinates = (function emmy$calculus$coordinate$using_coordinates(var_args){
 var args__5903__auto__ = [];
-var len__5897__auto___48512 = arguments.length;
-var i__5898__auto___48513 = (0);
+var len__5897__auto___48493 = arguments.length;
+var i__5898__auto___48494 = (0);
 while(true){
-if((i__5898__auto___48513 < len__5897__auto___48512)){
-args__5903__auto__.push((arguments[i__5898__auto___48513]));
+if((i__5898__auto___48494 < len__5897__auto___48493)){
+args__5903__auto__.push((arguments[i__5898__auto___48494]));
 
-var G__48514 = (i__5898__auto___48513 + (1));
-i__5898__auto___48513 = G__48514;
+var G__48495 = (i__5898__auto___48494 + (1));
+i__5898__auto___48494 = G__48495;
 continue;
 } else {
 }
@@ -212,17 +212,17 @@ return cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.
 (emmy.calculus.coordinate.using_coordinates.cljs$lang$maxFixedArity = (4));
 
 /** @this {Function} */
-(emmy.calculus.coordinate.using_coordinates.cljs$lang$applyTo = (function (seq48469){
-var G__48470 = cljs.core.first(seq48469);
-var seq48469__$1 = cljs.core.next(seq48469);
-var G__48471 = cljs.core.first(seq48469__$1);
-var seq48469__$2 = cljs.core.next(seq48469__$1);
-var G__48472 = cljs.core.first(seq48469__$2);
-var seq48469__$3 = cljs.core.next(seq48469__$2);
-var G__48473 = cljs.core.first(seq48469__$3);
-var seq48469__$4 = cljs.core.next(seq48469__$3);
+(emmy.calculus.coordinate.using_coordinates.cljs$lang$applyTo = (function (seq48441){
+var G__48442 = cljs.core.first(seq48441);
+var seq48441__$1 = cljs.core.next(seq48441);
+var G__48443 = cljs.core.first(seq48441__$1);
+var seq48441__$2 = cljs.core.next(seq48441__$1);
+var G__48444 = cljs.core.first(seq48441__$2);
+var seq48441__$3 = cljs.core.next(seq48441__$2);
+var G__48445 = cljs.core.first(seq48441__$3);
+var seq48441__$4 = cljs.core.next(seq48441__$3);
 var self__5882__auto__ = this;
-return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__48470,G__48471,G__48472,G__48473,seq48469__$4);
+return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__48442,G__48443,G__48444,G__48445,seq48441__$4);
 }));
 
 /**

@@ -11,8 +11,8 @@ goog.provide('emmy.numerical.derivative');
  *   calculated it elsewhere and would like to save a function evaluation.
  */
 emmy.numerical.derivative.forward_difference = (function emmy$numerical$derivative$forward_difference(var_args){
-var G__58552 = arguments.length;
-switch (G__58552) {
+var G__58396 = arguments.length;
+switch (G__58396) {
 case 2:
 return emmy.numerical.derivative.forward_difference.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -33,8 +33,8 @@ return emmy.numerical.derivative.forward_difference.cljs$core$IFn$_invoke$arity$
 
 (emmy.numerical.derivative.forward_difference.cljs$core$IFn$_invoke$arity$3 = (function (f,x,fx){
 return (function (h){
-return (((function (){var G__58557 = (x + h);
-return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__58557) : f.call(null,G__58557));
+return (((function (){var G__58401 = (x + h);
+return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__58401) : f.call(null,G__58401));
 })() - fx) / h);
 });
 }));
@@ -53,8 +53,8 @@ return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__585
  *   calculated it elsewhere and would like to save a function evaluation.
  */
 emmy.numerical.derivative.backward_difference = (function emmy$numerical$derivative$backward_difference(var_args){
-var G__58560 = arguments.length;
-switch (G__58560) {
+var G__58413 = arguments.length;
+switch (G__58413) {
 case 2:
 return emmy.numerical.derivative.backward_difference.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -75,8 +75,8 @@ return emmy.numerical.derivative.backward_difference.cljs$core$IFn$_invoke$arity
 
 (emmy.numerical.derivative.backward_difference.cljs$core$IFn$_invoke$arity$3 = (function (f,x,fx){
 return (function (h){
-return ((fx - (function (){var G__58564 = (x - h);
-return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__58564) : f.call(null,G__58564));
+return ((fx - (function (){var G__58432 = (x - h);
+return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__58432) : f.call(null,G__58432));
 })()) / h);
 });
 }));
@@ -93,10 +93,10 @@ return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__585
  */
 emmy.numerical.derivative.central_difference = (function emmy$numerical$derivative$central_difference(f,x){
 return (function (h){
-return (((function (){var G__58565 = (x + h);
-return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__58565) : f.call(null,G__58565));
-})() - (function (){var G__58566 = (x - h);
-return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__58566) : f.call(null,G__58566));
+return (((function (){var G__58435 = (x + h);
+return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__58435) : f.call(null,G__58435));
+})() - (function (){var G__58436 = (x - h);
+return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__58436) : f.call(null,G__58436));
 })()) / ((2) * h));
 });
 });
@@ -110,8 +110,8 @@ return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__585
  *   calculated it elsewhere and would like to save a function evaluation.
  */
 emmy.numerical.derivative.central_difference_d2 = (function emmy$numerical$derivative$central_difference_d2(var_args){
-var G__58570 = arguments.length;
-switch (G__58570) {
+var G__58439 = arguments.length;
+switch (G__58439) {
 case 2:
 return emmy.numerical.derivative.central_difference_d2.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -133,10 +133,10 @@ return emmy.numerical.derivative.central_difference_d2.cljs$core$IFn$_invoke$ari
 (emmy.numerical.derivative.central_difference_d2.cljs$core$IFn$_invoke$arity$3 = (function (f,x,fx){
 var fx_STAR_2 = ((2) * fx);
 return (function (h){
-return ((((function (){var G__58575 = (x + h);
-return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__58575) : f.call(null,G__58575));
-})() + (function (){var G__58579 = (x - h);
-return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__58579) : f.call(null,G__58579));
+return ((((function (){var G__58442 = (x + h);
+return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__58442) : f.call(null,G__58442));
+})() + (function (){var G__58443 = (x - h);
+return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__58443) : f.call(null,G__58443));
 })()) - fx_STAR_2) / (h * h));
 });
 }));
@@ -177,41 +177,41 @@ return (emmy.numerical.derivative.max_iterations(emmy.numerical.derivative.round
 });
 emmy.numerical.derivative.valid_methods = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null,"central","central",467059073),null,new cljs.core.Keyword(null,"central-d2","central-d2",1063418821),null,new cljs.core.Keyword(null,"forward","forward",-557345303),null,new cljs.core.Keyword(null,"backward","backward",554036364),null], null), null);
 emmy.numerical.derivative.configs = (function emmy$numerical$derivative$configs(method,f,x,fx){
-var G__58593 = method;
-var G__58593__$1 = (((G__58593 instanceof cljs.core.Keyword))?G__58593.fqn:null);
-switch (G__58593__$1) {
+var G__58510 = method;
+var G__58510__$1 = (((G__58510 instanceof cljs.core.Keyword))?G__58510.fqn:null);
+switch (G__58510__$1) {
 case "forward":
 return new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null,"p","p",151049309),(1),new cljs.core.Keyword(null,"q","q",689001697),(1),new cljs.core.Keyword(null,"function","function",-2127255473),emmy.numerical.derivative.forward_difference.cljs$core$IFn$_invoke$arity$3(f,x,fx),new cljs.core.Keyword(null,"ratio-fn","ratio-fn",1226148920),(function (h){
-return (fx / ((function (){var G__58602 = (x + h);
-return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__58602) : f.call(null,G__58602));
+return (fx / ((function (){var G__58515 = (x + h);
+return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__58515) : f.call(null,G__58515));
 })() - fx));
 })], null);
 
 break;
 case "central":
 return new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null,"p","p",151049309),(2),new cljs.core.Keyword(null,"q","q",689001697),(2),new cljs.core.Keyword(null,"function","function",-2127255473),emmy.numerical.derivative.central_difference(f,x),new cljs.core.Keyword(null,"ratio-fn","ratio-fn",1226148920),(function (h){
-return (fx / ((function (){var G__58603 = (x + h);
-return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__58603) : f.call(null,G__58603));
-})() - (function (){var G__58604 = (x - h);
-return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__58604) : f.call(null,G__58604));
+return (fx / ((function (){var G__58519 = (x + h);
+return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__58519) : f.call(null,G__58519));
+})() - (function (){var G__58520 = (x - h);
+return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__58520) : f.call(null,G__58520));
 })()));
 })], null);
 
 break;
 case "backward":
 return new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null,"p","p",151049309),(1),new cljs.core.Keyword(null,"q","q",689001697),(1),new cljs.core.Keyword(null,"function","function",-2127255473),emmy.numerical.derivative.backward_difference.cljs$core$IFn$_invoke$arity$3(f,x,fx),new cljs.core.Keyword(null,"ratio-fn","ratio-fn",1226148920),(function (h){
-return (fx / (fx - (function (){var G__58605 = (x - h);
-return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__58605) : f.call(null,G__58605));
+return (fx / (fx - (function (){var G__58521 = (x - h);
+return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__58521) : f.call(null,G__58521));
 })()));
 })], null);
 
 break;
 case "central-d2":
 return new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null,"p","p",151049309),(2),new cljs.core.Keyword(null,"q","q",689001697),(2),new cljs.core.Keyword(null,"function","function",-2127255473),emmy.numerical.derivative.central_difference_d2.cljs$core$IFn$_invoke$arity$3(f,x,fx),new cljs.core.Keyword(null,"ratio-fn","ratio-fn",1226148920),(function (h){
-return (((function (){var G__58606 = (x + h);
-return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__58606) : f.call(null,G__58606));
-})() + (function (){var G__58609 = (x - h);
-return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__58609) : f.call(null,G__58609));
+return (((function (){var G__58526 = (x + h);
+return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__58526) : f.call(null,G__58526));
+})() + (function (){var G__58527 = (x - h);
+return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__58527) : f.call(null,G__58527));
 })()) - ((2) * fx));
 })], null);
 
@@ -227,10 +227,10 @@ return emmy.util.illegal((""+"Invalid method: "+cljs.core.str.cljs$core$IFn$_inv
  */
 emmy.numerical.derivative.fill_defaults = (function emmy$numerical$derivative$fill_defaults(m){
 var defaults = new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"tolerance","tolerance",406811818),emmy.util.sqrt_machine_epsilon,new cljs.core.Keyword(null,"method","method",55703592),new cljs.core.Keyword(null,"central","central",467059073)], null);
-var map__58610 = cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([defaults,m], 0));
-var map__58610__$1 = cljs.core.__destructure_map(map__58610);
-var opts = map__58610__$1;
-var method = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__58610__$1,new cljs.core.Keyword(null,"method","method",55703592));
+var map__58534 = cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([defaults,m], 0));
+var map__58534__$1 = cljs.core.__destructure_map(map__58534);
+var opts = map__58534__$1;
+var method = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__58534__$1,new cljs.core.Keyword(null,"method","method",55703592));
 if(cljs.core.contains_QMARK_(emmy.numerical.derivative.valid_methods,method)){
 } else {
 throw (new Error((""+"Assert failed: "+cljs.core.str.cljs$core$IFn$_invoke$arity$1((""+cljs.core.str.cljs$core$IFn$_invoke$arity$1(method)+" is not a valid method. Please try one of: "+cljs.core.str.cljs$core$IFn$_invoke$arity$1(emmy.numerical.derivative.valid_methods)))+"\n"+"(contains? valid-methods method)")));
@@ -297,8 +297,8 @@ return opts;
  *   larger discussion.
  */
 emmy.numerical.derivative.D_numeric = (function emmy$numerical$derivative$D_numeric(var_args){
-var G__58616 = arguments.length;
-switch (G__58616) {
+var G__58538 = arguments.length;
+switch (G__58538) {
 case 1:
 return emmy.numerical.derivative.D_numeric.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -325,20 +325,20 @@ var emmy$numerical$derivative$df__1 = (function (x){
 return emmy$numerical$derivative$df.cljs$core$IFn$_invoke$arity$2(x,cljs.core.PersistentArrayMap.EMPTY);
 });
 var emmy$numerical$derivative$df__2 = (function (x,overrides){
-var map__58621 = cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([opts__$1,overrides], 0));
-var map__58621__$1 = cljs.core.__destructure_map(map__58621);
-var opts__$2 = map__58621__$1;
-var maxterms = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__58621__$1,new cljs.core.Keyword(null,"maxterms","maxterms",951779603));
-var tolerance = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__58621__$1,new cljs.core.Keyword(null,"tolerance","tolerance",406811818));
-var initial_h = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__58621__$1,new cljs.core.Keyword(null,"initial-h","initial-h",213105060));
-var method = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__58621__$1,new cljs.core.Keyword(null,"method","method",55703592));
-var info_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__58621__$1,new cljs.core.Keyword(null,"info?","info?",361925553));
-var map__58624 = emmy.numerical.derivative.configs(method,f,x,(f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(x) : f.call(null,x)));
-var map__58624__$1 = cljs.core.__destructure_map(map__58624);
-var ratio_fn = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__58624__$1,new cljs.core.Keyword(null,"ratio-fn","ratio-fn",1226148920));
-var function$ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__58624__$1,new cljs.core.Keyword(null,"function","function",-2127255473));
-var p = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__58624__$1,new cljs.core.Keyword(null,"p","p",151049309));
-var q = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__58624__$1,new cljs.core.Keyword(null,"q","q",689001697));
+var map__58539 = cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([opts__$1,overrides], 0));
+var map__58539__$1 = cljs.core.__destructure_map(map__58539);
+var opts__$2 = map__58539__$1;
+var maxterms = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__58539__$1,new cljs.core.Keyword(null,"maxterms","maxterms",951779603));
+var tolerance = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__58539__$1,new cljs.core.Keyword(null,"tolerance","tolerance",406811818));
+var initial_h = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__58539__$1,new cljs.core.Keyword(null,"initial-h","initial-h",213105060));
+var method = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__58539__$1,new cljs.core.Keyword(null,"method","method",55703592));
+var info_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__58539__$1,new cljs.core.Keyword(null,"info?","info?",361925553));
+var map__58540 = emmy.numerical.derivative.configs(method,f,x,(f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(x) : f.call(null,x)));
+var map__58540__$1 = cljs.core.__destructure_map(map__58540);
+var ratio_fn = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__58540__$1,new cljs.core.Keyword(null,"ratio-fn","ratio-fn",1226148920));
+var function$ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__58540__$1,new cljs.core.Keyword(null,"function","function",-2127255473));
+var p = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__58540__$1,new cljs.core.Keyword(null,"p","p",151049309));
+var q = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__58540__$1,new cljs.core.Keyword(null,"q","q",689001697));
 var h = (function (){var or__5162__auto__ = initial_h;
 if(cljs.core.truth_(or__5162__auto__)){
 return or__5162__auto__;

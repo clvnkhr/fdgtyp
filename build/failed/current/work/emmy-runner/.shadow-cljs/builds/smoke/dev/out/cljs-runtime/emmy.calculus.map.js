@@ -34,8 +34,8 @@ emmy.calculus.map.differential = emmy.calculus.map.differential_of_map;
 emmy.calculus.map.pushforward_vector = (function emmy$calculus$map$pushforward_vector(mu_COLON_N__GT_M,mu_inverse_COLON_M__GT_N){
 return (function (v_on_N){
 var op = (function (f){
-return emmy.function$.compose.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(function (){var G__48453 = emmy.function$.compose.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([f,mu_COLON_N__GT_M], 0));
-return (v_on_N.cljs$core$IFn$_invoke$arity$1 ? v_on_N.cljs$core$IFn$_invoke$arity$1(G__48453) : v_on_N.call(null,G__48453));
+return emmy.function$.compose.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(function (){var G__48451 = emmy.function$.compose.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([f,mu_COLON_N__GT_M], 0));
+return (v_on_N.cljs$core$IFn$_invoke$arity$1 ? v_on_N.cljs$core$IFn$_invoke$arity$1(G__48451) : v_on_N.call(null,G__48451));
 })(),mu_inverse_COLON_M__GT_N], 0));
 });
 var name = cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,new cljs.core.Symbol(null,"pushforward","pushforward",-683343030,null),null,(1),null)),(new cljs.core.List(null,emmy.generic.freeze.cljs$core$IFn$_invoke$arity$1(mu_COLON_N__GT_M),null,(1),null))))),null,(1),null)),(new cljs.core.List(null,emmy.generic.freeze.cljs$core$IFn$_invoke$arity$1(v_on_N),null,(1),null)))));
@@ -66,8 +66,8 @@ return (function (w_on_M){
 var make_fake_vector_field = (function emmy$calculus$map$form_field__GT_form_field_over_map_$_make_fake_vector_field(V_over_mu,n){
 return emmy.calculus.vector_field.procedure__GT_vector_field.cljs$core$IFn$_invoke$arity$2((function (f){
 return (function (_){
-var fexpr__48480 = (V_over_mu.cljs$core$IFn$_invoke$arity$1 ? V_over_mu.cljs$core$IFn$_invoke$arity$1(f) : V_over_mu.call(null,f));
-return (fexpr__48480.cljs$core$IFn$_invoke$arity$1 ? fexpr__48480.cljs$core$IFn$_invoke$arity$1(n) : fexpr__48480.call(null,n));
+var fexpr__48482 = (V_over_mu.cljs$core$IFn$_invoke$arity$1 ? V_over_mu.cljs$core$IFn$_invoke$arity$1(f) : V_over_mu.call(null,f));
+return (fexpr__48482.cljs$core$IFn$_invoke$arity$1 ? fexpr__48482.cljs$core$IFn$_invoke$arity$1(n) : fexpr__48482.call(null,n));
 });
 }),cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,new cljs.core.Symbol(null,"make-fake-vector-field","make-fake-vector-field",-1146565625,null),null,(1),null)),(new cljs.core.List(null,emmy.generic.freeze.cljs$core$IFn$_invoke$arity$1(V_over_mu),null,(1),null))))));
 });
@@ -79,24 +79,24 @@ throw (new Error("Assert failed: (= (count vectors-over-map) (ff/get-rank w-on-M
 }
 
 return (function (n){
-var G__48491 = (mu_COLON_N__GT_M.cljs$core$IFn$_invoke$arity$1 ? mu_COLON_N__GT_M.cljs$core$IFn$_invoke$arity$1(n) : mu_COLON_N__GT_M.call(null,n));
-var fexpr__48490 = cljs.core.apply.cljs$core$IFn$_invoke$arity$2(w_on_M,cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (V_over_mu){
+var G__48486 = (mu_COLON_N__GT_M.cljs$core$IFn$_invoke$arity$1 ? mu_COLON_N__GT_M.cljs$core$IFn$_invoke$arity$1(n) : mu_COLON_N__GT_M.call(null,n));
+var fexpr__48485 = cljs.core.apply.cljs$core$IFn$_invoke$arity$2(w_on_M,cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (V_over_mu){
 return make_fake_vector_field(V_over_mu,n);
 }),vectors_over_map));
-return (fexpr__48490.cljs$core$IFn$_invoke$arity$1 ? fexpr__48490.cljs$core$IFn$_invoke$arity$1(G__48491) : fexpr__48490.call(null,G__48491));
+return (fexpr__48485.cljs$core$IFn$_invoke$arity$1 ? fexpr__48485.cljs$core$IFn$_invoke$arity$1(G__48486) : fexpr__48485.call(null,G__48486));
 });
 };
 var emmy$calculus$map$form_field__GT_form_field_over_map_$_op = function (var_args){
 var vectors_over_map = null;
 if (arguments.length > 0) {
-var G__48532__i = 0, G__48532__a = new Array(arguments.length -  0);
-while (G__48532__i < G__48532__a.length) {G__48532__a[G__48532__i] = arguments[G__48532__i + 0]; ++G__48532__i;}
-  vectors_over_map = new cljs.core.IndexedSeq(G__48532__a,0,null);
+var G__48525__i = 0, G__48525__a = new Array(arguments.length -  0);
+while (G__48525__i < G__48525__a.length) {G__48525__a[G__48525__i] = arguments[G__48525__i + 0]; ++G__48525__i;}
+  vectors_over_map = new cljs.core.IndexedSeq(G__48525__a,0,null);
 } 
 return emmy$calculus$map$form_field__GT_form_field_over_map_$_op__delegate.call(this,vectors_over_map);};
 emmy$calculus$map$form_field__GT_form_field_over_map_$_op.cljs$lang$maxFixedArity = 0;
-emmy$calculus$map$form_field__GT_form_field_over_map_$_op.cljs$lang$applyTo = (function (arglist__48533){
-var vectors_over_map = cljs.core.seq(arglist__48533);
+emmy$calculus$map$form_field__GT_form_field_over_map_$_op.cljs$lang$applyTo = (function (arglist__48526){
+var vectors_over_map = cljs.core.seq(arglist__48526);
 return emmy$calculus$map$form_field__GT_form_field_over_map_$_op__delegate(vectors_over_map);
 });
 emmy$calculus$map$form_field__GT_form_field_over_map_$_op.cljs$core$IFn$_invoke$arity$variadic = emmy$calculus$map$form_field__GT_form_field_over_map_$_op__delegate;
@@ -124,24 +124,24 @@ if((k === (0))){
 return emmy.calculus.map.pullback_function(mu_COLON_N__GT_M)(omega_on_M);
 } else {
 var op = (function() { 
-var G__48536__delegate = function (vectors_on_N){
+var G__48530__delegate = function (vectors_on_N){
 return cljs.core.apply.cljs$core$IFn$_invoke$arity$2(emmy.calculus.map.form_field__GT_form_field_over_map(mu_COLON_N__GT_M)(omega_on_M),cljs.core.map.cljs$core$IFn$_invoke$arity$2((emmy.calculus.map.differential.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.map.differential.cljs$core$IFn$_invoke$arity$1(mu_COLON_N__GT_M) : emmy.calculus.map.differential.call(null,mu_COLON_N__GT_M)),vectors_on_N));
 };
-var G__48536 = function (var_args){
+var G__48530 = function (var_args){
 var vectors_on_N = null;
 if (arguments.length > 0) {
-var G__48537__i = 0, G__48537__a = new Array(arguments.length -  0);
-while (G__48537__i < G__48537__a.length) {G__48537__a[G__48537__i] = arguments[G__48537__i + 0]; ++G__48537__i;}
-  vectors_on_N = new cljs.core.IndexedSeq(G__48537__a,0,null);
+var G__48531__i = 0, G__48531__a = new Array(arguments.length -  0);
+while (G__48531__i < G__48531__a.length) {G__48531__a[G__48531__i] = arguments[G__48531__i + 0]; ++G__48531__i;}
+  vectors_on_N = new cljs.core.IndexedSeq(G__48531__a,0,null);
 } 
-return G__48536__delegate.call(this,vectors_on_N);};
-G__48536.cljs$lang$maxFixedArity = 0;
-G__48536.cljs$lang$applyTo = (function (arglist__48538){
-var vectors_on_N = cljs.core.seq(arglist__48538);
-return G__48536__delegate(vectors_on_N);
+return G__48530__delegate.call(this,vectors_on_N);};
+G__48530.cljs$lang$maxFixedArity = 0;
+G__48530.cljs$lang$applyTo = (function (arglist__48532){
+var vectors_on_N = cljs.core.seq(arglist__48532);
+return G__48530__delegate(vectors_on_N);
 });
-G__48536.cljs$core$IFn$_invoke$arity$variadic = G__48536__delegate;
-return G__48536;
+G__48530.cljs$core$IFn$_invoke$arity$variadic = G__48530__delegate;
+return G__48530;
 })()
 ;
 var name = cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,new cljs.core.Symbol(null,"pullback","pullback",-1132207426,null),null,(1),null)),(new cljs.core.List(null,emmy.generic.freeze.cljs$core$IFn$_invoke$arity$1(mu_COLON_N__GT_M),null,(1),null))))),null,(1),null)),(new cljs.core.List(null,emmy.generic.freeze.cljs$core$IFn$_invoke$arity$1(omega_on_M),null,(1),null)))));
@@ -153,8 +153,8 @@ emmy.calculus.map.pullback_vector_field = (function emmy$calculus$map$pullback_v
 return emmy.calculus.map.pushforward_vector(mu_inverse_COLON_M__GT_N,mu_COLON_N__GT_M);
 });
 emmy.calculus.map.pullback = (function emmy$calculus$map$pullback(var_args){
-var G__48517 = arguments.length;
-switch (G__48517) {
+var G__48500 = arguments.length;
+switch (G__48500) {
 case 1:
 return emmy.calculus.map.pullback.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 

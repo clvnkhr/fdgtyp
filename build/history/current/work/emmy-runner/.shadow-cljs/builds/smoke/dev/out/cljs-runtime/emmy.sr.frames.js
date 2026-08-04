@@ -18,12 +18,12 @@ return new cljs.core.Keyword("emmy.sr.frames","SR-coordinates?","emmy.sr.frames/
 emmy.sr.frames.SR_name = (function emmy$sr$frames$SR_name(coords){
 return emmy.calculus.frame.frame_name(emmy.calculus.frame.frame_owner(coords));
 });
-emmy.sr.frames.coordinates__GT_event = (function emmy$sr$frames$coordinates__GT_event(ancestor_frame,_,p__59351){
-var map__59353 = p__59351;
-var map__59353__$1 = cljs.core.__destructure_map(map__59353);
-var boost_direction = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__59353__$1,new cljs.core.Keyword(null,"boost-direction","boost-direction",-1975902118));
-var vc = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__59353__$1,new cljs.core.Keyword(null,"vc","vc",194349650));
-var origin = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__59353__$1,new cljs.core.Keyword(null,"origin","origin",1037372088));
+emmy.sr.frames.coordinates__GT_event = (function emmy$sr$frames$coordinates__GT_event(ancestor_frame,_,p__59683){
+var map__59684 = p__59683;
+var map__59684__$1 = cljs.core.__destructure_map(map__59684);
+var boost_direction = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__59684__$1,new cljs.core.Keyword(null,"boost-direction","boost-direction",-1975902118));
+var vc = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__59684__$1,new cljs.core.Keyword(null,"vc","vc",194349650));
+var origin = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__59684__$1,new cljs.core.Keyword(null,"origin","origin",1037372088));
 if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(emmy.calculus.frame.frame_owner(origin),ancestor_frame)){
 } else {
 throw (new Error("Assert failed: (= (cf/frame-owner origin) ancestor-frame)"));
@@ -38,12 +38,12 @@ throw (new Error("Assert failed: (SR-coordinates? coords)"));
 return emmy.calculus.manifold.point(ancestor_frame)(emmy.sr.frames.make_SR_coordinates(ancestor_frame,emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2(emmy.sr.boost.general_boost2(boost_direction,vc)(coords),origin)));
 });
 });
-emmy.sr.frames.event__GT_coordinates = (function emmy$sr$frames$event__GT_coordinates(ancestor_frame,this_frame,p__59363){
-var map__59368 = p__59363;
-var map__59368__$1 = cljs.core.__destructure_map(map__59368);
-var boost_direction = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__59368__$1,new cljs.core.Keyword(null,"boost-direction","boost-direction",-1975902118));
-var vc = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__59368__$1,new cljs.core.Keyword(null,"vc","vc",194349650));
-var origin = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__59368__$1,new cljs.core.Keyword(null,"origin","origin",1037372088));
+emmy.sr.frames.event__GT_coordinates = (function emmy$sr$frames$event__GT_coordinates(ancestor_frame,this_frame,p__59685){
+var map__59686 = p__59685;
+var map__59686__$1 = cljs.core.__destructure_map(map__59686);
+var boost_direction = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__59686__$1,new cljs.core.Keyword(null,"boost-direction","boost-direction",-1975902118));
+var vc = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__59686__$1,new cljs.core.Keyword(null,"vc","vc",194349650));
+var origin = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__59686__$1,new cljs.core.Keyword(null,"origin","origin",1037372088));
 if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(emmy.calculus.frame.frame_owner(origin),ancestor_frame)){
 } else {
 throw (new Error("Assert failed: (= (cf/frame-owner origin) ancestor-frame)"));
@@ -59,9 +59,9 @@ var coords = emmy.sr.boost.general_boost2(emmy.generic._.cljs$core$IFn$_invoke$a
 return emmy.sr.frames.make_SR_coordinates(this_frame,coords);
 });
 });
-var make_59410 = emmy.calculus.frame.frame_maker(emmy.sr.frames.coordinates__GT_event,emmy.sr.frames.event__GT_coordinates);
+var make_59688 = emmy.calculus.frame.frame_maker(emmy.sr.frames.coordinates__GT_event,emmy.sr.frames.event__GT_coordinates);
 emmy.sr.frames.make_SR_frame = (function emmy$sr$frames$make_SR_frame(name,ancestor_frame,boost_direction,v_over_c,origin){
-return make_59410(name,ancestor_frame,new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"boost-direction","boost-direction",-1975902118),boost_direction,new cljs.core.Keyword(null,"vc","vc",194349650),v_over_c,new cljs.core.Keyword(null,"origin","origin",1037372088),origin], null));
+return make_59688(name,ancestor_frame,new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"boost-direction","boost-direction",-1975902118),boost_direction,new cljs.core.Keyword(null,"vc","vc",194349650),v_over_c,new cljs.core.Keyword(null,"origin","origin",1037372088),origin], null));
 });
 emmy.sr.frames.base_frame_point = (function emmy$sr$frames$base_frame_point(_,this_frame,___$1){
 return (function (coords){

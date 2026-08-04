@@ -29,8 +29,8 @@ emmy.calculus.vector_calculus.Div = emmy.operator.make_operator.cljs$core$IFn$_i
  * Both arities of [[divergence]] are defined on page 156 of Functional Differential Geometry.
  */
 emmy.calculus.vector_calculus.divergence = (function emmy$calculus$vector_calculus$divergence(var_args){
-var G__48785 = arguments.length;
-switch (G__48785) {
+var G__48791 = arguments.length;
+switch (G__48791) {
 case 1:
 return emmy.calculus.vector_calculus.divergence.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -51,12 +51,12 @@ var nabla = emmy.calculus.covariant.covariant_derivative.cljs$core$IFn$_invoke$a
 return (function (v){
 return (function (point){
 return emmy.calculus.basis.contract((function (ei,wi){
-var fexpr__48792 = (function (){var G__48793 = (function (){var fexpr__48794 = nabla(ei);
-return (fexpr__48794.cljs$core$IFn$_invoke$arity$1 ? fexpr__48794.cljs$core$IFn$_invoke$arity$1(v) : fexpr__48794.call(null,v));
+var fexpr__48794 = (function (){var G__48795 = (function (){var fexpr__48796 = nabla(ei);
+return (fexpr__48796.cljs$core$IFn$_invoke$arity$1 ? fexpr__48796.cljs$core$IFn$_invoke$arity$1(v) : fexpr__48796.call(null,v));
 })();
-return (wi.cljs$core$IFn$_invoke$arity$1 ? wi.cljs$core$IFn$_invoke$arity$1(G__48793) : wi.call(null,G__48793));
+return (wi.cljs$core$IFn$_invoke$arity$1 ? wi.cljs$core$IFn$_invoke$arity$1(G__48795) : wi.call(null,G__48795));
 })();
-return (fexpr__48792.cljs$core$IFn$_invoke$arity$1 ? fexpr__48792.cljs$core$IFn$_invoke$arity$1(point) : fexpr__48792.call(null,point));
+return (fexpr__48794.cljs$core$IFn$_invoke$arity$1 ? fexpr__48794.cljs$core$IFn$_invoke$arity$1(point) : fexpr__48794.call(null,point));
 }),basis);
 });
 });
@@ -78,10 +78,10 @@ return emmy.function$.compose.cljs$core$IFn$_invoke$arity$variadic(cljs.core.pri
  *   `f` must be a function from $\mathbb{R}^3 \to \mathbb{R}^3$.
  */
 emmy.calculus.vector_calculus.Curl = emmy.operator.make_operator.cljs$core$IFn$_invoke$arity$2((function (f_triple){
-var vec__48795 = cljs.core.map.cljs$core$IFn$_invoke$arity$2(emmy.calculus.derivative.partial,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [(0),(1),(2)], null));
-var Dx = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__48795,(0),null);
-var Dy = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__48795,(1),null);
-var Dz = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__48795,(2),null);
+var vec__48804 = cljs.core.map.cljs$core$IFn$_invoke$arity$2(emmy.calculus.derivative.partial,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [(0),(1),(2)], null));
+var Dx = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__48804,(0),null);
+var Dy = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__48804,(1),null);
+var Dz = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__48804,(2),null);
 var fx = emmy.function$.get.cljs$core$IFn$_invoke$arity$2(f_triple,(0));
 var fy = emmy.function$.get.cljs$core$IFn$_invoke$arity$2(f_triple,(1));
 var fz = emmy.function$.get.cljs$core$IFn$_invoke$arity$2(f_triple,(2));

@@ -15,8 +15,8 @@ goog.provide('emmy.numerical.quadrature.boole');
  *   If supplied, `:n` (default 1) specifies the initial number of slices to use.
  */
 emmy.numerical.quadrature.boole.boole_sequence = (function emmy$numerical$quadrature$boole$boole_sequence(var_args){
-var G__55745 = arguments.length;
-switch (G__55745) {
+var G__56108 = arguments.length;
+switch (G__56108) {
 case 3:
 return emmy.numerical.quadrature.boole.boole_sequence.cljs$core$IFn$_invoke$arity$3((arguments[(0)]),(arguments[(1)]),(arguments[(2)]));
 
@@ -35,10 +35,10 @@ throw (new Error(["Invalid arity: ",arguments.length].join("")));
 return emmy.numerical.quadrature.boole.boole_sequence.cljs$core$IFn$_invoke$arity$4(f,a,b,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"n","n",562130025),(1)], null));
 }));
 
-(emmy.numerical.quadrature.boole.boole_sequence.cljs$core$IFn$_invoke$arity$4 = (function (f,a,b,p__55750){
-var map__55751 = p__55750;
-var map__55751__$1 = cljs.core.__destructure_map(map__55751);
-var n = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__55751__$1,new cljs.core.Keyword(null,"n","n",562130025),(1));
+(emmy.numerical.quadrature.boole.boole_sequence.cljs$core$IFn$_invoke$arity$4 = (function (f,a,b,p__56131){
+var map__56132 = p__56131;
+var map__56132__$1 = cljs.core.__destructure_map(map__56132);
+var n = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__56132__$1,new cljs.core.Keyword(null,"n","n",562130025),(1));
 if(typeof n === 'number'){
 } else {
 throw (new Error("Assert failed: (number? n)"));

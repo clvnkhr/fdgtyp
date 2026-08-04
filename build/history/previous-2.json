@@ -1,13 +1,13 @@
 {
-  "id": "20260804T094831Z-from-raw-c197592-d90b08",
-  "target": "from-raw",
+  "id": "fix-nested-captures-final",
+  "target": "emmy-refresh",
   "source": "/Users/calvinkhor/Documents/GitHub/fdgtyp",
   "revision": "c197592",
-  "startedAt": "2026-08-04T09:48:31.979Z",
+  "startedAt": "2026-08-04T10:26:50.807Z",
   "log": "build.log",
   "status": "succeeded",
   "artifacts": null,
   "workspace": null,
-  "finishedAt": "2026-08-04T09:57:00.267Z",
+  "finishedAt": "2026-08-04T10:29:42.256Z",
   "archive": "previous-2.tar.gz"
 }

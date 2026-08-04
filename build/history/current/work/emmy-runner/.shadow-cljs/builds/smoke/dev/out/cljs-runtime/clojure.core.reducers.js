@@ -17,8 +17,8 @@ return (task.cljs$core$IFn$_invoke$arity$0 ? task.cljs$core$IFn$_invoke$arity$0(
  *   Maps are reduced with reduce-kv
  */
 clojure.core.reducers.reduce = (function clojure$core$reducers$reduce(var_args){
-var G__58556 = arguments.length;
-switch (G__58556) {
+var G__58551 = arguments.length;
+switch (G__58551) {
 case 2:
 return clojure.core.reducers.reduce.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -45,8 +45,8 @@ if((coll == null)){
 return init;
 } else {
 if(cljs.core.truth_(cljs.core.array_QMARK_(coll))){
-var fexpr__58562 = new cljs.core.Var(function(){return cljs.core.array_reduce;},new cljs.core.Symbol("cljs.core","array-reduce","cljs.core/array-reduce",569260567,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"top-fn","top-fn",-2056129173),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,new cljs.core.Symbol(null,"cljs.core","cljs.core",770546058,null),new cljs.core.Symbol(null,"array-reduce","array-reduce",154113968,null),"cljs/core.cljs",20,new cljs.core.PersistentArrayMap(null, 6, [new cljs.core.Keyword(null,"variadic?","variadic?",584179762),false,new cljs.core.Keyword(null,"fixed-arity","fixed-arity",1586445869),4,new cljs.core.Keyword(null,"max-fixed-arity","max-fixed-arity",-690205543),4,new cljs.core.Keyword(null,"method-params","method-params",-980792179),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"arr","arr",2115492975,null),new cljs.core.Symbol(null,"f","f",43394975,null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"arr","arr",2115492975,null),new cljs.core.Symbol(null,"f","f",43394975,null),new cljs.core.Symbol(null,"val","val",1769233139,null)], null),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"arr","arr",2115492975,null),new cljs.core.Symbol(null,"f","f",43394975,null),new cljs.core.Symbol(null,"val","val",1769233139,null),new cljs.core.Symbol(null,"idx","idx",-1600747296,null)], null)], null),new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"arr","arr",2115492975,null),new cljs.core.Symbol(null,"f","f",43394975,null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"arr","arr",2115492975,null),new cljs.core.Symbol(null,"f","f",43394975,null),new cljs.core.Symbol(null,"val","val",1769233139,null)], null),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"arr","arr",2115492975,null),new cljs.core.Symbol(null,"f","f",43394975,null),new cljs.core.Symbol(null,"val","val",1769233139,null),new cljs.core.Symbol(null,"idx","idx",-1600747296,null)], null)),new cljs.core.Keyword(null,"arglists-meta","arglists-meta",1944829838),cljs.core.list(null,null,null)], null),1,1568,1568,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"arr","arr",2115492975,null),new cljs.core.Symbol(null,"f","f",43394975,null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"arr","arr",2115492975,null),new cljs.core.Symbol(null,"f","f",43394975,null),new cljs.core.Symbol(null,"val","val",1769233139,null)], null),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"arr","arr",2115492975,null),new cljs.core.Symbol(null,"f","f",43394975,null),new cljs.core.Symbol(null,"val","val",1769233139,null),new cljs.core.Symbol(null,"idx","idx",-1600747296,null)], null)),null,(cljs.core.truth_(cljs.core.array_reduce)?cljs.core.array_reduce.cljs$lang$test:null)]));
-return (fexpr__58562.cljs$core$IFn$_invoke$arity$3 ? fexpr__58562.cljs$core$IFn$_invoke$arity$3(coll,f,init) : fexpr__58562.call(null,coll,f,init));
+var fexpr__58553 = new cljs.core.Var(function(){return cljs.core.array_reduce;},new cljs.core.Symbol("cljs.core","array-reduce","cljs.core/array-reduce",569260567,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"private","private",-558947994),new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"top-fn","top-fn",-2056129173),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[true,new cljs.core.Symbol(null,"cljs.core","cljs.core",770546058,null),new cljs.core.Symbol(null,"array-reduce","array-reduce",154113968,null),"cljs/core.cljs",20,new cljs.core.PersistentArrayMap(null, 6, [new cljs.core.Keyword(null,"variadic?","variadic?",584179762),false,new cljs.core.Keyword(null,"fixed-arity","fixed-arity",1586445869),4,new cljs.core.Keyword(null,"max-fixed-arity","max-fixed-arity",-690205543),4,new cljs.core.Keyword(null,"method-params","method-params",-980792179),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"arr","arr",2115492975,null),new cljs.core.Symbol(null,"f","f",43394975,null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"arr","arr",2115492975,null),new cljs.core.Symbol(null,"f","f",43394975,null),new cljs.core.Symbol(null,"val","val",1769233139,null)], null),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"arr","arr",2115492975,null),new cljs.core.Symbol(null,"f","f",43394975,null),new cljs.core.Symbol(null,"val","val",1769233139,null),new cljs.core.Symbol(null,"idx","idx",-1600747296,null)], null)], null),new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"arr","arr",2115492975,null),new cljs.core.Symbol(null,"f","f",43394975,null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"arr","arr",2115492975,null),new cljs.core.Symbol(null,"f","f",43394975,null),new cljs.core.Symbol(null,"val","val",1769233139,null)], null),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"arr","arr",2115492975,null),new cljs.core.Symbol(null,"f","f",43394975,null),new cljs.core.Symbol(null,"val","val",1769233139,null),new cljs.core.Symbol(null,"idx","idx",-1600747296,null)], null)),new cljs.core.Keyword(null,"arglists-meta","arglists-meta",1944829838),cljs.core.list(null,null,null)], null),1,1568,1568,cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"arr","arr",2115492975,null),new cljs.core.Symbol(null,"f","f",43394975,null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"arr","arr",2115492975,null),new cljs.core.Symbol(null,"f","f",43394975,null),new cljs.core.Symbol(null,"val","val",1769233139,null)], null),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"arr","arr",2115492975,null),new cljs.core.Symbol(null,"f","f",43394975,null),new cljs.core.Symbol(null,"val","val",1769233139,null),new cljs.core.Symbol(null,"idx","idx",-1600747296,null)], null)),null,(cljs.core.truth_(cljs.core.array_reduce)?cljs.core.array_reduce.cljs$lang$test:null)]));
+return (fexpr__58553.cljs$core$IFn$_invoke$arity$3 ? fexpr__58553.cljs$core$IFn$_invoke$arity$3(coll,f,init) : fexpr__58553.call(null,coll,f,init));
 } else {
 return cljs.core._reduce(coll,f,init);
 
@@ -63,7 +63,7 @@ return cljs.core._reduce(coll,f,init);
  */
 clojure.core.reducers.CollFold = function(){};
 
-var clojure$core$reducers$CollFold$coll_fold$dyn_58680 = (function (coll,n,combinef,reducef){
+var clojure$core$reducers$CollFold$coll_fold$dyn_58679 = (function (coll,n,combinef,reducef){
 var x__5519__auto__ = (((coll == null))?null:coll);
 var m__5520__auto__ = (clojure.core.reducers.coll_fold[goog.typeOf(x__5519__auto__)]);
 if((!((m__5520__auto__ == null)))){
@@ -81,7 +81,7 @@ clojure.core.reducers.coll_fold = (function clojure$core$reducers$coll_fold(coll
 if((((!((coll == null)))) && ((!((coll.clojure$core$reducers$CollFold$coll_fold$arity$4 == null)))))){
 return coll.clojure$core$reducers$CollFold$coll_fold$arity$4(coll,n,combinef,reducef);
 } else {
-return clojure$core$reducers$CollFold$coll_fold$dyn_58680(coll,n,combinef,reducef);
+return clojure$core$reducers$CollFold$coll_fold$dyn_58679(coll,n,combinef,reducef);
 }
 });
 
@@ -99,8 +99,8 @@ return clojure$core$reducers$CollFold$coll_fold$dyn_58680(coll,n,combinef,reduce
  *   Note: Performing operations in parallel is currently not implemented.
  */
 clojure.core.reducers.fold = (function clojure$core$reducers$fold(var_args){
-var G__58580 = arguments.length;
-switch (G__58580) {
+var G__58557 = arguments.length;
+switch (G__58557) {
 case 2:
 return clojure.core.reducers.fold.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -140,54 +140,54 @@ return clojure.core.reducers.coll_fold(coll,n,combinef,reducef);
  * @implements {cljs.core.IWithMeta}
  * @implements {cljs.core.IReduce}
 */
-clojure.core.reducers.t_clojure$core$reducers58583 = (function (coll,xf,meta58584){
+clojure.core.reducers.t_clojure$core$reducers58558 = (function (coll,xf,meta58559){
 this.coll = coll;
 this.xf = xf;
-this.meta58584 = meta58584;
+this.meta58559 = meta58559;
 this.cljs$lang$protocol_mask$partition0$ = 917504;
 this.cljs$lang$protocol_mask$partition1$ = 0;
 });
-(clojure.core.reducers.t_clojure$core$reducers58583.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (_58585,meta58584__$1){
+(clojure.core.reducers.t_clojure$core$reducers58558.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (_58560,meta58559__$1){
 var self__ = this;
-var _58585__$1 = this;
-return (new clojure.core.reducers.t_clojure$core$reducers58583(self__.coll,self__.xf,meta58584__$1));
+var _58560__$1 = this;
+return (new clojure.core.reducers.t_clojure$core$reducers58558(self__.coll,self__.xf,meta58559__$1));
 }));
 
-(clojure.core.reducers.t_clojure$core$reducers58583.prototype.cljs$core$IMeta$_meta$arity$1 = (function (_58585){
+(clojure.core.reducers.t_clojure$core$reducers58558.prototype.cljs$core$IMeta$_meta$arity$1 = (function (_58560){
 var self__ = this;
-var _58585__$1 = this;
-return self__.meta58584;
+var _58560__$1 = this;
+return self__.meta58559;
 }));
 
-(clojure.core.reducers.t_clojure$core$reducers58583.prototype.cljs$core$IReduce$_reduce$arity$2 = (function (this$,f1){
+(clojure.core.reducers.t_clojure$core$reducers58558.prototype.cljs$core$IReduce$_reduce$arity$2 = (function (this$,f1){
 var self__ = this;
 var this$__$1 = this;
 return this$__$1.cljs$core$IReduce$_reduce$arity$3(null,f1,(f1.cljs$core$IFn$_invoke$arity$0 ? f1.cljs$core$IFn$_invoke$arity$0() : f1.call(null)));
 }));
 
-(clojure.core.reducers.t_clojure$core$reducers58583.prototype.cljs$core$IReduce$_reduce$arity$3 = (function (_,f1,init){
+(clojure.core.reducers.t_clojure$core$reducers58558.prototype.cljs$core$IReduce$_reduce$arity$3 = (function (_,f1,init){
 var self__ = this;
 var ___$1 = this;
 return cljs.core._reduce(self__.coll,(self__.xf.cljs$core$IFn$_invoke$arity$1 ? self__.xf.cljs$core$IFn$_invoke$arity$1(f1) : self__.xf.call(null,f1)),init);
 }));
 
-(clojure.core.reducers.t_clojure$core$reducers58583.getBasis = (function (){
-return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"coll","coll",-1006698606,null),new cljs.core.Symbol(null,"xf","xf",2042434515,null),new cljs.core.Symbol(null,"meta58584","meta58584",-1185748340,null)], null);
+(clojure.core.reducers.t_clojure$core$reducers58558.getBasis = (function (){
+return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"coll","coll",-1006698606,null),new cljs.core.Symbol(null,"xf","xf",2042434515,null),new cljs.core.Symbol(null,"meta58559","meta58559",-1032570174,null)], null);
 }));
 
-(clojure.core.reducers.t_clojure$core$reducers58583.cljs$lang$type = true);
+(clojure.core.reducers.t_clojure$core$reducers58558.cljs$lang$type = true);
 
-(clojure.core.reducers.t_clojure$core$reducers58583.cljs$lang$ctorStr = "clojure.core.reducers/t_clojure$core$reducers58583");
+(clojure.core.reducers.t_clojure$core$reducers58558.cljs$lang$ctorStr = "clojure.core.reducers/t_clojure$core$reducers58558");
 
-(clojure.core.reducers.t_clojure$core$reducers58583.cljs$lang$ctorPrWriter = (function (this__5455__auto__,writer__5456__auto__,opt__5457__auto__){
-return cljs.core._write(writer__5456__auto__,"clojure.core.reducers/t_clojure$core$reducers58583");
+(clojure.core.reducers.t_clojure$core$reducers58558.cljs$lang$ctorPrWriter = (function (this__5455__auto__,writer__5456__auto__,opt__5457__auto__){
+return cljs.core._write(writer__5456__auto__,"clojure.core.reducers/t_clojure$core$reducers58558");
 }));
 
 /**
- * Positional factory function for clojure.core.reducers/t_clojure$core$reducers58583.
+ * Positional factory function for clojure.core.reducers/t_clojure$core$reducers58558.
  */
-clojure.core.reducers.__GT_t_clojure$core$reducers58583 = (function clojure$core$reducers$__GT_t_clojure$core$reducers58583(coll,xf,meta58584){
-return (new clojure.core.reducers.t_clojure$core$reducers58583(coll,xf,meta58584));
+clojure.core.reducers.__GT_t_clojure$core$reducers58558 = (function clojure$core$reducers$__GT_t_clojure$core$reducers58558(coll,xf,meta58559){
+return (new clojure.core.reducers.t_clojure$core$reducers58558(coll,xf,meta58559));
 });
 
 
@@ -198,7 +198,7 @@ return (new clojure.core.reducers.t_clojure$core$reducers58583(coll,xf,meta58584
  *   reducing fn.
  */
 clojure.core.reducers.reducer = (function clojure$core$reducers$reducer(coll,xf){
-return (new clojure.core.reducers.t_clojure$core$reducers58583(coll,xf,cljs.core.PersistentArrayMap.EMPTY));
+return (new clojure.core.reducers.t_clojure$core$reducers58558(coll,xf,cljs.core.PersistentArrayMap.EMPTY));
 });
 
 /**
@@ -208,62 +208,62 @@ return (new clojure.core.reducers.t_clojure$core$reducers58583(coll,xf,cljs.core
  * @implements {cljs.core.IWithMeta}
  * @implements {cljs.core.IReduce}
 */
-clojure.core.reducers.t_clojure$core$reducers58594 = (function (coll,xf,meta58595){
+clojure.core.reducers.t_clojure$core$reducers58567 = (function (coll,xf,meta58568){
 this.coll = coll;
 this.xf = xf;
-this.meta58595 = meta58595;
+this.meta58568 = meta58568;
 this.cljs$lang$protocol_mask$partition0$ = 917504;
 this.cljs$lang$protocol_mask$partition1$ = 0;
 });
-(clojure.core.reducers.t_clojure$core$reducers58594.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (_58596,meta58595__$1){
+(clojure.core.reducers.t_clojure$core$reducers58567.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (_58569,meta58568__$1){
 var self__ = this;
-var _58596__$1 = this;
-return (new clojure.core.reducers.t_clojure$core$reducers58594(self__.coll,self__.xf,meta58595__$1));
+var _58569__$1 = this;
+return (new clojure.core.reducers.t_clojure$core$reducers58567(self__.coll,self__.xf,meta58568__$1));
 }));
 
-(clojure.core.reducers.t_clojure$core$reducers58594.prototype.cljs$core$IMeta$_meta$arity$1 = (function (_58596){
+(clojure.core.reducers.t_clojure$core$reducers58567.prototype.cljs$core$IMeta$_meta$arity$1 = (function (_58569){
 var self__ = this;
-var _58596__$1 = this;
-return self__.meta58595;
+var _58569__$1 = this;
+return self__.meta58568;
 }));
 
-(clojure.core.reducers.t_clojure$core$reducers58594.prototype.cljs$core$IReduce$_reduce$arity$2 = (function (_,f1){
+(clojure.core.reducers.t_clojure$core$reducers58567.prototype.cljs$core$IReduce$_reduce$arity$2 = (function (_,f1){
 var self__ = this;
 var ___$1 = this;
 return cljs.core._reduce(self__.coll,(self__.xf.cljs$core$IFn$_invoke$arity$1 ? self__.xf.cljs$core$IFn$_invoke$arity$1(f1) : self__.xf.call(null,f1)),(f1.cljs$core$IFn$_invoke$arity$0 ? f1.cljs$core$IFn$_invoke$arity$0() : f1.call(null)));
 }));
 
-(clojure.core.reducers.t_clojure$core$reducers58594.prototype.cljs$core$IReduce$_reduce$arity$3 = (function (_,f1,init){
+(clojure.core.reducers.t_clojure$core$reducers58567.prototype.cljs$core$IReduce$_reduce$arity$3 = (function (_,f1,init){
 var self__ = this;
 var ___$1 = this;
 return cljs.core._reduce(self__.coll,(self__.xf.cljs$core$IFn$_invoke$arity$1 ? self__.xf.cljs$core$IFn$_invoke$arity$1(f1) : self__.xf.call(null,f1)),init);
 }));
 
-(clojure.core.reducers.t_clojure$core$reducers58594.prototype.clojure$core$reducers$CollFold$ = cljs.core.PROTOCOL_SENTINEL);
+(clojure.core.reducers.t_clojure$core$reducers58567.prototype.clojure$core$reducers$CollFold$ = cljs.core.PROTOCOL_SENTINEL);
 
-(clojure.core.reducers.t_clojure$core$reducers58594.prototype.clojure$core$reducers$CollFold$coll_fold$arity$4 = (function (_,n,combinef,reducef){
+(clojure.core.reducers.t_clojure$core$reducers58567.prototype.clojure$core$reducers$CollFold$coll_fold$arity$4 = (function (_,n,combinef,reducef){
 var self__ = this;
 var ___$1 = this;
 return clojure.core.reducers.coll_fold(self__.coll,n,combinef,(self__.xf.cljs$core$IFn$_invoke$arity$1 ? self__.xf.cljs$core$IFn$_invoke$arity$1(reducef) : self__.xf.call(null,reducef)));
 }));
 
-(clojure.core.reducers.t_clojure$core$reducers58594.getBasis = (function (){
-return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"coll","coll",-1006698606,null),new cljs.core.Symbol(null,"xf","xf",2042434515,null),new cljs.core.Symbol(null,"meta58595","meta58595",644366814,null)], null);
+(clojure.core.reducers.t_clojure$core$reducers58567.getBasis = (function (){
+return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"coll","coll",-1006698606,null),new cljs.core.Symbol(null,"xf","xf",2042434515,null),new cljs.core.Symbol(null,"meta58568","meta58568",1047121973,null)], null);
 }));
 
-(clojure.core.reducers.t_clojure$core$reducers58594.cljs$lang$type = true);
+(clojure.core.reducers.t_clojure$core$reducers58567.cljs$lang$type = true);
 
-(clojure.core.reducers.t_clojure$core$reducers58594.cljs$lang$ctorStr = "clojure.core.reducers/t_clojure$core$reducers58594");
+(clojure.core.reducers.t_clojure$core$reducers58567.cljs$lang$ctorStr = "clojure.core.reducers/t_clojure$core$reducers58567");
 
-(clojure.core.reducers.t_clojure$core$reducers58594.cljs$lang$ctorPrWriter = (function (this__5455__auto__,writer__5456__auto__,opt__5457__auto__){
-return cljs.core._write(writer__5456__auto__,"clojure.core.reducers/t_clojure$core$reducers58594");
+(clojure.core.reducers.t_clojure$core$reducers58567.cljs$lang$ctorPrWriter = (function (this__5455__auto__,writer__5456__auto__,opt__5457__auto__){
+return cljs.core._write(writer__5456__auto__,"clojure.core.reducers/t_clojure$core$reducers58567");
 }));
 
 /**
- * Positional factory function for clojure.core.reducers/t_clojure$core$reducers58594.
+ * Positional factory function for clojure.core.reducers/t_clojure$core$reducers58567.
  */
-clojure.core.reducers.__GT_t_clojure$core$reducers58594 = (function clojure$core$reducers$__GT_t_clojure$core$reducers58594(coll,xf,meta58595){
-return (new clojure.core.reducers.t_clojure$core$reducers58594(coll,xf,meta58595));
+clojure.core.reducers.__GT_t_clojure$core$reducers58567 = (function clojure$core$reducers$__GT_t_clojure$core$reducers58567(coll,xf,meta58568){
+return (new clojure.core.reducers.t_clojure$core$reducers58567(coll,xf,meta58568));
 });
 
 
@@ -274,14 +274,14 @@ return (new clojure.core.reducers.t_clojure$core$reducers58594(coll,xf,meta58595
  *   reducing fn.
  */
 clojure.core.reducers.folder = (function clojure$core$reducers$folder(coll,xf){
-return (new clojure.core.reducers.t_clojure$core$reducers58594(coll,xf,cljs.core.PersistentArrayMap.EMPTY));
+return (new clojure.core.reducers.t_clojure$core$reducers58567(coll,xf,cljs.core.PersistentArrayMap.EMPTY));
 });
 /**
  * Applies f to every value in the reduction of coll. Foldable.
  */
 clojure.core.reducers.map = (function clojure$core$reducers$map(var_args){
-var G__58614 = arguments.length;
-switch (G__58614) {
+var G__58585 = arguments.length;
+switch (G__58585) {
 case 1:
 return clojure.core.reducers.map.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -305,35 +305,35 @@ return clojure.core.reducers.map.cljs$core$IFn$_invoke$arity$2(f,x__5274__auto__
 (clojure.core.reducers.map.cljs$core$IFn$_invoke$arity$2 = (function (f,coll){
 return clojure.core.reducers.folder(coll,(function (f1){
 return (function() {
-var G__58689 = null;
-var G__58689__0 = (function (){
+var G__58686 = null;
+var G__58686__0 = (function (){
 return (f1.cljs$core$IFn$_invoke$arity$0 ? f1.cljs$core$IFn$_invoke$arity$0() : f1.call(null));
 });
-var G__58689__2 = (function (ret,v){
-var G__58619 = ret;
-var G__58620 = (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(v) : f.call(null,v));
-return (f1.cljs$core$IFn$_invoke$arity$2 ? f1.cljs$core$IFn$_invoke$arity$2(G__58619,G__58620) : f1.call(null,G__58619,G__58620));
+var G__58686__2 = (function (ret,v){
+var G__58600 = ret;
+var G__58601 = (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(v) : f.call(null,v));
+return (f1.cljs$core$IFn$_invoke$arity$2 ? f1.cljs$core$IFn$_invoke$arity$2(G__58600,G__58601) : f1.call(null,G__58600,G__58601));
 });
-var G__58689__3 = (function (ret,k,v){
-var G__58622 = ret;
-var G__58623 = (f.cljs$core$IFn$_invoke$arity$2 ? f.cljs$core$IFn$_invoke$arity$2(k,v) : f.call(null,k,v));
-return (f1.cljs$core$IFn$_invoke$arity$2 ? f1.cljs$core$IFn$_invoke$arity$2(G__58622,G__58623) : f1.call(null,G__58622,G__58623));
+var G__58686__3 = (function (ret,k,v){
+var G__58602 = ret;
+var G__58603 = (f.cljs$core$IFn$_invoke$arity$2 ? f.cljs$core$IFn$_invoke$arity$2(k,v) : f.call(null,k,v));
+return (f1.cljs$core$IFn$_invoke$arity$2 ? f1.cljs$core$IFn$_invoke$arity$2(G__58602,G__58603) : f1.call(null,G__58602,G__58603));
 });
-G__58689 = function(ret,k,v){
+G__58686 = function(ret,k,v){
 switch(arguments.length){
 case 0:
-return G__58689__0.call(this);
+return G__58686__0.call(this);
 case 2:
-return G__58689__2.call(this,ret,k);
+return G__58686__2.call(this,ret,k);
 case 3:
-return G__58689__3.call(this,ret,k,v);
+return G__58686__3.call(this,ret,k,v);
 }
 throw(new Error('Invalid arity: ' + arguments.length));
 };
-G__58689.cljs$core$IFn$_invoke$arity$0 = G__58689__0;
-G__58689.cljs$core$IFn$_invoke$arity$2 = G__58689__2;
-G__58689.cljs$core$IFn$_invoke$arity$3 = G__58689__3;
-return G__58689;
+G__58686.cljs$core$IFn$_invoke$arity$0 = G__58686__0;
+G__58686.cljs$core$IFn$_invoke$arity$2 = G__58686__2;
+G__58686.cljs$core$IFn$_invoke$arity$3 = G__58686__3;
+return G__58686;
 })()
 }));
 }));
@@ -345,8 +345,8 @@ return G__58689;
  *   colls of (f val). Foldable.
  */
 clojure.core.reducers.mapcat = (function clojure$core$reducers$mapcat(var_args){
-var G__58626 = arguments.length;
-switch (G__58626) {
+var G__58606 = arguments.length;
+switch (G__58606) {
 case 1:
 return clojure.core.reducers.mapcat.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -370,31 +370,31 @@ return clojure.core.reducers.mapcat.cljs$core$IFn$_invoke$arity$2(f,x__5274__aut
 (clojure.core.reducers.mapcat.cljs$core$IFn$_invoke$arity$2 = (function (f,coll){
 return clojure.core.reducers.folder(coll,(function (f1){
 return (function() {
-var G__58693 = null;
-var G__58693__0 = (function (){
+var G__58688 = null;
+var G__58688__0 = (function (){
 return (f1.cljs$core$IFn$_invoke$arity$0 ? f1.cljs$core$IFn$_invoke$arity$0() : f1.call(null));
 });
-var G__58693__2 = (function (ret,v){
+var G__58688__2 = (function (ret,v){
 return clojure.core.reducers.reduce.cljs$core$IFn$_invoke$arity$3(f1,ret,(f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(v) : f.call(null,v)));
 });
-var G__58693__3 = (function (ret,k,v){
+var G__58688__3 = (function (ret,k,v){
 return clojure.core.reducers.reduce.cljs$core$IFn$_invoke$arity$3(f1,ret,(f.cljs$core$IFn$_invoke$arity$2 ? f.cljs$core$IFn$_invoke$arity$2(k,v) : f.call(null,k,v)));
 });
-G__58693 = function(ret,k,v){
+G__58688 = function(ret,k,v){
 switch(arguments.length){
 case 0:
-return G__58693__0.call(this);
+return G__58688__0.call(this);
 case 2:
-return G__58693__2.call(this,ret,k);
+return G__58688__2.call(this,ret,k);
 case 3:
-return G__58693__3.call(this,ret,k,v);
+return G__58688__3.call(this,ret,k,v);
 }
 throw(new Error('Invalid arity: ' + arguments.length));
 };
-G__58693.cljs$core$IFn$_invoke$arity$0 = G__58693__0;
-G__58693.cljs$core$IFn$_invoke$arity$2 = G__58693__2;
-G__58693.cljs$core$IFn$_invoke$arity$3 = G__58693__3;
-return G__58693;
+G__58688.cljs$core$IFn$_invoke$arity$0 = G__58688__0;
+G__58688.cljs$core$IFn$_invoke$arity$2 = G__58688__2;
+G__58688.cljs$core$IFn$_invoke$arity$3 = G__58688__3;
+return G__58688;
 })()
 }));
 }));
@@ -406,8 +406,8 @@ return G__58693;
  *   returns logical true. Foldable.
  */
 clojure.core.reducers.filter = (function clojure$core$reducers$filter(var_args){
-var G__58631 = arguments.length;
-switch (G__58631) {
+var G__58617 = arguments.length;
+switch (G__58617) {
 case 1:
 return clojure.core.reducers.filter.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -431,39 +431,39 @@ return clojure.core.reducers.filter.cljs$core$IFn$_invoke$arity$2(pred,x__5274__
 (clojure.core.reducers.filter.cljs$core$IFn$_invoke$arity$2 = (function (pred,coll){
 return clojure.core.reducers.folder(coll,(function (f1){
 return (function() {
-var G__58696 = null;
-var G__58696__0 = (function (){
+var G__58690 = null;
+var G__58690__0 = (function (){
 return (f1.cljs$core$IFn$_invoke$arity$0 ? f1.cljs$core$IFn$_invoke$arity$0() : f1.call(null));
 });
-var G__58696__2 = (function (ret,v){
+var G__58690__2 = (function (ret,v){
 if(cljs.core.truth_((pred.cljs$core$IFn$_invoke$arity$1 ? pred.cljs$core$IFn$_invoke$arity$1(v) : pred.call(null,v)))){
 return (f1.cljs$core$IFn$_invoke$arity$2 ? f1.cljs$core$IFn$_invoke$arity$2(ret,v) : f1.call(null,ret,v));
 } else {
 return ret;
 }
 });
-var G__58696__3 = (function (ret,k,v){
+var G__58690__3 = (function (ret,k,v){
 if(cljs.core.truth_((pred.cljs$core$IFn$_invoke$arity$2 ? pred.cljs$core$IFn$_invoke$arity$2(k,v) : pred.call(null,k,v)))){
 return (f1.cljs$core$IFn$_invoke$arity$3 ? f1.cljs$core$IFn$_invoke$arity$3(ret,k,v) : f1.call(null,ret,k,v));
 } else {
 return ret;
 }
 });
-G__58696 = function(ret,k,v){
+G__58690 = function(ret,k,v){
 switch(arguments.length){
 case 0:
-return G__58696__0.call(this);
+return G__58690__0.call(this);
 case 2:
-return G__58696__2.call(this,ret,k);
+return G__58690__2.call(this,ret,k);
 case 3:
-return G__58696__3.call(this,ret,k,v);
+return G__58690__3.call(this,ret,k,v);
 }
 throw(new Error('Invalid arity: ' + arguments.length));
 };
-G__58696.cljs$core$IFn$_invoke$arity$0 = G__58696__0;
-G__58696.cljs$core$IFn$_invoke$arity$2 = G__58696__2;
-G__58696.cljs$core$IFn$_invoke$arity$3 = G__58696__3;
-return G__58696;
+G__58690.cljs$core$IFn$_invoke$arity$0 = G__58690__0;
+G__58690.cljs$core$IFn$_invoke$arity$2 = G__58690__2;
+G__58690.cljs$core$IFn$_invoke$arity$3 = G__58690__3;
+return G__58690;
 })()
 }));
 }));
@@ -476,8 +476,8 @@ return G__58696;
  *   collection.
  */
 clojure.core.reducers.flatten = (function clojure$core$reducers$flatten(var_args){
-var G__58636 = arguments.length;
-switch (G__58636) {
+var G__58619 = arguments.length;
+switch (G__58619) {
 case 0:
 return clojure.core.reducers.flatten.cljs$core$IFn$_invoke$arity$0();
 
@@ -501,29 +501,29 @@ return clojure.core.reducers.flatten.cljs$core$IFn$_invoke$arity$1(x__5274__auto
 (clojure.core.reducers.flatten.cljs$core$IFn$_invoke$arity$1 = (function (coll){
 return clojure.core.reducers.folder(coll,(function (f1){
 return (function() {
-var G__58699 = null;
-var G__58699__0 = (function (){
+var G__58698 = null;
+var G__58698__0 = (function (){
 return (f1.cljs$core$IFn$_invoke$arity$0 ? f1.cljs$core$IFn$_invoke$arity$0() : f1.call(null));
 });
-var G__58699__2 = (function (ret,v){
+var G__58698__2 = (function (ret,v){
 if(cljs.core.sequential_QMARK_(v)){
 return cljs.core._reduce(clojure.core.reducers.flatten.cljs$core$IFn$_invoke$arity$1(v),f1,ret);
 } else {
 return (f1.cljs$core$IFn$_invoke$arity$2 ? f1.cljs$core$IFn$_invoke$arity$2(ret,v) : f1.call(null,ret,v));
 }
 });
-G__58699 = function(ret,v){
+G__58698 = function(ret,v){
 switch(arguments.length){
 case 0:
-return G__58699__0.call(this);
+return G__58698__0.call(this);
 case 2:
-return G__58699__2.call(this,ret,v);
+return G__58698__2.call(this,ret,v);
 }
 throw(new Error('Invalid arity: ' + arguments.length));
 };
-G__58699.cljs$core$IFn$_invoke$arity$0 = G__58699__0;
-G__58699.cljs$core$IFn$_invoke$arity$2 = G__58699__2;
-return G__58699;
+G__58698.cljs$core$IFn$_invoke$arity$0 = G__58698__0;
+G__58698.cljs$core$IFn$_invoke$arity$2 = G__58698__2;
+return G__58698;
 })()
 }));
 }));
@@ -535,8 +535,8 @@ return G__58699;
  *   returns logical true. Foldable.
  */
 clojure.core.reducers.remove = (function clojure$core$reducers$remove(var_args){
-var G__58639 = arguments.length;
-switch (G__58639) {
+var G__58621 = arguments.length;
+switch (G__58621) {
 case 1:
 return clojure.core.reducers.remove.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -567,8 +567,8 @@ return clojure.core.reducers.filter.cljs$core$IFn$_invoke$arity$2(cljs.core.comp
  * Ends the reduction of coll when (pred val) returns logical false.
  */
 clojure.core.reducers.take_while = (function clojure$core$reducers$take_while(var_args){
-var G__58644 = arguments.length;
-switch (G__58644) {
+var G__58623 = arguments.length;
+switch (G__58623) {
 case 1:
 return clojure.core.reducers.take_while.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -592,39 +592,39 @@ return clojure.core.reducers.take_while.cljs$core$IFn$_invoke$arity$2(pred,x__52
 (clojure.core.reducers.take_while.cljs$core$IFn$_invoke$arity$2 = (function (pred,coll){
 return clojure.core.reducers.reducer(coll,(function (f1){
 return (function() {
-var G__58702 = null;
-var G__58702__0 = (function (){
+var G__58704 = null;
+var G__58704__0 = (function (){
 return (f1.cljs$core$IFn$_invoke$arity$0 ? f1.cljs$core$IFn$_invoke$arity$0() : f1.call(null));
 });
-var G__58702__2 = (function (ret,v){
+var G__58704__2 = (function (ret,v){
 if(cljs.core.truth_((pred.cljs$core$IFn$_invoke$arity$1 ? pred.cljs$core$IFn$_invoke$arity$1(v) : pred.call(null,v)))){
 return (f1.cljs$core$IFn$_invoke$arity$2 ? f1.cljs$core$IFn$_invoke$arity$2(ret,v) : f1.call(null,ret,v));
 } else {
 return cljs.core.reduced(ret);
 }
 });
-var G__58702__3 = (function (ret,k,v){
+var G__58704__3 = (function (ret,k,v){
 if(cljs.core.truth_((pred.cljs$core$IFn$_invoke$arity$2 ? pred.cljs$core$IFn$_invoke$arity$2(k,v) : pred.call(null,k,v)))){
 return (f1.cljs$core$IFn$_invoke$arity$3 ? f1.cljs$core$IFn$_invoke$arity$3(ret,k,v) : f1.call(null,ret,k,v));
 } else {
 return cljs.core.reduced(ret);
 }
 });
-G__58702 = function(ret,k,v){
+G__58704 = function(ret,k,v){
 switch(arguments.length){
 case 0:
-return G__58702__0.call(this);
+return G__58704__0.call(this);
 case 2:
-return G__58702__2.call(this,ret,k);
+return G__58704__2.call(this,ret,k);
 case 3:
-return G__58702__3.call(this,ret,k,v);
+return G__58704__3.call(this,ret,k,v);
 }
 throw(new Error('Invalid arity: ' + arguments.length));
 };
-G__58702.cljs$core$IFn$_invoke$arity$0 = G__58702__0;
-G__58702.cljs$core$IFn$_invoke$arity$2 = G__58702__2;
-G__58702.cljs$core$IFn$_invoke$arity$3 = G__58702__3;
-return G__58702;
+G__58704.cljs$core$IFn$_invoke$arity$0 = G__58704__0;
+G__58704.cljs$core$IFn$_invoke$arity$2 = G__58704__2;
+G__58704.cljs$core$IFn$_invoke$arity$3 = G__58704__3;
+return G__58704;
 })()
 }));
 }));
@@ -635,8 +635,8 @@ return G__58702;
  * Ends the reduction of coll after consuming n values.
  */
 clojure.core.reducers.take = (function clojure$core$reducers$take(var_args){
-var G__58647 = arguments.length;
-switch (G__58647) {
+var G__58633 = arguments.length;
+switch (G__58633) {
 case 1:
 return clojure.core.reducers.take.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -661,11 +661,11 @@ return clojure.core.reducers.take.cljs$core$IFn$_invoke$arity$2(n,x__5274__auto_
 return clojure.core.reducers.reducer(coll,(function (f1){
 var cnt = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(n);
 return (function() {
-var G__58704 = null;
-var G__58704__0 = (function (){
+var G__58707 = null;
+var G__58707__0 = (function (){
 return (f1.cljs$core$IFn$_invoke$arity$0 ? f1.cljs$core$IFn$_invoke$arity$0() : f1.call(null));
 });
-var G__58704__2 = (function (ret,v){
+var G__58707__2 = (function (ret,v){
 cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$2(cnt,cljs.core.dec);
 
 if((cljs.core.deref(cnt) < (0))){
@@ -674,7 +674,7 @@ return cljs.core.reduced(ret);
 return (f1.cljs$core$IFn$_invoke$arity$2 ? f1.cljs$core$IFn$_invoke$arity$2(ret,v) : f1.call(null,ret,v));
 }
 });
-var G__58704__3 = (function (ret,k,v){
+var G__58707__3 = (function (ret,k,v){
 cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$2(cnt,cljs.core.dec);
 
 if((cljs.core.deref(cnt) < (0))){
@@ -683,21 +683,21 @@ return cljs.core.reduced(ret);
 return (f1.cljs$core$IFn$_invoke$arity$3 ? f1.cljs$core$IFn$_invoke$arity$3(ret,k,v) : f1.call(null,ret,k,v));
 }
 });
-G__58704 = function(ret,k,v){
+G__58707 = function(ret,k,v){
 switch(arguments.length){
 case 0:
-return G__58704__0.call(this);
+return G__58707__0.call(this);
 case 2:
-return G__58704__2.call(this,ret,k);
+return G__58707__2.call(this,ret,k);
 case 3:
-return G__58704__3.call(this,ret,k,v);
+return G__58707__3.call(this,ret,k,v);
 }
 throw(new Error('Invalid arity: ' + arguments.length));
 };
-G__58704.cljs$core$IFn$_invoke$arity$0 = G__58704__0;
-G__58704.cljs$core$IFn$_invoke$arity$2 = G__58704__2;
-G__58704.cljs$core$IFn$_invoke$arity$3 = G__58704__3;
-return G__58704;
+G__58707.cljs$core$IFn$_invoke$arity$0 = G__58707__0;
+G__58707.cljs$core$IFn$_invoke$arity$2 = G__58707__2;
+G__58707.cljs$core$IFn$_invoke$arity$3 = G__58707__3;
+return G__58707;
 })()
 }));
 }));
@@ -708,8 +708,8 @@ return G__58704;
  * Elides the first n values from the reduction of coll.
  */
 clojure.core.reducers.drop = (function clojure$core$reducers$drop(var_args){
-var G__58651 = arguments.length;
-switch (G__58651) {
+var G__58640 = arguments.length;
+switch (G__58640) {
 case 1:
 return clojure.core.reducers.drop.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -734,11 +734,11 @@ return clojure.core.reducers.drop.cljs$core$IFn$_invoke$arity$2(n,x__5274__auto_
 return clojure.core.reducers.reducer(coll,(function (f1){
 var cnt = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(n);
 return (function() {
-var G__58706 = null;
-var G__58706__0 = (function (){
+var G__58710 = null;
+var G__58710__0 = (function (){
 return (f1.cljs$core$IFn$_invoke$arity$0 ? f1.cljs$core$IFn$_invoke$arity$0() : f1.call(null));
 });
-var G__58706__2 = (function (ret,v){
+var G__58710__2 = (function (ret,v){
 cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$2(cnt,cljs.core.dec);
 
 if((cljs.core.deref(cnt) < (0))){
@@ -747,7 +747,7 @@ return (f1.cljs$core$IFn$_invoke$arity$2 ? f1.cljs$core$IFn$_invoke$arity$2(ret,
 return ret;
 }
 });
-var G__58706__3 = (function (ret,k,v){
+var G__58710__3 = (function (ret,k,v){
 cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$2(cnt,cljs.core.dec);
 
 if((cljs.core.deref(cnt) < (0))){
@@ -756,21 +756,21 @@ return (f1.cljs$core$IFn$_invoke$arity$3 ? f1.cljs$core$IFn$_invoke$arity$3(ret,
 return ret;
 }
 });
-G__58706 = function(ret,k,v){
+G__58710 = function(ret,k,v){
 switch(arguments.length){
 case 0:
-return G__58706__0.call(this);
+return G__58710__0.call(this);
 case 2:
-return G__58706__2.call(this,ret,k);
+return G__58710__2.call(this,ret,k);
 case 3:
-return G__58706__3.call(this,ret,k,v);
+return G__58710__3.call(this,ret,k,v);
 }
 throw(new Error('Invalid arity: ' + arguments.length));
 };
-G__58706.cljs$core$IFn$_invoke$arity$0 = G__58706__0;
-G__58706.cljs$core$IFn$_invoke$arity$2 = G__58706__2;
-G__58706.cljs$core$IFn$_invoke$arity$3 = G__58706__3;
-return G__58706;
+G__58710.cljs$core$IFn$_invoke$arity$0 = G__58710__0;
+G__58710.cljs$core$IFn$_invoke$arity$2 = G__58710__2;
+G__58710.cljs$core$IFn$_invoke$arity$3 = G__58710__3;
+return G__58710;
 })()
 }));
 }));
@@ -852,8 +852,8 @@ return (new clojure.core.reducers.Cat(cnt,left,right));
  *   with (zero? (count x)). See also foldcat.
  */
 clojure.core.reducers.cat = (function clojure$core$reducers$cat(var_args){
-var G__58668 = arguments.length;
-switch (G__58668) {
+var G__58648 = arguments.length;
+switch (G__58648) {
 case 0:
 return clojure.core.reducers.cat.cljs$core$IFn$_invoke$arity$0();
 
@@ -878,25 +878,25 @@ return [];
 
 (clojure.core.reducers.cat.cljs$core$IFn$_invoke$arity$1 = (function (ctor){
 return (function() {
-var G__58708 = null;
-var G__58708__0 = (function (){
+var G__58718 = null;
+var G__58718__0 = (function (){
 return (ctor.cljs$core$IFn$_invoke$arity$0 ? ctor.cljs$core$IFn$_invoke$arity$0() : ctor.call(null));
 });
-var G__58708__2 = (function (left,right){
+var G__58718__2 = (function (left,right){
 return clojure.core.reducers.cat.cljs$core$IFn$_invoke$arity$2(left,right);
 });
-G__58708 = function(left,right){
+G__58718 = function(left,right){
 switch(arguments.length){
 case 0:
-return G__58708__0.call(this);
+return G__58718__0.call(this);
 case 2:
-return G__58708__2.call(this,left,right);
+return G__58718__2.call(this,left,right);
 }
 throw(new Error('Invalid arity: ' + arguments.length));
 };
-G__58708.cljs$core$IFn$_invoke$arity$0 = G__58708__0;
-G__58708.cljs$core$IFn$_invoke$arity$2 = G__58708__2;
-return G__58708;
+G__58718.cljs$core$IFn$_invoke$arity$0 = G__58718__0;
+G__58718.cljs$core$IFn$_invoke$arity$2 = G__58718__2;
+return G__58718;
 })()
 }));
 
@@ -919,10 +919,10 @@ return (new clojure.core.reducers.Cat((cljs.core.count(left) + cljs.core.count(r
  * .adds x to acc and returns acc
  */
 clojure.core.reducers.append_BANG_ = (function clojure$core$reducers$append_BANG_(acc,x){
-var G__58669 = acc;
-G__58669.push(x);
+var G__58658 = acc;
+G__58658.push(x);
 
-return G__58669;
+return G__58658;
 });
 /**
  * Equivalent to (fold cat append! coll)
@@ -978,9 +978,9 @@ var f1 = fc(v1);
 var t2 = clojure.core.reducers.fjtask(fc(v2));
 clojure.core.reducers.fjfork(t2);
 
-var G__58670 = f1();
-var G__58671 = clojure.core.reducers.fjjoin(t2);
-return (combinef.cljs$core$IFn$_invoke$arity$2 ? combinef.cljs$core$IFn$_invoke$arity$2(G__58670,G__58671) : combinef.call(null,G__58670,G__58671));
+var G__58667 = f1();
+var G__58668 = clojure.core.reducers.fjjoin(t2);
+return (combinef.cljs$core$IFn$_invoke$arity$2 ? combinef.cljs$core$IFn$_invoke$arity$2(G__58667,G__58668) : combinef.call(null,G__58667,G__58668));
 }));
 
 }

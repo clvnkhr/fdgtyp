@@ -28,13 +28,13 @@ var __GT_components = emmy.calculus.metric.coordinate_system__GT_metric_componen
 var Chi = emmy.calculus.manifold.chart(coordinate_system);
 var the_metric = (function emmy$calculus$metric$coordinate_system__GT_metric_$_the_metric(v1,v2){
 return (function (m){
-var gcoeffs = (function (){var G__48601 = Chi(m);
-return (__GT_components.cljs$core$IFn$_invoke$arity$1 ? __GT_components.cljs$core$IFn$_invoke$arity$1(G__48601) : __GT_components.call(null,G__48601));
+var gcoeffs = (function (){var G__48612 = Chi(m);
+return (__GT_components.cljs$core$IFn$_invoke$arity$1 ? __GT_components.cljs$core$IFn$_invoke$arity$1(G__48612) : __GT_components.call(null,G__48612));
 })();
-return emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(gcoeffs,(function (){var fexpr__48602 = (oneform_basis.cljs$core$IFn$_invoke$arity$1 ? oneform_basis.cljs$core$IFn$_invoke$arity$1(v1) : oneform_basis.call(null,v1));
-return (fexpr__48602.cljs$core$IFn$_invoke$arity$1 ? fexpr__48602.cljs$core$IFn$_invoke$arity$1(m) : fexpr__48602.call(null,m));
-})()),(function (){var fexpr__48603 = (oneform_basis.cljs$core$IFn$_invoke$arity$1 ? oneform_basis.cljs$core$IFn$_invoke$arity$1(v2) : oneform_basis.call(null,v2));
-return (fexpr__48603.cljs$core$IFn$_invoke$arity$1 ? fexpr__48603.cljs$core$IFn$_invoke$arity$1(m) : fexpr__48603.call(null,m));
+return emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(gcoeffs,(function (){var fexpr__48613 = (oneform_basis.cljs$core$IFn$_invoke$arity$1 ? oneform_basis.cljs$core$IFn$_invoke$arity$1(v1) : oneform_basis.call(null,v1));
+return (fexpr__48613.cljs$core$IFn$_invoke$arity$1 ? fexpr__48613.cljs$core$IFn$_invoke$arity$1(m) : fexpr__48613.call(null,m));
+})()),(function (){var fexpr__48615 = (oneform_basis.cljs$core$IFn$_invoke$arity$1 ? oneform_basis.cljs$core$IFn$_invoke$arity$1(v2) : oneform_basis.call(null,v2));
+return (fexpr__48615.cljs$core$IFn$_invoke$arity$1 ? fexpr__48615.cljs$core$IFn$_invoke$arity$1(m) : fexpr__48615.call(null,m));
 })());
 });
 });
@@ -47,15 +47,15 @@ var __GT_components = emmy.generic._SLASH_.cljs$core$IFn$_invoke$arity$2((1),emm
 var Chi = emmy.calculus.manifold.chart(coordinate_system);
 var the_inverse_metric = (function emmy$calculus$metric$coordinate_system__GT_inverse_metric_$_the_inverse_metric(w1,w2){
 return (function (m){
-var gcoeffs = (function (){var G__48609 = Chi(m);
-return (__GT_components.cljs$core$IFn$_invoke$arity$1 ? __GT_components.cljs$core$IFn$_invoke$arity$1(G__48609) : __GT_components.call(null,G__48609));
+var gcoeffs = (function (){var G__48625 = Chi(m);
+return (__GT_components.cljs$core$IFn$_invoke$arity$1 ? __GT_components.cljs$core$IFn$_invoke$arity$1(G__48625) : __GT_components.call(null,G__48625));
 })();
 return emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(gcoeffs,emmy.structure.mapr.cljs$core$IFn$_invoke$arity$variadic((function (e){
-var fexpr__48610 = (w1.cljs$core$IFn$_invoke$arity$1 ? w1.cljs$core$IFn$_invoke$arity$1(e) : w1.call(null,e));
-return (fexpr__48610.cljs$core$IFn$_invoke$arity$1 ? fexpr__48610.cljs$core$IFn$_invoke$arity$1(m) : fexpr__48610.call(null,m));
+var fexpr__48628 = (w1.cljs$core$IFn$_invoke$arity$1 ? w1.cljs$core$IFn$_invoke$arity$1(e) : w1.call(null,e));
+return (fexpr__48628.cljs$core$IFn$_invoke$arity$1 ? fexpr__48628.cljs$core$IFn$_invoke$arity$1(m) : fexpr__48628.call(null,m));
 }),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([vector_basis], 0))),emmy.structure.mapr.cljs$core$IFn$_invoke$arity$variadic((function (e){
-var fexpr__48611 = (w2.cljs$core$IFn$_invoke$arity$1 ? w2.cljs$core$IFn$_invoke$arity$1(e) : w2.call(null,e));
-return (fexpr__48611.cljs$core$IFn$_invoke$arity$1 ? fexpr__48611.cljs$core$IFn$_invoke$arity$1(m) : fexpr__48611.call(null,m));
+var fexpr__48629 = (w2.cljs$core$IFn$_invoke$arity$1 ? w2.cljs$core$IFn$_invoke$arity$1(e) : w2.call(null,e));
+return (fexpr__48629.cljs$core$IFn$_invoke$arity$1 ? fexpr__48629.cljs$core$IFn$_invoke$arity$1(m) : fexpr__48629.call(null,m));
 }),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([vector_basis], 0)));
 });
 });
@@ -107,8 +107,8 @@ return (metric.cljs$core$IFn$_invoke$arity$2 ? metric.cljs$core$IFn$_invoke$arit
  */
 emmy.calculus.metric.metric__GT_inverse_components = (function emmy$calculus$metric$metric__GT_inverse_components(metric,basis){
 return (function emmy$calculus$metric$metric__GT_inverse_components_$_the_coeffs(m){
-var g_ij = (function (){var fexpr__48642 = emmy.calculus.metric.metric__GT_components(metric,basis);
-return (fexpr__48642.cljs$core$IFn$_invoke$arity$1 ? fexpr__48642.cljs$core$IFn$_invoke$arity$1(m) : fexpr__48642.call(null,m));
+var g_ij = (function (){var fexpr__48632 = emmy.calculus.metric.metric__GT_components(metric,basis);
+return (fexpr__48632.cljs$core$IFn$_invoke$arity$1 ? fexpr__48632.cljs$core$IFn$_invoke$arity$1(m) : fexpr__48632.call(null,m));
 })();
 var oneform_basis = emmy.calculus.basis.basis__GT_oneform_basis(basis);
 var typical = emmy.structure.typical_object(oneform_basis);
@@ -127,19 +127,19 @@ emmy.calculus.metric.metric_over_map = (function emmy$calculus$metric$metric_ove
 var make_fake_vector_field = (function emmy$calculus$metric$metric_over_map_$_make_fake_vector_field(V_over_mu,n){
 return emmy.calculus.vector_field.procedure__GT_vector_field.cljs$core$IFn$_invoke$arity$2((function (f){
 return (function (_){
-var fexpr__48662 = (V_over_mu.cljs$core$IFn$_invoke$arity$1 ? V_over_mu.cljs$core$IFn$_invoke$arity$1(f) : V_over_mu.call(null,f));
-return (fexpr__48662.cljs$core$IFn$_invoke$arity$1 ? fexpr__48662.cljs$core$IFn$_invoke$arity$1(n) : fexpr__48662.call(null,n));
+var fexpr__48644 = (V_over_mu.cljs$core$IFn$_invoke$arity$1 ? V_over_mu.cljs$core$IFn$_invoke$arity$1(f) : V_over_mu.call(null,f));
+return (fexpr__48644.cljs$core$IFn$_invoke$arity$1 ? fexpr__48644.cljs$core$IFn$_invoke$arity$1(n) : fexpr__48644.call(null,n));
 });
 }),cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,new cljs.core.Symbol(null,"make-fake-vector-field","make-fake-vector-field",-1146565625,null),null,(1),null)),(new cljs.core.List(null,emmy.generic.freeze.cljs$core$IFn$_invoke$arity$1(V_over_mu),null,(1),null))))));
 });
 var the_metric = (function emmy$calculus$metric$metric_over_map_$_the_metric(v1,v2){
 return (function (n){
-var G__48669 = (mu_COLON_N__GT_M.cljs$core$IFn$_invoke$arity$1 ? mu_COLON_N__GT_M.cljs$core$IFn$_invoke$arity$1(n) : mu_COLON_N__GT_M.call(null,n));
-var fexpr__48668 = (function (){var G__48670 = make_fake_vector_field(v1,n);
-var G__48671 = make_fake_vector_field(v2,n);
-return (g_on_M.cljs$core$IFn$_invoke$arity$2 ? g_on_M.cljs$core$IFn$_invoke$arity$2(G__48670,G__48671) : g_on_M.call(null,G__48670,G__48671));
+var G__48648 = (mu_COLON_N__GT_M.cljs$core$IFn$_invoke$arity$1 ? mu_COLON_N__GT_M.cljs$core$IFn$_invoke$arity$1(n) : mu_COLON_N__GT_M.call(null,n));
+var fexpr__48647 = (function (){var G__48649 = make_fake_vector_field(v1,n);
+var G__48650 = make_fake_vector_field(v2,n);
+return (g_on_M.cljs$core$IFn$_invoke$arity$2 ? g_on_M.cljs$core$IFn$_invoke$arity$2(G__48649,G__48650) : g_on_M.call(null,G__48649,G__48650));
 })();
-return (fexpr__48668.cljs$core$IFn$_invoke$arity$1 ? fexpr__48668.cljs$core$IFn$_invoke$arity$1(G__48669) : fexpr__48668.call(null,G__48669));
+return (fexpr__48647.cljs$core$IFn$_invoke$arity$1 ? fexpr__48647.cljs$core$IFn$_invoke$arity$1(G__48648) : fexpr__48647.call(null,G__48648));
 });
 });
 return emmy.calculus.indexed.with_argument_types(the_metric,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("emmy.calculus.vector-field","vector-field","emmy.calculus.vector-field/vector-field",739612763),new cljs.core.Keyword("emmy.calculus.vector-field","vector-field","emmy.calculus.vector-field/vector-field",739612763)], null));
@@ -248,18 +248,18 @@ var g_ij = emmy.calculus.metric.metric__GT_inverse_components(metric,basis)(m);
 var vector_basis = emmy.calculus.basis.basis__GT_vector_basis(basis);
 return (function emmy$calculus$metric$sharpen_$_sharp(oneform_field){
 var oneform_coeffs = emmy.structure.mapr.cljs$core$IFn$_invoke$arity$variadic((function (ei){
-var fexpr__48721 = (oneform_field.cljs$core$IFn$_invoke$arity$1 ? oneform_field.cljs$core$IFn$_invoke$arity$1(ei) : oneform_field.call(null,ei));
-return (fexpr__48721.cljs$core$IFn$_invoke$arity$1 ? fexpr__48721.cljs$core$IFn$_invoke$arity$1(m) : fexpr__48721.call(null,m));
+var fexpr__48656 = (oneform_field.cljs$core$IFn$_invoke$arity$1 ? oneform_field.cljs$core$IFn$_invoke$arity$1(ei) : oneform_field.call(null,ei));
+return (fexpr__48656.cljs$core$IFn$_invoke$arity$1 ? fexpr__48656.cljs$core$IFn$_invoke$arity$1(m) : fexpr__48656.call(null,m));
 }),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([vector_basis], 0));
 var vector_coeffs = emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(g_ij,oneform_coeffs);
 return emmy.structure.sumr.cljs$core$IFn$_invoke$arity$variadic(emmy.generic._STAR_,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([vector_coeffs,vector_basis], 0));
 });
 });
-emmy.calculus.metric.S2_metric = (function (){var vec__48723 = emmy.calculus.coordinate.coordinate_functions(emmy.calculus.manifold.S2_spherical);
-var theta = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__48723,(0),null);
-var vec__48726 = emmy.calculus.form_field.coordinate_system__GT_oneform_basis(emmy.calculus.manifold.S2_spherical);
-var dtheta = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__48726,(0),null);
-var dphi = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__48726,(1),null);
+emmy.calculus.metric.S2_metric = (function (){var vec__48657 = emmy.calculus.coordinate.coordinate_functions(emmy.calculus.manifold.S2_spherical);
+var theta = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__48657,(0),null);
+var vec__48660 = emmy.calculus.form_field.coordinate_system__GT_oneform_basis(emmy.calculus.manifold.S2_spherical);
+var dtheta = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__48660,(0),null);
+var dphi = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__48660,(1),null);
 return emmy.calculus.indexed.with_argument_types((function emmy$calculus$metric$the_metric(v1,v2){
 return emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2((dtheta.cljs$core$IFn$_invoke$arity$1 ? dtheta.cljs$core$IFn$_invoke$arity$1(v1) : dtheta.call(null,v1)),(dtheta.cljs$core$IFn$_invoke$arity$1 ? dtheta.cljs$core$IFn$_invoke$arity$1(v2) : dtheta.call(null,v2))),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$variadic(emmy.generic.expt.cljs$core$IFn$_invoke$arity$2(emmy.generic.sin.cljs$core$IFn$_invoke$arity$1(theta),(2)),(dphi.cljs$core$IFn$_invoke$arity$1 ? dphi.cljs$core$IFn$_invoke$arity$1(v1) : dphi.call(null,v1)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(dphi.cljs$core$IFn$_invoke$arity$1 ? dphi.cljs$core$IFn$_invoke$arity$1(v2) : dphi.call(null,v2))], 0)));
 }),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("emmy.calculus.vector-field","vector-field","emmy.calculus.vector-field/vector-field",739612763),new cljs.core.Keyword("emmy.calculus.vector-field","vector-field","emmy.calculus.vector-field/vector-field",739612763)], null));

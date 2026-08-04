@@ -5,7 +5,7 @@ goog.provide('emmy.calculus.frame');
  */
 emmy.calculus.frame.IFrame = function(){};
 
-var emmy$calculus$frame$IFrame$coords__GT_event$dyn_39113 = (function (this$,coords){
+var emmy$calculus$frame$IFrame$coords__GT_event$dyn_38905 = (function (this$,coords){
 var x__5519__auto__ = (((this$ == null))?null:this$);
 var m__5520__auto__ = (emmy.calculus.frame.coords__GT_event[goog.typeOf(x__5519__auto__)]);
 if((!((m__5520__auto__ == null)))){
@@ -30,11 +30,11 @@ emmy.calculus.frame.coords__GT_event = (function emmy$calculus$frame$coords__GT_
 if((((!((this$ == null)))) && ((!((this$.emmy$calculus$frame$IFrame$coords__GT_event$arity$2 == null)))))){
 return this$.emmy$calculus$frame$IFrame$coords__GT_event$arity$2(this$,coords);
 } else {
-return emmy$calculus$frame$IFrame$coords__GT_event$dyn_39113(this$,coords);
+return emmy$calculus$frame$IFrame$coords__GT_event$dyn_38905(this$,coords);
 }
 });
 
-var emmy$calculus$frame$IFrame$event__GT_coords$dyn_39114 = (function (this$,event){
+var emmy$calculus$frame$IFrame$event__GT_coords$dyn_38906 = (function (this$,event){
 var x__5519__auto__ = (((this$ == null))?null:this$);
 var m__5520__auto__ = (emmy.calculus.frame.event__GT_coords[goog.typeOf(x__5519__auto__)]);
 if((!((m__5520__auto__ == null)))){
@@ -56,11 +56,11 @@ emmy.calculus.frame.event__GT_coords = (function emmy$calculus$frame$event__GT_c
 if((((!((this$ == null)))) && ((!((this$.emmy$calculus$frame$IFrame$event__GT_coords$arity$2 == null)))))){
 return this$.emmy$calculus$frame$IFrame$event__GT_coords$arity$2(this$,event);
 } else {
-return emmy$calculus$frame$IFrame$event__GT_coords$dyn_39114(this$,event);
+return emmy$calculus$frame$IFrame$event__GT_coords$dyn_38906(this$,event);
 }
 });
 
-var emmy$calculus$frame$IFrame$ancestor_frame$dyn_39115 = (function (_){
+var emmy$calculus$frame$IFrame$ancestor_frame$dyn_38907 = (function (_){
 var x__5519__auto__ = (((_ == null))?null:_);
 var m__5520__auto__ = (emmy.calculus.frame.ancestor_frame[goog.typeOf(x__5519__auto__)]);
 if((!((m__5520__auto__ == null)))){
@@ -82,11 +82,11 @@ emmy.calculus.frame.ancestor_frame = (function emmy$calculus$frame$ancestor_fram
 if((((!((_ == null)))) && ((!((_.emmy$calculus$frame$IFrame$ancestor_frame$arity$1 == null)))))){
 return _.emmy$calculus$frame$IFrame$ancestor_frame$arity$1(_);
 } else {
-return emmy$calculus$frame$IFrame$ancestor_frame$dyn_39115(_);
+return emmy$calculus$frame$IFrame$ancestor_frame$dyn_38907(_);
 }
 });
 
-var emmy$calculus$frame$IFrame$frame_name$dyn_39116 = (function (_){
+var emmy$calculus$frame$IFrame$frame_name$dyn_38908 = (function (_){
 var x__5519__auto__ = (((_ == null))?null:_);
 var m__5520__auto__ = (emmy.calculus.frame.frame_name[goog.typeOf(x__5519__auto__)]);
 if((!((m__5520__auto__ == null)))){
@@ -107,11 +107,11 @@ emmy.calculus.frame.frame_name = (function emmy$calculus$frame$frame_name(_){
 if((((!((_ == null)))) && ((!((_.emmy$calculus$frame$IFrame$frame_name$arity$1 == null)))))){
 return _.emmy$calculus$frame$IFrame$frame_name$arity$1(_);
 } else {
-return emmy$calculus$frame$IFrame$frame_name$dyn_39116(_);
+return emmy$calculus$frame$IFrame$frame_name$dyn_38908(_);
 }
 });
 
-var emmy$calculus$frame$IFrame$params$dyn_39117 = (function (_){
+var emmy$calculus$frame$IFrame$params$dyn_38909 = (function (_){
 var x__5519__auto__ = (((_ == null))?null:_);
 var m__5520__auto__ = (emmy.calculus.frame.params[goog.typeOf(x__5519__auto__)]);
 if((!((m__5520__auto__ == null)))){
@@ -132,7 +132,7 @@ emmy.calculus.frame.params = (function emmy$calculus$frame$params(_){
 if((((!((_ == null)))) && ((!((_.emmy$calculus$frame$IFrame$params$arity$1 == null)))))){
 return _.emmy$calculus$frame$IFrame$params$arity$1(_);
 } else {
-return emmy$calculus$frame$IFrame$params$dyn_39117(_);
+return emmy$calculus$frame$IFrame$params$dyn_38909(_);
 }
 });
 
@@ -200,50 +200,50 @@ return cljs.core.vary_meta.cljs$core$IFn$_invoke$arity$4(coords,cljs.core.assoc,
  * @implements {emmy.calculus.frame.IFrame}
  * @implements {cljs.core.IWithMeta}
 */
-emmy.calculus.frame.t_emmy$calculus$frame39049 = (function (c__GT_e,e__GT_c,call,name,ancestor_frame,params,meta39050){
+emmy.calculus.frame.t_emmy$calculus$frame38898 = (function (c__GT_e,e__GT_c,call,name,ancestor_frame,params,meta38899){
 this.c__GT_e = c__GT_e;
 this.e__GT_c = e__GT_c;
 this.call = call;
 this.name = name;
 this.ancestor_frame = ancestor_frame;
 this.params = params;
-this.meta39050 = meta39050;
+this.meta38899 = meta38899;
 this.cljs$lang$protocol_mask$partition0$ = 393216;
 this.cljs$lang$protocol_mask$partition1$ = 0;
 });
-(emmy.calculus.frame.t_emmy$calculus$frame39049.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (_39051,meta39050__$1){
+(emmy.calculus.frame.t_emmy$calculus$frame38898.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (_38900,meta38899__$1){
 var self__ = this;
-var _39051__$1 = this;
-return (new emmy.calculus.frame.t_emmy$calculus$frame39049(self__.c__GT_e,self__.e__GT_c,self__.call,self__.name,self__.ancestor_frame,self__.params,meta39050__$1));
+var _38900__$1 = this;
+return (new emmy.calculus.frame.t_emmy$calculus$frame38898(self__.c__GT_e,self__.e__GT_c,self__.call,self__.name,self__.ancestor_frame,self__.params,meta38899__$1));
 }));
 
-(emmy.calculus.frame.t_emmy$calculus$frame39049.prototype.cljs$core$IMeta$_meta$arity$1 = (function (_39051){
+(emmy.calculus.frame.t_emmy$calculus$frame38898.prototype.cljs$core$IMeta$_meta$arity$1 = (function (_38900){
 var self__ = this;
-var _39051__$1 = this;
-return self__.meta39050;
+var _38900__$1 = this;
+return self__.meta38899;
 }));
 
-(emmy.calculus.frame.t_emmy$calculus$frame39049.prototype.emmy$calculus$frame$IFrame$ = cljs.core.PROTOCOL_SENTINEL);
+(emmy.calculus.frame.t_emmy$calculus$frame38898.prototype.emmy$calculus$frame$IFrame$ = cljs.core.PROTOCOL_SENTINEL);
 
-(emmy.calculus.frame.t_emmy$calculus$frame39049.prototype.emmy$calculus$frame$IFrame$ancestor_frame$arity$1 = (function (_){
+(emmy.calculus.frame.t_emmy$calculus$frame38898.prototype.emmy$calculus$frame$IFrame$ancestor_frame$arity$1 = (function (_){
 var self__ = this;
 var ___$1 = this;
 return self__.ancestor_frame;
 }));
 
-(emmy.calculus.frame.t_emmy$calculus$frame39049.prototype.emmy$calculus$frame$IFrame$frame_name$arity$1 = (function (_){
+(emmy.calculus.frame.t_emmy$calculus$frame38898.prototype.emmy$calculus$frame$IFrame$frame_name$arity$1 = (function (_){
 var self__ = this;
 var ___$1 = this;
 return self__.name;
 }));
 
-(emmy.calculus.frame.t_emmy$calculus$frame39049.prototype.emmy$calculus$frame$IFrame$params$arity$1 = (function (_){
+(emmy.calculus.frame.t_emmy$calculus$frame38898.prototype.emmy$calculus$frame$IFrame$params$arity$1 = (function (_){
 var self__ = this;
 var ___$1 = this;
 return self__.params;
 }));
 
-(emmy.calculus.frame.t_emmy$calculus$frame39049.prototype.emmy$calculus$frame$IFrame$coords__GT_event$arity$2 = (function (this$,coords){
+(emmy.calculus.frame.t_emmy$calculus$frame38898.prototype.emmy$calculus$frame$IFrame$coords__GT_event$arity$2 = (function (this$,coords){
 var self__ = this;
 var this$__$1 = this;
 if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(emmy.calculus.frame.frame_owner(coords),this$__$1)){
@@ -251,8 +251,8 @@ if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(emmy.calculus.frame.frame_owner(
 throw (new Error("Assert failed: (= (frame-owner coords) this)"));
 }
 
-var event = (function (){var fexpr__39102 = (self__.c__GT_e.cljs$core$IFn$_invoke$arity$3 ? self__.c__GT_e.cljs$core$IFn$_invoke$arity$3(self__.ancestor_frame,this$__$1,self__.params) : self__.c__GT_e.call(null,self__.ancestor_frame,this$__$1,self__.params));
-return (fexpr__39102.cljs$core$IFn$_invoke$arity$1 ? fexpr__39102.cljs$core$IFn$_invoke$arity$1(coords) : fexpr__39102.call(null,coords));
+var event = (function (){var fexpr__38902 = (self__.c__GT_e.cljs$core$IFn$_invoke$arity$3 ? self__.c__GT_e.cljs$core$IFn$_invoke$arity$3(self__.ancestor_frame,this$__$1,self__.params) : self__.c__GT_e.call(null,self__.ancestor_frame,this$__$1,self__.params));
+return (fexpr__38902.cljs$core$IFn$_invoke$arity$1 ? fexpr__38902.cljs$core$IFn$_invoke$arity$1(coords) : fexpr__38902.call(null,coords));
 })();
 if(cljs.core.truth_(emmy.calculus.frame.event_QMARK_(event))){
 } else {
@@ -262,7 +262,7 @@ throw (new Error("Assert failed: (event? event)"));
 return event;
 }));
 
-(emmy.calculus.frame.t_emmy$calculus$frame39049.prototype.emmy$calculus$frame$IFrame$event__GT_coords$arity$2 = (function (this$,event){
+(emmy.calculus.frame.t_emmy$calculus$frame38898.prototype.emmy$calculus$frame$IFrame$event__GT_coords$arity$2 = (function (this$,event){
 var self__ = this;
 var this$__$1 = this;
 if(cljs.core.truth_(emmy.calculus.frame.event_QMARK_(event))){
@@ -270,8 +270,8 @@ if(cljs.core.truth_(emmy.calculus.frame.event_QMARK_(event))){
 throw (new Error("Assert failed: (event? event)"));
 }
 
-var coords = (function (){var fexpr__39105 = (self__.e__GT_c.cljs$core$IFn$_invoke$arity$3 ? self__.e__GT_c.cljs$core$IFn$_invoke$arity$3(self__.ancestor_frame,this$__$1,self__.params) : self__.e__GT_c.call(null,self__.ancestor_frame,this$__$1,self__.params));
-return (fexpr__39105.cljs$core$IFn$_invoke$arity$1 ? fexpr__39105.cljs$core$IFn$_invoke$arity$1(event) : fexpr__39105.call(null,event));
+var coords = (function (){var fexpr__38903 = (self__.e__GT_c.cljs$core$IFn$_invoke$arity$3 ? self__.e__GT_c.cljs$core$IFn$_invoke$arity$3(self__.ancestor_frame,this$__$1,self__.params) : self__.e__GT_c.call(null,self__.ancestor_frame,this$__$1,self__.params));
+return (fexpr__38903.cljs$core$IFn$_invoke$arity$1 ? fexpr__38903.cljs$core$IFn$_invoke$arity$1(event) : fexpr__38903.call(null,event));
 })();
 if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(emmy.calculus.frame.frame_owner(coords),this$__$1)){
 } else {
@@ -281,23 +281,23 @@ throw (new Error("Assert failed: (= (frame-owner coords) this)"));
 return coords;
 }));
 
-(emmy.calculus.frame.t_emmy$calculus$frame39049.getBasis = (function (){
-return new cljs.core.PersistentVector(null, 7, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"c->e","c->e",366611773,null),new cljs.core.Symbol(null,"e->c","e->c",-1459982439,null),new cljs.core.Symbol(null,"call","call",1120531661,null),new cljs.core.Symbol(null,"name","name",-810760592,null),new cljs.core.Symbol(null,"ancestor-frame","ancestor-frame",-1796645653,null),new cljs.core.Symbol(null,"params","params",-1943919534,null),new cljs.core.Symbol(null,"meta39050","meta39050",-928796361,null)], null);
+(emmy.calculus.frame.t_emmy$calculus$frame38898.getBasis = (function (){
+return new cljs.core.PersistentVector(null, 7, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"c->e","c->e",366611773,null),new cljs.core.Symbol(null,"e->c","e->c",-1459982439,null),new cljs.core.Symbol(null,"call","call",1120531661,null),new cljs.core.Symbol(null,"name","name",-810760592,null),new cljs.core.Symbol(null,"ancestor-frame","ancestor-frame",-1796645653,null),new cljs.core.Symbol(null,"params","params",-1943919534,null),new cljs.core.Symbol(null,"meta38899","meta38899",140909867,null)], null);
 }));
 
-(emmy.calculus.frame.t_emmy$calculus$frame39049.cljs$lang$type = true);
+(emmy.calculus.frame.t_emmy$calculus$frame38898.cljs$lang$type = true);
 
-(emmy.calculus.frame.t_emmy$calculus$frame39049.cljs$lang$ctorStr = "emmy.calculus.frame/t_emmy$calculus$frame39049");
+(emmy.calculus.frame.t_emmy$calculus$frame38898.cljs$lang$ctorStr = "emmy.calculus.frame/t_emmy$calculus$frame38898");
 
-(emmy.calculus.frame.t_emmy$calculus$frame39049.cljs$lang$ctorPrWriter = (function (this__5455__auto__,writer__5456__auto__,opt__5457__auto__){
-return cljs.core._write(writer__5456__auto__,"emmy.calculus.frame/t_emmy$calculus$frame39049");
+(emmy.calculus.frame.t_emmy$calculus$frame38898.cljs$lang$ctorPrWriter = (function (this__5455__auto__,writer__5456__auto__,opt__5457__auto__){
+return cljs.core._write(writer__5456__auto__,"emmy.calculus.frame/t_emmy$calculus$frame38898");
 }));
 
 /**
- * Positional factory function for emmy.calculus.frame/t_emmy$calculus$frame39049.
+ * Positional factory function for emmy.calculus.frame/t_emmy$calculus$frame38898.
  */
-emmy.calculus.frame.__GT_t_emmy$calculus$frame39049 = (function emmy$calculus$frame$__GT_t_emmy$calculus$frame39049(c__GT_e,e__GT_c,call,name,ancestor_frame,params,meta39050){
-return (new emmy.calculus.frame.t_emmy$calculus$frame39049(c__GT_e,e__GT_c,call,name,ancestor_frame,params,meta39050));
+emmy.calculus.frame.__GT_t_emmy$calculus$frame38898 = (function emmy$calculus$frame$__GT_t_emmy$calculus$frame38898(c__GT_e,e__GT_c,call,name,ancestor_frame,params,meta38899){
+return (new emmy.calculus.frame.t_emmy$calculus$frame38898(c__GT_e,e__GT_c,call,name,ancestor_frame,params,meta38899));
 });
 
 
@@ -331,7 +331,7 @@ var emmy$calculus$frame$frame_maker_$_call__2 = (function (name,ancestor_frame){
 return emmy$calculus$frame$frame_maker_$_call.cljs$core$IFn$_invoke$arity$3(name,ancestor_frame,cljs.core.PersistentArrayMap.EMPTY);
 });
 var emmy$calculus$frame$frame_maker_$_call__3 = (function (name,ancestor_frame,params){
-return (new emmy.calculus.frame.t_emmy$calculus$frame39049(c__GT_e,e__GT_c,emmy$calculus$frame$frame_maker_$_call,name,ancestor_frame,params,cljs.core.PersistentArrayMap.EMPTY));
+return (new emmy.calculus.frame.t_emmy$calculus$frame38898(c__GT_e,e__GT_c,emmy$calculus$frame$frame_maker_$_call,name,ancestor_frame,params,cljs.core.PersistentArrayMap.EMPTY));
 });
 emmy$calculus$frame$frame_maker_$_call = function(name,ancestor_frame,params){
 switch(arguments.length){

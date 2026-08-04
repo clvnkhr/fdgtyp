@@ -1,13 +1,13 @@
 {
-  "id": "nested-capture-preflight",
-  "target": "emmy-convert",
+  "id": "spotcheck-cleanups-verified",
+  "target": "emmy-refresh",
   "source": "/Users/calvinkhor/Documents/GitHub/fdgtyp",
-  "revision": "c197592",
-  "startedAt": "2026-08-04T10:26:21.222Z",
+  "revision": "139a199",
+  "startedAt": "2026-08-04T10:44:54.867Z",
   "log": "build.log",
   "status": "succeeded",
   "artifacts": null,
   "workspace": null,
-  "finishedAt": "2026-08-04T10:26:30.316Z",
+  "finishedAt": "2026-08-04T10:47:50.409Z",
   "archive": "previous-1.tar.gz"
 }

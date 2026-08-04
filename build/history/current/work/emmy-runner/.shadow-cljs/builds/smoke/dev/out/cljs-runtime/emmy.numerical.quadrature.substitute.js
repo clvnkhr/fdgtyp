@@ -42,8 +42,8 @@ throw (new Error("Assert failed: (not (and (g/infinite? a) (g/infinite? b)))"));
 }
 
 var f_SINGLEQUOTE_ = (function (t){
-return ((function (){var G__56146 = (1.0 / t);
-return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__56146) : f.call(null,G__56146));
+return ((function (){var G__56157 = (1.0 / t);
+return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__56157) : f.call(null,G__56157));
 })() / (t * t));
 });
 var a_SINGLEQUOTE_ = (cljs.core.truth_(emmy.generic.infinite_QMARK_.cljs$core$IFn$_invoke$arity$1(b))?0.0:(1.0 / b));
@@ -104,8 +104,8 @@ return (a + Math.pow(t,inner_pow));
 return (b - Math.pow(t,inner_pow));
 }));
 var f_SINGLEQUOTE_ = (function (t){
-return (Math.pow(t,gamma_pow) * (function (){var G__56176 = t__GT_t_SINGLEQUOTE_(t);
-return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__56176) : f.call(null,G__56176));
+return (Math.pow(t,gamma_pow) * (function (){var G__56160 = t__GT_t_SINGLEQUOTE_(t);
+return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__56160) : f.call(null,G__56160));
 })());
 });
 return cljs.core.update.cljs$core$IFn$_invoke$arity$3((integrate.cljs$core$IFn$_invoke$arity$4 ? integrate.cljs$core$IFn$_invoke$arity$4(f_SINGLEQUOTE_,a_SINGLEQUOTE_,b_SINGLEQUOTE_,opts) : integrate.call(null,f_SINGLEQUOTE_,a_SINGLEQUOTE_,b_SINGLEQUOTE_,opts)),new cljs.core.Keyword(null,"result","result",1415092211),cljs.core.partial.cljs$core$IFn$_invoke$arity$2(cljs.core._STAR_,inner_pow));
@@ -178,15 +178,15 @@ return emmy$numerical$quadrature$substitute$inverse_sqrt_lower_$_call.cljs$core$
 });
 var emmy$numerical$quadrature$substitute$inverse_sqrt_lower_$_call__4 = (function (f,a,b,opts){
 var f_SINGLEQUOTE_ = (function (t){
-return (t * (function (){var G__56196 = (a + (t * t));
-return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__56196) : f.call(null,G__56196));
+return (t * (function (){var G__56161 = (a + (t * t));
+return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__56161) : f.call(null,G__56161));
 })());
 });
-return cljs.core.update.cljs$core$IFn$_invoke$arity$3((function (){var G__56197 = f_SINGLEQUOTE_;
-var G__56198 = (0);
-var G__56199 = Math.sqrt((b - a));
-var G__56200 = opts;
-return (integrate.cljs$core$IFn$_invoke$arity$4 ? integrate.cljs$core$IFn$_invoke$arity$4(G__56197,G__56198,G__56199,G__56200) : integrate.call(null,G__56197,G__56198,G__56199,G__56200));
+return cljs.core.update.cljs$core$IFn$_invoke$arity$3((function (){var G__56162 = f_SINGLEQUOTE_;
+var G__56163 = (0);
+var G__56164 = Math.sqrt((b - a));
+var G__56165 = opts;
+return (integrate.cljs$core$IFn$_invoke$arity$4 ? integrate.cljs$core$IFn$_invoke$arity$4(G__56162,G__56163,G__56164,G__56165) : integrate.call(null,G__56162,G__56163,G__56164,G__56165));
 })(),new cljs.core.Keyword(null,"result","result",1415092211),cljs.core.partial.cljs$core$IFn$_invoke$arity$2(cljs.core._STAR_,(2)));
 });
 emmy$numerical$quadrature$substitute$inverse_sqrt_lower_$_call = function(f,a,b,opts){
@@ -219,15 +219,15 @@ return emmy$numerical$quadrature$substitute$inverse_sqrt_upper_$_call.cljs$core$
 });
 var emmy$numerical$quadrature$substitute$inverse_sqrt_upper_$_call__4 = (function (f,a,b,opts){
 var f_SINGLEQUOTE_ = (function (t){
-return (t * (function (){var G__56218 = (b - (t * t));
-return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__56218) : f.call(null,G__56218));
+return (t * (function (){var G__56166 = (b - (t * t));
+return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__56166) : f.call(null,G__56166));
 })());
 });
-return cljs.core.update.cljs$core$IFn$_invoke$arity$3((function (){var G__56219 = f_SINGLEQUOTE_;
-var G__56220 = (0);
-var G__56221 = Math.sqrt((b - a));
-var G__56222 = opts;
-return (integrate.cljs$core$IFn$_invoke$arity$4 ? integrate.cljs$core$IFn$_invoke$arity$4(G__56219,G__56220,G__56221,G__56222) : integrate.call(null,G__56219,G__56220,G__56221,G__56222));
+return cljs.core.update.cljs$core$IFn$_invoke$arity$3((function (){var G__56167 = f_SINGLEQUOTE_;
+var G__56168 = (0);
+var G__56169 = Math.sqrt((b - a));
+var G__56170 = opts;
+return (integrate.cljs$core$IFn$_invoke$arity$4 ? integrate.cljs$core$IFn$_invoke$arity$4(G__56167,G__56168,G__56169,G__56170) : integrate.call(null,G__56167,G__56168,G__56169,G__56170));
 })(),new cljs.core.Keyword(null,"result","result",1415092211),cljs.core.partial.cljs$core$IFn$_invoke$arity$2(cljs.core._STAR_,(2)));
 });
 emmy$numerical$quadrature$substitute$inverse_sqrt_upper_$_call = function(f,a,b,opts){
@@ -262,16 +262,16 @@ throw (new Error("Assert failed: (g/infinite? b)"));
 }
 
 var f_SINGLEQUOTE_ = (function (t){
-return ((function (){var G__56241 = (- Math.log(t));
-return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__56241) : f.call(null,G__56241));
+return ((function (){var G__56171 = (- Math.log(t));
+return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__56171) : f.call(null,G__56171));
 })() * ((1) / t));
 });
 var opts__$1 = emmy.numerical.quadrature.common.update_interval(opts,emmy.numerical.quadrature.common.flip);
-var G__56242 = f_SINGLEQUOTE_;
-var G__56243 = (0);
-var G__56244 = Math.exp((- a));
-var G__56245 = opts__$1;
-return (integrate.cljs$core$IFn$_invoke$arity$4 ? integrate.cljs$core$IFn$_invoke$arity$4(G__56242,G__56243,G__56244,G__56245) : integrate.call(null,G__56242,G__56243,G__56244,G__56245));
+var G__56172 = f_SINGLEQUOTE_;
+var G__56173 = (0);
+var G__56174 = Math.exp((- a));
+var G__56175 = opts__$1;
+return (integrate.cljs$core$IFn$_invoke$arity$4 ? integrate.cljs$core$IFn$_invoke$arity$4(G__56172,G__56173,G__56174,G__56175) : integrate.call(null,G__56172,G__56173,G__56174,G__56175));
 });
 emmy$numerical$quadrature$substitute$exponential_upper_$_call = function(f,a,b,opts){
 switch(arguments.length){

@@ -12,8 +12,8 @@ emmy.util.logic._STAR_log_assumptions_QMARK__STAR_ = true;
  *   that this is possible, and fail if it's provably false.
  */
 emmy.util.logic.assume_BANG_ = (function emmy$util$logic$assume_BANG_(var_args){
-var G__36767 = arguments.length;
-switch (G__36767) {
+var G__36620 = arguments.length;
+switch (G__36620) {
 case 2:
 return emmy.util.logic.assume_BANG_.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 

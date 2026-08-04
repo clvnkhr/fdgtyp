@@ -1271,13 +1271,13 @@
     "backgroundSetup": false,
     "prerequisiteIds": [],
     "definitions": [],
-    "capturesResult": true,
+    "capturesResult": false,
     "executable": true,
     "smokeEligible": false,
     "forms": [
       {
         "code": "(series:for-each print-expression\n                 (((exp (* 't circular)) (chart R2-rect)) ((point R2-rect) (up 1 0)))\n                 6)",
-        "capturesResult": true
+        "capturesResult": false
       }
     ],
     "codePath": "generated/chapter003/010.cljs",
@@ -2987,7 +2987,7 @@
     "smokeEligible": true,
     "forms": [
       {
-        "code": "(simplify (((- ((Lie-derivative V) (d theta)) (d ((Lie-derivative V) theta))) X Y) R3-rect-point)\n          ;; => 0\n)",
+        "code": "(simplify (((- ((Lie-derivative V) (d theta)) (d ((Lie-derivative V) theta))) X Y) R3-rect-point))",
         "capturesResult": true
       }
     ],
@@ -3011,7 +3011,7 @@
     "smokeEligible": true,
     "forms": [
       {
-        "code": "(simplify (((- ((Lie-derivative V) (d omega)) (d ((Lie-derivative V) omega))) X Y Z) R3-rect-point)\n          ;; => 0\n)",
+        "code": "(simplify (((- ((Lie-derivative V) (d omega)) (d ((Lie-derivative V) omega))) X Y Z) R3-rect-point))",
         "capturesResult": true
       }
     ],
@@ -3035,7 +3035,7 @@
     "smokeEligible": true,
     "forms": [
       {
-        "code": "(simplify\n  ((((- (commutator (Lie-derivative X) (Lie-derivative Y)) (Lie-derivative (commutator X Y))) theta)\n     Z)\n    R3-rect-point)\n  ;; => 0\n)",
+        "code": "(simplify\n  ((((- (commutator (Lie-derivative X) (Lie-derivative Y)) (Lie-derivative (commutator X Y))) theta)\n     Z)\n    R3-rect-point))",
         "capturesResult": true
       }
     ],
@@ -3059,7 +3059,7 @@
     "smokeEligible": true,
     "forms": [
       {
-        "code": "(simplify\n  ((((- (commutator (Lie-derivative X) (Lie-derivative Y)) (Lie-derivative (commutator X Y))) omega)\n     Z\n     V)\n    R3-rect-point)\n  ;; => 0\n)",
+        "code": "(simplify\n  ((((- (commutator (Lie-derivative X) (Lie-derivative Y)) (Lie-derivative (commutator X Y))) omega)\n     Z\n     V)\n    R3-rect-point))",
         "capturesResult": true
       }
     ],
@@ -3104,13 +3104,13 @@
     "backgroundSetup": false,
     "prerequisiteIds": [],
     "definitions": [],
-    "capturesResult": true,
+    "capturesResult": false,
     "executable": true,
     "smokeEligible": false,
     "forms": [
       {
         "code": "(series:for-each print-expression\n                 ((((exp (* 'a (Lie-derivative Jz))) d:dy)\n                    (literal-manifold-function 'f-rect R3-rect))\n                   ((point R3-rect) (up 1 0 0)))\n                 5)",
-        "capturesResult": true
+        "capturesResult": false
       }
     ],
     "codePath": "generated/chapter007/011.cljs",
@@ -3888,7 +3888,7 @@
     "smokeEligible": true,
     "forms": [
       {
-        "code": "(show-expression\n  (((Lagrange-equations Lsphere) (up (literal-function 'alpha) (literal-function 'beta))) 't))",
+        "code": "(simplify (show-expression (((Lagrange-equations Lsphere)\n                              (up (literal-function 'alpha) (literal-function 'beta)))\n                             't)))",
         "capturesResult": true
       }
     ],
@@ -4492,13 +4492,13 @@
     "backgroundSetup": false,
     "prerequisiteIds": [],
     "definitions": [],
-    "capturesResult": true,
+    "capturesResult": false,
     "executable": true,
     "smokeEligible": true,
     "forms": [
       {
         "code": "(for-each (fn [x]\n            (for-each (fn [y]\n                        (print-expression\n                          (simplify ((((torsion-vector (covariant-derivative sphere-Cartan)) x y)\n                                       (literal-manifold-function 'f S2-spherical))\n                                      ((point S2-spherical) (up 'theta0 'phi0))))))\n                      (list d:dtheta d:dphi)))\n          (list d:dtheta d:dphi))",
-        "capturesResult": true
+        "capturesResult": false
       }
     ],
     "codePath": "generated/chapter008/019.cljs",
@@ -5640,22 +5640,26 @@
     "sourceHash": "53a0eb275025cb9cb615fb145795ed9e56e8f7582a1424bf0c529947ba02a070",
     "backgroundSetup": false,
     "prerequisiteIds": [],
-    "definitions": [],
-    "capturesResult": true,
+    "definitions": [
+      "spacetime",
+      "spacetime-rect",
+      "spacetime-sphere"
+    ],
+    "capturesResult": false,
     "executable": true,
     "smokeEligible": true,
     "forms": [
       {
-        "code": "(show spacetime)",
-        "capturesResult": true
+        "code": "(def spacetime emmy.env/spacetime)",
+        "capturesResult": false
       },
       {
-        "code": "(show spacetime-rect)",
-        "capturesResult": true
+        "code": "(def spacetime-rect emmy.env/spacetime-rect)",
+        "capturesResult": false
       },
       {
-        "code": "(show spacetime-sphere)",
-        "capturesResult": true
+        "code": "(def spacetime-sphere emmy.env/spacetime-sphere)",
+        "capturesResult": false
       }
     ],
     "codePath": "generated/chapter009/024.cljs",
@@ -7938,7 +7942,7 @@
     "smokeEligible": true,
     "forms": [
       {
-        "code": "(defn factorial [n] (if (= n 0) 1 (* n (factorial (- n 1)))))",
+        "code": "(defn factorial [n] (if (= n 0) 1 (* (bigint n) (factorial (- n 1)))))",
         "capturesResult": false
       },
       {
@@ -7970,11 +7974,11 @@
     "smokeEligible": true,
     "forms": [
       {
-        "code": "(defn f\n  [radius]\n  (let [area (* 4 pi (square radius)) volume (* (/ 4 3) pi (cube radius))] (/ volume area)))",
+        "code": "(defn f\n  [radius]\n  ;; Keep pi symbolic so the common factor cancels before numerical evaluation.\n  (let [pi 'pi area (* 4 pi (square radius)) volume (* (/ 4 3) pi (cube radius))] (/ volume area)))",
         "capturesResult": false
       },
       {
-        "code": "(f 3)",
+        "code": "(simplify (f 3))",
         "capturesResult": true
       }
     ],
@@ -8648,6 +8652,14 @@
       },
       {
         "code": "(simplify (h (up 'x 'y)))",
+        "capturesResult": true
+      },
+      {
+        "code": "(simplify ((D g) 'x 'y))",
+        "capturesResult": true
+      },
+      {
+        "code": "(simplify ((D h) (up 'x 'y)))",
         "capturesResult": true
       }
     ],

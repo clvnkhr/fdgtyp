@@ -544,8 +544,8 @@ return (new cljs.core.List(null,new cljs.core.Symbol(null,"acos","acos",35374176
 }
 });
 emmy.numsymb.atan = (function emmy$numsymb$atan(var_args){
-var G__36877 = arguments.length;
-switch (G__36877) {
+var G__36860 = arguments.length;
+switch (G__36860) {
 case 1:
 return emmy.numsymb.atan.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -1064,14 +1064,14 @@ return emmy.numsymb.sym_COLON__EQ_.cljs$core$IFn$_invoke$arity$2((arguments[(0)]
 break;
 default:
 var args_arr__5922__auto__ = [];
-var len__5897__auto___36934 = arguments.length;
-var i__5898__auto___36935 = (0);
+var len__5897__auto___36911 = arguments.length;
+var i__5898__auto___36912 = (0);
 while(true){
-if((i__5898__auto___36935 < len__5897__auto___36934)){
-args_arr__5922__auto__.push((arguments[i__5898__auto___36935]));
+if((i__5898__auto___36912 < len__5897__auto___36911)){
+args_arr__5922__auto__.push((arguments[i__5898__auto___36912]));
 
-var G__36936 = (i__5898__auto___36935 + (1));
-i__5898__auto___36935 = G__36936;
+var G__36913 = (i__5898__auto___36912 + (1));
+i__5898__auto___36912 = G__36913;
 continue;
 } else {
 }

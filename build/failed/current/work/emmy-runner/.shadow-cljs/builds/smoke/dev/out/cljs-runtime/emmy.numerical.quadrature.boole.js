@@ -15,8 +15,8 @@ goog.provide('emmy.numerical.quadrature.boole');
  *   If supplied, `:n` (default 1) specifies the initial number of slices to use.
  */
 emmy.numerical.quadrature.boole.boole_sequence = (function emmy$numerical$quadrature$boole$boole_sequence(var_args){
-var G__56093 = arguments.length;
-switch (G__56093) {
+var G__56092 = arguments.length;
+switch (G__56092) {
 case 3:
 return emmy.numerical.quadrature.boole.boole_sequence.cljs$core$IFn$_invoke$arity$3((arguments[(0)]),(arguments[(1)]),(arguments[(2)]));
 

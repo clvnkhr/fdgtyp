@@ -21,8 +21,8 @@ goog.provide('emmy.numerical.quadrature.milne');
  *   function before calling [[milne-sequence]].
  */
 emmy.numerical.quadrature.milne.milne_sequence = (function emmy$numerical$quadrature$milne$milne_sequence(var_args){
-var G__56390 = arguments.length;
-switch (G__56390) {
+var G__56602 = arguments.length;
+switch (G__56602) {
 case 3:
 return emmy.numerical.quadrature.milne.milne_sequence.cljs$core$IFn$_invoke$arity$3((arguments[(0)]),(arguments[(1)]),(arguments[(2)]));
 
@@ -41,11 +41,11 @@ throw (new Error(["Invalid arity: ",arguments.length].join("")));
 return emmy.numerical.quadrature.milne.milne_sequence.cljs$core$IFn$_invoke$arity$4(f,a,b,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"n","n",562130025),(1)], null));
 }));
 
-(emmy.numerical.quadrature.milne.milne_sequence.cljs$core$IFn$_invoke$arity$4 = (function (f,a,b,p__56414){
-var map__56415 = p__56414;
-var map__56415__$1 = cljs.core.__destructure_map(map__56415);
-var opts = map__56415__$1;
-var n = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__56415__$1,new cljs.core.Keyword(null,"n","n",562130025),(1));
+(emmy.numerical.quadrature.milne.milne_sequence.cljs$core$IFn$_invoke$arity$4 = (function (f,a,b,p__56633){
+var map__56634 = p__56633;
+var map__56634__$1 = cljs.core.__destructure_map(map__56634);
+var opts = map__56634__$1;
+var n = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__56634__$1,new cljs.core.Keyword(null,"n","n",562130025),(1));
 if(typeof n === 'number'){
 } else {
 throw (new Error("Assert failed: (number? n)"));

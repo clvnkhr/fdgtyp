@@ -57,8 +57,8 @@ return emmy.operator.make_operator.cljs$core$IFn$_invoke$arity$3(f,name,context)
  */
 emmy.calculus.vector_field.vector_field_procedure = (function emmy$calculus$vector_field$vector_field_procedure(component_fns,coordinate_system){
 return (function (f){
-return emmy.function$.compose.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2((function (){var G__47365 = emmy.function$.compose.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([f,emmy.calculus.manifold.point(coordinate_system)], 0));
-return (emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1(G__47365) : emmy.calculus.derivative.D.call(null,G__47365));
+return emmy.function$.compose.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2((function (){var G__47366 = emmy.function$.compose.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([f,emmy.calculus.manifold.point(coordinate_system)], 0));
+return (emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1(G__47366) : emmy.calculus.derivative.D.call(null,G__47366));
 })(),component_fns),emmy.calculus.manifold.chart(coordinate_system)], 0));
 });
 });
@@ -129,8 +129,8 @@ if(emmy.calculus.vector_field.vector_field_QMARK_(vf)){
 throw (new Error("Assert failed: (vector-field? vf)"));
 }
 
-return emmy.function$.compose.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(function (){var G__47369 = emmy.calculus.manifold.chart(coordinate_system);
-return (vf.cljs$core$IFn$_invoke$arity$1 ? vf.cljs$core$IFn$_invoke$arity$1(G__47369) : vf.call(null,G__47369));
+return emmy.function$.compose.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(function (){var G__47370 = emmy.calculus.manifold.chart(coordinate_system);
+return (vf.cljs$core$IFn$_invoke$arity$1 ? vf.cljs$core$IFn$_invoke$arity$1(G__47370) : vf.call(null,G__47370));
 })(),emmy.calculus.manifold.point(coordinate_system)], 0));
 });
 /**

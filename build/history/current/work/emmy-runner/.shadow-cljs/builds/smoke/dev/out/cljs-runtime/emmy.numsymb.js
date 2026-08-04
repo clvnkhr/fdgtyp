@@ -544,8 +544,8 @@ return (new cljs.core.List(null,new cljs.core.Symbol(null,"acos","acos",35374176
 }
 });
 emmy.numsymb.atan = (function emmy$numsymb$atan(var_args){
-var G__36760 = arguments.length;
-switch (G__36760) {
+var G__36795 = arguments.length;
+switch (G__36795) {
 case 1:
 return emmy.numsymb.atan.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -806,9 +806,9 @@ return and__5160__auto____$1;
 return and__5160__auto__;
 }
 })())){
-var G__36779 = cljs.core.first((emmy.numsymb.operands.cljs$core$IFn$_invoke$arity$1 ? emmy.numsymb.operands.cljs$core$IFn$_invoke$arity$1(b) : emmy.numsymb.operands.call(null,b)));
-var G__36780 = cljs.core.quot(e,(2));
-return (emmy.numsymb.expt.cljs$core$IFn$_invoke$arity$2 ? emmy.numsymb.expt.cljs$core$IFn$_invoke$arity$2(G__36779,G__36780) : emmy.numsymb.expt.call(null,G__36779,G__36780));
+var G__36834 = cljs.core.first((emmy.numsymb.operands.cljs$core$IFn$_invoke$arity$1 ? emmy.numsymb.operands.cljs$core$IFn$_invoke$arity$1(b) : emmy.numsymb.operands.call(null,b)));
+var G__36835 = cljs.core.quot(e,(2));
+return (emmy.numsymb.expt.cljs$core$IFn$_invoke$arity$2 ? emmy.numsymb.expt.cljs$core$IFn$_invoke$arity$2(G__36834,G__36835) : emmy.numsymb.expt.call(null,G__36834,G__36835));
 } else {
 if(cljs.core.truth_((function (){var and__5160__auto__ = emmy.numsymb.expt_QMARK_(b);
 if(cljs.core.truth_(and__5160__auto__)){
@@ -817,14 +817,14 @@ return ((emmy.value.number_QMARK_(cljs.core.second((emmy.numsymb.operands.cljs$c
 return and__5160__auto__;
 }
 })())){
-var G__36782 = cljs.core.first((emmy.numsymb.operands.cljs$core$IFn$_invoke$arity$1 ? emmy.numsymb.operands.cljs$core$IFn$_invoke$arity$1(b) : emmy.numsymb.operands.call(null,b)));
-var G__36783 = (cljs.core.second((emmy.numsymb.operands.cljs$core$IFn$_invoke$arity$1 ? emmy.numsymb.operands.cljs$core$IFn$_invoke$arity$1(b) : emmy.numsymb.operands.call(null,b))) * e);
-return (emmy.numsymb.expt.cljs$core$IFn$_invoke$arity$2 ? emmy.numsymb.expt.cljs$core$IFn$_invoke$arity$2(G__36782,G__36783) : emmy.numsymb.expt.call(null,G__36782,G__36783));
+var G__36836 = cljs.core.first((emmy.numsymb.operands.cljs$core$IFn$_invoke$arity$1 ? emmy.numsymb.operands.cljs$core$IFn$_invoke$arity$1(b) : emmy.numsymb.operands.call(null,b)));
+var G__36837 = (cljs.core.second((emmy.numsymb.operands.cljs$core$IFn$_invoke$arity$1 ? emmy.numsymb.operands.cljs$core$IFn$_invoke$arity$1(b) : emmy.numsymb.operands.call(null,b))) * e);
+return (emmy.numsymb.expt.cljs$core$IFn$_invoke$arity$2 ? emmy.numsymb.expt.cljs$core$IFn$_invoke$arity$2(G__36836,G__36837) : emmy.numsymb.expt.call(null,G__36836,G__36837));
 } else {
 if((e < (0))){
-return emmy.numsymb.invert((function (){var G__36785 = b;
-var G__36786 = (- e);
-return (emmy.numsymb.expt.cljs$core$IFn$_invoke$arity$2 ? emmy.numsymb.expt.cljs$core$IFn$_invoke$arity$2(G__36785,G__36786) : emmy.numsymb.expt.call(null,G__36785,G__36786));
+return emmy.numsymb.invert((function (){var G__36838 = b;
+var G__36839 = (- e);
+return (emmy.numsymb.expt.cljs$core$IFn$_invoke$arity$2 ? emmy.numsymb.expt.cljs$core$IFn$_invoke$arity$2(G__36838,G__36839) : emmy.numsymb.expt.call(null,G__36838,G__36839));
 })());
 } else {
 return cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol(null,"expt","expt",2123850345,null),null,(1),null)),(new cljs.core.List(null,b,null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,e,null,(1),null))], 0))));
@@ -1048,8 +1048,8 @@ return (new cljs.core.List(null,new cljs.core.Symbol(null,"=","=",-1501502141,nu
 }
 });
 emmy.numsymb.sym_COLON__EQ_ = (function emmy$numsymb$sym_COLON__EQ_(var_args){
-var G__36806 = arguments.length;
-switch (G__36806) {
+var G__36868 = arguments.length;
+switch (G__36868) {
 case 0:
 return emmy.numsymb.sym_COLON__EQ_.cljs$core$IFn$_invoke$arity$0();
 
@@ -1064,14 +1064,14 @@ return emmy.numsymb.sym_COLON__EQ_.cljs$core$IFn$_invoke$arity$2((arguments[(0)]
 break;
 default:
 var args_arr__5922__auto__ = [];
-var len__5897__auto___36905 = arguments.length;
-var i__5898__auto___36906 = (0);
+var len__5897__auto___36919 = arguments.length;
+var i__5898__auto___36920 = (0);
 while(true){
-if((i__5898__auto___36906 < len__5897__auto___36905)){
-args_arr__5922__auto__.push((arguments[i__5898__auto___36906]));
+if((i__5898__auto___36920 < len__5897__auto___36919)){
+args_arr__5922__auto__.push((arguments[i__5898__auto___36920]));
 
-var G__36907 = (i__5898__auto___36906 + (1));
-i__5898__auto___36906 = G__36907;
+var G__36921 = (i__5898__auto___36920 + (1));
+i__5898__auto___36920 = G__36921;
 continue;
 } else {
 }
@@ -1099,10 +1099,10 @@ return emmy.numsymb.sym_COLON_bin_EQ_(x,y);
 (emmy.numsymb.sym_COLON__EQ_.cljs$core$IFn$_invoke$arity$variadic = (function (x,y,more){
 var xs = cljs.core.cons(x,cljs.core.cons(y,more));
 var pairs = cljs.core.partition.cljs$core$IFn$_invoke$arity$3((2),(1),xs);
-return cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (acc,p__36807){
-var vec__36808 = p__36807;
-var x__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36808,(0),null);
-var y__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36808,(1),null);
+return cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (acc,p__36870){
+var vec__36872 = p__36870;
+var x__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36872,(0),null);
+var y__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36872,(1),null);
 var temp__5823__auto__ = emmy.numsymb.sym_COLON_bin_EQ_(x__$1,y__$1);
 if(cljs.core.truth_(temp__5823__auto__)){
 var eq = temp__5823__auto__;
@@ -1114,13 +1114,13 @@ return cljs.core.reduced(false);
 }));
 
 /** @this {Function} */
-(emmy.numsymb.sym_COLON__EQ_.cljs$lang$applyTo = (function (seq36803){
-var G__36804 = cljs.core.first(seq36803);
-var seq36803__$1 = cljs.core.next(seq36803);
-var G__36805 = cljs.core.first(seq36803__$1);
-var seq36803__$2 = cljs.core.next(seq36803__$1);
+(emmy.numsymb.sym_COLON__EQ_.cljs$lang$applyTo = (function (seq36865){
+var G__36866 = cljs.core.first(seq36865);
+var seq36865__$1 = cljs.core.next(seq36865);
+var G__36867 = cljs.core.first(seq36865__$1);
+var seq36865__$2 = cljs.core.next(seq36865__$1);
 var self__5882__auto__ = this;
-return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__36804,G__36805,seq36803__$2);
+return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__36866,G__36867,seq36865__$2);
 }));
 
 (emmy.numsymb.sym_COLON__EQ_.cljs$lang$maxFixedArity = (2));
@@ -1139,10 +1139,10 @@ return emmy.generic.one_QMARK_.cljs$core$IFn$_invoke$arity$1(x);
 return (new cljs.core.List(null,new cljs.core.Symbol(null,"=","=",-1501502141,null),(new cljs.core.List(null,(1),(new cljs.core.List(null,x,null,(1),null)),(2),null)),(3),null));
 }
 });
-emmy.numsymb.symbolic_operator_table = cljs.core.PersistentHashMap.fromArrays([new cljs.core.Symbol(null,"remainder","remainder",-1608248897,null),new cljs.core.Symbol(null,"and","and",668631710,null),new cljs.core.Symbol(null,"csch","csch",-1950330545,null),new cljs.core.Symbol(null,"make-polar","make-polar",2147326621,null),new cljs.core.Symbol(null,"cube","cube",138920159,null),new cljs.core.Symbol(null,"sinh","sinh",-990423302,null),new cljs.core.Symbol(null,"sin","sin",1721439389,null),new cljs.core.Symbol(null,"tan","tan",-1380825876,null),new cljs.core.Symbol(null,"cos","cos",-1452677493,null),new cljs.core.Symbol(null,"gcd","gcd",1659909537,null),new cljs.core.Symbol(null,"modulo","modulo",725580254,null),new cljs.core.Symbol(null,"/","/",-1371932971,null),new cljs.core.Symbol(null,"abs","abs",1394505050,null),new cljs.core.Symbol(null,"invert","invert",-1100858266,null),new cljs.core.Symbol(null,"dot-product","dot-product",-203055892,null),new cljs.core.Symbol(null,"not","not",1044554643,null),new cljs.core.Symbol(null,"real-part","real-part",-2001752061,null),new cljs.core.Symbol(null,"log","log",45015523,null),new cljs.core.Symbol(null,"=","=",-1501502141,null),new cljs.core.Symbol(null,"cosh","cosh",-1962788142,null),new cljs.core.Symbol(null,"coth","coth",1130257730,null),new cljs.core.Symbol(null,"expt","expt",2123850345,null),new cljs.core.Symbol(null,"fractional-part","fractional-part",-505422086,null),new cljs.core.Symbol(null,"+","+",-740910886,null),new cljs.core.Symbol(null,"sec","sec",60154974,null),new cljs.core.Symbol(null,"negate","negate",337772450,null),new cljs.core.Symbol(null,"sech","sech",-1403979131,null),new cljs.core.Symbol(null,"square","square",-1842001092,null),new cljs.core.Symbol(null,"magnitude","magnitude",-730161547,null),new cljs.core.Symbol(null,"*","*",345799209,null),new cljs.core.Symbol(null,"zero?","zero?",325758897,null),new cljs.core.Symbol(null,"atan","atan",-1026550135,null),new cljs.core.Symbol(null,"make-rectangular","make-rectangular",-1494662174,null),new cljs.core.Symbol(null,"csc","csc",-427853492,null),new cljs.core.Symbol(null,"lcm","lcm",-1699262564,null),new cljs.core.Symbol(null,"acos","acos",353741763,null),new cljs.core.Symbol(null,"acot","acot",1103016569,null),new cljs.core.Symbol(null,"floor","floor",-772394748,null),new cljs.core.Symbol(null,"imag-part","imag-part",2028041294,null),new cljs.core.Symbol(null,"-","-",-471816912,null),new cljs.core.Symbol(null,"inner-product","inner-product",-1963110418,null),new cljs.core.Symbol(null,"ceiling","ceiling",-1593475279,null),new cljs.core.Symbol(null,"conjugate","conjugate",-1063123193,null),new cljs.core.Symbol(null,"sqrt","sqrt",370479598,null),new cljs.core.Symbol(null,"asin","asin",-904130570,null),new cljs.core.Symbol(null,"exp","exp",1378825265,null),new cljs.core.Symbol(null,"integer-part","integer-part",-1884537015,null),new cljs.core.Symbol(null,"derivative","derivative",-1233120304,null),new cljs.core.Symbol(null,"tanh","tanh",480481797,null),new cljs.core.Symbol(null,"or","or",1876275696,null),new cljs.core.Symbol(null,"identity?","identity?",-1064576891,null),new cljs.core.Symbol(null,"angle","angle",-1032341515,null),new cljs.core.Symbol(null,"one?","one?",1787102903,null)],[emmy.numsymb.remainder,emmy.util.aggregate.monoid.cljs$core$IFn$_invoke$arity$3(emmy.numsymb.sym_COLON_and,true,cljs.core.false_QMARK_),emmy.numsymb.csch,emmy.numsymb.make_polar,(function (p1__36811_SHARP_){
-return emmy.numsymb.expt(p1__36811_SHARP_,(3));
-}),emmy.numsymb.sinh,emmy.numsymb.sin,emmy.numsymb.tan,emmy.numsymb.cos,emmy.util.aggregate.monoid.cljs$core$IFn$_invoke$arity$2(emmy.numsymb.gcd,(0)),emmy.numsymb.modulo,emmy.util.aggregate.group.cljs$core$IFn$_invoke$arity$5(emmy.numsymb.div,emmy.numsymb.mul,emmy.numsymb.invert,(1),emmy.generic.zero_QMARK_),emmy.numsymb.abs,emmy.numsymb.invert,emmy.numsymb.dot_product,emmy.numsymb.sym_COLON_not,emmy.numsymb.real_part,emmy.numsymb.log,emmy.numsymb.sym_COLON__EQ_,emmy.numsymb.cosh,emmy.numsymb.coth,emmy.numsymb.expt,emmy.numsymb.fractional_part,emmy.util.aggregate.monoid.cljs$core$IFn$_invoke$arity$2(emmy.numsymb.add,(0)),emmy.numsymb.sec,emmy.numsymb.negate,emmy.numsymb.sech,(function (p1__36812_SHARP_){
-return emmy.numsymb.expt(p1__36812_SHARP_,(2));
+emmy.numsymb.symbolic_operator_table = cljs.core.PersistentHashMap.fromArrays([new cljs.core.Symbol(null,"remainder","remainder",-1608248897,null),new cljs.core.Symbol(null,"and","and",668631710,null),new cljs.core.Symbol(null,"csch","csch",-1950330545,null),new cljs.core.Symbol(null,"make-polar","make-polar",2147326621,null),new cljs.core.Symbol(null,"cube","cube",138920159,null),new cljs.core.Symbol(null,"sinh","sinh",-990423302,null),new cljs.core.Symbol(null,"sin","sin",1721439389,null),new cljs.core.Symbol(null,"tan","tan",-1380825876,null),new cljs.core.Symbol(null,"cos","cos",-1452677493,null),new cljs.core.Symbol(null,"gcd","gcd",1659909537,null),new cljs.core.Symbol(null,"modulo","modulo",725580254,null),new cljs.core.Symbol(null,"/","/",-1371932971,null),new cljs.core.Symbol(null,"abs","abs",1394505050,null),new cljs.core.Symbol(null,"invert","invert",-1100858266,null),new cljs.core.Symbol(null,"dot-product","dot-product",-203055892,null),new cljs.core.Symbol(null,"not","not",1044554643,null),new cljs.core.Symbol(null,"real-part","real-part",-2001752061,null),new cljs.core.Symbol(null,"log","log",45015523,null),new cljs.core.Symbol(null,"=","=",-1501502141,null),new cljs.core.Symbol(null,"cosh","cosh",-1962788142,null),new cljs.core.Symbol(null,"coth","coth",1130257730,null),new cljs.core.Symbol(null,"expt","expt",2123850345,null),new cljs.core.Symbol(null,"fractional-part","fractional-part",-505422086,null),new cljs.core.Symbol(null,"+","+",-740910886,null),new cljs.core.Symbol(null,"sec","sec",60154974,null),new cljs.core.Symbol(null,"negate","negate",337772450,null),new cljs.core.Symbol(null,"sech","sech",-1403979131,null),new cljs.core.Symbol(null,"square","square",-1842001092,null),new cljs.core.Symbol(null,"magnitude","magnitude",-730161547,null),new cljs.core.Symbol(null,"*","*",345799209,null),new cljs.core.Symbol(null,"zero?","zero?",325758897,null),new cljs.core.Symbol(null,"atan","atan",-1026550135,null),new cljs.core.Symbol(null,"make-rectangular","make-rectangular",-1494662174,null),new cljs.core.Symbol(null,"csc","csc",-427853492,null),new cljs.core.Symbol(null,"lcm","lcm",-1699262564,null),new cljs.core.Symbol(null,"acos","acos",353741763,null),new cljs.core.Symbol(null,"acot","acot",1103016569,null),new cljs.core.Symbol(null,"floor","floor",-772394748,null),new cljs.core.Symbol(null,"imag-part","imag-part",2028041294,null),new cljs.core.Symbol(null,"-","-",-471816912,null),new cljs.core.Symbol(null,"inner-product","inner-product",-1963110418,null),new cljs.core.Symbol(null,"ceiling","ceiling",-1593475279,null),new cljs.core.Symbol(null,"conjugate","conjugate",-1063123193,null),new cljs.core.Symbol(null,"sqrt","sqrt",370479598,null),new cljs.core.Symbol(null,"asin","asin",-904130570,null),new cljs.core.Symbol(null,"exp","exp",1378825265,null),new cljs.core.Symbol(null,"integer-part","integer-part",-1884537015,null),new cljs.core.Symbol(null,"derivative","derivative",-1233120304,null),new cljs.core.Symbol(null,"tanh","tanh",480481797,null),new cljs.core.Symbol(null,"or","or",1876275696,null),new cljs.core.Symbol(null,"identity?","identity?",-1064576891,null),new cljs.core.Symbol(null,"angle","angle",-1032341515,null),new cljs.core.Symbol(null,"one?","one?",1787102903,null)],[emmy.numsymb.remainder,emmy.util.aggregate.monoid.cljs$core$IFn$_invoke$arity$3(emmy.numsymb.sym_COLON_and,true,cljs.core.false_QMARK_),emmy.numsymb.csch,emmy.numsymb.make_polar,(function (p1__36878_SHARP_){
+return emmy.numsymb.expt(p1__36878_SHARP_,(3));
+}),emmy.numsymb.sinh,emmy.numsymb.sin,emmy.numsymb.tan,emmy.numsymb.cos,emmy.util.aggregate.monoid.cljs$core$IFn$_invoke$arity$2(emmy.numsymb.gcd,(0)),emmy.numsymb.modulo,emmy.util.aggregate.group.cljs$core$IFn$_invoke$arity$5(emmy.numsymb.div,emmy.numsymb.mul,emmy.numsymb.invert,(1),emmy.generic.zero_QMARK_),emmy.numsymb.abs,emmy.numsymb.invert,emmy.numsymb.dot_product,emmy.numsymb.sym_COLON_not,emmy.numsymb.real_part,emmy.numsymb.log,emmy.numsymb.sym_COLON__EQ_,emmy.numsymb.cosh,emmy.numsymb.coth,emmy.numsymb.expt,emmy.numsymb.fractional_part,emmy.util.aggregate.monoid.cljs$core$IFn$_invoke$arity$2(emmy.numsymb.add,(0)),emmy.numsymb.sec,emmy.numsymb.negate,emmy.numsymb.sech,(function (p1__36879_SHARP_){
+return emmy.numsymb.expt(p1__36879_SHARP_,(2));
 }),emmy.numsymb.magnitude,emmy.util.aggregate.monoid.cljs$core$IFn$_invoke$arity$3(emmy.numsymb.mul,(1),emmy.generic.zero_QMARK_),emmy.numsymb.sym_COLON_zero_QMARK_,emmy.numsymb.atan,emmy.numsymb.make_rectangular,emmy.numsymb.csc,emmy.util.aggregate.monoid.cljs$core$IFn$_invoke$arity$3(emmy.numsymb.lcm,(1),emmy.generic.zero_QMARK_),emmy.numsymb.acos,emmy.numsymb.acot,emmy.numsymb.floor,emmy.numsymb.imag_part,emmy.util.aggregate.group.cljs$core$IFn$_invoke$arity$4(emmy.numsymb.sub,emmy.numsymb.add,emmy.numsymb.negate,(0)),emmy.numsymb.dot_product,emmy.numsymb.ceiling,emmy.numsymb.conjugate,emmy.numsymb.sqrt,emmy.numsymb.asin,emmy.numsymb.exp,emmy.numsymb.integer_part,emmy.numsymb.derivative,emmy.numsymb.tanh,emmy.util.aggregate.monoid.cljs$core$IFn$_invoke$arity$3(emmy.numsymb.sym_COLON_or,false,cljs.core.true_QMARK_),emmy.numsymb.sym_COLON_one_QMARK_,emmy.numsymb.angle,emmy.numsymb.sym_COLON_one_QMARK_]);
 /**
  * Given a symbol (like `'+`) returns an applicable operator if there is a

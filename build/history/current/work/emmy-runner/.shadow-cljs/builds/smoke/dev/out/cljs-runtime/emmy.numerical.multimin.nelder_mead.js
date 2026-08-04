@@ -15,19 +15,19 @@ return cljs.core.mapv.cljs$core$IFn$_invoke$arity$3(cljs.core._,l,r);
  * multiply vector v by scalar s.
  */
 emmy.numerical.multimin.nelder_mead.v_STAR_ = (function emmy$numerical$multimin$nelder_mead$v_STAR_(s,v){
-return cljs.core.mapv.cljs$core$IFn$_invoke$arity$2((function (p1__48838_SHARP_){
-return (s * p1__48838_SHARP_);
+return cljs.core.mapv.cljs$core$IFn$_invoke$arity$2((function (p1__48843_SHARP_){
+return (s * p1__48843_SHARP_);
 }),v);
 });
 /**
  * Takes an n-vector x0 and returns a list of n+1 n-vectors, of which x0 is the
  *   first, and the remainder are formed by perturbing each coordinate in turn.
  */
-emmy.numerical.multimin.nelder_mead.initial_simplex = (function emmy$numerical$multimin$nelder_mead$initial_simplex(x0,p__48839){
-var map__48840 = p__48839;
-var map__48840__$1 = cljs.core.__destructure_map(map__48840);
-var nonzero_delta = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__48840__$1,new cljs.core.Keyword(null,"nonzero-delta","nonzero-delta",-794646863),0.05);
-var zero_delta = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__48840__$1,new cljs.core.Keyword(null,"zero-delta","zero-delta",-2009573292),2.5E-4);
+emmy.numerical.multimin.nelder_mead.initial_simplex = (function emmy$numerical$multimin$nelder_mead$initial_simplex(x0,p__48844){
+var map__48845 = p__48844;
+var map__48845__$1 = cljs.core.__destructure_map(map__48845);
+var nonzero_delta = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__48845__$1,new cljs.core.Keyword(null,"nonzero-delta","nonzero-delta",-794646863),0.05);
+var zero_delta = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__48845__$1,new cljs.core.Keyword(null,"zero-delta","zero-delta",-2009573292),2.5E-4);
 var x0__$1 = cljs.core.vec(x0);
 var scale = (nonzero_delta + (1));
 var f = (function (i,xi){
@@ -40,14 +40,14 @@ return cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVect
  * Returns the absolute value of the distance of the individual coordinate in any
  *   simplex farthest from its corresponding point in x0.
  */
-emmy.numerical.multimin.nelder_mead.sup_norm = (function emmy$numerical$multimin$nelder_mead$sup_norm(p__48844){
-var vec__48845 = p__48844;
-var x0 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__48845,(0),null);
-var simplex = vec__48845;
-var coords = ((cljs.core.sequential_QMARK_(x0))?cljs.core.mapcat.cljs$core$IFn$_invoke$arity$variadic((function (p1__48842_SHARP_){
-return emmy.numerical.multimin.nelder_mead.v_(p1__48842_SHARP_,x0);
-}),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([simplex], 0)):cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__48843_SHARP_){
-return (p1__48843_SHARP_ - x0);
+emmy.numerical.multimin.nelder_mead.sup_norm = (function emmy$numerical$multimin$nelder_mead$sup_norm(p__48849){
+var vec__48850 = p__48849;
+var x0 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__48850,(0),null);
+var simplex = vec__48850;
+var coords = ((cljs.core.sequential_QMARK_(x0))?cljs.core.mapcat.cljs$core$IFn$_invoke$arity$variadic((function (p1__48847_SHARP_){
+return emmy.numerical.multimin.nelder_mead.v_(p1__48847_SHARP_,x0);
+}),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([simplex], 0)):cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__48848_SHARP_){
+return (p1__48848_SHARP_ - x0);
 }),simplex));
 return cljs.core.reduce.cljs$core$IFn$_invoke$arity$2(cljs.core.max,cljs.core.map.cljs$core$IFn$_invoke$arity$2(emmy.util.compute_abs,coords));
 });
@@ -70,8 +70,8 @@ return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(x) : f
  *   Dimension must == the length of each element in the simplex.
  */
 emmy.numerical.multimin.nelder_mead.sort_by_f = (function emmy$numerical$multimin$nelder_mead$sort_by_f(var_args){
-var G__48853 = arguments.length;
-switch (G__48853) {
+var G__48854 = arguments.length;
+switch (G__48854) {
 case 2:
 return emmy.numerical.multimin.nelder_mead.sort_by_f.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -105,11 +105,11 @@ return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMP
  *   `:adaptive?` controls the set of defaults. If true, they're generated using
  *   the supplied dimension; else, they're static.
  */
-emmy.numerical.multimin.nelder_mead.step_defaults = (function emmy$numerical$multimin$nelder_mead$step_defaults(dimension,p__48859){
-var map__48860 = p__48859;
-var map__48860__$1 = cljs.core.__destructure_map(map__48860);
-var m = map__48860__$1;
-var adaptive_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__48860__$1,new cljs.core.Keyword(null,"adaptive?","adaptive?",-259268570),true);
+emmy.numerical.multimin.nelder_mead.step_defaults = (function emmy$numerical$multimin$nelder_mead$step_defaults(dimension,p__48875){
+var map__48876 = p__48875;
+var map__48876__$1 = cljs.core.__destructure_map(map__48876);
+var m = map__48876__$1;
+var adaptive_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__48876__$1,new cljs.core.Keyword(null,"adaptive?","adaptive?",-259268570),true);
 var base = (cljs.core.truth_(adaptive_QMARK_)?new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null,"alpha","alpha",-1574982441),1.0,new cljs.core.Keyword(null,"beta","beta",455605892),(1.0 + (2.0 / dimension)),new cljs.core.Keyword(null,"gamma","gamma",1883969687),(0.75 - ((1) / (2.0 * dimension))),new cljs.core.Keyword(null,"sigma","sigma",-63715703),(1.0 - ((1) / dimension))], null):new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null,"alpha","alpha",-1574982441),1.0,new cljs.core.Keyword(null,"beta","beta",455605892),2.0,new cljs.core.Keyword(null,"gamma","gamma",1883969687),0.5,new cljs.core.Keyword(null,"sigma","sigma",-63715703),0.5], null));
 return cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([base,cljs.core.select_keys(m,new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"alpha","alpha",-1574982441),new cljs.core.Keyword(null,"beta","beta",455605892),new cljs.core.Keyword(null,"gamma","gamma",1883969687),new cljs.core.Keyword(null,"sigma","sigma",-63715703)], null))], 0));
 });
@@ -130,12 +130,12 @@ return cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.c
  *   
  */
 emmy.numerical.multimin.nelder_mead.step_fn = (function emmy$numerical$multimin$nelder_mead$step_fn(f,dimension,opts){
-var map__48875 = emmy.numerical.multimin.nelder_mead.step_defaults(dimension,opts);
-var map__48875__$1 = cljs.core.__destructure_map(map__48875);
-var alpha = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__48875__$1,new cljs.core.Keyword(null,"alpha","alpha",-1574982441));
-var beta = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__48875__$1,new cljs.core.Keyword(null,"beta","beta",455605892));
-var sigma = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__48875__$1,new cljs.core.Keyword(null,"sigma","sigma",-63715703));
-var gamma = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__48875__$1,new cljs.core.Keyword(null,"gamma","gamma",1883969687));
+var map__48890 = emmy.numerical.multimin.nelder_mead.step_defaults(dimension,opts);
+var map__48890__$1 = cljs.core.__destructure_map(map__48890);
+var alpha = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__48890__$1,new cljs.core.Keyword(null,"alpha","alpha",-1574982441));
+var beta = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__48890__$1,new cljs.core.Keyword(null,"beta","beta",455605892));
+var sigma = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__48890__$1,new cljs.core.Keyword(null,"sigma","sigma",-63715703));
+var gamma = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__48890__$1,new cljs.core.Keyword(null,"gamma","gamma",1883969687));
 var centroid_pt = (function emmy$numerical$multimin$nelder_mead$step_fn_$_centroid_pt(simplex){
 return emmy.numerical.multimin.nelder_mead.v_STAR_(((1) / dimension),cljs.core.reduce.cljs$core$IFn$_invoke$arity$2(emmy.numerical.multimin.nelder_mead.v_PLUS_,cljs.core.pop(simplex)));
 });
@@ -151,23 +151,23 @@ return emmy.numerical.multimin.nelder_mead.v_(emmy.numerical.multimin.nelder_mea
 var contract = (function emmy$numerical$multimin$nelder_mead$step_fn_$_contract(simplex,centroid){
 return emmy.numerical.multimin.nelder_mead.v_PLUS_(emmy.numerical.multimin.nelder_mead.v_STAR_(((1) - gamma),centroid),emmy.numerical.multimin.nelder_mead.v_STAR_(gamma,cljs.core.peek(simplex)));
 });
-var shrink = (function emmy$numerical$multimin$nelder_mead$step_fn_$_shrink(p__48892){
-var vec__48893 = p__48892;
-var seq__48894 = cljs.core.seq(vec__48893);
-var first__48895 = cljs.core.first(seq__48894);
-var seq__48894__$1 = cljs.core.next(seq__48894);
-var s0 = first__48895;
-var rest = seq__48894__$1;
-var scale_toward_s0 = (function (p1__48861_SHARP_){
-return emmy.numerical.multimin.nelder_mead.v_PLUS_(s0,emmy.numerical.multimin.nelder_mead.v_STAR_(sigma,emmy.numerical.multimin.nelder_mead.v_(p1__48861_SHARP_,s0)));
+var shrink = (function emmy$numerical$multimin$nelder_mead$step_fn_$_shrink(p__48899){
+var vec__48900 = p__48899;
+var seq__48901 = cljs.core.seq(vec__48900);
+var first__48902 = cljs.core.first(seq__48901);
+var seq__48901__$1 = cljs.core.next(seq__48901);
+var s0 = first__48902;
+var rest = seq__48901__$1;
+var scale_toward_s0 = (function (p1__48885_SHARP_){
+return emmy.numerical.multimin.nelder_mead.v_PLUS_(s0,emmy.numerical.multimin.nelder_mead.v_STAR_(sigma,emmy.numerical.multimin.nelder_mead.v_(p1__48885_SHARP_,s0)));
 });
 var s = cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [s0], null),cljs.core.map.cljs$core$IFn$_invoke$arity$2(scale_toward_s0,rest));
 return emmy.numerical.multimin.nelder_mead.sort_by_f.cljs$core$IFn$_invoke$arity$3(s,cljs.core.mapv.cljs$core$IFn$_invoke$arity$2(f,s),dimension);
 });
-return (function (simplex,p__48903){
-var vec__48904 = p__48903;
-var f_best = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__48904,(0),null);
-var f_simplex = vec__48904;
+return (function (simplex,p__48907){
+var vec__48908 = p__48907;
+var f_best = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__48908,(0),null);
+var f_simplex = vec__48908;
 if(cljs.core.truth_(cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core._LT__EQ_,f_simplex))){
 } else {
 throw (new Error("Assert failed: (apply <= f-simplex)"));
@@ -216,11 +216,11 @@ return shrink(simplex);
 }
 }
 })();
-if(cljs.core.truth_((function (p1__48862_SHARP_){
-return cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core._LT__EQ_,cljs.core.second(p1__48862_SHARP_));
+if(cljs.core.truth_((function (p1__48886_SHARP_){
+return cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core._LT__EQ_,cljs.core.second(p1__48886_SHARP_));
 }))){
 } else {
-throw (new Error("Assert failed: (fn* [p1__48862#] (apply <= (second p1__48862#)))"));
+throw (new Error("Assert failed: (fn* [p1__48886#] (apply <= (second p1__48886#)))"));
 }
 
 return _PERCENT_;
@@ -230,11 +230,11 @@ return _PERCENT_;
  * Returns a function that returns true if the supplied simplex and simplex
  *   evaluations signal convergence, false otherwise.
  */
-emmy.numerical.multimin.nelder_mead.convergence_fn = (function emmy$numerical$multimin$nelder_mead$convergence_fn(p__48912){
-var map__48913 = p__48912;
-var map__48913__$1 = cljs.core.__destructure_map(map__48913);
-var simplex_tolerance = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__48913__$1,new cljs.core.Keyword(null,"simplex-tolerance","simplex-tolerance",1524945145),1.0E-4);
-var fn_tolerance = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__48913__$1,new cljs.core.Keyword(null,"fn-tolerance","fn-tolerance",-1445606164),1.0E-4);
+emmy.numerical.multimin.nelder_mead.convergence_fn = (function emmy$numerical$multimin$nelder_mead$convergence_fn(p__48920){
+var map__48921 = p__48920;
+var map__48921__$1 = cljs.core.__destructure_map(map__48921);
+var simplex_tolerance = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__48921__$1,new cljs.core.Keyword(null,"simplex-tolerance","simplex-tolerance",1524945145),1.0E-4);
+var fn_tolerance = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__48921__$1,new cljs.core.Keyword(null,"fn-tolerance","fn-tolerance",-1445606164),1.0E-4);
 return (function (simplex,f_simplex){
 return (((emmy.numerical.multimin.nelder_mead.sup_norm(simplex) <= simplex_tolerance)) && ((emmy.numerical.multimin.nelder_mead.sup_norm(f_simplex) <= fn_tolerance)));
 });
@@ -245,11 +245,11 @@ return (((emmy.numerical.multimin.nelder_mead.sup_norm(simplex) <= simplex_toler
  *   Returns a function of `iterations` that returns true if the iteration and
  *   function call limits signal stopping, false otherwise.
  */
-emmy.numerical.multimin.nelder_mead.stop_fn = (function emmy$numerical$multimin$nelder_mead$stop_fn(f_counter,dimension,p__48915){
-var map__48916 = p__48915;
-var map__48916__$1 = cljs.core.__destructure_map(map__48916);
-var maxiter = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__48916__$1,new cljs.core.Keyword(null,"maxiter","maxiter",-1867223754));
-var maxfun = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__48916__$1,new cljs.core.Keyword(null,"maxfun","maxfun",-50301814));
+emmy.numerical.multimin.nelder_mead.stop_fn = (function emmy$numerical$multimin$nelder_mead$stop_fn(f_counter,dimension,p__48926){
+var map__48927 = p__48926;
+var map__48927__$1 = cljs.core.__destructure_map(map__48927);
+var maxiter = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__48927__$1,new cljs.core.Keyword(null,"maxiter","maxiter",-1867223754));
+var maxfun = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__48927__$1,new cljs.core.Keyword(null,"maxfun","maxfun",-50301814));
 var maxiter__$1 = (function (){var or__5162__auto__ = maxiter;
 if(cljs.core.truth_(or__5162__auto__)){
 return or__5162__auto__;
@@ -319,11 +319,11 @@ return (((iterations > maxiter__$1)) || ((cljs.core.deref(f_counter) > maxfun__$
  *   which I have imitated here.
  *   
  */
-emmy.numerical.multimin.nelder_mead.nelder_mead = (function emmy$numerical$multimin$nelder_mead$nelder_mead(func,x0,p__48924){
-var map__48925 = p__48924;
-var map__48925__$1 = cljs.core.__destructure_map(map__48925);
-var opts = map__48925__$1;
-var callback = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__48925__$1,new cljs.core.Keyword(null,"callback","callback",-705136228));
+emmy.numerical.multimin.nelder_mead.nelder_mead = (function emmy$numerical$multimin$nelder_mead$nelder_mead(func,x0,p__48928){
+var map__48929 = p__48928;
+var map__48929__$1 = cljs.core.__destructure_map(map__48929);
+var opts = map__48929__$1;
+var callback = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__48929__$1,new cljs.core.Keyword(null,"callback","callback",-705136228));
 var callback__$1 = (function (){var or__5162__auto__ = callback;
 if(cljs.core.truth_(or__5162__auto__)){
 return or__5162__auto__;
@@ -352,13 +352,13 @@ var iteration = (0);
 var G__48946__$1 = G__48946;
 var iteration__$1 = iteration;
 while(true){
-var vec__48973 = G__48946__$1;
-var vec__48976 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__48973,(0),null);
-var s0__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__48976,(0),null);
-var simplex__$2 = vec__48976;
-var vec__48979 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__48973,(1),null);
-var f0__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__48979,(0),null);
-var f_simplex__$2 = vec__48979;
+var vec__48969 = G__48946__$1;
+var vec__48972 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__48969,(0),null);
+var s0__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__48972,(0),null);
+var simplex__$2 = vec__48972;
+var vec__48975 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__48969,(1),null);
+var f0__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__48975,(0),null);
+var f_simplex__$2 = vec__48975;
 var iteration__$2 = iteration__$1;
 (callback__$1.cljs$core$IFn$_invoke$arity$3 ? callback__$1.cljs$core$IFn$_invoke$arity$3(iteration__$2,s0__$1,f0__$1) : callback__$1.call(null,iteration__$2,s0__$1,f0__$1));
 
@@ -372,10 +372,10 @@ return stop_QMARK_(iteration__$2);
 })())){
 return new cljs.core.PersistentArrayMap(null, 5, [new cljs.core.Keyword(null,"result","result",1415092211),s0__$1,new cljs.core.Keyword(null,"value","value",305978217),f0__$1,new cljs.core.Keyword(null,"converged?","converged?",1779059976),converged_QMARK_,new cljs.core.Keyword(null,"iterations","iterations",-1402710890),iteration__$2,new cljs.core.Keyword(null,"fncalls","fncalls",-71376182),cljs.core.deref(f_counter)], null);
 } else {
-var G__49042 = (step.cljs$core$IFn$_invoke$arity$2 ? step.cljs$core$IFn$_invoke$arity$2(simplex__$2,f_simplex__$2) : step.call(null,simplex__$2,f_simplex__$2));
-var G__49043 = (iteration__$2 + (1));
-G__48946__$1 = G__49042;
-iteration__$1 = G__49043;
+var G__49018 = (step.cljs$core$IFn$_invoke$arity$2 ? step.cljs$core$IFn$_invoke$arity$2(simplex__$2,f_simplex__$2) : step.call(null,simplex__$2,f_simplex__$2));
+var G__49019 = (iteration__$2 + (1));
+G__48946__$1 = G__49018;
+iteration__$1 = G__49019;
 continue;
 }
 break;

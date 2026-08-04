@@ -183,8 +183,8 @@ return null;
  *   return value.
  */
 emmy.expression.fmap = (function emmy$expression$fmap(f,e){
-return emmy.expression.__GT_Literal(e.type,(function (){var G__26768 = e.expression;
-return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__26768) : f.call(null,G__26768));
+return emmy.expression.__GT_Literal(e.type,(function (){var G__26815 = e.expression;
+return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__26815) : f.call(null,G__26815));
 })(),e.m);
 });
 /**
@@ -213,8 +213,8 @@ if((expr instanceof cljs.core.Symbol)){
 return cljs.core.PersistentHashSet.createAsIfByAssoc([expr]);
 } else {
 if(emmy.expression.literal_QMARK_(expr)){
-var G__26927 = emmy.expression.expression_of(expr);
-expr = G__26927;
+var G__26901 = emmy.expression.expression_of(expr);
+expr = G__26901;
 continue;
 } else {
 var xs = cljs.core.rest(cljs.core.tree_seq(cljs.core.sequential_QMARK_,cljs.core.seq,expr));
@@ -238,12 +238,12 @@ if((node instanceof cljs.core.Symbol)){
 return (sym__GT_var.cljs$core$IFn$_invoke$arity$2 ? sym__GT_var.cljs$core$IFn$_invoke$arity$2(node,node) : sym__GT_var.call(null,node,node));
 } else {
 if(cljs.core.sequential_QMARK_(node)){
-var vec__26784 = node;
-var seq__26785 = cljs.core.seq(vec__26784);
-var first__26786 = cljs.core.first(seq__26785);
-var seq__26785__$1 = cljs.core.next(seq__26785);
-var f_sym = first__26786;
-var args = seq__26785__$1;
+var vec__26833 = node;
+var seq__26834 = cljs.core.seq(vec__26833);
+var first__26835 = cljs.core.first(seq__26834);
+var seq__26834__$1 = cljs.core.next(seq__26834);
+var f_sym = first__26835;
+var args = seq__26834__$1;
 var temp__5823__auto__ = (sym__GT_f.cljs$core$IFn$_invoke$arity$1 ? sym__GT_f.cljs$core$IFn$_invoke$arity$1(f_sym) : sym__GT_f.call(null,f_sym));
 if(cljs.core.truth_(temp__5823__auto__)){
 var f = temp__5823__auto__;
@@ -267,8 +267,8 @@ return walk(emmy.expression.expression_of(expr));
  *   NOTE that this now works for expressions too.
  */
 emmy.expression.substitute = (function emmy$expression$substitute(var_args){
-var G__26798 = arguments.length;
-switch (G__26798) {
+var G__26843 = arguments.length;
+switch (G__26843) {
 case 3:
 return emmy.expression.substitute.cljs$core$IFn$_invoke$arity$3((arguments[(0)]),(arguments[(1)]),(arguments[(2)]));
 
@@ -289,8 +289,8 @@ return emmy.expression.substitute.cljs$core$IFn$_invoke$arity$2(expr,cljs.core.P
 
 (emmy.expression.substitute.cljs$core$IFn$_invoke$arity$2 = (function (expr,s_map){
 if(emmy.expression.literal_QMARK_(expr)){
-return emmy.expression.fmap((function (p1__26789_SHARP_){
-return emmy.expression.substitute.cljs$core$IFn$_invoke$arity$2(p1__26789_SHARP_,s_map);
+return emmy.expression.fmap((function (p1__26838_SHARP_){
+return emmy.expression.substitute.cljs$core$IFn$_invoke$arity$2(p1__26838_SHARP_,s_map);
 }),expr);
 } else {
 return clojure.walk.postwalk_replace(s_map,expr);
@@ -385,15 +385,15 @@ return (-1);
 if((n2 < n1)){
 return (1);
 } else {
-var head_compare = (function (){var G__26850 = cljs.core.first(l);
-var G__26851 = cljs.core.first(r);
-return (emmy.expression.compare.cljs$core$IFn$_invoke$arity$2 ? emmy.expression.compare.cljs$core$IFn$_invoke$arity$2(G__26850,G__26851) : emmy.expression.compare.call(null,G__26850,G__26851));
+var head_compare = (function (){var G__26852 = cljs.core.first(l);
+var G__26853 = cljs.core.first(r);
+return (emmy.expression.compare.cljs$core$IFn$_invoke$arity$2 ? emmy.expression.compare.cljs$core$IFn$_invoke$arity$2(G__26852,G__26853) : emmy.expression.compare.call(null,G__26852,G__26853));
 })();
 if((head_compare === (0))){
-var G__27019 = cljs.core.rest(l);
-var G__27020 = cljs.core.rest(r);
-l = G__27019;
-r = G__27020;
+var G__26910 = cljs.core.rest(l);
+var G__26911 = cljs.core.rest(r);
+l = G__26910;
+r = G__26911;
 continue;
 } else {
 return head_compare;
@@ -425,10 +425,10 @@ break;
 }
 });
 emmy.expression.sorted_QMARK_ = (function emmy$expression$sorted_QMARK_(xs){
-return (((!(cljs.core.sequential_QMARK_(xs)))) || (cljs.core.every_QMARK_((function (p__26859){
-var vec__26860 = p__26859;
-var l = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__26860,(0),null);
-var r = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__26860,(1),null);
+return (((!(cljs.core.sequential_QMARK_(xs)))) || (cljs.core.every_QMARK_((function (p__26854){
+var vec__26855 = p__26854;
+var l = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__26855,(0),null);
+var r = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__26855,(1),null);
 return (emmy.expression.compare(l,r) <= (0));
 }),cljs.core.partition.cljs$core$IFn$_invoke$arity$3((2),(1),xs))));
 });
@@ -443,8 +443,8 @@ return xs;
  * Renders an expression through the simplifier and onto the stream.
  */
 emmy.expression.expression__GT_stream = (function emmy$expression$expression__GT_stream(var_args){
-var G__26871 = arguments.length;
-switch (G__26871) {
+var G__26861 = arguments.length;
+switch (G__26861) {
 case 2:
 return emmy.expression.expression__GT_stream.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 

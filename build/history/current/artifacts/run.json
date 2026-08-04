@@ -1,12 +1,12 @@
 {
-  "id": "fix-nested-captures-final",
+  "id": "deep-audit-promoted",
   "target": "emmy-refresh",
   "source": "/Users/calvinkhor/Documents/GitHub/fdgtyp",
-  "revision": "c197592",
-  "startedAt": "2026-08-04T10:26:50.807Z",
+  "revision": "139a199",
+  "startedAt": "2026-08-04T11:09:30.925Z",
   "log": "build.log",
   "status": "succeeded",
   "artifacts": "/Users/calvinkhor/Documents/GitHub/fdgtyp/build/current",
   "workspace": "/Users/calvinkhor/Documents/GitHub/fdgtyp/build/history/current/work",
-  "finishedAt": "2026-08-04T10:29:42.256Z"
+  "finishedAt": "2026-08-04T11:11:43.337Z"
 }

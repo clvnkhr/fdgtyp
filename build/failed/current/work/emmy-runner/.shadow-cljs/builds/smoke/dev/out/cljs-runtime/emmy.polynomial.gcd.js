@@ -28,12 +28,12 @@ emmy.polynomial.gcd.gcd_monomials = cljs.core.atom.cljs$core$IFn$_invoke$arity$1
  *   times the system has encountered monomial or other trivial GCDs. 
  */
 emmy.polynomial.gcd.gcd_stats = (function emmy$polynomial$gcd$gcd_stats(){
-var memo_count_38898 = cljs.core.count(cljs.core.deref(emmy.polynomial.gcd.gcd_memo));
-if((memo_count_38898 > (0))){
-var hits_38899 = cljs.core.deref(emmy.polynomial.gcd.gcd_cache_hit);
-var misses_38900 = cljs.core.deref(emmy.polynomial.gcd.gcd_cache_miss);
+var memo_count_38884 = cljs.core.count(cljs.core.deref(emmy.polynomial.gcd.gcd_memo));
+if((memo_count_38884 > (0))){
+var hits_38885 = cljs.core.deref(emmy.polynomial.gcd.gcd_cache_hit);
+var misses_38886 = cljs.core.deref(emmy.polynomial.gcd.gcd_cache_miss);
 taoensso.timbre._log_BANG_.cljs$core$IFn$_invoke$arity$11(taoensso.timbre._STAR_config_STAR_,new cljs.core.Keyword(null,"info","info",-317069002),"emmy.polynomial.gcd",null,71,new cljs.core.Keyword(null,"p","p",151049309),new cljs.core.Keyword(null,"auto","auto",-566279492),(new cljs.core.Delay((function (){
-return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [goog.string.format("GCD cache hit rate %.2f%% (%d entries)",((100) * (hits_38899 / (hits_38899 + misses_38900))),memo_count_38898)], null);
+return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [goog.string.format("GCD cache hit rate %.2f%% (%d entries)",((100) * (hits_38885 / (hits_38885 + misses_38886))),memo_count_38884)], null);
 }),null)),null,-1143507686,null);
 } else {
 }
@@ -48,14 +48,14 @@ return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMP
  */
 emmy.polynomial.gcd.dbg = (function emmy$polynomial$gcd$dbg(var_args){
 var args__5903__auto__ = [];
-var len__5897__auto___38901 = arguments.length;
-var i__5898__auto___38902 = (0);
+var len__5897__auto___38887 = arguments.length;
+var i__5898__auto___38888 = (0);
 while(true){
-if((i__5898__auto___38902 < len__5897__auto___38901)){
-args__5903__auto__.push((arguments[i__5898__auto___38902]));
+if((i__5898__auto___38888 < len__5897__auto___38887)){
+args__5903__auto__.push((arguments[i__5898__auto___38888]));
 
-var G__38903 = (i__5898__auto___38902 + (1));
-i__5898__auto___38902 = G__38903;
+var G__38889 = (i__5898__auto___38888 + (1));
+i__5898__auto___38888 = G__38889;
 continue;
 } else {
 }
@@ -83,13 +83,13 @@ return null;
 (emmy.polynomial.gcd.dbg.cljs$lang$maxFixedArity = (2));
 
 /** @this {Function} */
-(emmy.polynomial.gcd.dbg.cljs$lang$applyTo = (function (seq38707){
-var G__38708 = cljs.core.first(seq38707);
-var seq38707__$1 = cljs.core.next(seq38707);
-var G__38709 = cljs.core.first(seq38707__$1);
-var seq38707__$2 = cljs.core.next(seq38707__$1);
+(emmy.polynomial.gcd.dbg.cljs$lang$applyTo = (function (seq38713){
+var G__38714 = cljs.core.first(seq38713);
+var seq38713__$1 = cljs.core.next(seq38713);
+var G__38715 = cljs.core.first(seq38713__$1);
+var seq38713__$2 = cljs.core.next(seq38713__$1);
 var self__5882__auto__ = this;
-return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__38708,G__38709,seq38707__$2);
+return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__38714,G__38715,seq38713__$2);
 }));
 
 /**
@@ -100,9 +100,9 @@ return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__38708,G__38709
 emmy.polynomial.gcd.time_expired_QMARK_ = (function emmy$polynomial$gcd$time_expired_QMARK_(){
 var and__5160__auto__ = emmy.polynomial.gcd._STAR_clock_STAR_;
 if(cljs.core.truth_(and__5160__auto__)){
-var vec__38722 = emmy.polynomial.gcd._STAR_poly_gcd_time_limit_STAR_;
-var ticks = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38722,(0),null);
-var units = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38722,(1),null);
+var vec__38720 = emmy.polynomial.gcd._STAR_poly_gcd_time_limit_STAR_;
+var ticks = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38720,(0),null);
+var units = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38720,(1),null);
 return (emmy.util.stopwatch.elapsed.cljs$core$IFn$_invoke$arity$2(emmy.polynomial.gcd._STAR_clock_STAR_,units) > ticks);
 } else {
 return and__5160__auto__;
@@ -132,18 +132,18 @@ return null;
  *   will signal failure appropriately if `thunk` has taken longer than `timeout`.
  */
 emmy.polynomial.gcd.with_limited_time = (function emmy$polynomial$gcd$with_limited_time(timeout,thunk){
-var _STAR_poly_gcd_time_limit_STAR__orig_val__38737 = emmy.polynomial.gcd._STAR_poly_gcd_time_limit_STAR_;
-var _STAR_clock_STAR__orig_val__38738 = emmy.polynomial.gcd._STAR_clock_STAR_;
-var _STAR_poly_gcd_time_limit_STAR__temp_val__38739 = timeout;
-var _STAR_clock_STAR__temp_val__38740 = emmy.util.stopwatch.stopwatch();
-(emmy.polynomial.gcd._STAR_poly_gcd_time_limit_STAR_ = _STAR_poly_gcd_time_limit_STAR__temp_val__38739);
+var _STAR_poly_gcd_time_limit_STAR__orig_val__38731 = emmy.polynomial.gcd._STAR_poly_gcd_time_limit_STAR_;
+var _STAR_clock_STAR__orig_val__38732 = emmy.polynomial.gcd._STAR_clock_STAR_;
+var _STAR_poly_gcd_time_limit_STAR__temp_val__38733 = timeout;
+var _STAR_clock_STAR__temp_val__38734 = emmy.util.stopwatch.stopwatch();
+(emmy.polynomial.gcd._STAR_poly_gcd_time_limit_STAR_ = _STAR_poly_gcd_time_limit_STAR__temp_val__38733);
 
-(emmy.polynomial.gcd._STAR_clock_STAR_ = _STAR_clock_STAR__temp_val__38740);
+(emmy.polynomial.gcd._STAR_clock_STAR_ = _STAR_clock_STAR__temp_val__38734);
 
 try{return (thunk.cljs$core$IFn$_invoke$arity$0 ? thunk.cljs$core$IFn$_invoke$arity$0() : thunk.call(null));
-}finally {(emmy.polynomial.gcd._STAR_clock_STAR_ = _STAR_clock_STAR__orig_val__38738);
+}finally {(emmy.polynomial.gcd._STAR_clock_STAR_ = _STAR_clock_STAR__orig_val__38732);
 
-(emmy.polynomial.gcd._STAR_poly_gcd_time_limit_STAR_ = _STAR_poly_gcd_time_limit_STAR__orig_val__38737);
+(emmy.polynomial.gcd._STAR_poly_gcd_time_limit_STAR_ = _STAR_poly_gcd_time_limit_STAR__orig_val__38731);
 }});
 /**
  * Attempts to call `f` with arguments `u` and `v`, but only after checking that
@@ -156,9 +156,9 @@ try{return (thunk.cljs$core$IFn$_invoke$arity$0 ? thunk.cljs$core$IFn$_invoke$ar
 emmy.polynomial.gcd.cached = (function emmy$polynomial$gcd$cached(f,u,v){
 var temp__5823__auto__ = (function (){var and__5160__auto__ = emmy.polynomial.gcd._STAR_poly_gcd_cache_enable_STAR_;
 if(cljs.core.truth_(and__5160__auto__)){
-var G__38749 = new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [u,v], null);
-var fexpr__38748 = cljs.core.deref(emmy.polynomial.gcd.gcd_memo);
-return (fexpr__38748.cljs$core$IFn$_invoke$arity$1 ? fexpr__38748.cljs$core$IFn$_invoke$arity$1(G__38749) : fexpr__38748.call(null,G__38749));
+var G__38745 = new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [u,v], null);
+var fexpr__38744 = cljs.core.deref(emmy.polynomial.gcd.gcd_memo);
+return (fexpr__38744.cljs$core$IFn$_invoke$arity$1 ? fexpr__38744.cljs$core$IFn$_invoke$arity$1(G__38745) : fexpr__38744.call(null,G__38745));
 } else {
 return and__5160__auto__;
 }
@@ -200,8 +200,8 @@ return result;
  *   ```
  */
 emmy.polynomial.gcd.cont__GT_ = (function emmy$polynomial$gcd$cont__GT_(var_args){
-var G__38766 = arguments.length;
-switch (G__38766) {
+var G__38781 = arguments.length;
+switch (G__38781) {
 case 1:
 return emmy.polynomial.gcd.cont__GT_.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -216,14 +216,14 @@ return emmy.polynomial.gcd.cont__GT_.cljs$core$IFn$_invoke$arity$3((arguments[(0
 break;
 default:
 var args_arr__5922__auto__ = [];
-var len__5897__auto___38909 = arguments.length;
-var i__5898__auto___38910 = (0);
+var len__5897__auto___38893 = arguments.length;
+var i__5898__auto___38894 = (0);
 while(true){
-if((i__5898__auto___38910 < len__5897__auto___38909)){
-args_arr__5922__auto__.push((arguments[i__5898__auto___38910]));
+if((i__5898__auto___38894 < len__5897__auto___38893)){
+args_arr__5922__auto__.push((arguments[i__5898__auto___38894]));
 
-var G__38911 = (i__5898__auto___38910 + (1));
-i__5898__auto___38910 = G__38911;
+var G__38895 = (i__5898__auto___38894 + (1));
+i__5898__auto___38894 = G__38895;
 continue;
 } else {
 }
@@ -236,49 +236,49 @@ return emmy.polynomial.gcd.cont__GT_.cljs$core$IFn$_invoke$arity$variadic((argum
 }
 });
 
-(emmy.polynomial.gcd.cont__GT_.cljs$core$IFn$_invoke$arity$1 = (function (p__38774){
-var vec__38776 = p__38774;
-var u = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38776,(0),null);
-var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38776,(1),null);
-return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [u,v], null);
-}));
-
-(emmy.polynomial.gcd.cont__GT_.cljs$core$IFn$_invoke$arity$2 = (function (p__38787,f){
+(emmy.polynomial.gcd.cont__GT_.cljs$core$IFn$_invoke$arity$1 = (function (p__38787){
 var vec__38788 = p__38787;
 var u = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38788,(0),null);
 var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38788,(1),null);
+return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [u,v], null);
+}));
+
+(emmy.polynomial.gcd.cont__GT_.cljs$core$IFn$_invoke$arity$2 = (function (p__38793,f){
+var vec__38794 = p__38793;
+var u = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38794,(0),null);
+var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38794,(1),null);
 return (f.cljs$core$IFn$_invoke$arity$2 ? f.cljs$core$IFn$_invoke$arity$2(u,v) : f.call(null,u,v));
 }));
 
-(emmy.polynomial.gcd.cont__GT_.cljs$core$IFn$_invoke$arity$3 = (function (p__38794,f1,f2){
-var vec__38795 = p__38794;
-var u = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38795,(0),null);
-var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38795,(1),null);
+(emmy.polynomial.gcd.cont__GT_.cljs$core$IFn$_invoke$arity$3 = (function (p__38800,f1,f2){
+var vec__38803 = p__38800;
+var u = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38803,(0),null);
+var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38803,(1),null);
 return (f1.cljs$core$IFn$_invoke$arity$3 ? f1.cljs$core$IFn$_invoke$arity$3(u,v,f2) : f1.call(null,u,v,f2));
 }));
 
-(emmy.polynomial.gcd.cont__GT_.cljs$core$IFn$_invoke$arity$variadic = (function (p__38801,f1,f2,more){
-var vec__38803 = p__38801;
-var u = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38803,(0),null);
-var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38803,(1),null);
-var G__38806 = u;
-var G__38807 = v;
-var G__38808 = (function (u_SINGLEQUOTE_,v_SINGLEQUOTE_){
+(emmy.polynomial.gcd.cont__GT_.cljs$core$IFn$_invoke$arity$variadic = (function (p__38807,f1,f2,more){
+var vec__38808 = p__38807;
+var u = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38808,(0),null);
+var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38808,(1),null);
+var G__38813 = u;
+var G__38814 = v;
+var G__38815 = (function (u_SINGLEQUOTE_,v_SINGLEQUOTE_){
 return cljs.core.apply.cljs$core$IFn$_invoke$arity$4(emmy.polynomial.gcd.cont__GT_,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [u_SINGLEQUOTE_,v_SINGLEQUOTE_], null),f2,more);
 });
-return (f1.cljs$core$IFn$_invoke$arity$3 ? f1.cljs$core$IFn$_invoke$arity$3(G__38806,G__38807,G__38808) : f1.call(null,G__38806,G__38807,G__38808));
+return (f1.cljs$core$IFn$_invoke$arity$3 ? f1.cljs$core$IFn$_invoke$arity$3(G__38813,G__38814,G__38815) : f1.call(null,G__38813,G__38814,G__38815));
 }));
 
 /** @this {Function} */
-(emmy.polynomial.gcd.cont__GT_.cljs$lang$applyTo = (function (seq38762){
-var G__38763 = cljs.core.first(seq38762);
-var seq38762__$1 = cljs.core.next(seq38762);
-var G__38764 = cljs.core.first(seq38762__$1);
-var seq38762__$2 = cljs.core.next(seq38762__$1);
-var G__38765 = cljs.core.first(seq38762__$2);
-var seq38762__$3 = cljs.core.next(seq38762__$2);
+(emmy.polynomial.gcd.cont__GT_.cljs$lang$applyTo = (function (seq38775){
+var G__38776 = cljs.core.first(seq38775);
+var seq38775__$1 = cljs.core.next(seq38775);
+var G__38777 = cljs.core.first(seq38775__$1);
+var seq38775__$2 = cljs.core.next(seq38775__$1);
+var G__38778 = cljs.core.first(seq38775__$2);
+var seq38775__$3 = cljs.core.next(seq38775__$2);
 var self__5882__auto__ = this;
-return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__38763,G__38764,G__38765,seq38762__$3);
+return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__38776,G__38777,G__38778,seq38775__$3);
 }));
 
 (emmy.polynomial.gcd.cont__GT_.cljs$lang$maxFixedArity = (3));
@@ -313,12 +313,12 @@ emmy.polynomial.gcd.with_optimized_variable_order = (function emmy$polynomial$gc
 if(((emmy.polynomial.multivariate_QMARK_(u)) || (emmy.polynomial.multivariate_QMARK_(v)))){
 var l_terms = ((emmy.polynomial.polynomial_QMARK_(u))?emmy.polynomial.bare_terms(u):cljs.core.PersistentVector.EMPTY);
 var r_terms = ((emmy.polynomial.polynomial_QMARK_(v))?emmy.polynomial.bare_terms(v):cljs.core.PersistentVector.EMPTY);
-var vec__38821 = emmy.polynomial.gcd.terms__GT_sort_PLUS_unsort(cljs.core.into.cljs$core$IFn$_invoke$arity$2(l_terms,r_terms));
-var sort = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38821,(0),null);
-var unsort = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38821,(1),null);
-return emmy.polynomial.map_exponents.cljs$core$IFn$_invoke$arity$2(unsort,(function (){var G__38824 = emmy.polynomial.map_exponents.cljs$core$IFn$_invoke$arity$2(sort,u);
-var G__38825 = emmy.polynomial.map_exponents.cljs$core$IFn$_invoke$arity$2(sort,v);
-return (continue$.cljs$core$IFn$_invoke$arity$2 ? continue$.cljs$core$IFn$_invoke$arity$2(G__38824,G__38825) : continue$.call(null,G__38824,G__38825));
+var vec__38829 = emmy.polynomial.gcd.terms__GT_sort_PLUS_unsort(cljs.core.into.cljs$core$IFn$_invoke$arity$2(l_terms,r_terms));
+var sort = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38829,(0),null);
+var unsort = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38829,(1),null);
+return emmy.polynomial.map_exponents.cljs$core$IFn$_invoke$arity$2(unsort,(function (){var G__38836 = emmy.polynomial.map_exponents.cljs$core$IFn$_invoke$arity$2(sort,u);
+var G__38837 = emmy.polynomial.map_exponents.cljs$core$IFn$_invoke$arity$2(sort,v);
+return (continue$.cljs$core$IFn$_invoke$arity$2 ? continue$.cljs$core$IFn$_invoke$arity$2(G__38836,G__38837) : continue$.call(null,G__38836,G__38837));
 })());
 } else {
 return (continue$.cljs$core$IFn$_invoke$arity$2 ? continue$.cljs$core$IFn$_invoke$arity$2(u,v) : continue$.call(null,u,v));
@@ -346,8 +346,8 @@ return (1);
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [content,primitive], null);
 } else {
 var content = cljs.core.apply.cljs$core$IFn$_invoke$arity$2(gcd,coeffs);
-var primitive = (cljs.core.truth_(emmy.generic.one_QMARK_.cljs$core$IFn$_invoke$arity$1(content))?p:emmy.polynomial.map_coefficients((function (p1__38826_SHARP_){
-return emmy.generic.exact_divide.cljs$core$IFn$_invoke$arity$2(p1__38826_SHARP_,content);
+var primitive = (cljs.core.truth_(emmy.generic.one_QMARK_.cljs$core$IFn$_invoke$arity$1(content))?p:emmy.polynomial.map_coefficients((function (p1__38838_SHARP_){
+return emmy.generic.exact_divide.cljs$core$IFn$_invoke$arity$2(p1__38838_SHARP_,content);
 }),p));
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [content,primitive], null);
 }
@@ -370,12 +370,12 @@ return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMP
  */
 emmy.polynomial.gcd.with_content_removed = (function emmy$polynomial$gcd$with_content_removed(gcd){
 return (function (u,v,continue$){
-var vec__38829 = emmy.polynomial.gcd.__GT_content_PLUS_primitive(u,gcd);
-var ku = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38829,(0),null);
-var pu = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38829,(1),null);
-var vec__38832 = emmy.polynomial.gcd.__GT_content_PLUS_primitive(v,gcd);
-var kv = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38832,(0),null);
-var pv = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38832,(1),null);
+var vec__38839 = emmy.polynomial.gcd.__GT_content_PLUS_primitive(u,gcd);
+var ku = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38839,(0),null);
+var pu = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38839,(1),null);
+var vec__38842 = emmy.polynomial.gcd.__GT_content_PLUS_primitive(v,gcd);
+var kv = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38842,(0),null);
+var pv = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38842,(1),null);
 var d = (gcd.cljs$core$IFn$_invoke$arity$2 ? gcd.cljs$core$IFn$_invoke$arity$2(ku,kv) : gcd.call(null,ku,kv));
 var result = (continue$.cljs$core$IFn$_invoke$arity$2 ? continue$.cljs$core$IFn$_invoke$arity$2(pu,pv) : continue$.call(null,pu,pv));
 var result__$1 = ((emmy.polynomial.polynomial_QMARK_(result))?result:emmy.polynomial.constant.cljs$core$IFn$_invoke$arity$2((1),result));
@@ -504,9 +504,9 @@ if(emmy.polynomial.polynomial_QMARK_(p)){
 throw (new Error("Assert failed: (p/polynomial? p)"));
 }
 
-var vec__38851 = cljs.core.nth.cljs$core$IFn$_invoke$arity$2(emmy.polynomial.bare_terms(m),(0));
-var mono_expts = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38851,(0),null);
-var mono_coeff = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38851,(1),null);
+var vec__38853 = cljs.core.nth.cljs$core$IFn$_invoke$arity$2(emmy.polynomial.bare_terms(m),(0));
+var mono_expts = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38853,(0),null);
+var mono_coeff = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38853,(1),null);
 var expts = cljs.core.transduce.cljs$core$IFn$_invoke$arity$4(cljs.core.map.cljs$core$IFn$_invoke$arity$1(emmy.polynomial.impl.exponents),emmy.polynomial.exponent.gcd,mono_expts,emmy.polynomial.bare_terms(p));
 var coeff = emmy.polynomial.gcd.gcd_poly_number(p,mono_coeff);
 cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$2(emmy.polynomial.gcd.gcd_monomials,cljs.core.inc);
@@ -532,19 +532,19 @@ var or__5162__auto__ = emmy.polynomial.gcd.trivial_gcd(u,v);
 if(cljs.core.truth_(or__5162__auto__)){
 return or__5162__auto__;
 } else {
-var vec__38854 = emmy.polynomial.pseudo_remainder(u,v);
-var r = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38854,(0),null);
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38854,(1),null);
+var vec__38868 = emmy.polynomial.pseudo_remainder(u,v);
+var r = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38868,(0),null);
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38868,(1),null);
 if(cljs.core.truth_(emmy.generic.zero_QMARK_.cljs$core$IFn$_invoke$arity$1(r))){
 return emmy.generic.abs.cljs$core$IFn$_invoke$arity$1(v);
 } else {
-var vec__38858 = emmy.polynomial.gcd.__GT_content_PLUS_primitive(r,gcd);
-var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38858,(0),null);
-var prim = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38858,(1),null);
-var G__38940 = v;
-var G__38941 = prim;
-u = G__38940;
-v = G__38941;
+var vec__38871 = emmy.polynomial.gcd.__GT_content_PLUS_primitive(r,gcd);
+var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38871,(0),null);
+var prim = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38871,(1),null);
+var G__38908 = v;
+var G__38909 = prim;
+u = G__38908;
+v = G__38909;
 continue;
 }
 }
@@ -589,8 +589,8 @@ return emmy.polynomial.gcd.cont__GT_.cljs$core$IFn$_invoke$arity$3(new cljs.core
  *   ```
  */
 emmy.polynomial.gcd.full_gcd = (function emmy$polynomial$gcd$full_gcd(var_args){
-var G__38869 = arguments.length;
-switch (G__38869) {
+var G__38875 = arguments.length;
+switch (G__38875) {
 case 2:
 return emmy.polynomial.gcd.full_gcd.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 

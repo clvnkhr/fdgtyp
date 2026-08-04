@@ -8,13 +8,17 @@ fdg.output.emmy_ratio_pattern = /#emmy\/ratio \"(-?\d+)\/(\d+)\"/;
  *   convention used by this book. This function changes presentation only.
  */
 fdg.output.pr_str_native = (function fdg$output$pr_str_native(value){
-return clojure.string.replace(cljs.core.pr_str.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([value], 0)),fdg.output.emmy_ratio_pattern,(function (p__65005){
-var vec__65006 = p__65005;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__65006,(0),null);
-var numerator = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__65006,(1),null);
-var denominator = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__65006,(2),null);
+if(cljs.core.fn_QMARK_(value)){
+return "<function>";
+} else {
+return clojure.string.replace(cljs.core.pr_str.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([value], 0)),fdg.output.emmy_ratio_pattern,(function (p__65009){
+var vec__65010 = p__65009;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__65010,(0),null);
+var numerator = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__65010,(1),null);
+var denominator = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__65010,(2),null);
 return (""+"(/ "+cljs.core.str.cljs$core$IFn$_invoke$arity$1(numerator)+" "+cljs.core.str.cljs$core$IFn$_invoke$arity$1(denominator)+")");
 }));
+}
 });
 
 //# sourceMappingURL=fdg.output.js.map

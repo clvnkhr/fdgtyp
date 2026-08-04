@@ -20,8 +20,8 @@ var width = (b - a);
 return (function (n){
 var h = (width / n);
 var fx = (function (i){
-var G__55699 = (a + (i * h));
-return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__55699) : f.call(null,G__55699));
+var G__56086 = (a + (i * h));
+return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__56086) : f.call(null,G__56086));
 });
 return (h * ((((f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(a) : f.call(null,a)) + (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(b) : f.call(null,b))) / (2)) + emmy.util.aggregate.sum.cljs$core$IFn$_invoke$arity$3(fx,(1),n)));
 });
@@ -48,8 +48,8 @@ return emmy.numerical.quadrature.trapezoid.trapezoid_sum_STAR_(f,0.0,1.0);
  *   is ignored.
  */
 emmy.numerical.quadrature.trapezoid.trapezoid_sequence = (function emmy$numerical$quadrature$trapezoid$trapezoid_sequence(var_args){
-var G__55702 = arguments.length;
-switch (G__55702) {
+var G__56088 = arguments.length;
+switch (G__56088) {
 case 3:
 return emmy.numerical.quadrature.trapezoid.trapezoid_sequence.cljs$core$IFn$_invoke$arity$3((arguments[(0)]),(arguments[(1)]),(arguments[(2)]));
 
@@ -68,11 +68,11 @@ throw (new Error(["Invalid arity: ",arguments.length].join("")));
 return emmy.numerical.quadrature.trapezoid.trapezoid_sequence.cljs$core$IFn$_invoke$arity$4(f,a,b,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"n","n",562130025),(1)], null));
 }));
 
-(emmy.numerical.quadrature.trapezoid.trapezoid_sequence.cljs$core$IFn$_invoke$arity$4 = (function (f,a,b,p__55703){
-var map__55704 = p__55703;
-var map__55704__$1 = cljs.core.__destructure_map(map__55704);
-var n = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__55704__$1,new cljs.core.Keyword(null,"n","n",562130025),(1));
-var accelerate_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__55704__$1,new cljs.core.Keyword(null,"accelerate?","accelerate?",-29657518));
+(emmy.numerical.quadrature.trapezoid.trapezoid_sequence.cljs$core$IFn$_invoke$arity$4 = (function (f,a,b,p__56089){
+var map__56091 = p__56089;
+var map__56091__$1 = cljs.core.__destructure_map(map__56091);
+var n = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__56091__$1,new cljs.core.Keyword(null,"n","n",562130025),(1));
+var accelerate_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__56091__$1,new cljs.core.Keyword(null,"accelerate?","accelerate?",-29657518));
 var S = emmy.numerical.quadrature.trapezoid.trapezoid_sum(f,a,b);
 var next_S = emmy.numerical.quadrature.riemann.Sn__GT_S2n(f,a,b);
 var xs = emmy.numerical.quadrature.riemann.incrementalize(S,next_S,(2),n);

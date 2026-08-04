@@ -1,9 +1,9 @@
 goog.provide('emmy.mechanics.rigid');
-emmy.mechanics.rigid.three_vector_components__GT_antisymmetric = (function emmy$mechanics$rigid$three_vector_components__GT_antisymmetric(p__59273){
-var vec__59277 = p__59273;
-var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59277,(0),null);
-var y = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59277,(1),null);
-var z = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59277,(2),null);
+emmy.mechanics.rigid.three_vector_components__GT_antisymmetric = (function emmy$mechanics$rigid$three_vector_components__GT_antisymmetric(p__59173){
+var vec__59174 = p__59173;
+var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59174,(0),null);
+var y = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59174,(1),null);
+var z = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59174,(2),null);
 return emmy.matrix.by_rows.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [(0),emmy.generic._.cljs$core$IFn$_invoke$arity$1(z),y], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [z,(0),emmy.generic._.cljs$core$IFn$_invoke$arity$1(x)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [emmy.generic._.cljs$core$IFn$_invoke$arity$1(y),x,(0)], null)], 0));
 });
 /**
@@ -22,8 +22,8 @@ emmy.mechanics.rigid.M_of_q__GT_omega_of_t = (function emmy$mechanics$rigid$M_of
 return (function (q){
 var M_of_t = emmy.function$.compose.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([M_of_q,q], 0));
 return (function (t){
-return emmy.mechanics.rigid.antisymmetric__GT_column_matrix(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2((function (){var fexpr__59281 = (emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1(M_of_t) : emmy.calculus.derivative.D.call(null,M_of_t));
-return (fexpr__59281.cljs$core$IFn$_invoke$arity$1 ? fexpr__59281.cljs$core$IFn$_invoke$arity$1(t) : fexpr__59281.call(null,t));
+return emmy.mechanics.rigid.antisymmetric__GT_column_matrix(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2((function (){var fexpr__59181 = (emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1(M_of_t) : emmy.calculus.derivative.D.call(null,M_of_t));
+return (fexpr__59181.cljs$core$IFn$_invoke$arity$1 ? fexpr__59181.cljs$core$IFn$_invoke$arity$1(t) : fexpr__59181.call(null,t));
 })(),emmy.matrix.transpose((M_of_t.cljs$core$IFn$_invoke$arity$1 ? M_of_t.cljs$core$IFn$_invoke$arity$1(t) : M_of_t.call(null,t)))));
 });
 });
@@ -31,10 +31,10 @@ return (fexpr__59281.cljs$core$IFn$_invoke$arity$1 ? fexpr__59281.cljs$core$IFn$
 emmy.mechanics.rigid.M_of_q__GT_omega_body_of_t = (function emmy$mechanics$rigid$M_of_q__GT_omega_body_of_t(M_of_q){
 return (function (q){
 return (function (t){
-return emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(emmy.matrix.transpose((function (){var G__59283 = (q.cljs$core$IFn$_invoke$arity$1 ? q.cljs$core$IFn$_invoke$arity$1(t) : q.call(null,t));
-return (M_of_q.cljs$core$IFn$_invoke$arity$1 ? M_of_q.cljs$core$IFn$_invoke$arity$1(G__59283) : M_of_q.call(null,G__59283));
-})()),(function (){var fexpr__59286 = emmy.mechanics.rigid.M_of_q__GT_omega_of_t(M_of_q)(q);
-return (fexpr__59286.cljs$core$IFn$_invoke$arity$1 ? fexpr__59286.cljs$core$IFn$_invoke$arity$1(t) : fexpr__59286.call(null,t));
+return emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(emmy.matrix.transpose((function (){var G__59182 = (q.cljs$core$IFn$_invoke$arity$1 ? q.cljs$core$IFn$_invoke$arity$1(t) : q.call(null,t));
+return (M_of_q.cljs$core$IFn$_invoke$arity$1 ? M_of_q.cljs$core$IFn$_invoke$arity$1(G__59182) : M_of_q.call(null,G__59182));
+})()),(function (){var fexpr__59183 = emmy.mechanics.rigid.M_of_q__GT_omega_of_t(M_of_q)(q);
+return (fexpr__59183.cljs$core$IFn$_invoke$arity$1 ? fexpr__59183.cljs$core$IFn$_invoke$arity$1(t) : fexpr__59183.call(null,t));
 })());
 });
 });
@@ -46,20 +46,20 @@ emmy.mechanics.rigid.M__GT_omega_body = (function emmy$mechanics$rigid$M__GT_ome
 return emmy.mechanics.lagrange.Gamma_bar(emmy.mechanics.rigid.M_of_q__GT_omega_body_of_t(M_of_q));
 });
 emmy.mechanics.rigid.T_body = (function emmy$mechanics$rigid$T_body(A,B,C){
-return (function (p__59290){
-var vec__59291 = p__59290;
-var w0 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59291,(0),null);
-var w1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59291,(1),null);
-var w2 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59291,(2),null);
+return (function (p__59184){
+var vec__59185 = p__59184;
+var w0 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59185,(0),null);
+var w1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59185,(1),null);
+var w2 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59185,(2),null);
 return emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(emmy.generic._SLASH_.cljs$core$IFn$_invoke$arity$2((1),(2)),emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$variadic(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(A,emmy.generic.square.cljs$core$IFn$_invoke$arity$1(w0)),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(B,emmy.generic.square.cljs$core$IFn$_invoke$arity$1(w1)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(C,emmy.generic.square.cljs$core$IFn$_invoke$arity$1(w2))], 0)));
 });
 });
 emmy.mechanics.rigid.L_body = (function emmy$mechanics$rigid$L_body(A,B,C){
-return (function (p__59294){
-var vec__59295 = p__59294;
-var w0 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59295,(0),null);
-var w1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59295,(1),null);
-var w2 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59295,(2),null);
+return (function (p__59188){
+var vec__59189 = p__59188;
+var w0 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59189,(0),null);
+var w1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59189,(1),null);
+var w2 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59189,(2),null);
 return emmy.structure.down.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(A,w0),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(B,w1),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(C,w2)], 0));
 });
 });
@@ -76,8 +76,8 @@ var M_on_path = (function emmy$mechanics$rigid$Euler__GT_omega_$_M_on_path(t__$1
 return emmy.mechanics.rotation.Euler__GT_M((angles_path.cljs$core$IFn$_invoke$arity$1 ? angles_path.cljs$core$IFn$_invoke$arity$1(t__$1) : angles_path.call(null,t__$1)));
 });
 var w_cross = (function emmy$mechanics$rigid$Euler__GT_omega_$_w_cross(t__$1){
-return emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2((function (){var fexpr__59313 = (emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1(M_on_path) : emmy.calculus.derivative.D.call(null,M_on_path));
-return (fexpr__59313.cljs$core$IFn$_invoke$arity$1 ? fexpr__59313.cljs$core$IFn$_invoke$arity$1(t__$1) : fexpr__59313.call(null,t__$1));
+return emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2((function (){var fexpr__59195 = (emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1(M_on_path) : emmy.calculus.derivative.D.call(null,M_on_path));
+return (fexpr__59195.cljs$core$IFn$_invoke$arity$1 ? fexpr__59195.cljs$core$IFn$_invoke$arity$1(t__$1) : fexpr__59195.call(null,t__$1));
 })(),emmy.generic.transpose.cljs$core$IFn$_invoke$arity$1(M_on_path(t__$1)));
 });
 return emmy.mechanics.rigid.antisymmetric__GT_column_matrix(w_cross(t));
@@ -92,17 +92,17 @@ return emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(emmy.generic.transpose.
  * Although this implementation appears to summarize `(M->omega-body r/Euler->M)`,
  *   it is actually essential to prevent intermediate expression explosion.
  */
-emmy.mechanics.rigid.Euler_state__GT_omega_body = (function emmy$mechanics$rigid$Euler_state__GT_omega_body(p__59320){
-var vec__59324 = p__59320;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59324,(0),null);
-var vec__59327 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59324,(1),null);
-var theta = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59327,(0),null);
-var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59327,(1),null);
-var psi = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59327,(2),null);
-var vec__59330 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59324,(2),null);
-var thetadot = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59330,(0),null);
-var phidot = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59330,(1),null);
-var psidot = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59330,(2),null);
+emmy.mechanics.rigid.Euler_state__GT_omega_body = (function emmy$mechanics$rigid$Euler_state__GT_omega_body(p__59199){
+var vec__59200 = p__59199;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59200,(0),null);
+var vec__59203 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59200,(1),null);
+var theta = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59203,(0),null);
+var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59203,(1),null);
+var psi = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59203,(2),null);
+var vec__59206 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59200,(2),null);
+var thetadot = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59206,(0),null);
+var phidot = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59206,(1),null);
+var psidot = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59206,(2),null);
 var omega_a = emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$variadic(emmy.generic.sin.cljs$core$IFn$_invoke$arity$1(psi),emmy.generic.sin.cljs$core$IFn$_invoke$arity$1(theta),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([phidot], 0)),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(emmy.generic.cos.cljs$core$IFn$_invoke$arity$1(psi),thetadot));
 var omega_b = emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$variadic(emmy.generic.cos.cljs$core$IFn$_invoke$arity$1(psi),emmy.generic.sin.cljs$core$IFn$_invoke$arity$1(theta),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([phidot], 0)),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$variadic((-1),emmy.generic.sin.cljs$core$IFn$_invoke$arity$1(psi),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([thetadot], 0)));
 var omega_c = emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(emmy.generic.cos.cljs$core$IFn$_invoke$arity$1(theta),phidot),psidot);
@@ -139,60 +139,60 @@ emmy.mechanics.rigid.Euler_state__GT_L_space = emmy.mechanics.rigid.L_space_Eule
 emmy.mechanics.rigid.rigid_sysder = (function emmy$mechanics$rigid$rigid_sysder(A,B,C){
 return emmy.mechanics.lagrange.Lagrangian__GT_state_derivative.cljs$core$IFn$_invoke$arity$1((emmy.mechanics.rigid.T_rigid_body.cljs$core$IFn$_invoke$arity$3 ? emmy.mechanics.rigid.T_rigid_body.cljs$core$IFn$_invoke$arity$3(A,B,C) : emmy.mechanics.rigid.T_rigid_body.call(null,A,B,C)));
 });
-emmy.mechanics.rigid.quaternion_state__GT_omega_body = (function emmy$mechanics$rigid$quaternion_state__GT_omega_body(p__59360){
-var vec__59365 = p__59360;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59365,(0),null);
-var q = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59365,(1),null);
-var qdot = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59365,(2),null);
+emmy.mechanics.rigid.quaternion_state__GT_omega_body = (function emmy$mechanics$rigid$quaternion_state__GT_omega_body(p__59223){
+var vec__59224 = p__59223;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59224,(0),null);
+var q = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59224,(1),null);
+var qdot = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59224,(2),null);
 var two_q_norm = emmy.generic._SLASH_.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2((2),q),emmy.generic.dot_product.cljs$core$IFn$_invoke$arity$2(q,q));
 var omega_STAR__STAR_a = emmy.generic.dot_product.cljs$core$IFn$_invoke$arity$2(two_q_norm,emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(emmy.quaternion.I_matrix,qdot));
 var omega_STAR__STAR_b = emmy.generic.dot_product.cljs$core$IFn$_invoke$arity$2(two_q_norm,emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(emmy.quaternion.J_matrix,qdot));
 var omega_STAR__STAR_c = emmy.generic.dot_product.cljs$core$IFn$_invoke$arity$2(two_q_norm,emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(emmy.quaternion.K_matrix,qdot));
 return emmy.structure.up.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([omega_STAR__STAR_a,omega_STAR__STAR_b,omega_STAR__STAR_c], 0));
 });
-var q_COLON_a_59437 = emmy.matrix.by_rows.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [(0),(1),(0),(0)], null),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [(-1),(0),(0),(0)], null),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [(0),(0),(0),(1)], null),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [(0),(0),(-1),(0)], null)], 0));
-var q_COLON_b_59438 = emmy.matrix.by_rows.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [(0),(0),(1),(0)], null),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [(0),(0),(0),(-1)], null),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [(-1),(0),(0),(0)], null),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [(0),(1),(0),(0)], null)], 0));
-var q_COLON_c_59439 = emmy.matrix.by_rows.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [(0),(0),(0),(1)], null),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [(0),(0),(1),(0)], null),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [(0),(-1),(0),(0)], null),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [(-1),(0),(0),(0)], null)], 0));
-emmy.mechanics.rigid.quaternion_state__GT_omega_space = (function emmy$mechanics$rigid$quaternion_state__GT_omega_space(p__59379){
-var vec__59380 = p__59379;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59380,(0),null);
-var q = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59380,(1),null);
-var qdot = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59380,(2),null);
+var q_COLON_a_59394 = emmy.matrix.by_rows.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [(0),(1),(0),(0)], null),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [(-1),(0),(0),(0)], null),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [(0),(0),(0),(1)], null),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [(0),(0),(-1),(0)], null)], 0));
+var q_COLON_b_59395 = emmy.matrix.by_rows.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [(0),(0),(1),(0)], null),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [(0),(0),(0),(-1)], null),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [(-1),(0),(0),(0)], null),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [(0),(1),(0),(0)], null)], 0));
+var q_COLON_c_59396 = emmy.matrix.by_rows.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [(0),(0),(0),(1)], null),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [(0),(0),(1),(0)], null),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [(0),(-1),(0),(0)], null),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [(-1),(0),(0),(0)], null)], 0));
+emmy.mechanics.rigid.quaternion_state__GT_omega_space = (function emmy$mechanics$rigid$quaternion_state__GT_omega_space(p__59236){
+var vec__59237 = p__59236;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59237,(0),null);
+var q = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59237,(1),null);
+var qdot = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59237,(2),null);
 var Q = emmy.matrix.up__GT_column_matrix(q);
 var QdotT = emmy.matrix.row_STAR_(qdot);
 var two_m_STAR__STAR_2_inv = emmy.generic._SLASH_.cljs$core$IFn$_invoke$arity$2((-2),emmy.generic.dot_product.cljs$core$IFn$_invoke$arity$2(q,q));
-var omega_STAR__STAR_x = emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(two_m_STAR__STAR_2_inv,cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$variadic(QdotT,q_COLON_a_59437,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([Q], 0)),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [(0),(0)], null)));
-var omega_STAR__STAR_y = emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(two_m_STAR__STAR_2_inv,cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$variadic(QdotT,q_COLON_b_59438,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([Q], 0)),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [(0),(0)], null)));
-var omega_STAR__STAR_z = emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(two_m_STAR__STAR_2_inv,cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$variadic(QdotT,q_COLON_c_59439,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([Q], 0)),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [(0),(0)], null)));
+var omega_STAR__STAR_x = emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(two_m_STAR__STAR_2_inv,cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$variadic(QdotT,q_COLON_a_59394,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([Q], 0)),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [(0),(0)], null)));
+var omega_STAR__STAR_y = emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(two_m_STAR__STAR_2_inv,cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$variadic(QdotT,q_COLON_b_59395,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([Q], 0)),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [(0),(0)], null)));
+var omega_STAR__STAR_z = emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(two_m_STAR__STAR_2_inv,cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$variadic(QdotT,q_COLON_c_59396,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([Q], 0)),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [(0),(0)], null)));
 return emmy.structure.up.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([omega_STAR__STAR_x,omega_STAR__STAR_y,omega_STAR__STAR_z], 0));
 });
 emmy.mechanics.rigid.qw_state__GT_L_body = (function emmy$mechanics$rigid$qw_state__GT_L_body(A,B,C){
-return (function (p__59390){
-var vec__59392 = p__59390;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59392,(0),null);
-var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59392,(1),null);
-var omega = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59392,(2),null);
+return (function (p__59246){
+var vec__59247 = p__59246;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59247,(0),null);
+var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59247,(1),null);
+var omega = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59247,(2),null);
 return emmy.mechanics.rigid.L_body(A,B,C)(omega);
 });
 });
 emmy.mechanics.rigid.qw_state__GT_L_space = (function emmy$mechanics$rigid$qw_state__GT_L_space(A,B,C){
 var state__GT_body = emmy.mechanics.rigid.qw_state__GT_L_body(A,B,C);
-return (function (p__59401){
-var vec__59402 = p__59401;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59402,(0),null);
-var q = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59402,(1),null);
-var qw_state = vec__59402;
+return (function (p__59262){
+var vec__59263 = p__59262;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59263,(0),null);
+var q = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59263,(1),null);
+var qw_state = vec__59263;
 var Lbody = state__GT_body(qw_state);
 var M = emmy.quaternion.__GT_rotation_matrix(emmy.quaternion.make.cljs$core$IFn$_invoke$arity$1(q));
 return emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(Lbody,emmy.generic.transpose.cljs$core$IFn$_invoke$arity$1(M));
 });
 });
 emmy.mechanics.rigid.T_quaternion_state = (function emmy$mechanics$rigid$T_quaternion_state(A,B,C){
-return (function (p__59406){
-var vec__59407 = p__59406;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59407,(0),null);
-var q = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59407,(1),null);
-var qdot = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59407,(2),null);
+return (function (p__59331){
+var vec__59332 = p__59331;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59332,(0),null);
+var q = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59332,(1),null);
+var qdot = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59332,(2),null);
 var Q = emmy.matrix.up__GT_column_matrix(q);
 var Qdot = emmy.matrix.up__GT_column_matrix(qdot);
 var m_STAR__STAR_2_inv = emmy.generic.invert.cljs$core$IFn$_invoke$arity$1(cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(emmy.matrix.transpose(Q),Q),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [(0),(0)], null)));

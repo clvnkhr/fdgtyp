@@ -136,8 +136,8 @@ return cljs.core.gensym.cljs$core$IFn$_invoke$arity$0();
  *   input (defaults to `[]`).
  */
 emmy.tape.make = (function emmy$tape$make(var_args){
-var G__38254 = arguments.length;
-switch (G__38254) {
+var G__38261 = arguments.length;
+switch (G__38261) {
 case 2:
 return emmy.tape.make.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -174,8 +174,8 @@ if(emmy.value.scalar_QMARK_(x)){
 return emmy.tape.make.cljs$core$IFn$_invoke$arity$2(tag,x);
 } else {
 if(emmy.structure.structure_QMARK_(x)){
-return emmy.structure.mapr.cljs$core$IFn$_invoke$arity$variadic((function (p1__38259_SHARP_){
-return (emmy.tape.tapify.cljs$core$IFn$_invoke$arity$2 ? emmy.tape.tapify.cljs$core$IFn$_invoke$arity$2(p1__38259_SHARP_,tag) : emmy.tape.tapify.call(null,p1__38259_SHARP_,tag));
+return emmy.structure.mapr.cljs$core$IFn$_invoke$arity$variadic((function (p1__38279_SHARP_){
+return (emmy.tape.tapify.cljs$core$IFn$_invoke$arity$2 ? emmy.tape.tapify.cljs$core$IFn$_invoke$arity$2(p1__38279_SHARP_,tag) : emmy.tape.tapify.call(null,p1__38279_SHARP_,tag));
 }),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([x], 0));
 } else {
 if(emmy.function$.function_QMARK_(x)){
@@ -216,8 +216,8 @@ return tape.id;
  *   if `(tape-tag x)` matches `tag`, else acts as identity.
  */
 emmy.tape.tape_primal = (function emmy$tape$tape_primal(var_args){
-var G__38275 = arguments.length;
-switch (G__38275) {
+var G__38292 = arguments.length;
+switch (G__38292) {
 case 1:
 return emmy.tape.tape_primal.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -284,8 +284,8 @@ return new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null,"ta
  *   If you want to ignore the tangent components, use [[equiv]].
  */
 emmy.tape.eq = (function emmy$tape$eq(var_args){
-var G__38291 = arguments.length;
-switch (G__38291) {
+var G__38311 = arguments.length;
+switch (G__38311) {
 case 1:
 return emmy.tape.eq.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -296,14 +296,14 @@ return emmy.tape.eq.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1
 break;
 default:
 var args_arr__5922__auto__ = [];
-var len__5897__auto___38405 = arguments.length;
-var i__5898__auto___38406 = (0);
+var len__5897__auto___38409 = arguments.length;
+var i__5898__auto___38410 = (0);
 while(true){
-if((i__5898__auto___38406 < len__5897__auto___38405)){
-args_arr__5922__auto__.push((arguments[i__5898__auto___38406]));
+if((i__5898__auto___38410 < len__5897__auto___38409)){
+args_arr__5922__auto__.push((arguments[i__5898__auto___38410]));
 
-var G__38407 = (i__5898__auto___38406 + (1));
-i__5898__auto___38406 = G__38407;
+var G__38411 = (i__5898__auto___38410 + (1));
+i__5898__auto___38410 = G__38411;
 continue;
 } else {
 }
@@ -365,12 +365,12 @@ return emmy.value._EQ_.cljs$core$IFn$_invoke$arity$2(a,b);
 while(true){
 if(cljs.core.truth_(emmy.tape.eq.cljs$core$IFn$_invoke$arity$2(a,b))){
 if(cljs.core.next(more)){
-var G__38409 = b;
-var G__38410 = cljs.core.first(more);
-var G__38411 = cljs.core.next(more);
-a = G__38409;
-b = G__38410;
-more = G__38411;
+var G__38412 = b;
+var G__38413 = cljs.core.first(more);
+var G__38414 = cljs.core.next(more);
+a = G__38412;
+b = G__38413;
+more = G__38414;
 continue;
 } else {
 return emmy.tape.eq.cljs$core$IFn$_invoke$arity$2(b,cljs.core.first(more));
@@ -383,13 +383,13 @@ break;
 }));
 
 /** @this {Function} */
-(emmy.tape.eq.cljs$lang$applyTo = (function (seq38288){
-var G__38289 = cljs.core.first(seq38288);
-var seq38288__$1 = cljs.core.next(seq38288);
-var G__38290 = cljs.core.first(seq38288__$1);
-var seq38288__$2 = cljs.core.next(seq38288__$1);
+(emmy.tape.eq.cljs$lang$applyTo = (function (seq38306){
+var G__38307 = cljs.core.first(seq38306);
+var seq38306__$1 = cljs.core.next(seq38306);
+var G__38308 = cljs.core.first(seq38306__$1);
+var seq38306__$2 = cljs.core.next(seq38306__$1);
 var self__5882__auto__ = this;
-return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__38289,G__38290,seq38288__$2);
+return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__38307,G__38308,seq38306__$2);
 }));
 
 (emmy.tape.eq.cljs$lang$maxFixedArity = (2));
@@ -403,8 +403,8 @@ return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__38289,G__38290
  *   tangent components into account, prefer [[eq]].
  */
 emmy.tape.equiv = (function emmy$tape$equiv(var_args){
-var G__38305 = arguments.length;
-switch (G__38305) {
+var G__38343 = arguments.length;
+switch (G__38343) {
 case 1:
 return emmy.tape.equiv.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -415,14 +415,14 @@ return emmy.tape.equiv.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments
 break;
 default:
 var args_arr__5922__auto__ = [];
-var len__5897__auto___38413 = arguments.length;
-var i__5898__auto___38414 = (0);
+var len__5897__auto___38416 = arguments.length;
+var i__5898__auto___38417 = (0);
 while(true){
-if((i__5898__auto___38414 < len__5897__auto___38413)){
-args_arr__5922__auto__.push((arguments[i__5898__auto___38414]));
+if((i__5898__auto___38417 < len__5897__auto___38416)){
+args_arr__5922__auto__.push((arguments[i__5898__auto___38417]));
 
-var G__38415 = (i__5898__auto___38414 + (1));
-i__5898__auto___38414 = G__38415;
+var G__38418 = (i__5898__auto___38417 + (1));
+i__5898__auto___38417 = G__38418;
 continue;
 } else {
 }
@@ -447,12 +447,12 @@ return emmy.value._EQ_.cljs$core$IFn$_invoke$arity$2(emmy.tape.tape_primal.cljs$
 while(true){
 if(cljs.core.truth_(emmy.tape.equiv.cljs$core$IFn$_invoke$arity$2(a,b))){
 if(cljs.core.next(more)){
-var G__38416 = b;
-var G__38417 = cljs.core.first(more);
-var G__38418 = cljs.core.next(more);
-a = G__38416;
-b = G__38417;
-more = G__38418;
+var G__38419 = b;
+var G__38420 = cljs.core.first(more);
+var G__38421 = cljs.core.next(more);
+a = G__38419;
+b = G__38420;
+more = G__38421;
 continue;
 } else {
 return emmy.tape.equiv.cljs$core$IFn$_invoke$arity$2(b,cljs.core.first(more));
@@ -465,13 +465,13 @@ break;
 }));
 
 /** @this {Function} */
-(emmy.tape.equiv.cljs$lang$applyTo = (function (seq38302){
-var G__38303 = cljs.core.first(seq38302);
-var seq38302__$1 = cljs.core.next(seq38302);
-var G__38304 = cljs.core.first(seq38302__$1);
-var seq38302__$2 = cljs.core.next(seq38302__$1);
+(emmy.tape.equiv.cljs$lang$applyTo = (function (seq38338){
+var G__38339 = cljs.core.first(seq38338);
+var seq38338__$1 = cljs.core.next(seq38338);
+var G__38340 = cljs.core.first(seq38338__$1);
+var seq38338__$2 = cljs.core.next(seq38338__$1);
 var self__5882__auto__ = this;
-return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__38303,G__38304,seq38302__$2);
+return self__5882__auto__.cljs$core$IFn$_invoke$arity$variadic(G__38339,G__38340,seq38338__$2);
 }));
 
 (emmy.tape.equiv.cljs$lang$maxFixedArity = (2));
@@ -492,16 +492,16 @@ return emmy.value.compare(emmy.tape.tape_primal.cljs$core$IFn$_invoke$arity$1(a)
  *   instances sorted in topological order, starting with `node`.
  */
 emmy.tape.topological_sort = (function emmy$tape$topological_sort(node){
-var compute_visiting_order = (function emmy$tape$topological_sort_$_compute_visiting_order(p__38349,node__$1){
-var vec__38352 = p__38349;
-var seen = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38352,(0),null);
-var sorted = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38352,(1),null);
+var compute_visiting_order = (function emmy$tape$topological_sort_$_compute_visiting_order(p__38375,node__$1){
+var vec__38376 = p__38375;
+var seen = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38376,(0),null);
+var sorted = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38376,(1),null);
 if(cljs.core.contains_QMARK_(seen,emmy.tape.tape_id(node__$1))){
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [seen,sorted], null);
 } else {
-var vec__38356 = process_children(cljs.core.conj.cljs$core$IFn$_invoke$arity$2(seen,emmy.tape.tape_id(node__$1)),sorted,emmy.tape.tape_partials(node__$1));
-var seen__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38356,(0),null);
-var sorted__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38356,(1),null);
+var vec__38379 = process_children(cljs.core.conj.cljs$core$IFn$_invoke$arity$2(seen,emmy.tape.tape_id(node__$1)),sorted,emmy.tape.tape_partials(node__$1));
+var seen__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38379,(0),null);
+var sorted__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38379,(1),null);
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [seen__$1,cljs.core.cons(node__$1,sorted__$1)], null);
 }
 });
@@ -513,9 +513,9 @@ return cljs.core.second(compute_visiting_order(new cljs.core.PersistentVector(nu
 emmy.tape.process = (function emmy$tape$process(sensitivities,tape){
 var sensitivity = cljs.core.get.cljs$core$IFn$_invoke$arity$2(sensitivities,emmy.tape.tape_id(tape));
 return cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (sensitivities__$1,in_to_partial_entry){
-var vec__38368 = in_to_partial_entry;
-var tape__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38368,(0),null);
-var local_partial = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38368,(1),null);
+var vec__38384 = in_to_partial_entry;
+var tape__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38384,(0),null);
+var local_partial = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38384,(1),null);
 var id = emmy.tape.tape_id(tape__$1);
 var delta = emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(sensitivity,local_partial);
 var new_entry = (function (){var temp__5823__auto__ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(sensitivities__$1,id);
@@ -558,8 +558,8 @@ if(((emmy.tape.tape_QMARK_(input)) && (cljs.core._EQ_.cljs$core$IFn$_invoke$arit
 return emmy.dual.extract_id(output,emmy.tape.tape_id(input));
 } else {
 if(emmy.structure.structure_QMARK_(input)){
-return emmy.structure.opposite.cljs$core$IFn$_invoke$arity$2(input,cljs.core.mapv.cljs$core$IFn$_invoke$arity$2((function (p1__38377_SHARP_){
-return (emmy.tape.interpret.cljs$core$IFn$_invoke$arity$3 ? emmy.tape.interpret.cljs$core$IFn$_invoke$arity$3(p1__38377_SHARP_,output,tag) : emmy.tape.interpret.call(null,p1__38377_SHARP_,output,tag));
+return emmy.structure.opposite.cljs$core$IFn$_invoke$arity$2(input,cljs.core.mapv.cljs$core$IFn$_invoke$arity$2((function (p1__38389_SHARP_){
+return (emmy.tape.interpret.cljs$core$IFn$_invoke$arity$3 ? emmy.tape.interpret.cljs$core$IFn$_invoke$arity$3(p1__38389_SHARP_,output,tag) : emmy.tape.interpret.call(null,p1__38389_SHARP_,output,tag));
 }),input));
 } else {
 if(emmy.function$.function_QMARK_(input)){
@@ -590,8 +590,8 @@ throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2("unknown input type!",new 
  *   function calls.
  */
 emmy.tape.gradient = (function emmy$tape$gradient(var_args){
-var G__38381 = arguments.length;
-switch (G__38381) {
+var G__38393 = arguments.length;
+switch (G__38393) {
 case 1:
 return emmy.tape.gradient.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -666,18 +666,18 @@ emmy.generic.identity_like.cljs$core$IMultiFn$_add_method$arity$3(null,new cljs.
 return (1);
 }));
 emmy.generic.freeze.cljs$core$IMultiFn$_add_method$arity$3(null,new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("emmy.tape","tape","emmy.tape/tape",-747075426)], null),(function (t){
-return cljs.core.vec(cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol(null,"TapeCell","TapeCell",-1115833436,null),null,(1),null)),(new cljs.core.List(null,emmy.tape.tape_tag(t),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,emmy.tape.tape_id(t),null,(1),null)),(new cljs.core.List(null,emmy.generic.freeze.cljs$core$IFn$_invoke$arity$1(emmy.tape.tape_primal.cljs$core$IFn$_invoke$arity$1(t)),null,(1),null)),(new cljs.core.List(null,cljs.core.mapv.cljs$core$IFn$_invoke$arity$2((function (p__38388){
-var vec__38389 = p__38388;
-var node = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38389,(0),null);
-var partial = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38389,(1),null);
+return cljs.core.vec(cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol(null,"TapeCell","TapeCell",-1115833436,null),null,(1),null)),(new cljs.core.List(null,emmy.tape.tape_tag(t),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,emmy.tape.tape_id(t),null,(1),null)),(new cljs.core.List(null,emmy.generic.freeze.cljs$core$IFn$_invoke$arity$1(emmy.tape.tape_primal.cljs$core$IFn$_invoke$arity$1(t)),null,(1),null)),(new cljs.core.List(null,cljs.core.mapv.cljs$core$IFn$_invoke$arity$2((function (p__38397){
+var vec__38398 = p__38397;
+var node = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38398,(0),null);
+var partial = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38398,(1),null);
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [emmy.generic.freeze.cljs$core$IFn$_invoke$arity$1(node),emmy.generic.freeze.cljs$core$IFn$_invoke$arity$1(partial)], null);
 }),emmy.tape.tape_partials(t)),null,(1),null))], 0)))));
 }));
 emmy.generic.simplify.cljs$core$IMultiFn$_add_method$arity$3(null,new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("emmy.tape","tape","emmy.tape/tape",-747075426)], null),(function (t){
-return (new emmy.tape.TapeCell(t.tag,t.id,emmy.generic.simplify.cljs$core$IFn$_invoke$arity$1(t.primal),cljs.core.mapv.cljs$core$IFn$_invoke$arity$2((function (p__38392){
-var vec__38393 = p__38392;
-var node = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38393,(0),null);
-var partial = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38393,(1),null);
+return (new emmy.tape.TapeCell(t.tag,t.id,emmy.generic.simplify.cljs$core$IFn$_invoke$arity$1(t.primal),cljs.core.mapv.cljs$core$IFn$_invoke$arity$2((function (p__38401){
+var vec__38403 = p__38401;
+var node = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38403,(0),null);
+var partial = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38403,(1),null);
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [emmy.generic.simplify.cljs$core$IFn$_invoke$arity$1(node),emmy.generic.simplify.cljs$core$IFn$_invoke$arity$1(partial)], null);
 }),t.in__GT_partial)));
 }));

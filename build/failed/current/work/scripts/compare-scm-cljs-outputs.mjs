@@ -37,6 +37,7 @@ function commentOutputs(source, marker) {
 
 function tokens(text) {
   const cleaned = text
+    .replace(/#emmy\/bigint\s+"(-?\d+)"/g, "$1")
     .replace(/#emmy\/bigint\s+/g, "")
     .replace(/#emmy\/ratio\s+"(-?\d+)\/(\d+)"/g, "(/ $1 $2)")
     .replace(/#\(/g, "(")
@@ -61,6 +62,11 @@ function tokens(text) {
     result.push(cleaned.slice(i, end)); i = end;
   }
   return result;
+}
+
+if (tokens('#emmy/bigint "815915283247897734345611269596115894272000000000"')[0]
+    !== "815915283247897734345611269596115894272000000000") {
+  throw new Error("Quoted Emmy bigints must normalize to exact integer tokens");
 }
 
 function parse(text) {
@@ -261,7 +267,7 @@ function diagnosis(row) {
     return "The result exceeded the capture limit. Compare a compact simplified/frozen value inside the runner; the visible prefix is insufficient.";
   }
   if (row.reason === "CLJS values are emitted through print-expression rather than returned") {
-    return "The inner expression is now simplified and prints four zeros, matching Scheme, but the smoke runner captures only the outer for-each return value nil. Treat this as a capture-shape gap, not a mathematical mismatch.";
+    return "The inner expression prints four zeros, matching Scheme. The runner deliberately suppresses the outer for-each return value, so there is no redundant nil capture to compare.";
   }
   if (row.reason === "legacy Scheme output is descriptive prose") {
     return "The Scheme side records only a qualitative placeholder such as ‘mess’, so there is no mathematical datum to compare.";

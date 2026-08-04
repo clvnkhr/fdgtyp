@@ -1,7 +1,7 @@
 goog.provide('emmy.env');
 emmy.env.literal_function = (function emmy$env$literal_function(var_args){
-var G__65006 = arguments.length;
-switch (G__65006) {
+var G__65010 = arguments.length;
+switch (G__65010) {
 case 3:
 return emmy.env.literal_function.cljs$core$IFn$_invoke$arity$3((arguments[(0)]),(arguments[(1)]),(arguments[(2)]));
 
@@ -341,14 +341,14 @@ return self__5883__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq
  */
 emmy.env.partial = (function emmy$env$partial(var_args){
 var args__5903__auto__ = [];
-var len__5897__auto___65058 = arguments.length;
-var i__5898__auto___65059 = (0);
+var len__5897__auto___65056 = arguments.length;
+var i__5898__auto___65057 = (0);
 while(true){
-if((i__5898__auto___65059 < len__5897__auto___65058)){
-args__5903__auto__.push((arguments[i__5898__auto___65059]));
+if((i__5898__auto___65057 < len__5897__auto___65056)){
+args__5903__auto__.push((arguments[i__5898__auto___65057]));
 
-var G__65060 = (i__5898__auto___65059 + (1));
-i__5898__auto___65059 = G__65060;
+var G__65058 = (i__5898__auto___65057 + (1));
+i__5898__auto___65057 = G__65058;
 continue;
 } else {
 }
@@ -521,14 +521,14 @@ return (""+"$$"+cljs.core.str.cljs$core$IFn$_invoke$arity$1(emmy.expression.rend
  */
 emmy.env.__GT_tex_equation = (function emmy$env$__GT_tex_equation(var_args){
 var args__5903__auto__ = [];
-var len__5897__auto___65078 = arguments.length;
-var i__5898__auto___65079 = (0);
+var len__5897__auto___65064 = arguments.length;
+var i__5898__auto___65065 = (0);
 while(true){
-if((i__5898__auto___65079 < len__5897__auto___65078)){
-args__5903__auto__.push((arguments[i__5898__auto___65079]));
+if((i__5898__auto___65065 < len__5897__auto___65064)){
+args__5903__auto__.push((arguments[i__5898__auto___65065]));
 
-var G__65080 = (i__5898__auto___65079 + (1));
-i__5898__auto___65079 = G__65080;
+var G__65066 = (i__5898__auto___65065 + (1));
+i__5898__auto___65065 = G__65066;
 continue;
 } else {
 }

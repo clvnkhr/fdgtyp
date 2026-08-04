@@ -32,11 +32,11 @@ emmy.mechanics.rotation.rotate_z_matrix = (function emmy$mechanics$rotation$rota
 return emmy.mechanics.rotation.rotate_z_matrix_2(emmy.generic.cos.cljs$core$IFn$_invoke$arity$1(α),emmy.generic.sin.cljs$core$IFn$_invoke$arity$1(α));
 });
 emmy.mechanics.rotation.Rz_matrix = emmy.mechanics.rotation.rotate_z_matrix;
-emmy.mechanics.rotation.angle_axis__GT_rotation_matrix = (function emmy$mechanics$rotation$angle_axis__GT_rotation_matrix(theta,p__39285){
-var vec__39286 = p__39285;
-var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__39286,(0),null);
-var y = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__39286,(1),null);
-var z = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__39286,(2),null);
+emmy.mechanics.rotation.angle_axis__GT_rotation_matrix = (function emmy$mechanics$rotation$angle_axis__GT_rotation_matrix(theta,p__39239){
+var vec__39244 = p__39239;
+var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__39244,(0),null);
+var y = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__39244,(1),null);
+var z = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__39244,(2),null);
 var colatitude = emmy.generic.acos.cljs$core$IFn$_invoke$arity$1(z);
 var longitude = emmy.generic.atan.cljs$core$IFn$_invoke$arity$2(y,x);
 return emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$variadic(emmy.mechanics.rotation.rotate_z_matrix(longitude),emmy.mechanics.rotation.rotate_y_matrix(colatitude),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.mechanics.rotation.rotate_z_matrix(theta),emmy.matrix.transpose(emmy.mechanics.rotation.rotate_y_matrix(colatitude)),emmy.matrix.transpose(emmy.mechanics.rotation.rotate_z_matrix(longitude))], 0));
@@ -63,11 +63,11 @@ return emmy.mechanics.rotation.rotate_z_tuple_2(emmy.generic.cos.cljs$core$IFn$_
  * Returns a function which rotates a vector α radians about the x axis.
  */
 emmy.mechanics.rotation.Rx = (function emmy$mechanics$rotation$Rx(α){
-return (function (p__39303){
-var vec__39304 = p__39303;
-var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__39304,(0),null);
-var y = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__39304,(1),null);
-var z = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__39304,(2),null);
+return (function (p__39253){
+var vec__39254 = p__39253;
+var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__39254,(0),null);
+var y = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__39254,(1),null);
+var z = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__39254,(2),null);
 var c = emmy.generic.cos.cljs$core$IFn$_invoke$arity$1(α);
 var s = emmy.generic.sin.cljs$core$IFn$_invoke$arity$1(α);
 return emmy.structure.up.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([x,emmy.generic._.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(c,y),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(s,z)),emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(s,y),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(c,z))], 0));
@@ -77,11 +77,11 @@ return emmy.structure.up.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq
  * Returns a function which rotates a vector α radians about the y axis.
  */
 emmy.mechanics.rotation.Ry = (function emmy$mechanics$rotation$Ry(α){
-return (function (p__39315){
-var vec__39316 = p__39315;
-var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__39316,(0),null);
-var y = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__39316,(1),null);
-var z = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__39316,(2),null);
+return (function (p__39260){
+var vec__39261 = p__39260;
+var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__39261,(0),null);
+var y = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__39261,(1),null);
+var z = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__39261,(2),null);
 var c = emmy.generic.cos.cljs$core$IFn$_invoke$arity$1(α);
 var s = emmy.generic.sin.cljs$core$IFn$_invoke$arity$1(α);
 return emmy.structure.up.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(c,x),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(s,z)),y,emmy.generic._.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(c,z),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(s,x))], 0));
@@ -91,11 +91,11 @@ return emmy.structure.up.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq
  * Returns a function which rotates a vector α radians about the z axis.
  */
 emmy.mechanics.rotation.Rz = (function emmy$mechanics$rotation$Rz(α){
-return (function (p__39323){
-var vec__39324 = p__39323;
-var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__39324,(0),null);
-var y = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__39324,(1),null);
-var z = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__39324,(2),null);
+return (function (p__39275){
+var vec__39276 = p__39275;
+var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__39276,(0),null);
+var y = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__39276,(1),null);
+var z = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__39276,(2),null);
 var c = emmy.generic.cos.cljs$core$IFn$_invoke$arity$1(α);
 var s = emmy.generic.sin.cljs$core$IFn$_invoke$arity$1(α);
 return emmy.structure.up.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.generic._.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(c,x),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(s,y)),emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(s,x),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(c,y)),z], 0));
@@ -114,11 +114,11 @@ return emmy.structure.up.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq
  * 
  *   M(theta, phi, psi) = R_z(phi)*R_x(theta)*R_z(psi)
  */
-emmy.mechanics.rotation.Euler__GT_M = (function emmy$mechanics$rotation$Euler__GT_M(p__39333){
-var vec__39335 = p__39333;
-var theta = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__39335,(0),null);
-var phi = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__39335,(1),null);
-var psi = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__39335,(2),null);
+emmy.mechanics.rotation.Euler__GT_M = (function emmy$mechanics$rotation$Euler__GT_M(p__39284){
+var vec__39287 = p__39284;
+var theta = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__39287,(0),null);
+var phi = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__39287,(1),null);
+var psi = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__39287,(2),null);
 return emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$variadic(emmy.mechanics.rotation.rotate_z_matrix(phi),emmy.mechanics.rotation.rotate_x_matrix(theta),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.mechanics.rotation.rotate_z_matrix(psi)], 0));
 });
 /**
@@ -130,8 +130,8 @@ return emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$variadic(emmy.mechanics.r
  *   M(theta, phi, psi) = R_z(phi)*R_x(theta)*R_z(psi)
  */
 emmy.mechanics.rotation.M__GT_Euler = (function emmy$mechanics$rotation$M__GT_Euler(var_args){
-var G__39342 = arguments.length;
-switch (G__39342) {
+var G__39293 = arguments.length;
+switch (G__39293) {
 case 1:
 return emmy.mechanics.rotation.M__GT_Euler.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 

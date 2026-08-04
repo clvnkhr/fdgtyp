@@ -3,11 +3,11 @@ cljs.analyzer.passes.lite.var_QMARK_ = (function cljs$analyzer$passes$lite$var_Q
 return cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"var","var",-769682797),new cljs.core.Keyword(null,"op","op",-1882987955).cljs$core$IFn$_invoke$arity$1(ast));
 });
 cljs.analyzer.passes.lite.ctor__GT_ctor_lite = new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Symbol("cljs.core","vector","cljs.core/vector",720641726,null),new cljs.core.Symbol("cljs.core","vector-lite","cljs.core/vector-lite",1954842799,null),new cljs.core.Symbol("cljs.core","vec","cljs.core/vec",307622519,null),new cljs.core.Symbol("cljs.core","vec-lite","cljs.core/vec-lite",-1972352564,null)], null);
-cljs.analyzer.passes.lite.update_var = (function cljs$analyzer$passes$lite$update_var(p__21301){
-var map__21302 = p__21301;
-var map__21302__$1 = cljs.core.__destructure_map(map__21302);
-var ast = map__21302__$1;
-var name = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__21302__$1,new cljs.core.Keyword(null,"name","name",1843675177));
+cljs.analyzer.passes.lite.update_var = (function cljs$analyzer$passes$lite$update_var(p__21305){
+var map__21306 = p__21305;
+var map__21306__$1 = cljs.core.__destructure_map(map__21306);
+var ast = map__21306__$1;
+var name = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__21306__$1,new cljs.core.Keyword(null,"name","name",1843675177));
 var replacement = cljs.core.get.cljs$core$IFn$_invoke$arity$2(cljs.analyzer.passes.lite.ctor__GT_ctor_lite,name);
 return cljs.core.assoc_in(cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(ast,new cljs.core.Keyword(null,"name","name",1843675177),replacement),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"info","info",-317069002),new cljs.core.Keyword(null,"name","name",1843675177)], null),replacement);
 });
@@ -15,11 +15,11 @@ cljs.analyzer.passes.lite.replace_var_QMARK_ = (function cljs$analyzer$passes$li
 return ((cljs.analyzer.passes.lite.var_QMARK_(ast)) && (cljs.core.contains_QMARK_(cljs.analyzer.passes.lite.ctor__GT_ctor_lite,new cljs.core.Keyword(null,"name","name",1843675177).cljs$core$IFn$_invoke$arity$1(ast))));
 });
 cljs.analyzer.passes.lite.use_lite_types = (function cljs$analyzer$passes$lite$use_lite_types(env,ast,_){
-var G__21329 = ast;
+var G__21307 = ast;
 if(cljs.analyzer.passes.lite.replace_var_QMARK_(ast)){
-return cljs.analyzer.passes.lite.update_var(G__21329);
+return cljs.analyzer.passes.lite.update_var(G__21307);
 } else {
-return G__21329;
+return G__21307;
 }
 });
 

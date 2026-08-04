@@ -10,15 +10,15 @@ if(cljs.core.fn_QMARK_(method)){
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [method,cljs.core.PersistentArrayMap.EMPTY], null);
 } else {
 if((method instanceof cljs.core.Keyword)){
-var G__58826 = (emmy.numerical.quadrature.quadrature_methods.cljs$core$IFn$_invoke$arity$1 ? emmy.numerical.quadrature.quadrature_methods.cljs$core$IFn$_invoke$arity$1(method) : emmy.numerical.quadrature.quadrature_methods.call(null,method));
-return (emmy.numerical.quadrature.extract_method.cljs$core$IFn$_invoke$arity$1 ? emmy.numerical.quadrature.extract_method.cljs$core$IFn$_invoke$arity$1(G__58826) : emmy.numerical.quadrature.extract_method.call(null,G__58826));
+var G__58794 = (emmy.numerical.quadrature.quadrature_methods.cljs$core$IFn$_invoke$arity$1 ? emmy.numerical.quadrature.quadrature_methods.cljs$core$IFn$_invoke$arity$1(method) : emmy.numerical.quadrature.quadrature_methods.call(null,method));
+return (emmy.numerical.quadrature.extract_method.cljs$core$IFn$_invoke$arity$1 ? emmy.numerical.quadrature.extract_method.cljs$core$IFn$_invoke$arity$1(G__58794) : emmy.numerical.quadrature.extract_method.call(null,G__58794));
 } else {
 if(cljs.core.map_QMARK_(method)){
-var vec__58835 = (function (){var G__58838 = new cljs.core.Keyword(null,"method","method",55703592).cljs$core$IFn$_invoke$arity$1(method);
-return (emmy.numerical.quadrature.extract_method.cljs$core$IFn$_invoke$arity$1 ? emmy.numerical.quadrature.extract_method.cljs$core$IFn$_invoke$arity$1(G__58838) : emmy.numerical.quadrature.extract_method.call(null,G__58838));
+var vec__58795 = (function (){var G__58798 = new cljs.core.Keyword(null,"method","method",55703592).cljs$core$IFn$_invoke$arity$1(method);
+return (emmy.numerical.quadrature.extract_method.cljs$core$IFn$_invoke$arity$1 ? emmy.numerical.quadrature.extract_method.cljs$core$IFn$_invoke$arity$1(G__58798) : emmy.numerical.quadrature.extract_method.call(null,G__58798));
 })();
-var f = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58835,(0),null);
-var m = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58835,(1),null);
+var f = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58795,(0),null);
+var m = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58795,(1),null);
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [f,cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([cljs.core.dissoc.cljs$core$IFn$_invoke$arity$2(method,new cljs.core.Keyword(null,"method","method",55703592)),m], 0))], null);
 } else {
 return null;
@@ -48,8 +48,8 @@ return null;
  *   endpoints by passing through directly to the underlying integrator).
  */
 emmy.numerical.quadrature.get_integrator = (function emmy$numerical$quadrature$get_integrator(var_args){
-var G__58888 = arguments.length;
-switch (G__58888) {
+var G__58800 = arguments.length;
+switch (G__58800) {
 case 3:
 return emmy.numerical.quadrature.get_integrator.cljs$core$IFn$_invoke$arity$3((arguments[(0)]),(arguments[(1)]),(arguments[(2)]));
 
@@ -71,9 +71,9 @@ return emmy.numerical.quadrature.get_integrator.cljs$core$IFn$_invoke$arity$4(me
 (emmy.numerical.quadrature.get_integrator.cljs$core$IFn$_invoke$arity$4 = (function (method,a,b,m){
 var temp__5825__auto__ = emmy.numerical.quadrature.extract_method(method);
 if(cljs.core.truth_(temp__5825__auto__)){
-var vec__58896 = temp__5825__auto__;
-var integrate = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58896,(0),null);
-var opts = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58896,(1),null);
+var vec__58804 = temp__5825__auto__;
+var integrate = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58804,(0),null);
+var opts = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58804,(1),null);
 var integrate__$1 = (cljs.core.truth_((function (){var or__5162__auto__ = emmy.generic.infinite_QMARK_.cljs$core$IFn$_invoke$arity$1(a);
 if(cljs.core.truth_(or__5162__auto__)){
 return or__5162__auto__;
@@ -118,8 +118,8 @@ return null;
  *   of the definite integral.
  */
 emmy.numerical.quadrature.definite_integral = (function emmy$numerical$quadrature$definite_integral(var_args){
-var G__58903 = arguments.length;
-switch (G__58903) {
+var G__58810 = arguments.length;
+switch (G__58810) {
 case 3:
 return emmy.numerical.quadrature.definite_integral.cljs$core$IFn$_invoke$arity$3((arguments[(0)]),(arguments[(1)]),(arguments[(2)]));
 
@@ -138,18 +138,18 @@ throw (new Error(["Invalid arity: ",arguments.length].join("")));
 return emmy.numerical.quadrature.definite_integral.cljs$core$IFn$_invoke$arity$4(f,a,b,cljs.core.PersistentArrayMap.EMPTY);
 }));
 
-(emmy.numerical.quadrature.definite_integral.cljs$core$IFn$_invoke$arity$4 = (function (f,a,b,p__58907){
-var map__58908 = p__58907;
-var map__58908__$1 = cljs.core.__destructure_map(map__58908);
-var opts = map__58908__$1;
-var method = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__58908__$1,new cljs.core.Keyword(null,"method","method",55703592),new cljs.core.Keyword(null,"open","open",-1763596448));
-var compile_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__58908__$1,new cljs.core.Keyword(null,"compile?","compile?",-826687650),false);
-var info_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__58908__$1,new cljs.core.Keyword(null,"info?","info?",361925553),false);
+(emmy.numerical.quadrature.definite_integral.cljs$core$IFn$_invoke$arity$4 = (function (f,a,b,p__58812){
+var map__58813 = p__58812;
+var map__58813__$1 = cljs.core.__destructure_map(map__58813);
+var opts = map__58813__$1;
+var method = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__58813__$1,new cljs.core.Keyword(null,"method","method",55703592),new cljs.core.Keyword(null,"open","open",-1763596448));
+var compile_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__58813__$1,new cljs.core.Keyword(null,"compile?","compile?",-826687650),false);
+var info_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__58813__$1,new cljs.core.Keyword(null,"info?","info?",361925553),false);
 var temp__5823__auto__ = emmy.numerical.quadrature.get_integrator.cljs$core$IFn$_invoke$arity$4(method,a,b,opts);
 if(cljs.core.truth_(temp__5823__auto__)){
-var vec__58909 = temp__5823__auto__;
-var integrate = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58909,(0),null);
-var m = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58909,(1),null);
+var vec__58814 = temp__5823__auto__;
+var integrate = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58814,(0),null);
+var m = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__58814,(1),null);
 var f__$1 = (cljs.core.truth_(compile_QMARK_)?emmy.expression.compile.compile_fn.cljs$core$IFn$_invoke$arity$2(f,(1)):cljs.core.comp.cljs$core$IFn$_invoke$arity$2(emmy.util.double$,f));
 var result = (integrate.cljs$core$IFn$_invoke$arity$4 ? integrate.cljs$core$IFn$_invoke$arity$4(f__$1,a,b,m) : integrate.call(null,f__$1,a,b,m));
 if(cljs.core.truth_(info_QMARK_)){

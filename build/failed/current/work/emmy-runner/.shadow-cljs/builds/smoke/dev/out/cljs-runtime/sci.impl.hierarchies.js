@@ -10,8 +10,8 @@ return x;
 }
 });
 sci.impl.hierarchies.derive_STAR_ = (function sci$impl$hierarchies$derive_STAR_(var_args){
-var G__50779 = arguments.length;
-switch (G__50779) {
+var G__50778 = arguments.length;
+switch (G__50778) {
 case 3:
 return sci.impl.hierarchies.derive_STAR_.cljs$core$IFn$_invoke$arity$3((arguments[(0)]),(arguments[(1)]),(arguments[(2)]));
 
@@ -27,9 +27,9 @@ throw (new Error(["Invalid arity: ",arguments.length].join("")));
 });
 
 (sci.impl.hierarchies.derive_STAR_.cljs$core$IFn$_invoke$arity$3 = (function (ctx,tag,parent){
-var tag_50805__$1 = sci.impl.hierarchies.__GT_tag(tag);
+var tag_50799__$1 = sci.impl.hierarchies.__GT_tag(tag);
 sci.impl.vars.alter_var_root.cljs$core$IFn$_invoke$arity$2(sci.impl.hierarchies.global_hierarchy(ctx),(function (h){
-return cljs.core.derive.cljs$core$IFn$_invoke$arity$3(h,tag_50805__$1,parent);
+return cljs.core.derive.cljs$core$IFn$_invoke$arity$3(h,tag_50799__$1,parent);
 }));
 
 return null;
@@ -60,9 +60,9 @@ throw (new Error(["Invalid arity: ",arguments.length].join("")));
 });
 
 (sci.impl.hierarchies.underive_STAR_.cljs$core$IFn$_invoke$arity$3 = (function (ctx,tag,parent){
-var tag_50809__$1 = sci.impl.hierarchies.__GT_tag(tag);
+var tag_50801__$1 = sci.impl.hierarchies.__GT_tag(tag);
 sci.impl.vars.alter_var_root.cljs$core$IFn$_invoke$arity$2(sci.impl.hierarchies.global_hierarchy(ctx),(function (h){
-return cljs.core.underive.cljs$core$IFn$_invoke$arity$3(h,tag_50809__$1,parent);
+return cljs.core.underive.cljs$core$IFn$_invoke$arity$3(h,tag_50801__$1,parent);
 }));
 
 return null;
@@ -104,8 +104,8 @@ return cljs.core.isa_QMARK_.cljs$core$IFn$_invoke$arity$3(h,sci.impl.hierarchies
 (sci.impl.hierarchies.isa_QMARK__STAR_.cljs$lang$maxFixedArity = 4);
 
 sci.impl.hierarchies.ancestors_STAR_ = (function sci$impl$hierarchies$ancestors_STAR_(var_args){
-var G__50786 = arguments.length;
-switch (G__50786) {
+var G__50787 = arguments.length;
+switch (G__50787) {
 case 2:
 return sci.impl.hierarchies.ancestors_STAR_.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 

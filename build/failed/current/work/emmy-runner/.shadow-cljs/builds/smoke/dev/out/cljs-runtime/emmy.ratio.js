@@ -10,7 +10,7 @@ return (r instanceof emmy.bigfraction.Fraction);
  */
 emmy.ratio.IRational = function(){};
 
-var emmy$ratio$IRational$numerator$dyn_26856 = (function (_){
+var emmy$ratio$IRational$numerator$dyn_26891 = (function (_){
 var x__5519__auto__ = (((_ == null))?null:_);
 var m__5520__auto__ = (emmy.ratio.numerator[goog.typeOf(x__5519__auto__)]);
 if((!((m__5520__auto__ == null)))){
@@ -28,11 +28,11 @@ emmy.ratio.numerator = (function emmy$ratio$numerator(_){
 if((((!((_ == null)))) && ((!((_.emmy$ratio$IRational$numerator$arity$1 == null)))))){
 return _.emmy$ratio$IRational$numerator$arity$1(_);
 } else {
-return emmy$ratio$IRational$numerator$dyn_26856(_);
+return emmy$ratio$IRational$numerator$dyn_26891(_);
 }
 });
 
-var emmy$ratio$IRational$denominator$dyn_26865 = (function (_){
+var emmy$ratio$IRational$denominator$dyn_26892 = (function (_){
 var x__5519__auto__ = (((_ == null))?null:_);
 var m__5520__auto__ = (emmy.ratio.denominator[goog.typeOf(x__5519__auto__)]);
 if((!((m__5520__auto__ == null)))){
@@ -50,7 +50,7 @@ emmy.ratio.denominator = (function emmy$ratio$denominator(_){
 if((((!((_ == null)))) && ((!((_.emmy$ratio$IRational$denominator$arity$1 == null)))))){
 return _.emmy$ratio$IRational$denominator$arity$1(_);
 } else {
-return emmy$ratio$IRational$denominator$dyn_26865(_);
+return emmy$ratio$IRational$denominator$dyn_26892(_);
 }
 });
 
@@ -79,8 +79,8 @@ return emmy.bigfraction.denominator(x__$1);
  * Construct a ratio.
  */
 emmy.ratio.rationalize = (function emmy$ratio$rationalize(var_args){
-var G__26755 = arguments.length;
-switch (G__26755) {
+var G__26776 = arguments.length;
+switch (G__26776) {
 case 1:
 return emmy.ratio.rationalize.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -129,10 +129,10 @@ return cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.
 if(typeof x === 'string'){
 var temp__5823__auto__ = cljs.core.re_matches(emmy.ratio.ratio_pattern,x);
 if(cljs.core.truth_(temp__5823__auto__)){
-var vec__26759 = temp__5823__auto__;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__26759,(0),null);
-var numerator = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__26759,(1),null);
-var denominator = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__26759,(2),null);
+var vec__26781 = temp__5823__auto__;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__26781,(0),null);
+var numerator = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__26781,(1),null);
+var denominator = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__26781,(2),null);
 return cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,new cljs.core.Symbol("emmy.ratio","rationalize","emmy.ratio/rationalize",2140571274,null),null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,new cljs.core.Symbol("emmy.util","bigint","emmy.util/bigint",-894648022,null),null,(1),null)),(new cljs.core.List(null,numerator,null,(1),null))))),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,new cljs.core.Symbol("emmy.util","bigint","emmy.util/bigint",-894648022,null),null,(1),null)),(new cljs.core.List(null,denominator,null,(1),null))))),null,(1),null))], 0))));
 } else {
 return emmy.util.illegal((""+"Invalid ratio: "+cljs.core.str.cljs$core$IFn$_invoke$arity$1(x)));
@@ -312,15 +312,15 @@ return emmy.bigfraction.promote(emmy.bigfraction.gcd(a,b));
  */
 emmy.ratio.downcast_fraction = (function emmy$ratio$downcast_fraction(op){
 op.cljs$core$IMultiFn$_add_method$arity$3(null,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [emmy.bigfraction.Fraction,new cljs.core.Keyword("emmy.value","real","emmy.value/real",-1508349404)], null),(function (a,b){
-var G__26818 = emmy.bigfraction.__GT_real(a);
-var G__26819 = b;
-return (op.cljs$core$IFn$_invoke$arity$2 ? op.cljs$core$IFn$_invoke$arity$2(G__26818,G__26819) : op.call(null,G__26818,G__26819));
+var G__26864 = emmy.bigfraction.__GT_real(a);
+var G__26865 = b;
+return (op.cljs$core$IFn$_invoke$arity$2 ? op.cljs$core$IFn$_invoke$arity$2(G__26864,G__26865) : op.call(null,G__26864,G__26865));
 }));
 
 return op.cljs$core$IMultiFn$_add_method$arity$3(null,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("emmy.value","real","emmy.value/real",-1508349404),emmy.bigfraction.Fraction], null),(function (a,b){
-var G__26825 = a;
-var G__26826 = emmy.bigfraction.__GT_real(b);
-return (op.cljs$core$IFn$_invoke$arity$2 ? op.cljs$core$IFn$_invoke$arity$2(G__26825,G__26826) : op.call(null,G__26825,G__26826));
+var G__26867 = a;
+var G__26868 = emmy.bigfraction.__GT_real(b);
+return (op.cljs$core$IFn$_invoke$arity$2 ? op.cljs$core$IFn$_invoke$arity$2(G__26867,G__26868) : op.call(null,G__26867,G__26868));
 }));
 });
 
@@ -329,15 +329,15 @@ return (op.cljs$core$IFn$_invoke$arity$2 ? op.cljs$core$IFn$_invoke$arity$2(G__2
  */
 emmy.ratio.upcast_number = (function emmy$ratio$upcast_number(op){
 op.cljs$core$IMultiFn$_add_method$arity$3(null,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [emmy.bigfraction.Fraction,new cljs.core.Keyword("emmy.value","integral","emmy.value/integral",-970970786)], null),(function (a,b){
-var G__26835 = a;
-var G__26836 = emmy.bigfraction.integer__GT_(b);
-return (op.cljs$core$IFn$_invoke$arity$2 ? op.cljs$core$IFn$_invoke$arity$2(G__26835,G__26836) : op.call(null,G__26835,G__26836));
+var G__26871 = a;
+var G__26872 = emmy.bigfraction.integer__GT_(b);
+return (op.cljs$core$IFn$_invoke$arity$2 ? op.cljs$core$IFn$_invoke$arity$2(G__26871,G__26872) : op.call(null,G__26871,G__26872));
 }));
 
 return op.cljs$core$IMultiFn$_add_method$arity$3(null,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("emmy.value","integral","emmy.value/integral",-970970786),emmy.bigfraction.Fraction], null),(function (a,b){
-var G__26837 = emmy.bigfraction.integer__GT_(a);
-var G__26838 = b;
-return (op.cljs$core$IFn$_invoke$arity$2 ? op.cljs$core$IFn$_invoke$arity$2(G__26837,G__26838) : op.call(null,G__26837,G__26838));
+var G__26873 = emmy.bigfraction.integer__GT_(a);
+var G__26874 = b;
+return (op.cljs$core$IFn$_invoke$arity$2 ? op.cljs$core$IFn$_invoke$arity$2(G__26873,G__26874) : op.call(null,G__26873,G__26874));
 }));
 });
 
@@ -347,57 +347,57 @@ emmy.ratio.upcast_number(emmy.generic.gcd);
 
 emmy.ratio.downcast_fraction(emmy.generic.expt);
 
-var seq__26841_26894 = cljs.core.seq(new cljs.core.PersistentVector(null, 9, 5, cljs.core.PersistentVector.EMPTY_NODE, [emmy.generic.add,emmy.generic.mul,emmy.generic.sub,emmy.generic.gcd,emmy.generic.lcm,emmy.generic.modulo,emmy.generic.remainder,emmy.generic.quotient,emmy.generic.div], null));
-var chunk__26842_26895 = null;
-var count__26843_26896 = (0);
-var i__26844_26897 = (0);
+var seq__26875_26916 = cljs.core.seq(new cljs.core.PersistentVector(null, 9, 5, cljs.core.PersistentVector.EMPTY_NODE, [emmy.generic.add,emmy.generic.mul,emmy.generic.sub,emmy.generic.gcd,emmy.generic.lcm,emmy.generic.modulo,emmy.generic.remainder,emmy.generic.quotient,emmy.generic.div], null));
+var chunk__26876_26917 = null;
+var count__26877_26918 = (0);
+var i__26878_26919 = (0);
 while(true){
-if((i__26844_26897 < count__26843_26896)){
-var op_26898 = chunk__26842_26895.cljs$core$IIndexed$_nth$arity$2(null,i__26844_26897);
-emmy.ratio.upcast_number(op_26898);
+if((i__26878_26919 < count__26877_26918)){
+var op_26921 = chunk__26876_26917.cljs$core$IIndexed$_nth$arity$2(null,i__26878_26919);
+emmy.ratio.upcast_number(op_26921);
 
-emmy.ratio.downcast_fraction(op_26898);
+emmy.ratio.downcast_fraction(op_26921);
 
 
-var G__26900 = seq__26841_26894;
-var G__26901 = chunk__26842_26895;
-var G__26902 = count__26843_26896;
-var G__26903 = (i__26844_26897 + (1));
-seq__26841_26894 = G__26900;
-chunk__26842_26895 = G__26901;
-count__26843_26896 = G__26902;
-i__26844_26897 = G__26903;
+var G__26922 = seq__26875_26916;
+var G__26923 = chunk__26876_26917;
+var G__26924 = count__26877_26918;
+var G__26925 = (i__26878_26919 + (1));
+seq__26875_26916 = G__26922;
+chunk__26876_26917 = G__26923;
+count__26877_26918 = G__26924;
+i__26878_26919 = G__26925;
 continue;
 } else {
-var temp__5825__auto___26905 = cljs.core.seq(seq__26841_26894);
-if(temp__5825__auto___26905){
-var seq__26841_26906__$1 = temp__5825__auto___26905;
-if(cljs.core.chunked_seq_QMARK_(seq__26841_26906__$1)){
-var c__5694__auto___26908 = cljs.core.chunk_first(seq__26841_26906__$1);
-var G__26909 = cljs.core.chunk_rest(seq__26841_26906__$1);
-var G__26910 = c__5694__auto___26908;
-var G__26911 = cljs.core.count(c__5694__auto___26908);
-var G__26912 = (0);
-seq__26841_26894 = G__26909;
-chunk__26842_26895 = G__26910;
-count__26843_26896 = G__26911;
-i__26844_26897 = G__26912;
+var temp__5825__auto___26926 = cljs.core.seq(seq__26875_26916);
+if(temp__5825__auto___26926){
+var seq__26875_26928__$1 = temp__5825__auto___26926;
+if(cljs.core.chunked_seq_QMARK_(seq__26875_26928__$1)){
+var c__5694__auto___26930 = cljs.core.chunk_first(seq__26875_26928__$1);
+var G__26931 = cljs.core.chunk_rest(seq__26875_26928__$1);
+var G__26932 = c__5694__auto___26930;
+var G__26933 = cljs.core.count(c__5694__auto___26930);
+var G__26934 = (0);
+seq__26875_26916 = G__26931;
+chunk__26876_26917 = G__26932;
+count__26877_26918 = G__26933;
+i__26878_26919 = G__26934;
 continue;
 } else {
-var op_26914 = cljs.core.first(seq__26841_26906__$1);
-emmy.ratio.upcast_number(op_26914);
+var op_26935 = cljs.core.first(seq__26875_26928__$1);
+emmy.ratio.upcast_number(op_26935);
 
-emmy.ratio.downcast_fraction(op_26914);
+emmy.ratio.downcast_fraction(op_26935);
 
 
-var G__26915 = cljs.core.next(seq__26841_26906__$1);
-var G__26916 = null;
-var G__26917 = (0);
-var G__26918 = (0);
-seq__26841_26894 = G__26915;
-chunk__26842_26895 = G__26916;
-count__26843_26896 = G__26917;
-i__26844_26897 = G__26918;
+var G__26936 = cljs.core.next(seq__26875_26928__$1);
+var G__26937 = null;
+var G__26938 = (0);
+var G__26939 = (0);
+seq__26875_26916 = G__26936;
+chunk__26876_26917 = G__26937;
+count__26877_26918 = G__26938;
+i__26878_26919 = G__26939;
 continue;
 }
 } else {

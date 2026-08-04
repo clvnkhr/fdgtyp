@@ -49,12 +49,12 @@ var delx = ((ave - xt_SINGLEQUOTE_) / ave);
 var dely = ((ave - yt_SINGLEQUOTE_) / ave);
 var delz = ((ave - zt_SINGLEQUOTE_) / ave);
 if((cljs.core.max.cljs$core$IFn$_invoke$arity$variadic(Math.abs(delx),Math.abs(dely),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([Math.abs(delz)], 0)) > errtol)){
-var G__59184 = xt_SINGLEQUOTE_;
-var G__59185 = yt_SINGLEQUOTE_;
-var G__59186 = zt_SINGLEQUOTE_;
-xt = G__59184;
-yt = G__59185;
-zt = G__59186;
+var G__59302 = xt_SINGLEQUOTE_;
+var G__59303 = yt_SINGLEQUOTE_;
+var G__59304 = zt_SINGLEQUOTE_;
+xt = G__59302;
+yt = G__59303;
+zt = G__59304;
 continue;
 } else {
 var e2 = ((delx * dely) - (delz * delz));
@@ -109,16 +109,16 @@ var delx = ((ave - xp) / ave);
 var dely = ((ave - yp) / ave);
 var delz = ((ave - zp) / ave);
 if((cljs.core.max.cljs$core$IFn$_invoke$arity$variadic(Math.abs(delx),Math.abs(dely),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([Math.abs(delz)], 0)) > eps)){
-var G__59187 = xp;
-var G__59188 = yp;
-var G__59189 = zp;
-var G__59190 = sump;
-var G__59191 = facp;
-x__$1 = G__59187;
-y__$1 = G__59188;
-z__$1 = G__59189;
-sum = G__59190;
-fac = G__59191;
+var G__59310 = xp;
+var G__59311 = yp;
+var G__59312 = zp;
+var G__59313 = sump;
+var G__59314 = facp;
+x__$1 = G__59310;
+y__$1 = G__59311;
+z__$1 = G__59312;
+sum = G__59313;
+fac = G__59314;
 continue;
 } else {
 var ea = (delx * dely);
@@ -159,14 +159,14 @@ emmy.util.illegal("Carlson R_C");
 } else {
 }
 
-var vec__59001 = (((y > (0)))?new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [x,y,(1)], null):(function (){var xt = (x - y);
+var vec__59092 = (((y > (0)))?new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [x,y,(1)], null):(function (){var xt = (x - y);
 var yt = (- y);
 var w = (Math.sqrt(x) / Math.sqrt(xt));
 return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [xt,yt,w], null);
 })());
-var xt = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59001,(0),null);
-var yt = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59001,(1),null);
-var w = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59001,(2),null);
+var xt = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59092,(0),null);
+var yt = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59092,(1),null);
+var w = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59092,(2),null);
 var xt__$1 = xt;
 var yt__$1 = yt;
 while(true){
@@ -178,10 +178,10 @@ var yp = (0.25 * (yt__$1 + alamb));
 var ave = (third * ((xp + yp) + yp));
 var s = ((yp - ave) / ave);
 if((Math.abs(s) > errtol)){
-var G__59199 = xp;
-var G__59200 = yp;
-xt__$1 = G__59199;
-yt__$1 = G__59200;
+var G__59329 = xp;
+var G__59330 = yp;
+xt__$1 = G__59329;
+yt__$1 = G__59330;
 continue;
 } else {
 return (w * ((1.0 + ((s * s) * (C1 + (s * (C2 + (s * (C3 + (s * C4)))))))) / Math.sqrt(ave)));
@@ -219,7 +219,7 @@ emmy.util.illegal("Carlson R_J");
 } else {
 }
 
-var vec__59024 = (((p > (0)))?new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [x,y,z,p], null):(function (){var xt = cljs.core.min.cljs$core$IFn$_invoke$arity$variadic(x,y,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([z], 0));
+var vec__59150 = (((p > (0)))?new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [x,y,z,p], null):(function (){var xt = cljs.core.min.cljs$core$IFn$_invoke$arity$variadic(x,y,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([z], 0));
 var zt = cljs.core.max.cljs$core$IFn$_invoke$arity$variadic(x,y,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([z], 0));
 var yt = ((((x + y) + z) - xt) - zt);
 var a = (1.0 / (yt - p));
@@ -230,13 +230,13 @@ var tau = ((p * pt) / yt);
 var rcx = emmy.special.elliptic.carlson_rc(rho,tau);
 return new cljs.core.PersistentVector(null, 7, 5, cljs.core.PersistentVector.EMPTY_NODE, [xt,yt,zt,pt,a,b,rcx], null);
 })());
-var xt = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59024,(0),null);
-var yt = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59024,(1),null);
-var zt = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59024,(2),null);
-var pt = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59024,(3),null);
-var a = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59024,(4),null);
-var b = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59024,(5),null);
-var rcx = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59024,(6),null);
+var xt = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59150,(0),null);
+var yt = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59150,(1),null);
+var zt = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59150,(2),null);
+var pt = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59150,(3),null);
+var a = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59150,(4),null);
+var b = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59150,(5),null);
+var rcx = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59150,(6),null);
 var xt__$1 = xt;
 var yt__$1 = yt;
 var zt__$1 = zt;
@@ -262,18 +262,18 @@ var dely = ((ave - yp) / ave);
 var delz = ((ave - zp) / ave);
 var delp = ((ave - pp) / ave);
 if((cljs.core.max.cljs$core$IFn$_invoke$arity$variadic(Math.abs(delx),Math.abs(dely),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([Math.abs(delz),Math.abs(delp)], 0)) > errtol)){
-var G__59203 = xp;
-var G__59204 = yp;
-var G__59205 = zp;
-var G__59206 = pp;
-var G__59207 = sump;
-var G__59208 = facp;
-xt__$1 = G__59203;
-yt__$1 = G__59204;
-zt__$1 = G__59205;
-pt__$1 = G__59206;
-sum = G__59207;
-fac = G__59208;
+var G__59335 = xp;
+var G__59336 = yp;
+var G__59337 = zp;
+var G__59338 = pp;
+var G__59339 = sump;
+var G__59340 = facp;
+xt__$1 = G__59335;
+yt__$1 = G__59336;
+zt__$1 = G__59337;
+pt__$1 = G__59338;
+sum = G__59339;
+fac = G__59340;
 continue;
 } else {
 var ea = ((delx * (dely + delz)) + (dely * delz));
@@ -318,8 +318,8 @@ return emmy.special.elliptic.elliptic_f((Math.PI / (2)),k);
  *   See [page 260](http://phys.uri.edu/nigh/NumRec/bookfpdf/f6-11.pdf).
  */
 emmy.special.elliptic.elliptic_e = (function emmy$special$elliptic$elliptic_e(var_args){
-var G__59070 = arguments.length;
-switch (G__59070) {
+var G__59198 = arguments.length;
+switch (G__59198) {
 case 1:
 return emmy.special.elliptic.elliptic_e.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -365,20 +365,20 @@ var powers_2 = 1.0;
 while(true){
 if((Math.abs(c) < emmy.util.machine_epsilon)){
 var first_elliptic_integral = ((Math.PI / (2)) / a);
-var G__59085 = first_elliptic_integral;
-var G__59086 = (first_elliptic_integral * (1.0 - (d / 2.0)));
-return (continue$.cljs$core$IFn$_invoke$arity$2 ? continue$.cljs$core$IFn$_invoke$arity$2(G__59085,G__59086) : continue$.call(null,G__59085,G__59086));
+var G__59209 = first_elliptic_integral;
+var G__59210 = (first_elliptic_integral * (1.0 - (d / 2.0)));
+return (continue$.cljs$core$IFn$_invoke$arity$2 ? continue$.cljs$core$IFn$_invoke$arity$2(G__59209,G__59210) : continue$.call(null,G__59209,G__59210));
 } else {
-var G__59217 = ((a + b) / 2.0);
-var G__59218 = Math.sqrt((a * b));
-var G__59219 = ((a - b) / 2.0);
-var G__59220 = (d + ((c * c) * powers_2));
-var G__59221 = (powers_2 * 2.0);
-a = G__59217;
-b = G__59218;
-c = G__59219;
-d = G__59220;
-powers_2 = G__59221;
+var G__59378 = ((a + b) / 2.0);
+var G__59379 = Math.sqrt((a * b));
+var G__59380 = ((a - b) / 2.0);
+var G__59381 = (d + ((c * c) * powers_2));
+var G__59382 = (powers_2 * 2.0);
+a = G__59378;
+b = G__59379;
+c = G__59380;
+d = G__59381;
+powers_2 = G__59382;
 continue;
 }
 break;
@@ -417,8 +417,8 @@ return emmy.special.elliptic.elliptic_integrals(k,cont);
  *   See [page 260](http://phys.uri.edu/nigh/NumRec/bookfpdf/f6-11.pdf).
  */
 emmy.special.elliptic.elliptic_pi = (function emmy$special$elliptic$elliptic_pi(var_args){
-var G__59090 = arguments.length;
-switch (G__59090) {
+var G__59213 = arguments.length;
+switch (G__59213) {
 case 2:
 return emmy.special.elliptic.elliptic_pi.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -504,8 +504,8 @@ return new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMP
  *   $dn$ since computing all three is no harder than computing any one of them.
  */
 emmy.special.elliptic.jacobi_elliptic_functions = (function emmy$special$elliptic$jacobi_elliptic_functions(var_args){
-var G__59104 = arguments.length;
-switch (G__59104) {
+var G__59222 = arguments.length;
+switch (G__59222) {
 case 2:
 return emmy.special.elliptic.jacobi_elliptic_functions.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -529,16 +529,16 @@ var eps = emmy.util.sqrt_machine_epsilon;
 var emc = (1.0 - (k * k));
 if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(emc,0.0)){
 var cn = (1.0 / Math.cosh(u));
-var G__59109 = Math.tanh(u);
-var G__59110 = cn;
-var G__59111 = cn;
-return (cont.cljs$core$IFn$_invoke$arity$3 ? cont.cljs$core$IFn$_invoke$arity$3(G__59109,G__59110,G__59111) : cont.call(null,G__59109,G__59110,G__59111));
+var G__59227 = Math.tanh(u);
+var G__59228 = cn;
+var G__59229 = cn;
+return (cont.cljs$core$IFn$_invoke$arity$3 ? cont.cljs$core$IFn$_invoke$arity$3(G__59227,G__59228,G__59229) : cont.call(null,G__59227,G__59228,G__59229));
 } else {
-var vec__59113 = emmy.special.elliptic.emc_u_d(emc,u,1.0);
-var bo = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59113,(0),null);
-var emc__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59113,(1),null);
-var u__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59113,(2),null);
-var d = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59113,(3),null);
+var vec__59233 = emmy.special.elliptic.emc_u_d(emc,u,1.0);
+var bo = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59233,(0),null);
+var emc__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59233,(1),null);
+var u__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59233,(2),null);
+var d = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59233,(3),null);
 var a = 1.0;
 var emc__$2 = emc__$1;
 var i = (1);
@@ -548,22 +548,22 @@ while(true){
 var emc__$3 = Math.sqrt(emc__$2);
 var c = (0.5 * (a + emc__$3));
 if((((Math.abs((a - emc__$3)) > (eps * a))) && ((i < (13))))){
-var G__59229 = c;
-var G__59230 = (a * emc__$3);
-var G__59231 = (i + (1));
-var G__59232 = cljs.core.cons(a,em);
-var G__59233 = cljs.core.cons(emc__$3,en);
-a = G__59229;
-emc__$2 = G__59230;
-i = G__59231;
-em = G__59232;
-en = G__59233;
+var G__59419 = c;
+var G__59420 = (a * emc__$3);
+var G__59421 = (i + (1));
+var G__59422 = cljs.core.cons(a,em);
+var G__59423 = cljs.core.cons(emc__$3,en);
+a = G__59419;
+emc__$2 = G__59420;
+i = G__59421;
+em = G__59422;
+en = G__59423;
 continue;
 } else {
 var u__$2 = (c * u__$1);
 var sn = Math.sin(u__$2);
 var cn = Math.cos(u__$2);
-var vec__59146 = ((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(sn,0.0))?new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [a,sn,cn,1.0], null):(function (){var em__$1 = em;
+var vec__59266 = ((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(sn,0.0))?new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [a,sn,cn,1.0], null):(function (){var em__$1 = em;
 var en__$1 = en;
 var a__$1 = (cn / sn);
 var c__$1 = (a__$1 * c);
@@ -571,48 +571,48 @@ var dn = 1.0;
 while(true){
 if(((cljs.core.seq(em__$1)) && (cljs.core.seq(en__$1)))){
 var b = cljs.core.first(em__$1);
-var vec__59163 = (function (){var a__$2 = (c__$1 * a__$1);
+var vec__59281 = (function (){var a__$2 = (c__$1 * a__$1);
 var c__$2 = (dn * c__$1);
 var dn__$1 = ((cljs.core.first(en__$1) + a__$2) / (a__$2 + b));
 var a__$3 = (c__$2 / b);
 return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [a__$3,c__$2,dn__$1], null);
 })();
-var a__$2 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59163,(0),null);
-var c__$2 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59163,(1),null);
-var dn__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59163,(2),null);
-var G__59241 = cljs.core.rest(em__$1);
-var G__59242 = cljs.core.rest(en__$1);
-var G__59243 = a__$2;
-var G__59244 = c__$2;
-var G__59245 = dn__$1;
-em__$1 = G__59241;
-en__$1 = G__59242;
-a__$1 = G__59243;
-c__$1 = G__59244;
-dn = G__59245;
+var a__$2 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59281,(0),null);
+var c__$2 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59281,(1),null);
+var dn__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59281,(2),null);
+var G__59424 = cljs.core.rest(em__$1);
+var G__59425 = cljs.core.rest(en__$1);
+var G__59426 = a__$2;
+var G__59427 = c__$2;
+var G__59428 = dn__$1;
+em__$1 = G__59424;
+en__$1 = G__59425;
+a__$1 = G__59426;
+c__$1 = G__59427;
+dn = G__59428;
 continue;
 } else {
 var a_SINGLEQUOTE_ = (1.0 / Math.sqrt((1.0 + (c__$1 * c__$1))));
-var vec__59172 = (function (){var sn__$1 = (((sn < 0.0))?(- a_SINGLEQUOTE_):a_SINGLEQUOTE_);
+var vec__59284 = (function (){var sn__$1 = (((sn < 0.0))?(- a_SINGLEQUOTE_):a_SINGLEQUOTE_);
 var cn__$1 = (c__$1 * sn__$1);
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [sn__$1,cn__$1], null);
 })();
-var sn__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59172,(0),null);
-var cn__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59172,(1),null);
+var sn__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59284,(0),null);
+var cn__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59284,(1),null);
 return new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [a__$1,sn__$1,cn__$1,dn], null);
 }
 break;
 }
 })());
-var a__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59146,(0),null);
-var sn__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59146,(1),null);
-var cn__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59146,(2),null);
-var dn = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59146,(3),null);
+var a__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59266,(0),null);
+var sn__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59266,(1),null);
+var cn__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59266,(2),null);
+var dn = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59266,(3),null);
 if(cljs.core.truth_(bo)){
-var G__59177 = (sn__$1 / d);
-var G__59178 = a__$1;
-var G__59179 = cn__$1;
-return (cont.cljs$core$IFn$_invoke$arity$3 ? cont.cljs$core$IFn$_invoke$arity$3(G__59177,G__59178,G__59179) : cont.call(null,G__59177,G__59178,G__59179));
+var G__59287 = (sn__$1 / d);
+var G__59288 = a__$1;
+var G__59289 = cn__$1;
+return (cont.cljs$core$IFn$_invoke$arity$3 ? cont.cljs$core$IFn$_invoke$arity$3(G__59287,G__59288,G__59289) : cont.call(null,G__59287,G__59288,G__59289));
 } else {
 return (cont.cljs$core$IFn$_invoke$arity$3 ? cont.cljs$core$IFn$_invoke$arity$3(sn__$1,cn__$1,dn) : cont.call(null,sn__$1,cn__$1,dn));
 }

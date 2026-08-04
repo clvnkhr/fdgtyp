@@ -11,8 +11,10 @@
   explicit generic division form is valid ClojureScript and matches the source
   convention used by this book. This function changes presentation only."
   [value]
-  (str/replace
-   (pr-str value)
-   emmy-ratio-pattern
-   (fn [[_ numerator denominator]]
-     (str "(/ " numerator " " denominator ")"))))
+  (if (fn? value)
+    "<function>"
+    (str/replace
+     (pr-str value)
+     emmy-ratio-pattern
+     (fn [[_ numerator denominator]]
+       (str "(/ " numerator " " denominator ")")))))

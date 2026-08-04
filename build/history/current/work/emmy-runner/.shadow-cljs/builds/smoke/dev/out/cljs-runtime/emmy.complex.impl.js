@@ -202,32 +202,32 @@ emmy.complex.impl.complex_re = /([+-]?\d+(\.\d*)?([Ee][+-]?\d+)?)(\s?([+-])?\s?(
 emmy.complex.impl.parse = (function emmy$complex$impl$parse(s){
 var temp__5823__auto__ = cljs.core.re_matches(emmy.complex.impl.complex_re,s);
 if(cljs.core.truth_(temp__5823__auto__)){
-var vec__26806 = temp__5823__auto__;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__26806,(0),null);
-var re = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__26806,(1),null);
-var re_frac = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__26806,(2),null);
-var re_expt = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__26806,(3),null);
-var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__26806,(4),null);
-var sign = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__26806,(5),null);
-var im = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__26806,(6),null);
-var im_frac = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__26806,(7),null);
-var im_expt = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__26806,(8),null);
-return emmy.complex.impl.__GT_Complex((function (){var fexpr__26809 = (cljs.core.truth_((function (){var or__5162__auto__ = re_frac;
+var vec__26774 = temp__5823__auto__;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__26774,(0),null);
+var re = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__26774,(1),null);
+var re_frac = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__26774,(2),null);
+var re_expt = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__26774,(3),null);
+var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__26774,(4),null);
+var sign = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__26774,(5),null);
+var im = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__26774,(6),null);
+var im_frac = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__26774,(7),null);
+var im_expt = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__26774,(8),null);
+return emmy.complex.impl.__GT_Complex((function (){var fexpr__26778 = (cljs.core.truth_((function (){var or__5162__auto__ = re_frac;
 if(cljs.core.truth_(or__5162__auto__)){
 return or__5162__auto__;
 } else {
 return re_expt;
 }
 })())?emmy.util.parse_double:emmy.util.parse_int);
-return (fexpr__26809.cljs$core$IFn$_invoke$arity$1 ? fexpr__26809.cljs$core$IFn$_invoke$arity$1(re) : fexpr__26809.call(null,re));
-})(),(((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(sign,"-"))?(-1):(1)) * (cljs.core.truth_(im)?(function (){var fexpr__26810 = (cljs.core.truth_((function (){var or__5162__auto__ = im_frac;
+return (fexpr__26778.cljs$core$IFn$_invoke$arity$1 ? fexpr__26778.cljs$core$IFn$_invoke$arity$1(re) : fexpr__26778.call(null,re));
+})(),(((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(sign,"-"))?(-1):(1)) * (cljs.core.truth_(im)?(function (){var fexpr__26780 = (cljs.core.truth_((function (){var or__5162__auto__ = im_frac;
 if(cljs.core.truth_(or__5162__auto__)){
 return or__5162__auto__;
 } else {
 return im_expt;
 }
 })())?emmy.util.parse_double:emmy.util.parse_int);
-return (fexpr__26810.cljs$core$IFn$_invoke$arity$1 ? fexpr__26810.cljs$core$IFn$_invoke$arity$1(im) : fexpr__26810.call(null,im));
+return (fexpr__26780.cljs$core$IFn$_invoke$arity$1 ? fexpr__26780.cljs$core$IFn$_invoke$arity$1(im) : fexpr__26780.call(null,im));
 })():(0))));
 } else {
 throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2("invalid complex number",new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"input","input",556931961),s], null));
@@ -746,8 +746,8 @@ return emmy.complex.impl.__GT_Complex(emmy.generic.negate.cljs$core$IFn$_invoke$
  * Ceils the actual complex number
  */
 emmy.complex.impl.ceil = (function emmy$complex$impl$ceil(var_args){
-var G__27036 = arguments.length;
-switch (G__27036) {
+var G__26950 = arguments.length;
+switch (G__26950) {
 case 1:
 return emmy.complex.impl.ceil.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -777,8 +777,8 @@ return emmy.complex.impl.__GT_Complex((Math.ceil((z.re * places__$1)) / places__
  * Floors the actual complex number
  */
 emmy.complex.impl.floor = (function emmy$complex$impl$floor(var_args){
-var G__27038 = arguments.length;
-switch (G__27038) {
+var G__26952 = arguments.length;
+switch (G__26952) {
 case 1:
 return emmy.complex.impl.floor.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 

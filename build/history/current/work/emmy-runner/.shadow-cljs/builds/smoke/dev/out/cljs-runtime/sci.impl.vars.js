@@ -327,10 +327,10 @@ return false;
 sci.impl.vars.push_thread_bindings = (function sci$impl$vars$push_thread_bindings(bindings){
 var frame = sci.impl.vars.get_thread_binding_frame();
 var bmap = frame.bindings;
-var bmap__$1 = cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (acc,p__50700){
-var vec__50701 = p__50700;
-var var_STAR_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__50701,(0),null);
-var val_STAR_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__50701,(1),null);
+var bmap__$1 = cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (acc,p__50701){
+var vec__50702 = p__50701;
+var var_STAR_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__50702,(0),null);
+var val_STAR_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__50702,(1),null);
 if(cljs.core.not(sci.impl.vars.dynamic_QMARK_(var_STAR_))){
 throw (new Error((""+"Can't dynamically bind non-dynamic var "+cljs.core.str.cljs$core$IFn$_invoke$arity$1(var_STAR_))));
 } else {
@@ -361,9 +361,9 @@ var ret = cljs.core.PersistentArrayMap.EMPTY;
 var kvs = cljs.core.seq(f.bindings);
 while(true){
 if(kvs){
-var vec__50707 = cljs.core.first(kvs);
-var var_STAR_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__50707,(0),null);
-var tbox = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__50707,(1),null);
+var vec__50708 = cljs.core.first(kvs);
+var var_STAR_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__50708,(0),null);
+var tbox = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__50708,(1),null);
 var tbox_val = tbox.sci$impl$types$IBox$getVal$arity$1(null);
 var G__50734 = cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(ret,var_STAR_,tbox_val);
 var G__50735 = cljs.core.next(kvs);
@@ -587,10 +587,10 @@ throw (new Error((""+"Invalid arity: "+cljs.core.str.cljs$core$IFn$_invoke$arity
 }
 }));
 
-(sci.impl.vars.SciUnbound.prototype.apply = (function (self__,args50710){
+(sci.impl.vars.SciUnbound.prototype.apply = (function (self__,args50711){
 var self__ = this;
 var self____$1 = this;
-return self____$1.call.apply(self____$1,[self____$1].concat(cljs.core.aclone(args50710)));
+return self____$1.call.apply(self____$1,[self____$1].concat(cljs.core.aclone(args50711)));
 }));
 
 (sci.impl.vars.SciUnbound.prototype.cljs$core$IFn$_invoke$arity$0 = (function (){

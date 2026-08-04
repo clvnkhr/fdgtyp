@@ -225,8 +225,8 @@ return (ctor.cljs$core$IFn$_invoke$arity$1 ? ctor.cljs$core$IFn$_invoke$arity$1(
  *   by `:coordinate-representations`; passing these values will seed the cache.
  */
 emmy.calculus.manifold.make_manifold_point = (function emmy$calculus$manifold$make_manifold_point(var_args){
-var G__47238 = arguments.length;
-switch (G__47238) {
+var G__47260 = arguments.length;
+switch (G__47260) {
 case 2:
 return emmy.calculus.manifold.make_manifold_point.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -290,8 +290,8 @@ return ((emmy.calculus.manifold.manifold_point_QMARK_(point)) && (cljs.core._EQ_
 emmy.calculus.manifold.get_coordinates = (function emmy$calculus$manifold$get_coordinates(manifold_point,coordinate_system,thunk){
 var reps = new cljs.core.Keyword(null,"coordinate-representations","coordinate-representations",-676047034).cljs$core$IFn$_invoke$arity$1(manifold_point);
 var coordsys_id = (emmy.calculus.manifold.uuid.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.manifold.uuid.cljs$core$IFn$_invoke$arity$1(coordinate_system) : emmy.calculus.manifold.uuid.call(null,coordinate_system));
-var or__5162__auto__ = (function (){var fexpr__47241 = cljs.core.deref(reps);
-return (fexpr__47241.cljs$core$IFn$_invoke$arity$1 ? fexpr__47241.cljs$core$IFn$_invoke$arity$1(coordsys_id) : fexpr__47241.call(null,coordsys_id));
+var or__5162__auto__ = (function (){var fexpr__47268 = cljs.core.deref(reps);
+return (fexpr__47268.cljs$core$IFn$_invoke$arity$1 ? fexpr__47268.cljs$core$IFn$_invoke$arity$1(coordsys_id) : fexpr__47268.call(null,coordsys_id));
 })();
 if(cljs.core.truth_(or__5162__auto__)){
 return or__5162__auto__;
@@ -308,7 +308,7 @@ return rep;
  */
 emmy.calculus.manifold.ICoordinateSystem = function(){};
 
-var emmy$calculus$manifold$ICoordinateSystem$check_coordinates$dyn_47364 = (function (this$,coords){
+var emmy$calculus$manifold$ICoordinateSystem$check_coordinates$dyn_47358 = (function (this$,coords){
 var x__5519__auto__ = (((this$ == null))?null:this$);
 var m__5520__auto__ = (emmy.calculus.manifold.check_coordinates[goog.typeOf(x__5519__auto__)]);
 if((!((m__5520__auto__ == null)))){
@@ -330,11 +330,11 @@ emmy.calculus.manifold.check_coordinates = (function emmy$calculus$manifold$chec
 if((((!((this$ == null)))) && ((!((this$.emmy$calculus$manifold$ICoordinateSystem$check_coordinates$arity$2 == null)))))){
 return this$.emmy$calculus$manifold$ICoordinateSystem$check_coordinates$arity$2(this$,coords);
 } else {
-return emmy$calculus$manifold$ICoordinateSystem$check_coordinates$dyn_47364(this$,coords);
+return emmy$calculus$manifold$ICoordinateSystem$check_coordinates$dyn_47358(this$,coords);
 }
 });
 
-var emmy$calculus$manifold$ICoordinateSystem$check_point$dyn_47365 = (function (this$,point){
+var emmy$calculus$manifold$ICoordinateSystem$check_point$dyn_47359 = (function (this$,point){
 var x__5519__auto__ = (((this$ == null))?null:this$);
 var m__5520__auto__ = (emmy.calculus.manifold.check_point[goog.typeOf(x__5519__auto__)]);
 if((!((m__5520__auto__ == null)))){
@@ -356,11 +356,11 @@ emmy.calculus.manifold.check_point = (function emmy$calculus$manifold$check_poin
 if((((!((this$ == null)))) && ((!((this$.emmy$calculus$manifold$ICoordinateSystem$check_point$arity$2 == null)))))){
 return this$.emmy$calculus$manifold$ICoordinateSystem$check_point$arity$2(this$,point);
 } else {
-return emmy$calculus$manifold$ICoordinateSystem$check_point$dyn_47365(this$,point);
+return emmy$calculus$manifold$ICoordinateSystem$check_point$dyn_47359(this$,point);
 }
 });
 
-var emmy$calculus$manifold$ICoordinateSystem$coords__GT_point$dyn_47366 = (function (this$,coords){
+var emmy$calculus$manifold$ICoordinateSystem$coords__GT_point$dyn_47360 = (function (this$,coords){
 var x__5519__auto__ = (((this$ == null))?null:this$);
 var m__5520__auto__ = (emmy.calculus.manifold.coords__GT_point[goog.typeOf(x__5519__auto__)]);
 if((!((m__5520__auto__ == null)))){
@@ -382,11 +382,11 @@ emmy.calculus.manifold.coords__GT_point = (function emmy$calculus$manifold$coord
 if((((!((this$ == null)))) && ((!((this$.emmy$calculus$manifold$ICoordinateSystem$coords__GT_point$arity$2 == null)))))){
 return this$.emmy$calculus$manifold$ICoordinateSystem$coords__GT_point$arity$2(this$,coords);
 } else {
-return emmy$calculus$manifold$ICoordinateSystem$coords__GT_point$dyn_47366(this$,coords);
+return emmy$calculus$manifold$ICoordinateSystem$coords__GT_point$dyn_47360(this$,coords);
 }
 });
 
-var emmy$calculus$manifold$ICoordinateSystem$point__GT_coords$dyn_47367 = (function (this$,point){
+var emmy$calculus$manifold$ICoordinateSystem$point__GT_coords$dyn_47361 = (function (this$,point){
 var x__5519__auto__ = (((this$ == null))?null:this$);
 var m__5520__auto__ = (emmy.calculus.manifold.point__GT_coords[goog.typeOf(x__5519__auto__)]);
 if((!((m__5520__auto__ == null)))){
@@ -408,11 +408,11 @@ emmy.calculus.manifold.point__GT_coords = (function emmy$calculus$manifold$point
 if((((!((this$ == null)))) && ((!((this$.emmy$calculus$manifold$ICoordinateSystem$point__GT_coords$arity$2 == null)))))){
 return this$.emmy$calculus$manifold$ICoordinateSystem$point__GT_coords$arity$2(this$,point);
 } else {
-return emmy$calculus$manifold$ICoordinateSystem$point__GT_coords$dyn_47367(this$,point);
+return emmy$calculus$manifold$ICoordinateSystem$point__GT_coords$dyn_47361(this$,point);
 }
 });
 
-var emmy$calculus$manifold$ICoordinateSystem$uuid$dyn_47368 = (function (this$){
+var emmy$calculus$manifold$ICoordinateSystem$uuid$dyn_47362 = (function (this$){
 var x__5519__auto__ = (((this$ == null))?null:this$);
 var m__5520__auto__ = (emmy.calculus.manifold.uuid[goog.typeOf(x__5519__auto__)]);
 if((!((m__5520__auto__ == null)))){
@@ -437,7 +437,7 @@ emmy.calculus.manifold.uuid = (function emmy$calculus$manifold$uuid(this$){
 if((((!((this$ == null)))) && ((!((this$.emmy$calculus$manifold$ICoordinateSystem$uuid$arity$1 == null)))))){
 return this$.emmy$calculus$manifold$ICoordinateSystem$uuid$arity$1(this$);
 } else {
-return emmy$calculus$manifold$ICoordinateSystem$uuid$dyn_47368(this$);
+return emmy$calculus$manifold$ICoordinateSystem$uuid$dyn_47362(this$);
 }
 });
 
@@ -1542,12 +1542,12 @@ if(cljs.core.not(cljs.core.next(more))){
 return emmy.structure.up_STAR_(ans);
 } else {
 var r_SINGLEQUOTE_ = emmy.generic.sqrt.cljs$core$IFn$_invoke$arity$1(emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2(emmy.generic.square.cljs$core$IFn$_invoke$arity$1(cljs.core.first(more)),emmy.generic.square.cljs$core$IFn$_invoke$arity$1(r)));
-var G__47389 = r_SINGLEQUOTE_;
-var G__47390 = cljs.core.rest(more);
-var G__47391 = cljs.core.cons(safe_atan(r_SINGLEQUOTE_,cljs.core.second(more)),ans);
-r = G__47389;
-more = G__47390;
-ans = G__47391;
+var G__47387 = r_SINGLEQUOTE_;
+var G__47388 = cljs.core.rest(more);
+var G__47389 = cljs.core.cons(safe_atan(r_SINGLEQUOTE_,cljs.core.second(more)),ans);
+r = G__47387;
+more = G__47388;
+ans = G__47389;
 continue;
 }
 break;

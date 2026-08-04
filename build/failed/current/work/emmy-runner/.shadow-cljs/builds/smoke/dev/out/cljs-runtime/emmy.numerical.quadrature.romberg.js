@@ -19,8 +19,8 @@ goog.provide('emmy.numerical.quadrature.romberg');
  *   If supplied, `:n` (default 1) specifies the initial number of slices to use.
  */
 emmy.numerical.quadrature.romberg.open_sequence = (function emmy$numerical$quadrature$romberg$open_sequence(var_args){
-var G__56494 = arguments.length;
-switch (G__56494) {
+var G__56661 = arguments.length;
+switch (G__56661) {
 case 3:
 return emmy.numerical.quadrature.romberg.open_sequence.cljs$core$IFn$_invoke$arity$3((arguments[(0)]),(arguments[(1)]),(arguments[(2)]));
 
@@ -39,11 +39,11 @@ throw (new Error(["Invalid arity: ",arguments.length].join("")));
 return emmy.numerical.quadrature.romberg.open_sequence.cljs$core$IFn$_invoke$arity$4(f,a,b,cljs.core.PersistentArrayMap.EMPTY);
 }));
 
-(emmy.numerical.quadrature.romberg.open_sequence.cljs$core$IFn$_invoke$arity$4 = (function (f,a,b,p__56514){
-var map__56515 = p__56514;
-var map__56515__$1 = cljs.core.__destructure_map(map__56515);
-var opts = map__56515__$1;
-var n = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__56515__$1,new cljs.core.Keyword(null,"n","n",562130025),(1));
+(emmy.numerical.quadrature.romberg.open_sequence.cljs$core$IFn$_invoke$arity$4 = (function (f,a,b,p__56663){
+var map__56664 = p__56663;
+var map__56664__$1 = cljs.core.__destructure_map(map__56664);
+var opts = map__56664__$1;
+var n = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__56664__$1,new cljs.core.Keyword(null,"n","n",562130025),(1));
 if(typeof n === 'number'){
 } else {
 throw (new Error("Assert failed: (number? n)"));
@@ -72,8 +72,8 @@ return emmy.polynomial.richardson.richardson_sequence.cljs$core$IFn$_invoke$arit
  *   If supplied, `:n` (default 1) specifies the initial number of slices to use.
  */
 emmy.numerical.quadrature.romberg.closed_sequence = (function emmy$numerical$quadrature$romberg$closed_sequence(var_args){
-var G__56517 = arguments.length;
-switch (G__56517) {
+var G__56668 = arguments.length;
+switch (G__56668) {
 case 3:
 return emmy.numerical.quadrature.romberg.closed_sequence.cljs$core$IFn$_invoke$arity$3((arguments[(0)]),(arguments[(1)]),(arguments[(2)]));
 
@@ -92,11 +92,11 @@ throw (new Error(["Invalid arity: ",arguments.length].join("")));
 return emmy.numerical.quadrature.romberg.closed_sequence.cljs$core$IFn$_invoke$arity$4(f,a,b,cljs.core.PersistentArrayMap.EMPTY);
 }));
 
-(emmy.numerical.quadrature.romberg.closed_sequence.cljs$core$IFn$_invoke$arity$4 = (function (f,a,b,p__56539){
-var map__56560 = p__56539;
-var map__56560__$1 = cljs.core.__destructure_map(map__56560);
-var opts = map__56560__$1;
-var n = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__56560__$1,new cljs.core.Keyword(null,"n","n",562130025),(1));
+(emmy.numerical.quadrature.romberg.closed_sequence.cljs$core$IFn$_invoke$arity$4 = (function (f,a,b,p__56671){
+var map__56672 = p__56671;
+var map__56672__$1 = cljs.core.__destructure_map(map__56672);
+var opts = map__56672__$1;
+var n = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__56672__$1,new cljs.core.Keyword(null,"n","n",562130025),(1));
 if(typeof n === 'number'){
 } else {
 throw (new Error("Assert failed: (number? n)"));
@@ -115,8 +115,8 @@ return emmy.polynomial.richardson.richardson_sequence.cljs$core$IFn$_invoke$arit
  *   Defaults to the same behavior as `open-sequence`.
  */
 emmy.numerical.quadrature.romberg.romberg_sequence = (function emmy$numerical$quadrature$romberg$romberg_sequence(var_args){
-var G__56584 = arguments.length;
-switch (G__56584) {
+var G__56675 = arguments.length;
+switch (G__56675) {
 case 3:
 return emmy.numerical.quadrature.romberg.romberg_sequence.cljs$core$IFn$_invoke$arity$3((arguments[(0)]),(arguments[(1)]),(arguments[(2)]));
 

@@ -6,12 +6,12 @@ goog.provide('emmy.mechanics.hamilton');
  *   Useful for constructing Hamiltonian literal functions.
  */
 emmy.mechanics.hamilton.Hamiltonian = (function emmy$mechanics$hamilton$Hamiltonian(n){
-var r__36234__auto__ = cljs.core.seq(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"->","->",-2139605430,null),cljs.core.seq(new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"UP","UP",-1898089532,null),new cljs.core.Symbol(null,"Real","Real",374292741,null),cljs.core.seq(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"UP*","UP*",294235991,null),new cljs.core.Symbol(null,"Real","Real",374292741,null),n], null)),cljs.core.seq(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"DOWN*","DOWN*",1300864675,null),new cljs.core.Symbol(null,"Real","Real",374292741,null),n], null))], null)),new cljs.core.Symbol(null,"Real","Real",374292741,null)], null));
-var or__5162__auto__ = r__36234__auto__;
+var r__36206__auto__ = cljs.core.seq(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"->","->",-2139605430,null),cljs.core.seq(new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"UP","UP",-1898089532,null),new cljs.core.Symbol(null,"Real","Real",374292741,null),cljs.core.seq(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"UP*","UP*",294235991,null),new cljs.core.Symbol(null,"Real","Real",374292741,null),n], null)),cljs.core.seq(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"DOWN*","DOWN*",1300864675,null),new cljs.core.Symbol(null,"Real","Real",374292741,null),n], null))], null)),new cljs.core.Symbol(null,"Real","Real",374292741,null)], null));
+var or__5162__auto__ = r__36206__auto__;
 if(or__5162__auto__){
 return or__5162__auto__;
 } else {
-return emmy.pattern.consequence.succeed(r__36234__auto__);
+return emmy.pattern.consequence.succeed(r__36206__auto__);
 }
 });
 /**
@@ -42,10 +42,10 @@ var and__5160__auto__ = emmy.structure.up_QMARK_(s);
 if(and__5160__auto__){
 var and__5160__auto____$1 = cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(cljs.core.count(s),(3));
 if(and__5160__auto____$1){
-var vec__59274 = s;
-var t = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59274,(0),null);
-var q = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59274,(1),null);
-var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59274,(2),null);
+var vec__59215 = s;
+var t = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59215,(0),null);
+var q = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59215,(1),null);
+var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59215,(2),null);
 return ((emmy.value.scalar_QMARK_(t)) && (((((emmy.value.scalar_QMARK_(q)) && (emmy.value.scalar_QMARK_(v)))) || (((emmy.structure.up_QMARK_(q)) && (((emmy.structure.down_QMARK_(v)) && (cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(emmy.structure.dimension(q),emmy.structure.dimension(v))))))))));
 } else {
 return and__5160__auto____$1;
@@ -112,19 +112,19 @@ return emmy.mechanics.hamilton.__GT_H_state(cljs.core.gensym.cljs$core$IFn$_invo
 });
 emmy.mechanics.hamilton.L_state__GT_H_state = (function emmy$mechanics$hamilton$L_state__GT_H_state(L){
 return (function (Ls){
-return emmy.mechanics.hamilton.__GT_H_state(emmy.mechanics.lagrange.time(Ls),emmy.mechanics.lagrange.coordinate(Ls),(function (){var fexpr__59284 = (function (){var fexpr__59285 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((2)) : emmy.calculus.derivative.partial.call(null,(2)));
-return (fexpr__59285.cljs$core$IFn$_invoke$arity$1 ? fexpr__59285.cljs$core$IFn$_invoke$arity$1(L) : fexpr__59285.call(null,L));
+return emmy.mechanics.hamilton.__GT_H_state(emmy.mechanics.lagrange.time(Ls),emmy.mechanics.lagrange.coordinate(Ls),(function (){var fexpr__59270 = (function (){var fexpr__59271 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((2)) : emmy.calculus.derivative.partial.call(null,(2)));
+return (fexpr__59271.cljs$core$IFn$_invoke$arity$1 ? fexpr__59271.cljs$core$IFn$_invoke$arity$1(L) : fexpr__59271.call(null,L));
 })();
-return (fexpr__59284.cljs$core$IFn$_invoke$arity$1 ? fexpr__59284.cljs$core$IFn$_invoke$arity$1(Ls) : fexpr__59284.call(null,Ls));
+return (fexpr__59270.cljs$core$IFn$_invoke$arity$1 ? fexpr__59270.cljs$core$IFn$_invoke$arity$1(Ls) : fexpr__59270.call(null,Ls));
 })());
 });
 });
 emmy.mechanics.hamilton.H_state__GT_L_state = (function emmy$mechanics$hamilton$H_state__GT_L_state(H){
 return (function (Hs){
-return emmy.mechanics.lagrange.__GT_L_state(emmy.mechanics.lagrange.time(Hs),emmy.mechanics.lagrange.coordinate(Hs),(function (){var fexpr__59288 = (function (){var fexpr__59289 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((2)) : emmy.calculus.derivative.partial.call(null,(2)));
-return (fexpr__59289.cljs$core$IFn$_invoke$arity$1 ? fexpr__59289.cljs$core$IFn$_invoke$arity$1(H) : fexpr__59289.call(null,H));
+return emmy.mechanics.lagrange.__GT_L_state(emmy.mechanics.lagrange.time(Hs),emmy.mechanics.lagrange.coordinate(Hs),(function (){var fexpr__59276 = (function (){var fexpr__59277 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((2)) : emmy.calculus.derivative.partial.call(null,(2)));
+return (fexpr__59277.cljs$core$IFn$_invoke$arity$1 ? fexpr__59277.cljs$core$IFn$_invoke$arity$1(H) : fexpr__59277.call(null,H));
 })();
-return (fexpr__59288.cljs$core$IFn$_invoke$arity$1 ? fexpr__59288.cljs$core$IFn$_invoke$arity$1(Hs) : fexpr__59288.call(null,Hs));
+return (fexpr__59276.cljs$core$IFn$_invoke$arity$1 ? fexpr__59276.cljs$core$IFn$_invoke$arity$1(Hs) : fexpr__59276.call(null,Hs));
 })());
 });
 });
@@ -154,14 +154,14 @@ return emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2(kinetic_energy,potentia
 });
 emmy.mechanics.hamilton.Hamiltonian__GT_state_derivative = (function emmy$mechanics$hamilton$Hamiltonian__GT_state_derivative(H){
 return (function (H_state){
-return emmy.mechanics.hamilton.__GT_H_state((1),(function (){var fexpr__59299 = (function (){var fexpr__59300 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((2)) : emmy.calculus.derivative.partial.call(null,(2)));
-return (fexpr__59300.cljs$core$IFn$_invoke$arity$1 ? fexpr__59300.cljs$core$IFn$_invoke$arity$1(H) : fexpr__59300.call(null,H));
+return emmy.mechanics.hamilton.__GT_H_state((1),(function (){var fexpr__59291 = (function (){var fexpr__59292 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((2)) : emmy.calculus.derivative.partial.call(null,(2)));
+return (fexpr__59292.cljs$core$IFn$_invoke$arity$1 ? fexpr__59292.cljs$core$IFn$_invoke$arity$1(H) : fexpr__59292.call(null,H));
 })();
-return (fexpr__59299.cljs$core$IFn$_invoke$arity$1 ? fexpr__59299.cljs$core$IFn$_invoke$arity$1(H_state) : fexpr__59299.call(null,H_state));
-})(),emmy.generic._.cljs$core$IFn$_invoke$arity$1((function (){var fexpr__59302 = (function (){var fexpr__59303 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((1)) : emmy.calculus.derivative.partial.call(null,(1)));
-return (fexpr__59303.cljs$core$IFn$_invoke$arity$1 ? fexpr__59303.cljs$core$IFn$_invoke$arity$1(H) : fexpr__59303.call(null,H));
+return (fexpr__59291.cljs$core$IFn$_invoke$arity$1 ? fexpr__59291.cljs$core$IFn$_invoke$arity$1(H_state) : fexpr__59291.call(null,H_state));
+})(),emmy.generic._.cljs$core$IFn$_invoke$arity$1((function (){var fexpr__59294 = (function (){var fexpr__59295 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((1)) : emmy.calculus.derivative.partial.call(null,(1)));
+return (fexpr__59295.cljs$core$IFn$_invoke$arity$1 ? fexpr__59295.cljs$core$IFn$_invoke$arity$1(H) : fexpr__59295.call(null,H));
 })();
-return (fexpr__59302.cljs$core$IFn$_invoke$arity$1 ? fexpr__59302.cljs$core$IFn$_invoke$arity$1(H_state) : fexpr__59302.call(null,H_state));
+return (fexpr__59294.cljs$core$IFn$_invoke$arity$1 ? fexpr__59294.cljs$core$IFn$_invoke$arity$1(H_state) : fexpr__59294.call(null,H_state));
 })()));
 });
 });
@@ -179,56 +179,56 @@ return emmy.generic._.cljs$core$IFn$_invoke$arity$2((emmy.calculus.derivative.D.
 });
 emmy.mechanics.hamilton.D_phase_space = (function emmy$mechanics$hamilton$D_phase_space(H){
 return (function (s){
-return emmy.structure.up.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(0),(function (){var fexpr__59308 = (function (){var fexpr__59309 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((2)) : emmy.calculus.derivative.partial.call(null,(2)));
-return (fexpr__59309.cljs$core$IFn$_invoke$arity$1 ? fexpr__59309.cljs$core$IFn$_invoke$arity$1(H) : fexpr__59309.call(null,H));
+return emmy.structure.up.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(0),(function (){var fexpr__59297 = (function (){var fexpr__59298 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((2)) : emmy.calculus.derivative.partial.call(null,(2)));
+return (fexpr__59298.cljs$core$IFn$_invoke$arity$1 ? fexpr__59298.cljs$core$IFn$_invoke$arity$1(H) : fexpr__59298.call(null,H));
 })();
-return (fexpr__59308.cljs$core$IFn$_invoke$arity$1 ? fexpr__59308.cljs$core$IFn$_invoke$arity$1(s) : fexpr__59308.call(null,s));
-})(),emmy.generic._.cljs$core$IFn$_invoke$arity$1((function (){var fexpr__59311 = (function (){var fexpr__59312 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((1)) : emmy.calculus.derivative.partial.call(null,(1)));
-return (fexpr__59312.cljs$core$IFn$_invoke$arity$1 ? fexpr__59312.cljs$core$IFn$_invoke$arity$1(H) : fexpr__59312.call(null,H));
+return (fexpr__59297.cljs$core$IFn$_invoke$arity$1 ? fexpr__59297.cljs$core$IFn$_invoke$arity$1(s) : fexpr__59297.call(null,s));
+})(),emmy.generic._.cljs$core$IFn$_invoke$arity$1((function (){var fexpr__59300 = (function (){var fexpr__59301 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((1)) : emmy.calculus.derivative.partial.call(null,(1)));
+return (fexpr__59301.cljs$core$IFn$_invoke$arity$1 ? fexpr__59301.cljs$core$IFn$_invoke$arity$1(H) : fexpr__59301.call(null,H));
 })();
-return (fexpr__59311.cljs$core$IFn$_invoke$arity$1 ? fexpr__59311.cljs$core$IFn$_invoke$arity$1(s) : fexpr__59311.call(null,s));
+return (fexpr__59300.cljs$core$IFn$_invoke$arity$1 ? fexpr__59300.cljs$core$IFn$_invoke$arity$1(s) : fexpr__59300.call(null,s));
 })())], 0));
 });
 });
 emmy.mechanics.hamilton.H_rectangular = (function emmy$mechanics$hamilton$H_rectangular(m,V){
-return (function (p__59314){
-var vec__59316 = p__59314;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59316,(0),null);
-var q = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59316,(1),null);
-var p = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59316,(2),null);
+return (function (p__59305){
+var vec__59306 = p__59305;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59306,(0),null);
+var q = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59306,(1),null);
+var p = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59306,(2),null);
 return emmy.mechanics.hamilton.make_Hamiltonian(emmy.generic._SLASH_.cljs$core$IFn$_invoke$arity$2(emmy.generic.square.cljs$core$IFn$_invoke$arity$1(p),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2((2),m)),cljs.core.apply.cljs$core$IFn$_invoke$arity$2(V,q));
 });
 });
 emmy.mechanics.hamilton.H_central = (function emmy$mechanics$hamilton$H_central(m,V){
-return (function (p__59319){
-var vec__59321 = p__59319;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59321,(0),null);
-var q = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59321,(1),null);
-var p = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59321,(2),null);
-return emmy.mechanics.hamilton.make_Hamiltonian(emmy.generic._SLASH_.cljs$core$IFn$_invoke$arity$2(emmy.generic.square.cljs$core$IFn$_invoke$arity$1(p),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2((2),m)),(function (){var G__59333 = emmy.generic.abs.cljs$core$IFn$_invoke$arity$1(q);
-return (V.cljs$core$IFn$_invoke$arity$1 ? V.cljs$core$IFn$_invoke$arity$1(G__59333) : V.call(null,G__59333));
+return (function (p__59309){
+var vec__59315 = p__59309;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59315,(0),null);
+var q = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59315,(1),null);
+var p = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59315,(2),null);
+return emmy.mechanics.hamilton.make_Hamiltonian(emmy.generic._SLASH_.cljs$core$IFn$_invoke$arity$2(emmy.generic.square.cljs$core$IFn$_invoke$arity$1(p),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2((2),m)),(function (){var G__59318 = emmy.generic.abs.cljs$core$IFn$_invoke$arity$1(q);
+return (V.cljs$core$IFn$_invoke$arity$1 ? V.cljs$core$IFn$_invoke$arity$1(G__59318) : V.call(null,G__59318));
 })());
 });
 });
 emmy.mechanics.hamilton.H_central_polar = (function emmy$mechanics$hamilton$H_central_polar(m,V){
-return (function (p__59334){
-var vec__59335 = p__59334;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59335,(0),null);
-var vec__59338 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59335,(1),null);
-var r = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59338,(0),null);
-var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59338,(1),null);
-var vec__59341 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59335,(2),null);
-var p_r = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59341,(0),null);
-var p_phi = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59341,(1),null);
+return (function (p__59319){
+var vec__59320 = p__59319;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59320,(0),null);
+var vec__59323 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59320,(1),null);
+var r = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59323,(0),null);
+var ___$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59323,(1),null);
+var vec__59326 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59320,(2),null);
+var p_r = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59326,(0),null);
+var p_phi = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59326,(1),null);
 return emmy.mechanics.hamilton.make_Hamiltonian(emmy.generic._SLASH_.cljs$core$IFn$_invoke$arity$2(emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2(emmy.generic.square.cljs$core$IFn$_invoke$arity$1(p_r),emmy.generic.square.cljs$core$IFn$_invoke$arity$1(emmy.generic._SLASH_.cljs$core$IFn$_invoke$arity$2(p_phi,r))),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2((2),m)),(V.cljs$core$IFn$_invoke$arity$1 ? V.cljs$core$IFn$_invoke$arity$1(r) : V.call(null,r)));
 });
 });
 emmy.mechanics.hamilton.H_harmonic = (function emmy$mechanics$hamilton$H_harmonic(m,k){
-return (function (p__59344){
-var vec__59345 = p__59344;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59345,(0),null);
-var q = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59345,(1),null);
-var p = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59345,(2),null);
+return (function (p__59341){
+var vec__59342 = p__59341;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59342,(0),null);
+var q = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59342,(1),null);
+var p = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59342,(2),null);
 return emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2(emmy.generic._SLASH_.cljs$core$IFn$_invoke$arity$2(emmy.generic.square.cljs$core$IFn$_invoke$arity$1(p),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2((2),m)),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$variadic(emmy.generic._SLASH_.cljs$core$IFn$_invoke$arity$2((1),(2)),k,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.generic.square.cljs$core$IFn$_invoke$arity$1(q)], 0)));
 });
 });
@@ -268,8 +268,8 @@ return (function emmy$mechanics$hamilton$Legendre_transform_procedure_$_G(w){
 if(cljs.core.truth_((function (){var and__5160__auto__ = emmy.mechanics.hamilton._STAR_validate_Legendre_transform_QMARK__STAR_;
 if(cljs.core.truth_(and__5160__auto__)){
 var thing = emmy.structure.typical_object(w);
-return cljs.core.not(emmy.value._EQ_.cljs$core$IFn$_invoke$arity$2(thing,emmy.generic.simplify.cljs$core$IFn$_invoke$arity$1((function (){var G__59349 = (Dpg.cljs$core$IFn$_invoke$arity$1 ? Dpg.cljs$core$IFn$_invoke$arity$1(thing) : Dpg.call(null,thing));
-return (w_of_v.cljs$core$IFn$_invoke$arity$1 ? w_of_v.cljs$core$IFn$_invoke$arity$1(G__59349) : w_of_v.call(null,G__59349));
+return cljs.core.not(emmy.value._EQ_.cljs$core$IFn$_invoke$arity$2(thing,emmy.generic.simplify.cljs$core$IFn$_invoke$arity$1((function (){var G__59345 = (Dpg.cljs$core$IFn$_invoke$arity$1 ? Dpg.cljs$core$IFn$_invoke$arity$1(thing) : Dpg.call(null,thing));
+return (w_of_v.cljs$core$IFn$_invoke$arity$1 ? w_of_v.cljs$core$IFn$_invoke$arity$1(G__59345) : w_of_v.call(null,G__59345));
 })())));
 } else {
 return and__5160__auto__;
@@ -283,32 +283,32 @@ return putative_G(w);
 });
 emmy.mechanics.hamilton.Legendre_transform = emmy.operator.make_operator.cljs$core$IFn$_invoke$arity$2(emmy.mechanics.hamilton.Legendre_transform_procedure,new cljs.core.Symbol(null,"Legendre-transform","Legendre-transform",77490623,null));
 emmy.mechanics.hamilton.Lagrangian__GT_Hamiltonian_procedure = (function emmy$mechanics$hamilton$Lagrangian__GT_Hamiltonian_procedure(Lagrangian){
-return (function (p__59354){
-var vec__59355 = p__59354;
-var t = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59355,(0),null);
-var q = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59355,(1),null);
-var p = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59355,(2),null);
-var L = (function (p1__59352_SHARP_){
-var G__59358 = emmy.structure.up.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([t,q,p1__59352_SHARP_], 0));
-return (Lagrangian.cljs$core$IFn$_invoke$arity$1 ? Lagrangian.cljs$core$IFn$_invoke$arity$1(G__59358) : Lagrangian.call(null,G__59358));
+return (function (p__59352){
+var vec__59356 = p__59352;
+var t = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59356,(0),null);
+var q = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59356,(1),null);
+var p = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59356,(2),null);
+var L = (function (p1__59350_SHARP_){
+var G__59359 = emmy.structure.up.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([t,q,p1__59350_SHARP_], 0));
+return (Lagrangian.cljs$core$IFn$_invoke$arity$1 ? Lagrangian.cljs$core$IFn$_invoke$arity$1(G__59359) : Lagrangian.call(null,G__59359));
 });
-var fexpr__59359 = (emmy.mechanics.hamilton.Legendre_transform.cljs$core$IFn$_invoke$arity$1 ? emmy.mechanics.hamilton.Legendre_transform.cljs$core$IFn$_invoke$arity$1(L) : emmy.mechanics.hamilton.Legendre_transform.call(null,L));
-return (fexpr__59359.cljs$core$IFn$_invoke$arity$1 ? fexpr__59359.cljs$core$IFn$_invoke$arity$1(p) : fexpr__59359.call(null,p));
+var fexpr__59360 = (emmy.mechanics.hamilton.Legendre_transform.cljs$core$IFn$_invoke$arity$1 ? emmy.mechanics.hamilton.Legendre_transform.cljs$core$IFn$_invoke$arity$1(L) : emmy.mechanics.hamilton.Legendre_transform.call(null,L));
+return (fexpr__59360.cljs$core$IFn$_invoke$arity$1 ? fexpr__59360.cljs$core$IFn$_invoke$arity$1(p) : fexpr__59360.call(null,p));
 });
 });
 emmy.mechanics.hamilton.Lagrangian__GT_Hamiltonian = emmy.operator.make_operator.cljs$core$IFn$_invoke$arity$2(emmy.mechanics.hamilton.Lagrangian__GT_Hamiltonian_procedure,new cljs.core.Symbol(null,"Lagrangian->Hamiltonian","Lagrangian->Hamiltonian",570239049,null));
 emmy.mechanics.hamilton.Hamiltonian__GT_Lagrangian_procedure = (function emmy$mechanics$hamilton$Hamiltonian__GT_Lagrangian_procedure(Hamiltonian){
-return (function (p__59369){
-var vec__59370 = p__59369;
-var t = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59370,(0),null);
-var q = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59370,(1),null);
-var qdot = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59370,(2),null);
+return (function (p__59365){
+var vec__59366 = p__59365;
+var t = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59366,(0),null);
+var q = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59366,(1),null);
+var qdot = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59366,(2),null);
 var H = (function emmy$mechanics$hamilton$Hamiltonian__GT_Lagrangian_procedure_$_H(p){
-var G__59374 = emmy.mechanics.hamilton.__GT_H_state(t,q,p);
-return (Hamiltonian.cljs$core$IFn$_invoke$arity$1 ? Hamiltonian.cljs$core$IFn$_invoke$arity$1(G__59374) : Hamiltonian.call(null,G__59374));
+var G__59370 = emmy.mechanics.hamilton.__GT_H_state(t,q,p);
+return (Hamiltonian.cljs$core$IFn$_invoke$arity$1 ? Hamiltonian.cljs$core$IFn$_invoke$arity$1(G__59370) : Hamiltonian.call(null,G__59370));
 });
-var fexpr__59375 = emmy.mechanics.hamilton.Legendre_transform_procedure(H);
-return (fexpr__59375.cljs$core$IFn$_invoke$arity$1 ? fexpr__59375.cljs$core$IFn$_invoke$arity$1(qdot) : fexpr__59375.call(null,qdot));
+var fexpr__59371 = emmy.mechanics.hamilton.Legendre_transform_procedure(H);
+return (fexpr__59371.cljs$core$IFn$_invoke$arity$1 ? fexpr__59371.cljs$core$IFn$_invoke$arity$1(qdot) : fexpr__59371.call(null,qdot));
 });
 });
 emmy.mechanics.hamilton.Hamiltonian__GT_Lagrangian = emmy.operator.make_operator.cljs$core$IFn$_invoke$arity$2(emmy.mechanics.hamilton.Hamiltonian__GT_Lagrangian_procedure,new cljs.core.Symbol(null,"Hamiltonian->Lagrangian","Hamiltonian->Lagrangian",-1691416956,null));
@@ -319,24 +319,24 @@ var gx = (g.cljs$core$IFn$_invoke$arity$1 ? g.cljs$core$IFn$_invoke$arity$1(x) :
 if(((emmy.structure.structure_QMARK_(fx)) || (emmy.structure.structure_QMARK_(gx)))){
 return emmy.structure.mapr.cljs$core$IFn$_invoke$arity$variadic((function (af){
 return emmy.structure.mapr.cljs$core$IFn$_invoke$arity$variadic((function (ag){
-var fexpr__59385 = (function (){var G__59386 = cljs.core.comp.cljs$core$IFn$_invoke$arity$2(cljs.core.apply.cljs$core$IFn$_invoke$arity$2(emmy.structure.component,af),f);
-var G__59387 = cljs.core.comp.cljs$core$IFn$_invoke$arity$2(cljs.core.apply.cljs$core$IFn$_invoke$arity$2(emmy.structure.component,ag),g);
-return (emmy.mechanics.hamilton.Poisson_bracket.cljs$core$IFn$_invoke$arity$2 ? emmy.mechanics.hamilton.Poisson_bracket.cljs$core$IFn$_invoke$arity$2(G__59386,G__59387) : emmy.mechanics.hamilton.Poisson_bracket.call(null,G__59386,G__59387));
+var fexpr__59375 = (function (){var G__59376 = cljs.core.comp.cljs$core$IFn$_invoke$arity$2(cljs.core.apply.cljs$core$IFn$_invoke$arity$2(emmy.structure.component,af),f);
+var G__59377 = cljs.core.comp.cljs$core$IFn$_invoke$arity$2(cljs.core.apply.cljs$core$IFn$_invoke$arity$2(emmy.structure.component,ag),g);
+return (emmy.mechanics.hamilton.Poisson_bracket.cljs$core$IFn$_invoke$arity$2 ? emmy.mechanics.hamilton.Poisson_bracket.cljs$core$IFn$_invoke$arity$2(G__59376,G__59377) : emmy.mechanics.hamilton.Poisson_bracket.call(null,G__59376,G__59377));
 })();
-return (fexpr__59385.cljs$core$IFn$_invoke$arity$1 ? fexpr__59385.cljs$core$IFn$_invoke$arity$1(x) : fexpr__59385.call(null,x));
+return (fexpr__59375.cljs$core$IFn$_invoke$arity$1 ? fexpr__59375.cljs$core$IFn$_invoke$arity$1(x) : fexpr__59375.call(null,x));
 }),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.structure.structure__GT_access_chains(gx)], 0));
 }),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.structure.structure__GT_access_chains(fx)], 0));
 } else {
-var fexpr__59396 = emmy.generic._.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2((function (){var fexpr__59397 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((1)) : emmy.calculus.derivative.partial.call(null,(1)));
-return (fexpr__59397.cljs$core$IFn$_invoke$arity$1 ? fexpr__59397.cljs$core$IFn$_invoke$arity$1(f) : fexpr__59397.call(null,f));
-})(),(function (){var fexpr__59398 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((2)) : emmy.calculus.derivative.partial.call(null,(2)));
-return (fexpr__59398.cljs$core$IFn$_invoke$arity$1 ? fexpr__59398.cljs$core$IFn$_invoke$arity$1(g) : fexpr__59398.call(null,g));
-})()),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2((function (){var fexpr__59399 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((2)) : emmy.calculus.derivative.partial.call(null,(2)));
-return (fexpr__59399.cljs$core$IFn$_invoke$arity$1 ? fexpr__59399.cljs$core$IFn$_invoke$arity$1(f) : fexpr__59399.call(null,f));
-})(),(function (){var fexpr__59400 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((1)) : emmy.calculus.derivative.partial.call(null,(1)));
-return (fexpr__59400.cljs$core$IFn$_invoke$arity$1 ? fexpr__59400.cljs$core$IFn$_invoke$arity$1(g) : fexpr__59400.call(null,g));
+var fexpr__59387 = emmy.generic._.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2((function (){var fexpr__59388 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((1)) : emmy.calculus.derivative.partial.call(null,(1)));
+return (fexpr__59388.cljs$core$IFn$_invoke$arity$1 ? fexpr__59388.cljs$core$IFn$_invoke$arity$1(f) : fexpr__59388.call(null,f));
+})(),(function (){var fexpr__59389 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((2)) : emmy.calculus.derivative.partial.call(null,(2)));
+return (fexpr__59389.cljs$core$IFn$_invoke$arity$1 ? fexpr__59389.cljs$core$IFn$_invoke$arity$1(g) : fexpr__59389.call(null,g));
+})()),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2((function (){var fexpr__59390 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((2)) : emmy.calculus.derivative.partial.call(null,(2)));
+return (fexpr__59390.cljs$core$IFn$_invoke$arity$1 ? fexpr__59390.cljs$core$IFn$_invoke$arity$1(f) : fexpr__59390.call(null,f));
+})(),(function (){var fexpr__59391 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((1)) : emmy.calculus.derivative.partial.call(null,(1)));
+return (fexpr__59391.cljs$core$IFn$_invoke$arity$1 ? fexpr__59391.cljs$core$IFn$_invoke$arity$1(g) : fexpr__59391.call(null,g));
 })()));
-return (fexpr__59396.cljs$core$IFn$_invoke$arity$1 ? fexpr__59396.cljs$core$IFn$_invoke$arity$1(x) : fexpr__59396.call(null,x));
+return (fexpr__59387.cljs$core$IFn$_invoke$arity$1 ? fexpr__59387.cljs$core$IFn$_invoke$arity$1(x) : fexpr__59387.call(null,x));
 }
 });
 });
@@ -359,8 +359,8 @@ return emmy.mechanics.hamilton.Poisson_bracket(F,H);
  */
 emmy.mechanics.hamilton.flow_derivative = (function emmy$mechanics$hamilton$flow_derivative(H){
 return emmy.operator.make_operator.cljs$core$IFn$_invoke$arity$2((function (F){
-return emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2((function (){var fexpr__59405 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((0)) : emmy.calculus.derivative.partial.call(null,(0)));
-return (fexpr__59405.cljs$core$IFn$_invoke$arity$1 ? fexpr__59405.cljs$core$IFn$_invoke$arity$1(F) : fexpr__59405.call(null,F));
+return emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2((function (){var fexpr__59392 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((0)) : emmy.calculus.derivative.partial.call(null,(0)));
+return (fexpr__59392.cljs$core$IFn$_invoke$arity$1 ? fexpr__59392.cljs$core$IFn$_invoke$arity$1(F) : fexpr__59392.call(null,F));
 })(),emmy.mechanics.hamilton.Poisson_bracket(F,H));
 }),(new cljs.core.List(null,new cljs.core.Symbol(null,"flow-derivative","flow-derivative",-2031576450,null),(new cljs.core.List(null,H,null,(1),null)),(2),null)));
 });
@@ -384,18 +384,18 @@ emmy.mechanics.hamilton.standard_map = (function emmy$mechanics$hamilton$standar
 var pv = emmy.value.principal_value(emmy.value.twopi);
 return (function (theta,I,cont,_fail){
 var nI = pv((I + (K * Math.sin(theta))));
-var G__59411 = pv((theta + nI));
-var G__59412 = nI;
-return (cont.cljs$core$IFn$_invoke$arity$2 ? cont.cljs$core$IFn$_invoke$arity$2(G__59411,G__59412) : cont.call(null,G__59411,G__59412));
+var G__59397 = pv((theta + nI));
+var G__59398 = nI;
+return (cont.cljs$core$IFn$_invoke$arity$2 ? cont.cljs$core$IFn$_invoke$arity$2(G__59397,G__59398) : cont.call(null,G__59397,G__59398));
 });
 });
 emmy.mechanics.hamilton.standard_map_inverse = (function emmy$mechanics$hamilton$standard_map_inverse(K){
 var pv = emmy.value.principal_value(emmy.value.twopi);
 return (function (theta,I,cont,_fail){
 var ntheta = pv((theta - I));
-var G__59413 = ntheta;
-var G__59414 = pv((I - (K * Math.sin(ntheta))));
-return (cont.cljs$core$IFn$_invoke$arity$2 ? cont.cljs$core$IFn$_invoke$arity$2(G__59413,G__59414) : cont.call(null,G__59413,G__59414));
+var G__59399 = ntheta;
+var G__59400 = pv((I - (K * Math.sin(ntheta))));
+return (cont.cljs$core$IFn$_invoke$arity$2 ? cont.cljs$core$IFn$_invoke$arity$2(G__59399,G__59400) : cont.call(null,G__59399,G__59400));
 });
 });
 /**
@@ -423,15 +423,15 @@ return (continue$.cljs$core$IFn$_invoke$arity$2 ? continue$.cljs$core$IFn$_invok
 } else {
 var temp__5823__auto__ = (f.cljs$core$IFn$_invoke$arity$4 ? f.cljs$core$IFn$_invoke$arity$4(x__$1,y__$1,cljs.core.vector,lulz) : f.call(null,x__$1,y__$1,cljs.core.vector,lulz));
 if(cljs.core.truth_(temp__5823__auto__)){
-var vec__59415 = temp__5823__auto__;
-var x_SINGLEQUOTE_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59415,(0),null);
-var y_SINGLEQUOTE_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59415,(1),null);
-var G__59506 = x_SINGLEQUOTE_;
-var G__59507 = y_SINGLEQUOTE_;
-var G__59508 = (i - (1));
-x__$1 = G__59506;
-y__$1 = G__59507;
-i = G__59508;
+var vec__59403 = temp__5823__auto__;
+var x_SINGLEQUOTE_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59403,(0),null);
+var y_SINGLEQUOTE_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59403,(1),null);
+var G__59566 = x_SINGLEQUOTE_;
+var G__59567 = y_SINGLEQUOTE_;
+var G__59568 = (i - (1));
+x__$1 = G__59566;
+y__$1 = G__59567;
+i = G__59568;
 continue;
 } else {
 return (fail.cljs$core$IFn$_invoke$arity$0 ? fail.cljs$core$IFn$_invoke$arity$0() : fail.call(null));
@@ -446,16 +446,16 @@ break;
  *   transformation of phase-space coordinates (p. 320)
  */
 emmy.mechanics.hamilton.F__GT_CH = (function emmy$mechanics$hamilton$F__GT_CH(F){
-return (function (p__59418){
-var vec__59419 = p__59418;
-var t = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59419,(0),null);
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59419,(1),null);
-var p = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59419,(2),null);
-var H_state = vec__59419;
-return emmy.structure.up.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([t,(F.cljs$core$IFn$_invoke$arity$1 ? F.cljs$core$IFn$_invoke$arity$1(H_state) : F.call(null,H_state)),emmy.generic.solve_linear_right.cljs$core$IFn$_invoke$arity$2(p,(function (){var fexpr__59423 = (function (){var fexpr__59424 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((1)) : emmy.calculus.derivative.partial.call(null,(1)));
-return (fexpr__59424.cljs$core$IFn$_invoke$arity$1 ? fexpr__59424.cljs$core$IFn$_invoke$arity$1(F) : fexpr__59424.call(null,F));
+return (function (p__59406){
+var vec__59407 = p__59406;
+var t = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59407,(0),null);
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59407,(1),null);
+var p = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59407,(2),null);
+var H_state = vec__59407;
+return emmy.structure.up.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([t,(F.cljs$core$IFn$_invoke$arity$1 ? F.cljs$core$IFn$_invoke$arity$1(H_state) : F.call(null,H_state)),emmy.generic.solve_linear_right.cljs$core$IFn$_invoke$arity$2(p,(function (){var fexpr__59411 = (function (){var fexpr__59412 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((1)) : emmy.calculus.derivative.partial.call(null,(1)));
+return (fexpr__59412.cljs$core$IFn$_invoke$arity$1 ? fexpr__59412.cljs$core$IFn$_invoke$arity$1(F) : fexpr__59412.call(null,F));
 })();
-return (fexpr__59423.cljs$core$IFn$_invoke$arity$1 ? fexpr__59423.cljs$core$IFn$_invoke$arity$1(H_state) : fexpr__59423.call(null,H_state));
+return (fexpr__59411.cljs$core$IFn$_invoke$arity$1 ? fexpr__59411.cljs$core$IFn$_invoke$arity$1(H_state) : fexpr__59411.call(null,H_state));
 })())], 0));
 });
 });
@@ -465,14 +465,14 @@ return (fexpr__59423.cljs$core$IFn$_invoke$arity$1 ? fexpr__59423.cljs$core$IFn$
 emmy.mechanics.hamilton.F__GT_CT = emmy.mechanics.hamilton.F__GT_CH;
 emmy.mechanics.hamilton.F__GT_K = (function emmy$mechanics$hamilton$F__GT_K(F){
 return (function (H_state){
-return emmy.generic._.cljs$core$IFn$_invoke$arity$1(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(emmy.generic.solve_linear_right.cljs$core$IFn$_invoke$arity$2(emmy.mechanics.hamilton.momentum(H_state),(function (){var fexpr__59426 = (function (){var fexpr__59427 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((1)) : emmy.calculus.derivative.partial.call(null,(1)));
-return (fexpr__59427.cljs$core$IFn$_invoke$arity$1 ? fexpr__59427.cljs$core$IFn$_invoke$arity$1(F) : fexpr__59427.call(null,F));
+return emmy.generic._.cljs$core$IFn$_invoke$arity$1(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(emmy.generic.solve_linear_right.cljs$core$IFn$_invoke$arity$2(emmy.mechanics.hamilton.momentum(H_state),(function (){var fexpr__59414 = (function (){var fexpr__59415 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((1)) : emmy.calculus.derivative.partial.call(null,(1)));
+return (fexpr__59415.cljs$core$IFn$_invoke$arity$1 ? fexpr__59415.cljs$core$IFn$_invoke$arity$1(F) : fexpr__59415.call(null,F));
 })();
-return (fexpr__59426.cljs$core$IFn$_invoke$arity$1 ? fexpr__59426.cljs$core$IFn$_invoke$arity$1(H_state) : fexpr__59426.call(null,H_state));
-})()),(function (){var fexpr__59429 = (function (){var fexpr__59430 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((0)) : emmy.calculus.derivative.partial.call(null,(0)));
-return (fexpr__59430.cljs$core$IFn$_invoke$arity$1 ? fexpr__59430.cljs$core$IFn$_invoke$arity$1(F) : fexpr__59430.call(null,F));
+return (fexpr__59414.cljs$core$IFn$_invoke$arity$1 ? fexpr__59414.cljs$core$IFn$_invoke$arity$1(H_state) : fexpr__59414.call(null,H_state));
+})()),(function (){var fexpr__59417 = (function (){var fexpr__59418 = (emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.partial.cljs$core$IFn$_invoke$arity$1((0)) : emmy.calculus.derivative.partial.call(null,(0)));
+return (fexpr__59418.cljs$core$IFn$_invoke$arity$1 ? fexpr__59418.cljs$core$IFn$_invoke$arity$1(F) : fexpr__59418.call(null,F));
 })();
-return (fexpr__59429.cljs$core$IFn$_invoke$arity$1 ? fexpr__59429.cljs$core$IFn$_invoke$arity$1(H_state) : fexpr__59429.call(null,H_state));
+return (fexpr__59417.cljs$core$IFn$_invoke$arity$1 ? fexpr__59417.cljs$core$IFn$_invoke$arity$1(H_state) : fexpr__59417.call(null,H_state));
 })()));
 });
 });
@@ -501,8 +501,8 @@ emmy.mechanics.hamilton.canonical_K_QMARK_ = (function emmy$mechanics$hamilton$c
 return emmy.generic._.cljs$core$IFn$_invoke$arity$2(emmy.function$.compose.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.mechanics.hamilton.T_func,C], 0)),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2((emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1(C) : emmy.calculus.derivative.D.call(null,C)),emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2(emmy.mechanics.hamilton.T_func,emmy.mechanics.hamilton.D_phase_space(K))));
 });
 emmy.mechanics.hamilton.linear_function__GT_multiplier = (function emmy$mechanics$hamilton$linear_function__GT_multiplier(F,argument){
-var fexpr__59431 = (emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1(F) : emmy.calculus.derivative.D.call(null,F));
-return (fexpr__59431.cljs$core$IFn$_invoke$arity$1 ? fexpr__59431.cljs$core$IFn$_invoke$arity$1(argument) : fexpr__59431.call(null,argument));
+var fexpr__59429 = (emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1(F) : emmy.calculus.derivative.D.call(null,F));
+return (fexpr__59429.cljs$core$IFn$_invoke$arity$1 ? fexpr__59429.cljs$core$IFn$_invoke$arity$1(argument) : fexpr__59429.call(null,argument));
 });
 emmy.mechanics.hamilton.Phi = (function emmy$mechanics$hamilton$Phi(A){
 return (function (v){
@@ -520,12 +520,12 @@ return emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(w,A);
 emmy.mechanics.hamilton.time_independent_canonical_QMARK_ = (function emmy$mechanics$hamilton$time_independent_canonical_QMARK_(C){
 return (function (s){
 var s_syms = emmy.structure.compatible_shape(s);
-var fexpr__59434 = emmy.generic._.cljs$core$IFn$_invoke$arity$2(emmy.mechanics.hamilton.J_func,emmy.function$.compose.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.mechanics.hamilton.Phi((function (){var fexpr__59435 = (emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1(C) : emmy.calculus.derivative.D.call(null,C));
-return (fexpr__59435.cljs$core$IFn$_invoke$arity$1 ? fexpr__59435.cljs$core$IFn$_invoke$arity$1(s) : fexpr__59435.call(null,s));
-})()),emmy.mechanics.hamilton.J_func,emmy.mechanics.hamilton.Phi_STAR_((function (){var fexpr__59436 = (emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1(C) : emmy.calculus.derivative.D.call(null,C));
-return (fexpr__59436.cljs$core$IFn$_invoke$arity$1 ? fexpr__59436.cljs$core$IFn$_invoke$arity$1(s) : fexpr__59436.call(null,s));
+var fexpr__59432 = emmy.generic._.cljs$core$IFn$_invoke$arity$2(emmy.mechanics.hamilton.J_func,emmy.function$.compose.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([emmy.mechanics.hamilton.Phi((function (){var fexpr__59433 = (emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1(C) : emmy.calculus.derivative.D.call(null,C));
+return (fexpr__59433.cljs$core$IFn$_invoke$arity$1 ? fexpr__59433.cljs$core$IFn$_invoke$arity$1(s) : fexpr__59433.call(null,s));
+})()),emmy.mechanics.hamilton.J_func,emmy.mechanics.hamilton.Phi_STAR_((function (){var fexpr__59434 = (emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1(C) : emmy.calculus.derivative.D.call(null,C));
+return (fexpr__59434.cljs$core$IFn$_invoke$arity$1 ? fexpr__59434.cljs$core$IFn$_invoke$arity$1(s) : fexpr__59434.call(null,s));
 })())], 0)));
-return (fexpr__59434.cljs$core$IFn$_invoke$arity$1 ? fexpr__59434.cljs$core$IFn$_invoke$arity$1(s_syms) : fexpr__59434.call(null,s_syms));
+return (fexpr__59432.cljs$core$IFn$_invoke$arity$1 ? fexpr__59432.cljs$core$IFn$_invoke$arity$1(s_syms) : fexpr__59432.call(null,s_syms));
 });
 });
 /**
@@ -535,15 +535,15 @@ return (fexpr__59434.cljs$core$IFn$_invoke$arity$1 ? fexpr__59434.cljs$core$IFn$
  */
 emmy.mechanics.hamilton.qp_canonical_QMARK_ = (function emmy$mechanics$hamilton$qp_canonical_QMARK_(C,H){
 return (function (s){
-return emmy.generic._.cljs$core$IFn$_invoke$arity$2(emmy.mechanics.hamilton.J_func((function (){var G__59441 = (C.cljs$core$IFn$_invoke$arity$1 ? C.cljs$core$IFn$_invoke$arity$1(s) : C.call(null,s));
-var fexpr__59440 = (emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1(H) : emmy.calculus.derivative.D.call(null,H));
-return (fexpr__59440.cljs$core$IFn$_invoke$arity$1 ? fexpr__59440.cljs$core$IFn$_invoke$arity$1(G__59441) : fexpr__59440.call(null,G__59441));
-})()),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2((function (){var fexpr__59442 = (emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1(C) : emmy.calculus.derivative.D.call(null,C));
-return (fexpr__59442.cljs$core$IFn$_invoke$arity$1 ? fexpr__59442.cljs$core$IFn$_invoke$arity$1(s) : fexpr__59442.call(null,s));
-})(),emmy.mechanics.hamilton.J_func((function (){var fexpr__59444 = (function (){var G__59445 = emmy.function$.compose.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([H,C], 0));
-return (emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1(G__59445) : emmy.calculus.derivative.D.call(null,G__59445));
+return emmy.generic._.cljs$core$IFn$_invoke$arity$2(emmy.mechanics.hamilton.J_func((function (){var G__59436 = (C.cljs$core$IFn$_invoke$arity$1 ? C.cljs$core$IFn$_invoke$arity$1(s) : C.call(null,s));
+var fexpr__59435 = (emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1(H) : emmy.calculus.derivative.D.call(null,H));
+return (fexpr__59435.cljs$core$IFn$_invoke$arity$1 ? fexpr__59435.cljs$core$IFn$_invoke$arity$1(G__59436) : fexpr__59435.call(null,G__59436));
+})()),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2((function (){var fexpr__59437 = (emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1(C) : emmy.calculus.derivative.D.call(null,C));
+return (fexpr__59437.cljs$core$IFn$_invoke$arity$1 ? fexpr__59437.cljs$core$IFn$_invoke$arity$1(s) : fexpr__59437.call(null,s));
+})(),emmy.mechanics.hamilton.J_func((function (){var fexpr__59439 = (function (){var G__59440 = emmy.function$.compose.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([H,C], 0));
+return (emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1(G__59440) : emmy.calculus.derivative.D.call(null,G__59440));
 })();
-return (fexpr__59444.cljs$core$IFn$_invoke$arity$1 ? fexpr__59444.cljs$core$IFn$_invoke$arity$1(s) : fexpr__59444.call(null,s));
+return (fexpr__59439.cljs$core$IFn$_invoke$arity$1 ? fexpr__59439.cljs$core$IFn$_invoke$arity$1(s) : fexpr__59439.call(null,s));
 })())));
 });
 });
@@ -551,55 +551,55 @@ return (fexpr__59444.cljs$core$IFn$_invoke$arity$1 ? fexpr__59444.cljs$core$IFn$
  * p.327
  */
 emmy.mechanics.hamilton.polar_canonical = (function emmy$mechanics$hamilton$polar_canonical(alpha){
-return (function (p__59446){
-var vec__59447 = p__59446;
-var t = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59447,(0),null);
-var theta = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59447,(1),null);
-var I = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59447,(2),null);
+return (function (p__59441){
+var vec__59442 = p__59441;
+var t = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59442,(0),null);
+var theta = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59442,(1),null);
+var I = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59442,(2),null);
 var x = emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(emmy.generic.sqrt.cljs$core$IFn$_invoke$arity$1(emmy.generic._SLASH_.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2((2),I),alpha)),emmy.generic.sin.cljs$core$IFn$_invoke$arity$1(theta));
 var p_x = emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(emmy.generic.sqrt.cljs$core$IFn$_invoke$arity$1(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$variadic((2),alpha,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([I], 0))),emmy.generic.cos.cljs$core$IFn$_invoke$arity$1(theta));
 return emmy.structure.up.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([t,x,p_x], 0));
 });
 });
 emmy.mechanics.hamilton.polar_canonical_inverse = (function emmy$mechanics$hamilton$polar_canonical_inverse(alpha){
-return (function (p__59450){
-var vec__59451 = p__59450;
-var t = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59451,(0),null);
-var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59451,(1),null);
-var p = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59451,(2),null);
+return (function (p__59445){
+var vec__59446 = p__59445;
+var t = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59446,(0),null);
+var x = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59446,(1),null);
+var p = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59446,(2),null);
 var I = emmy.generic._SLASH_.cljs$core$IFn$_invoke$arity$2(emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(alpha,emmy.generic.square.cljs$core$IFn$_invoke$arity$1(x)),emmy.generic._SLASH_.cljs$core$IFn$_invoke$arity$2(emmy.generic.square.cljs$core$IFn$_invoke$arity$1(p),alpha)),(2));
 var theta = emmy.generic.atan.cljs$core$IFn$_invoke$arity$2(emmy.generic._SLASH_.cljs$core$IFn$_invoke$arity$2(x,emmy.generic.sqrt.cljs$core$IFn$_invoke$arity$1(emmy.generic._SLASH_.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2((2),I),alpha))),emmy.generic._SLASH_.cljs$core$IFn$_invoke$arity$2(p,emmy.generic.sqrt.cljs$core$IFn$_invoke$arity$1(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$variadic((2),I,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([alpha], 0)))));
 return emmy.structure.up.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([t,theta,I], 0));
 });
 });
 emmy.mechanics.hamilton.two_particle_center_of_mass = (function emmy$mechanics$hamilton$two_particle_center_of_mass(m0,m1){
-return (function (p__59454){
-var vec__59455 = p__59454;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59455,(0),null);
-var vec__59458 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59455,(1),null);
-var x0 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59458,(0),null);
-var x1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59458,(1),null);
-var G__59461 = emmy.generic._SLASH_.cljs$core$IFn$_invoke$arity$2(emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(m0,x0),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(m1,x1)),emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2(m0,m1));
-var G__59462 = emmy.generic._.cljs$core$IFn$_invoke$arity$2(x1,x0);
-return (emmy.mechanics.lagrange.coordinate_tuple.cljs$core$IFn$_invoke$arity$2 ? emmy.mechanics.lagrange.coordinate_tuple.cljs$core$IFn$_invoke$arity$2(G__59461,G__59462) : emmy.mechanics.lagrange.coordinate_tuple.call(null,G__59461,G__59462));
+return (function (p__59449){
+var vec__59450 = p__59449;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59450,(0),null);
+var vec__59453 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59450,(1),null);
+var x0 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59453,(0),null);
+var x1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59453,(1),null);
+var G__59456 = emmy.generic._SLASH_.cljs$core$IFn$_invoke$arity$2(emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(m0,x0),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(m1,x1)),emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2(m0,m1));
+var G__59457 = emmy.generic._.cljs$core$IFn$_invoke$arity$2(x1,x0);
+return (emmy.mechanics.lagrange.coordinate_tuple.cljs$core$IFn$_invoke$arity$2 ? emmy.mechanics.lagrange.coordinate_tuple.cljs$core$IFn$_invoke$arity$2(G__59456,G__59457) : emmy.mechanics.lagrange.coordinate_tuple.call(null,G__59456,G__59457));
 });
 });
 emmy.mechanics.hamilton.two_particle_center_of_mass_canonical = (function emmy$mechanics$hamilton$two_particle_center_of_mass_canonical(m0,m1){
-return (function (p__59463){
-var vec__59464 = p__59463;
-var t = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59464,(0),null);
-var vec__59467 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59464,(1),null);
-var x0 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59467,(0),null);
-var x1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59467,(1),null);
-var vec__59470 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59464,(2),null);
-var p0 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59470,(0),null);
-var p1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59470,(1),null);
-return emmy.structure.up.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([t,(function (){var G__59473 = emmy.generic._SLASH_.cljs$core$IFn$_invoke$arity$2(emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(m0,x0),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(m1,x1)),emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2(m0,m1));
-var G__59474 = emmy.generic._.cljs$core$IFn$_invoke$arity$2(x1,x0);
-return (emmy.mechanics.lagrange.coordinate_tuple.cljs$core$IFn$_invoke$arity$2 ? emmy.mechanics.lagrange.coordinate_tuple.cljs$core$IFn$_invoke$arity$2(G__59473,G__59474) : emmy.mechanics.lagrange.coordinate_tuple.call(null,G__59473,G__59474));
-})(),(function (){var G__59475 = emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2(p0,p1);
-var G__59476 = emmy.generic._SLASH_.cljs$core$IFn$_invoke$arity$2(emmy.generic._.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(m0,p1),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(m1,p0)),emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2(m0,m1));
-return (emmy.mechanics.lagrange.momentum_tuple.cljs$core$IFn$_invoke$arity$2 ? emmy.mechanics.lagrange.momentum_tuple.cljs$core$IFn$_invoke$arity$2(G__59475,G__59476) : emmy.mechanics.lagrange.momentum_tuple.call(null,G__59475,G__59476));
+return (function (p__59458){
+var vec__59459 = p__59458;
+var t = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59459,(0),null);
+var vec__59462 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59459,(1),null);
+var x0 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59462,(0),null);
+var x1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59462,(1),null);
+var vec__59465 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59459,(2),null);
+var p0 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59465,(0),null);
+var p1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__59465,(1),null);
+return emmy.structure.up.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([t,(function (){var G__59468 = emmy.generic._SLASH_.cljs$core$IFn$_invoke$arity$2(emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(m0,x0),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(m1,x1)),emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2(m0,m1));
+var G__59469 = emmy.generic._.cljs$core$IFn$_invoke$arity$2(x1,x0);
+return (emmy.mechanics.lagrange.coordinate_tuple.cljs$core$IFn$_invoke$arity$2 ? emmy.mechanics.lagrange.coordinate_tuple.cljs$core$IFn$_invoke$arity$2(G__59468,G__59469) : emmy.mechanics.lagrange.coordinate_tuple.call(null,G__59468,G__59469));
+})(),(function (){var G__59470 = emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2(p0,p1);
+var G__59471 = emmy.generic._SLASH_.cljs$core$IFn$_invoke$arity$2(emmy.generic._.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(m0,p1),emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$2(m1,p0)),emmy.generic._PLUS_.cljs$core$IFn$_invoke$arity$2(m0,m1));
+return (emmy.mechanics.lagrange.momentum_tuple.cljs$core$IFn$_invoke$arity$2 ? emmy.mechanics.lagrange.momentum_tuple.cljs$core$IFn$_invoke$arity$2(G__59470,G__59471) : emmy.mechanics.lagrange.momentum_tuple.call(null,G__59470,G__59471));
 })()], 0));
 });
 });
@@ -618,12 +618,12 @@ return emmy.generic._.cljs$core$IFn$_invoke$arity$2(emmy.generic._STAR_.cljs$cor
 });
 emmy.mechanics.hamilton.canonical_transform_QMARK_ = (function emmy$mechanics$hamilton$canonical_transform_QMARK_(C){
 return (function (s){
-var J = (function (){var G__59478 = emmy.structure.compatible_shape(s);
-var fexpr__59477 = (emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1(emmy.mechanics.hamilton.J_func) : emmy.calculus.derivative.D.call(null,emmy.mechanics.hamilton.J_func));
-return (fexpr__59477.cljs$core$IFn$_invoke$arity$1 ? fexpr__59477.cljs$core$IFn$_invoke$arity$1(G__59478) : fexpr__59477.call(null,G__59478));
+var J = (function (){var G__59473 = emmy.structure.compatible_shape(s);
+var fexpr__59472 = (emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1(emmy.mechanics.hamilton.J_func) : emmy.calculus.derivative.D.call(null,emmy.mechanics.hamilton.J_func));
+return (fexpr__59472.cljs$core$IFn$_invoke$arity$1 ? fexpr__59472.cljs$core$IFn$_invoke$arity$1(G__59473) : fexpr__59472.call(null,G__59473));
 })();
-var DCs = (function (){var fexpr__59479 = (emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1(C) : emmy.calculus.derivative.D.call(null,C));
-return (fexpr__59479.cljs$core$IFn$_invoke$arity$1 ? fexpr__59479.cljs$core$IFn$_invoke$arity$1(s) : fexpr__59479.call(null,s));
+var DCs = (function (){var fexpr__59474 = (emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1 ? emmy.calculus.derivative.D.cljs$core$IFn$_invoke$arity$1(C) : emmy.calculus.derivative.D.call(null,C));
+return (fexpr__59474.cljs$core$IFn$_invoke$arity$1 ? fexpr__59474.cljs$core$IFn$_invoke$arity$1(s) : fexpr__59474.call(null,s));
 })();
 var DCsT = emmy.matrix.s_COLON_transpose.cljs$core$IFn$_invoke$arity$2(DCs,s);
 return emmy.generic._.cljs$core$IFn$_invoke$arity$2(J,emmy.generic._STAR_.cljs$core$IFn$_invoke$arity$variadic(DCs,J,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([DCsT], 0)));

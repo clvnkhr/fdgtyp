@@ -24,7 +24,7 @@ const explicitSimplifyIds = new Set([
   // are enormous; simplify the displayed final expression just as scmutils
   // did. (The Ch. 9 stability determinant was also tried, but full simplify
   // does not finish within the smoke-test bound.)
-  "chapter007-003", "chapter007-012", "chapter007-026",
+  "chapter007-003", "chapter007-012", "chapter007-026", "chapter007-039",
   "chapter003-020",
   "chapter008-003", "chapter008-012", "chapter008-022", "chapter008-023", "chapter008-025", "chapter008-026",
   "chapter008-032", "chapter008-034", "chapter008-036",
@@ -36,7 +36,7 @@ const explicitSimplifyIds = new Set([
   "chapter011-005", "chapter011-013", "chapter011-018", "chapter011-020", "chapter011-021",
   "chapter011-023", "chapter011-024", "chapter011-026", "chapter011-029", "chapter011-030", "chapter011-031",
   "chapter011-032", "chapter011-034",
-  "appendix_a-015",
+  "appendix_a-015", "appendix_a-016",
   "appendix_b-007", "appendix_b-019", "appendix_b-020", "appendix_b-033",
 ]);
 
@@ -52,7 +52,7 @@ const explicitSimplifyAllResultIds = new Set([
   "chapter009-009", "chapter009-012",
   "chapter010-012", "chapter010-022",
   "chapter011-020", "chapter011-027", "chapter011-028",
-  "appendix_b-006",
+  "appendix_b-006", "appendix_b-019",
 ]);
 
 // These displayed verification fragments depend on setup that the converted
@@ -362,10 +362,6 @@ function transform(node) {
       { type: "prefix", prefix: "'", value: atom(`${target.value.value}_${body[0].value}`) },
       transform(body[1]),
     ]);
-  }
-  if (op === "define" && target?.type === "atom"
-      && ["spacetime", "spacetime-rect", "spacetime-sphere"].includes(target.value)) {
-    return list([atom("show"), transform(target)]);
   }
   if (op === "define" && target?.type === "atom") {
     return list([atom("def"), transform(target), ...body.map(transform)]);
@@ -686,13 +682,17 @@ function boundSlowSimplifications(source, id) {
   );
 }
 
+function formCapturesResult(code) {
+  return !/^\((?:def\w*|declare|define-coordinates|in-ns|ns|for-each|series:for-each)\b/.test(code);
+}
+
 function capturesResult(source) {
   const code = stripCapturedResults(source).trim();
   const finalList = topLevelForms(code).at(-1);
   // If text follows the final parenthesized form, that text is itself a
   // top-level expression (for example the bare `a-vector` in appendix A).
   if (!finalList || !code.endsWith(finalList)) return Boolean(code);
-  return !/^\((?:def\w*|declare|define-coordinates|in-ns|ns)\b/.test(finalList);
+  return formCapturesResult(finalList);
 }
 
 function commentClojureSource(source) {
@@ -700,14 +700,25 @@ function commentClojureSource(source) {
 }
 
 function applyReviewedCorrections(source, id) {
+  if (id === "chapter009-024") {
+    // This source used to be replaced with `(show ...)` calls to avoid Emmy
+    // namespace collisions. The runner now safely unmaps book definitions, so
+    // preserve the actual setup expressed by the Scheme block.
+    return `(def spacetime emmy.env/spacetime)
+
+(def spacetime-rect emmy.env/spacetime-rect)
+
+(def spacetime-sphere emmy.env/spacetime-sphere)`;
+  }
   if (["chapter007-006", "chapter007-007", "chapter007-008", "chapter007-009",
     "chapter007-025"].includes(id)) {
     // These are identities, but Emmy does not automatically simplify their
     // generic coordinate expansions to the displayed zero. Without this the
     // result capture replaces `0` with expressions hundreds of kilobytes (or
     // megabytes) long.
-    if (/^\(simplify\s/.test(source)) return source;
-    return `(simplify ${source})`;
+    const code = stripCapturedResults(source).trimEnd();
+    if (/^\(simplify\s/.test(code)) return code;
+    return `(simplify ${code})`;
   }
   if (id === "chapter002-016") {
     return `(x (R2-rect-chi-inverse (up 'x0 'y0)))
@@ -738,7 +749,7 @@ function applyReviewedCorrections(source, id) {
     // the displayed symbolic derivative at those coordinates, while Emmy's
     // autodiff rejects function-valued inputs. Symbolic coordinate values
     // produce the same frozen expression and remain exactly evaluable.
-    return source.replaceAll("(up x y z)", "(up 'x 'y 'z)");
+    return stripCapturedResults(source).replaceAll("(up x y z)", "(up 'x 'y 'z)");
   }
   if (id === "chapter008-017") {
     // The displayed Christoffel structure uses t as a symbolic pseudosphere
@@ -904,26 +915,35 @@ ${commentClojureSource(readFileSync(
   // These final forms are printed results in the Scheme source, not another
   // expression for the reader to evaluate.
   if (id === "appendix_b-019") {
-    const marker = "(down (((partial 0) g) x y)";
-    const markerAt = source.lastIndexOf(marker);
-    if (markerAt < 0) return source;
-    const simplifyAt = source.lastIndexOf("(simplify", markerAt);
-    const commentAt = source.lastIndexOf(";; scmutils", markerAt);
-    const resultStart = commentAt >= 0 ? commentAt : simplifyAt >= 0 ? simplifyAt : markerAt;
-    return `${source.slice(0, resultStart).trimEnd()}\n`;
+    // Older cached ports were already truncated, so reconstruct all three
+    // executable examples and omit only the final bare Scheme result.
+    return `(defn h [s] (g (ref s 0) (ref s 1)))
+
+(h (up 'x 'y))
+
+((D g) 'x 'y)
+
+((D h) (up 'x 'y))`;
   }
   if (id === "appendix_b-023") {
     const resultStart = source.indexOf("(up (* -1 (sin t))");
     return resultStart < 0 ? source : `${source.slice(0, resultStart).trimEnd()}\n`;
   }
-  if (id === "appendix_a-013") {
-    return source.replace("(* n (factorial (- n 1)))", "(* (bigint n) (factorial (- n 1)))");
-  }
   if (id === "appendix_a-015") {
-    if (source.includes("Keep pi symbolic so the common factor cancels")) return source;
-    return source
-      .replace("(defn f [radius]", "(defn f [radius]\n  ;; Keep pi symbolic so the common factor cancels before numerical evaluation.\n  (let [pi 'pi]\n   ")
-      .replace(/\n\n\(f 3\)/, ")\n\n(f 3)");
+    return source.replace(
+      /\(\*\s+n\s+\(factorial\s+\(-\s+n\s+1\)\)\)/,
+      "(* (bigint n) (factorial (- n 1)))",
+    );
+  }
+  if (id === "appendix_a-016") {
+    return `(defn f [radius]
+  ;; Keep pi symbolic so the common factor cancels before numerical evaluation.
+  (let [pi 'pi
+        area (* 4 pi (square radius))
+        volume (* (/ 4 3) pi (cube radius))]
+    (/ volume area)))
+
+(f 3)`;
   }
   return source;
 }
@@ -1102,7 +1122,7 @@ for (const file of files) {
       smokeEligible: executable && !smokeExcludedIds.has(id),
       forms: topLevelForms(cljs).map(code => ({
         code,
-        capturesResult: !/^\((?:def\w*|declare|define-coordinates|in-ns|ns)\b/.test(code),
+        capturesResult: formCapturesResult(code),
       })),
       codePath: `generated/${publicRelative}`,
       sourcePath: path.relative(root, typPath),
@@ -1120,7 +1140,7 @@ for (const block of manifest) {
   const formatted = readFileSync(path.join(outputDir, block.chapter, `${ordinal}.cljs`), "utf8");
   block.forms = topLevelForms(formatted).map(code => ({
     code,
-    capturesResult: !/^\((?:def\w*|declare|define-coordinates|in-ns|ns)\b/.test(code),
+    capturesResult: formCapturesResult(code),
   }));
 }
 writeFileSync(path.join(publicDir, "blocks.json"), `${JSON.stringify(manifest, null, 2)}\n`);
