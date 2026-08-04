@@ -4,14 +4,19 @@ This repository produces a Typst edition of *Functional Differential Geometry*
 in Scheme, ClojureScript/Emmy, and combined-code editions. It also contains an
 interactive Emmy runner for the book examples.
 
+For the complete technical architecture, data-flow diagrams, artifact ownership
+rules, component catalogue, validation model, and deployment flow, see
+[ARCHITECTURE.md](ARCHITECTURE.md).
+
 ## Workflow stages
 
 The build is split into reusable stages. Public Make targets copy only the
-required source and configuration inputs into a fresh staging workspace. On success,
-that private workspace is stored at `build/history/current/`, while
-`build/current` points only to its published artifacts. The source checkout is therefore never
-changed by a build; its generated files are inputs to a snapshot, not mutable
-build state. The three latest
+required source and configuration inputs into a fresh staging workspace. On
+success, a compacted diagnostic workspace is stored at
+`build/history/current/`, while `build/current` points only to its published
+artifacts. Retained runner inputs are relative links to the root
+`emmy-runner/`; volatile Shadow/Clojure caches and bundles are discarded. The
+source checkout is therefore never changed by a build. The three latest
 successful builds are retained in static slots: `current/`,
 `previous-1.tar.gz`, and `previous-2.tar.gz`. Failed builds use the same slot
 names under `build/failed/`. Unique run IDs and timestamps live in `run.json`,
@@ -63,6 +68,7 @@ source checkout: fdg-book/scheme/org
 ```
 
 The vendored Org source is checksum-protected. Put source-fidelity repairs in
-the Org-to-Typst converter; make durable Emmy fixes in `codeblocks/`,
-`emmy-runner/src/fdg/compat.cljs`, or the Scheme-to-Emmy converter. Do not edit
-`emmy-runner/public/generated/` directly.
+the Org-to-Typst converter; make durable Emmy fixes in the Scheme-to-Emmy
+converter or, for reusable API differences, `emmy-runner/src/fdg/compat.cljs`.
+The root `codeblocks/` and `emmy-runner/public/generated/` trees are disposable
+generated mirrors, not authoritative edit locations.

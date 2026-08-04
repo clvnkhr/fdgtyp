@@ -1,11 +1,16 @@
+node scripts/convert-org-to-typst.mjs
+Converted 18 Org files into typ/content.
+[make-step] 2026-08-04T15:47:36.812Z 2631.5 ms (ok) node scripts/convert-org-to-typst.mjs
+/Library/Developer/CommandLineTools/usr/bin/make prepare
+/Library/Developer/CommandLineTools/usr/bin/make emmy-refresh
 /Library/Developer/CommandLineTools/usr/bin/make emmy-convert
 node scripts/convert-scheme-to-emmy.mjs
-Formatted 48 of 732 ClojureScript files.
+Formatted 46 of 732 ClojureScript files.
 Prepared 366 Emmy blocks in codeblocks.
 17 blocks use the upstream Chapter 1 port.
 349 blocks need semantic review.
-[make-step] 2026-08-04T11:09:31.542Z 6737.3 ms (ok) node scripts/convert-scheme-to-emmy.mjs
-[make-step] 2026-08-04T11:09:31.490Z 6791.1 ms (ok) /Library/Developer/CommandLineTools/usr/bin/make emmy-convert
+[make-step] 2026-08-04T15:47:39.605Z 8012.7 ms (ok) node scripts/convert-scheme-to-emmy.mjs
+[make-step] 2026-08-04T15:47:39.562Z 8058.5 ms (ok) /Library/Developer/CommandLineTools/usr/bin/make emmy-convert
 /Library/Developer/CommandLineTools/usr/bin/make capture-emmy
 cd emmy-runner && clojure -M:shadow-cljs compile smoke
 [:smoke] Compiling ...
@@ -14,7 +19,7 @@ WARNING: sun.misc.Unsafe::arrayBaseOffset has been called by com.google.javascri
 WARNING: Please consider reporting this to the maintainers of class com.google.javascript.jscomp.jarjar.com.google.protobuf.UnsafeUtil$MemoryAccessor
 WARNING: sun.misc.Unsafe::arrayBaseOffset will be removed in a future release
 WARNING: abs already refers to: #'clojure.core/abs in namespace: clojure.math.numeric-tower, being replaced by: #'clojure.math.numeric-tower/abs
-[:smoke] Build completed. (295 files, 294 compiled, 7 warnings, 21.13s)
+[:smoke] Build completed. (295 files, 294 compiled, 7 warnings, 26.16s)
 
 [1m------ WARNING #1 - :undeclared-var --------------------------------------------[0m
  Resource: cljs/analyzer/api.cljc:227:6
@@ -127,47 +132,47 @@ WARNING: abs already refers to: #'clojure.core/abs in namespace: clojure.math.nu
 [2m 328 | [0m
 [2m 329 |        goog.math.Integer[0m
 --------------------------------------------------------------------------------
-[make-step] 2026-08-04T11:09:38.350Z 27295.5 ms (ok) cd emmy-runner && clojure -M:shadow-cljs compile smoke
+[make-step] 2026-08-04T15:47:47.703Z 33158.7 ms (ok) cd emmy-runner && clojure -M:shadow-cljs compile smoke
 node scripts/run-emmy-smoke.mjs
 
 EMMY CHAPTER: prologue (timeout 120s)
 Emmy SCI full-manifest test passed; 15 results matched Emmy's FDG regression suite. Captured 2 expression results.
-EMMY CHAPTER PASSED: prologue in 0.42s (results captured)
+EMMY CHAPTER PASSED: prologue in 0.56s (results captured)
 
 EMMY CHAPTER: chapter001 (timeout 120s)
 Emmy SCI full-manifest test passed; 15 results matched Emmy's FDG regression suite. Captured 5 expression results.
-EMMY CHAPTER PASSED: chapter001 in 0.59s (results captured)
+EMMY CHAPTER PASSED: chapter001 in 0.78s (results captured)
 
 EMMY CHAPTER: chapter002 (timeout 120s)
-2026-08-04T11:10:07.210Z WARN [emmy.util.logic:22] - Assuming (positive? (/ (* 2 rho) (+ (* (expt rho 2) (expt (cos theta) 2)) (* (expt rho 2) (expt (sin theta) 2)) 1))) in aggressive-atan-2
-2026-08-04T11:10:07.214Z WARN [emmy.util.logic:22] - Assuming (= (atan (sin theta) (cos theta)) theta) in atan-sin-cos
+2026-08-04T15:48:22.909Z WARN [emmy.util.logic:22] - Assuming (positive? (/ (* 2 rho) (+ (* (expt rho 2) (expt (cos theta) 2)) (* (expt rho 2) (expt (sin theta) 2)) 1))) in aggressive-atan-2
+2026-08-04T15:48:22.913Z WARN [emmy.util.logic:22] - Assuming (= (atan (sin theta) (cos theta)) theta) in atan-sin-cos
 Emmy SCI full-manifest test passed; 15 results matched Emmy's FDG regression suite. Captured 14 expression results.
-EMMY CHAPTER PASSED: chapter002 in 0.50s (results captured)
+EMMY CHAPTER PASSED: chapter002 in 0.64s (results captured)
 
 EMMY CHAPTER: chapter003 (timeout 120s)
-2026-08-04T11:10:07.695Z WARN [emmy.util.logic:22] - Assuming (positive? r) in aggressive-atan-2
-2026-08-04T11:10:07.698Z WARN [emmy.util.logic:22] - Assuming (= (atan (sin theta) (cos theta)) theta) in atan-sin-cos
-2026-08-04T11:10:07.716Z WARN [emmy.util.logic:22] - Assuming (= (sqrt (expt r 2)) (expt r 1)) in simsqrt1
+2026-08-04T15:48:23.544Z WARN [emmy.util.logic:22] - Assuming (positive? r) in aggressive-atan-2
+2026-08-04T15:48:23.548Z WARN [emmy.util.logic:22] - Assuming (= (atan (sin theta) (cos theta)) theta) in atan-sin-cos
+2026-08-04T15:48:23.573Z WARN [emmy.util.logic:22] - Assuming (= (sqrt (expt r 2)) (expt r 1)) in simsqrt1
 Emmy SCI full-manifest test passed; 15 results matched Emmy's FDG regression suite. Captured 17 expression results.
-EMMY CHAPTER PASSED: chapter003 in 0.55s (results captured)
+EMMY CHAPTER PASSED: chapter003 in 0.72s (results captured)
 
 EMMY CHAPTER: chapter004 (timeout 120s)
 Emmy SCI full-manifest test passed; 15 results matched Emmy's FDG regression suite. Captured 11 expression results.
-EMMY CHAPTER PASSED: chapter004 in 1.05s (results captured)
+EMMY CHAPTER PASSED: chapter004 in 1.43s (results captured)
 
 EMMY CHAPTER: chapter005 (timeout 120s)
 Emmy SCI full-manifest test passed; 15 results matched Emmy's FDG regression suite. Captured 9 expression results.
-EMMY CHAPTER PASSED: chapter005 in 1.43s (results captured)
+EMMY CHAPTER PASSED: chapter005 in 1.96s (results captured)
 
 EMMY CHAPTER: chapter006 (timeout 120s)
 Emmy SCI full-manifest test passed; 15 results matched Emmy's FDG regression suite. Captured 5 expression results.
-EMMY CHAPTER PASSED: chapter006 in 0.50s (results captured)
+EMMY CHAPTER PASSED: chapter006 in 0.66s (results captured)
 
 EMMY CHAPTER: chapter007 (timeout 120s)
-2026-08-04T11:10:21.019Z INFO [emmy.expression.compile:640] - compiled function in 101.06779200000165 ms
-2026-08-04T11:10:21.038Z INFO [emmy.expression.compile:640] - compiled function in 13.297040999999808 ms
+2026-08-04T15:48:42.267Z INFO [emmy.expression.compile:640] - compiled function in 146.13195799999994 ms
+2026-08-04T15:48:42.291Z INFO [emmy.expression.compile:640] - compiled function in 17.38195800000176 ms
 Emmy SCI full-manifest test passed; 15 results matched Emmy's FDG regression suite. Captured 17 expression results.
-EMMY CHAPTER PASSED: chapter007 in 10.57s (results captured)
+EMMY CHAPTER PASSED: chapter007 in 14.99s (results captured)
 
 EMMY CHAPTER: chapter008 (timeout 120s)
 0
@@ -179,73 +184,109 @@ EMMY CHAPTER: chapter008 (timeout 120s)
 0
 
 Emmy SCI full-manifest test passed; 15 results matched Emmy's FDG regression suite. Captured 19 expression results.
-EMMY CHAPTER PASSED: chapter008 in 5.80s (results captured)
+EMMY CHAPTER PASSED: chapter008 in 7.87s (results captured)
 
 EMMY CHAPTER: chapter009 (timeout 120s)
-2026-08-04T11:10:29.976Z WARN [emmy.util.logic:22] - Assuming (non-negative? (+ (expt ((D x) (f t)) 2) (expt ((D y) (f t)) 2))) in c1
-2026-08-04T11:10:29.977Z WARN [emmy.util.logic:22] - Assuming (non-negative? (+ (* (expt ((D x) (f t)) 2) (expt ((D f) t) 2)) (* (expt ((D f) t) 2) (expt ((D y) (f t)) 2)))) in c1
-2026-08-04T11:10:29.978Z WARN [emmy.util.logic:22] - Assuming (non-negative? (+ (expt ((D x) (f t)) 2) (expt ((D y) (f t)) 2))) in c1
-2026-08-04T11:10:29.978Z WARN [emmy.util.logic:22] - Assuming (non-negative? (+ (* (expt ((D x) (f t)) 2) (expt ((D f) t) 2)) (* (expt ((D f) t) 2) (expt ((D y) (f t)) 2)))) in c1
-2026-08-04T11:10:29.992Z WARN [emmy.util.logic:22] - Assuming (non-negative? ((D f) t)) in root-out-squares
-2026-08-04T11:10:29.994Z WARN [emmy.util.logic:22] - Assuming (non-negative? ((D f) t)) in root-out-squares
-2026-08-04T11:10:29.997Z WARN [emmy.util.logic:22] - Assuming (non-negative? (+ (* (expt ((D x) (f t)) 2) ((D f) t)) (* ((D f) t) (expt ((D y) (f t)) 2)))) in root-out-squares
-2026-08-04T11:10:29.999Z WARN [emmy.util.logic:22] - Assuming (non-negative? (+ (* (expt ((D x) (f t)) 2) ((D f) t)) (* ((D f) t) (expt ((D y) (f t)) 2)))) in root-out-squares
-2026-08-04T11:10:30.066Z WARN [emmy.util.logic:22] - Assuming (non-negative? ((D f) t)) in root-out-squares
-2026-08-04T11:10:30.067Z WARN [emmy.util.logic:22] - Assuming (non-negative? ((D f) t)) in root-out-squares
-2026-08-04T11:10:30.070Z WARN [emmy.util.logic:22] - Assuming (non-negative? (+ (* (expt ((D x) (f t)) 2) ((D f) t)) (* ((D f) t) (expt ((D y) (f t)) 2)))) in root-out-squares
-2026-08-04T11:10:30.072Z WARN [emmy.util.logic:22] - Assuming (non-negative? (+ (* (expt ((D x) (f t)) 2) ((D f) t)) (* ((D f) t) (expt ((D y) (f t)) 2)))) in root-out-squares
+2026-08-04T15:48:54.406Z WARN [emmy.util.logic:22] - Assuming (non-negative? (+ (expt ((D x) (f t)) 2) (expt ((D y) (f t)) 2))) in c1
+2026-08-04T15:48:54.408Z WARN [emmy.util.logic:22] - Assuming (non-negative? (+ (* (expt ((D x) (f t)) 2) (expt ((D f) t) 2)) (* (expt ((D f) t) 2) (expt ((D y) (f t)) 2)))) in c1
+2026-08-04T15:48:54.409Z WARN [emmy.util.logic:22] - Assuming (non-negative? (+ (expt ((D x) (f t)) 2) (expt ((D y) (f t)) 2))) in c1
+2026-08-04T15:48:54.409Z WARN [emmy.util.logic:22] - Assuming (non-negative? (+ (* (expt ((D x) (f t)) 2) (expt ((D f) t) 2)) (* (expt ((D f) t) 2) (expt ((D y) (f t)) 2)))) in c1
+2026-08-04T15:48:54.428Z WARN [emmy.util.logic:22] - Assuming (non-negative? ((D f) t)) in root-out-squares
+2026-08-04T15:48:54.431Z WARN [emmy.util.logic:22] - Assuming (non-negative? ((D f) t)) in root-out-squares
+2026-08-04T15:48:54.435Z WARN [emmy.util.logic:22] - Assuming (non-negative? (+ (* (expt ((D x) (f t)) 2) ((D f) t)) (* ((D f) t) (expt ((D y) (f t)) 2)))) in root-out-squares
+2026-08-04T15:48:54.439Z WARN [emmy.util.logic:22] - Assuming (non-negative? (+ (* (expt ((D x) (f t)) 2) ((D f) t)) (* ((D f) t) (expt ((D y) (f t)) 2)))) in root-out-squares
+2026-08-04T15:48:54.530Z WARN [emmy.util.logic:22] - Assuming (non-negative? ((D f) t)) in root-out-squares
+2026-08-04T15:48:54.532Z WARN [emmy.util.logic:22] - Assuming (non-negative? ((D f) t)) in root-out-squares
+2026-08-04T15:48:54.535Z WARN [emmy.util.logic:22] - Assuming (non-negative? (+ (* (expt ((D x) (f t)) 2) ((D f) t)) (* ((D f) t) (expt ((D y) (f t)) 2)))) in root-out-squares
+2026-08-04T15:48:54.539Z WARN [emmy.util.logic:22] - Assuming (non-negative? (+ (* (expt ((D x) (f t)) 2) ((D f) t)) (* ((D f) t) (expt ((D y) (f t)) 2)))) in root-out-squares
 Emmy SCI full-manifest test passed; 15 results matched Emmy's FDG regression suite. Captured 12 expression results.
-EMMY CHAPTER PASSED: chapter009 in 34.48s (results captured)
+EMMY CHAPTER PASSED: chapter009 in 46.15s (results captured)
 
 EMMY CHAPTER: chapter010 (timeout 120s)
 Emmy SCI full-manifest test passed; 15 results matched Emmy's FDG regression suite. Captured 20 expression results.
-EMMY CHAPTER PASSED: chapter010 in 2.84s (results captured)
+EMMY CHAPTER PASSED: chapter010 in 3.93s (results captured)
 
 EMMY CHAPTER: chapter011 (timeout 120s)
-2026-08-04T11:11:04.992Z WARN [emmy.util.logic:22] - Assuming (non-negative? (+ (* (expt ct 2) (expt vx 4)) (* 2 (expt ct 2) (expt vx 2) (expt vy 2)) (* 2 (expt ct 2) (expt vx 2) (expt vz 2)) (* (expt ct 2) (expt vy 4)) (* 2 (expt ct 2) (expt vy 2) (expt vz 2)) (* (expt ct 2) (expt vz 4)) (* -1 (expt vx 4) (expt x 2)) (* -2 (expt vx 3) vy x y) (* -2 (expt vx 3) vz x z) (* -1 (expt vx 2) (expt vy 2) (expt x 2)) (* -1 (expt vx 2) (expt vy 2) (expt y 2)) (* -2 (expt vx 2) vy vz y z) (* -1 (expt vx 2) (expt vz 2) (expt x 2)) (* -1 (expt vx 2) (expt vz 2) (expt z 2)) (* (expt vx 2) (expt y 2) (expt (expt (+ (* -1 (expt vx 2)) (* -1 (expt vy 2)) (* -1 (expt vz 2)) 1) 0.5) 2)) (* (expt vx 2) (expt z 2) (expt (expt (+ (* -1 (expt vx 2)) (* -1 (expt vy 2)) (* -1 (expt vz 2)) 1) 0.5) 2)) (* -2 vx (expt vy 3) x y) (* -2 vx (expt vy 2) vz x z) (* -2 vx vy (expt vz 2) x y) (* -2 vx vy x y (expt (expt (+ (* -1 (expt vx 2)) (* -1 (expt vy 2)) (* -1 (expt vz 2)) 1) 0.5) 2)) (* -2 vx (expt vz 3) x z) (* -2 vx vz x z (expt (expt (+ (* -1 (expt vx 2)) (* -1 (expt vy 2)) (* -1 (expt vz 2)) 1) 0.5) 2)) (* -1 (expt vy 4) (expt y 2)) (* -2 (expt vy 3) vz y z) (* -1 (expt vy 2) (expt vz 2) (expt y 2)) (* -1 (expt vy 2) (expt vz 2) (expt z 2)) (* (expt vy 2) (expt x 2) (expt (expt (+ (* -1 (expt vx 2)) (* -1 (expt vy 2)) (* -1 (expt vz 2)) 1) 0.5) 2)) (* (expt vy 2) (expt z 2) (expt (expt (+ (* -1 (expt vx 2)) (* -1 (expt vy 2)) (* -1 (expt vz 2)) 1) 0.5) 2)) (* -2 vy (expt vz 3) y z) (* -2 vy vz y z (expt (expt (+ (* -1 (expt vx 2)) (* -1 (expt vy 2)) (* -1 (expt vz 2)) 1) 0.5) 2)) (* -1 (expt vz 4) (expt z 2)) (* (expt vz 2) (expt x 2) (expt (expt (+ (* -1 (expt vx 2)) (* -1 (expt vy 2)) (* -1 (expt vz 2)) 1) 0.5) 2)) (* (expt vz 2) (expt y 2) (expt (expt (+ (* -1 (expt vx 2)) (* -1 (expt vy 2)) (* -1 (expt vz 2)) 1) 0.5) 2)) (* -1 (expt ct 2) (expt vx 2)) (* -1 (expt ct 2) (expt vy 2)) (* -1 (expt ct 2) (expt vz 2)) (* (expt vx 2) (expt x 2)) (* 2 vx vy x y) (* 2 vx vz x z) (* (expt vy 2) (expt y 2)) (* 2 vy vz y z) (* (expt vz 2) (expt z 2)))) in e3
-2026-08-04T11:11:04.995Z WARN [emmy.util.logic:22] - Assuming (non-negative? (+ (* (expt vx 2) (expt (expt (+ (* -1 (expt vx 2)) (* -1 (expt vy 2)) (* -1 (expt vz 2)) 1) 0.5) 2)) (* (expt vy 2) (expt (expt (+ (* -1 (expt vx 2)) (* -1 (expt vy 2)) (* -1 (expt vz 2)) 1) 0.5) 2)) (* (expt vz 2) (expt (expt (+ (* -1 (expt vx 2)) (* -1 (expt vy 2)) (* -1 (expt vz 2)) 1) 0.5) 2)))) in e3
-2026-08-04T11:11:05.033Z WARN [emmy.util.logic:22] - Assuming (non-negative? (+ (* -1 (expt ct 2)) (expt x 2) (expt y 2) (expt z 2))) in c1
-2026-08-04T11:11:05.034Z WARN [emmy.util.logic:22] - Assuming (non-negative? (+ (* -1 (expt vx 4)) (* -2 (expt vx 2) (expt vy 2)) (* -2 (expt vx 2) (expt vz 2)) (* -1 (expt vy 4)) (* -2 (expt vy 2) (expt vz 2)) (* -1 (expt vz 4)) (expt vx 2) (expt vy 2) (expt vz 2))) in c1
-2026-08-04T11:11:05.208Z WARN [emmy.util.logic:22] - Assuming (non-negative? #emmy/bigint 49) in e1
-2026-08-04T11:11:05.208Z WARN [emmy.util.logic:22] - Assuming (non-negative? (expt c 2)) in e1
-2026-08-04T11:11:05.209Z WARN [emmy.util.logic:22] - Assuming (= (sqrt (expt c 2)) (expt c 1)) in simsqrt1
-2026-08-04T11:11:05.216Z WARN [emmy.util.logic:22] - Assuming (non-negative? #emmy/ratio "2401/625") in e1
-2026-08-04T11:11:05.216Z WARN [emmy.util.logic:22] - Assuming (non-negative? (expt c 2)) in e1
-2026-08-04T11:11:05.226Z WARN [emmy.util.logic:22] - Assuming (non-negative? 2500) in e1
-2026-08-04T11:11:05.227Z WARN [emmy.util.logic:22] - Assuming (non-negative? (expt c 2)) in e1
+2026-08-04T15:49:41.386Z WARN [emmy.util.logic:22] - Assuming (non-negative? (+ (* (expt ct 2) (expt vx 4)) (* 2 (expt ct 2) (expt vx 2) (expt vy 2)) (* 2 (expt ct 2) (expt vx 2) (expt vz 2)) (* (expt ct 2) (expt vy 4)) (* 2 (expt ct 2) (expt vy 2) (expt vz 2)) (* (expt ct 2) (expt vz 4)) (* -1 (expt vx 4) (expt x 2)) (* -2 (expt vx 3) vy x y) (* -2 (expt vx 3) vz x z) (* -1 (expt vx 2) (expt vy 2) (expt x 2)) (* -1 (expt vx 2) (expt vy 2) (expt y 2)) (* -2 (expt vx 2) vy vz y z) (* -1 (expt vx 2) (expt vz 2) (expt x 2)) (* -1 (expt vx 2) (expt vz 2) (expt z 2)) (* (expt vx 2) (expt y 2) (expt (expt (+ (* -1 (expt vx 2)) (* -1 (expt vy 2)) (* -1 (expt vz 2)) 1) 0.5) 2)) (* (expt vx 2) (expt z 2) (expt (expt (+ (* -1 (expt vx 2)) (* -1 (expt vy 2)) (* -1 (expt vz 2)) 1) 0.5) 2)) (* -2 vx (expt vy 3) x y) (* -2 vx (expt vy 2) vz x z) (* -2 vx vy (expt vz 2) x y) (* -2 vx vy x y (expt (expt (+ (* -1 (expt vx 2)) (* -1 (expt vy 2)) (* -1 (expt vz 2)) 1) 0.5) 2)) (* -2 vx (expt vz 3) x z) (* -2 vx vz x z (expt (expt (+ (* -1 (expt vx 2)) (* -1 (expt vy 2)) (* -1 (expt vz 2)) 1) 0.5) 2)) (* -1 (expt vy 4) (expt y 2)) (* -2 (expt vy 3) vz y z) (* -1 (expt vy 2) (expt vz 2) (expt y 2)) (* -1 (expt vy 2) (expt vz 2) (expt z 2)) (* (expt vy 2) (expt x 2) (expt (expt (+ (* -1 (expt vx 2)) (* -1 (expt vy 2)) (* -1 (expt vz 2)) 1) 0.5) 2)) (* (expt vy 2) (expt z 2) (expt (expt (+ (* -1 (expt vx 2)) (* -1 (expt vy 2)) (* -1 (expt vz 2)) 1) 0.5) 2)) (* -2 vy (expt vz 3) y z) (* -2 vy vz y z (expt (expt (+ (* -1 (expt vx 2)) (* -1 (expt vy 2)) (* -1 (expt vz 2)) 1) 0.5) 2)) (* -1 (expt vz 4) (expt z 2)) (* (expt vz 2) (expt x 2) (expt (expt (+ (* -1 (expt vx 2)) (* -1 (expt vy 2)) (* -1 (expt vz 2)) 1) 0.5) 2)) (* (expt vz 2) (expt y 2) (expt (expt (+ (* -1 (expt vx 2)) (* -1 (expt vy 2)) (* -1 (expt vz 2)) 1) 0.5) 2)) (* -1 (expt ct 2) (expt vx 2)) (* -1 (expt ct 2) (expt vy 2)) (* -1 (expt ct 2) (expt vz 2)) (* (expt vx 2) (expt x 2)) (* 2 vx vy x y) (* 2 vx vz x z) (* (expt vy 2) (expt y 2)) (* 2 vy vz y z) (* (expt vz 2) (expt z 2)))) in e3
+2026-08-04T15:49:41.389Z WARN [emmy.util.logic:22] - Assuming (non-negative? (+ (* (expt vx 2) (expt (expt (+ (* -1 (expt vx 2)) (* -1 (expt vy 2)) (* -1 (expt vz 2)) 1) 0.5) 2)) (* (expt vy 2) (expt (expt (+ (* -1 (expt vx 2)) (* -1 (expt vy 2)) (* -1 (expt vz 2)) 1) 0.5) 2)) (* (expt vz 2) (expt (expt (+ (* -1 (expt vx 2)) (* -1 (expt vy 2)) (* -1 (expt vz 2)) 1) 0.5) 2)))) in e3
+2026-08-04T15:49:41.443Z WARN [emmy.util.logic:22] - Assuming (non-negative? (+ (* -1 (expt ct 2)) (expt x 2) (expt y 2) (expt z 2))) in c1
+2026-08-04T15:49:41.444Z WARN [emmy.util.logic:22] - Assuming (non-negative? (+ (* -1 (expt vx 4)) (* -2 (expt vx 2) (expt vy 2)) (* -2 (expt vx 2) (expt vz 2)) (* -1 (expt vy 4)) (* -2 (expt vy 2) (expt vz 2)) (* -1 (expt vz 4)) (expt vx 2) (expt vy 2) (expt vz 2))) in c1
+2026-08-04T15:49:41.680Z WARN [emmy.util.logic:22] - Assuming (non-negative? #emmy/bigint 49) in e1
+2026-08-04T15:49:41.680Z WARN [emmy.util.logic:22] - Assuming (non-negative? (expt c 2)) in e1
+2026-08-04T15:49:41.681Z WARN [emmy.util.logic:22] - Assuming (= (sqrt (expt c 2)) (expt c 1)) in simsqrt1
+2026-08-04T15:49:41.690Z WARN [emmy.util.logic:22] - Assuming (non-negative? #emmy/ratio "2401/625") in e1
+2026-08-04T15:49:41.690Z WARN [emmy.util.logic:22] - Assuming (non-negative? (expt c 2)) in e1
+2026-08-04T15:49:41.703Z WARN [emmy.util.logic:22] - Assuming (non-negative? 2500) in e1
+2026-08-04T15:49:41.703Z WARN [emmy.util.logic:22] - Assuming (non-negative? (expt c 2)) in e1
 Emmy SCI full-manifest test passed; 15 results matched Emmy's FDG regression suite. Captured 15 expression results.
-EMMY CHAPTER PASSED: chapter011 in 0.80s (results captured)
+EMMY CHAPTER PASSED: chapter011 in 1.06s (results captured)
 
 EMMY CHAPTER: appendix_a (timeout 120s)
 Emmy SCI full-manifest test passed; 15 results matched Emmy's FDG regression suite. Captured 24 expression results.
-EMMY CHAPTER PASSED: appendix_a in 0.48s (results captured)
+EMMY CHAPTER PASSED: appendix_a in 0.59s (results captured)
 
 EMMY CHAPTER: appendix_b (timeout 120s)
 Emmy SCI full-manifest test passed; 15 results matched Emmy's FDG regression suite. Captured 26 expression results.
-EMMY CHAPTER PASSED: appendix_b in 0.44s (results captured)
+EMMY CHAPTER PASSED: appendix_b in 0.61s (results captured)
 
 EMMY CHAPTER: appendix_c (timeout 120s)
 Emmy SCI full-manifest test passed; 15 results matched Emmy's FDG regression suite. Captured 5 expression results.
-EMMY CHAPTER PASSED: appendix_c in 23.93s (results captured)
+EMMY CHAPTER PASSED: appendix_c in 33.19s (results captured)
 
 EMMY CHAPTER: errata (timeout 120s)
 Emmy SCI full-manifest test passed; 15 results matched Emmy's FDG regression suite. Captured 0 expression results.
-EMMY CHAPTER PASSED: errata in 0.38s (results captured)
+EMMY CHAPTER PASSED: errata in 0.51s (results captured)
 
 EMMY RUNNER SUMMARY: all 16 chapters passed.
-[make-step] 2026-08-04T11:10:05.682Z 84789.9 ms (ok) node scripts/run-emmy-smoke.mjs
-[make-step] 2026-08-04T11:09:38.317Z 112157.2 ms (ok) /Library/Developer/CommandLineTools/usr/bin/make capture-emmy
+[make-step] 2026-08-04T15:48:20.904Z 115709.6 ms (ok) node scripts/run-emmy-smoke.mjs
+[make-step] 2026-08-04T15:47:47.661Z 148959.0 ms (ok) /Library/Developer/CommandLineTools/usr/bin/make capture-emmy
 /Library/Developer/CommandLineTools/usr/bin/make format-emmy
 clojure -M:format-emmy codeblocks emmy-runner/public/generated
 Formatted 96 of 732 ClojureScript files.
-[make-step] 2026-08-04T11:11:30.532Z 7056.5 ms (ok) clojure -M:format-emmy codeblocks emmy-runner/public/generated
-[make-step] 2026-08-04T11:11:30.502Z 7088.6 ms (ok) /Library/Developer/CommandLineTools/usr/bin/make format-emmy
+[make-step] 2026-08-04T15:50:16.699Z 9154.0 ms (ok) clojure -M:format-emmy codeblocks emmy-runner/public/generated
+[make-step] 2026-08-04T15:50:16.655Z 9200.7 ms (ok) /Library/Developer/CommandLineTools/usr/bin/make format-emmy
 /Library/Developer/CommandLineTools/usr/bin/make validate-emmy
 node scripts/assert-emmy-conversion.mjs
 Checked 732 formatted ClojureScript files.
 Emmy conversion manifest is consistent (366 blocks).
-[make-step] 2026-08-04T11:11:37.649Z 5592.5 ms (ok) node scripts/assert-emmy-conversion.mjs
+[make-step] 2026-08-04T15:50:25.933Z 6786.6 ms (ok) node scripts/assert-emmy-conversion.mjs
 node scripts/compare-scm-cljs-outputs.mjs --check --no-report
 Output comparison: 187 paired positions: 187 equivalent (0 disproportionately verbose), 0 different, 0 unresolved; 29 missing counterparts excluded.
-[make-step] 2026-08-04T11:11:43.269Z 61.4 ms (ok) node scripts/compare-scm-cljs-outputs.mjs --check --no-report
-[make-step] 2026-08-04T11:11:37.620Z 5713.2 ms (ok) /Library/Developer/CommandLineTools/usr/bin/make validate-emmy
+[make-step] 2026-08-04T15:50:32.756Z 82.8 ms (ok) node scripts/compare-scm-cljs-outputs.mjs --check --no-report
+[make-step] 2026-08-04T15:50:25.892Z 6948.8 ms (ok) /Library/Developer/CommandLineTools/usr/bin/make validate-emmy
+[make-step] 2026-08-04T15:47:39.522Z 173326.4 ms (ok) /Library/Developer/CommandLineTools/usr/bin/make emmy-refresh
+/Library/Developer/CommandLineTools/usr/bin/make prepare-typst
+/Library/Developer/CommandLineTools/usr/bin/make format-scheme
+./scripts/install-racket-fmt.sh
+Repo-local Racket 8.18 and raco fmt are already installed in /Users/calvinkhor/Documents/GitHub/fdgtyp/build/.staging/20260804T154736Z-from-raw-8edb10d-6eb780/work/.tools.
+[make-step] 2026-08-04T15:50:32.959Z 606.9 ms (ok) ./scripts/install-racket-fmt.sh
+node scripts/format-scheme-blocks.mjs
+Formatted 0 Scheme blocks in 38 .typ files; no changes.
+[make-step] 2026-08-04T15:50:33.603Z 50.3 ms (ok) node scripts/format-scheme-blocks.mjs
+[make-step] 2026-08-04T15:50:32.921Z 734.6 ms (ok) /Library/Developer/CommandLineTools/usr/bin/make format-scheme
+/Library/Developer/CommandLineTools/usr/bin/make validate-typst
+node scripts/assert-typst-regressions.mjs --skip-pdf
+Typst regression assertions passed (targeted files: 17, PDF text files: 1, generated files: 24, global checks: 76, equation-label sections: 15, figures: 8, labels: 669, bibliography keys: 21).
+[make-step] 2026-08-04T15:50:33.730Z 139.4 ms (ok) node scripts/assert-typst-regressions.mjs --skip-pdf
+[make-step] 2026-08-04T15:50:33.691Z 183.4 ms (ok) /Library/Developer/CommandLineTools/usr/bin/make validate-typst
+[make-step] 2026-08-04T15:50:32.882Z 996.9 ms (ok) /Library/Developer/CommandLineTools/usr/bin/make prepare-typst
+[make-step] 2026-08-04T15:47:39.483Z 174405.7 ms (ok) /Library/Developer/CommandLineTools/usr/bin/make prepare
+/Library/Developer/CommandLineTools/usr/bin/make render-all
+typst compile --root . --input code=scheme typ/main.typ typ/main.pdf
+[make-step] 2026-08-04T15:50:33.974Z 12155.3 ms (ok) typst compile --root . --input code=scheme typ/main.typ typ/main.pdf
+typst compile --root . --input code=clojure typ/main.typ typ/main-cljs.pdf
+[make-step] 2026-08-04T15:50:46.173Z 12928.3 ms (ok) typst compile --root . --input code=clojure typ/main.typ typ/main-cljs.pdf
+typst compile --root . --input code=both typ/main.typ typ/main-both.pdf
+[make-step] 2026-08-04T15:50:59.145Z 13819.5 ms (ok) typst compile --root . --input code=both typ/main.typ typ/main-both.pdf
+typst compile --root . --input draft=false --input code=scheme typ/main.typ fdg-book.pdf
+[make-step] 2026-08-04T15:51:13.012Z 29245.8 ms (ok) typst compile --root . --input draft=false --input code=scheme typ/main.typ fdg-book.pdf
+typst compile --root . --input draft=false --input code=clojure typ/main.typ fdg-book-cljs.pdf
+[make-step] 2026-08-04T15:51:42.307Z 36966.9 ms (ok) typst compile --root . --input draft=false --input code=clojure typ/main.typ fdg-book-cljs.pdf
+typst compile --root . --input draft=false --input code=both typ/main.typ fdg-book-both.pdf
+[make-step] 2026-08-04T15:52:19.321Z 30391.7 ms (ok) typst compile --root . --input draft=false --input code=both typ/main.typ fdg-book-both.pdf
+/Library/Developer/CommandLineTools/usr/bin/make validate-pdfs
+node scripts/assert-typst-regressions.mjs --pdf-only
+Typst regression assertions passed (targeted files: 17, PDF text files: 1, generated files: 24, global checks: 76, equation-label sections: 15, figures: 8, labels: 669, bibliography keys: 21).
+[make-step] 2026-08-04T15:52:49.806Z 1223.1 ms (ok) node scripts/assert-typst-regressions.mjs --pdf-only
+[make-step] 2026-08-04T15:52:49.761Z 1271.1 ms (ok) /Library/Developer/CommandLineTools/usr/bin/make validate-pdfs
+[make-step] 2026-08-04T15:50:33.931Z 137103.0 ms (ok) /Library/Developer/CommandLineTools/usr/bin/make render-all

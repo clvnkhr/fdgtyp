@@ -1,5 +1,9 @@
 # Porting the FDG examples to Emmy
 
+This document covers block-level porting policy. For artifact ownership,
+isolated-build behavior, runner data flow, validation, and deployment, see
+[ARCHITECTURE.md](ARCHITECTURE.md).
+
 The goal is an executable ClojureScript edition of every substantive Scheme
 example in *Functional Differential Geometry*. Emmy is a reimplementation of
 scmutils, not a Scheme interpreter, so success means preserving the mathematics
@@ -7,10 +11,18 @@ and observable results rather than preserving source spelling or printed forms.
 
 The vendored Org files under `fdg-book/scheme/org/` are immutable upstream
 sources. Never fix or annotate them. Source repairs remain the responsibility of
-`scripts/convert-org-to-typst.mjs`; Emmy-specific work belongs under
-`codeblocks/`, `emmy-runner/`, or the Scheme-to-Emmy converter.
+`scripts/convert-org-to-typst.mjs`; durable Emmy-specific work belongs in
+`scripts/convert-scheme-to-emmy.mjs` or, for reusable API compatibility, under
+`emmy-runner/src/`. Root `codeblocks/` is a generated mirror and is not copied
+into a normal isolated Make run.
 
 ## Generated block workspace
+
+The supported workflow is `make emmy-convert` or `make emmy-refresh`, which
+runs in an isolated workspace and promotes successful output. The direct
+commands below are low-level converter development tools; they write disposable
+generated mirrors in the source checkout and do not by themselves update the
+promoted build:
 
 To regenerate the editable block workspace, run:
 
@@ -65,8 +77,12 @@ integers grow automatically while JavaScript numbers do not. The sphere example
 keeps its common `pi` factor symbolic and explicitly simplifies the result, so
 the factor cancels before Emmy's numerical value of pi introduces rounding.
 
-The files themselves are the conversion state. A `.scm` file is the clean
-generated-Typst snapshot and its neighboring `.cljs` file is the clean working port.
+Within a successful build workspace, a `.scm` file is the clean generated-Typst
+snapshot and its neighboring `.cljs` file is the preserved working port. The
+next isolated build layers those promoted artifacts before conversion,
+allowing unchanged-source ports to survive. A durable correction should still
+be encoded as a reviewed converter rule (or a reusable compatibility helper),
+because the root generated mirror is disposable.
 
 The generated Typst files are now the immediate source of the `.scm` files:
 the Org converter retains each repaired Scheme block in a non-rendered Typst
@@ -110,12 +126,13 @@ For each chapter:
 3. Compare its `.scm` snapshot, the surrounding book text, and its `.cljs` port.
 4. Run all preceding blocks in the chapter, then the selected block. Examples
    often depend on earlier definitions.
-5. Correct syntax, API names, destructuring, simplification boundaries, and
-   expected values in the `.cljs` file only.
+5. Prototype syntax, API, destructuring, simplification, and expected-value
+   changes against the generated `.cljs` block, then encode the durable fix in
+   the converter or compatibility layer.
 6. If a reusable mismatch appears, add the smallest justified adapter to
    `fdg.compat` and document it there.
-7. Keep the successful port in its `.cljs` file and rerun the entire chapter
-   from a fresh SCI context.
+7. Regenerate or retain the successful `.cljs` port from its authored rule, then
+   rerun the entire chapter from a fresh SCI context.
 8. Before completing a chapter, compare important results with scmutils. Accept
    algebraically equivalent forms; add explicit simplification only when the
    surrounding text depends on the normalized result.

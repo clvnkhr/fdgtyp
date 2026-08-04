@@ -7,5 +7,6 @@
   "log": "build.log",
   "status": "failed",
   "workspace": "/Users/calvinkhor/Documents/GitHub/fdgtyp/build/failed/current/work",
-  "finishedAt": "2026-08-04T11:09:02.710Z"
+  "finishedAt": "2026-08-04T11:09:02.710Z",
+  "workspaceLayout": "linked-runner-v1"
 }

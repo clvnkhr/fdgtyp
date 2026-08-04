@@ -14,5 +14,11 @@ output-comparison.typ
 output-comparison.pdf
 emmy-runner/.shadow-cljs/
 emmy-runner/public/js/
+build/**/work/emmy-runner/.cpcache/
+build/**/work/emmy-runner/.shadow-cljs/
+build/**/work/emmy-runner/node_modules
+build/**/work/emmy-runner/target/
+build/**/work/emmy-runner/public/js/
+build/**/work/emmy-runner/public/worker/
 .DS_Store
 **/.DS_Store
