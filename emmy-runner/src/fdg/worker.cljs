@@ -103,8 +103,12 @@
 
 (defn run-blocks! [blocks]
   (reset-context!)
-  (reduce (fn [_ {:keys [block code]}]
-            (if (or (:backgroundSetup block) (not (:executable block)))
+  (reduce (fn [_ {:keys [block code selected?]}]
+            (if (or (:backgroundSetup block)
+                    (not (:executable block))
+                    ;; Only the selected block is an example invocation. Prior
+                    ;; blocks are replayed solely when they install definitions.
+                    (and (not selected?) (every? :capturesResult (:forms block))))
               nil
               (try (prepare-block! block)
                    {:captured? (:capturesResult block)

@@ -78,8 +78,14 @@ if (!smokeSource.includes("(defn locate-form")
     || !smokeSource.includes("(clojure.string/join \"\\\\s+\")")) {
   throw new Error("Captured results must tolerate formatter whitespace changes");
 }
-if (!workerSource.includes("(or (:backgroundSetup block) (not (:executable block)))")) {
+if (!workerSource.includes("(:backgroundSetup block)")
+    || !workerSource.includes("(not (:executable block))")) {
   throw new Error("The web runner must not evaluate cached, non-executable Scheme output");
+}
+if (!runnerSource.includes('(remove :capturesResult)')
+    || !runnerSource.includes('(definition-block? %)')
+    || !workerSource.includes('(and (not selected?) (every? :capturesResult (:forms block)))')) {
+  throw new Error("Run-through must replay only definition forms from blocks before the selected example");
 }
 if (!workerSource.includes('["fdg.session" "emmy.env" "fdg.compat"]')
     || !workerSource.includes('(symbol % token)')) {

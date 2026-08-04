@@ -366,10 +366,26 @@
              [[] #{}]
              visible-blocks))))
 
+(defn definition-code
+  [block]
+  (->> (:forms block)
+       (remove :capturesResult)
+       (map :code)
+       (str/join "\n\n")))
+
+(defn definition-block?
+  [block]
+  (some (comp not :capturesResult) (:forms block)))
+
 (defn run-through!
   []
   (let [selected (selected-block)
-        blocks (execution-blocks-through selected)]
+        blocks (->> (execution-blocks-through selected)
+                    ;; Earlier result-only examples do not contribute anything
+                    ;; to the selected block's environment. Avoid replaying
+                    ;; their potentially expensive symbolic calculations.
+                    (filter #(or (= (:id %) (:id selected))
+                                 (definition-block? %))))]
     (if (:backgroundSetup selected)
       (do
         (swap! state assoc
@@ -382,10 +398,11 @@
           (-> (js/Promise.all
                 (into-array
                   (map (fn [block]
-                         (-> (if (= (:id block) (:selected @state))
-                               (js/Promise.resolve (:code @state))
-                               (fetch-text (:codePath block)))
-                             (.then (fn [code] {:block block :code code}))))
+                         (let [selected? (= (:id block) (:selected @state))]
+                           (js/Promise.resolve
+                            {:block block
+                             :selected? selected?
+                             :code (if selected? (:code @state) (definition-code block))})))
                        blocks)))
               (.then (fn [prepared]
                        (swap! state assoc :output "Running in the evaluation worker…")
