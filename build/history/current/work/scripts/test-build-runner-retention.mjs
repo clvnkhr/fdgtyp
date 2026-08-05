@@ -134,6 +134,7 @@ writeFileSync("fdg-book.pdf", "PDF " + mode + "\\n");
 `);
 
   write("output-comparison.typ", "stale root mirror\n");
+  write("typ/fdg-lib/preface_cljs.typ", "Preface source\n");
   runBuild("fixture", "first");
 
   const successfulRun = path.join(fixtureRoot, "build", "history", "current");
@@ -183,6 +184,10 @@ writeFileSync("fdg-book.pdf", "PDF " + mode + "\\n");
     "synchronized-on-promotion",
   );
   assert.equal(readFileSync(path.join(fixtureRoot, "typ", "main.typ"), "utf8"), "Main first\n");
+  assert.equal(
+    readFileSync(path.join(successfulRun, "work", "typ", "fdg-lib", "preface_cljs.typ"), "utf8"),
+    "Preface source\n",
+  );
   assert.equal(readFileSync(path.join(fixtureRoot, "fdg-book.pdf"), "utf8"), "PDF first\n");
   assert.equal(
     readFileSync(path.join(fixtureRoot, "emmy-runner", "public", "generated", "chapter001", "001.cljs"), "utf8"),
@@ -197,8 +202,13 @@ writeFileSync("fdg-book.pdf", "PDF " + mode + "\\n");
   // Prove that the next run layers generated state from artifacts rather than
   // relying on the retained workspace's convenience link.
   rmSync(retainedGenerated, { recursive: true, force: true });
+  write("typ/fdg-lib/preface_cljs.typ", "Preface edited\n");
   runBuild("fixture-reuse", "second");
   assert.equal(readFileSync(path.join(fixtureRoot, "typ", "main.typ"), "utf8"), "Main reuse\n");
+  assert.equal(
+    readFileSync(path.join(fixtureRoot, "typ", "fdg-lib", "preface_cljs.typ"), "utf8"),
+    "Preface edited\n",
+  );
 
   const archive = path.join(fixtureRoot, "build", "history", "previous-1.tar.gz");
   const archiveListing = spawnSync("tar", ["-tzf", archive], { encoding: "utf8" });

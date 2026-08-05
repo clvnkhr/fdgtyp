@@ -22,6 +22,25 @@
          :inspected-symbol nil,
          :busy? false}))
 
+(def selection-storage-key "fdg.emmy.runner.selection.v1")
+
+(defn saved-selection
+  []
+  (try
+    (when-let [raw (.getItem js/localStorage selection-storage-key)]
+      (let [value (js->clj (.parse js/JSON raw) :keywordize-keys true)]
+        (when (map? value) value)))
+    (catch :default _ nil)))
+
+(defn persist-selection!
+  [block]
+  (try
+    (.setItem js/localStorage
+              selection-storage-key
+              (.stringify js/JSON (clj->js {:chapter (:chapter block)
+                                             :selected (:id block)})))
+    (catch :default _ nil)))
+
 (defonce editor (atom nil))
 
 (defonce evaluator (atom nil))
@@ -296,11 +315,19 @@
 
 (defn selected-block [] (some #(when (= (:id %) (:selected @state)) %) (:manifest @state)))
 
+(defn restore-selection
+  [manifest]
+  (let [{saved-id :selected saved-chapter :chapter} (saved-selection)]
+    (or (some #(when (= saved-id (:id %)) %) manifest)
+        (some #(when (= saved-chapter (:chapter %)) %) manifest)
+        (first manifest))))
+
 (declare render! render-result!)
 
 (defn select-block!
   [block]
   (let [same-chapter? (= (:chapter block) (:chapter @state))]
+    (persist-selection! block)
     (-> (fetch-text (:codePath block))
         (.then (fn [code]
                  (swap! state assoc :selected (:id block) :chapter (:chapter block) :code code :output "Ready.")
@@ -589,15 +616,15 @@
            (.then #(.json %))
            (.then (fn [data]
                     (let [manifest (js->clj data :keywordize-keys true)
-                          first-block (first manifest)]
-                      (when-not first-block
+                          initial-block (restore-selection manifest)]
+                      (when-not initial-block
                         (throw (js/Error. "The generated Emmy manifest is empty.")))
-                      (swap! state assoc :manifest manifest :chapter (:chapter first-block))
+                      (swap! state assoc :manifest manifest :chapter (:chapter initial-block))
                       (start-worker!)
                       (let [initialization (worker-call "init" {:manifest manifest
-                                                                :chapter (:chapter first-block)})]
+                                                                :chapter (:chapter initial-block)})]
                         ;; Render immediately while the larger evaluator bundle initializes off-thread.
-                        (select-block! first-block)
+                        (select-block! initial-block)
                         (-> initialization
                             (.then (fn [_]
                                      (render-namespace-vars!))))))))

@@ -39,6 +39,10 @@ const outputSource = readFileSync(
   path.join(root, "emmy-runner", "src", "fdg", "output.cljs"),
   "utf8",
 );
+const styleSource = readFileSync(
+  path.join(root, "emmy-runner", "public", "style.css"),
+  "utf8",
+);
 const shadowConfig = readFileSync(
   path.join(root, "emmy-runner", "shadow-cljs.edn"),
   "utf8",
@@ -106,8 +110,15 @@ if (!workerSource.includes('["fdg.session" "emmy.env" "fdg.compat"]')
 }
 if (!runnerSource.includes('(when (:type info)')
     || !runnerSource.includes(':definition info')
-    || !runnerSource.includes('definition-preview')) {
-  throw new Error("The inspector must expose runtime type and user-definition source");
+    || !runnerSource.includes('definition-preview')
+    || runnerSource.includes('ns-select')
+    || !runnerSource.includes('namespace-panel')
+    || !styleSource.includes('flex: 1 1 auto;')
+    || !styleSource.includes('overflow: auto;\n  border-top: 1px solid var(--border);')
+    || !styleSource.includes('overflow: hidden;\n}')
+    || !styleSource.includes('.namespace-panel { flex: none;')
+    || !styleSource.includes('overflow: visible;')) {
+  throw new Error("The inspector must expose runtime type and user-definition source without overlapping its namespace panel");
 }
 if (!runnerSource.includes('(js/Worker. "worker/main.js"')
     || !runnerSource.includes('#js {:type "module"}')

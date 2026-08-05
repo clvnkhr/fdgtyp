@@ -70,6 +70,8 @@ failed runs can be inspected by extracting `previous-1.tar.gz` or
 source checkout: fdg-book/scheme/org
   -> scripts/convert-org-to-typst.mjs
   -> build/current/typ/content
+typ/fdg-lib/preface_cljs.typ (authored)
+  -> converter-generated typ/content/preface_cljs.typ stub
   -> scripts/convert-scheme-to-emmy.mjs
   -> build/current/codeblocks + build/current/emmy-generated
   -> Typst PDFs and the interactive runner
@@ -78,9 +80,14 @@ source checkout: fdg-book/scheme/org
 The vendored Org source is checksum-protected. Put source-fidelity repairs in
 the Org-to-Typst converter; make durable Emmy fixes in the Scheme-to-Emmy
 converter or, for reusable API differences, `emmy-runner/src/fdg/compat.cljs`.
-The root generated trees are synchronized working copies. They can be edited
-for experiments and compiled directly, but the next successful promotion will
-replace them; encode durable repairs in the converters or authored libraries.
+The root generated trees are synchronized working copies. The hand-written
+ClojureScript-edition preface lives in `typ/fdg-lib/preface_cljs.typ`; the
+converter generates `typ/content/preface_cljs.typ` as a small include stub.
+Edit the library file, then run `make prepare-typst` to validate and promote it
+into `build/current` (or use `make cljs-book-pdf` / `make both-book-pdf` when
+you also want a PDF). Other generated files can be edited for experiments and
+compiled directly, but the next successful promotion will replace them; encode
+durable repairs in the converters or authored libraries.
 
 ## Manual Typst compilation
 

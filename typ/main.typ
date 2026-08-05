@@ -2,7 +2,7 @@
 // Edit typ/lib.typ for presentation; edit the converter for structural changes.
 
 #import "lib.typ": *
-#import "index.typ": fdg-indexed-body, fdg-index-page
+#import "index.typ": fdg-index-page, fdg-indexed-body
 
 // For a manual test, replace this line with:
 // #let code-edition = "clojure" // "scheme", "clojure", or "both"

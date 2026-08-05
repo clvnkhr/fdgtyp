@@ -40,6 +40,11 @@ The vars list takes only the space left below the symbol detail and scrolls
 internally if that detail grows. Emmy and compatibility namespaces remain
 available through hover and completion.
 
+The selected chapter and codeblock are remembered in browser local storage and
+restored on the next refresh. If a saved block is no longer in the manifest,
+the runner falls back to the first block in the saved chapter, then the first
+block overall.
+
 For the optimized build used by GitHub Pages:
 
 ```sh

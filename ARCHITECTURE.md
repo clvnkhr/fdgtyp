@@ -100,13 +100,14 @@ differently:
 | Upstream Clojure precedent | `fdg-book/clojure/org/` | Emmy converter | Vendored input, not the final CLJS port |
 | Published reference PDF | `fdg-book/fdg_book.pdf` | Figure extraction and fidelity audit | Fixed comparison source |
 | Source normalization rules | `scripts/normalize-org-source.mjs` | Org conversion | Edit here for imported-source syntax repairs |
-| Typst conversion/editorial rules | `scripts/convert-org-to-typst.mjs` | `typ/content/`, `typ/main.typ`, bibliography and manifest | Durable generated-text fixes belong here |
+| Typst conversion/editorial rules | `scripts/convert-org-to-typst.mjs` | Generated `typ/content/`, `typ/main.typ`, bibliography and manifest | Durable generated-text fixes belong here |
+| ClojureScript preface prose | `typ/fdg-lib/preface_cljs.typ` | Generated `typ/content/preface_cljs.typ` include stub and CLJS/both PDFs | Hand-edit the library source |
 | Typst presentation | `typ/fdg-lib/`, `typ/lib.typ`, `typ/index.typ`, assets | Generated `typ/main.typ` and PDFs | Edit authored Typst files |
 | Scheme/Emmy conversion policy | `scripts/convert-scheme-to-emmy.mjs` | `codeblocks/`, runner-generated files | Durable block corrections belong here |
 | Emmy compatibility API | `emmy-runner/src/fdg/compat.cljs` | Smoke runner and browser worker | Reusable scmutils-to-Emmy differences only |
 | Captured Emmy outputs | Successful build's `codeblocks/**/*.cljs` | `build/current/emmy-generated/`, root runner mirror, PDFs | Produced by successful capture; never hand-copy Scheme output |
 | Promoted build | `build/history/current/` | `build/current` symlink | Commit this tree to make a build deployable |
-| Root generated working copies | `codeblocks/`, `typ/content/`, generated `typ/*`, root PDFs/reports, `emmy-runner/public/generated/` | Manual compilation, inspection and local runner | Synchronized from every successful artifact set; non-PDF files are Git-visible, large PDFs are ignored |
+| Root generated working copies | `codeblocks/`, generated `typ/content/`, generated `typ/*`, root PDFs/reports, `emmy-runner/public/generated/` | Manual compilation, inspection and local runner | Synchronized from every successful artifact set; non-PDF files are Git-visible, large PDFs are ignored |
 | GitHub Pages payload | `emmy-runner/public/` in CI | GitHub Pages | Assembled from committed files and committed `build/current` |
 
 ### 3.1 The views of “current”
@@ -178,7 +179,7 @@ flowchart TD
 | `build/failed/` | Generated diagnostics | Current and two older failed runs; never promoted |
 | `build/.staging/` | Transient generated state | In-progress isolated runs; moved on success or failure |
 | `codeblocks/` | Generated Git-visible working copy | Synchronized paired Scheme/CLJS blocks; editable for experiments |
-| `typ/content/` | Generated Git-visible working copy | Synchronized generated chapters |
+| `typ/content/` | Generated Git-visible working copy | Synchronized generated chapters and the CLJS preface include stub |
 | `emmy-runner/public/generated/` | Generated Git-visible working copy | Synchronized runner-ready blocks and manifest |
 | `emmy-runner/public/js/` | Generated ignored bundle | Browser UI release/development output |
 | `emmy-runner/public/worker/` | Generated bundle | Worker ESM output; currently represented in the tracked tree |
@@ -1005,6 +1006,11 @@ The main browser thread owns:
 - fetches for `generated/blocks.json` and selected block source;
 - request/response coordination with the Web Worker.
 
+The selected chapter and codeblock are persisted in browser local storage. On
+startup the runner restores the saved block when it still exists, otherwise it
+selects the first block in the saved chapter and then falls back to the first
+manifest block.
+
 It never evaluates Emmy code directly. Long symbolic work stays off the UI
 thread.
 
@@ -1468,8 +1474,8 @@ These are descriptions of the current design, not hidden behavior:
   was rebuilt.
 - Non-PDF root generated working copies are Git-visible and convenient for
   direct experimentation, but promotion replaces them from `build/current`.
-  Durable changes still belong in authored converters/libraries or must first
-  be incorporated into the staged artifact flow.
+  Durable edits belong in the converter or authored Typst libraries; the CLJS
+  preface prose is maintained in `typ/fdg-lib/preface_cljs.typ`.
 - Pages CI trusts committed generated data and does not rerun local regression
   suites.
 - The Actions cache explicitly covers `public/js` while the evaluator worker is
