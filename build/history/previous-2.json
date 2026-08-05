@@ -1,13 +1,15 @@
 {
-  "id": "deep-audit-promoted",
-  "target": "emmy-refresh",
+  "id": "20260805T082722Z-compile-emmy-c77770d1-d705dd",
+  "target": "compile-emmy",
   "source": "/Users/calvinkhor/Documents/GitHub/fdgtyp",
-  "revision": "139a199",
-  "startedAt": "2026-08-04T11:09:30.925Z",
+  "revision": "c77770d1",
+  "startedAt": "2026-08-05T08:27:22.449Z",
   "log": "build.log",
   "status": "succeeded",
   "artifacts": null,
   "workspace": null,
-  "finishedAt": "2026-08-04T11:11:43.337Z",
+  "workspaceLayout": "linked-runner-v1",
+  "rootMirrors": "synchronized-on-promotion",
+  "finishedAt": "2026-08-05T08:28:17.107Z",
   "archive": "previous-2.tar.gz"
 }

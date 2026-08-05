@@ -15,6 +15,10 @@ if((typeof fdg !== 'undefined') && (typeof fdg.worker !== 'undefined') && (typeo
 } else {
 fdg.worker.session_definitions = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(cljs.core.PersistentHashSet.EMPTY);
 }
+if((typeof fdg !== 'undefined') && (typeof fdg.worker !== 'undefined') && (typeof fdg.worker.definition_sources !== 'undefined')){
+} else {
+fdg.worker.definition_sources = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(cljs.core.PersistentArrayMap.EMPTY);
+}
 if((typeof fdg !== 'undefined') && (typeof fdg.worker !== 'undefined') && (typeof fdg.worker.manifest !== 'undefined')){
 } else {
 fdg.worker.manifest = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(cljs.core.PersistentVector.EMPTY);
@@ -27,17 +31,17 @@ fdg.worker.eval_session_BANG_ = (function fdg$worker$eval_session_BANG_(ctx,code
 return sci.core.eval_string_STAR_(ctx,(""+"(in-ns 'fdg.session)\n"+cljs.core.str.cljs$core$IFn$_invoke$arity$1(code)));
 });
 fdg.worker.book_definitions = (function fdg$worker$book_definitions(){
-return cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentHashSet.EMPTY,cljs.core.mapcat.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword(null,"definitions","definitions",167529986),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([cljs.core.filter.cljs$core$IFn$_invoke$arity$2((function (p1__55188_SHARP_){
-return cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(cljs.core.deref(fdg.worker.chapter),new cljs.core.Keyword(null,"chapter","chapter",-238644368).cljs$core$IFn$_invoke$arity$1(p1__55188_SHARP_));
+return cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentHashSet.EMPTY,cljs.core.mapcat.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword(null,"definitions","definitions",167529986),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([cljs.core.filter.cljs$core$IFn$_invoke$arity$2((function (p1__54346_SHARP_){
+return cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(cljs.core.deref(fdg.worker.chapter),new cljs.core.Keyword(null,"chapter","chapter",-238644368).cljs$core$IFn$_invoke$arity$1(p1__54346_SHARP_));
 }),cljs.core.deref(fdg.worker.manifest))], 0)));
 });
 fdg.worker.new_context = (function fdg$worker$new_context(){
-var compat_ns = sci.core._copy_ns(cljs.core.PersistentHashMap.fromArrays([new cljs.core.Symbol(null,"general-Cartan-2","general-Cartan-2",-2086659920,null),new cljs.core.Symbol(null,"b-rect","b-rect",1077637592,null),new cljs.core.Symbol(null,"home","home",1565974218,null),new cljs.core.Symbol(null,"Y","Y",1079814171,null),cljs.core.with_meta(new cljs.core.Symbol(null,"tensor-test","tensor-test",187752200,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.Symbol(null,"quote","quote",1377916282,null),cljs.core.list(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"tensor","tensor",1601942578,null),new cljs.core.Symbol(null,"types","types",-2064405130,null),new cljs.core.Symbol(null,"coordsys","coordsys",1968681528,null)], null)))], null)),new cljs.core.Symbol(null,"V","V",471247521,null),cljs.core.with_meta(new cljs.core.Symbol(null,"list-with-substituted-coord","list-with-substituted-coord",-1329045151,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.Symbol(null,"quote","quote",1377916282,null),cljs.core.list(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"values","values",2013177083,null),new cljs.core.Symbol(null,"i","i",253690212,null),new cljs.core.Symbol(null,"value","value",1946509744,null)], null)))], null)),new cljs.core.Symbol(null,"make-operator","make-operator",329621074,null),cljs.core.with_meta(new cljs.core.Symbol(null,"verified-zero","verified-zero",660336789,null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.Symbol(null,"quote","quote",1377916282,null),cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"result","result",-1239343558,null),new cljs.core.Symbol(null,"checks","checks",-2128301132,null)], null))),new cljs.core.Keyword(null,"doc","doc",1913296891),"Return `result` only after every primitive component of `checks` is zero."], null)),new cljs.core.Symbol(null,"e-z","e-z",1419791519,null),new cljs.core.Symbol(null,"dtheta","dtheta",1661610920,null),new cljs.core.Symbol(null,"R3-rect-point","R3-rect-point",1857913198,null),new cljs.core.Symbol(null,"Chi","Chi",-16571792,null),new cljs.core.Symbol(null,"R2-rect-point","R2-rect-point",888813323,null),cljs.core.with_meta(new cljs.core.Symbol(null,"show-expression","show-expression",-130780463,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.Symbol(null,"quote","quote",1377916282,null),cljs.core.list(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"value","value",1946509744,null)], null)))], null)),new cljs.core.Symbol(null,"U","U",-1292433725,null),cljs.core.with_meta(new cljs.core.Symbol(null,"polynomially-verified-zero","polynomially-verified-zero",-1277430904,null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.Symbol(null,"quote","quote",1377916282,null),cljs.core.list(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"expression","expression",1842843403,null)], null))),new cljs.core.Keyword(null,"doc","doc",1913296891),"Prove an expression is exactly zero without rational-function GCD reduction."], null)),new cljs.core.Symbol(null,"time","time",-1268547887,null),new cljs.core.Symbol(null,"dx","dx",1258734795,null),new cljs.core.Symbol(null,"f","f",43394975,null),new cljs.core.Symbol(null,"sphere-Cartan","sphere-Cartan",22089635,null),new cljs.core.Symbol(null,"velocity","velocity",1059007172,null),new cljs.core.Symbol(null,"m","m",-1021758608,null),new cljs.core.Symbol(null,"X","X",-948439456,null),cljs.core.with_meta(new cljs.core.Symbol(null,"theta","theta",1213021269,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.Symbol(null,"quote","quote",1377916282,null),cljs.core.list(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"point","point",-841237505,null)], null)))], null)),new cljs.core.Symbol(null,"dz","dz",-1767195007,null),new cljs.core.Symbol(null,"invert","invert",-1100858266,null),cljs.core.with_meta(new cljs.core.Symbol(null,"phi","phi",113733223,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.Symbol(null,"quote","quote",1377916282,null),cljs.core.list(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"point","point",-841237505,null)], null)))], null)),new cljs.core.Symbol(null,"d:dtheta","d:dtheta",-1892317928,null),new cljs.core.Symbol(null,"coordinates","coordinates",415198859,null),new cljs.core.Symbol(null,"d:dz","d:dz",865012999,null),new cljs.core.Symbol(null,"nabla","nabla",1447510358,null),new cljs.core.Symbol(null,"S2-Christoffel","S2-Christoffel",-766457879,null),new cljs.core.Symbol(null,"procedure->nform-field","procedure->nform-field",-1750081268,null),new cljs.core.Symbol(null,"R2->R","R2->R",528931499,null),new cljs.core.Symbol(null,"d:dx","d:dx",-480661756,null),new cljs.core.Symbol(null,"d:dphi","d:dphi",1911345419,null),cljs.core.with_meta(new cljs.core.Symbol(null,"sigma","sigma",1576815824,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.Symbol(null,"quote","quote",1377916282,null),cljs.core.list(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"f","f",43394975,null),new cljs.core.Symbol(null,"low","low",39169118,null),new cljs.core.Symbol(null,"high","high",-627137961,null)], null)))], null)),new cljs.core.Symbol(null,"coordinate","coordinate",1527720318,null),new cljs.core.Symbol(null,"Lagrange-explicit","Lagrange-explicit",-1141246706,null),new cljs.core.Symbol(null,"Chi-inverse","Chi-inverse",-695342219,null),new cljs.core.Symbol(null,"dy","dy",-934888526,null),cljs.core.with_meta(new cljs.core.Symbol(null,"for-each","for-each",25907877,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.Symbol(null,"quote","quote",1377916282,null),cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"f","f",43394975,null),new cljs.core.Symbol(null,"values","values",2013177083,null)], null)))], null)),new cljs.core.Symbol(null,"e-x","e-x",-1927627058,null),new cljs.core.Symbol(null,"e-y","e-y",-2078808304,null),new cljs.core.Symbol(null,"dphi","dphi",-927349426,null),new cljs.core.Symbol(null,"d:dy","d:dy",-1032237564,null),new cljs.core.Symbol(null,"R4-rect-point","R4-rect-point",92161849,null),cljs.core.with_meta(new cljs.core.Symbol(null,"unsupported!","unsupported!",1950464583,null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.Symbol(null,"quote","quote",1377916282,null),cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"block-id","block-id",1569948693,null),new cljs.core.Symbol(null,"explanation","explanation",213918919,null)], null))),new cljs.core.Keyword(null,"doc","doc",1913296891),"Marks a known compatibility gap without allowing a misleading result."], null)),new cljs.core.Symbol(null,"R2-rect-basis","R2-rect-basis",-1853493737,null),cljs.core.with_meta(new cljs.core.Symbol(null,"show","show",1063825638,null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.Symbol(null,"quote","quote",1377916282,null),cljs.core.list(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"value","value",1946509744,null)], null))),new cljs.core.Keyword(null,"doc","doc",1913296891),"Identity helper useful while inspecting intermediate values in SCI."], null)),new cljs.core.Symbol(null,"d:dt","d:dt",-164713113,null),cljs.core.with_meta(new cljs.core.Symbol(null,"legacy-frame-maker","legacy-frame-maker",1103070879,null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.Symbol(null,"quote","quote",1377916282,null),cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"coordinates->event","coordinates->event",-433358088,null),new cljs.core.Symbol(null,"event->coordinates","event->coordinates",2075785453,null)], null))),new cljs.core.Keyword(null,"doc","doc",1913296891),"Adapts FDG's variadic scmutils frame-maker protocol to Emmy's parameter-map protocol."], null)),cljs.core.with_meta(new cljs.core.Symbol(null,"pair?","pair?",181399999,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.Symbol(null,"quote","quote",1377916282,null),cljs.core.list(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"value","value",1946509744,null)], null)))], null)),new cljs.core.Symbol(null,"S2-basis","S2-basis",-1073033658,null),new cljs.core.Symbol(null,"omega","omega",1917797179,null),new cljs.core.Symbol(null,"get-rank","get-rank",1510807712,null),cljs.core.with_meta(new cljs.core.Symbol(null,"patch","patch",2021306636,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.Symbol(null,"quote","quote",1377916282,null),cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"patch-name","patch-name",433729698,null),new cljs.core.Symbol(null,"manifold-value","manifold-value",-191911052,null)], null)))], null)),new cljs.core.Symbol(null,"transform-stereographic-Christoffel-to-spherical","transform-stereographic-Christoffel-to-spherical",1072843733,null),new cljs.core.Symbol(null,"procedure->oneform-field","procedure->oneform-field",-501922340,null),cljs.core.with_meta(new cljs.core.Symbol(null,"coordinate-system","coordinate-system",342184256,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.Symbol(null,"quote","quote",1377916282,null),cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"system-name","system-name",-1579875237,null),new cljs.core.Symbol(null,"patch-value","patch-value",-713993264,null)], null)))], null)),new cljs.core.Symbol(null,"Cartan","Cartan",-1256546560,null),new cljs.core.Symbol(null,"d:dtau","d:dtau",391051816,null),new cljs.core.Symbol(null,"procedure->vector-field","procedure->vector-field",1307696776,null),cljs.core.with_meta(new cljs.core.Symbol(null,"series:for-each","series:for-each",-848989576,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.Symbol(null,"quote","quote",1377916282,null),cljs.core.list(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"f","f",43394975,null),new cljs.core.Symbol(null,"series","series",-2053725075,null),new cljs.core.Symbol(null,"n","n",-2092305744,null)], null)))], null)),new cljs.core.Symbol(null,"Z","Z",2099656115,null),new cljs.core.Symbol(null,"g","g",-916345864,null),new cljs.core.Symbol(null,"T","T",1815772404,null),new cljs.core.Symbol(null,"spherical->stereographic","spherical->stereographic",480143332,null),new cljs.core.Symbol(null,"velocities","velocities",1008302579,null)],[new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","general-Cartan-2","fdg.compat/general-Cartan-2",1585098267,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.general_Cartan_2,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","b-rect","fdg.compat/b-rect",2087574583,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.b_rect,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","home","fdg.compat/home",-1733544845,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.home,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","Y","fdg.compat/Y",208271042,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.Y,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","tensor-test","fdg.compat/tensor-test",1197966817,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.tensor_test,new cljs.core.Keyword(null,"meta","meta",1499536964),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"tensor","tensor",1601942578,null),new cljs.core.Symbol(null,"types","types",-2064405130,null),new cljs.core.Symbol(null,"coordsys","coordsys",1968681528,null)], null))], null)], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","V","fdg.compat/V",1344402440,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.V,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","list-with-substituted-coord","fdg.compat/list-with-substituted-coord",2090719128,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.list_with_substituted_coord,new cljs.core.Keyword(null,"meta","meta",1499536964),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"values","values",2013177083,null),new cljs.core.Symbol(null,"i","i",253690212,null),new cljs.core.Symbol(null,"value","value",1946509744,null)], null))], null)], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","make-operator","fdg.compat/make-operator",-699190215,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.make_operator,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","verified-zero","fdg.compat/verified-zero",-527343748,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.verified_zero,new cljs.core.Keyword(null,"meta","meta",1499536964),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"result","result",-1239343558,null),new cljs.core.Symbol(null,"checks","checks",-2128301132,null)], null)),new cljs.core.Keyword(null,"doc","doc",1913296891),"Return `result` only after every primitive component of `checks` is zero."], null)], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","e-z","fdg.compat/e-z",-1821443528,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.e_z,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","dtheta","fdg.compat/dtheta",-1086361343,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.dtheta,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","R3-rect-point","fdg.compat/R3-rect-point",-1419235529,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.R3_rect_point,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","Chi","fdg.compat/Chi",861507547,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.Chi,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","R2-rect-point","fdg.compat/R2-rect-point",1219550692,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.R2_rect_point,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","show-expression","fdg.compat/show-expression",1002514744,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.show_expression,new cljs.core.Keyword(null,"meta","meta",1499536964),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"value","value",1946509744,null)], null))], null)], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","U","fdg.compat/U",1295675514,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.U,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","polynomially-verified-zero","fdg.compat/polynomially-verified-zero",1996572243,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.polynomially_verified_zero,new cljs.core.Keyword(null,"meta","meta",1499536964),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"expression","expression",1842843403,null)], null)),new cljs.core.Keyword(null,"doc","doc",1913296891),"Prove an expression is exactly zero without rational-function GCD reduction."], null)], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","time","fdg.compat/time",1907201336,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.time,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","dx","fdg.compat/dx",-2016383326,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.dx,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","f","fdg.compat/f",1323364646,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.f,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","sphere-Cartan","fdg.compat/sphere-Cartan",1570664924,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.sphere_Cartan,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","velocity","fdg.compat/velocity",-54497105,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.velocity,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","m","fdg.compat/m",-1899718359,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.m,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","X","fdg.compat/X",77745609,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.X,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","theta","fdg.compat/theta",-1936176580,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.theta,new cljs.core.Keyword(null,"meta","meta",1499536964),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"point","point",-841237505,null)], null))], null)], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","dz","fdg.compat/dz",1515279720,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.dz,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","invert","fdg.compat/invert",2050812365,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.invert,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","phi","fdg.compat/phi",-1030638656,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.phi,new cljs.core.Keyword(null,"meta","meta",1499536964),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"point","point",-841237505,null)], null))], null)], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","d:dtheta","fdg.compat/d:dtheta",-880845967,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.d_COLON_dtheta,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","coordinates","fdg.compat/coordinates",619287396,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.coordinates,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","d:dz","fdg.compat/d:dz",2009462750,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.d_COLON_dz,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","nabla","fdg.compat/nabla",302618431,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.nabla,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","S2-Christoffel","fdg.compat/S2-Christoffel",395972934,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.S2_Christoffel,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","procedure->nform-field","fdg.compat/procedure->nform-field",-395035691,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.procedure__GT_nform_field,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","R2->R","fdg.compat/R2->R",-1031951248,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.R2__GT_R,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","d:dx","fdg.compat/d:dx",-1483811345,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.d_COLON_dx,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","d:dphi","fdg.compat/d:dphi",-1113519152,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.d_COLON_dphi,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","sigma","fdg.compat/sigma",-1716348229,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.sigma,new cljs.core.Keyword(null,"meta","meta",1499536964),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"f","f",43394975,null),new cljs.core.Symbol(null,"low","low",39169118,null),new cljs.core.Symbol(null,"high","high",-627137961,null)], null))], null)], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","coordinate","fdg.compat/coordinate",398750489,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.coordinate,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","Lagrange-explicit","fdg.compat/Lagrange-explicit",-13335593,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.Lagrange_explicit,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","Chi-inverse","fdg.compat/Chi-inverse",427234524,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.Chi_inverse,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","dy","fdg.compat/dy",-1938035347,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.dy,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","for-each","fdg.compat/for-each",-977143794,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.for_each,new cljs.core.Keyword(null,"meta","meta",1499536964),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"f","f",43394975,null),new cljs.core.Symbol(null,"values","values",2013177083,null)], null))], null)], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","e-x","fdg.compat/e-x",1230102679,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.e_x,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","e-y","fdg.compat/e-y",1238191611,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.e_y,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","dphi","fdg.compat/dphi",-1929957131,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.dphi,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","d:dy","fdg.compat/d:dy",-30149533,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.d_COLON_dy,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","R4-rect-point","fdg.compat/R4-rect-point",1235808480,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.R4_rect_point,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","unsupported!","fdg.compat/unsupported!",947310766,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.unsupported_BANG_,new cljs.core.Keyword(null,"meta","meta",1499536964),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"block-id","block-id",1569948693,null),new cljs.core.Symbol(null,"explanation","explanation",213918919,null)], null)),new cljs.core.Keyword(null,"doc","doc",1913296891),"Marks a known compatibility gap without allowing a misleading result."], null)], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","R2-rect-basis","fdg.compat/R2-rect-basis",-715438864,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.R2_rect_basis,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","show","fdg.compat/show",-81400129,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.show,new cljs.core.Keyword(null,"meta","meta",1499536964),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"value","value",1946509744,null)], null)),new cljs.core.Keyword(null,"doc","doc",1913296891),"Identity helper useful while inspecting intermediate values in SCI."], null)], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","d:dt","fdg.compat/d:dt",845354814,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.d_COLON_dt,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","legacy-frame-maker","fdg.compat/legacy-frame-maker",99955524,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.legacy_frame_maker,new cljs.core.Keyword(null,"meta","meta",1499536964),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"coordinates->event","coordinates->event",-433358088,null),new cljs.core.Symbol(null,"event->coordinates","event->coordinates",2075785453,null)], null)),new cljs.core.Keyword(null,"doc","doc",1913296891),"Adapts FDG's variadic scmutils frame-maker protocol to Emmy's parameter-map protocol."], null)], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","pair?","fdg.compat/pair?",-694592668,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.pair_QMARK_,new cljs.core.Keyword(null,"meta","meta",1499536964),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"value","value",1946509744,null)], null))], null)], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","S2-basis","fdg.compat/S2-basis",-63937491,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.S2_basis,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","omega","fdg.compat/omega",-1316743532,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.omega,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","get-rank","fdg.compat/get-rank",-1638776309,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.get_rank,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","patch","fdg.compat/patch",-1137424539,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.patch,new cljs.core.Keyword(null,"meta","meta",1499536964),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"patch-name","patch-name",433729698,null),new cljs.core.Symbol(null,"manifold-value","manifold-value",-191911052,null)], null))], null)], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","transform-stereographic-Christoffel-to-spherical","fdg.compat/transform-stereographic-Christoffel-to-spherical",1137309116,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.transform_stereographic_Christoffel_to_spherical,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","procedure->oneform-field","fdg.compat/procedure->oneform-field",669526919,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.procedure__GT_oneform_field,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","coordinate-system","fdg.compat/coordinate-system",-775974997,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.coordinate_system,new cljs.core.Keyword(null,"meta","meta",1499536964),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"system-name","system-name",-1579875237,null),new cljs.core.Symbol(null,"patch-value","patch-value",-713993264,null)], null))], null)], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","Cartan","fdg.compat/Cartan",1900921195,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.Cartan,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","d:dtau","fdg.compat/d:dtau",1796286451,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.d_COLON_dtau,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","procedure->vector-field","fdg.compat/procedure->vector-field",-1874892461,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.procedure__GT_vector_field,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","series:for-each","fdg.compat/series:for-each",19440673,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.series_COLON_for_each,new cljs.core.Keyword(null,"meta","meta",1499536964),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"f","f",43394975,null),new cljs.core.Symbol(null,"series","series",-2053725075,null),new cljs.core.Symbol(null,"n","n",-2092305744,null)], null))], null)], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","Z","fdg.compat/Z",955499372,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.Z,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","g","fdg.compat/g",230125905,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.g,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","T","fdg.compat/T",678482515,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.T,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","spherical->stereographic","fdg.compat/spherical->stereographic",-800017987,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.spherical__GT_stereographic,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","velocities","fdg.compat/velocities",-128733350,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.velocities,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null)]),sci.core.create_ns.cljs$core$IFn$_invoke$arity$1(new cljs.core.Symbol(null,"fdg.compat","fdg.compat",-2137491212,null)));
+var compat_ns = sci.core._copy_ns(cljs.core.PersistentHashMap.fromArrays([new cljs.core.Symbol(null,"general-Cartan-2","general-Cartan-2",-2086659920,null),new cljs.core.Symbol(null,"b-rect","b-rect",1077637592,null),new cljs.core.Symbol(null,"home","home",1565974218,null),new cljs.core.Symbol(null,"Y","Y",1079814171,null),new cljs.core.Symbol(null,"tensor-test","tensor-test",187752200,null),new cljs.core.Symbol(null,"V","V",471247521,null),new cljs.core.Symbol(null,"list-with-substituted-coord","list-with-substituted-coord",-1329045151,null),new cljs.core.Symbol(null,"make-operator","make-operator",329621074,null),new cljs.core.Symbol(null,"verified-zero","verified-zero",660336789,null),new cljs.core.Symbol(null,"e-z","e-z",1419791519,null),new cljs.core.Symbol(null,"dtheta","dtheta",1661610920,null),new cljs.core.Symbol(null,"R3-rect-point","R3-rect-point",1857913198,null),new cljs.core.Symbol(null,"Chi","Chi",-16571792,null),new cljs.core.Symbol(null,"R2-rect-point","R2-rect-point",888813323,null),new cljs.core.Symbol(null,"show-expression","show-expression",-130780463,null),new cljs.core.Symbol(null,"U","U",-1292433725,null),new cljs.core.Symbol(null,"polynomially-verified-zero","polynomially-verified-zero",-1277430904,null),new cljs.core.Symbol(null,"time","time",-1268547887,null),new cljs.core.Symbol(null,"dx","dx",1258734795,null),new cljs.core.Symbol(null,"f","f",43394975,null),new cljs.core.Symbol(null,"sphere-Cartan","sphere-Cartan",22089635,null),new cljs.core.Symbol(null,"velocity","velocity",1059007172,null),new cljs.core.Symbol(null,"m","m",-1021758608,null),new cljs.core.Symbol(null,"X","X",-948439456,null),new cljs.core.Symbol(null,"theta","theta",1213021269,null),new cljs.core.Symbol(null,"dz","dz",-1767195007,null),new cljs.core.Symbol(null,"invert","invert",-1100858266,null),new cljs.core.Symbol(null,"phi","phi",113733223,null),new cljs.core.Symbol(null,"d:dtheta","d:dtheta",-1892317928,null),new cljs.core.Symbol(null,"coordinates","coordinates",415198859,null),new cljs.core.Symbol(null,"d:dz","d:dz",865012999,null),new cljs.core.Symbol(null,"nabla","nabla",1447510358,null),new cljs.core.Symbol(null,"S2-Christoffel","S2-Christoffel",-766457879,null),new cljs.core.Symbol(null,"procedure->nform-field","procedure->nform-field",-1750081268,null),new cljs.core.Symbol(null,"R2->R","R2->R",528931499,null),new cljs.core.Symbol(null,"d:dx","d:dx",-480661756,null),new cljs.core.Symbol(null,"d:dphi","d:dphi",1911345419,null),new cljs.core.Symbol(null,"sigma","sigma",1576815824,null),new cljs.core.Symbol(null,"coordinate","coordinate",1527720318,null),new cljs.core.Symbol(null,"Lagrange-explicit","Lagrange-explicit",-1141246706,null),new cljs.core.Symbol(null,"Chi-inverse","Chi-inverse",-695342219,null),new cljs.core.Symbol(null,"dy","dy",-934888526,null),new cljs.core.Symbol(null,"for-each","for-each",25907877,null),new cljs.core.Symbol(null,"e-x","e-x",-1927627058,null),new cljs.core.Symbol(null,"e-y","e-y",-2078808304,null),new cljs.core.Symbol(null,"dphi","dphi",-927349426,null),new cljs.core.Symbol(null,"d:dy","d:dy",-1032237564,null),new cljs.core.Symbol(null,"R4-rect-point","R4-rect-point",92161849,null),new cljs.core.Symbol(null,"unsupported!","unsupported!",1950464583,null),new cljs.core.Symbol(null,"R2-rect-basis","R2-rect-basis",-1853493737,null),new cljs.core.Symbol(null,"show","show",1063825638,null),new cljs.core.Symbol(null,"d:dt","d:dt",-164713113,null),new cljs.core.Symbol(null,"legacy-frame-maker","legacy-frame-maker",1103070879,null),new cljs.core.Symbol(null,"pair?","pair?",181399999,null),new cljs.core.Symbol(null,"S2-basis","S2-basis",-1073033658,null),new cljs.core.Symbol(null,"omega","omega",1917797179,null),new cljs.core.Symbol(null,"get-rank","get-rank",1510807712,null),new cljs.core.Symbol(null,"patch","patch",2021306636,null),new cljs.core.Symbol(null,"transform-stereographic-Christoffel-to-spherical","transform-stereographic-Christoffel-to-spherical",1072843733,null),new cljs.core.Symbol(null,"procedure->oneform-field","procedure->oneform-field",-501922340,null),new cljs.core.Symbol(null,"coordinate-system","coordinate-system",342184256,null),new cljs.core.Symbol(null,"Cartan","Cartan",-1256546560,null),new cljs.core.Symbol(null,"d:dtau","d:dtau",391051816,null),new cljs.core.Symbol(null,"procedure->vector-field","procedure->vector-field",1307696776,null),new cljs.core.Symbol(null,"series:for-each","series:for-each",-848989576,null),new cljs.core.Symbol(null,"Z","Z",2099656115,null),new cljs.core.Symbol(null,"g","g",-916345864,null),new cljs.core.Symbol(null,"T","T",1815772404,null),new cljs.core.Symbol(null,"spherical->stereographic","spherical->stereographic",480143332,null),new cljs.core.Symbol(null,"velocities","velocities",1008302579,null)],[new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","general-Cartan-2","fdg.compat/general-Cartan-2",1585098267,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.general_Cartan_2,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","b-rect","fdg.compat/b-rect",2087574583,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.b_rect,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","home","fdg.compat/home",-1733544845,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.home,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","Y","fdg.compat/Y",208271042,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.Y,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","tensor-test","fdg.compat/tensor-test",1197966817,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.tensor_test,new cljs.core.Keyword(null,"meta","meta",1499536964),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"tensor","tensor",1601942578,null),new cljs.core.Symbol(null,"types","types",-2064405130,null),new cljs.core.Symbol(null,"coordsys","coordsys",1968681528,null)], null))], null)], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","V","fdg.compat/V",1344402440,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.V,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","list-with-substituted-coord","fdg.compat/list-with-substituted-coord",2090719128,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.list_with_substituted_coord,new cljs.core.Keyword(null,"meta","meta",1499536964),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"values","values",2013177083,null),new cljs.core.Symbol(null,"i","i",253690212,null),new cljs.core.Symbol(null,"value","value",1946509744,null)], null))], null)], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","make-operator","fdg.compat/make-operator",-699190215,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.make_operator,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","verified-zero","fdg.compat/verified-zero",-527343748,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.verified_zero,new cljs.core.Keyword(null,"meta","meta",1499536964),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"result","result",-1239343558,null),new cljs.core.Symbol(null,"checks","checks",-2128301132,null)], null)),new cljs.core.Keyword(null,"doc","doc",1913296891),"Return `result` only after every primitive component of `checks` is zero."], null)], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","e-z","fdg.compat/e-z",-1821443528,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.e_z,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","dtheta","fdg.compat/dtheta",-1086361343,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.dtheta,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","R3-rect-point","fdg.compat/R3-rect-point",-1419235529,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.R3_rect_point,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","Chi","fdg.compat/Chi",861507547,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.Chi,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","R2-rect-point","fdg.compat/R2-rect-point",1219550692,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.R2_rect_point,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","show-expression","fdg.compat/show-expression",1002514744,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.show_expression,new cljs.core.Keyword(null,"meta","meta",1499536964),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"value","value",1946509744,null)], null))], null)], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","U","fdg.compat/U",1295675514,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.U,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","polynomially-verified-zero","fdg.compat/polynomially-verified-zero",1996572243,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.polynomially_verified_zero,new cljs.core.Keyword(null,"meta","meta",1499536964),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"expression","expression",1842843403,null)], null)),new cljs.core.Keyword(null,"doc","doc",1913296891),"Prove an expression is exactly zero without rational-function GCD reduction."], null)], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","time","fdg.compat/time",1907201336,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.time,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","dx","fdg.compat/dx",-2016383326,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.dx,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","f","fdg.compat/f",1323364646,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.f,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","sphere-Cartan","fdg.compat/sphere-Cartan",1570664924,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.sphere_Cartan,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","velocity","fdg.compat/velocity",-54497105,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.velocity,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","m","fdg.compat/m",-1899718359,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.m,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","X","fdg.compat/X",77745609,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.X,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","theta","fdg.compat/theta",-1936176580,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.theta,new cljs.core.Keyword(null,"meta","meta",1499536964),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"point","point",-841237505,null)], null))], null)], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","dz","fdg.compat/dz",1515279720,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.dz,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","invert","fdg.compat/invert",2050812365,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.invert,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","phi","fdg.compat/phi",-1030638656,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.phi,new cljs.core.Keyword(null,"meta","meta",1499536964),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"point","point",-841237505,null)], null))], null)], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","d:dtheta","fdg.compat/d:dtheta",-880845967,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.d_COLON_dtheta,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","coordinates","fdg.compat/coordinates",619287396,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.coordinates,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","d:dz","fdg.compat/d:dz",2009462750,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.d_COLON_dz,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","nabla","fdg.compat/nabla",302618431,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.nabla,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","S2-Christoffel","fdg.compat/S2-Christoffel",395972934,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.S2_Christoffel,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","procedure->nform-field","fdg.compat/procedure->nform-field",-395035691,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.procedure__GT_nform_field,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","R2->R","fdg.compat/R2->R",-1031951248,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.R2__GT_R,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","d:dx","fdg.compat/d:dx",-1483811345,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.d_COLON_dx,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","d:dphi","fdg.compat/d:dphi",-1113519152,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.d_COLON_dphi,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","sigma","fdg.compat/sigma",-1716348229,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.sigma,new cljs.core.Keyword(null,"meta","meta",1499536964),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"f","f",43394975,null),new cljs.core.Symbol(null,"low","low",39169118,null),new cljs.core.Symbol(null,"high","high",-627137961,null)], null))], null)], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","coordinate","fdg.compat/coordinate",398750489,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.coordinate,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","Lagrange-explicit","fdg.compat/Lagrange-explicit",-13335593,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.Lagrange_explicit,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","Chi-inverse","fdg.compat/Chi-inverse",427234524,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.Chi_inverse,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","dy","fdg.compat/dy",-1938035347,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.dy,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","for-each","fdg.compat/for-each",-977143794,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.for_each,new cljs.core.Keyword(null,"meta","meta",1499536964),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"f","f",43394975,null),new cljs.core.Symbol(null,"values","values",2013177083,null)], null))], null)], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","e-x","fdg.compat/e-x",1230102679,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.e_x,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","e-y","fdg.compat/e-y",1238191611,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.e_y,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","dphi","fdg.compat/dphi",-1929957131,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.dphi,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","d:dy","fdg.compat/d:dy",-30149533,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.d_COLON_dy,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","R4-rect-point","fdg.compat/R4-rect-point",1235808480,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.R4_rect_point,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","unsupported!","fdg.compat/unsupported!",947310766,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.unsupported_BANG_,new cljs.core.Keyword(null,"meta","meta",1499536964),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"block-id","block-id",1569948693,null),new cljs.core.Symbol(null,"explanation","explanation",213918919,null)], null)),new cljs.core.Keyword(null,"doc","doc",1913296891),"Marks a known compatibility gap without allowing a misleading result."], null)], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","R2-rect-basis","fdg.compat/R2-rect-basis",-715438864,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.R2_rect_basis,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","show","fdg.compat/show",-81400129,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.show,new cljs.core.Keyword(null,"meta","meta",1499536964),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"value","value",1946509744,null)], null)),new cljs.core.Keyword(null,"doc","doc",1913296891),"Identity helper useful while inspecting intermediate values in SCI."], null)], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","d:dt","fdg.compat/d:dt",845354814,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.d_COLON_dt,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","legacy-frame-maker","fdg.compat/legacy-frame-maker",99955524,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.legacy_frame_maker,new cljs.core.Keyword(null,"meta","meta",1499536964),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"coordinates->event","coordinates->event",-433358088,null),new cljs.core.Symbol(null,"event->coordinates","event->coordinates",2075785453,null)], null)),new cljs.core.Keyword(null,"doc","doc",1913296891),"Adapts FDG's variadic scmutils frame-maker protocol to Emmy's parameter-map protocol."], null)], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","pair?","fdg.compat/pair?",-694592668,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.pair_QMARK_,new cljs.core.Keyword(null,"meta","meta",1499536964),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"value","value",1946509744,null)], null))], null)], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","S2-basis","fdg.compat/S2-basis",-63937491,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.S2_basis,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","omega","fdg.compat/omega",-1316743532,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.omega,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","get-rank","fdg.compat/get-rank",-1638776309,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.get_rank,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","patch","fdg.compat/patch",-1137424539,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.patch,new cljs.core.Keyword(null,"meta","meta",1499536964),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"patch-name","patch-name",433729698,null),new cljs.core.Symbol(null,"manifold-value","manifold-value",-191911052,null)], null))], null)], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","transform-stereographic-Christoffel-to-spherical","fdg.compat/transform-stereographic-Christoffel-to-spherical",1137309116,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.transform_stereographic_Christoffel_to_spherical,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","procedure->oneform-field","fdg.compat/procedure->oneform-field",669526919,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.procedure__GT_oneform_field,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","coordinate-system","fdg.compat/coordinate-system",-775974997,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.coordinate_system,new cljs.core.Keyword(null,"meta","meta",1499536964),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"system-name","system-name",-1579875237,null),new cljs.core.Symbol(null,"patch-value","patch-value",-713993264,null)], null))], null)], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","Cartan","fdg.compat/Cartan",1900921195,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.Cartan,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","d:dtau","fdg.compat/d:dtau",1796286451,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.d_COLON_dtau,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","procedure->vector-field","fdg.compat/procedure->vector-field",-1874892461,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.procedure__GT_vector_field,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","series:for-each","fdg.compat/series:for-each",19440673,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.series_COLON_for_each,new cljs.core.Keyword(null,"meta","meta",1499536964),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.list(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"f","f",43394975,null),new cljs.core.Symbol(null,"series","series",-2053725075,null),new cljs.core.Symbol(null,"n","n",-2092305744,null)], null))], null)], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","Z","fdg.compat/Z",955499372,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.Z,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","g","fdg.compat/g",230125905,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.g,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","T","fdg.compat/T",678482515,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.T,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","spherical->stereographic","fdg.compat/spherical->stereographic",-800017987,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.spherical__GT_stereographic,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol("fdg.compat","velocities","fdg.compat/velocities",-128733350,null),new cljs.core.Keyword(null,"val","val",128701612),fdg.compat.velocities,new cljs.core.Keyword(null,"meta","meta",1499536964),cljs.core.PersistentArrayMap.EMPTY], null)]),sci.core.create_ns.cljs$core$IFn$_invoke$arity$1(new cljs.core.Symbol(null,"fdg.compat","fdg.compat",-2137491212,null)));
 var config = cljs.core.update.cljs$core$IFn$_invoke$arity$5(emmy.sci.config,new cljs.core.Keyword(null,"namespaces","namespaces",-1444157469),cljs.core.assoc,new cljs.core.Symbol(null,"fdg.compat","fdg.compat",-2137491212,null),compat_ns);
 var ctx = sci.core.init(config);
 var referred_names = cljs.core.into.cljs$core$IFn$_invoke$arity$3(cljs.core.PersistentHashSet.EMPTY,cljs.core.map.cljs$core$IFn$_invoke$arity$1(cljs.core.comp.cljs$core$IFn$_invoke$arity$2(cljs.core.name,cljs.core.key)),cljs.core.concat.cljs$core$IFn$_invoke$arity$2(cljs.core.get.cljs$core$IFn$_invoke$arity$2(emmy.sci.namespaces,new cljs.core.Symbol(null,"emmy.env","emmy.env",-2036137056,null)),compat_ns));
-var local_definitions = cljs.core.remove.cljs$core$IFn$_invoke$arity$2((function (p1__55189_SHARP_){
-return cljs.core.contains_QMARK_(referred_names,p1__55189_SHARP_);
+var local_definitions = cljs.core.remove.cljs$core$IFn$_invoke$arity$2((function (p1__54347_SHARP_){
+return cljs.core.contains_QMARK_(referred_names,p1__54347_SHARP_);
 }),fdg.worker.book_definitions());
 var emmy_symbols = clojure.string.join.cljs$core$IFn$_invoke$arity$2(" ",cljs.core.sort.cljs$core$IFn$_invoke$arity$1(cljs.core.map.cljs$core$IFn$_invoke$arity$2(cljs.core.name,cljs.core.keys(cljs.core.get.cljs$core$IFn$_invoke$arity$2(emmy.sci.namespaces,new cljs.core.Symbol(null,"emmy.env","emmy.env",-2036137056,null))))));
 var setup = (""+"(ns fdg.session "+"(:refer-clojure :exclude [+ - * / = compare zero? ref partial numerator denominator]) "+"(:require [emmy.env :refer ["+cljs.core.str.cljs$core$IFn$_invoke$arity$1(emmy_symbols)+"]] "+"[fdg.compat :refer :all]))\n"+"(declare "+cljs.core.str.cljs$core$IFn$_invoke$arity$1(clojure.string.join.cljs$core$IFn$_invoke$arity$2(" ",cljs.core.sort.cljs$core$IFn$_invoke$arity$1(local_definitions)))+")");
@@ -48,66 +52,367 @@ return ctx;
 fdg.worker.reset_context_BANG_ = (function fdg$worker$reset_context_BANG_(){
 cljs.core.reset_BANG_(fdg.worker.session_definitions,cljs.core.PersistentHashSet.EMPTY);
 
+cljs.core.reset_BANG_(fdg.worker.definition_sources,cljs.core.PersistentArrayMap.EMPTY);
+
 return cljs.core.reset_BANG_(fdg.worker.context,fdg.worker.new_context());
 });
-fdg.worker.prepare_block_BANG_ = (function fdg$worker$prepare_block_BANG_(block){
-var seq__55190_55212 = cljs.core.seq(new cljs.core.Keyword(null,"definitions","definitions",167529986).cljs$core$IFn$_invoke$arity$1(block));
-var chunk__55191_55213 = null;
-var count__55192_55214 = (0);
-var i__55193_55215 = (0);
+/**
+ * Return balanced top-level parenthesized forms, ignoring strings and comments.
+ */
+fdg.worker.top_level_forms = (function fdg$worker$top_level_forms(source){
+var source__$1 = (function (){var or__5162__auto__ = source;
+if(cljs.core.truth_(or__5162__auto__)){
+return or__5162__auto__;
+} else {
+return "";
+}
+})();
+var length = cljs.core.count(source__$1);
+var index = (0);
+var depth = (0);
+var start = null;
+var in_string_QMARK_ = false;
+var escaped_QMARK_ = false;
+var in_comment_QMARK_ = false;
+var forms = cljs.core.PersistentVector.EMPTY;
 while(true){
-if((i__55193_55215 < count__55192_55214)){
-var definition_55216 = chunk__55191_55213.cljs$core$IIndexed$_nth$arity$2(null,i__55193_55215);
-if(cljs.core.contains_QMARK_(cljs.core.deref(fdg.worker.session_definitions),definition_55216)){
+if((index >= length)){
+return forms;
 } else {
-fdg.worker.eval_session_BANG_(cljs.core.deref(fdg.worker.context),(""+"(ns-unmap 'fdg.session '"+cljs.core.str.cljs$core$IFn$_invoke$arity$1(definition_55216)+")"));
-}
-
-cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$3(fdg.worker.session_definitions,cljs.core.conj,definition_55216);
-
-
-var G__55217 = seq__55190_55212;
-var G__55218 = chunk__55191_55213;
-var G__55219 = count__55192_55214;
-var G__55220 = (i__55193_55215 + (1));
-seq__55190_55212 = G__55217;
-chunk__55191_55213 = G__55218;
-count__55192_55214 = G__55219;
-i__55193_55215 = G__55220;
+var character = cljs.core.nth.cljs$core$IFn$_invoke$arity$2(source__$1,index);
+if(cljs.core.truth_(in_comment_QMARK_)){
+var G__54378 = (index + (1));
+var G__54379 = depth;
+var G__54380 = start;
+var G__54381 = in_string_QMARK_;
+var G__54382 = escaped_QMARK_;
+var G__54383 = cljs.core.not_EQ_.cljs$core$IFn$_invoke$arity$2(character,"\n");
+var G__54384 = forms;
+index = G__54378;
+depth = G__54379;
+start = G__54380;
+in_string_QMARK_ = G__54381;
+escaped_QMARK_ = G__54382;
+in_comment_QMARK_ = G__54383;
+forms = G__54384;
 continue;
 } else {
-var temp__5825__auto___55221 = cljs.core.seq(seq__55190_55212);
-if(temp__5825__auto___55221){
-var seq__55190_55222__$1 = temp__5825__auto___55221;
-if(cljs.core.chunked_seq_QMARK_(seq__55190_55222__$1)){
-var c__5694__auto___55223 = cljs.core.chunk_first(seq__55190_55222__$1);
-var G__55224 = cljs.core.chunk_rest(seq__55190_55222__$1);
-var G__55225 = c__5694__auto___55223;
-var G__55226 = cljs.core.count(c__5694__auto___55223);
-var G__55227 = (0);
-seq__55190_55212 = G__55224;
-chunk__55191_55213 = G__55225;
-count__55192_55214 = G__55226;
-i__55193_55215 = G__55227;
+if(cljs.core.truth_(in_string_QMARK_)){
+if(cljs.core.truth_(escaped_QMARK_)){
+var G__54385 = (index + (1));
+var G__54386 = depth;
+var G__54387 = start;
+var G__54388 = in_string_QMARK_;
+var G__54389 = false;
+var G__54390 = in_comment_QMARK_;
+var G__54391 = forms;
+index = G__54385;
+depth = G__54386;
+start = G__54387;
+in_string_QMARK_ = G__54388;
+escaped_QMARK_ = G__54389;
+in_comment_QMARK_ = G__54390;
+forms = G__54391;
 continue;
 } else {
-var definition_55228 = cljs.core.first(seq__55190_55222__$1);
-if(cljs.core.contains_QMARK_(cljs.core.deref(fdg.worker.session_definitions),definition_55228)){
+if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(character,"\"")){
+var G__54392 = (index + (1));
+var G__54393 = depth;
+var G__54394 = start;
+var G__54395 = false;
+var G__54396 = false;
+var G__54397 = in_comment_QMARK_;
+var G__54398 = forms;
+index = G__54392;
+depth = G__54393;
+start = G__54394;
+in_string_QMARK_ = G__54395;
+escaped_QMARK_ = G__54396;
+in_comment_QMARK_ = G__54397;
+forms = G__54398;
+continue;
 } else {
-fdg.worker.eval_session_BANG_(cljs.core.deref(fdg.worker.context),(""+"(ns-unmap 'fdg.session '"+cljs.core.str.cljs$core$IFn$_invoke$arity$1(definition_55228)+")"));
+if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(character,"\\")){
+var G__54399 = (index + (1));
+var G__54400 = depth;
+var G__54401 = start;
+var G__54402 = in_string_QMARK_;
+var G__54403 = true;
+var G__54404 = in_comment_QMARK_;
+var G__54405 = forms;
+index = G__54399;
+depth = G__54400;
+start = G__54401;
+in_string_QMARK_ = G__54402;
+escaped_QMARK_ = G__54403;
+in_comment_QMARK_ = G__54404;
+forms = G__54405;
+continue;
+} else {
+var G__54406 = (index + (1));
+var G__54407 = depth;
+var G__54408 = start;
+var G__54409 = in_string_QMARK_;
+var G__54410 = escaped_QMARK_;
+var G__54411 = in_comment_QMARK_;
+var G__54412 = forms;
+index = G__54406;
+depth = G__54407;
+start = G__54408;
+in_string_QMARK_ = G__54409;
+escaped_QMARK_ = G__54410;
+in_comment_QMARK_ = G__54411;
+forms = G__54412;
+continue;
+
+}
+}
+}
+} else {
+if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(character,";")){
+var G__54413 = (index + (1));
+var G__54414 = depth;
+var G__54415 = start;
+var G__54416 = in_string_QMARK_;
+var G__54417 = escaped_QMARK_;
+var G__54418 = true;
+var G__54419 = forms;
+index = G__54413;
+depth = G__54414;
+start = G__54415;
+in_string_QMARK_ = G__54416;
+escaped_QMARK_ = G__54417;
+in_comment_QMARK_ = G__54418;
+forms = G__54419;
+continue;
+} else {
+if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(character,"\"")){
+var G__54420 = (index + (1));
+var G__54421 = depth;
+var G__54422 = start;
+var G__54423 = true;
+var G__54424 = false;
+var G__54425 = in_comment_QMARK_;
+var G__54426 = forms;
+index = G__54420;
+depth = G__54421;
+start = G__54422;
+in_string_QMARK_ = G__54423;
+escaped_QMARK_ = G__54424;
+in_comment_QMARK_ = G__54425;
+forms = G__54426;
+continue;
+} else {
+if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(character,"(")){
+var G__54427 = (index + (1));
+var G__54428 = (depth + (1));
+var G__54429 = (function (){var or__5162__auto__ = start;
+if(cljs.core.truth_(or__5162__auto__)){
+return or__5162__auto__;
+} else {
+return index;
+}
+})();
+var G__54430 = in_string_QMARK_;
+var G__54431 = escaped_QMARK_;
+var G__54432 = in_comment_QMARK_;
+var G__54433 = forms;
+index = G__54427;
+depth = G__54428;
+start = G__54429;
+in_string_QMARK_ = G__54430;
+escaped_QMARK_ = G__54431;
+in_comment_QMARK_ = G__54432;
+forms = G__54433;
+continue;
+} else {
+if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(character,")")){
+if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(depth,(1))){
+var G__54434 = (index + (1));
+var G__54435 = (0);
+var G__54436 = null;
+var G__54437 = in_string_QMARK_;
+var G__54438 = escaped_QMARK_;
+var G__54439 = in_comment_QMARK_;
+var G__54440 = cljs.core.conj.cljs$core$IFn$_invoke$arity$2(forms,cljs.core.subs.cljs$core$IFn$_invoke$arity$3(source__$1,start,(index + (1))));
+index = G__54434;
+depth = G__54435;
+start = G__54436;
+in_string_QMARK_ = G__54437;
+escaped_QMARK_ = G__54438;
+in_comment_QMARK_ = G__54439;
+forms = G__54440;
+continue;
+} else {
+var G__54441 = (index + (1));
+var G__54442 = cljs.core.max.cljs$core$IFn$_invoke$arity$2((0),(depth - (1)));
+var G__54443 = start;
+var G__54444 = in_string_QMARK_;
+var G__54445 = escaped_QMARK_;
+var G__54446 = in_comment_QMARK_;
+var G__54447 = forms;
+index = G__54441;
+depth = G__54442;
+start = G__54443;
+in_string_QMARK_ = G__54444;
+escaped_QMARK_ = G__54445;
+in_comment_QMARK_ = G__54446;
+forms = G__54447;
+continue;
+}
+} else {
+var G__54448 = (index + (1));
+var G__54449 = depth;
+var G__54450 = start;
+var G__54451 = in_string_QMARK_;
+var G__54452 = escaped_QMARK_;
+var G__54453 = in_comment_QMARK_;
+var G__54454 = forms;
+index = G__54448;
+depth = G__54449;
+start = G__54450;
+in_string_QMARK_ = G__54451;
+escaped_QMARK_ = G__54452;
+in_comment_QMARK_ = G__54453;
+forms = G__54454;
+continue;
+
+}
+}
+}
+}
+}
+}
+}
+break;
+}
+});
+fdg.worker.definition_form_name = (function fdg$worker$definition_form_name(source){
+var temp__5825__auto__ = cljs.core.re_find(/^\s*\((defn?|defn-|defonce|defmacro)\s+([^\s\[\]()]+)/,source);
+if(cljs.core.truth_(temp__5825__auto__)){
+var match = temp__5825__auto__;
+return cljs.core.nth.cljs$core$IFn$_invoke$arity$2(match,(2));
+} else {
+return null;
+}
+});
+fdg.worker.discovered_definition_sources = (function fdg$worker$discovered_definition_sources(code){
+return cljs.core.into.cljs$core$IFn$_invoke$arity$3(cljs.core.PersistentArrayMap.EMPTY,cljs.core.keep.cljs$core$IFn$_invoke$arity$1((function (source){
+var temp__5825__auto__ = fdg.worker.definition_form_name(source);
+if(cljs.core.truth_(temp__5825__auto__)){
+var name = temp__5825__auto__;
+return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [name,source], null);
+} else {
+return null;
+}
+})),fdg.worker.top_level_forms(code));
+});
+fdg.worker.max_definition_length = (12000);
+fdg.worker.bounded_definition_source = (function fdg$worker$bounded_definition_source(source){
+if(typeof source === 'string'){
+if((((source).length) > fdg.worker.max_definition_length)){
+return (""+cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.subs.cljs$core$IFn$_invoke$arity$3(source,(0),fdg.worker.max_definition_length))+"\n;; \u2026 <definition truncated: "+cljs.core.str.cljs$core$IFn$_invoke$arity$1(((source).length))+" characters total>");
+} else {
+return source;
+}
+} else {
+return null;
+}
+});
+/**
+ * Find the displayed source form responsible for a session definition.
+ */
+fdg.worker.definition_source = (function fdg$worker$definition_source(block,definition,code){
+var or__5162__auto__ = cljs.core.some((function (form){
+var source = new cljs.core.Keyword(null,"code","code",1586293142).cljs$core$IFn$_invoke$arity$1(form);
+if(((typeof source === 'string') && (cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(definition,fdg.worker.definition_form_name(source))))){
+return source;
+} else {
+return null;
+}
+}),new cljs.core.Keyword(null,"forms","forms",2045992350).cljs$core$IFn$_invoke$arity$1(block));
+if(cljs.core.truth_(or__5162__auto__)){
+return or__5162__auto__;
+} else {
+if(cljs.core.seq(code)){
+return code;
+} else {
+return null;
+}
+}
+});
+fdg.worker.record_definition_sources_BANG_ = (function fdg$worker$record_definition_sources_BANG_(block,code){
+var discovered = fdg.worker.discovered_definition_sources(code);
+var definitions = cljs.core.distinct.cljs$core$IFn$_invoke$arity$1(cljs.core.concat.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"definitions","definitions",167529986).cljs$core$IFn$_invoke$arity$1(block),cljs.core.keys(discovered)));
+var seq__54348_54455 = cljs.core.seq(definitions);
+var chunk__54349_54456 = null;
+var count__54350_54457 = (0);
+var i__54351_54458 = (0);
+while(true){
+if((i__54351_54458 < count__54350_54457)){
+var definition_54459 = chunk__54349_54456.cljs$core$IIndexed$_nth$arity$2(null,i__54351_54458);
+var temp__5825__auto___54460 = fdg.worker.definition_source(block,definition_54459,code);
+if(cljs.core.truth_(temp__5825__auto___54460)){
+var source_54461 = temp__5825__auto___54460;
+cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$4(fdg.worker.definition_sources,cljs.core.assoc,definition_54459,fdg.worker.bounded_definition_source((function (){var or__5162__auto__ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(discovered,definition_54459);
+if(cljs.core.truth_(or__5162__auto__)){
+return or__5162__auto__;
+} else {
+return source_54461;
+}
+})()));
+} else {
 }
 
-cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$3(fdg.worker.session_definitions,cljs.core.conj,definition_55228);
+
+var G__54462 = seq__54348_54455;
+var G__54463 = chunk__54349_54456;
+var G__54464 = count__54350_54457;
+var G__54465 = (i__54351_54458 + (1));
+seq__54348_54455 = G__54462;
+chunk__54349_54456 = G__54463;
+count__54350_54457 = G__54464;
+i__54351_54458 = G__54465;
+continue;
+} else {
+var temp__5825__auto___54466 = cljs.core.seq(seq__54348_54455);
+if(temp__5825__auto___54466){
+var seq__54348_54467__$1 = temp__5825__auto___54466;
+if(cljs.core.chunked_seq_QMARK_(seq__54348_54467__$1)){
+var c__5694__auto___54468 = cljs.core.chunk_first(seq__54348_54467__$1);
+var G__54469 = cljs.core.chunk_rest(seq__54348_54467__$1);
+var G__54470 = c__5694__auto___54468;
+var G__54471 = cljs.core.count(c__5694__auto___54468);
+var G__54472 = (0);
+seq__54348_54455 = G__54469;
+chunk__54349_54456 = G__54470;
+count__54350_54457 = G__54471;
+i__54351_54458 = G__54472;
+continue;
+} else {
+var definition_54473 = cljs.core.first(seq__54348_54467__$1);
+var temp__5825__auto___54474__$1 = fdg.worker.definition_source(block,definition_54473,code);
+if(cljs.core.truth_(temp__5825__auto___54474__$1)){
+var source_54475 = temp__5825__auto___54474__$1;
+cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$4(fdg.worker.definition_sources,cljs.core.assoc,definition_54473,fdg.worker.bounded_definition_source((function (){var or__5162__auto__ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(discovered,definition_54473);
+if(cljs.core.truth_(or__5162__auto__)){
+return or__5162__auto__;
+} else {
+return source_54475;
+}
+})()));
+} else {
+}
 
 
-var G__55229 = cljs.core.next(seq__55190_55222__$1);
-var G__55230 = null;
-var G__55231 = (0);
-var G__55232 = (0);
-seq__55190_55212 = G__55229;
-chunk__55191_55213 = G__55230;
-count__55192_55214 = G__55231;
-i__55193_55215 = G__55232;
+var G__54476 = cljs.core.next(seq__54348_54467__$1);
+var G__54477 = null;
+var G__54478 = (0);
+var G__54479 = (0);
+seq__54348_54455 = G__54476;
+chunk__54349_54456 = G__54477;
+count__54350_54457 = G__54478;
+i__54351_54458 = G__54479;
 continue;
 }
 } else {
@@ -116,8 +421,77 @@ continue;
 break;
 }
 
-if(cljs.core.seq(new cljs.core.Keyword(null,"definitions","definitions",167529986).cljs$core$IFn$_invoke$arity$1(block))){
-return fdg.worker.eval_session_BANG_(cljs.core.deref(fdg.worker.context),(""+"(declare "+cljs.core.str.cljs$core$IFn$_invoke$arity$1(clojure.string.join.cljs$core$IFn$_invoke$arity$2(" ",new cljs.core.Keyword(null,"definitions","definitions",167529986).cljs$core$IFn$_invoke$arity$1(block)))+")"));
+return definitions;
+});
+fdg.worker.prepare_block_BANG_ = (function fdg$worker$prepare_block_BANG_(block,code){
+var definitions = fdg.worker.record_definition_sources_BANG_(block,code);
+var seq__54352_54480 = cljs.core.seq(definitions);
+var chunk__54353_54481 = null;
+var count__54354_54482 = (0);
+var i__54355_54483 = (0);
+while(true){
+if((i__54355_54483 < count__54354_54482)){
+var definition_54484 = chunk__54353_54481.cljs$core$IIndexed$_nth$arity$2(null,i__54355_54483);
+if(cljs.core.contains_QMARK_(cljs.core.deref(fdg.worker.session_definitions),definition_54484)){
+} else {
+fdg.worker.eval_session_BANG_(cljs.core.deref(fdg.worker.context),(""+"(ns-unmap 'fdg.session '"+cljs.core.str.cljs$core$IFn$_invoke$arity$1(definition_54484)+")"));
+}
+
+cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$3(fdg.worker.session_definitions,cljs.core.conj,definition_54484);
+
+
+var G__54485 = seq__54352_54480;
+var G__54486 = chunk__54353_54481;
+var G__54487 = count__54354_54482;
+var G__54488 = (i__54355_54483 + (1));
+seq__54352_54480 = G__54485;
+chunk__54353_54481 = G__54486;
+count__54354_54482 = G__54487;
+i__54355_54483 = G__54488;
+continue;
+} else {
+var temp__5825__auto___54489 = cljs.core.seq(seq__54352_54480);
+if(temp__5825__auto___54489){
+var seq__54352_54490__$1 = temp__5825__auto___54489;
+if(cljs.core.chunked_seq_QMARK_(seq__54352_54490__$1)){
+var c__5694__auto___54491 = cljs.core.chunk_first(seq__54352_54490__$1);
+var G__54492 = cljs.core.chunk_rest(seq__54352_54490__$1);
+var G__54493 = c__5694__auto___54491;
+var G__54494 = cljs.core.count(c__5694__auto___54491);
+var G__54495 = (0);
+seq__54352_54480 = G__54492;
+chunk__54353_54481 = G__54493;
+count__54354_54482 = G__54494;
+i__54355_54483 = G__54495;
+continue;
+} else {
+var definition_54496 = cljs.core.first(seq__54352_54490__$1);
+if(cljs.core.contains_QMARK_(cljs.core.deref(fdg.worker.session_definitions),definition_54496)){
+} else {
+fdg.worker.eval_session_BANG_(cljs.core.deref(fdg.worker.context),(""+"(ns-unmap 'fdg.session '"+cljs.core.str.cljs$core$IFn$_invoke$arity$1(definition_54496)+")"));
+}
+
+cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$3(fdg.worker.session_definitions,cljs.core.conj,definition_54496);
+
+
+var G__54497 = cljs.core.next(seq__54352_54490__$1);
+var G__54498 = null;
+var G__54499 = (0);
+var G__54500 = (0);
+seq__54352_54480 = G__54497;
+chunk__54353_54481 = G__54498;
+count__54354_54482 = G__54499;
+i__54355_54483 = G__54500;
+continue;
+}
+} else {
+}
+}
+break;
+}
+
+if(cljs.core.seq(definitions)){
+return fdg.worker.eval_session_BANG_(cljs.core.deref(fdg.worker.context),(""+"(declare "+cljs.core.str.cljs$core$IFn$_invoke$arity$1(clojure.string.join.cljs$core$IFn$_invoke$arity$2(" ",definitions))+")"));
 } else {
 return null;
 }
@@ -170,16 +544,100 @@ return "object";
 }
 }
 });
+fdg.worker.safe_constructor_name = (function fdg$worker$safe_constructor_name(value){
+try{var constructor$ = value.constructor;
+var raw_name = constructor$.name;
+var name = (function (){var or__5162__auto__ = (function (){var G__54357 = (function (){var and__5160__auto__ = typeof raw_name === 'string';
+if(and__5160__auto__){
+return cljs.core.re_find(/^function\s+([^\s(]+)/,raw_name);
+} else {
+return and__5160__auto__;
+}
+})();
+if((G__54357 == null)){
+return null;
+} else {
+return cljs.core.second(G__54357);
+}
+})();
+if(cljs.core.truth_(or__5162__auto__)){
+return or__5162__auto__;
+} else {
+return raw_name;
+}
+})();
+if(((typeof name === 'string') && (((cljs.core.seq(name)) && ((!(cljs.core.contains_QMARK_(new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 2, ["Object",null,"Function",null], null), null),name)))))))){
+return name;
+} else {
+return null;
+}
+}catch (e54356){var _ = e54356;
+return null;
+}});
+/**
+ * Return a stable, human-readable type without forcing an object's printer.
+ */
+fdg.worker.runtime_type = (function fdg$worker$runtime_type(value){
+var kind = fdg.worker.value_kind(value);
+if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(kind,"object")){
+var or__5162__auto__ = fdg.worker.safe_constructor_name(value);
+if(cljs.core.truth_(or__5162__auto__)){
+return or__5162__auto__;
+} else {
+var or__5162__auto____$1 = (function (){try{var type_name = (""+cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.type(value)));
+if(cljs.core.truth_(cljs.core.re_find(/^function\s+(Object|Function)\b/,type_name))){
+return kind;
+} else {
+return type_name;
+}
+}catch (e54358){var _ = e54358;
+return null;
+}})();
+if(cljs.core.truth_(or__5162__auto____$1)){
+return or__5162__auto____$1;
+} else {
+return kind;
+}
+}
+} else {
+return kind;
+}
+});
 fdg.worker.collection_shape = (function fdg$worker$collection_shape(value){
 if(cljs.core.coll_QMARK_(value)){
 var bounded_size = ((cljs.core.sequential_QMARK_(value))?cljs.core.bounded_count((1001),value):cljs.core.count(value));
 var size = (((bounded_size > (1000)))?"1000+":bounded_size);
-var child = ((((cljs.core.sequential_QMARK_(value)) && (cljs.core.seq(value))))?(function (){var G__55194 = cljs.core.first(value);
-return (fdg.worker.collection_shape.cljs$core$IFn$_invoke$arity$1 ? fdg.worker.collection_shape.cljs$core$IFn$_invoke$arity$1(G__55194) : fdg.worker.collection_shape.call(null,G__55194));
+var child = ((((cljs.core.sequential_QMARK_(value)) && (cljs.core.seq(value))))?(function (){var G__54359 = cljs.core.first(value);
+return (fdg.worker.collection_shape.cljs$core$IFn$_invoke$arity$1 ? fdg.worker.collection_shape.cljs$core$IFn$_invoke$arity$1(G__54359) : fdg.worker.collection_shape.call(null,G__54359));
 })():null);
-return (""+cljs.core.str.cljs$core$IFn$_invoke$arity$1(size)+cljs.core.str.cljs$core$IFn$_invoke$arity$1((cljs.core.truth_(child)?(""+" \u00D7 "+cljs.core.str.cljs$core$IFn$_invoke$arity$1(child)):null)));
+var keys_preview = ((cljs.core.map_QMARK_(value))?clojure.string.join.cljs$core$IFn$_invoke$arity$2(", ",cljs.core.map.cljs$core$IFn$_invoke$arity$2(cljs.core.pr_str,cljs.core.take.cljs$core$IFn$_invoke$arity$2((8),cljs.core.keys(value)))):null);
+return (""+cljs.core.str.cljs$core$IFn$_invoke$arity$1(size)+cljs.core.str.cljs$core$IFn$_invoke$arity$1((cljs.core.truth_(child)?(""+" \u00D7 "+cljs.core.str.cljs$core$IFn$_invoke$arity$1(child)):null))+cljs.core.str.cljs$core$IFn$_invoke$arity$1(((cljs.core.seq(keys_preview))?(""+" \u00B7 keys: "+cljs.core.str.cljs$core$IFn$_invoke$arity$1(keys_preview)):null)));
 } else {
 return null;
+}
+});
+fdg.worker.object_shape = (function fdg$worker$object_shape(value){
+if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2("object",fdg.worker.value_kind(value))){
+try{var keys = cljs.core.sort.cljs$core$IFn$_invoke$arity$1(cljs.core.array_seq.cljs$core$IFn$_invoke$arity$1(Object.keys(value)));
+var visible = cljs.core.take.cljs$core$IFn$_invoke$arity$2((12),keys);
+var remaining = (cljs.core.count(keys) - cljs.core.count(visible));
+if(cljs.core.seq(visible)){
+return (""+"fields: "+cljs.core.str.cljs$core$IFn$_invoke$arity$1(clojure.string.join.cljs$core$IFn$_invoke$arity$2(", ",visible))+cljs.core.str.cljs$core$IFn$_invoke$arity$1((((remaining > (0)))?(""+", \u2026 +"+cljs.core.str.cljs$core$IFn$_invoke$arity$1(remaining)):null)));
+} else {
+return null;
+}
+}catch (e54360){var _ = e54360;
+return null;
+}} else {
+return null;
+}
+});
+fdg.worker.value_shape = (function fdg$worker$value_shape(value){
+var or__5162__auto__ = fdg.worker.collection_shape(value);
+if(cljs.core.truth_(or__5162__auto__)){
+return or__5162__auto__;
+} else {
+return fdg.worker.object_shape(value);
 }
 });
 fdg.worker.safe_preview = (function fdg$worker$safe_preview(value){
@@ -189,24 +647,26 @@ return (""+cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.subs.cljs$core$
 } else {
 return rendered;
 }
-}catch (e55195){var _ = e55195;
+}catch (e54361){var _ = e54361;
 return "<value cannot be printed safely>";
 }});
 fdg.worker.describe_var = (function fdg$worker$describe_var(sci_var){
 var metadata = cljs.core.meta(sci_var);
 var bound_QMARK_ = sci.impl.vars.hasRoot(sci_var);
 var value = (cljs.core.truth_(bound_QMARK_)?(function (){try{return cljs.core.deref(sci_var);
-}catch (e55196){var _ = e55196;
+}catch (e54362){var _ = e54362;
 return null;
 }})():null);
 var kind = (cljs.core.truth_(bound_QMARK_)?fdg.worker.value_kind(value):"unbound");
-return cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"qualified-name","qualified-name",1344519846),new cljs.core.Keyword(null,"dynamic?","dynamic?",680592423),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"preview","preview",451279890),new cljs.core.Keyword(null,"kind","kind",-717265803),new cljs.core.Keyword(null,"macro?","macro?",-1327433674),new cljs.core.Keyword(null,"shape","shape",1190694006),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"namespace","namespace",-377510372)],[(""+cljs.core.str.cljs$core$IFn$_invoke$arity$1(new cljs.core.Keyword(null,"ns","ns",441598760).cljs$core$IFn$_invoke$arity$1(metadata))+"/"+cljs.core.str.cljs$core$IFn$_invoke$arity$1(new cljs.core.Keyword(null,"name","name",1843675177).cljs$core$IFn$_invoke$arity$1(metadata))),new cljs.core.Keyword(null,"dynamic","dynamic",704819571).cljs$core$IFn$_invoke$arity$1(metadata) === true,(""+cljs.core.str.cljs$core$IFn$_invoke$arity$1(new cljs.core.Keyword(null,"name","name",1843675177).cljs$core$IFn$_invoke$arity$1(metadata))),(cljs.core.truth_(bound_QMARK_)?fdg.worker.safe_preview(value):"<declared, but not defined yet>"),kind,new cljs.core.Keyword(null,"macro","macro",-867863404).cljs$core$IFn$_invoke$arity$1(metadata) === true,(cljs.core.truth_(bound_QMARK_)?fdg.worker.collection_shape(value):null),(function (){var G__55197 = new cljs.core.Keyword(null,"arglists","arglists",1661989754).cljs$core$IFn$_invoke$arity$1(metadata);
-if((G__55197 == null)){
+var name = (""+cljs.core.str.cljs$core$IFn$_invoke$arity$1(new cljs.core.Keyword(null,"name","name",1843675177).cljs$core$IFn$_invoke$arity$1(metadata)));
+var namespace = (""+cljs.core.str.cljs$core$IFn$_invoke$arity$1(new cljs.core.Keyword(null,"ns","ns",441598760).cljs$core$IFn$_invoke$arity$1(metadata)));
+return cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"definition","definition",-1198729982),new cljs.core.Keyword(null,"qualified-name","qualified-name",1344519846),new cljs.core.Keyword(null,"dynamic?","dynamic?",680592423),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"preview","preview",451279890),new cljs.core.Keyword(null,"kind","kind",-717265803),new cljs.core.Keyword(null,"macro?","macro?",-1327433674),new cljs.core.Keyword(null,"shape","shape",1190694006),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"namespace","namespace",-377510372)],[((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(namespace,"fdg.session"))?cljs.core.get.cljs$core$IFn$_invoke$arity$2(cljs.core.deref(fdg.worker.definition_sources),name):null),(""+cljs.core.str.cljs$core$IFn$_invoke$arity$1(namespace)+"/"+cljs.core.str.cljs$core$IFn$_invoke$arity$1(name)),new cljs.core.Keyword(null,"dynamic","dynamic",704819571).cljs$core$IFn$_invoke$arity$1(metadata) === true,name,(cljs.core.truth_(bound_QMARK_)?fdg.worker.runtime_type(value):null),(cljs.core.truth_(bound_QMARK_)?fdg.worker.safe_preview(value):"<declared, but not defined yet>"),kind,new cljs.core.Keyword(null,"macro","macro",-867863404).cljs$core$IFn$_invoke$arity$1(metadata) === true,(cljs.core.truth_(bound_QMARK_)?fdg.worker.value_shape(value):null),(function (){var G__54363 = new cljs.core.Keyword(null,"arglists","arglists",1661989754).cljs$core$IFn$_invoke$arity$1(metadata);
+if((G__54363 == null)){
 return null;
 } else {
-return cljs.core.pr_str.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([G__55197], 0));
+return cljs.core.pr_str.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([G__54363], 0));
 }
-})(),new cljs.core.Keyword(null,"doc","doc",1913296891).cljs$core$IFn$_invoke$arity$1(metadata),(""+cljs.core.str.cljs$core$IFn$_invoke$arity$1(new cljs.core.Keyword(null,"ns","ns",441598760).cljs$core$IFn$_invoke$arity$1(metadata)))]);
+})(),new cljs.core.Keyword(null,"doc","doc",1913296891).cljs$core$IFn$_invoke$arity$1(metadata),namespace]);
 });
 fdg.worker.inspection_namespaces = new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, ["fdg.session","emmy.env","fdg.compat"], null);
 fdg.worker.inspect_symbol = (function fdg$worker$inspect_symbol(token){
@@ -225,48 +685,48 @@ return or__5162__auto__;
 if(cljs.core.truth_(cljs.core.namespace(sym))){
 return null;
 } else {
-return cljs.core.some((function (p1__55198_SHARP_){
-return sci.core.resolve(cljs.core.deref(fdg.worker.context),cljs.core.symbol.cljs$core$IFn$_invoke$arity$2(p1__55198_SHARP_,token));
+return cljs.core.some((function (p1__54364_SHARP_){
+return sci.core.resolve(cljs.core.deref(fdg.worker.context),cljs.core.symbol.cljs$core$IFn$_invoke$arity$2(p1__54364_SHARP_,token));
 }),fdg.worker.inspection_namespaces);
 }
 }
 })();
-var G__55199 = resolved;
-if((G__55199 == null)){
+var G__54365 = resolved;
+if((G__54365 == null)){
 return null;
 } else {
-return fdg.worker.describe_var(G__55199);
+return fdg.worker.describe_var(G__54365);
 }
 } else {
 return null;
 }
 });
 fdg.worker.namespace_names = (function fdg$worker$namespace_names(){
-return cljs.core.vec(cljs.core.sort.cljs$core$IFn$_invoke$arity$1(cljs.core.distinct.cljs$core$IFn$_invoke$arity$1(cljs.core.keep.cljs$core$IFn$_invoke$arity$2((function (p1__55200_SHARP_){
-var G__55201 = p1__55200_SHARP_;
-var G__55201__$1 = (((G__55201 == null))?null:cljs.core.meta(G__55201));
-var G__55201__$2 = (((G__55201__$1 == null))?null:new cljs.core.Keyword(null,"name","name",1843675177).cljs$core$IFn$_invoke$arity$1(G__55201__$1));
-if((G__55201__$2 == null)){
+return cljs.core.vec(cljs.core.sort.cljs$core$IFn$_invoke$arity$1(cljs.core.distinct.cljs$core$IFn$_invoke$arity$1(cljs.core.keep.cljs$core$IFn$_invoke$arity$2((function (p1__54366_SHARP_){
+var G__54367 = p1__54366_SHARP_;
+var G__54367__$1 = (((G__54367 == null))?null:cljs.core.meta(G__54367));
+var G__54367__$2 = (((G__54367__$1 == null))?null:new cljs.core.Keyword(null,"name","name",1843675177).cljs$core$IFn$_invoke$arity$1(G__54367__$1));
+if((G__54367__$2 == null)){
 return null;
 } else {
-return (""+cljs.core.str.cljs$core$IFn$_invoke$arity$1(G__55201__$2));
+return (""+cljs.core.str.cljs$core$IFn$_invoke$arity$1(G__54367__$2));
 }
 }),sci.core.all_ns(cljs.core.deref(fdg.worker.context))))));
 });
 fdg.worker.namespace_entries = (function fdg$worker$namespace_entries(namespace_name){
 try{return cljs.core.vec(cljs.core.sort_by.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"name","name",1843675177),cljs.core.map.cljs$core$IFn$_invoke$arity$2(fdg.worker.describe_var,cljs.core.vals(fdg.worker.eval_session_BANG_(cljs.core.deref(fdg.worker.context),(""+"(ns-publics '"+cljs.core.str.cljs$core$IFn$_invoke$arity$1(namespace_name)+")"))))));
-}catch (e55202){var _ = e55202;
+}catch (e54368){var _ = e54368;
 return cljs.core.PersistentVector.EMPTY;
 }});
 fdg.worker.run_blocks_BANG_ = (function fdg$worker$run_blocks_BANG_(blocks){
 fdg.worker.reset_context_BANG_();
 
-return cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (_,p__55203){
-var map__55204 = p__55203;
-var map__55204__$1 = cljs.core.__destructure_map(map__55204);
-var block = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__55204__$1,new cljs.core.Keyword(null,"block","block",664686210));
-var code = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__55204__$1,new cljs.core.Keyword(null,"code","code",1586293142));
-var selected_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__55204__$1,new cljs.core.Keyword(null,"selected?","selected?",-742502788));
+return cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (_,p__54369){
+var map__54370 = p__54369;
+var map__54370__$1 = cljs.core.__destructure_map(map__54370);
+var block = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__54370__$1,new cljs.core.Keyword(null,"block","block",664686210));
+var code = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__54370__$1,new cljs.core.Keyword(null,"code","code",1586293142));
+var selected_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__54370__$1,new cljs.core.Keyword(null,"selected?","selected?",-742502788));
 if(cljs.core.truth_((function (){var or__5162__auto__ = new cljs.core.Keyword(null,"backgroundSetup","backgroundSetup",1351711523).cljs$core$IFn$_invoke$arity$1(block);
 if(cljs.core.truth_(or__5162__auto__)){
 return or__5162__auto__;
@@ -276,23 +736,23 @@ return ((cljs.core.not(new cljs.core.Keyword(null,"executable","executable",1478
 })())){
 return null;
 } else {
-try{fdg.worker.prepare_block_BANG_(block);
+try{fdg.worker.prepare_block_BANG_(block,code);
 
 return new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"captured?","captured?",-327560235),new cljs.core.Keyword(null,"capturesResult","capturesResult",-1776961836).cljs$core$IFn$_invoke$arity$1(block),new cljs.core.Keyword(null,"value","value",305978217),fdg.output.pr_str_native(fdg.worker.eval_session_BANG_(cljs.core.deref(fdg.worker.context),code))], null);
-}catch (e55205){var error = e55205;
+}catch (e54371){var error = e54371;
 (error["fdgBlockId"] = new cljs.core.Keyword(null,"id","id",-1388402092).cljs$core$IFn$_invoke$arity$1(block));
 
 throw error;
 }}
 }),null,blocks);
 });
-fdg.worker.dispatch_BANG_ = (function fdg$worker$dispatch_BANG_(p__55206){
-var map__55207 = p__55206;
-var map__55207__$1 = cljs.core.__destructure_map(map__55207);
-var op = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__55207__$1,new cljs.core.Keyword(null,"op","op",-1882987955));
-var payload = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__55207__$1,new cljs.core.Keyword(null,"payload","payload",-383036092));
-var G__55208 = op;
-switch (G__55208) {
+fdg.worker.dispatch_BANG_ = (function fdg$worker$dispatch_BANG_(p__54372){
+var map__54373 = p__54372;
+var map__54373__$1 = cljs.core.__destructure_map(map__54373);
+var op = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__54373__$1,new cljs.core.Keyword(null,"op","op",-1882987955));
+var payload = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__54373__$1,new cljs.core.Keyword(null,"payload","payload",-383036092));
+var G__54374 = op;
+switch (G__54374) {
 case "init":
 cljs.core.reset_BANG_(fdg.worker.manifest,new cljs.core.Keyword(null,"manifest","manifest",-1386791956).cljs$core$IFn$_invoke$arity$1(payload));
 
@@ -324,11 +784,11 @@ return cljs.core.PersistentArrayMap.EMPTY;
 
 break;
 case "eval":
-var map__55209 = payload;
-var map__55209__$1 = cljs.core.__destructure_map(map__55209);
-var block = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__55209__$1,new cljs.core.Keyword(null,"block","block",664686210));
-var code = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__55209__$1,new cljs.core.Keyword(null,"code","code",1586293142));
-fdg.worker.prepare_block_BANG_(block);
+var map__54375 = payload;
+var map__54375__$1 = cljs.core.__destructure_map(map__54375);
+var block = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__54375__$1,new cljs.core.Keyword(null,"block","block",664686210));
+var code = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__54375__$1,new cljs.core.Keyword(null,"code","code",1586293142));
+fdg.worker.prepare_block_BANG_(block,code);
 
 return new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"value","value",305978217),fdg.output.pr_str_native(fdg.worker.eval_session_BANG_(cljs.core.deref(fdg.worker.context),code)),new cljs.core.Keyword(null,"namespaces","namespaces",-1444157469),fdg.worker.namespace_names()], null);
 
@@ -352,12 +812,12 @@ throw (new Error((""+"Unknown worker operation: "+cljs.core.str.cljs$core$IFn$_i
 });
 fdg.worker.init_BANG_ = (function fdg$worker$init_BANG_(){
 return (self.onmessage = (function (event){
-var map__55210 = cljs.core.js__GT_clj.cljs$core$IFn$_invoke$arity$variadic(event.data,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"keywordize-keys","keywordize-keys",1310784252),true], 0));
-var map__55210__$1 = cljs.core.__destructure_map(map__55210);
-var request = map__55210__$1;
-var id = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__55210__$1,new cljs.core.Keyword(null,"id","id",-1388402092));
+var map__54376 = cljs.core.js__GT_clj.cljs$core$IFn$_invoke$arity$variadic(event.data,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"keywordize-keys","keywordize-keys",1310784252),true], 0));
+var map__54376__$1 = cljs.core.__destructure_map(map__54376);
+var request = map__54376__$1;
+var id = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__54376__$1,new cljs.core.Keyword(null,"id","id",-1388402092));
 try{return self.postMessage(cljs.core.clj__GT_js(new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"id","id",-1388402092),id,new cljs.core.Keyword(null,"ok","ok",967785236),true,new cljs.core.Keyword(null,"result","result",1415092211),fdg.worker.dispatch_BANG_(request)], null)));
-}catch (e55211){var error = e55211;
+}catch (e54377){var error = e54377;
 return self.postMessage(cljs.core.clj__GT_js(new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null,"id","id",-1388402092),id,new cljs.core.Keyword(null,"ok","ok",967785236),false,new cljs.core.Keyword(null,"message","message",-406056002),(function (){var or__5162__auto__ = error.message;
 if(cljs.core.truth_(or__5162__auto__)){
 return or__5162__auto__;

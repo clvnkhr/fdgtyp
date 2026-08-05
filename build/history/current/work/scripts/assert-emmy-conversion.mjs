@@ -95,8 +95,19 @@ if (!runnerSource.includes('(remove :capturesResult)')
   throw new Error("Run-through must replay only definition forms from blocks before the selected example");
 }
 if (!workerSource.includes('["fdg.session" "emmy.env" "fdg.compat"]')
-    || !workerSource.includes('(symbol % token)')) {
-  throw new Error("Hover inspection must fall back through the same namespaces as autocomplete");
+    || !workerSource.includes('(symbol % token)')
+    || !workerSource.includes('(defn runtime-type')
+    || !workerSource.includes(':definition (when (= namespace "fdg.session")')
+    || !workerSource.includes('(defn object-shape')
+    || !workerSource.includes('(def max-definition-length 12000)')
+    || !workerSource.includes('(defn discovered-definition-sources')
+    || !workerSource.includes('(defn top-level-forms')) {
+  throw new Error("Hover inspection must retain definitions and expose safe runtime metadata");
+}
+if (!runnerSource.includes('(when (:type info)')
+    || !runnerSource.includes(':definition info')
+    || !runnerSource.includes('definition-preview')) {
+  throw new Error("The inspector must expose runtime type and user-definition source");
 }
 if (!runnerSource.includes('(js/Worker. "worker/main.js"')
     || !runnerSource.includes('#js {:type "module"}')

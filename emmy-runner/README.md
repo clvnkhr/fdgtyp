@@ -26,10 +26,19 @@ Then open <http://localhost:8080/>.
 The runner includes a Clojure-aware CodeMirror editor with syntax highlighting,
 structural editing, bracket matching, and completion (`Ctrl-Space`). The
 inspector shows live SCI namespaces and public vars. Put the cursor on a symbol
-or hover over it to see its runtime category, collection shape, function
-argument lists, documentation, and a bounded value preview. Pending `declare`
-Vars are hidden from the namespace list by default and can be revealed with the
-**Show pending declarations** toggle.
+or hover over it to see its runtime category, runtime type, collection/object
+shape, function argument lists, documentation, and a bounded value preview.
+For definitions in the current `fdg.session`, the source form (bounded to keep
+the worker responsive) is also shown, which makes user-defined functions and
+objects distinguishable from similar-looking Emmy values. Definitions entered
+directly in the editor are discovered when the code is evaluated, so they
+receive the same source view.
+Pending `declare` Vars are hidden from the namespace list by default and can be
+revealed with the **Show pending declarations** toggle. The namespace panel is
+pinned to the bottom of the inspector and lists the current `fdg.session` vars.
+The vars list takes only the space left below the symbol detail and scrolls
+internally if that detail grows. Emmy and compatibility namespaces remain
+available through hover and completion.
 
 For the optimized build used by GitHub Pages:
 

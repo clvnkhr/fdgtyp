@@ -20,7 +20,6 @@
          :inspector-filter "",
          :show-unbound? false,
          :inspected-symbol nil,
-         :namespace-names [],
          :busy? false}))
 
 (defonce editor (atom nil))
@@ -117,8 +116,6 @@
 (defn inspect-symbol [token]
   (if (seq token) (worker-call "inspect" {:token token}) (js/Promise.resolve nil)))
 
-(defn namespace-names [] (:namespace-names @state))
-
 (defn namespace-entries [namespace-name]
   (worker-call "namespace" {:namespace namespace-name}))
 
@@ -136,11 +133,17 @@
             {:class "symbol-title"}
             (el "code" {} (:qualified-name info))
             (el "span" {:class (str "kind kind-" (:kind info))} (:kind info)))
+        (when (:type info) (el "div" {:class "fact"} (el "span" {} "type") (el "code" {} (:type info))))
         (when (:shape info) (el "div" {:class "fact"} (el "span" {} "shape") (el "code" {} (:shape info))))
         (when (:arglists info) (el "div" {:class "fact"} (el "span" {} "calls") (el "code" {} (:arglists info))))
         (when (:macro? info) (el "div" {:class "badge"} "macro"))
         (when (:dynamic? info) (el "div" {:class "badge"} "dynamic"))
         (when (:doc info) (el "p" {:class "doc"} (:doc info)))
+        (when (and (:definition info) (not compact?))
+          (el "div"
+              {:class "definition-preview"}
+              (el "div" {:class "definition-label"} "definition")
+              (el "pre" {} (:definition info))))
         (when-not compact? (el "pre" {:class "value-preview"} (:preview info))))))
 
 (defn render-symbol-detail!
@@ -178,6 +181,8 @@
                                                        (render-symbol-detail!))}
                                         (el "code" {} (:name info))
                                         (el "span" {} (str (:kind info)
+                                                           (when (and (:type info) (not= (:type info) (:kind info)))
+                                                             (str " · " (:type info)))
                                                            (when (:shape info) (str " · " (:shape info))))))))
                          (.append target (el "p" {:class "status"} "No matching public vars.")))))))
           (.catch (fn [_] (when (.-isConnected target) (set! (.-textContent target) "Inspector unavailable."))))))))
@@ -224,6 +229,8 @@
                                                          (when (:arglists info) (str " " (:arglists info)))),
                                             :info (or (:doc info)
                                                       (str (:kind info)
+                                                           (when (:type info)
+                                                             (str " · type " (:type info)))
                                                            (when (:shape info)
                                                              (str " · shape " (:shape info)))))}))})))))))
 
@@ -333,8 +340,8 @@
   (swap! state assoc :busy? true :output "Running editor in the evaluation worker…" :error? false)
   (render-result!)
   (-> (worker-call "eval" {:block (selected-block) :code code})
-      (.then (fn [{:keys [value namespaces]}]
-               (swap! state assoc :busy? false :output value :namespace-names namespaces :error? false)
+      (.then (fn [{:keys [value]}]
+               (swap! state assoc :busy? false :output value :error? false)
                (render-result!)
                (render-symbol-detail!)
                (render-namespace-vars!)))
@@ -409,10 +416,9 @@
                        (render-result!)
                        (worker-call "run" {:chapter (:chapter selected)
                                             :blocks (vec (array-seq prepared))})))
-              (.then (fn [{:keys [captured? value namespaces]}]
+              (.then (fn [{:keys [captured? value]}]
                        (swap! state assoc
                          :busy? false
-                         :namespace-names namespaces
                          :output (cond
                                    (not (:executable selected))
                                    (str "Successfully ran the executable blocks through " (:id selected)
@@ -455,12 +461,6 @@
              selected-prerequisites (->> (:prerequisiteIds (selected-block))
                                          (keep blocks-by-id))
              editor-host (el "div" {:id "editor", :aria-label "ClojureScript editor"})
-             ns-select (apply el
-                         "select"
-                         {:aria-label "Inspector namespace",
-                          :onchange #(do (swap! state assoc :inspector-ns (.. % -target -value) :inspector-filter "")
-                                         (render-namespace-vars!))}
-                         (map #(el "option" {:value %, :selected (= % (:inspector-ns @state))} %) (namespace-names)))
              filter-input (el "input"
                               {:type "search",
                                :placeholder "Filter vars…",
@@ -540,9 +540,8 @@
                    (el "button"
                        (cond-> {:class "ghost",
                                 :onclick #(-> (worker-call "reset" {:chapter (:chapter @state)})
-                                              (.then (fn [{:keys [namespaces]}]
+                                              (.then (fn [_]
                                                        (swap! state assoc
-                                                              :namespace-names namespaces
                                                               :output "Context reset."
                                                               :error? false
                                                               :inspected-symbol nil)
@@ -565,18 +564,19 @@
                (el "p" {:class "status"} "Live SCI values. Cursor or hover a symbol for details.")
                (el "div" {:id "symbol-detail"})
                (el "div"
-                   {:class "inspector-heading"}
-                   (el "h3" {} "Namespace")
-                   (el "button"
-                       {:class "icon-button",
-                        :title "Refresh namespace values",
-                        :aria-label "Refresh namespace values",
-                        :onclick render-namespace-vars!}
-                       "↻"))
-               ns-select
-               filter-input
-               (el "label" {:class "toggle"} unbound-toggle (el "span" {} "Show pending declarations"))
-               (el "div" {:id "namespace-vars", :class "namespace-vars"})))
+                   {:class "namespace-panel"}
+                   (el "div"
+                       {:class "inspector-heading"}
+                       (el "h3" {} "Namespace · fdg.session")
+                       (el "button"
+                           {:class "icon-button",
+                            :title "Refresh namespace values",
+                            :aria-label "Refresh namespace values",
+                            :onclick render-namespace-vars!}
+                           "↻"))
+                   filter-input
+                   (el "label" {:class "toggle"} unbound-toggle (el "span" {} "Show pending declarations"))
+                   (el "div" {:id "namespace-vars", :class "namespace-vars"}))))
          (mount-editor! editor-host code)
          (render-symbol-detail!)
          (render-namespace-vars!)
@@ -599,8 +599,7 @@
                         ;; Render immediately while the larger evaluator bundle initializes off-thread.
                         (select-block! first-block)
                         (-> initialization
-                            (.then (fn [{:keys [namespaces]}]
-                                     (swap! state assoc :namespace-names namespaces)
+                            (.then (fn [_]
                                      (render-namespace-vars!))))))))
            (.catch (fn [error] (swap! state assoc :output (friendly-error error) :error? true) (render!))))
        (catch :default error

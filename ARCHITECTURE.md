@@ -1017,7 +1017,13 @@ The ESM worker owns:
 - installed definition tracking;
 - reset, run and editor-only evaluation;
 - symbol resolution and namespace inspection;
-- bounded value previews and collection shapes.
+- bounded value previews and value descriptions (runtime kind/type, collection
+  keys or object fields, and function argument lists);
+- source tracking for `fdg.session` definitions. The worker records manifest
+  forms and discovers balanced top-level `def`, `defn`, `defonce` and `defmacro`
+  forms entered in the editor, so the inspector can show the definition that
+  produced a live user value without treating nested `letfn` forms or strings
+  as namespace definitions.
 
 Requests use monotonically increasing IDs. The UI stores Promise resolvers in a
 pending map; worker replies contain `{id, ok, result}` or error metadata. Worker
@@ -1079,9 +1085,16 @@ The worker resolves names in this precedence order:
 3. `fdg.compat`.
 
 Autocomplete, hover and cursor inspection use the same namespaces. Returned
-metadata includes qualified name, runtime kind, nested collection shape,
-argument lists, docs, macro/dynamic flags and a bounded 600-character preview.
-Pending declarations can be shown or hidden.
+metadata includes qualified name, runtime kind, runtime type, nested collection
+shape (including a bounded key sample for maps and field sample for opaque
+objects), argument lists, docs, macro/dynamic flags and a bounded
+600-character preview. For live `fdg.session` vars it also includes the
+bounded source definition. The full inspector renders that source; hover keeps
+it out of the compact popup. The namespace panel is intentionally fixed to the
+current `fdg.session` and anchored at the bottom of the inspector. Its vars list
+owns the remaining height and scrolls internally when the symbol detail above
+grows; Emmy and compatibility namespaces remain available through hover and
+completion. Pending declarations can be shown or hidden.
 
 ## 19. Root mirror and runner synchronization
 
