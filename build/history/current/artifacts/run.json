@@ -1,14 +1,14 @@
 {
-  "id": "preface-cljs-stub",
-  "target": "raw",
+  "id": "20260805T134451Z-from-raw-eafa0ab5-1f6543",
+  "target": "from-raw",
   "source": "/Users/calvinkhor/Documents/GitHub/fdgtyp",
-  "revision": "80943c7c",
-  "startedAt": "2026-08-05T10:28:04.802Z",
+  "revision": "eafa0ab5",
+  "startedAt": "2026-08-05T13:44:51.053Z",
   "log": "build.log",
   "status": "succeeded",
   "artifacts": "/Users/calvinkhor/Documents/GitHub/fdgtyp/build/current",
   "workspace": "/Users/calvinkhor/Documents/GitHub/fdgtyp/build/history/current/work",
   "workspaceLayout": "linked-runner-v1",
   "rootMirrors": "synchronized-on-promotion",
-  "finishedAt": "2026-08-05T10:28:08.032Z"
+  "finishedAt": "2026-08-05T13:48:40.019Z"
 }

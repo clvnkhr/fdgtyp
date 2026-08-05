@@ -98,6 +98,13 @@ if (!runnerSource.includes('(remove :capturesResult)')
     || !workerSource.includes('(and (not selected?) (every? :capturesResult (:forms block)))')) {
   throw new Error("Run-through must replay only definition forms from blocks before the selected example");
 }
+if (!runnerSource.includes('fdg.emmy.runner.selection.v1')
+    || !runnerSource.includes('(defn saved-selection')
+    || !runnerSource.includes('(defn persist-selection!')
+    || !runnerSource.includes('(defn restore-selection')
+    || !runnerSource.includes('js/localStorage')) {
+  throw new Error("The runner must persist and restore the selected chapter and codeblock");
+}
 if (!workerSource.includes('["fdg.session" "emmy.env" "fdg.compat"]')
     || !workerSource.includes('(symbol % token)')
     || !workerSource.includes('(defn runtime-type')

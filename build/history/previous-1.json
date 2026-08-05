@@ -1,15 +1,15 @@
 {
-  "id": "20260805T083243Z-compile-emmy-c77770d1-8343c4",
-  "target": "compile-emmy",
+  "id": "preface-cljs-stub",
+  "target": "raw",
   "source": "/Users/calvinkhor/Documents/GitHub/fdgtyp",
-  "revision": "c77770d1",
-  "startedAt": "2026-08-05T08:32:43.482Z",
+  "revision": "80943c7c",
+  "startedAt": "2026-08-05T10:28:04.802Z",
   "log": "build.log",
   "status": "succeeded",
   "artifacts": null,
   "workspace": null,
   "workspaceLayout": "linked-runner-v1",
   "rootMirrors": "synchronized-on-promotion",
-  "finishedAt": "2026-08-05T08:33:39.187Z",
+  "finishedAt": "2026-08-05T10:28:08.032Z",
   "archive": "previous-1.tar.gz"
 }
