@@ -51,6 +51,7 @@
       #include "content/appendix_f.typ"
       #include "content/appendix_g.typ"
       #include "content/appendix_h.typ"
+      #include "content/appendix_i.typ"
     ]
   ]
   #include "content/errata.typ"

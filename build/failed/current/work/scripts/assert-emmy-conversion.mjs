@@ -39,6 +39,10 @@ const outputSource = readFileSync(
   path.join(root, "emmy-runner", "src", "fdg", "output.cljs"),
   "utf8",
 );
+const styleSource = readFileSync(
+  path.join(root, "emmy-runner", "public", "style.css"),
+  "utf8",
+);
 const shadowConfig = readFileSync(
   path.join(root, "emmy-runner", "shadow-cljs.edn"),
   "utf8",
@@ -94,9 +98,34 @@ if (!runnerSource.includes('(remove :capturesResult)')
     || !workerSource.includes('(and (not selected?) (every? :capturesResult (:forms block)))')) {
   throw new Error("Run-through must replay only definition forms from blocks before the selected example");
 }
+if (!runnerSource.includes('fdg.emmy.runner.selection.v1')
+    || !runnerSource.includes('(defn saved-selection')
+    || !runnerSource.includes('(defn persist-selection!')
+    || !runnerSource.includes('(defn restore-selection')
+    || !runnerSource.includes('js/localStorage')) {
+  throw new Error("The runner must persist and restore the selected chapter and codeblock");
+}
 if (!workerSource.includes('["fdg.session" "emmy.env" "fdg.compat"]')
-    || !workerSource.includes('(symbol % token)')) {
-  throw new Error("Hover inspection must fall back through the same namespaces as autocomplete");
+    || !workerSource.includes('(symbol % token)')
+    || !workerSource.includes('(defn runtime-type')
+    || !workerSource.includes(':definition (when (= namespace "fdg.session")')
+    || !workerSource.includes('(defn object-shape')
+    || !workerSource.includes('(def max-definition-length 12000)')
+    || !workerSource.includes('(defn discovered-definition-sources')
+    || !workerSource.includes('(defn top-level-forms')) {
+  throw new Error("Hover inspection must retain definitions and expose safe runtime metadata");
+}
+if (!runnerSource.includes('(when (:type info)')
+    || !runnerSource.includes(':definition info')
+    || !runnerSource.includes('definition-preview')
+    || runnerSource.includes('ns-select')
+    || !runnerSource.includes('namespace-panel')
+    || !styleSource.includes('flex: 1 1 auto;')
+    || !styleSource.includes('overflow: auto;\n  border-top: 1px solid var(--border);')
+    || !styleSource.includes('overflow: hidden;\n}')
+    || !styleSource.includes('.namespace-panel { flex: none;')
+    || !styleSource.includes('overflow: visible;')) {
+  throw new Error("The inspector must expose runtime type and user-definition source without overlapping its namespace panel");
 }
 if (!runnerSource.includes('(js/Worker. "worker/main.js"')
     || !runnerSource.includes('#js {:type "module"}')

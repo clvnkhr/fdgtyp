@@ -1,15 +1,15 @@
 {
-  "id": "preface-cljs-stub",
-  "target": "raw",
+  "id": "20260807T142144Z-just-pdf-d205ae29-3dac84",
+  "target": "just-pdf",
   "source": "/Users/calvinkhor/Documents/GitHub/fdgtyp",
-  "revision": "80943c7c",
-  "startedAt": "2026-08-05T10:28:04.802Z",
+  "revision": "d205ae29",
+  "startedAt": "2026-08-07T14:21:44.950Z",
   "log": "build.log",
   "status": "succeeded",
   "artifacts": null,
   "workspace": null,
   "workspaceLayout": "linked-runner-v1",
   "rootMirrors": "synchronized-on-promotion",
-  "finishedAt": "2026-08-05T10:28:08.032Z",
+  "finishedAt": "2026-08-07T14:26:23.331Z",
   "archive": "previous-1.tar.gz"
 }

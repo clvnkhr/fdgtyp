@@ -1,6 +1,6 @@
-# Public targets run inside an isolated, immutable build snapshot. The staged
-# Makefile below deliberately retains the existing recipes and paths, so the
-# scripts remain black boxes while all of their writes land under build/runs.
+# Public targets run recipes inside an isolated build snapshot. The staged
+# Makefile below deliberately retains the existing recipes and paths. After a
+# successful run, promotion refreshes the allowlisted generated mirrors at root.
 ifneq ($(FDG_IN_RUN),1)
 
 .DEFAULT_GOAL := from-raw
@@ -27,7 +27,8 @@ help:
 	  '  make emmy-refresh            refresh captured results, then promote build/current' \
 	  '  make <target> FDG_RUN_ID=x   record a readable identifier in build/current/run.json' \
 	  '' \
-	  'Outputs are never written into the source checkout; the three latest successful and failed builds are retained.'
+	  'Recipes write only in staging; successful generated outputs are synchronized to root during promotion.' \
+	  'The three latest successful and failed builds are retained.'
 
 $(RUN_TARGETS):
 	node scripts/run-build.mjs $@

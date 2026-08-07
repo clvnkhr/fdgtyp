@@ -1,15 +1,15 @@
 {
-  "id": "20260805T083243Z-compile-emmy-c77770d1-8343c4",
-  "target": "compile-emmy",
+  "id": "20260807T142134Z-raw-d205ae29-75f4b2",
+  "target": "raw",
   "source": "/Users/calvinkhor/Documents/GitHub/fdgtyp",
-  "revision": "c77770d1",
-  "startedAt": "2026-08-05T08:32:43.482Z",
+  "revision": "d205ae29",
+  "startedAt": "2026-08-07T14:21:35.016Z",
   "log": "build.log",
   "status": "succeeded",
   "artifacts": null,
   "workspace": null,
   "workspaceLayout": "linked-runner-v1",
   "rootMirrors": "synchronized-on-promotion",
-  "finishedAt": "2026-08-05T08:33:39.187Z",
+  "finishedAt": "2026-08-07T14:21:38.594Z",
   "archive": "previous-2.tar.gz"
 }

@@ -577,9 +577,10 @@ file. Thus:
 
 The converter generates the original Scheme appendices A-C and derives CLJS
 counterparts D-F with editorial rewrites. Project-authored templates supply
-Appendix G (runner documentation) and the generated edition-specific prose
-record Appendix H. CLJS-only appendices and the CLJS preface are gated at the
-top level for `clojure` and `both` editions.
+Appendix G (runner documentation), the generated edition-specific prose
+record Appendix H, and the source/edition change log Appendix I. Appendices
+D-I and the CLJS preface are gated at the top level for `clojure` and `both`
+editions.
 
 It also writes:
 

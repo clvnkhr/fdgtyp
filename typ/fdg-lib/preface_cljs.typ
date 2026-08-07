@@ -14,11 +14,8 @@
 
   There was no attempt made at matching the pagination or style of the original PDF book.
 
-  What I hope this book provides is as follows:
-  - Updated `.scm` codeblocks that an LLM-judge has 'audited'. I did not run any .scm code.
-    - The level of trust is as follows: my LLM(s) have read the code, and have somewhat mechanically converted the code to ClojureScript, and have audited the ClojureScript code to do what the surrounding text says it should do. This has led to discovering some errors in the original .scm codeblocks, such as outputs that were not commented out, typos in function names, or incorrectly saved outputs.
-  - ClojureScript blocks that compile and match the (audited) Scheme output comments.
-  - A #link("https://clvnkhr.github.io/fdgtyp/")[companion web-runner] that interactively runs the ClojureScript blocks in the book, which can be run locally (todo: or accessed by going to the Github page of this book's repo...)
+  On the codeblocks: the `.scm` codeblocks are updated after an has 'audited' them. But I did not run any .scm code. The level of trust should be tempered against the following: my LLM(s) have read the code, and have converted the code to ClojureScript (i.e. there is a somewhat ad-hoc script that does this), and have 'audited' the ClojureScript code to compile and do what the surrounding text says it should do. This has led to discovering some errors in the original `.scm` codeblocks, such as outputs that were not commented out, typos in function names, or incorrectly saved outputs.
+  The ClojureScript blocks compile and their outputs match the (audited) Scheme output comments. There were some changes that we had to put in to get to this point - apart from changing ```scheme 1/2``` to ```clojure (/ 1 2)``` to avoid Javascript computing as floats, we needed to manually add calls to ```clojure simplify``` to get outputs closer to scmutils' outputs. Also, we (the AI, really) had to write a small compatability layer (`emmy-runner/src/fdg/compat.cljs`) to get closer to scmutils' behavior.
 
   I also (got the AI to) redo the diagrams and the cover page. The cover page is a real plot of trajectories, but is not a perfect recreation as I ran out of time to improve it further.
 

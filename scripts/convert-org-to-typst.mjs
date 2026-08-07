@@ -2613,6 +2613,11 @@ writeFileSync(
 );
 const appendixH = { stem: "appendix_h", title: "Appendix H: Edition-specific Prose Record" };
 writeFileSync(path.join(contentDir, "appendix_h.typ"), editionAwareProseRecord);
+const appendixI = { stem: "appendix_i", title: "Appendix I: Source and Edition Change Log" };
+writeFileSync(
+  path.join(contentDir, "appendix_i.typ"),
+  readFileSync(path.join(typDir, "templates", "appendix_i.typ"), "utf8"),
+);
 
 const indexedIncludes = chapters
   .filter(({ stem }) => !["errata", "references"].includes(stem))
@@ -2644,6 +2649,7 @@ const indexedIncludes = chapters
         '      #include "content/appendix_f.typ"',
         '      #include "content/appendix_g.typ"',
         '      #include "content/appendix_h.typ"',
+        '      #include "content/appendix_i.typ"',
         "    ]",
         "  ]",
       ].join("\n");
@@ -2693,7 +2699,7 @@ writeFileSync(
   path.join(typDir, "manifest.typ"),
   `// Generated input manifest for the Scheme Org source files.\n`
     + `#let fdg-source-files = (\n`
-    + [...chapters, ...cljsAppendices, appendixG, appendixH]
+    + [...chapters, ...cljsAppendices, appendixG, appendixH, appendixI]
       .map(({ stem, title }) => `  (file: "content/${stem}.typ", title: ${JSON.stringify(typstEscape(title))}),`)
       .join("\n")
     + `\n)\n`,

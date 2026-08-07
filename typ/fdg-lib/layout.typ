@@ -86,7 +86,7 @@
     author: ("Gerald Jay Sussman", "Jack Wisdom", "Will Farr"),
   )
   set page(
-    paper: "us-letter",
+    paper: "a4",
     margin: (x: 0.82in, y: 0.78in),
     numbering: "1",
     header: fdg-running-header,
@@ -102,6 +102,7 @@
   set par(
     justify: true,
     leading: 0.58em,
+    first-line-indent: 1.5em,
     justification-limits: (
       tracking: (min: -0.01em, max: 0.02em),
     ),

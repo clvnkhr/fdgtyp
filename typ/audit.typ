@@ -58,7 +58,7 @@ Source provenance note: `fdg-book/` is treated as a hard-copied vendored source 
   stroke: 0.4pt,
   inset: 4pt,
   [Area], [Status], [Decision],
-  [Layout], [#accepted], [US-letter layout is intentional. Page-for-page reproduction of the published PDF is not a goal. Audit content loss, bad breaks, obscured text, and incorrect counters instead.],
+  [Layout], [#accepted], [A4 layout is intentional. Page-for-page reproduction of the published PDF is not a goal. Audit content loss, bad breaks, obscured text, and incorrect counters instead.],
   [References], [#partial], [Reference numbering is seeded to match the published PDF. Remaining work is formatting and every callout/entry check.],
   [Footnotes], [#exact], [Footnote numbering resets per chapter/appendix. Generated footnote counts are locked for every chapter/appendix, and PDF checks match published examples. Footnote display equations no longer consume main equation numbers.],
   [Equations], [#bug], [Several source/PDF math drifts are known. The former footnote-display counter drift is fixed and guarded by regressions.],
@@ -593,7 +593,7 @@ Status: #partial with accepted layout differences.
 
 Accepted:
 
-- US-letter layout and custom cover/title treatment are intentional.
+- A4 layout and custom cover/title treatment are intentional.
 - Errata as end matter is intentional.
 - `typ/main.pdf` and `fdg-book.pdf` should differ only by cover/index material.
 

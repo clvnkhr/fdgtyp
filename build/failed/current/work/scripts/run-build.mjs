@@ -4,6 +4,12 @@ import { cpSync, createWriteStream, existsSync, lstatSync, mkdirSync, readFileSy
 import { execFileSync, spawn } from "node:child_process";
 import path from "node:path";
 import { randomBytes } from "node:crypto";
+import { compactBuildRunner } from "./compact-build-runner.mjs";
+import {
+  artifactRelativePath,
+  generatedRelativePaths,
+  syncBuildToRoot,
+} from "./sync-build-to-root.mjs";
 
 const root = process.cwd();
 const target = process.argv[2];
@@ -66,28 +72,6 @@ const buildInputPaths = [
   "emmy-runner/public/style.css",
 ];
 
-const generatedRelativePaths = [
-  "codeblocks",
-  "emmy-runner/public/generated",
-  "typ/content",
-  "typ/main.typ",
-  "typ/manifest.typ",
-  "typ/references.bib",
-  "typ/main.pdf",
-  "typ/main-cljs.pdf",
-  "typ/main-both.pdf",
-  "typ/audit.pdf",
-  "fdg-book.pdf",
-  "fdg-book-cljs.pdf",
-  "fdg-book-both.pdf",
-  "output-comparison.typ",
-  "output-comparison.pdf",
-];
-
-function artifactRelativePath(relative) {
-  return relative === "emmy-runner/public/generated" ? "emmy-generated" : relative;
-}
-
 mkdirSync(runDir, { recursive: true });
 writeFileSync(path.join(runDir, "run.json"), JSON.stringify({
   id: runId,
@@ -113,14 +97,16 @@ const currentDir = path.join(buildDir, "current");
 const previousWorkDir = existsSync(path.join(currentDir, "work"))
   ? path.join(currentDir, "work")
   : (existsSync(currentDir) ? path.join(path.dirname(realpathSync(currentDir)), "work") : null);
-if (previousWorkDir && existsSync(previousWorkDir)) {
-  for (const relative of generatedRelativePaths) {
-    const source = path.join(previousWorkDir, relative);
-    if (!existsSync(source)) continue;
-    const destination = path.join(workDir, relative);
-    mkdirSync(path.dirname(destination), { recursive: true });
-    cpSync(source, destination, { recursive: true });
-  }
+for (const relative of generatedRelativePaths) {
+  const artifactSource = path.join(currentDir, artifactRelativePath(relative));
+  const legacyWorkSource = previousWorkDir ? path.join(previousWorkDir, relative) : null;
+  const source = existsSync(artifactSource)
+    ? artifactSource
+    : (legacyWorkSource && existsSync(legacyWorkSource) ? legacyWorkSource : null);
+  if (!source) continue;
+  const destination = path.join(workDir, relative);
+  mkdirSync(path.dirname(destination), { recursive: true });
+  cpSync(source, destination, { recursive: true });
 }
 for (const relative of [".tools", "emmy-runner/node_modules"]) {
   const source = path.join(root, relative);
@@ -218,6 +204,16 @@ function promoteCurrent() {
   cpSync(manifestPath, path.join(artifactsDir, "run.json"));
   cpSync(logPath, path.join(artifactsDir, "build.log"));
 
+  // The build itself used private runner copies. Retention needs neither the
+  // compiler's volatile caches nor a second generated-data copy, so replace
+  // authored inputs with stable links only after all build writes are done.
+  compactBuildRunner({ root, runDir, linkGeneratedArtifact: true });
+
+  // Recipes write only inside staging. Once every artifact is complete, copy
+  // the explicit generated allowlist back to root as disposable mirrors. The
+  // synchronizer prepares all copies first and rolls back a failed install.
+  syncBuildToRoot({ root, artifactsDir });
+
   rotateRetainedRuns(historyDir);
   renameSync(runDir, currentRunDir);
   rmSync(currentDir, { recursive: true, force: true });
@@ -230,6 +226,7 @@ function retainFailure() {
   const failedDir = path.join(buildDir, "failed");
   const currentFailureDir = path.join(failedDir, "current");
   mkdirSync(failedDir, { recursive: true });
+  compactBuildRunner({ root, runDir });
   rotateRetainedRuns(failedDir);
   renameSync(runDir, currentFailureDir);
   return currentFailureDir;
@@ -266,13 +263,18 @@ try {
   finish("succeeded", {
     artifacts: path.join(buildDir, "current"),
     workspace: path.join(buildDir, "history", "current", "work"),
+    workspaceLayout: "linked-runner-v1",
+    rootMirrors: "synchronized-on-promotion",
   });
   // Promotion occurs only after a successful build. Static slot names make
   // successive generated trees directly comparable in Git.
   promoteCurrent();
   console.log(`FDG build artifacts: ${path.join(buildDir, "current")}`);
 } catch (error) {
-  finish("failed", { workspace: path.join(buildDir, "failed", "current", "work") });
+  finish("failed", {
+    workspace: path.join(buildDir, "failed", "current", "work"),
+    workspaceLayout: "linked-runner-v1",
+  });
   const failureDir = retainFailure();
   console.error(`FDG failed build retained: ${failureDir}`);
   throw error;

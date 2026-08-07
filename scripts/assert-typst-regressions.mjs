@@ -37,7 +37,7 @@ const convertedOrgFiles = [
 
 const expectedContentFiles = convertedOrgFiles
   .map(file => file.replace(/\.org$/, ".typ"))
-  .concat(["appendix_d.typ", "appendix_e.typ", "appendix_f.typ", "appendix_g.typ", "appendix_h.typ", "preface_cljs.typ"])
+  .concat(["appendix_d.typ", "appendix_e.typ", "appendix_f.typ", "appendix_g.typ", "appendix_h.typ", "appendix_i.typ", "preface_cljs.typ"])
   .sort();
 
 const expectedFigures = [
@@ -76,6 +76,7 @@ const expectedFootnoteCounts = {
   "appendix_f.typ": 0,
   "appendix_g.typ": 0,
   "appendix_h.typ": 0,
+  "appendix_i.typ": 0,
   "references.typ": 0,
   "errata.typ": 0,
   "preface_cljs.typ": 0,
@@ -122,9 +123,10 @@ const cljsAppendixGate = `    #if code-edition in ("clojure", "both") [
       #include "content/appendix_f.typ"
       #include "content/appendix_g.typ"
       #include "content/appendix_h.typ"
+      #include "content/appendix_i.typ"
     ]`;
 if (!mainSource.includes(cljsAppendixGate)) {
-  throw new Error("Appendices D-H must be gated by the top-level ClojureScript/both edition selection");
+  throw new Error("Appendices D-I must be gated by the top-level ClojureScript/both edition selection");
 }
 
 const errataPosition = mainSource.indexOf('#include "content/errata.typ"');
@@ -912,7 +914,7 @@ const pdfTextAssertions = [
       "B Our Notation",
       "References",
       "1 It is customary to shorten \"Euler-Lagrange equations\" to \"Lagrange equations.\"",
-      "1 The quote is from Pais [12], p. 131.",
+      "The quote is from Pais [12], p. 131.",
       "7 These names are accidents of history.",
     ],
     excludes: [
@@ -1108,6 +1110,40 @@ for (const required of [
     fail("Appendix G is missing required runner guidance:", required);
   }
 }
+for (const required of [
+  '#fdg-chapter("Source and Edition Change Log"',
+  "I-017 — Appendix B, equation B.7",
+  "I-147 — Appendix D source",
+  "I-247 — Paper size",
+  "I-259 — Regression policy",
+]) {
+  if (!contentByFile.get("appendix_i.typ").includes(required)) {
+    fail("Appendix I is missing required change-log guidance:", required);
+  }
+}
+const appendixIIds = [...contentByFile.get("appendix_i.typ").matchAll(/^- \*(I-\d{3}) —/gm)]
+  .map(match => match[1]);
+const appendixIMetadata = matchAll(
+  /#fdg-change-meta\("I-\d{3}", "[^"]+", "[^"]+", "[^"]+"\)/g,
+  contentByFile.get("appendix_i.typ"),
+);
+const expectedAppendixIIds = Array.from(
+  { length: 259 },
+  (_value, index) => `I-${String(index + 1).padStart(3, "0")}`,
+);
+if (appendixIIds.join(",") !== expectedAppendixIIds.join(",")) {
+  fail(
+    "Appendix I IDs must be exhaustive, unique, and contiguous:",
+    `${appendixIIds.length} found; expected ${expectedAppendixIIds.length}`,
+  );
+}
+if (appendixIMetadata.length !== expectedAppendixIIds.length
+    || contentByFile.get("appendix_i.typ").includes("<location>")) {
+  fail(
+    "Every Appendix I entry must have source/output/check metadata:",
+    `${appendixIMetadata.length} metadata rows found; expected ${expectedAppendixIIds.length}`,
+  );
+}
 for (const file of convertedOrgFiles) {
   if (!existsSync(path.join(orgDir, file))) {
     fail("Configured Org input does not exist:", file);
@@ -1154,7 +1190,7 @@ for (const file of contentFiles) {
     continue;
   }
   const stem = file.replace(/\.typ$/, "");
-  if (!/^appendix_[defgh]\.typ$/.test(file)) {
+  if (!/^appendix_[defghi]\.typ$/.test(file)) {
     const expectedSource = `// Generated from ../../fdg-book/scheme/org/${stem}.org.`;
     if (!text.startsWith(expectedSource)) {
       fail(`Generated source header mismatch in ${file}:`, expectedSource);
@@ -1164,7 +1200,7 @@ for (const file of contentFiles) {
     }
   }
   if (!text.includes('#import "../lib.typ": fdg-chapter')
-      || (!["appendix_g.typ", "appendix_h.typ"].includes(file)
+      || (!["appendix_g.typ", "appendix_h.typ", "appendix_i.typ"].includes(file)
         && (!text.includes("fdg-figure") || !text.includes("fdg-ref-page")))) {
     fail(`Missing standard content import in ${file}`);
   }
